@@ -2248,6 +2248,204 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'              
+  /v1/accounts/{accountNumber}/listCardsByAccount:
+    get:
+      tags:
+      - Account Management
+      summary: List cards by Account
+      description: The service is used for the purpose of the card look up where the
+        account number is provided and service will send all cards associated with
+        account.
+      operationId: ListCardsbyAccount
+      x-group-name: Account Management
+      x-proxy-name: List cards by Account
+      parameters:
+      - name: X-Correl-Id
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 40.0
+          example: ABC123
+        required: false
+      - name: X-Name
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: X-context
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: businessUnit
+        in: query
+        description: "Business Unit - Identification number associated with this Account\
+          \ Base Segment record, the values are 001–998."
+        schema:
+          default: 0.0
+          type: number
+          maxLength: 3
+          example: 600
+      - name: accountNumber
+        in: path
+        description: "Account Number - Must be numeric and greater than zeroes, Must\
+          \ exist as a valid Account number"
+        required: true
+        schema:
+          default: 0
+          format: uppercase
+          type: string
+          maxLength: 19
+          example: 0006000022000000076
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCardsbyAccountResp'
+        "400":
+          description: The request cannot be validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "401":
+          description: The request was unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "500":
+          description: An unexpected internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "404":
+          description: The request resource does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "503":
+          description: The service was unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "504":
+          description: The request timed out while waiting for a response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+  /v1/accounts/nonmonAction:
+    post:
+      tags:
+      - Account Management
+      summary: Non Monetary Action
+      description: The service will validate input message details and apply Non Monetary
+        action on account.
+      operationId: NonMonetaryAction
+      x-group-name: Account Management
+      x-proxy-name: Non Monetary Action
+      parameters:
+      - name: X-Correl-Id
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 40.0
+          example: ABC123
+        required: false
+      - name: X-Name
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: X-context
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NonMonetaryActionReq'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NonMonetaryActionResp'
+        "400":
+          description: The request cannot be validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "401":
+          description: The request was unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "500":
+          description: An unexpected internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "404":
+          description: The request resource does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "503":
+          description: The service was unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "504":
+          description: The request timed out while waiting for a response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
 components:
   schemas:
     InquireStatementResp:
@@ -7265,3 +7463,401 @@ components:
           type: string
           maxLength: 19.0
           example: "0006000011000000160"      
+    ListCardsbyAccountResp:
+      type: object
+      properties:
+        listOfCards:
+          type: array
+          items:
+            type: object
+            properties:
+              blockCode:
+                type: string
+                description: Block Code -  block code assigned to the Embosser record
+                maxLength: 1
+                example: ' '
+              businessUnit:
+                type: number
+                description: "Business Unit - Identification number associated with\
+                  \ this Account Base Segment record, the values are 001–998."
+                maxLength: 3
+                example: 600
+              cardHolderType:
+                type: number
+                enum:
+                - 0.0
+                - 1.0
+                description: "Card Holder Type - Type of card and it value are: 0(Additional),\
+                  \ 1(Primary)"
+                maxLength: 1
+                example: 1
+              embeddedCardNumber:
+                type: string
+                description: Card Number - Number that is embossed on the plastic
+                  card
+                maxLength: 19
+                example: 0004440020051355558
+              embeddedCardBusinessUnit:
+                type: string
+                description: "Identification number associated with this card Segment\
+                  \ record, the values are 001–998"
+                maxLength: 3
+                example: 600
+              accountNumber:
+                type: string
+                description: "Account Number - Must be numeric and greater than zeroes,\
+                  \ Must exist as a valid Account number"
+                maxLength: 19
+                example: 0006000022000000076
+              status:
+                type: string
+                description: Status - Embosser record status
+                maxLength: 1
+                example: 1
+    NonMonetaryActionReq:
+      type: object
+      properties:
+        businessUnit:
+          format: uppercase
+          description: "Business Unit - Identification number associated with this\
+            \ Account Base Segment record, the values are 001–998."
+          type: string
+          maxLength: 3
+          example: 600
+        letterCode:
+          format: uppercase
+          description: Letter Code
+          type: string
+          maxLength: 3
+          example: ' '
+        memoLine1:
+          format: uppercase
+          description: Memo Line 1
+          type: string
+          maxLength: 60
+          example: ' '
+        letterBusinessUnit:
+          default: 0.0
+          maximum: 999.0
+          description: Letter Business Unit - Letter Organization
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: 0
+        referralRepBusinessUnit:
+          default: 0.0
+          maximum: 999.0
+          description: Referral REP Business Unit - Referral representative organization.
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: 0
+        memoLine5:
+          format: uppercase
+          description: Memo Line 5
+          type: string
+          maxLength: 60
+          example: ' '
+        accountNumber:
+          format: uppercase
+          description: "Account Number - Must be numeric and greater than zeroes,\
+            \ Must exist as a valid Account number"
+          type: string
+          maxLength: 19
+          example: 0006000011000000152
+        memoLine4:
+          format: uppercase
+          description: Memo Line 4
+          type: string
+          maxLength: 60
+          example: ' '
+        memoLine3:
+          format: uppercase
+          description: Memo Line 3
+          type: string
+          maxLength: 60
+          example: ' '
+        memoLine2:
+          format: uppercase
+          description: Memo Line 2
+          type: string
+          maxLength: 60
+          example: ' '
+        reviewDate:
+          format: date
+          description: Review Date - Date of memo add.
+          type: string
+          maxLength: 7
+          example: 0
+        manualReferralOption:
+          description: Manual Referral Option - Manual referral option 0/space/low
+            values – Referral off 1 – Referral on.
+          type: string
+          enum:
+          - 0
+          - 1
+          - ' '
+          maxLength: 1
+          example: 0
+        referralRepId:
+          format: uppercase
+          description: Referral REP ID - Referral representative ID
+          type: string
+          maxLength: 3
+          example: ' '
+        actionCode:
+          format: uppercase
+          description: Action Code - Four character user assigned Code for the action.
+          type: string
+          maxLength: 4
+          example: AINQ
+        reviewTime:
+          default: 0.0
+          maximum: 9999.0
+          description: Review Time -  Time Of memo add.
+          type: number
+          minimum: 0.0
+          maxLength: 4
+          example: 0
+        cardNumber:
+          format: uppercase
+          description: "Card Number - Card number, required depend on  Action code\
+            \ parameter."
+          type: string
+          maxLength: 19
+          example: ' '
+    NonMonetaryActionResp:
+      type: object
+      properties:
+        insurance:
+          description: Insurance
+          type: string
+          maxLength: 2
+          example: ""
+        ticketNumber:
+          description: Ticket Number
+          type: string
+          maxLength: 15
+          example: ""
+        storeNumber:
+          description: Store Number
+          type: string
+          maxLength: 9
+          example: 0
+        collectionSequenceNumber:
+          description: Collection Sequence Number - CTA sequence number
+          type: string
+          maxLength: 5
+          example: 0
+        retentionDuration:
+          description: Retention Duration
+          type: string
+          maxLength: 1
+          example: ""
+        pointsProgram:
+          description: Points Program
+          type: string
+          maxLength: 1
+          example: 0
+        letterBusinessUnit:
+          default: 0.0
+          maximum: 999.0
+          description: Letter Business Unit
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: 0
+        historyDate:
+          format: date
+          description: History Date. The format is MM/DD/YYYY or DD/MM/YYYY depending
+            on the date format established on the System record.
+          type: string
+          maxLength: 7
+          example: 31/01/2022
+        nextReviewDate:
+          format: date
+          description: Next Review Date - This field identifies the date of next review
+            by the rep. The format is MM/DD/YYYY or DD/MM/YYYY depending on the date
+            format established on the System record.
+          type: string
+          maxLength: 7
+          example: 00/00/0000
+        notePurgeDate:
+          format: date
+          description: "Note Purge Date - Purge date, The format is MM/DD/YYYY or\
+            \ DD/MM/YYYY depending on the date format established on the System record."
+          type: string
+          maxLength: 7
+          example: 25/02/2022
+        skuNumber:
+          description: Sku Number
+          type: string
+          maxLength: 9
+          example: 0
+        referenceNumber:
+          description: Reference Number
+          type: string
+          maxLength: 24
+          example: ""
+        transactionAmount:
+          description: Transaction Amount
+          type: string
+          maxLength: 19
+          example: 0
+        storeBusinessUnit:
+          description: Store Business Unit
+          type: string
+          maxLength: 3
+          example: 0
+        repBusinessUnit:
+          default: 0.0
+          maximum: 999.0
+          description: REP Business Unit
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: 600
+        actionCode:
+          format: uppercase
+          description: Action Code - Action code assigned to the note
+          type: string
+          maxLength: 5
+          example: AINQ
+        actionCodeDescription:
+          format: uppercase
+          description: Action Code Description
+          type: string
+          maxLength: 20
+          example: ACCOUNT INQ
+        declineReason:
+          description: Decline Reason
+          type: string
+          maxLength: 30
+          example: ""
+        cardSequenceNumber:
+          default: 0.0
+          maximum: 99999.0
+          description: Card Sequence Number - Identification number assigned to an
+            Embosser record to distinguish between multiple cards issued with the
+            same card number.
+          type: number
+          minimum: 0.0
+          maxLength: 5
+          example: 0
+        ctaFile:
+          description: CTA File
+          type: string
+          maxLength: 1
+          example: ""
+        decision:
+          description: Decision
+          type: string
+          maxLength: 1
+          example: ""
+        fundingCardNumber:
+          description: Funding Card Number
+          type: string
+          maxLength: 4
+          example: ""
+        letterCode:
+          format: uppercase
+          description: Letter Code
+          type: string
+          maxLength: 3
+          example: ""
+        pointsAmount:
+          description: Points Amount
+          type: string
+          maxLength: 9
+          example: $0.00
+        planSequenceNumber:
+          description: Plan Sequence Number - Credit plan sequence number assigned
+            to the item
+          type: string
+          maxLength: 2
+          example: 0
+        nextReviewTime:
+          default: 0.0
+          maximum: 9999999.0
+          description: Next Review Time - This field identifies the time of next review
+            by the rep
+          type: number
+          minimum: 0.0
+          maxLength: 7
+          example: 0
+        actionRepId:
+          format: uppercase
+          description: Action REP ID - ASM representative ID
+          type: string
+          maxLength: 3
+          example: NAB
+        referralRepBusinessUnit:
+          default: 0.0
+          maximum: 999.0
+          description: Referral Rep Business Unit - Referral representative organization.
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: 0
+        planNumber:
+          description: Plan Number - Plan number that identifies the Credit Plan Master
+            record associated with the credit plan segment
+          type: string
+          maxLength: 5
+          example: 0
+        clerk:
+          description: Clerk
+          type: string
+          maxLength: 12
+          example: ""
+        transactionType:
+          description: Transaction Type
+          type: string
+          maxLength: 1
+          example: ""
+        authorizationNumber:
+          description: Authorization Number - Authorization code which is required
+            as defined on the ASM monetary action code record
+          type: string
+          maxLength: 6
+          example: ""
+        notesHistoryStatus:
+          format: uppercase
+          description: Notes History Status
+          type: string
+          maxLength: 1
+          example: C
+        purchaseOrderNumber:
+          description: Purchase Order Number
+          type: string
+          maxLength: 16
+          example: ""
+        departmentNumber:
+          description: Department Number
+          type: string
+          maxLength: 4
+          example: ""
+        referralRepId:
+          format: uppercase
+          description: Referral Rep Id - Referral representative ID
+          type: string
+          maxLength: 3
+          example: ""
+        historyTime:
+          format: uppercase
+          description: History Time
+          type: string
+          maxLength: 8
+          example: 06:16:29
+        cardNumber:
+          format: uppercase
+          description: Card Number
+          type: string
+          maxLength: 19
+          example: ' '
+        effectiveDate:
+          description: Effective Date - The format is MM/DD/YYYY or DD/MM/YYYY depending
+            on the date format established on the System record.
+          type: string
+          maxLength: 7
+          example: 00/00/0000
