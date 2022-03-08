@@ -8,7 +8,7 @@ servers:
 tags:
 - name: User Management
 paths:
-  /v1/users/Signon:
+  /v1/users/signon:
     post:
       tags:
       - User Management
@@ -98,6 +98,98 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+  /v1/users/boardUser:
+    post:
+      tags:
+      - User Management
+      summary: "This service is used to add new security sign-on records. A User Security\
+        \ Sign-on record, also referred to as a sign-on record, holds the details\
+        \ that determine a person’s access rights on the system"
+      description: This service is used to add new security sign-on records
+      operationId: AddUser
+      x-group-name: User Management
+      x-proxy-name: Add User
+      parameters:
+      - name: X-Correl-Id
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 40.0
+          example: ABC123
+        required: false
+      - name: X-Name
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: X-context
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUserReq'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddUserResp'
+        "400":
+          description: The request cannot be validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "401":
+          description: The request was unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "500":
+          description: An unexpected internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "404":
+          description: The request resource does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "503":
+          description: The service was unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "504":
+          description: The request timed out while waiting for a response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'              
 components:
   schemas:
     UserSignonResp:
@@ -139,3 +231,291 @@ components:
           type: string
           maxLength: 512.0
           example: A3CDCAE523A132FFAE3800958AC12AB7B62E0DA876C4C91A10C9AC4FF7DF18BF6940F5AEAF33BA381522594D03108CB7A8B46FF39BEE944A98DD26201F36ACFA71D15A875947741961188B661123BF507AB6A9D5E82BA5083D0DB98F54E6D857D9A5B4A48D2750A81A405563B656352230D9613D80F3A362867C1C59BBA09FFED3669DE30905631A4DD9DF68CA47F6E58A0987CCDECBEBD72229F8312684F7E3A5DBDB7E1F99690B7AD44A645EBA0D3BC5CD26F411E6FBED3F430BD2BA372118D934350A7BAC7DBD18BFDB54B3DEFCBC24A8C75768C3C9C766FE75AD3032BAFED6F886F02692DD1C38FF6088088069B281CFF12F745606F758932E83301878CA
+    AddUserResp:
+      type: object
+      properties:
+        signonExpiryDate:
+          format: date
+          description: "Sign-on Expiry Date - Expiration date of the User Security\
+            \ Sign-on record. The default value is zeros. The sign-on record cannot\
+            \ be used to sign on unless this field is a valid future date. On the\
+            \ expiration date, the system sets this field to zero. When this field\
+            \ is zero, signon attempts fail and are reported on the Security Violations\
+            \ Report (T130). This date must be changed to a valid future expiration\
+            \ date to enable the sign-on record to be used for signing on again, The\
+            \ format is MMDDYYYY or DDMMYYYY depending on the date format established\
+            \ on the System record (DATE FORMAT on System Controls)"
+          type: string
+          maxLength: 10
+          example: 31/12/2025
+        dateToActivate:
+          format: date
+          description: "Date to Activate - Activation date of the User Security Sign-on\
+            \ record. The default value is zeros. The sign-on record cannot be used\
+            \ to sign on unless this field is a valid past or current date. This field\
+            \ enables a sign-on record to be added and assigned a future activation\
+            \ date so that the record is automatically active on that future date,\
+            \ The format is MMDDYYYY or DDMMYYYY depending on the date format established\
+            \ on the System record (DATE FORMAT on System Controls)"
+          type: string
+          maxLength: 10
+          example: 27/02/2022
+        clientId:
+          default: 0.0
+          maximum: 99998.0
+          description: "Client ID - Identification number, referred to as Client ID,\
+            \ assigned to your institution by the processor"
+          type: number
+          minimum: 0.0
+          maxLength: 5
+          example: 1
+        name:
+          format: uppercase
+          description: "Name - Sign-on name that the person assigned this User Security\
+            \ Signon record will use to sign on to the system. The sign-on name can\
+            \ consist of letters (A–Z), numbers (0–9), and embedded spaces, but not\
+            \ a leading space. When adding a new sign-on record, the sign-on name\
+            \ must be a unique name not already assigned to any existing User Security\
+            \ Sign-on records for your institution (client ID)"
+          type: string
+          maxLength: 15
+          example: NABTEST25
+        businessUnitPrivilegeId:
+          format: uppercase
+          description: "Business Unit Privilege ID - Name that identifies an existing\
+            \ organization privilege group assigned to this User Security Sign-on\
+            \ record. This organization privilege group determines the organizations\
+            \ that can be accessed by the person who signs on with this sign-on record.\
+            \ An organization privilege group assigned to a sign-on record must have\
+            \ the same client ID and security type as the sign-on record. Access rights\
+            \ to additional organizations can be included or excluded using the I/E\
+            \ and ORG fields, which are listed on this screen under the ORG INCLUDE/EXCLUDE\
+            \ heading"
+          type: string
+          maxLength: 8.0
+          example: CTLUSER
+        supervisorId:
+          format: uppercase
+          description: Supervisor ID
+          type: string
+          maxLength: 3.0
+          example: ' '
+        operatorId:
+          format: uppercase
+          description: "Operator ID - Code that identifies the person who signs on\
+            \ with this User Security Sign-on record. The operator ID displays throughout\
+            \ the system on online screens and reports, and serves as an audit trail\
+            \ for all maintenance entered by this administrator or user"
+          type: string
+          maxLength: 3.0
+          example: A25
+        servicePrivilegeGroupId:
+          format: uppercase
+          description: Service Privilege Group - Name that identifies an existing
+            service privilege group assigned to this User Security Sign-on record.
+            This service privilege group determines the services that can be accessed
+            by the person who signs on with this sign-on record
+          type: string
+          maxLength: 8.0
+          example: CLTUSER
+        sourceGroupType:
+          description: Source Group Type - Code that identifies the source group assigned
+            to this User Security Sign-on record. Each source group defines a set
+            of security parameters established by the processor in the Client Options
+            record for your institution
+          type: string
+          enum:
+          - "[2"
+          - " 3]"
+          maxLength: 1
+          example: 2
+        customerServiceBusinessUnit:
+          default: 0.0
+          maximum: 999.0
+          description: Customer Service Business Unit - Organization number assigned
+            to this administrator or user for reporting purposes in the Account Services
+            Management(ASM) application
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: 100
+        businessUnitPrivilegeTable:
+          type: array
+          items:
+            type: object
+            properties:
+              businessUnit:
+                type: string
+                example: " "  
+              inclusionexclusionFlag:
+                type: string
+                example: " "    
+        userApplicationAccessTable:
+          type: array
+          items:
+            type: object
+            properties:
+              fieldSecurityCode:
+                type: string
+                example: " "  
+              userCode:
+                type: string
+                example: " "            
+        servicePrivilegeTable:
+          type: array
+          items:
+            type: object
+            properties:
+              serviceName:
+                type: string
+                example: " "  
+              serviceVersion:
+                type: string
+                example: " " 
+              inclusionexclusionFlag:
+                type: string
+                example: " "          
+    AddUserReq:
+      type: object
+      properties:
+        signonExpiryDate:
+          format: date
+          description: "Sign-on Expiry Date - Expiration date of the User Security\
+            \ Sign-on record. The default value is zeros. The sign-on record cannot\
+            \ be used to sign on unless this field is a valid future date. On the\
+            \ expiration date, the system sets this field to zero. When this field\
+            \ is zero, signon attempts fail and are reported on the Security Violations\
+            \ Report (T130). This date must be changed to a valid future expiration\
+            \ date to enable the sign-on record to be used for signing on again, The\
+            \ format is MMDDYYYY or DDMMYYYY depending on the date format established\
+            \ on the System record (DATE FORMAT on System Controls)"
+          type: string
+          maxLength: 10
+          example: 31/12/2025
+        dateToActivate:
+          format: date
+          description: "Date to Activate - Activation date of the User Security Sign-on\
+            \ record. The default value is zeros. The sign-on record cannot be used\
+            \ to sign on unless this field is a valid past or current date. This field\
+            \ enables a sign-on record to be added and assigned a future activation\
+            \ date so that the record is automatically active on that future date,\
+            \ The format is MMDDYYYY or DDMMYYYY depending on the date format established\
+            \ on the System record (DATE FORMAT on System Controls)"
+          type: string
+          maxLength: 10
+          example: 27/02/2022
+        clientId:
+          default: 0.0
+          maximum: 99998.0
+          description: "Client ID - Identification number, referred to as Client ID,\
+            \ assigned to your institution by the processor"
+          type: number
+          minimum: 0.0
+          maxLength: 5
+          example: 1
+        name:
+          format: uppercase
+          description: "Name - Sign-on name that the person assigned this User Security\
+            \ Signon record will use to sign on to the system. The sign-on name can\
+            \ consist of letters (A–Z), numbers (0–9), and embedded spaces, but not\
+            \ a leading space. When adding a new sign-on record, the sign-on name\
+            \ must be a unique name not already assigned to any existing User Security\
+            \ Sign-on records for your institution (client ID)"
+          type: string
+          maxLength: 15
+          example: NABTEST25
+        businessUnitPrivilegeId:
+          format: uppercase
+          description: "Business Unit Privilege ID - Name that identifies an existing\
+            \ organization privilege group assigned to this User Security Sign-on\
+            \ record. This organization privilege group determines the organizations\
+            \ that can be accessed by the person who signs on with this sign-on record.\
+            \ An organization privilege group assigned to a sign-on record must have\
+            \ the same client ID and security type as the sign-on record. Access rights\
+            \ to additional organizations can be included or excluded using the I/E\
+            \ and ORG fields, which are listed on this screen under the ORG INCLUDE/EXCLUDE\
+            \ heading"
+          type: string
+          maxLength: 8.0
+          example: CLTUSER
+        supervisorId:
+          format: uppercase
+          description: Supervisor ID
+          type: string
+          maxLength: 3.0
+          example: ' '
+        operatorId:
+          format: uppercase
+          description: "Operator ID - Code that identifies the person who signs on\
+            \ with this User Security Sign-on record. The operator ID displays throughout\
+            \ the system on online screens and reports, and serves as an audit trail\
+            \ for all maintenance entered by this administrator or user"
+          type: string
+          maxLength: 3.0
+          example: A25
+        servicePrivilegeGroupId:
+          format: uppercase
+          description: Service Privilege Group - Name that identifies an existing
+            service privilege group assigned to this User Security Sign-on record.
+            This service privilege group determines the services that can be accessed
+            by the person who signs on with this sign-on record
+          type: string
+          maxLength: 8.0
+          example: CLTUSER
+        sourceGroupType:
+          description: Source Group Type - Code that identifies the source group assigned
+            to this User Security Sign-on record. Each source group defines a set
+            of security parameters established by the processor in the Client Options
+            record for your institution
+          type: string
+          enum:
+          - "[2"
+          - " 3]"
+          maxLength: 1
+          example: 2
+        customerServiceBusinessUnit:
+          default: 0.0
+          maximum: 999.0
+          description: Customer Service Business Unit - Organization number assigned
+            to this administrator or user for reporting purposes in the Account Services
+            Management(ASM) application
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: 100
+        businessUnitPrivilegeTable:
+          type: array
+          items:
+            type: object
+            properties:
+              businessUnit:
+                type: string
+                example: " "  
+              inclusionexclusionFlag:
+                type: string
+                example: " "    
+        userApplicationAccessTable:
+          type: array
+          items:
+            type: object
+            properties:
+              fieldSecurityCode:
+                type: string
+                example: " "  
+              userCode:
+                type: string
+                example: " "            
+        servicePrivilegeTable:
+          type: array
+          items:
+            type: object
+            properties:
+              serviceName:
+                type: string
+                example: " "  
+              serviceVersion:
+                type: string
+                example: " " 
+              inclusionexclusionFlag:
+                type: string
+                example: " "              
