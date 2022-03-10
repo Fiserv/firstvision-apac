@@ -1,6 +1,8 @@
 # Update Credit Limit
 
-This service is used to update the credit limit of the cardholder’s account. 
+This service is used to update the credit limit of the cardholder’s account in real time.  
+
+Fields that are not provided in the Request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
 
 ## Endpoint
 
@@ -52,8 +54,8 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0010SF` | Update Request - Record not found|
-| `V5BS0103SA` | Credit limit not maintained if AMRM-CLM-SUB-NOT-ALLOWED|
+| `V5BS0010SF` | Update Request - Record not found |
+| `V5BS0103SA` | Credit limit not maintained if relationship level credit limit maintainanace is not allowed |
 | `V5BS0103SC` | Input Credit limit cannot be greater than logo credit limit |
 | `V5BS0103SD` | Credit limit exceeds secured amount use |
 | `V5BS0103SE` | Credit limit does not conform to currency NOD |  

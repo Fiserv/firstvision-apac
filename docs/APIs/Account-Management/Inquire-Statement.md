@@ -1,6 +1,6 @@
 # Inquire Statement
 
- This service is used to fetch statement details for a given account number.
+ This service is used to fetch statement details for a given account number. 
 
 ## Endpoint
 
@@ -11,10 +11,10 @@
 ### Request Payload
 
 ```json
-{
+
 Shoud be empty.
 ***The Business Unit and Account Number should be sent as query parameters and path variable.***
-}
+
 ```
 
 ### Minimum Requirements
@@ -26,7 +26,7 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
-| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
+| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the Account. | 
 
 
 
@@ -194,8 +194,8 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5S34003SA` |No Statement History Information Found On File |
-| `V5S34003SB` |No Statement History Information Found On File |
-| `V5S34003EB` |No Statement History Information Found On File |
-| `V5S34003EF` |No Statement History Information Found On File |  
-| `V5S34003EG` |No Statement History information found on file '|
+| `V5S34003SA` | No Statement History Information Found On File |
+| `V5S34003SB` | No Statement History Information Found On File |
+| `V5S34003EB` | No Statement History Information Found On File |
+| `V5S34003EF` | No Statement History Information Found On File |  
+| `V5S34003EG` | No Statement History information found on file |

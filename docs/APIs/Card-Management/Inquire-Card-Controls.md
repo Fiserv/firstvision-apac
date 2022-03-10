@@ -63,5 +63,5 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5ED4001EC` |Dual org not found or add pending|
-|`V5ED4003EQ` |Post to acct for dual org not on file|
+|`V5ED4001EC` | Dual org not found or add pending |
+|`V5ED4003EQ` | Post to acct for dual org not on file |

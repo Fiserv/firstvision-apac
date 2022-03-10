@@ -21,8 +21,8 @@ The below table identifies the required query parameters in the request message.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the Card. |
-| `customerNumber` | Path Variable | *string* | 19 | Customer Number of the cardholder. |
+| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the card. |
+| `customerNumber` | Path Variable | *string* | 19 | Customer number of the cardholder. |
 
 ### Successful Response Payload
 
@@ -64,7 +64,7 @@ The below table identifies the required query parameters in the request message.
 ```json
 {
   "errorCode": "V5NA4002SA",
-  "errorMessage": "Customer Account not found"  
+  "errorMessage": "Customer account not found"  
 }
 ```
 
@@ -72,9 +72,9 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-|`V5NA4001SV` |Invalid Business Unit|  
-|`V5NA4002SA` |Customer Account not found|
-|`V5NA4002SB` |Customer Account is in add pending|
-|`V5NA4002SC` |Customer Account is purged|
-|`V5NA0004SF` |Get  Request - Record not found|
-|`V5NA0005SF` |Get Request - Record Add Pending|
+|`V5NA4001SV` | Invalid business unit|  
+|`V5NA4002SA` | Customer account not found|
+|`V5NA4002SB` | Customer account is in add pending|
+|`V5NA4002SC` | Customer account is purged|
+|`V5NA0004SF` | Get  Request - Record not found|
+|`V5NA0005SF` | Get Request - Record Add Pending|

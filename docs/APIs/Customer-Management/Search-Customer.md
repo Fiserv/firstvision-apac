@@ -2,6 +2,8 @@
 
 This service is used to retrieve customer's information based on primary and optional search values like Last name, Indentification number, Phone number etc.
 
+Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
+
 ## Endpoint
 
 `POST /v1/customers/searchCustomer`

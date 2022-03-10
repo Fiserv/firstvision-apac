@@ -11,10 +11,10 @@ This service provides details of the unbilled transactions posted on a given acc
 ### Request Payload
 
 ```json
-{
+
 Shoud be empty.
 ***The Business Unit and Account Number should be sent as query parameters and path variable.***
-}
+
 ``` 
 
 ### Minimum Requirements
@@ -177,4 +177,17 @@ The below table identifies the required parameters in the request payload.
   "transactionType": 1
 }
 ```
+### Error Response Payload
 
+```json
+{
+   errorCode" :  V5T24002SB" ,
+   errorMessage" : No account on File"   
+}
+```
+
+Below table provides the list of application's error code and its description.
+
+| ErrorCode |  Description/Values |
+| --------  | ------------------ |
+| `V5T24002SB` | No account on File |

@@ -1,9 +1,8 @@
 # Update Accounts' Direct Debit
 
-The Direct Debit Update message enables the user to update the Direct Debit information on an account. 
-The information that can be updated includes:  bank account and routing data and various other associated fields. 
-This service does not initiate the Direct Debit, it just provides a mechanism to update the Direct Debit related fields.
-> *It is necessary to perform an inquiry using the Direct Debit/Credit inquiry message first, as this service requires all fields to be sent in the request, whether they have been changed or not. If a tag is sent in empty, it is presumed that the field is to be deleted.*
+The Direct Debit Update message enables the user to update the Direct Debit information on an account. The information that can be updated includes:  bank account and routing data and various other associated fields. This service does not initiate the Direct Debit, it just provides a mechanism to update the Direct Debit related fields.
+
+*It is necessary to perform an inquiry using the Direct Debit/Credit inquiry message first, as this service requires all fields to be sent in the request, whether they have been changed or not. If a tag is sent in empty, it is presumed that the field is to be deleted.*
 
 ## Endpoint
 
@@ -36,9 +35,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
-| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
-| `paymentRemittanceMethod` | Payload | *number* | 1 | Payment Remittance Method. |
+| `businessUnit` | Query Parameter | *number* | 03 | Identification number of the organization associated with the account. |
+| `accountNumber` | Path Variable | *string* | 19 | Unique identification number of the Account. | 
+| `paymentRemittanceMethod` | Payload | *number* | 01 | Payment Remittance Method. |
 | `dDPaymentStartDate` | Payload | *string* | 10 | DD Payment Start Date. |
 | `dDPaymentExpiryDate` | Payload | *string* | 10 | DD Payment Expiry Date. |
 

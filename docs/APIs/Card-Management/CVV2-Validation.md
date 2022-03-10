@@ -1,8 +1,6 @@
 # CVV2 Validation
 
-The Card Secure Code Validation service is used to validate the CVV2  and optionally the expiry date of a given card.
-
-This service is typically called before the card activation or PIN reset service to validate the cardholder.
+The Card Secure Code Validation service is used to validate the CVV2  and optionally the expiry date of a given card. This service is typically called before the card activation or PIN reset service to validate the cardholder.
 
 ## Endpoint
 
@@ -52,9 +50,9 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5VC4001EA` |Invalid Business Unit|
-|`V5VC0287EA` |Business Unit not found or in add-pending status|
-|`V5VC4002EA` |Invalid Card number|
-|`V5VC4002EA` |Card number not found |
-|`V5VC4004AE` |Invalid expiry date|
-|`V5VC4003AE` |Invalid CVV2 |
+|`V5VC4001EA` | Invalid business unit|
+|`V5VC0287EA` | Business unit not found or in add-pending status|
+|`V5VC4002EA` | Invalid card number|
+|`V5VC4002EA` | Card number not found |
+|`V5VC4004AE` | Invalid expiry date|
+|`V5VC4003AE` | Invalid CVV2 | 

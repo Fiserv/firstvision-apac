@@ -1,6 +1,7 @@
 # Inquire Direct Debit
 
-This service is used to get detail for direct debit.
+This service is used to get detail for direct debit for given account. It shows current parameter setup enabled on current account.
+Fields that are not provided in the Request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
 
 ## Endpoint
 
@@ -11,10 +12,10 @@ This service is used to get detail for direct debit.
 ### Request Payload
 
 ```json
-{
+
 Shoud be empty.
 ***The Business Unit and Account Number should be sent as query parameters and path variable.*** 
-}
+
 ```
 
 ### Minimum Requirements

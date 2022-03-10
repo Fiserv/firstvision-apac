@@ -1,6 +1,6 @@
 # Inquire Account Details
 
- The service provides the basic details of the account associated with the customer.
+The service provides the basic details of the account associated with the customer. This API can be called using business unit and account number.
 
 ## Endpoint
 
@@ -11,10 +11,10 @@
 ### Request Payload
 
 ```json
-{
+
 Shoud be empty.
 ***The Business Unit and Account Number should be sent as query parameters and path variable.*** 
-}
+
 ```   
 
 ### Minimum Requirements

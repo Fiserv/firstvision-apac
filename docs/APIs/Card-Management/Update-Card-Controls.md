@@ -2,7 +2,8 @@
 
 This service updates the card controls for a given card number like ECOM Active switch, ATM Flag, International ATM POS Flag, MOTO Flag and max Amount ATM/OTC/Retail etc.
 
-  
+Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
+
 ## Endpoint
 
 `PUT /v1/cards/{cardNumber}/controls`
@@ -87,7 +88,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5ED8120CX",
-  "errorMessage": "Saving Acct nbr(or)Cheque Acct Any One Should Be Value"  
+  "errorMessage": "Saving acct nbr(or) cheque acct any one should be value"  
 }
 ```
 
@@ -95,16 +96,16 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5ED8120CX` | Saving Acct nbr(or)Cheque Acct Any One Should Be Value |        
-| `V5ED0328EA` | Maximum Freq Input Not Allowed When No Auth Limit Overrd | 
-| `V5ED0319ED` | Atm Cash Amt Field Update Is Not Allowed | 
-| `V5ED0319EF` | New Atm Cash Amt Is Greater Than Allowable Limit | 
-| `V5ED0320EE` | Atm Cash Nbr Field Update Is Not Allowed | 
-| `V5ED0321EH` | Txn Limit Atm Field Update Is Not Allowed | 
-| `V5ED0322EF` | Otc Cash Amt Field Update Is Not Allowed | 
-| `V5ED0323EG` | Otc Cash Nbr Field Update Is Not Allowed | 
-| `V5ED0324EI` | Txn Limit Otc Field Update Is Not Allowed | 
-| `V5ED0325EB` | Retail Amt Field Update Is Not Allowed | 
-| `V5ED0325EC` | New Retail Amt Is Greater Than Allowable Limit | 
-| `V5ED0326EC` | Retail Nbr Field Update Is Not Allowed | 
-| `V5ED0327EJ` | Txn Limit Retail Field Update Is Not Allowed  | 
+| `V5ED8120CX` | Saving acct nbr(or)Cheque acct any one should be value |        
+| `V5ED0328EA` | Maximum freq input not allowed when no auth limit overrd | 
+| `V5ED0319ED` | ATM cash AMT field update is not allowed | 
+| `V5ED0319EF` | New ATM Cash Amt Is greater than allowable Limit | 
+| `V5ED0320EE` | ATM Cash Nbr field update is not allowed | 
+| `V5ED0321EH` | Txn Limit ATM field update is not allowed | 
+| `V5ED0322EF` | OTC cash Amt field update is not allowed | 
+| `V5ED0323EG` | OTC cash nbr field update is not allowed | 
+| `V5ED0324EI` | TXN Limit Otc field update is not allowed | 
+| `V5ED0325EB` | Retail amt field update is not allowed | 
+| `V5ED0325EC` | New retail amt is greater than allowable limit | 
+| `V5ED0326EC` | Retail nbr field update is not allowed | 
+| `V5ED0327EJ` | Txn limit retail field update is not allowed | 

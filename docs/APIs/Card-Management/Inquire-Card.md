@@ -1,6 +1,6 @@
 # Inquire Card
 
-This service is used to fetch card details.
+This service is used to retrive detailed information of card. This API response provides information about card demogrpahic and processing parameters. 
 
 ## Endpoint
 
@@ -165,27 +165,27 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5ED4001EC` |Dual org not found or add pending|
-|`V5ED4001ER` |Bin nbr should be same for account and card|
-|`V5ED4001ES` |Dual org not found or add pending|
-|`V5ED4001SA` |Org not found|
-|`V5ED4001SB` |Org is in add pending|
-|`V5ED4001SC` |Org is in purged|
-|`V5ED4001SD` |Account not present|
-|`V5ED4001SE` |Logo not present|
-|`V5ED4001SF` |Invalid org|
-|`V5ED4001EJ` |Record not found|
-|`V5ED4001EL` |Record not found|
-|`V5ED4001EN` |Record purged or add pending|
-|`V5ED4002EA` |Invalid card number|
-|`V5ED4002ED` |Card number must be provided|
-|`V5ED4002ES` |Card number must be equal to post to account nbr|
-|`V5ED4002ER` |Bin nbr should be same for both account and card|
-|`V5ED4002EE` |Invalid check digit - card number|
-|`V5ED4003EA` |Invalid sequence number|
-|`V5ED4003ED` |Card seq number must be greater than zero|
-|`V5ED4003EQ` |Post to acct for dual org not on file|
-|`V5ED4003EW` |Invalid rec number for this account|
-|`V5ED4003EX` |Hcs system active and node record not found|
-|`V5ED9910ED` |Post to acct invalid check digit|
-|`V5ED9910EF` |Post to acct record not found|
+|`V5ED4001EC` | Dual ORG not found or add pending |
+|`V5ED4001ER` | Bin NBR should be same for account and card |
+|`V5ED4001ES` | Dual org not found or add pending |
+|`V5ED4001SA` | ORG not found |
+|`V5ED4001SB` | ORG is in add pending |
+|`V5ED4001SC` | ORG is in purged |
+|`V5ED4001SD` | Account not present |
+|`V5ED4001SE` | Logo not present |
+|`V5ED4001SF` | Invalid ORG |
+|`V5ED4001EJ` | Record not found |
+|`V5ED4001EL` | Record not found |
+|`V5ED4001EN` | Record purged or add pending |
+|`V5ED4002EA` | Invalid card number |
+|`V5ED4002ED` | Card number must be provided |
+|`V5ED4002ES` | Card number must be equal to post to account NBR |
+|`V5ED4002ER` | BIN NBR should be same for both account and card |
+|`V5ED4002EE` | Invalid check digit - card number |
+|`V5ED4003EA` | Invalid sequence number |
+|`V5ED4003ED` | Card seq number must be greater than zero |
+|`V5ED4003EQ` | Post to acct for dual org not on file |
+|`V5ED4003EW` | Invalid rec number for this account |
+|`V5ED4003EX` | HCS system active and node record not found |
+|`V5ED9910ED` | Post to acct invalid check digit |
+|`V5ED9910EF` | Post to acct record not found |

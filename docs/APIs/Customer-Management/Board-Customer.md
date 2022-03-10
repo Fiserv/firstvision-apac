@@ -1,6 +1,8 @@
 # Board Customer
 
-This API is used to board the new customer.
+This API is used to board the new customer in real time. 
+
+Fields that are not provided in the Request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
 
 ## Endpoint
 
@@ -77,7 +79,7 @@ The below table identifies the required parameters in the request payload.
 | `E-Mail` | Payload | *string* | 60 | customer primary mail id. |
 | `Alt E-Mail` | Payload | *string* | 50 | Customer alternate mail id. |
 | `Mobile Number` | Payload | *string* | 20 | Customer mobile number. |
-| `E-Mail Flag` | Payload | *number* | 1 | This is the code that indicates to select mail id for communication. |
+| `E-Mail Flag` | Payload | *number* | 1 | This is the code that indicates to select mail id for communication.|
 
 ### Successful Response Payload
 
@@ -93,7 +95,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
    "errorCode" :  "V5SB4003EA" ,
-   "errorMessage" : "Base Account number is required"   
+   "errorMessage" : "Base account number is required"   
 }
 ```
 
@@ -101,31 +103,31 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5SB4003EA` | Base Account number is required |
-| `V5SB4003EG` | Base Account number must be numeric |
-| `V5SB4003EH` | Base Account number is required |
-| `V5SB4005EA` | Customer NA Account must be blank| 
-| `V5SB4005EB` | Customer NA Account required |
-| `V5SB4005EG` | Customer NA Account must be blank|  
-| `V5SB4005EH` | Customer NA Account must be numeric|  
-| `V5SB4008EA` | Relationship not valid for this Org |
-| `V5SB4008EB` | Relationship not valid for the dual Org |  
+| `V5SB4003EA` | Base account number is required |
+| `V5SB4003EG` | Base account number must be numeric |
+| `V5SB4003EH` | Base account number is required |
+| `V5SB4005EA` | Customer NA account must be blank | 
+| `V5SB4005EB` | Customer NA account required |
+| `V5SB4005EG` | Customer NA account must be blank |  
+| `V5SB4005EH` | Customer NA account must be numeric |  
+| `V5SB4008EA` | Relationship not valid for this ORG |
+| `V5SB4008EB` | Relationship not valid for the dual ORG |  
 | `V5SB4001EA` | Organization not on file |
 | `V5SB4001SA` | Organization not on file |
 | `V5SB4002EA` | Logo record not on file |
-| `V5SB4002EB` | Logo record is incomplete  |
+| `V5SB4002EB` | Logo record is incomplete |
 | `V5SB4009EA` | Relationship number is required | 
 | `V5SB4011EA` | Insurance not allowed for prepaid accounts |  
 | `V5SB4012EA` | Sweeping not allowed in this Logo record |
 | `V5SB4012EB` | HCS must be active for account type values 1,2,3 |  
 | `V5SB4012EC` | Account type must be zero fora prepaid account |
-| `V5SB4154SA` | Customer number not on file for this Org |
-| `V5SB4154SB` | Customer number already exist for this Org |  
+| `V5SB4154SA` | Customer number not on file for this ORG |
+| `V5SB4154SB` | Customer number already exist for this ORG |  
 | `V5SB4154SC` | Customer number must be generic for presonalized prepaid account |
 | `V5SB4154SD` | Generic customer not allowed |
-| `V5SB4155EA` | Customer number not on file for the dual Org  |
+| `V5SB4155EA` | Customer number not on file for the dual ORG  |
 | `V5SB4155EB` | Generic customer not allowed |
-| `V5SB4155EC` | Customer number already exist for the dual Org |
+| `V5SB4155EC` | Customer number already exist for the dual ORG |
 | `V5SB4154EA` | Invalid customer number |
-| `V5SB4160EE` | Invalid customer check digit this Org |
-| `V5SB4160EG` | Invalid customer check digit dual Org |
+| `V5SB4160EE` | Invalid customer check digit this ORG |
+| `V5SB4160EG` | Invalid customer check digit dual ORG |

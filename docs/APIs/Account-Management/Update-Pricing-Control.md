@@ -2,6 +2,8 @@
 
 This service is used update pricing control structure over an accounts. This service will update PCT Override, PCT Start Date, State Of Residency, State Of Issuance and PCT Expiry Date.
 
+Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
+
 ## Endpoint
 
 `PUT /v1/accounts/{accountNumber}/pricingControls`
@@ -22,7 +24,7 @@ This service is used update pricing control structure over an accounts. This ser
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/blockUnblock).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/pricingControls).
 
 The below table identifies the required parameters in the request payload.
 
