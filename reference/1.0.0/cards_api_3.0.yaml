@@ -113,120 +113,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
-  /v1/cards/{cardNumber}/validateCVV2:
-    post:
-      tags:
-      - Card Management
-      summary: Validate CVV2
-      description: The Card Secure Code Validation service is used to validate the
-        CVV2 and optionally the expiry date of a given card. This service is typically
-        called before the card activation or PIN reset service to validate the cardholder.
-      operationId: CardSecureCode
-      x-group-name: Card Management
-      x-proxy-name: Validate CVV2
-      parameters:
-      - name: X-Correl-Id
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 40.0
-          example: ABC123
-        required: false
-      - name: X-Name
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: X-context
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: businessUnit
-        in: query
-        description: "Business Unit - Identification number associated with this Account\
-          \ Base Segment record, the values are 001–998"
-        required: true
-        schema:
-          default: 0.0
-          maximum: 999.0
-          type: number
-          minimum: 0.0
-          maxLength: 3
-          example: 100
-      - name: cardNumber
-        in: path
-        description: Card Number - Token Number assigned to the cardholder embosser
-          record.
-        required: true
-        schema:
-          format: uppercase
-          type: string
-          maxLength: 19.0
-          example: 0009846801010065787
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CardSecureCodeReq'
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardSecureCodeResp'
-        "400":
-          description: The request cannot be validated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "401":
-          description: The request was unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "500":
-          description: An unexpected internal server error occurred
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "404":
-          description: The request resource does not exist
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "503":
-          description: The service was unavailable
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "504":
-          description: The request timed out while waiting for a response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
   /v1/cards/{cardNumber}/transfer:
     put:
       tags:
@@ -613,224 +499,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BoardCardResp'
-        "400":
-          description: The request cannot be validated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "401":
-          description: The request was unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "500":
-          description: An unexpected internal server error occurred
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "404":
-          description: The request resource does not exist
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "503":
-          description: The service was unavailable
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "504":
-          description: The request timed out while waiting for a response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-  
-  /v1/cards/{cardNumber}/pinBlockChange:
-    put:
-      tags:
-      - Card Management
-      summary: Change PIN
-      description: The PIN Block Change Service is used to update the PIN Block with
-        the prerequisite that the existing PIN block must be supplied and validated.
-      operationId: ChangePIN
-      x-group-name: Card Management
-      x-proxy-name: Change PIN
-      parameters:
-      - name: X-Correl-Id
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 40.0
-          example: ABC123
-        required: false
-      - name: X-Name
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: X-context
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: businessUnit
-        in: query
-        description: "Identification number of the organization associated with thisAccount\
-          \ Base Segment record,The values are 001–998"
-        required: true
-        schema:
-          default: 0.0
-          maximum: 998.0
-          type: number
-          minimum: 0.0
-          example: 600
-      - name: cardNumber
-        in: path
-        description: Number that is embossed on the plastic card.
-        required: true
-        schema:
-          format: uppercase
-          type: string
-          maxLength: 19.0
-          example: 0009544401000009153
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ChangePINReq'
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ChangePINResp'
-        "400":
-          description: The request cannot be validated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "401":
-          description: The request was unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "500":
-          description: An unexpected internal server error occurred
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "404":
-          description: The request resource does not exist
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "503":
-          description: The service was unavailable
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-        "504":
-          description: The request timed out while waiting for a response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorList'
-  /v1/cards/{cardNumber}/clearPan:
-    get:
-      tags:
-      - Card Management
-      summary: Fetch Clear PAN from Token
-      description: This service is used to fetch the clear pan for the requested First
-        Vision's Token PAN..
-      operationId: FetchClearPan
-      x-group-name: Card Management
-      x-proxy-name: Fetch Clear PAN from Token
-      parameters:
-      - name: X-Correl-Id
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 40.0
-          example: ABC123
-        required: false
-      - name: X-Name
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: X-context
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: businessUnit
-        in: query
-        description: "Business Unit - Identification number associated with this Account\
-          \ Base Segment record, the values are 001–998"
-        schema:
-          default: 0.0
-          maximum: 998.0
-          type: number
-          minimum: 0.0
-          maxLength: 3
-          example: 100
-      - name: cardNumber
-        in: path
-        description: Number that is embossed on the plastic card.
-        required: true
-        schema:
-          format: uppercase
-          type: string
-          maxLength: 19
-          example: 0009846801010273605
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FetchClearPanResp'
         "400":
           description: The request cannot be validated
           content:
@@ -1409,9 +1077,340 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'                  
+  /v1/cards/{cardNumber}/pinBlockChange:
+    put:
+      tags:
+      - Card Management
+      summary: Change PIN
+      description: The PIN Block Change Service is used to update the PIN Block with
+        the prerequisite that the existing PIN block must be supplied and validated.
+      operationId: ChangePIN
+      x-group-name: Card Management
+      x-proxy-name: Change PIN
+      parameters:
+      - name: X-Correl-Id
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 40.0
+          example: ABC123
+        required: false
+      - name: X-Name
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: X-context
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: businessUnit
+        in: query
+        description: "Business Unit - Identification number of the organization associated\
+          \ with thisAccount Base Segment record,The values are 001–998"
+        schema:
+          default: 0.0
+          maximum: 998.0
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: 600
+      - name: cardNumber
+        in: path
+        description: Card Number - Token Number assigned to the cardholder embosser
+          record
+        required: true
+        schema:
+          format: uppercase
+          type: string
+          maxLength: 19
+          example: "0009544410000000047"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePINReq'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePINResp'
+        "400":
+          description: The request cannot be validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "401":
+          description: The request was unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "500":
+          description: An unexpected internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "404":
+          description: The request resource does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "503":
+          description: The service was unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "504":
+          description: The request timed out while waiting for a response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+  /v1/cards/{cardNumber}/validateCVV2:
+    post:
+      tags:
+      - Card Management
+      summary: Validate CVV2
+      description: The Card Secure Code Validation service is used to validate the
+        CVV2 and optionally the expiry date of a given card. This service is typically
+        called before the card activation or PIN reset service to validate the cardholder.
+      operationId: CardSecureCode
+      x-group-name: Card Management
+      x-proxy-name: Validate CVV2
+      parameters:
+      - name: X-Correl-Id
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 40.0
+          example: ABC123
+        required: false
+      - name: X-Name
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: X-context
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: businessUnit
+        in: query
+        description: "Business Unit - Identification number associated with this Account\
+          \ Base Segment record, the values are 001–998"
+        schema:
+          default: 0.0
+          maximum: 999.0
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: "100"
+      - name: cardNumber
+        in: path
+        description: Card Number - Token Number assigned to the cardholder embosser
+          record.
+        required: true
+        schema:
+          format: uppercase
+          type: string
+          maxLength: 19.0
+          example: "0009846801010065787"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardSecureCodeReq'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardSecureCodeResp'
+        "400":
+          description: The request cannot be validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "401":
+          description: The request was unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "500":
+          description: An unexpected internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "404":
+          description: The request resource does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "503":
+          description: The service was unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "504":
+          description: The request timed out while waiting for a response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+  /v1/cards/{cardNumber}/clearPan:
+    get:
+      tags:
+      - Card Management
+      summary: Fetch Clear PAN from Token
+      description: This service is used to fetch the clear pan for the requested First
+        Vision's Token PAN.
+      operationId: FetchClearPan
+      x-group-name: Card Management
+      x-proxy-name: Fetch Clear PAN from Token
+      parameters:
+      - name: X-Correl-Id
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 40.0
+          example: ABC123
+        required: false
+      - name: X-Name
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: X-context
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: businessUnit
+        in: query
+        description: "Business Unit - Identification number associated with this Account\
+          \ Base Segment record, the values are 001–998"
+        schema:
+          default: 0.0
+          maximum: 998.0
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: "100"
+      - name: cardNumber
+        in: path
+        description: Card Number - Token Number assigned to the cardholder embosser
+          record
+        required: true
+        schema:
+          format: uppercase
+          type: string
+          maxLength: 19
+          example: "0009846801010273605"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchClearPanResp'
+        "400":
+          description: The request cannot be validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "401":
+          description: The request was unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "500":
+          description: An unexpected internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "404":
+          description: The request resource does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "503":
+          description: The service was unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "504":
+          description: The request timed out while waiting for a response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
 components:
   schemas:
-    
     InquireCardResp:
       type: object
       properties:
@@ -2241,129 +2240,6 @@ components:
             type: string
             example: Some message from the service
             description: Error message associated with the response
-    
-    CardSecureCodeReq:
-      type: object
-      properties:
-        cvv2:
-          format: uppercase
-          description: Token Number assigned to the cardholder embosser record.
-          type: string
-          maxLength: 3.0
-          example: 855
-        expiryDateMmyy:
-          format: uppercase
-          description: Expire Date-valid card expire date should be provided which
-            is of 4 character with MMYY format
-          type: string
-          maxLength: 4.0
-          example: 1123
-    CardSecureCodeResp:
-      type: object
-      properties:
-        cardNumber:
-          format: uppercase
-          description: Card Number - Token Number assigned to the cardholder embosser
-            record.
-          type: string
-          maxLength: 19
-          example: 0009846801010065787
-    ChangePINReq:
-      type: object
-      properties:
-        userFiller:
-          description: User filler-This is filler used for future purpose
-          type: string
-          example: ' '
-        product:
-          default: 0.0
-          maximum: 999.0
-          description: Product - Product associated with this Account. The values
-            are 001–998
-          type: number
-          minimum: 0.0
-          example: 1
-        signonName:
-          description: Signon name- valid signin name should be provided
-          type: string
-          example: ' '
-        requestedPinBlock:
-          format: uppercase
-          description: "Requested pin block(New pin block)-The new pin block should\
-            \ be provided, This will be new pin Enter by customer"
-          type: string
-          maxLength: 16.0
-          example: 123456
-        pinChannel:
-          description: "Pin channel-This field will identifiy the channel through\
-            \ which The request has been ititialted The valid values are A-ATM,I-IVR,\
-            \ W-WEB"
-          type: string
-          enum:
-          - A
-          - I
-          - W
-          example: A
-        securitySignon:
-          description: Security signon-valid signon id should be provided
-          type: string
-          example: ' '
-        currentPinBlock:
-          format: uppercase
-          description: "Requested pin block(New pin block)-The new pin block should\
-            \ be provided, This will be new pin Enter by customer"
-          type: string
-          maxLength: 16.0
-          example: ' '
-        keyAssociation:
-          format: uppercase
-          description: "Key association-The value will be used to read the keys stored\
-            \ in KMS files,from input we always recive spaces"
-          type: string
-          maxLength: 3.0
-          example: ' '
-        vgsFiller:
-          description: Vgs filler- This is filler used for future purpose
-          type: string
-          example: ' '
-        pinOffset:
-          default: 0.0
-          maximum: 9999.0
-          description: "Current pin Offset( Old Pin Offset)- The old pin block should\
-            \ be provided, This will be old pin Enter by customer"
-          type: number
-          minimum: 0.0
-          example: 0
-    ChangePINResp:
-      type: object
-      required:
-      - userFiller
-      - filler
-      - cardNumber
-      properties:
-        userFiller:
-          description: User filler-This is filler used for future purpose
-          type: string
-          example: ' '
-        filler:
-          description: Vgs filler- This is filler used for future purpose
-          type: string
-          example: ' '
-        cardNumber:
-          format: uppercase
-          description: "Card Number-if the service is sucessiful, the response the\
-            \ updated card number will be sent"
-          type: string
-          example: 0009544401000009153
-    FetchClearPanResp:
-      type: object
-      properties:
-        cardNumber:
-          format: uppercase
-          description: Clear Pan - 19 digit Clear card number
-          type: string
-          maxLength: 19
-          example: 0009846801010273605
     BoardCardResp:
       type: object
       properties:
@@ -2690,7 +2566,6 @@ components:
           type: number
           maxLength: 1
           example: 0
-
     TransferLostStolenCardResp:
       type: object
       properties:
@@ -3752,3 +3627,94 @@ components:
           type: string
           maxLength: 19
           example: 0009544410000000021
+    ChangePINReq:
+      type: object
+      properties:
+        requestedPinBlock:
+          format: uppercase
+          description: "Requested PIN block(New PIN block) - The new PIN block should\
+            \ be provided, This will be new PIN Enter by customer"
+          type: string
+          maxLength: 3
+          example: 123456
+        pinChannel:
+          description: "PIN channel - This field will identifiy the channel through\
+            \ which The request has been ititialted The valid values are A-ATM,I-IVR,\
+            \ W-WEB"
+          type: string
+          enum:
+          - A
+          - I
+          - W
+          maxLength: 1
+          example: A
+        currentPinBlock:
+          format: uppercase
+          description: Current PIN block(Existing PIN block) - The existing PIN block
+            should be provided
+          type: string
+          maxLength: 16
+          example: "2673217"
+        keyAssociation:
+          format: uppercase
+          description: "Key association - The value will be used to read the keys\
+            \ stored in KMS files,from input we always recive spaces"
+          type: string
+          maxLength: 3
+          example: ' '
+        pinOffset:
+          default: 0.0
+          maximum: 9999.0
+          description: "Current PIN Offset( Old PIN Offset)- The old PIN block should\
+            \ be provided, This will be old PIN Enter by customer"
+          type: number
+          minimum: 0.0
+          maxLength: 4
+          example: "0"
+    ChangePINResp:
+      type: object
+      required:
+      - cardNumber
+      properties:
+        cardNumber:
+          format: uppercase
+          description: Card Number - Token Number assigned to the cardholder embosser
+            record
+          type: string
+          maxLength: 19
+          example: "0009544410000000047"
+    FetchClearPanResp:
+      type: object
+      properties:
+        cardNumber:
+          format: uppercase
+          description: Clear Pan - 19 digit Clear card number
+          type: string
+          maxLength: 19
+          example: "0009846801010273605"
+    CardSecureCodeReq:
+      type: object
+      properties:
+        cvv2:
+          format: uppercase
+          description: CVV2 - Security code assigned to the embosser record
+          type: string
+          maxLength: 3.0
+          example: "855"
+        expiryDateMmyy:
+          format: uppercase
+          description: Expire Date - valid card expire date should be provided which
+            is of 4 character with MMYY format
+          type: string
+          maxLength: 4.0
+          example: "1123"
+    CardSecureCodeResp:
+      type: object
+      properties:
+        cardNumber:
+          format: uppercase
+          description: Card Number - Token Number assigned to the cardholder embosser
+            record.
+          type: string
+          maxLength: 19
+          example: "0009846801010065787"
