@@ -2458,6 +2458,97 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+  /v1/misc/boardEntities:
+    post:
+      tags:
+      - Account Management
+      summary: Board Entities
+      description: "This service is used to board the new account,embosser,customer\
+        \ and relationship record."
+      operationId: BoardEntities
+      x-group-name: Miscelaneous
+      x-proxy-name: Board Entities
+      parameters:
+      - name: X-Correl-Id
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 40.0
+          example: ABC123
+        required: false
+      - name: X-Name
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: X-context
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoardEntitiesReq'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardEntitiesResp'
+        "400":
+          description: The request cannot be validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "401":
+          description: The request was unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "500":
+          description: An unexpected internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "404":
+          description: The request resource does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "503":
+          description: The service was unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "504":
+          description: The request timed out while waiting for a response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
 components:
   schemas:
     ErrorList:
@@ -8332,3 +8423,1220 @@ components:
           type: number
           maxLength: 10
           example: "123456"
+    BoardEntitiesReq:
+      type: object
+      properties:
+        nsfFeeChangeAllowed:
+          description: "NSF Fee Change Allowed flag, 0:Subordinate Account, 1:Primary\
+            \ Account, 2:Primary Account"
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        expirationDateOfPctOverride:
+          format: uppercase
+          description: Expiration Date Of PCT override - This is the date on which
+            the processing control level override expires for the account. Date format
+            is DD/MM/YYYY.
+          type: string
+          maxLength: 7
+          example: ""
+        mobileNumber:
+          format: uppercase
+          description: Mobile Number - Customer mobile number
+          type: string
+          maxLength: 20
+          example: ""
+        expiryDateOfTempCreditLimit:
+          format: uppercase
+          description: Expiry Date of Temp Credit Limit - This expiry date is for
+            the temporary line of credit for the account in whole monetary units.
+            The format is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
+            on the System record
+          type: string
+          maxLength: 7
+          example: ""
+        typeCardMailer:
+          default: 0.0
+          description: Type Card Mailer - This field is a user-defined code that identifies
+            the type of card  mailer to use to mail the card
+          type: number
+          maxLength: 2
+          example: ""
+        premiumRate:
+          default: 0.0
+          description: Premium Rate of Account Insurance/Product Data
+          type: number
+          maxLength: 9
+          example: ""
+        sourceCode:
+          format: uppercase
+          description: Source Code
+          type: string
+          maxLength: 10
+          example: ""
+        createAccountRecord:
+          description: Create Account Record - This is the code that indicates whether
+            to add a new account record
+          type: string
+          enum:
+          - "Y"
+          - "N"
+          maxLength: 1
+          example: "Y"
+        ibsSavingsAccountNumber:
+          format: uppercase
+          description: IBS Savings Account Number - This is the savings account number
+          type: string
+          maxLength: 17
+          example: ""
+        state:
+          format: uppercase
+          description: State - Name of state portion of the mailinga ddress of the
+            owner
+          type: string
+          maxLength: 3
+          example: ""
+        customerGroupCode:
+          format: uppercase
+          description: Customer Group Code
+          type: string
+          maxLength: 3
+          example: ""
+        mobileProvisionStatus:
+          description: Mobile Provision Status - This flag indicates whether the embosser
+            is for a mobile payment instrument (PI) and the current provisioning status
+            for the PI
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          maxLength: 1
+          example: ""
+        userAmount2:
+          default: 0.0
+          description: User Amount 2
+          type: string
+          maxLength: 17
+          example: ""
+        userAmount1:
+          default: 0.0
+          description: User Amount 1
+          type: string
+          maxLength: 17
+          example: ""
+        mailCode:
+          description: "Mail Code - 0: Associated to Account, 1: Associated to Account"
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        employeePhone:
+          format: uppercase
+          description: Employee Phone -  This field is the work telephone number
+          type: string
+          maxLength: 20
+          example: "67894"
+        plasticId:
+          format: uppercase
+          description: Plastic ID - User-defined code that identifies the plastic
+            stock used to create a card for this Embosser record
+          type: string
+          maxLength: 10
+          example: ""
+        name2TypeIndicator:
+          description: Name 2 Type Indicator - his field identifies the type of name
+            for NAME LINE 2
+          type: string
+          enum:
+          - ZERO
+          - "3"
+          maxLength: 1
+          example: ""
+        userField5:
+          format: uppercase
+          description: User Field 5
+          type: string
+          maxLength: 15
+          example: ""
+        userField6:
+          format: uppercase
+          description: User Field 6
+          type: string
+          maxLength: 15
+          example: ""
+        startDateOfTheOverride:
+          format: uppercase
+          description: Start Date Of The Override - This is the date on which the
+            special pricing controls start for the account. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+          type: string
+          maxLength: 7
+          example: ""
+        baseAccountNumber:
+          format: uppercase
+          description: Base Account Number - This is the identification number to
+            assign to the new Account Base Segment record
+          type: string
+          maxLength: 19
+          example: /
+        suppressLetter:
+          description: Suppress Letter - This flag indicates whether to suppress all
+            letters for the account
+          type: string
+          enum:
+          - "0"
+          - "1"
+          maxLength: 1
+          example: ""
+        waiveMembershipFees:
+          description: Waive Membership Fees - This flag indicates whether to waive
+            the annual membership fee for the account
+          type: string
+          enum:
+          - "0"
+          - "1"
+          - "2"
+          - "3"
+          maxLength: 1
+          example: ""
+        officerName:
+          format: uppercase
+          description: Officer Name
+          type: string
+          maxLength: 30
+          example: ""
+        shortName:
+          format: uppercase
+          description: Short Name - This is the short name of the account holder
+          type: string
+          maxLength: 20
+          example: ""
+        name2:
+          format: uppercase
+          description: Name 2 - This field identifies the name of the cardholder used
+            for mailing the card and PIN mailers
+          type: string
+          maxLength: 40
+          example: ""
+        name1:
+          format: uppercase
+          description: Name 1 - This field identifies the name of the cardholder
+          type: string
+          maxLength: 40
+          example: ""
+        cardNumber:
+          format: uppercase
+          description: Card Number - Token Number assigned to the cardholder embosser
+            record
+          type: string
+          maxLength: 19
+          example: /
+        statusCode:
+          description: Status Code of Account Insurance/Product Data
+          type: string
+          enum:
+          - F
+          - I
+          - ' '
+          maxLength: 1
+          example: ""
+        lastName:
+          format: uppercase
+          description: Last Name - This field indicates the last name of the owner
+          type: string
+          maxLength: 40
+          example: ""
+        mccGroupLimits:
+          format: uppercase
+          description: 'MCC Group Limits - Merchat Limit '
+          type: string
+          maxLength: 11
+          example: ""
+        gender:
+          description: Gender - This flag indicates the onwer's gender
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          maxLength: 25
+          example: ""
+        currentExpiryDate:
+          format: uppercase
+          description: Current Expiry Date. The format is MM/DD/YYYY or DD/MM/YYYY
+            depending on the date format established on the System record
+          type: string
+          maxLength: 7
+          example: ""
+        cardholderFlag:
+          description: Cardholder Flag - This is the code that indicates whether the
+            card is issued as a primary or secondary card
+          type: string
+          enum:
+          - "1"
+          - "0"
+          maxLength: 1
+          example: "1"
+        city:
+          format: uppercase
+          description: City - This is the city portion of the mailing address for
+            cards and PIN mailers
+          type: string
+          maxLength: 30
+          example: ""
+        savingsAccountNbr:
+          format: uppercase
+          description: Savings Account Nbr - Customer Savings account number
+          type: string
+          maxLength: 17
+          example: ""
+        accountControlTableOverride:
+          default: 0.0
+          description: Account Control Table Override at Relationship level
+          type: number
+          maxLength: 3
+          example: ""
+        expireDateOfTheOverride:
+          format: uppercase
+          description: Expire Date Of The Override - This is the date on which the
+            special pricing controls expire for the account. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+          type: string
+          maxLength: 7
+          example: ""
+        authorizationCriteriaTable:
+          format: uppercase
+          description: Authorization Criteria Table - Identification number of the
+            Authorization Criteria table assigned to the account
+          type: string
+          maxLength: 3
+          example: ""
+        memoPaymentReversalTransactionCode:
+          default: 0.0
+          description: Memo Payment Reversal Transaction Code of relationship record
+          type: number
+          maxLength: 4
+          example: ""
+        annualFeeChangeAllowed:
+          description: Annual Fee Change Allowed at relationship level
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        updateCreditLimit:
+          description: "Update Credit Limit - 0: Allowed 1: Not Allowed"
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        countryCode:
+          format: uppercase
+          description: Country Code - The value entered must be a valid country code
+            previously defined in the Security Subsystem and Common Routines (SSC)
+            system
+          type: string
+          maxLength: 3
+          example: ""
+        posServiceCode:
+          default: 0.0
+          description: POS Service Code - This field indicates the type of point-of-sale
+            service in effect for a card.
+          type: number
+          maxLength: 3
+          example: ""
+        lateFeeAssessmentLevel:
+          description: Late Fee Assessment Level of relationship record
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          maxLength: 1
+          example: ""
+        cancelReason:
+          description: Cancel Reason of Account Insurance/Product Data
+          type: string
+          enum:
+          - ' '
+          - C
+          - D
+          - U
+          - A
+          - P
+          - T
+          - X
+          - B
+          - M
+          - F
+          - G
+          - I
+          - J
+          - R
+          maxLength: 1
+          example: ""
+        email:
+          format: uppercase
+          description: This field indicates e-mail address of the owner
+          type: string
+          maxLength: 60
+          example: ""
+        alternateEmail:
+          format: uppercase
+          description: 'Alternate E-Mail - This field indicates alternate e-mail address
+            of the owner '
+          type: string
+          maxLength: 50
+          example: ""
+        product:
+          default: 0.0
+          description: Product - Identification number of the product associated with
+            the account or relationship
+          type: number
+          maxLength: 3
+          example: "1"
+        lateFeeChangeAllowed:
+          description: Late Fee Change Allowed of relationship record
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        embossedName2:
+          format: uppercase
+          description: Embossed Name 2 - This is the Additional name to be embossed
+            on the second embossing line of the card
+          type: string
+          maxLength: 26
+          example: ""
+        requestedCardType:
+          default: 0.0
+          description: Requested Card Type - This field is a user-defined code that
+            identifies the type of card requested
+          type: number
+          maxLength: 2
+          example: ""
+        embossedName1:
+          format: uppercase
+          description: Embossed Name 1 - Name to be embossed on the first embossing
+            line of the card
+          type: string
+          maxLength: 26
+          example: Trump
+        ficheNumber:
+          format: uppercase
+          description: Fiche Number of Account Insurance/Product Data
+          type: string
+          maxLength: 9
+          example: ""
+        owningBranchNumber:
+          default: "999999998"
+          description: Owning Branch Number - This field is the number of the branch
+            that owns this account  and location of financial reporting for this account
+          type: number
+          maxLength: 9
+          example: "999999998"
+        dateOfBirth:
+          format: uppercase
+          description: Date of Birth - Customer Date of Birth. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+          type: string
+          maxLength: 10
+          example: 01/02/2010
+        memoBillingCurrency:
+          default: 0.0
+          description: Memo Billing Currency of relationship record
+          type: number
+          maxLength: 3
+          example: ""
+        ibsDdaRoutingNumber:
+          default: 0.0
+          description: IBS DDA Routing Number - This is ABA-assigned routing and transit
+            number that identifies the financial institution at which the checking
+            account is held
+          type: number
+          maxLength: 1
+          example: ""
+        relationshipNumber:
+          format: uppercase
+          description: Relationship Number - Relationship no. of customer
+          type: string
+          maxLength: 19
+          example: ""
+        memoBalanceIndicator:
+          description: "Memo Balance Indicator, 0 - Do Not Update Rel in Batch 1 -\
+            \ Update Rel in Batch"
+          type: string
+          enum:
+          - "0"
+          - "1"
+          maxLength: 1
+          example: ""
+        productCode:
+          format: uppercase
+          description: Product Code of insurance product
+          type: string
+          maxLength: 2
+          example: ""
+        mailStatement:
+          description: Mail Statement of Account Insurance/Product Data
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        emailFlag:
+          description: E-Mail Flag - This field indicates whether you have the owner’s
+            permission to use this e-mail address
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          maxLength: 1
+          example: ""
+        statementType:
+          description: Statement Type - Stmt and Summary/Detailed Subordinate Accts
+            stmt flag
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        cardAction:
+          description: Card Action - This field is the card issue action code that
+            determines the action CMS performs during the next run
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+          - "6"
+          - "7"
+          - "8"
+          - "9"
+          maxLength: 1
+          example: ""
+        numberOfCardsRequested:
+          default: 0.0
+          description: Number Of Cards Requested - This field identifies the number
+            of cards required
+          type: number
+          maxLength: 2
+          example: ""
+        createEmbosserRecords:
+          description: Create Embosser Records - Create Embosser Records flag
+          type: string
+          enum:
+          - "Y"
+          - "N"
+          maxLength: 1
+          example: "Y"
+        mobilePiFlag:
+          description: Mobile PI Flag - Flag that indicates whether mobile payment
+            instruments (PI)  are allowed for this account
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        contactPhone:
+          format: uppercase
+          description: Contact Phone
+          type: string
+          maxLength: 20
+          example: ""
+        relationshipBlockCode:
+          format: uppercase
+          description: Relationship Block Code - Block code are relationship level
+          type: string
+          maxLength: 1
+          example: ""
+        effectiveDate:
+          format: uppercase
+          description: Effective Date of Account Insurance/Product Data - The format
+            is MM/DD/YYYY or DD/MM/YYYY depending on the date format established on
+            the System record
+          type: string
+          maxLength: 7
+          example: ""
+        availableReserveAmountpct:
+          default: 0.0
+          description: Available Reserve Amount/PCT - Available Reserve Amount/PCT
+            of Relationship Record
+          type: string
+          example: ""
+        createCustomerRecord:
+          description: Create Customer Record - This is the identification number
+            to assign to the new Customer Name/Address record
+          type: string
+          enum:
+          - "Y"
+          - "N"
+          maxLength: 1
+          example: "Y"
+        businessUnit:
+          default: 0.0
+          description: Business Unit - Identification number of the business unit
+            associated with the  account
+          type: number
+          maxLength: 3
+          example: "600"
+        postalCode:
+          format: uppercase
+          description: Postal Code - This field identifies the postal code portions
+            of the mailing address
+          type: string
+          maxLength: 10
+          example: ""
+        alternateCustomerNumber:
+          format: uppercase
+          description: Alternate Customer Number - This is the number that identifies
+            the alternate Customer Name/ Address record containing an alternate address
+            for statements and other correspondence
+          type: string
+          maxLength: 19
+          example: ""
+        nameLine1:
+          format: uppercase
+          description: "Name Line 1 - CThis field indicates the owner personal name,\
+            \ business name, or a generic name"
+          type: string
+          maxLength: 40
+          example: ""
+        nameLine2:
+          format: uppercase
+          description: 'Name Line 2 - This field indicates the owner name '
+          type: string
+          maxLength: 40
+          example: ""
+        cashPlanNumber:
+          default: 0.0
+          description: Cash Plan Number - The default values for this field are set
+            on the Account  Processing table assigned to the account
+          type: number
+          maxLength: 5
+          example: ""
+        source:
+          format: uppercase
+          description: Source of Account Insurance/Product Data
+          type: string
+          maxLength: 2
+          example: ""
+        userDate2:
+          format: uppercase
+          description: User Date 2 - The format is MM/DD/YYYY or DD/MM/YYYY depending
+            on the date format established on the System record
+          type: string
+          maxLength: 7
+          example: ""
+        nameLine3:
+          format: uppercase
+          description: ' Name Line 3 - This field indicates the owner name '
+          type: string
+          maxLength: 40
+          example: ""
+        userDate1:
+          format: uppercase
+          description: User Date 1 - The format is MM/DD/YYYY or DD/MM/YYYY depending
+            on the date format established on the System record
+          type: string
+          maxLength: 7
+          example: ""
+        annualFeeAssessmentLevel:
+          description: Annual Fee Assessment Level of relationshiop record
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          maxLength: 1
+          example: ""
+        billingCurrency:
+          default: 0.0
+          description: Billing Currency - This is ISO currency code that identifies
+            the currency of this account
+          type: number
+          maxLength: 3
+          example: ""
+        reserveAmountpctFlag:
+          description: "Reserve Amount/PCT Flag - Reserve amount and pct flag, 0:\
+            \ Amount, 1: Percent"
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        mailLetter:
+          description: Mail Letter of Account Insurance/Product Data
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        addressLine1:
+          format: uppercase
+          description: Address Line 1 - First line of address used for mailing the
+            card and PIN mailer
+          type: string
+          maxLength: 40
+          example: ""
+        creditLimit:
+          default: 0.0
+          description: Credit Limit - This is the Credit limit of the account
+          type: string
+          maxLength: 17
+          example: "1000"
+        addressLine2:
+          format: uppercase
+          description: Address Line 2 - Second line of address used for mailing the
+            card and PIN mailer
+          type: string
+          maxLength: 40
+          example: ""
+        mailLetterFee:
+          description: Mail Letter Fee for Account Insurance/Product Data
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        addressLine3:
+          format: uppercase
+          description: Address Line 3 -  This is mailing address for the owner
+          type: string
+          maxLength: 40
+          example: ""
+        nsfFeeAssessmentLevel:
+          description: NSF Fee Assessment Level at relationship record
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          maxLength: 1
+          example: ""
+        relationshipCreditLimit:
+          default: 0.0
+          description: "Relationship Credit Limit - Credit limit in whole monetary\
+            \ units for the Relationship record, which includes all the subordinate\
+            \ accounts in the relationship."
+          type: string
+          maxLength: 17
+          example: ""
+        cityOfOwner:
+          format: uppercase
+          description: City - City portion of the mailing address of the owner
+          type: string
+          maxLength: 30
+          example: ""
+        insuredPartyIndicator:
+          description: Insured Party Indicator of Account Insurance/Product Data
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          - "3"
+          maxLength: 1
+          example: ""
+        sameCustbaseNumber:
+          description: Same Cust/Base Number - This is the code that indicates whether
+            CUSTOMER NUMBER and BASE ACCOUNT NUMBER are to be the same number
+          type: string
+          enum:
+          - "Y"
+          - "N"
+          maxLength: 1
+          example: "Y"
+        corporateIdNumber:
+          default: 0.0
+          description: Corporate ID Number - Corporate identification number assigned
+            to commercial card accounts
+          type: number
+          maxLength: 10
+          example: ""
+        name1TypeIndicator:
+          description: Name 1 Type Indicator - This field identifies the type of name
+            for NAME LINE 1
+          type: string
+          enum:
+          - ZERO
+          - "3"
+          maxLength: 1
+          example: ""
+        contactName:
+          format: uppercase
+          description: Contact  Name
+          type: string
+          maxLength: 30
+          example: ""
+        idOfThePctOverrideTables:
+          format: uppercase
+          description: ID Of The PCT Override Tables - Code that identifies an existing
+            Processing Control Table (PCT ID) used to establish special pricing controls
+            for the account
+          type: string
+          maxLength: 3
+          example: ""
+        homePhone:
+          format: uppercase
+          description: Home Phone - This field is the owner’s home telephone number
+          type: string
+          maxLength: 20
+          example: "11230342"
+        cardTechnology:
+          description: 'Card Technology - This is the flag that identifies the current
+            card technology used for this account '
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+          maxLength: 1
+          example: ""
+        stateprovince:
+          format: uppercase
+          description: State/Province - This field that identifies the state or province
+          type: string
+          maxLength: 3
+          example: ""
+        startDateOfPctOverride:
+          format: uppercase
+          description: Start Date Of PCT Override - This is the date on which the
+            processing control level override starts for the account. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record.
+          type: string
+          maxLength: 7
+          example: ""
+        residenceId:
+          format: uppercase
+          description: "Residence ID - This flag identifies the state, province or\
+            \ country in which the  account holder resides "
+          type: string
+          maxLength: 3
+          example: ""
+        createRelationshipRecord:
+          description: Create Relationship Record - This is the code that indicates
+            whether to add a new Relationship record
+          type: string
+          enum:
+          - "N"
+          - "Y"
+          maxLength: 1
+          example: "N"
+        firstName:
+          format: uppercase
+          description: First Name - This field indicates the first name of the owner
+          type: string
+          maxLength: 40
+          example: Tom
+        billingCycle:
+          default: 0.0
+          description: Billing Cycle - This flag indicates the day of the month that
+            CMS performs cycle processing for the account
+          type: number
+          maxLength: 2
+          example: "18"
+        coreBankingIndicator:
+          description: Core Banking Indicator - This is the code indicates type of
+            bannking
+          type: string
+          enum:
+          - B
+          - S
+          - T
+          - ' '
+          maxLength: 25
+          example: ""
+        cardNumberingScheme:
+          default: 0.0
+          description: 'Card Numbering Scheme - Card numbering scheme that determines
+            the card numbers that are assigned to Embosser records associated with
+            the account '
+          type: number
+          maxLength: 1
+          example: ""
+        deviceIndicator:
+          format: uppercase
+          description: Device Indicator - Code that indicates the type of device (form
+            factor) written to the track data on the card
+          type: string
+          maxLength: 1
+          example: "0"
+        temporaryCreditLimit:
+          default: 0.0
+          description: Temporary Credit Limit - This is the temporary line of credit
+            for the account in whole monetary units
+          type: string
+          maxLength: 17
+          example: ""
+        dualFlag:
+          default: 0.0
+          description: Dual Flag - This field indicates whether CMS adds a duplicate
+            customer  record in the associated business unit for dual currency processing
+          type: number
+          maxLength: 1
+          example: ""
+        primaryAccountFlag:
+          description: Primary Account Flag - This is a flag that indicates whether
+            the account is the primary account in a relationship
+          type: string
+          enum:
+          - ' '
+          - P
+          maxLength: 1
+          example: ""
+        billingLevelmodify:
+          description: "Billing Level-Modify - 0: Allowed, 1: Not Allowed "
+          type: string
+          enum:
+          - "1"
+          - "0"
+          maxLength: 1
+          example: ""
+        processingControlLevel:
+          format: uppercase
+          description: Processing Control Level - This is a flag which indicates the
+            processing control level for accounts in this product
+          type: string
+          maxLength: 1
+          example: ""
+        title:
+          format: uppercase
+          description: Title - Professional or honorary title associated with the
+            owner name entered in the NAME LINE 1 field
+          type: string
+          maxLength: 20
+          example: ""
+        nameTypeIndicator3:
+          description: ' Name Type Ind 3 - This field identifies the type of the customer'
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "3"
+          maxLength: 1
+          example: ""
+        fiscalYearEnd:
+          default: 0.0
+          description: Fiscal Year End
+          type: number
+          maxLength: 2
+          example: ""
+        nameTypeIndicator2:
+          description: ' Name Type Ind 2 - This field identifies the type of the customer'
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "3"
+          maxLength: 1
+          example: ""
+        visaMiniIndicator:
+          format: uppercase
+          description: Visa Mini Indicator - This Flag indicates whether Visa Mini
+            cards are supported in this product
+          type: string
+          maxLength: 1
+          example: ""
+        mobileDeviceId:
+          format: uppercase
+          description: Mobile Device ID - Identification of the mobile device associated
+            with a mobile payment instrument (PI) embosser
+          type: string
+          maxLength: 20
+          example: ""
+        ibsSavingsRoutingNumber:
+          default: 0.0
+          description: IBS Savings Routing Number - This is ABA-assigned routing and
+            transit number that identifies the financial institution at which the
+            savings account is held
+          type: number
+          maxLength: 1
+          example: ""
+        issuanceId:
+          format: uppercase
+          description: "Issuance ID - This flag identifies the state, province or\
+            \ country in which the  account holder resides "
+          type: string
+          maxLength: 3
+          example: "600"
+        addInsuranceProduct:
+          description: Add Insurance Product - This is the code that indicates whether
+            to add an Insurance Product record
+          type: string
+          enum:
+          - "N"
+          - "Y"
+          maxLength: 1
+          example: "N"
+        billingLevel:
+          description: Billing Level This is the Code which indicates whether billing
+            occurs for the account at the relationship level or subordinate account
+            level
+          type: string
+          enum:
+          - "1"
+          - "0"
+          maxLength: 1
+          example: ""
+        memoPaymentTransactionCode:
+          default: 0.0
+          description: Memo Payment Transaction Code of relationship record
+          type: number
+          maxLength: 4
+          example: ""
+        nameTypeIndicator1:
+          description: 'Name Type Ind 1 - This field identifies the type of the customer '
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "3"
+          maxLength: 1
+          example: ""
+        suppressTknAtAccntLevel:
+          description: Suppress TKN at accnt level - Token suppression at account
+            level indicator
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        tempCardNbr:
+          format: uppercase
+          description: TEMP CARD NBR - temporary card number
+          type: string
+          maxLength: 19
+          example: ""
+        typeOfCard:
+          default: 0.0
+          description: Type Of Card - This field is a user-defined code that indicates
+            the type of plastic stock
+          type: number
+          maxLength: 2
+          example: ""
+        dualBillingFlag:
+          description: Dual Billing Flag - This is the flag that indicates whether
+            CMS uses the foreign or local currency to request the minimum payment
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          maxLength: 1
+          example: ""
+        retailPlanNumber:
+          default: 0.0
+          description: Retail Plan Number - The default values for this field are
+            set on the Account Processing table assigned to the account
+          type: number
+          maxLength: 4
+          example: ""
+        corporateCustomerNumber:
+          format: uppercase
+          description: Corporate Customer Number
+          type: string
+          maxLength: 19
+          example: ""
+        defaultCreditLimit:
+          default: 0.0
+          description: Default Credit Limit at relationship level
+          type: string
+          maxLength: 17
+          example: ""
+        customerNumber:
+          format: uppercase
+          description: Customer Number - Identifies the customer number of the Account
+            Base Segment record
+          type: string
+          maxLength: 19
+          example: ""
+        costCenterReportingNumber:
+          format: uppercase
+          description: Cost Center Reporting Number
+          type: string
+          maxLength: 16
+          example: ""
+        ibsDdaAccountNumber:
+          format: uppercase
+          description: IBS DDA Account Number - Demand deposit account (DDA) number
+            associated with direct debit processing
+          type: string
+          maxLength: 17
+          example: ""
+        chequeAccountNbr:
+          format: uppercase
+          description: Cheque account nbr - Account cheque details
+          type: string
+          maxLength: 17
+          example: ""
+        commercialFlag:
+          description: 'Commercial Flag - '
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          maxLength: 1
+          example: ""
+        nationalId:
+          format: uppercase
+          description: National ID - National ID Number of the owner
+          type: string
+          maxLength: 25
+          example: ""
+        dualIndicator:
+          description: Dual Indicator of Insurance product
+          type: string
+          enum:
+          - L
+          - F
+          - ' '
+          maxLength: 1
+          example: ""
+        residenceFlag:
+          description: Residence Flag - This code indicates whether the owner owns
+            or rents their primary residence
+          type: string
+          enum:
+          - ZERO
+          - "1"
+          - "2"
+          - "3"
+          maxLength: 1
+          example: ""
+        middleName:
+          format: uppercase
+          description: Middle Name - This field indicates the middle name of the owner
+          type: string
+          maxLength: 40
+          example: ""
+        enrollId:
+          format: uppercase
+          description: Enroll ID of Account Insurance/Product Data
+          type: string
+          maxLength: 3
+          example: ""
+        customerSelectedDueDay:
+          default: 0.0
+          description: Customer Selected Due Day - Customer Selected Due Day - Day
+            of the month the customer has selected as the payment due date
+          type: number
+          maxLength: 2
+          example: ""
+        programId:
+          default: 0.0
+          description: Program ID - This is the identification number of the smart
+            card program
+          type: number
+          maxLength: 9
+          example: ""
+    BoardEntitiesResp:
+      type: object
+      properties:
+        expiryDate:
+          format: uppercase
+          description: Expiry Date - Expiry date of card - The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+          type: string
+          maxLength: 7
+          example: 18/01/2024
+        customerRecordCreationFlag:
+          format: uppercase
+          description: Customer Record creation flag
+          type: string
+          maxLength: 1.0
+          example: "Y"
+        product:
+          default: 0.0
+          description: Product - Identification number of the product associated with
+            the  account or relationship
+          type: number
+          maxLength: 3
+          example: "1"
+        businessUnit:
+          default: 0.0
+          description: Business Unit - Identification number of the business unit
+            associated with the  account
+          type: number
+          maxLength: 3
+          example: "600"
+        cardActivationStatus:
+          format: uppercase
+          type: string
+          maxLength: 1
+        nameOnCard:
+          format: uppercase
+          description: Name On Card - Name to be embossed on the first embossing line
+            of the card
+          type: string
+          maxLength: 26
+          example: Trump
+        cardNumberfvToken:
+          format: uppercase
+          description: Card Number/FV TOKEN - Token Number assigned to the cardholder
+            embosser record
+          type: string
+          maxLength: 19
+          example: "0004440010910990851"
+        accountRecordCreationFlag:
+          format: uppercase
+          description: Account Record creation flag
+          type: string
+          maxLength: 1.0
+          example: "Y"
+        embosserRecordCreationFlag:
+          format: uppercase
+          description: Embosser Record creation flag
+          type: string
+          maxLength: 1.0
+          example: "Y"
+        customerNumber:
+          format: uppercase
+          description: Customer Number - Identifies the customer number of the Account
+            Base Segment record
+          type: string
+          maxLength: 19
+          example: "0006000012000000191"
+        accountNumber:
+          format: uppercase
+          description: Account Number - This is the identification number to assign
+            to the new Account Base Segment record
+          type: string
+          maxLength: 19
+          example: "0006000012000000191"
+        relationshipNumber:
+          format: uppercase
+          description: Relationship Number - Relationship no. of customer
+          type: string
+          maxLength: 19
+          example: ""
