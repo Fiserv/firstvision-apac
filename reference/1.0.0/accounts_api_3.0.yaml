@@ -2577,6 +2577,97 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+  /v1/accounts/productTransfer:
+    post:
+      tags:
+      - Account Management
+      summary: Upgrade Accounts Product
+      description: This service will validate input message details and perform Upgrade
+        Accounts Product
+      operationId: UpgradeAccountsProduct
+      x-group-name: Account Management
+      x-proxy-name: Upgrade Accounts Product
+      parameters:
+      - name: X-Correl-Id
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 40.0
+          example: ABC123
+        required: false
+      - name: X-Name
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      - name: X-context
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        in: header
+        schema:
+          minLength: 0.0
+          type: string
+          maxLength: 20.0
+          example: 00000AUNAB
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpgradeAccountsProductReq'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpgradeAccountsProductResp'
+        "400":
+          description: The request cannot be validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "401":
+          description: The request was unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "500":
+          description: An unexpected internal server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "404":
+          description: The request resource does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "503":
+          description: The service was unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        "504":
+          description: The request timed out while waiting for a response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
 components:
   schemas:
     ErrorList:
@@ -9759,3 +9850,173 @@ components:
           type: string
           maxLength: 10
           example: 01/01/2018
+    UpgradeAccountsProductReq:
+      type: object
+      properties:
+        product:
+          default: 0.0
+          maximum: 999.0
+          description: Product - Logo number associated with the account entered on
+            the Locate screen
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: "2"
+        businessUnit:
+          default: 0.0
+          maximum: 998.0
+          description: "Business Unit - Identification number associated with this\
+            \ Account Base Segment record, the values are 001–998"
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: "0"
+        accountNumber:
+          format: uppercase
+          description: "Account Number -  Must be numeric and greater than zeroes,\
+            \ Must exist as a valid Account number and Account should not be in ADD\
+            \ PENDING status or CLOSED or TO BE PURGED status"
+          type: string
+          maxLength: 19
+          example: /
+        hcsProduct:
+          default: 0.0
+          maximum: 999.0
+          description: HCS Product - Identification number of the HCS product assigned
+            to the account.
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: "0"
+        transferReplcementIndicator:
+          description: Transfer Replcement Indicator - Code that indicates whether
+            CMS replaces cards for card scheme 3 accounts
+          type: string
+          enum:
+          - "0"
+          - "1"
+          maxLength: 1
+          example: "0"
+        continueWithReissue:
+          description: Continue With Reissue - Field that indicates whether you want
+            to continue with the reissue of new cards as a result of this transfer
+            request
+          type: string
+          enum:
+          - "0"
+          - "1"
+          maxLength: 1
+          example: "0"
+        hcsProductDefault:
+          description: "HCS Product Default - Field that indicates whether the HCS\
+            \ product record parameters for sweeping, redirection, indemnity, authorization,\
+            \ and PIN suppression will apply to the account"
+          type: string
+          enum:
+          - "1"
+          - "0"
+          maxLength: 1
+          example: "1"
+        billingCycle:
+          default: 0.0
+          maximum: 99.0
+          description: ' Billing Cycle -  Number that identifies the billing cycle
+            of the account'
+          type: number
+          minimum: 0.0
+          maxLength: 2
+          example: "0"
+        function:
+          default: P
+          format: uppercase
+          description: Function - Funtions performed as - product transfer
+          type: string
+          maxLength: 1
+          example: P
+        newCardTechnology:
+          description: "New Card Technology - Field that indicates the card technology\
+            \ CMS will use when reissuing the transferred card. The values are: 0\
+            \ = Reissue magnetic-stripe cards 1 = Reissue smart cards"
+          type: string
+          enum:
+          - ' '
+          - "0"
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+          maxLength: 1
+          example: "1"
+        processType:
+          description: Process Type - Code that indicates whether CMS processes card
+            reissue for the “transfer to” account during the nightly batch processing
+            cycle or in the same-day embossing processing cycle.
+          type: string
+          enum:
+          - ' '
+          - "0"
+          - "1"
+          maxLength: 1
+          example: ' '
+        account:
+          format: uppercase
+          description: "Account - Must be numeric and greater than zeroes, Must exist\
+            \ as a valid Account number and Account should not be in ADD PENDING status\
+            \ or CLOSED or TO BE PURGED status"
+          type: string
+          maxLength: 19
+          example: "0004440010000000033"
+        sdp:
+          description: "SDP -   Flag that indicates whether the old card on the transfer\
+            \ from account has a pending SDP processing request. The values are: Yes\
+            \ = Old card has a pending SDP request No = The old cards do not have\
+            \ a pending SDP request or SDP processing has not been requested"
+          type: string
+          enum:
+          - "0"
+          - "1"
+          maxLength: 1
+          example: "0"
+        effectiveDate:
+          format: date
+          description: Effective Date -  Effective date of the transfer. The format
+            is MM/DD/YYYY or DD/MM/YYYY depending on the date format established on
+            the System record.
+          type: string
+          maxLength: 1
+          example: "0"
+        transferAuthDays:
+          default: 0.0
+          maximum: 99.0
+          description: Transfer Auth Days - Number of days that CMS allows authorizations
+            on the old(“transfer from”) account after a product transfer
+          type: number
+          minimum: 0.0
+          maxLength: 2
+          example: "0"
+        customer:
+          format: uppercase
+          description: Customer - Customer number that identifies the Customer Name/Address
+            record associated with the new account
+          type: string
+          maxLength: 19
+          example: ' '
+    UpgradeAccountsProductResp:
+      type: object
+      properties:
+        businessUnit:
+          default: 0.0
+          maximum: 999.0
+          description: "Business Unit - Identification number associated with this\
+            \ Account Base Segment record, the values are 001–998"
+          type: number
+          minimum: 0.0
+          maxLength: 3
+          example: "600"
+        newAccount:
+          format: uppercase
+          description: New Account - New account no. after service passed
+          type: string
+          maxLength: 19
+          example: "0006000022000000621"
