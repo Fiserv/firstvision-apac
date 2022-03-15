@@ -4,1539 +4,964 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: https://stg34.visionplus.io:24500/fva_apac
+  - url: https://stg34.visionplus.io:24500/fva_apac
 tags:
-- name: Product Management
+  - name: Product Management
 paths:
   /v1/products/{productNumber}/cardControls:
     put:
       tags:
-      - Product Management
+        - Product Management
       summary: Update Logo Card Controls
-      description: This service is used to update the card controls at product level
-        for the given product
+      description: This service is used to update the card controls at product level for the given product
       operationId: UpdateLogoCardControls
-      x-group-name: Product Management
-      x-proxy-name: Update Logo Card Controls
       parameters:
-      - name: X-Correl-Id
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 40.0
-          example: ABC123
-        required: false
-      - name: X-Name
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: X-context
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: businessUnit
-        in: query
-        description: "Business Unit - Identification number associated with this Account\
-          \ Base Segment record, the values are 001–998"
-        required: true
-        schema:
-          default: 0.0
-          type: number
-          maxLength: 3
-          example: 600
-      - name: productNumber
-        in: path
-        description: Product - This field is the Identification number of the Logo
-          record
-        required: true
-        schema:
-          default: 0.0
-          type: number
-          maxLength: 3
-          example: 001
+        - name: X-Correl-Id
+          in: header
+          description: Any correlational text client's may want to send in the request for mapping the response on their side. Any value passed in the request message will be return back as-is in the API response message
+          required: true
+          schema:
+            type: string
+            example: ABC123
+        - name: X-Name
+          in: header
+          description: User’s sign-on name. The value passed in this field will be validated within application for user's authority to consume the requested API
+          required: true
+          schema:
+            type: string
+            example: 00000AUNAB
+        - name: X-context
+          in: header
+          description: A unique random ID assigned to the requestor once authenticated to the First Vision application. Value passed in this field will be used within application to authenticate the valid signed-on user
+          required: true
+          schema:
+            type: string
+            example: 00000AUNAB
+        - name: businessUnit
+          in: query
+          description: Business Unit - Identification number associated with this Account Base Segment record, the values are 001–998
+          required: true
+          schema:
+            type: number
+            example: 600
+        - name: productNumber
+          in: path
+          description: Product - This field is the Identification number of the Logo record
+          required: true
+          schema:
+            type: number
+            example: '001'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateLogoCardControlsReq'
+              $ref: '#/components/schemas/UpdateLogoCardControlReqModel'
       responses:
-        "200":
-          description: Success
+        '200':
+          description: |2-
+             
+            Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateLogoCardControlsResp'
-        "400":
-          description: The request cannot be validated
+                $ref: '#/components/schemas/UpdateLogoCardControlResponseModel'
+        '400':
+          description: |2-
+             
+            The request cannot be validated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "401":
-          description: The request was unauthorized
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: |2-
+             
+            The request was unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "500":
-          description: An unexpected internal server error occurred
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: |2-
+             
+            The request resource does not exist
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "404":
-          description: The request resource does not exist
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: |2-
+             
+            An unexpected internal server error occurred
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "503":
-          description: The service was unavailable
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: |2-
+             
+            The service was unavailable
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "504":
-          description: The request timed out while waiting for a response
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: |2-
+             
+            The request timed out while waiting for a response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
   /v1/products/{productNumber}/details:
     get:
       tags:
-      - Product Management
+        - Product Management
       summary: Inquire Product
       description: This service provides the details for a given product
       operationId: InquireProduct
-      x-group-name: Product Management
-      x-proxy-name: Inquire Product
       parameters:
-      - name: X-Correl-Id
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 40.0
-          example: ABC123
-        required: false
-      - name: X-Name
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: X-context
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: businessUnit
-        in: query
-        description: "Business Unit - Identification number associated with this Account\
-          \ Base Segment record, the values are 001–998"
-        required: true
-        schema:
-          default: 0.0
-          type: number
-          maxLength: 3
-          example: 600
-      - name: productNumber
-        in: path
-        description: Product - This field is the Identification number of the Logo
-          record
-        required: true
-        schema:
-          default: 0.0
-          type: number
-          maxLength: 3
-          example: 001
+        - name: X-Correl-Id
+          in: header
+          description: Any correlational text client's may want to send in the request for mapping the response on their side. Any value passed in the request message will be return back as-is in the API response message
+          required: true
+          schema:
+            type: string
+            example: ABC123
+        - name: X-Name
+          in: header
+          description: User’s sign-on name. The value passed in this field will be validated within application for user's authority to consume the requested API
+          required: true
+          schema:
+            type: string
+            example: 00000AUNAB
+        - name: X-context
+          in: header
+          description: A unique random ID assigned to the requestor once authenticated to the First Vision application. Value passed in this field will be used within application to authenticate the valid signed-on user
+          required: true
+          schema:
+            type: string
+            example: 00000AUNAB
+        - name: businessUnit
+          in: query
+          description: Business Unit - Identification number associated with this Account Base Segment record, the values are 001–998
+          required: true
+          schema:
+            type: number
+            example: 600
+        - name: productNumber
+          in: path
+          description: Product - This field is the Identification number of the Logo record
+          required: true
+          schema:
+            type: number
+            example: '001'
+        - name: requestBody
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/InquireProductReqModel'
       responses:
-        "200":
-          description: Success
+        '200':
+          description: |2-
+             
+            Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireProductResp'
-        "400":
-          description: The request cannot be validated
+                $ref: '#/components/schemas/InquireProductResponseModel'
+        '400':
+          description: |2-
+             
+            The request cannot be validated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "401":
-          description: The request was unauthorized
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: |2-
+             
+            The request was unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "500":
-          description: An unexpected internal server error occurred
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: |2-
+             
+            The request resource does not exist
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "404":
-          description: The request resource does not exist
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: |2-
+             
+            An unexpected internal server error occurred
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "503":
-          description: The service was unavailable
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: |2-
+             
+            The service was unavailable
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "504":
-          description: The request timed out while waiting for a response
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: |2-
+             
+            The request timed out while waiting for a response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
   /v1/products/{planNumber}/planDetails:
     get:
       tags:
-      - Product Management
+        - Product Management
       summary: Inquire Plan Master
       description: This service provides plan details for a given credit plan.
       operationId: InquirePlanMaster
-      x-group-name: Product Management
-      x-proxy-name: Inquire Plan Master
       parameters:
-      - name: X-Correl-Id
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 40.0
-          example: ABC123
-        required: false
-      - name: X-Name
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: X-context
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        in: header
-        schema:
-          minLength: 0.0
-          type: string
-          maxLength: 20.0
-          example: 00000AUNAB
-        required: true
-      - name: businessUnit
-        in: query
-        description: "Business Unit - Identification number associated with this Account\
-          \ Base Segment record, the values are 001–998"
-        required: true
-        schema:
-          default: 0.0
-          type: number
-          maxLength: 3
-          example: 600
-      - name: planNumber
-        in: path
-        description: "Plan Number - Identification number of the Credit Plan Master\
-          \ record. The values are 00001–99998. You can establish as many as 99,998\
-          \ Credit Plan Master records for each organization"
-        required: true
-        schema:
-          default: 0.0
-          type: number
-          maxLength: 5
-          example: 10002
+        - name: X-Correl-Id
+          in: header
+          description: Any correlational text client's may want to send in the request for mapping the response on their side. Any value passed in the request message will be return back as-is in the API response message
+          required: true
+          schema:
+            type: string
+            example: ABC123
+        - name: X-Name
+          in: header
+          description: User’s sign-on name. The value passed in this field will be validated within application for user's authority to consume the requested API
+          required: true
+          schema:
+            type: string
+            example: 00000AUNAB
+        - name: X-context
+          in: header
+          description: A unique random ID assigned to the requestor once authenticated to the First Vision application. Value passed in this field will be used within application to authenticate the valid signed-on user
+          required: true
+          schema:
+            type: string
+            example: 00000AUNAB
+        - name: businessUnit
+          in: query
+          description: Business Unit - Identification number associated with this Account Base Segment record, the values are 001–998
+          required: true
+          schema:
+            type: number
+            example: 600
+        - name: planNumber
+          in: path
+          description: Plan Number - Identification number of the Credit Plan Master record. The values are 00001–99998. You can establish as many as 99,998 Credit Plan Master records for each organization
+          required: true
+          schema:
+            type: number
+            example: 10002
+        - name: requestBody
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/InquirePlanMasterReqModel'
       responses:
-        "200":
-          description: Success
+        '200':
+          description: |2-
+             
+            Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquirePlanMasterResp'
-        "400":
-          description: The request cannot be validated
+                $ref: '#/components/schemas/InquirePlanMasterResponseModel'
+        '400':
+          description: |2-
+             
+            The request cannot be validated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "401":
-          description: The request was unauthorized
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: |2-
+             
+            The request was unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "500":
-          description: An unexpected internal server error occurred
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: |2-
+             
+            The request resource does not exist
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "404":
-          description: The request resource does not exist
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: |2-
+             
+            An unexpected internal server error occurred
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "503":
-          description: The service was unavailable
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: |2-
+             
+            The service was unavailable
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-        "504":
-          description: The request timed out while waiting for a response
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: |2-
+             
+            The request timed out while waiting for a response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorList'
-                
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
 components:
   schemas:
-    ErrorList:
-      type: array
-      items:
-        type: object
-        properties:
-          errorCode:
-            type: string
-            example: XXXXXX
-            description: Error code associated with the response
-          errorMessage:
-            type: string
-            example: Some message from the service
-            description: Error message associated with the response
-    UpdateLogoCardControlsResp:
+    Of18:
       type: object
       properties:
-        businessUnit:
-          default: 0.0
-          description: "Business Unit - Identification number associated with this\
-            \ Account Base Segment record, the values are 001–998"
-          type: number
-          maxLength: 3
-          example: 600
-        ecomFlag:
-          description: ECOM Flag - Flag indicates ECOM transactions are active or
-            not
-          type: string
-          enum:
-          - 1
-          - 0
-          - ' '
-          maxLength: 1
-          example: 1
-        yeartodateMaxAuthAmountOtherRiskCountry:
-          default: 0.0
-          description: Year-To-Date Max Auth Amount Other Risk Country - Maximum amount
-            of authorizations in monetary units and subunits allowed for the cumulative
-            year-to-date spending by an account in non-high-risk countries. Risk is
-            designated by country code in the Financial Authorization System (FAS)
-          type: string
-          maxLength: 17
-          example: 15000.00
-        otcCashNumber:
-          default: 0.0
-          description: OTC Cash Number - Maximum number of ATM cash authorizations
-            allowed for the frequency defined in the FREQ field
-          type: number
-          maxLength: 9
-          example: 6
-        yeartodateCountryRiskSpendLimitActive:
-          description: Year-To-Date Country Risk Spending Limit Active - This is a
-            flag that indicates whether a year-to-date spending limit for accounts
-            initiating transactions in high-risk and non-high-risk countries is active
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 1
-        motoFlag:
-          description: MOTO Flag - Flag indicates MOTO transactions are active or
-            not
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          maxLength: 1
-          example: "N"
-        transactionLimitOtc:
-          default: 0.0
-          description: Transaction Limit OTC - This is the Maximum authorization amount
-            in monetary units and subunits for a single ATM transaction
-          type: string
-          maxLength: 17
-          example: 200.00
         atmCashNumber:
-          default: 0.0
-          description: ATM Cash Number - Maximum number of ATM cash authorizations
-            allowed for the frequency defined in the FREQ field
-          type: number
           maxLength: 9
+          type: number
+          description: ATM Cash Number - Maximum number of ATM cash authorizations allowed for the frequency defined in the FREQ field
           example: 5
-        retailPurchaseNumber:
-          default: 0.0
-          description: Retail Purchase Number - Maximum number of retail authorizations
-            allowed for the frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY
-            field
-          type: number
-          maxLength: 9
-          example: 10
         transactionLimitAtm:
-          default: 0.0
-          description: Transaction Limit ATM - This is the Maximum authorization amount
-            in monetary units and subunits for a single ATM transaction
-          type: string
           maxLength: 17
-          example: 100.00
-        yeartodateMaxAuthAmountHighRiskCountry:
-          default: 0.0
-          description: Year-To-Date Max Auth Amount High Risk Country - Maximum amount
-            of authorizations in monetary units and subunits allowed for the cumulative
-            year-to-date spending by an account in high-risk countries. Maximum amount
-            of authorizations in monetary units and subunits allowed for the cumulative
-            year-to-date spending by an account in high-risk countries
           type: string
-          maxLength: 17
-          example: 10000.00
-        productnumber:
-          default: 0.0
-          description: Product - This field is the Identification number of the Logo
-            record
-          type: number
-          maxLength: 3
-          example: 001
-        atmFlag:
-          description: ATM Flag - Flag indicates ATM transactions are active or not
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          - ' '
-          maxLength: 1
-          example: "Y"
-        maximumAuthorizationLimitFrequency:
-          description: Maximum Authorization Limit Frequency - This is a flag which
-            indicates the frequency for the maximum authorization parameters. This
-            frequency applies to the RETAIL PURCHASE AMOUNT to TRANSACTION LIMIT RETAIL
-            fields
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          maxLength: 1
-          example: 1
-        posFlag:
-          description: POS Flag - Flag indicates POS transactions are active or not
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          - ' '
-          maxLength: 1
-          example: "Y"
-        intAtmPosFlag:
-          description: "International ATM POS Flag - Flag indicates International\
-            \ ATM, POS transactions are active or not"
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          maxLength: 1
-          example: "N"
+          description: Transaction Limit ATM - This is the Maximum authorization amount in monetary units and subunits for a single ATM transaction
+          example: '100.0'
         otcCashAmount:
-          default: 0.0
-          description: OTC Cash Amount - Maximum amount in monetary units and subunits
-            of ATM cash authorizations allowed for the frequency defined in the FREQ
-            field
-          type: string
           maxLength: 17
-          example: 1500.00
-        atmCashAmount:
-          default: 0.0
-          description: ATM Cash Amount - Maximum amount in monetary units and subunits
-            of ATM cash authorizations allowed for the frequency defined in the FREQ
-            field
           type: string
-          maxLength: 17
-          example: 2000.00
-        transactionLimitRetail:
-          default: 0.0
-          description: Transaction Limit Retail - This is the Maximum amount in monetary
-            units and subunits for a single retail authorization
-          type: string
-          maxLength: 17
-          example: 10000.00
-        retailPurchaseAmount:
-          default: 0.0
-          description: Retail Purchase Amount - Maximum amount in monetary units and
-            subunits of retail authorizations allowed for the freqency defined in
-            the FREQ field
-          type: string
-          maxLength: 17
-          example: 100000.00
-    UpdateLogoCardControlsReq:
-      type: object
-      properties:
-        ecomFlag:
-          description: ECOM Flag - Flag indicates ECOM transactions are active or
-            not
-          type: string
-          enum:
-          - 1
-          - 0
-          - ' '
-          maxLength: 1
-          example: 1
-        yeartodateMaxAuthAmountOtherRiskCountry:
-          default: 0.0
-          description: Year-To-Date Max Auth Amount Other Risk Country - Maximum amount
-            of authorizations in monetary units and subunits allowed for the cumulative
-            year-to-date spending by an account in non-high-risk countries. Risk is
-            designated by country code in the Financial Authorization System (FAS)
-          type: string
-          maxLength: 17
-          example: 15000.00
+          description: OTC Cash Amount - Maximum amount in monetary units and subunits of ATM cash authorizations allowed for the frequency defined in the FREQ field
+          example: '1500.0'
         otcCashNumber:
-          default: 0.0
-          description: OTC Cash Number - Maximum number of ATM cash authorizations
-            allowed for the frequency defined in the FREQ field
-          type: number
           maxLength: 9
+          type: number
+          description: OTC Cash Number - Maximum number of ATM cash authorizations allowed for the frequency defined in the FREQ field
           example: 6
-        yeartodateCountryRiskSpendLimitActive:
-          description: Year-To-Date Country Risk Spending Limit Active - This is a
-            flag that indicates whether a year-to-date spending limit for accounts
-            initiating transactions in high-risk and non-high-risk countries is active
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 1
-        motoFlag:
-          description: MOTO Flag - Flag indicates MOTO transactions are active or
-            not
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          maxLength: 1
-          example: "N"
         transactionLimitOtc:
-          default: 0.0
-          description: Transaction Limit OTC - This is the Maximum authorization amount
-            in monetary units and subunits for a single ATM transaction
-          type: string
           maxLength: 17
-          example: 200.00
-        atmCashNumber:
-          default: 0.0
-          description: ATM Cash Number - Maximum number of ATM cash authorizations
-            allowed for the frequency defined in the FREQ field
-          type: number
-          maxLength: 9
-          example: 5
-        retailPurchaseNumber:
-          default: 0.0
-          description: Retail Purchase Number - Maximum number of retail authorizations
-            allowed for the frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY
-            field
-          type: number
-          maxLength: 9
-          example: 10
-        transactionLimitAtm:
-          default: 0.0
-          description: Transaction Limit ATM - This is the Maximum authorization amount
-            in monetary units and subunits for a single ATM transaction
           type: string
-          maxLength: 17
-          example: 100.00
-        yeartodateMaxAuthAmountHighRiskCountry:
-          default: 0.0
-          description: Year-To-Date Max Auth Amount High Risk Country - Maximum amount
-            of authorizations in monetary units and subunits allowed for the cumulative
-            year-to-date spending by an account in high-risk countries. Maximum amount
-            of authorizations in monetary units and subunits allowed for the cumulative
-            year-to-date spending by an account in high-risk countries
-          type: string
-          maxLength: 17
-          example: 10000.00
-        atmFlag:
-          description: ATM Flag - Flag indicates ATM transactions are active or not
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          - ' '
-          maxLength: 1
-          example: "Y"
-        maximumAuthorizationLimitFrequency:
-          description: Maximum Authorization Limit Frequency - This is a flag which
-            indicates the frequency for the maximum authorization parameters. This
-            frequency applies to the RETAIL PURCHASE AMOUNT to TRANSACTION LIMIT RETAIL
-            fields
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          maxLength: 1
-          example: 1
-        posFlag:
-          description: POS Flag - Flag indicates POS transactions are active or not
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          - ' '
-          maxLength: 1
-          example: "Y"
-        intAtmPosFlag:
-          description: "International ATM POS Flag - Flag indicates International\
-            \ ATM, POS transactions are active or not"
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          maxLength: 1
-          example: "N"
-        otcCashAmount:
-          default: 0.0
-          description: OTC Cash Amount - Maximum amount in monetary units and subunits
-            of ATM cash authorizations allowed for the frequency defined in the FREQ
-            field
-          type: string
-          maxLength: 17
-          example: 1500.00
-        atmCashAmount:
-          default: 0.0
-          description: ATM Cash Amount - Maximum amount in monetary units and subunits
-            of ATM cash authorizations allowed for the frequency defined in the FREQ
-            field
-          type: string
-          maxLength: 17
-          example: 2000.00
-        transactionLimitRetail:
-          default: 0.0
-          description: Transaction Limit Retail - This is the Maximum amount in monetary
-            units and subunits for a single retail authorization
-          type: string
-          maxLength: 17
-          example: 10000.00
+          description: Transaction Limit OTC - This is the Maximum authorization amount in monetary units and subunits for a single ATM transaction
+          example: '200.0'
         retailPurchaseAmount:
-          default: 0.0
-          description: Retail Purchase Amount - Maximum amount in monetary units and
-            subunits of retail authorizations allowed for the freqency defined in
-            the FREQ field
-          type: string
           maxLength: 17
-          example: 100000.00
-    InquirePlanMasterResp:
+          type: string
+          description: Retail Purchase Amount - Maximum amount in monetary units and subunits of retail authorizations allowed for the freqency defined in the FREQ field
+          example: '100000.0'
+        retailPurchaseNumber:
+          maxLength: 9
+          type: number
+          description: Retail Purchase Number - Maximum number of retail authorizations allowed for the frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY field
+          example: 10
+        transactionLimitRetail:
+          maxLength: 17
+          type: string
+          description: Transaction Limit Retail - This is the Maximum amount in monetary units and subunits for a single retail authorization
+          example: '10000.0'
+        maximumAuthorizationLimitFrequency:
+          maxLength: 1
+          type: string
+          description: Maximum Authorization Limit Frequency - This is a flag which indicates the frequency for the maximum authorization parameters. This frequency applies to the RETAIL PURCHASE AMOUNT to TRANSACTION LIMIT RETAIL fields
+          example: '1'
+        atmCashAmount:
+          maxLength: 17
+          type: string
+          description: ATM Cash Amount - Maximum amount in monetary units and subunits of ATM cash authorizations allowed for the frequency defined in the FREQ field
+          example: '2000.0'
+    Of19:
       type: object
       properties:
-        interestRateTableId:
-          description: Interest Rate Table ID - Rate table occurrence indicator (RTOI)
-            that identifies which one of the 12 interest tables on the Processing
-            Control Table to assign to credit plans generated by this Credit Plan
-            Master record
-          type: string
-          enum:
-          - 01-12
-          maxLength: 2
-          example: 1
-        businessUnit:
-          default: 0.0
-          description: "Business Unit - Identification number associated with this\
-            \ Account Base Segment record, the values are 001–998"
-          type: number
-          maxLength: 3
-          example: 600
-        planType:
-          description: Plan Type - Code that identifies the type of credit plan. This
-            value defaults to the Credit Plan Segment records for credit plans generated
-            by the Credit Plan Master record
-          type: string
-          enum:
-          - A
-          - B
-          - C
-          - K
-          - R
-          - D
-          - I
-          - "Y"
-          - T
-          - L
+        atmFlag:
           maxLength: 1
-          example: R
-        minimumPaymentCalculation:
-          description: Payment Type - Code that indicates the method to calculate
-            the minimum payment due for credit plans generated by this Credit Plan
-            Master record
           type: string
-          enum:
-          - T
-          - F
-          - H
-          - D
-          - A
-          - P
-          - B
-          - I
-          - S
-          - C
-          - U
-          - L
-          - M
-          - Q
-          - R
-          - E
-          - G
-          - W
-          - K
+          description: ATM Flag - Flag indicates ATM transactions are active or not
+          example: 'Y'
+        posFlag:
           maxLength: 1
-          example: T
-        interestRateTableOverride:
-          default: 0.0
-          description: Interest Rate Table Override - Identification number of the
-            Interest table used to calculate interest for credit plans generated by
-            this Credit Plan Master record
-          type: number
-          maxLength: 3
-          example: 001
-        expiredPlanRollMethod:
-          description: Expired Plan Roll Method - Code that indicates the method for
-            rolling over a deferred credit plan that has expired
           type: string
-          enum:
-          - 0
-          - 1
-          - 2
+          description: POS Flag - Flag indicates POS transactions are active or not
+          example: 'Y'
+        ecomFlag:
           maxLength: 1
-          example: 0
-        consolidatedStatement:
-          description: Consolidated Statement - Code that indicates whether CMS consolidates
-            statements for credit plans assigned the same plan number
           type: string
-          enum:
-          - "N"
-          - "Y"
+          description: ECOM Flag - Flag indicates ECOM transactions are active or not
+          example: '1'
+        intAtmPosFlag:
           maxLength: 1
-          example: "Y"
-        description:
-          format: uppercase
-          description: Plan Description - Description of the Credit Plan Master record.
-            This description defaults to the Credit Plan Segment records for credit
-            plans associated with this Credit Plan Master record
           type: string
-          maxLength: 30.0
-          example: RETAIL PLAN
-        planNumber:
-          default: 0.0
-          description: "Plan Number - Identification number of the Credit Plan Master\
-            \ record. The values are 00001–99998. You can establish as many as 99,998\
-            \ Credit Plan Master records for each organization"
-          type: number
-          maxLength: 5
-          example: 10002
-        itoExpirationDate:
-          format: uppercase
-          description: "Interest Rate Table Oveeride Expiry Date - This field identifies\
-            \ a specific expiration date for the ITO, The format is MMDDYYYY or DDMMYYYY\
-            \ depending on the date format established on the System record (DATE\
-            \ FORMAT on System Controls)"
-          type: string
-          maxLength: 10
-          example: 15/08/2023
-        controllingCreditPlanMaster:
-          default: 0.0
-          description: Controlling Credit Plan Master - Plan number of the Credit
-            Plan Master record used for consolidated payment calculations
-          type: number
-          maxLength: 5
-          example: 10003
-        latePaymentCancelRoll:
-          description: Late Payment Cancel Roll - Code that controls whether credit
-            plans generated by this Credit Plan Master record roll over to another
-            credit plan for contractual or recency delinquency or when a payment is
-            not received by the payment due date or cycle date
-          type: string
-          enum:
-          - 0
-          - 2
-          - 4
-          - 1
-          - 3
-          - 5
-          - 6
+          description: International ATM POS Flag - Flag indicates International ATM, POS transactions are active or not
+          example: 'N'
+        motoFlag:
           maxLength: 1
-          example: 1
-        cancellationLetterId:
-          format: uppercase
-          description: Cancellation Letter ID - Code that identifies the letter in
-            the CTA system or LTS system that is sent upon cancellation of a deferment
-            or Interest Table Override (ITO)
           type: string
-          maxLength: 3
-          example: ""
-        delinquencyLevelToCancel:
-          description: Delinquency Level To Cancel - Contractual or recency delinquency
-            level to cancel a deferred plan or ITO plan
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          maxLength: 1
-          example: 6
-        consolidatedPayment:
-          description: Consolidated Payment - Code that indicates whether CMS calculates
-            a single (consolidated) payment amount for similar credit plan segments
-            on an account
-          type: string
-          enum:
-          - "N"
-          - R
-          - B
-          - "Y"
-          maxLength: 1
-          example: "Y"
-        balanceTransferType:
-          description: "Balance Transfer - Code that indicates whether the Interest\
-            \ Table Override (ITO) that sets a special interest rate for balance transfer\
-            \ credit plans can be extended, not extended, or is in effect until a\
-            \ specific date"
-          type: string
-          enum:
-          - E
-          - "N"
-          - S
-          maxLength: 1
-          example: "N"
-        multipleSales:
-          description: Multiple Sales Flag - Code that indicates whether each sales
-            transaction associated with this Credit Plan Segment record generates
-            a new Credit Plan Segment record or is added to an existing Credit Plan
-            Segment record. The value in this field defaults to Credit Plan Segment
-            records
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          - I
-          - C
-          maxLength: 1
-          example: "Y"
-        expirationRollover:
-          description: Expiration Rollover - Code that controls rolling of this plan
-            based on expiration of a deferred credit plan or an interest table override
-            (ITO)
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          maxLength: 1
-          example: 1
-        cancelledPlanRollMethod:
-          description: Cancelled Plan Roll Method - Code that indicates the method
-            for rolling over a deferred or ITO credit plan that was canceled due to
-            delinquency or a payment not received when due
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          maxLength: 1
-          example: 0
-        rollCancelledPlanToPlanId:
-          default: 0.0
-          description: Roll Cancelled Plan To Plan ID - Number that identifies the
-            Credit Plan Master record that generates the rollover credit plan upon
-            cancellation of a deferment or Interest Table Override (ITO)
-          type: number
-          maxLength: 5
-          example: 50002
-        graceBalanceQualification:
-          description: "Grace Balance Qualification - Field that determines the plan\
-            \ balances, or portions of plan balances, that CMS considers when qualifying\
-            \ an account for grace processing logic"
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          maxLength: 1
-          example: 1
-        expirationLetter:
-          format: uppercase
-          description: Expiration Letter - Code that identifies the letter in the
-            CTA system or LTS system that is sent upon expiration of a deferred credit
-            plan
-          type: string
-          maxLength: 3
-          example: EXP
-        rollExpiredPlanToPlanId:
-          default: 0.0
-          description: Roll Expired Plan To Plan ID - Number that identifies the Credit
-            Plan Master record that generates the rollover credit plan upon expiration
-            of a deferred credit plan
-          type: number
-          maxLength: 5
-          example: 50001
-    InquireProductResp:
+          description: MOTO Flag - Flag indicates MOTO transactions are active or not
+          example: 'N'
+    Of20:
       type: object
       properties:
+        yeartodateMaxAuthAmountHighRiskCountry:
+          maxLength: 17
+          type: string
+          description: Year-To-Date Max Auth Amount High Risk Country - Maximum amount of authorizations in monetary units and subunits allowed for the cumulative year-to-date spending by an account in high-risk countries. Maximum amount of authorizations in monetary units and subunits allowed for the cumulative year-to-date spending by an account in high-risk countries
+          example: '10000.0'
+        yeartodateMaxAuthAmountOtherRiskCountry:
+          maxLength: 17
+          type: string
+          description: Year-To-Date Max Auth Amount Other Risk Country - Maximum amount of authorizations in monetary units and subunits allowed for the cumulative year-to-date spending by an account in non-high-risk countries. Risk is designated by country code in the Financial Authorization System (FAS)
+          example: '15000.0'
+        yeartodateCountryRiskSpendLimitActive:
+          maxLength: 1
+          type: string
+          description: Year-To-Date Country Risk Spending Limit Active - This is a flag that indicates whether a year-to-date spending limit for accounts initiating transactions in high-risk and non-high-risk countries is active
+          example: '1'
+    UpdateLogoCardControlReqModel:
+      type: object
+      properties:
+        OF20:
+          $ref: '#/components/schemas/Of20'
+        OF18:
+          $ref: '#/components/schemas/Of18'
+        OF19:
+          $ref: '#/components/schemas/Of19'
+    UpdateLogoCardControlResponseModel:
+      required:
+        - businessUnit
+        - productNumber
+      type: object
+      properties:
+        OF20:
+          $ref: '#/components/schemas/Of20'
         businessUnit:
-          default: 0.0
-          description: "Business Unit - Identification number associated with this\
-            \ Account Base Segment record, the values are 001–998"
-          type: number
           maxLength: 3
+          type: number
+          description: Business Unit - Identification number associated with this Account Base Segment record, the values are 001–998
           example: 600
-        wspTokenEligible:
-          description: 'WSP token Eligibility - This field is used to determine if
-            a particular logo allows tokenization '
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
+        productNumber:
+          maxLength: 3
+          type: number
+          description: Product - This field is the Identification number of the Logo record
           example: 1
-        sweepOptionAllowed:
-          description: Sweep Option Allowed - This flag indicates whether sweep processing
-            is allowed for this product
+        OF18:
+          $ref: '#/components/schemas/Of18'
+        OF19:
+          $ref: '#/components/schemas/Of19'
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
           type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        markupIssuerActive:
-          description: Markup Issuer Active - This is a flag that indicates whether
-            the issuer-markup fee option is active for this product
+        errorMessage:
           type: string
-          enum:
-          - 1
-          - 0
+    InquireProductReqModel:
+      type: object
+    CardActivationControls:
+      type: object
+      properties:
+        replacementCardActivation:
           maxLength: 1
-          example: 0
-        paymentApplicationLevel:
-          description: Payment Application Level - Code that indicates whether CMS
-            applies payments to accounts with multiple credit plan segments by the
-            plan priority defined on the Credit Plan Master record or the plan priority
-            defined on the Logo record
           type: string
-          enum:
-          - P
-          - L
+          description: Replacement Card Activation - This flag indicates whether to use card activation for replacement cards
+          example: 'Y'
+        newCardActivation:
           maxLength: 1
-          example: P
+          type: string
+          description: New Card Activation - This flag indicates whether to use card activation for new cards
+          example: 'Y'
+        additionalCardActivation:
+          maxLength: 1
+          type: string
+          description: Addtional Card Activation - This flag indicates whether to use card activation for additional cards
+          example: 'Y'
+        reissueCardActivation:
+          maxLength: 1
+          type: string
+          description: Reissue Card Activation - This flag indicates whether to use card activation for reissued cards
+          example: 'Y'
+    InquireProductResponseModel:
+      required:
+        - businessUnit
+        - productNumber
+      type: object
+      properties:
+        vipOverrideFlag:
+          maxLength: 1
+          type: string
+          description: VIP override Flag - This flag indicates if VIP override is active or not
+          example: 'N'
+        automaticAccountNumberGeneration:
+          maxLength: 1
+          type: string
+          description: Automatic Account Number Generation - This flag indicates whether this product uses automatic account number and card number generation
+          example: I
+        crossBorder:
+          maxLength: 1
+          type: string
+          description: Cross Border - This is the flag that indicates the alert setting for cross border transactions at the cardholder level
+          example: '0'
+        authAlerts:
+          maxLength: 1
+          type: string
+          description: Auth Alerts - This flag indicates whether transaction authorization-based alerts functionality is active for the product and whether the cardholder is automatically enrolled for the alert
+          example: '0'
+        loyaltyManagementActive:
+          maxLength: 1
+          type: string
+          description: Loyalty Management Active - This flag indicates if the Loyalty Management System (LMS) is active for this product
+          example: '1'
+        debitCardProcessActive:
+          maxLength: 1
+          type: string
+          description: Debit Card Process Active - This flag indicates whether the online debit card processing feature is active for this product
+          example: '0'
+        cardMailerNameaddress:
+          maxLength: 1
+          type: string
+          description: Card Mailer Name/Address - determines the name and address to print on Card mailer
+          example: '0'
+        pinMailerNameaddress:
+          maxLength: 1
+          type: string
+          description: PIN Mailer Name/Address - determines the name and address to print on PIN mailer wthe PIN and card mailer
+          example: '0'
+        businessUnit:
+          maxLength: 3
+          type: number
+          description: Business Unit - Identification number associated with this Account Base Segment record, the values are 001–998
+          example: 600
+        collectionsActive:
+          maxLength: 1
+          type: string
+          description: Collections Active - This flag indicates whether CTA is active
+          example: 'Y'
+        productNumber:
+          maxLength: 3
+          type: number
+          description: Product - This field is the Identification number of the Logo record
+          example: 1
+        overlimitProcessingOptinIndicator:
+          maxLength: 1
+          type: string
+          description: Overlimit Processing Opt-in Indicator - This field is a code that indicates whether the product participates in overlimit opt-in processing
+          example: '0'
+        paymentProcessingControls:
+          $ref: '#/components/schemas/PaymentProcessingControls'
+        delinquencyAgeing:
+          maxLength: 1
+          type: string
+          description: Delinquency Ageing - Code that specifies whethre delinquency aging occurs on payment due date or cycle date
+          example: D
+        cardBureauFeedbackActive:
+          maxLength: 1
+          type: string
+          description: Card Bureau Feedback Active - This flag indicates whether CMS uses the Card Bureau Feedback (ATAD) file to update the MAILER DATE field on the Embosser record
+          example: '0'
+        processingControlLevel:
+          maxLength: 1
+          type: string
+          description: Processing Control Level - This is a flag which indicates the processing control level for accounts in this product
+          example: O
+        newCardPlastics:
+          maxLength: 1
+          type: string
+          description: New Card Plastics - This flag indicates whether CMS generates a tape for embossing plastics for new accounts
+          example: 'Y'
+        newCardDefaultActive:
+          maxLength: 1
+          type: string
+          description: New Card Default Active - Code that indicates whether the value in the ENHANCED PRODUCT field defaults to the Embosser records for new cards in this product
+          example: '0'
+        scriptingActive:
+          maxLength: 1
+          type: string
+          description: Scripting Active - This is a flag which indicates whether the smart card scripting functionality provided by CMS, FAS (Financial Authorization System), ESS (EMV Scripting System), and RIS is active for this product.
+          example: '0'
+        creditLimitBypass:
+          maxLength: 1
+          type: string
+          description: Credit Limit Bypass - This is the field that determines whether accounts belonging to this product will be excluded from an adaptive control system (ACS) credit limit review
+          example: '0'
+        enhancedProductsEligible:
+          maxLength: 1
+          type: string
+          description: Enhanced Products Eligible - This flag indicates whether accounts in the product are eligible for an enhanced product
+          example: '0'
+        cardActionTableActive:
+          maxLength: 1
+          type: string
+          description: Card Action Table Active - This flag indicates whether the enhanced PIN and card warehousing functionality provided by the card action table is enabled
+          example: '0'
+        keyTypeForPinMailerFiles:
+          maxLength: 1
+          type: string
+          description: PIN Mailer Key Type - Key type for PIN mailer
+          example: B
+        cardActivationControls:
+          $ref: '#/components/schemas/CardActivationControls'
+        markUpFeeControls:
+          $ref: '#/components/schemas/MarkUpFeeControls'
+        chipPinCardAllowed:
+          maxLength: 1
+          type: string
+          description: CHIP or PIN Card Allowed - This flag identifies whether smart cards can be issued for cards in this product
+          example: '1'
+        defaultCardTechnology:
+          maxLength: 1
+          type: string
+          description: Default Card Technology - Default Card Technology to be used during new account setup
+          example: '3'
+        cardProductDisplay:
+          maxLength: 1
+          type: string
+          description: Card Product Display - Flag that indicates whether cards in this logo display a logo symbol for PLUS, Cirrus, or Maestro
+          example: '0'
+        approvedCardUse:
+          maxLength: 1
+          type: string
+          description: Approved Card Use - This flag indicates if the cards that are assigned to accounts in this product are approved for local use only or international use
+          example: '0'
+        sameDayEmboss:
+          maxLength: 1
+          type: string
+          description: Same Day Embossing - This flag indicates whether same-day embossing is allowed for the accounts within the product.
+          example: '0'
         pinMailerForCardAction:
           type: array
           items:
-            type: object
-            properties:
-              cardactions:
-                type: string
-                description: Card Actions - This flag indicate the various card actions
-                  that use the enhanced PIN and card warehousing functionality when
-                  the card actions are initiated on the Embosser record
-                maxLength: 1
-                example: 0
-              pinoptions:
-                type: string
-                description: PIN Options - Code that indicates the action to be taken
-                  for enhanced PIN and card warehousing when the corresponding card
-                  action is processed
-                maxLength: 1
-                example: 0
-        falcon6Active:
-          description: Falcon 6 Active - This is the flag that indicates whether the
-            Falcon 6 interface is active for this product
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        newCardPlastics:
-          description: New Card Plastics - This flag indicates whether CMS generates
-            a tape for embossing plastics for new accounts
-          type: string
-          enum:
-          - "N"
-          - "Y"
-          - B
-          - F
-          maxLength: 1
-          example: "Y"
-        additionalCardActivation:
-          format: uppercase
-          description: Addtional Card Activation - This flag indicates whether to
-            use card activation for additional cards
-          type: string
-          maxLength: 1
-          example: "Y"
+            $ref: '#/components/schemas/PinMailerForCardAction'
         stateOfResidenceId:
-          format: uppercase
-          description: "Sate of Residence ID - Default Residence ID that identifies\
-            \ the state, province, or country in which the account holder resides"
-          type: string
-          maxLength: 3.0
-          example: SX1
-        pinMailerNameaddress:
-          description: PIN Mailer Name/Address - determines the name and address to
-            print on PIN mailer wthe PIN and card mailer
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          maxLength: 1
-          example: 0
-        newCardDefaultActive:
-          description: New Card Default Active - Code that indicates whether the value
-            in the ENHANCED PRODUCT field defaults to the Embosser records for new
-            cards in this product
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        productDescription:
-          format: uppercase
-          description: Product Description - This filed is the description of the
-            Logo record. This description enables you to identify the kind of accounts
-            processed by this product
-          type: string
-          maxLength: 30.0
-          example: VISA CREDIT CONSUMER
-        markupActiveCreditFee:
-          description: "Markup Active Credit Fee - This is a flag which indicates\
-            \ whether the credit fee option is active for this product. When this\
-            \ option is active, the cardholder receives reimbursement for issuer and/or\
-            \ scheme fees on credit transactions"
-          type: string
-          enum:
-          - 1
-          - 0
-          maxLength: 1
-          example: 0
-        paymentHolidaysAllowed:
-          description: Payment Holidays Allowed - Code that indicates whether manual
-            skip payments are allowed for accounts in this product
-          type: string
-          enum:
-          - "N"
-          - "Y"
-          maxLength: 1
-          example: "Y"
-        tokenizationServiceActive:
-          description: Tokenization Service Active - This flag indicates whether the
-            tokenization functionality is active for the product
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 1
-        newCardActivation:
-          format: uppercase
-          description: New Card Activation - This flag indicates whether to use card
-            activation for new cards
-          type: string
-          maxLength: 1
-          example: "Y"
-        creditLimitBypass:
-          description: Credit Limit Bypass - This is the field that determines whether
-            accounts belonging to this product will be excluded from an adaptive control
-            system (ACS) credit limit review
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          maxLength: 1
-          example: 0
-        replacementCardActivation:
-          format: uppercase
-          description: Replacement Card Activation - This flag indicates whether to
-            use card activation for replacement cards
-          type: string
-          maxLength: 1
-          example: "Y"
-        loanFeatureActive:
-          description: Loan Feature Active - Flag that indicates whether the loans
-            feature is active for the product
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 1
-        chipPinCardAllowed:
-          description: CHIP or PIN Card Allowed - This flag identifies whether smart
-            cards can be issued for cards in this product
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 1
-        productNumber:
-          default: 0.0
-          description: Product - This field is the Identification number of the Logo
-            record
-          type: number
           maxLength: 3
-          example: 001
-        markupSchemeActive:
-          description: Markup Scheme Active - This is a flag which indicates whether
-            the scheme-markup fee option is active for this product
           type: string
-          enum:
-          - 1
-          - 0
-          maxLength: 1
-          example: 0
-        overlimitProcessingOptinIndicator:
-          description: Overlimit Processing Opt-in Indicator - This field is a code
-            that indicates whether the product participates in overlimit opt-in processing
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          maxLength: 1
-          example: 0
-        vipOverrideFlag:
-          description: VIP override Flag - This flag indicates if VIP override is
-            active or not
-          type: string
-          enum:
-          - "Y"
-          - "N"
-          maxLength: 1
-          example: "N"
-        applicationMethodForPl:
-          description: "Application Method for P/L - This field determines the payment\
-            \ application method for profit-and-loss accounts, which are charged-off\
-            \ accounts"
-          type: string
-          enum:
-          - B
-          - C
-          - D
-          - H
-          - P
-          - K
-          - L
-          - U
-          - M
-          - "N"
-          - O
-          maxLength: 1
-          example: D
-        cardBureauFeedbackActive:
-          description: Card Bureau Feedback Active - This flag indicates whether CMS
-            uses the Card Bureau Feedback (ATAD) file to update the MAILER DATE field
-            on the Embosser record
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        cardMailerNameaddress:
-          description: Card Mailer Name/Address - determines the name and address
-            to print on Card mailer
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          maxLength: 1
-          example: 0
-        embossingFilesKeyType:
-          description: Embosser Key Type - Key type for Embosser Files
-          type: string
-          enum:
-          - B
-          - E
-          - F
-          - G
-          - H
-          - ' '
-          maxLength: 1
-          example: B
-        virtualCardEdits:
-          description: Virtual Card Edits - This flag indicates whether virtual card
-            accounts are allowed for the product and whether FAS restricts card-present
-            transactions for virtual card accounts
-          type: string
-          enum:
-          - X
-          - "Y"
-          - ' '
-          maxLength: 1
-          example: ' '
-        quarterlyAffiliateCardProduct:
-          format: uppercase
-          description: "Quaterly Affilicate Card Product - Code that indicates the\
-            \ card association card product. This field is required if the Logo record\
-            \ processes bankcard accounts (TYPE OF ACCOUNTS PROCESSED field is D,\
-            \ X, or Y) to identify the quarterly reporting classification or card\
-            \ product"
-          type: string
-          maxLength: 3.0
-          example: V1
-        enhancedProductsEligible:
-          description: Enhanced Products Eligible - This flag indicates whether accounts
-            in the product are eligible for an enhanced product
-          type: string
-          enum:
-          - 0
-          - 1
-          - 4
-          maxLength: 1
-          example: 0
-        debitCardProcessActive:
-          description: Debit Card Process Active - This flag indicates whether the
-            online debit card processing feature is active for this product
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        sameDayEmboss:
-          description: Same Day Embossing - This flag indicates whether same-day embossing
-            is allowed for the accounts within the product.
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        processingControlLevel:
-          description: Processing Control Level - This is a flag which indicates the
-            processing control level for accounts in this product
-          type: string
-          enum:
-          - S
-          - O
-          - L
-          maxLength: 1
-          example: O
-        prepaymentsAllowed:
-          description: Prepayments Allowed - Code that indicates whether prepayments
-            are allowed for accounts in this product
-          type: string
-          enum:
-          - 0
-          - 2
-          - 1
-          maxLength: 1
-          example: 0
-        cardActionTableActive:
-          description: Card Action Table Active - This flag indicates whether the
-            enhanced PIN and card warehousing functionality provided by the card action
-            table is enabled
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        directDebitcreditActive:
-          description: Direct Debit/Credit Active - Code that indicates whether direct
-            debit and direct credit processing is active for accounts in this product
-          type: string
-          enum:
-          - "N"
-          - "Y"
-          - A
-          maxLength: 1
-          example: "N"
-        crossBorder:
-          description: Cross Border - This is the flag that indicates the alert setting
-            for cross border transactions at the cardholder level
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        keyTypeForPinMailerFiles:
-          description: PIN Mailer Key Type - Key type for PIN mailer
-          type: string
-          enum:
-          - B
-          - E
-          - F
-          - G
-          - H
-          - ' '
-          maxLength: 1
-          example: B
-        stateOfIssueId:
-          format: uppercase
-          description: "State of Residence ID - This field identifies the state, province,\
-            \ or country where the account was issued"
-          type: string
-          maxLength: 3.0
+          description: Sate of Residence ID - Default Residence ID that identifies the state, province, or country in which the account holder resides
           example: SX1
-        openToBuyCreditBalance:
-          description: "Open to Buy Credit Balance - This field indicates whether\
-            \ CMS includes the credit balance, disputed amounts, and original loan\
-            \ amount when calculating the open-to-buy amount"
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          maxLength: 1
-          example: 1
-        collectionsActive:
-          description: Collections Active - This flag indicates whether CTA is active
-          type: string
-          enum:
-          - "N"
-          - "Y"
-          maxLength: 1
-          example: "Y"
-        cardProductDisplay:
-          description: "Card Product Display - Flag that indicates whether cards in\
-            \ this logo display a logo symbol for PLUS, Cirrus, or Maestro"
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          maxLength: 1
-          example: 0
-        reissueCardActivation:
-          format: uppercase
-          description: Reissue Card Activation - This flag indicates whether to use
-            card activation for reissued cards
-          type: string
-          maxLength: 1
-          example: "Y"
-        authAlerts:
-          description: Auth Alerts - This flag indicates whether transaction authorization-based
-            alerts functionality is active for the product and whether the cardholder
-            is automatically enrolled for the alert
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          maxLength: 1
-          example: 0
-        applicationMethodForAr:
-          description: Application Method for A/R - This Field determines the payment
-            application method for accounts-receivable accounts which are non-charged-off
-            accounts
-          type: string
-          enum:
-          - B
-          - C
-          - D
-          - H
-          - P
-          - K
-          - L
-          - U
-          - M
-          - "N"
-          - O
-          maxLength: 1
-          example: H
-        defaultCardTechnology:
-          description: Default Card Technology - Default Card Technology to be used
-            during new account setup
-          type: string
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          maxLength: 1
-          example: 3
-        typeOfAccountsProcessed:
-          description: Type of Accounts Processed - This flag identifies the type
-            of accounts processed by the product
-          type: string
-          enum:
-          - R
-          - L
-          - P
-          - B
-          - C
-          - D
-          - "Y"
-          - X
-          - Z
-          maxLength: 1
-          example: X
-        loyaltyManagementActive:
-          description: Loyalty Management Active - This flag indicates if the Loyalty
-            Management System (LMS) is active for this product
-          type: string
-          enum:
-          - 1
-          - 0
-          maxLength: 1
-          example: 1
-        delinquencyAgeing:
-          description: Delinquency Ageing - Code that specifies whethre delinquency
-            aging occurs on payment due date or cycle date
-          type: string
-          enum:
-          - D
-          - S
-          maxLength: 1
-          example: D
-        approvedCardUse:
-          description: Approved Card Use - This flag indicates if the cards that are
-            assigned to accounts in this product are approved for local use only or
-            international use
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        includeDisputedAmounts:
-          description: Include Disputed Amount - Code that indicates whether CMS includes
-            disputed amounts in the open-to-buy (OTB) calculation of accounts
-          type: string
-          enum:
-          - ZERO
-          - 1
-          maxLength: 1
-          example: 0
-        secureCodeActive:
-          description: Secure Code Active - Flag that indicates whether the Connection
-            Management System (CCM) is active
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
-        scriptingActive:
-          description: "Scripting Active - This is a flag which indicates whether\
-            \ the smart card scripting functionality provided by CMS, FAS (Financial\
-            \ Authorization System), ESS (EMV Scripting System), and RIS is active\
-            \ for this product."
-          type: string
-          enum:
-          - 0
-          - 1
-          maxLength: 1
-          example: 0
         sameDayEmbossingAllowed:
-          description: Same Day Embossing Allowed -  This flag indicates whether same-day
-            embossing is allowed for accounts within this product
-          type: string
-          enum:
-          - 0
-          - 1
           maxLength: 1
-          example: 1
+          type: string
+          description: Same Day Embossing Allowed -  This flag indicates whether same-day embossing is allowed for accounts within this product
+          example: '1'
+        falcon6Active:
+          maxLength: 1
+          type: string
+          description: Falcon 6 Active - This is the flag that indicates whether the Falcon 6 interface is active for this product
+          example: '0'
+        embossingFilesKeyType:
+          maxLength: 1
+          type: string
+          description: Embosser Key Type - Key type for Embosser Files
+          example: B
+        typeOfAccountsProcessed:
+          maxLength: 1
+          type: string
+          description: Type of Accounts Processed - This flag identifies the type of accounts processed by the product
+          example: X
+        stateOfIssueId:
+          maxLength: 3
+          type: string
+          description: State of Residence ID - This field identifies the state, province, or country where the account was issued
+          example: SX1
+        includeDisputedAmounts:
+          maxLength: 1
+          type: string
+          description: Include Disputed Amount - Code that indicates whether CMS includes disputed amounts in the open-to-buy (OTB) calculation of accounts
+          example: '0'
+        directDebitcreditActive:
+          maxLength: 1
+          type: string
+          description: Direct Debit/Credit Active - Code that indicates whether direct debit and direct credit processing is active for accounts in this product
+          example: 'N'
+        wspTokenEligible:
+          maxLength: 1
+          type: string
+          description: 'WSP token Eligibility - This field is used to determine if a particular logo allows tokenization '
+          example: '1'
+        secureCodeActive:
+          maxLength: 1
+          type: string
+          description: Secure Code Active - Flag that indicates whether the Connection Management System (CCM) is active
+          example: '0'
+        quarterlyAffiliateCardProduct:
+          maxLength: 3
+          type: string
+          description: Quaterly Affilicate Card Product - Code that indicates the card association card product. This field is required if the Logo record processes bankcard accounts (TYPE OF ACCOUNTS PROCESSED field is D, X, or Y) to identify the quarterly reporting classification or card product
+          example: V1
+        sweepOptionAllowed:
+          maxLength: 1
+          type: string
+          description: Sweep Option Allowed - This flag indicates whether sweep processing is allowed for this product
+          example: '0'
         manualPinResetAllowed:
-          description: Manual PIN Reset Allowed - Flag that indicates whether the
-            PIN try counter field on the Embosser record is allowed to be manually
-            reset for accounts in this product
-          type: string
-          enum:
-          - 0
-          - 1
           maxLength: 1
-          example: 1
+          type: string
+          description: Manual PIN Reset Allowed - Flag that indicates whether the PIN try counter field on the Embosser record is allowed to be manually reset for accounts in this product
+          example: '1'
+        loanFeatureActive:
+          maxLength: 1
+          type: string
+          description: Loan Feature Active - Flag that indicates whether the loans feature is active for the product
+          example: '1'
+        virtualCardEdits:
+          maxLength: 1
+          type: string
+          description: Virtual Card Edits - This flag indicates whether virtual card accounts are allowed for the product and whether FAS restricts card-present transactions for virtual card accounts
+          example: ''
+        productDescription:
+          maxLength: 30
+          type: string
+          description: Product Description - This filed is the description of the Logo record. This description enables you to identify the kind of accounts processed by this product
+          example: VISA CREDIT CONSUMER
+        paymentHolidaysAllowed:
+          maxLength: 1
+          type: string
+          description: Payment Holidays Allowed - Code that indicates whether manual skip payments are allowed for accounts in this product
+          example: 'Y'
+        tokenizationServiceActive:
+          maxLength: 1
+          type: string
+          description: Tokenization Service Active - This flag indicates whether the tokenization functionality is active for the product
+          example: '1'
+        openToBuyCreditBalance:
+          maxLength: 1
+          type: string
+          description: Open to Buy Credit Balance - This field indicates whether CMS includes the credit balance, disputed amounts, and original loan amount when calculating the open-to-buy amount
+          example: '1'
+    MarkUpFeeControls:
+      type: object
+      properties:
+        markupActiveCreditFee:
+          maxLength: 1
+          type: string
+          description: Markup Active Credit Fee - This is a flag which indicates whether the credit fee option is active for this product. When this option is active, the cardholder receives reimbursement for issuer and/or scheme fees on credit transactions
+          example: '0'
         markupUserDefinedActive:
-          description: "Markup User Defined Active - This is a flag which indicates\
-            \ whether the user-defined markup fee option is active for this product.\
-            \ When this option is active, CMS assesses user-defined markup fees on\
-            \ first presentments and reversals."
-          type: string
-          enum:
-          - 1
-          - 0
           maxLength: 1
-          example: 0
-        automaticAccountNumberGeneration:
-          description: Automatic Account Number Generation - This flag indicates whether
-            this product uses automatic account number and card number generation
           type: string
-          enum:
-          - "Y"
-          - I
-          - "N"
+          description: Markup User Defined Active - This is a flag which indicates whether the user-defined markup fee option is active for this product. When this option is active, CMS assesses user-defined markup fees on first presentments and reversals.
+          example: '0'
+        markupSchemeActive:
           maxLength: 1
-          example: I
+          type: string
+          description: Markup Scheme Active - This is a flag which indicates whether the scheme-markup fee option is active for this product
+          example: '0'
+        markupIssuerActive:
+          maxLength: 1
+          type: string
+          description: Markup Issuer Active - This is a flag that indicates whether the issuer-markup fee option is active for this product
+          example: '0'
+    PaymentProcessingControls:
+      type: object
+      properties:
+        prepaymentsAllowed:
+          maxLength: 1
+          type: string
+          description: Prepayments Allowed - Code that indicates whether prepayments are allowed for accounts in this product
+          example: '0'
+        paymentApplicationLevel:
+          maxLength: 1
+          type: string
+          description: Payment Application Level - Code that indicates whether CMS applies payments to accounts with multiple credit plan segments by the plan priority defined on the Credit Plan Master record or the plan priority defined on the Logo record
+          example: P
+        applicationMethodForAr:
+          maxLength: 1
+          type: string
+          description: Application Method for A/R - This Field determines the payment application method for accounts-receivable accounts which are non-charged-off accounts
+          example: H
+        applicationMethodForPl:
+          maxLength: 1
+          type: string
+          description: Application Method for P/L - This field determines the payment application method for profit-and-loss accounts, which are charged-off accounts
+          example: D
+    PinMailerForCardAction:
+      type: object
+      properties:
+        cardActions:
+          maxLength: 1
+          type: string
+          description: Card Actions - This flag indicate the various card actions that use the enhanced PIN and card warehousing functionality when the card actions are initiated on the Embosser record
+          example: '0'
+        pinOptions:
+          maxLength: 1
+          type: string
+          description: PIN Options - Code that indicates the action to be taken for enhanced PIN and card warehousing when the corresponding card action is processed
+          example: '0'
+    InquirePlanMasterReqModel:
+      type: object
+    InquirePlanMasterResponseModel:
+      required:
+        - businessUnit
+        - planNumber
+      type: object
+      properties:
+        description:
+          maxLength: 30
+          type: string
+          description: Plan Description - Description of the Credit Plan Master record. This description defaults to the Credit Plan Segment records for credit plans associated with this Credit Plan Master record
+          example: RETAIL PLAN
+        balanceTransferType:
+          maxLength: 1
+          type: string
+          description: Balance Transfer - Code that indicates whether the Interest Table Override (ITO) that sets a special interest rate for balance transfer credit plans can be extended, not extended, or is in effect until a specific date
+          example: 'N'
+        planType:
+          maxLength: 1
+          type: string
+          description: Plan Type - Code that identifies the type of credit plan. This value defaults to the Credit Plan Segment records for credit plans generated by the Credit Plan Master record
+          example: R
+        interestRateTableId:
+          maxLength: 2
+          type: string
+          description: Interest Rate Table ID - Rate table occurrence indicator (RTOI) that identifies which one of the 12 interest tables on the Processing Control Table to assign to credit plans generated by this Credit Plan Master record
+          example: '1'
+        multipleSales:
+          maxLength: 1
+          type: string
+          description: Multiple Sales Flag - Code that indicates whether each sales transaction associated with this Credit Plan Segment record generates a new Credit Plan Segment record or is added to an existing Credit Plan Segment record. The value in this field defaults to Credit Plan Segment records
+          example: 'Y'
+        graceBalanceQualification:
+          maxLength: 1
+          type: string
+          description: Grace Balance Qualification - Field that determines the plan balances, or portions of plan balances, that CMS considers when qualifying an account for grace processing logic
+          example: '1'
+        businessUnit:
+          maxLength: 3
+          type: number
+          description: Business Unit - Identification number associated with this Account Base Segment record, the values are 001–998
+          example: 600
+        minimumPaymentCalculation:
+          maxLength: 1
+          type: string
+          description: Payment Type - Code that indicates the method to calculate the minimum payment due for credit plans generated by this Credit Plan Master record
+          example: T
+        planNumber:
+          maxLength: 5
+          type: number
+          description: Plan Number - Identification number of the Credit Plan Master record. The values are 00001–99998. You can establish as many as 99,998 Credit Plan Master records for each organization
+          example: 10002
+        OF2:
+          $ref: '#/components/schemas/Of2'
+        OF13:
+          $ref: '#/components/schemas/Of13'
+        OF5:
+          $ref: '#/components/schemas/Of5'
+    Of13:
+      type: object
+      properties:
+        latePaymentCancelRoll:
+          maxLength: 1
+          type: string
+          description: Late Payment Cancel Roll - Code that controls whether credit plans generated by this Credit Plan Master record roll over to another credit plan for contractual or recency delinquency or when a payment is not received by the payment due date or cycle date
+          example: '1'
+        rollExpiredPlanToPlanId:
+          maxLength: 5
+          type: number
+          description: Roll Expired Plan To Plan ID - Number that identifies the Credit Plan Master record that generates the rollover credit plan upon expiration of a deferred credit plan
+          example: 50001
+        expirationRollover:
+          maxLength: 1
+          type: string
+          description: Expiration Rollover - Code that controls rolling of this plan based on expiration of a deferred credit plan or an interest table override (ITO)
+          example: '1'
+        expirationLetter:
+          maxLength: 3
+          type: string
+          description: Expiration Letter - Code that identifies the letter in the CTA system or LTS system that is sent upon expiration of a deferred credit plan
+          example: EXP
+        expiredPlanRollMethod:
+          maxLength: 1
+          type: string
+          description: Expired Plan Roll Method - Code that indicates the method for rolling over a deferred credit plan that has expired
+          example: '0'
+        cancelledPlanRollMethod:
+          maxLength: 1
+          type: string
+          description: Cancelled Plan Roll Method - Code that indicates the method for rolling over a deferred or ITO credit plan that was canceled due to delinquency or a payment not received when due
+          example: '0'
+        cancellationLetterId:
+          maxLength: 3
+          type: string
+          description: Cancellation Letter ID - Code that identifies the letter in the CTA system or LTS system that is sent upon cancellation of a deferment or Interest Table Override (ITO)
+        rollCancelledPlanToPlanId:
+          maxLength: 5
+          type: number
+          description: Roll Cancelled Plan To Plan ID - Number that identifies the Credit Plan Master record that generates the rollover credit plan upon cancellation of a deferment or Interest Table Override (ITO)
+          example: 50002
+        delinquencyLevelToCancel:
+          maxLength: 1
+          type: string
+          description: Delinquency Level To Cancel - Contractual or recency delinquency level to cancel a deferred plan or ITO plan
+          example: '6'
+    Of2:
+      type: object
+      properties:
+        itoExpirationDate:
+          maxLength: 10
+          type: string
+          description: Interest Rate Table Oveeride Expiry Date - This field identifies a specific expiration date for the ITO, The format is MMDDYYYY or DDMMYYYY depending on the date format established on the System record (DATE FORMAT on System Controls)
+          example: 15/08/2023
+        interestRateTableOverride:
+          maxLength: 3
+          type: number
+          description: Interest Rate Table Override - Identification number of the Interest table used to calculate interest for credit plans generated by this Credit Plan Master record
+          example: 1
+    Of5:
+      type: object
+      properties:
+        consolidatedPayment:
+          maxLength: 1
+          type: string
+          description: Consolidated Payment - Code that indicates whether CMS calculates a single (consolidated) payment amount for similar credit plan segments on an account
+          example: 'Y'
+        consolidatedStatement:
+          maxLength: 1
+          type: string
+          description: Consolidated Statement - Code that indicates whether CMS consolidates statements for credit plans assigned the same plan number
+          example: 'Y'
+        controllingCreditPlanMaster:
+          maxLength: 5
+          type: number
+          description: Controlling Credit Plan Master - Plan number of the Credit Plan Master record used for consolidated payment calculations
+          example: 10003
