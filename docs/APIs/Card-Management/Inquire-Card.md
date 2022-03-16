@@ -10,7 +10,7 @@ This service is used to retrive detailed information of card. This API response 
 
 ### Request Payload
 
->Shoud be empty.  
+>Should be empty.  
 ***The Business Unit and Card Number should be sent as query parameters and path variable.***
 
 ### Minimum Requirements

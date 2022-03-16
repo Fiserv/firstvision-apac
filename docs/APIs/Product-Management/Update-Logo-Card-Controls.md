@@ -1,8 +1,6 @@
 # Update Logo Card Controls
 
-This API is used to perform card control updates at product or logo level. This API can be be invoked with an business unit and product number.
-
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
+This API is used to perform card control updates at product level. This API can be be invoked with a business unit and product number.
 
 ## Endpoint
 
@@ -15,15 +13,15 @@ Fields that are not provided in the request object will be initialised to their 
 ```json
 {
   "ecomFlag": 1,
-  "yeartodateMaxAuthAmountOtherRiskCountry": 15000,
+  "yearToDateMaxAuthAmountOtherRiskCountry": 15000,
   "otcCashNumber": 6,
-  "yeartodateCountryRiskSpendLimitActive": 1,
+  "yearToDateCountryRiskSpendLimitActive": 1,
   "motoFlag": "N",
   "transactionLimitOtc": 200,
   "atmCashNumber": 5,
   "retailPurchaseNumber": 10,
   "transactionLimitAtm": 100,
-  "yeartodateMaxAuthAmountHighRiskCountry": 10000,
+  "yearToDateMaxAuthAmountHighRiskCountry": 10000,
   "atmFlag": "Y",
   "maximumAuthorizationLimitFrequency": 1,
   "posFlag": "Y",
@@ -41,10 +39,12 @@ The below table contains the mandatory fields required for a successful request.
 
 The below table identifies the required parameters in the request payload.
 
-| Variable | Passed as | Type | Leuith | Description/Values |
+| Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `businessUnit` | Query Parameter | *number* | 03 | Identification number associated with this Account Base Segment record, the values are 001–998.|
-| `product` | Path Variable | *number* | 03 | This field is the Identification number of the Logo record.|
+| `product` | Path Variable | *number* | 03 | This field is the identification number of the Logo record.|
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
@@ -67,9 +67,9 @@ The below table identifies the required parameters in the request payload.
   "transactionLimitAtm": "$1.00",
   "transactionLimitOtc": "$2.00",
   "transactionLimitRetail": "$100.00",
-  "yeartodateCountryRiskSpendLimitActive": "1",
-  "yeartodateMaxAuthAmountHighRiskCountry": "$100.00",
-  "yeartodateMaxAuthAmountOtherRiskCountry": "$150.00" 
+  "yearToDateCountryRiskSpendLimitActive": "1",
+  "yearToDateMaxAuthAmountHighRiskCountry": "$100.00",
+  "yearToDateMaxAuthAmountOtherRiskCountry": "$150.00" 
 }
 ```
 
@@ -78,7 +78,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
    errorCode" :  V5CR0484EA" ,
-   errorMessage" : Org Not Found"   
+   errorMessage" : Org not found"   
 }
 ```
 
@@ -86,6 +86,5 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5CR0484EA` | Org Not Found |
-| `V5CR0484EC` | Missing Logo Description Rec |
-| `V5CR0484ED` | Add Pending - Logo Desc Rec |
+| `V5CR0484EA` | Org not found |
+| `V5CR0010SF` | Update Request - Record not found |

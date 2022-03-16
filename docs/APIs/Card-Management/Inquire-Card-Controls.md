@@ -10,7 +10,7 @@ This service fetches the card controls for a given card number like maximum numb
 
 ### Request Payload
 
->Shoud be empty.  
+>Should be empty.  
 ***The Business Unit and Card Number should be sent as query parameters and path variable.***
 
 ### Minimum Requirements

@@ -1,8 +1,6 @@
 # Update Statement Preference
 
-This API is used to update statement preference for a given account. This API can be be invoked with an business unit and account number.
-
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
+This API is used to update statement preference for a given account.  
 
 ## Endpoint
 
@@ -26,10 +24,11 @@ The below table contains the mandatory fields required for a successful request.
 
 The below table identifies the required parameters in the request payload.
 
-| Variable | Passed as | Type | Leuith | Description/Values |
+| Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter| *number* | 03 | Identification number associated with this Account Base Segment record, the values are 001–998.|
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the Account.|
+| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account.|
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
@@ -57,4 +56,4 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5BS0010SF` | Update Request - Record not found |
-| `V5BS0122SA` | valid Entries Are 0 Thru 9, H, O, R, S, U, Or Z |
+| `V5BS0122SA` | Valid entries are 0 thru 9, H, O, R, S, U, Or Z |

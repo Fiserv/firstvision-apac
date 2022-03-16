@@ -1,8 +1,6 @@
 # User Signon
 
 This service is used to sign-on to the system with the given user ID and password. This service provides the unique context number every time user has signed-in.
-
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
   
 ## Endpoint
 
@@ -21,7 +19,7 @@ Fields that are not provided in the request object will be initialised to their 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/users/signon).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/users/signOn).
 
 The below table identifies the required parameters in the request payload.
 
@@ -51,4 +49,4 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `VMES0025EF` | Client/Name Or password is invalid - Please Retry |         
+| `VMES0025EF` | Client/Name or password is invalid - Please retry |         

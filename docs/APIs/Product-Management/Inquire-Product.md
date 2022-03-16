@@ -10,12 +10,8 @@ This service provides product details for a given product number. Products are p
 
 ### Request Payload
 
-```json
-
-Shoud be empty.
+>Should be empty.
 ***The Business Unit and Plan Number should be sent as query parameters and path variable.*** 
-
-```
 
 ### Minimum Requirements
 

@@ -1,8 +1,6 @@
 # Update Customer's Profile
 
 This service is used to update the various customer profiles like customer number, corresponding customer number and alternate customer details for a given account number.
-
-Fields that are not provided in the Request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
   
 ## Endpoint
 
@@ -30,8 +28,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number associated with this Account Base Segment record, the values are 001–998 |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the Account | 
+| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account | 
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
@@ -61,13 +60,11 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5BS0010SF` | Update Request - Record not found |  
-| `V5BS4001SG` | ORG Record Not Found |  
-| `V5BS0102SA` | Customer Number Cannot be zeroes |  
-| `V5BS0102SB` | Generic Customer Not Allowed |  
-| `V5BS0102SC` | No Active Customer On File |    
-| `V5BS0172SA` | Generic Customer Not Allowed |  
-| `V5BS0172SB` | No Active Customer On File |  
-| `V5BS0172SC` | Cust Nbr Not In Add Complete Status |  
-| `V5BS0111SA` | Valid Entries Are Space, A, Or B |  
-| `V5BS0111SD` | Both Alt Exp Date And Cust Nbr Required |  
-| `V5BS0112SA` | Alt Cust Expires Date Should Be A Future Date |  
+| `V5BS4001SG` | Org record not found |  
+| `V5BS0102SA` | Customer number cannot be zeroes |   
+| `V5BS0102SC/V5BS0172SB` | No active customer on file |    
+| `V5BS0172SA/V5BS0102SB` | Generic customer not allowed |  
+| `V5BS0172SC` | Cust number not in add complete status |  
+| `V5BS0111SA` | Valid entries are space, A, or B |  
+| `V5BS0111SD` | Both alt exp date and cust number required |  
+| `V5BS0112SA` | Alt cust expires date should be a future date |  

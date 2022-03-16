@@ -1,10 +1,10 @@
 # Real Time Payments
 
-This service is used post the real-time payments which increases open to buy immediately for a given account number.
+This service is used post the real-time payments which increases open to buy immediately for a given account number without waiting for nightly processing takes place.
 
 ## Endpoint
 
-`GET /v1/accounts/realTimePayments`
+`POST /v1/accounts/realTimePayments`
 
 ## Payload Example
 
@@ -40,18 +40,16 @@ This service is used post the real-time payments which increases open to buy imm
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](..api/?type=get&path=/v1/accounts/realTimePayments).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](..api/?type=post&path=/v1/accounts/realTimePayments).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 3 | Business Unit - Identification number associated with this Account Base Segment record, the values are 001–998 |
-| `accountNumber` | Payload | *string* | 19 | Account Number - Unique Identification number of the Account | 
-| `actionCode` | Payload | *string* | 4 | Action Code - Action code placed on the account |
-| `transactionAmount` | Payload | *number* | 17 | Transaction Amount - Transaction amount to be posted |
+| `accountNumber` | Payload | *string* | 19 | Account Number - Unique Identification number of the account. | 
+| `actionCode` | Payload | *string* | 4 | Action Code - Action code placed on the account. |
+| `transactionAmount` | Payload | *number* | 17 | Transaction Amount - Transaction amount to be posted. |
  
-
 ### Successful Response Payload
 
 ```json
@@ -102,30 +100,30 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V8MA4005EA` | Account Or Card Not Found |  
-| `V8MA4005EB` | Account Or Card Number Required |  
-| `V8MA4005EC` | Invalid Account Status |  
-| `V8MA4006EB` | ASM Action Code Not On File |  
-| `V8MA4006EC` | Action Code Required |    
-| `V8MA4013EM` | Transaction Amount Required |  
-| `V8MA4013ES` | Transaction Amount Must Be Numeric |  
-| `V8MA4001ED` | ASM Not Active  Service Usage Not Allowed |  
-| `V8MA4001EF` | Organization Not Found |  
-| `V8MA4001ET` | Org Not Found |  
-| `V8MA4001SA` | ASM Org Not Found |  
-| `V8MA4001EA` | Rep Activity Model Record Not Found On File |  
-| `V8MA4002EB` | ASM Rep Invalid Must Be Grater Than Spaces |  
+| `V8MA4005EA` | Account or card not found |  
+| `V8MA4005EB` | Account or card number required |  
+| `V8MA4005EC` | Invalid account status |  
+| `V8MA4006EB` | ASM action code not on file |  
+| `V8MA4006EC` | Action code required |    
+| `V8MA4013EM` | Transaction amount required |  
+| `V8MA4013ES` | Transaction amount must be numeric |  
+| `V8MA4001ED` | ASM not active  service usage not allowed |  
+| `V8MA4001EF` | Organization not found |  
+| `V8MA4001ET` | Org not found |  
+| `V8MA4001SA` | ASM org not found |  
+| `V8MA4001EA` | Rep activity model record not found on file |  
+| `V8MA4002EB` | ASM rep invalid must be grater than spaces |  
 | `V8MA4002EC` | Representative Not Found |  
-| `V8MA4002EA` | Rep Tally By Org Model Record Not On File |  
-| `V8MA4012EC` | Invalid Effective Date |  
-| `V8MA4012EM` | Effective Date Required |  
-| `V8MA4016EM` | Dept Is Required |  
-| `V8MA4019EM` | SKU Number Required |  
-| `V8MA4020EM` | Sales Clerk Required |  
-| `V8MA4021EG` | Invalid Letter Code |  
-| `V8MA4023EM` | Card Number Required |  
-| `V8MA4025EM` | Ticket Number Required |  
-| `V8MA4030EG` | Referal Option Must Be Valid 0, Spaces Or 1 |  
-| `V8MA4031EG` | Manual Org Must Be Numeric And 001-998 |  
-| `V8MA4032EG` | Manual Referal Rep Id Was Not Supplied |  
-| `V8MA4036EA` | ASM Rep Not Allowed To Access Account Org |  
+| `V8MA4002EA` | Rep tally by org model record not on file |  
+| `V8MA4012EC` | Invalid effective date |  
+| `V8MA4012EM` | Effective date required |  
+| `V8MA4016EM` | Dept is required |  
+| `V8MA4019EM` | SKU number required |  
+| `V8MA4020EM` | Sales clerk required |  
+| `V8MA4021EG` | Invalid letter code |  
+| `V8MA4023EM` | Card number required |  
+| `V8MA4025EM` | Ticket number required |  
+| `V8MA4030EG` | Referal option must be valid 0, spaces or 1 |  
+| `V8MA4031EG` | Manual org must be numeric and 001-998 |  
+| `V8MA4032EG` | Manual referal rep ID was not supplied |  
+| `V8MA4036EA` | ASM rep not allowed to access account org |  

@@ -2,20 +2,16 @@
 
 The service is used for the purpose of the card look up where the account number is provided and service will send all cards associated with account.
 
-Fields that are not provided in the Request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
-
 ## Endpoint
 
-`POST /v1/accounts/{accountNumber}/listCardsByAccount`
+`GET /v1/accounts/{accountNumber}/listCardsByAccount`
 
 ## Payload Example
 
 ### Request Payload
 
-```json
-Shoud be empty.
+> Should be empty.
 ***The Business Unit and Account Number should be sent as query parameters and path variable.***
-``` 
 
 ### Minimum Requirements
 
@@ -25,7 +21,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Leuith | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Payload | *string* | 19 | Unique Identification number of the Account.|
+| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account.|
 
 ### Successful Response Payload
 
