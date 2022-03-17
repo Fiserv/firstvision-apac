@@ -1,4 +1,4 @@
-# Update Customer's Profile... TEST
+# Update Customer's Profile
 
 This service is used to update the various customer profiles like customer number, corresponding customer number and alternate customer details for a given account number.
   
