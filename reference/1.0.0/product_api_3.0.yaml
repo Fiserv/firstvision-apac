@@ -71,8 +71,30 @@ paths:
               $ref: '#/components/schemas/UpdateLogoCardControlReqModel'
         required: true
       responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLogoCardControlResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -103,28 +125,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateLogoCardControlResponseModel'
       x-proxy-name: Update Logo Card Controls
       x-group-name: Product Management
   /v1/products/{productNumber}/details:
@@ -183,32 +183,16 @@ paths:
           type: number
           example: '001'
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -223,14 +207,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireProductResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -296,8 +296,24 @@ paths:
           type: number
           example: 10002
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -320,12 +336,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquirePlanMasterResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -334,22 +344,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/InquirePlanMasterResponseModel'
       x-proxy-name: Inquire Plan Master
       x-group-name: Product Management
 components:
@@ -516,13 +516,6 @@ components:
           $ref: '#/components/schemas/Of18'
         OF19:
           $ref: '#/components/schemas/Of19'
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
     UpdateLogoCardControlResponseModel:
       required:
       - businessUnit
@@ -547,7 +540,16 @@ components:
           $ref: '#/components/schemas/Of18'
         OF19:
           $ref: '#/components/schemas/Of19'
-    CardActivationControls:
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        errorMessage:
+          type: string
+          example: ''
+    CardActivationControlsRes:
       type: object
       properties:
         replacementCardActivation:
@@ -689,8 +691,8 @@ components:
           - '0'
           - '1'
           - '2'
-        paymentProcessingControls:
-          $ref: '#/components/schemas/PaymentProcessingControls'
+        paymentProcessingControlsRes:
+          $ref: '#/components/schemas/PaymentProcessingControlsRes'
         delinquencyAgeing:
           maxLength: 1
           type: string
@@ -795,10 +797,10 @@ components:
           - G
           - H
           - ' '
-        cardActivationControls:
-          $ref: '#/components/schemas/CardActivationControls'
-        markUpFeeControls:
-          $ref: '#/components/schemas/MarkUpFeeControls'
+        cardActivationControlsRes:
+          $ref: '#/components/schemas/CardActivationControlsRes'
+        markUpFeeControlsRes:
+          $ref: '#/components/schemas/MarkUpFeeControlsRes'
         chipPinCardAllowed:
           maxLength: 1
           type: string
@@ -853,10 +855,10 @@ components:
           enum:
           - '0'
           - '1'
-        pinMailerForCardAction:
+        pinMailerForCardActionRes:
           type: array
           items:
-            $ref: '#/components/schemas/PinMailerForCardAction'
+            $ref: '#/components/schemas/PinMailerForCardActionRes'
         stateOfResidenceId:
           maxLength: 3
           type: string
@@ -1036,7 +1038,7 @@ components:
           - '1'
           - '2'
           - '3'
-    MarkUpFeeControls:
+    MarkUpFeeControlsRes:
       type: object
       properties:
         markupActiveCreditFee:
@@ -1079,7 +1081,7 @@ components:
           enum:
           - '1'
           - '0'
-    PaymentProcessingControls:
+    PaymentProcessingControlsRes:
       type: object
       properties:
         prepaymentsAllowed:
@@ -1141,7 +1143,7 @@ components:
           - M
           - N
           - O
-    PinMailerForCardAction:
+    PinMailerForCardActionRes:
       type: object
       properties:
         cardActions:
@@ -1354,6 +1356,7 @@ components:
           description: Cancellation Letter ID - Code that identifies the letter in
             the CTA system or LTS system that is sent upon cancellation of a deferment
             or Interest Table Override (ITO)
+          example: ''
         rollCancelledPlanToPlanId:
           maxLength: 5
           type: number
