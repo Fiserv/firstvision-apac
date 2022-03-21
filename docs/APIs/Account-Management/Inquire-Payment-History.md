@@ -17,7 +17,7 @@ This API is used to retrive latest six payment details for given account number 
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountNumber}/paymentHistory).
 
-The below table identifies the required parameters in the request payload.
+The below table identifies the required parameters in the request payload. Test
 
 | Variable | Passed as | Type | Leuith | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
