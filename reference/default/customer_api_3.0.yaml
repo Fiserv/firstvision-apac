@@ -49,7 +49,7 @@ paths:
         in: query
         description: Business Unit - Identification number of the organization associated
           with thisAccount Base Segment record. The values are 001–998.
-        required: true
+        required: false
         schema:
           maxLength: 3
           type: number
@@ -64,16 +64,16 @@ paths:
           type: string
           example: '0000020000066806355'
       responses:
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -86,8 +86,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomersNameAddressInquireResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -102,8 +102,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -163,7 +163,7 @@ paths:
         in: query
         description: Business Unit - Identification number of the Business Unit associated
           with the Name and Address record. The values are 001–998.
-        required: true
+        required: false
         schema:
           maxLength: 3
           type: number
@@ -184,22 +184,8 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerDemographicReqModel'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerDemographicResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -214,6 +200,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -222,8 +216,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerDemographicResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -286,16 +286,8 @@ paths:
               $ref: '#/components/schemas/SearchCustomerReqModel'
         required: true
       responses:
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -310,6 +302,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -318,8 +318,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -386,24 +386,30 @@ paths:
               $ref: '#/components/schemas/BoardCustomerReqModel'
         required: true
       responses:
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/BoardCustomerResponseModel'
         '401':
           description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -418,8 +424,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -434,12 +440,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardCustomerResponseModel'
       x-proxy-name: Board Customer
       x-group-name: Customer Management
   /v1/customers/{customerNumber}/cardList:
@@ -490,22 +490,8 @@ paths:
           type: string
           example: '0000020000067163587'
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                type: string
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -520,6 +506,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersCardResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -528,8 +528,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -594,30 +594,30 @@ paths:
           type: string
           example: '0000020000067163587'
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: string
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/ListCustomersAccountResponseModel'
         '401':
           description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -632,8 +632,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -652,7 +652,7 @@ paths:
       x-group-name: Customer Management
 components:
   schemas:
-    Of3:
+    CustomerDemograhicDetailsReq:
       type: object
       properties:
         emailAddress:
@@ -753,8 +753,8 @@ components:
         dateOfBirth:
           maxLength: 10
           type: string
-          description: Date Of Birth - Date Of Birth of the owner, The format is MMDDYYYY
-            or DDMMYYYY depending on the date format established on the System record
+          description: Date Of Birth - Date Of Birth of the owner, The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
             (DATE FORMAT on System Control)
           example: 06/04/1986
         nameLine2:
@@ -765,7 +765,8 @@ components:
         houseNumber:
           maxLength: 20
           type: string
-          description: House Number - This field indicates the owner name.
+          description: House Number - This field indicates the House number of the
+            owner.
           example: ''
         addressLine4:
           maxLength: 40
@@ -821,11 +822,172 @@ components:
           enum:
           - Y
           - N
-        OF3:
-          $ref: '#/components/schemas/Of3'
+        customerDemograhicDetailsReq:
+          $ref: '#/components/schemas/CustomerDemograhicDetailsReq'
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        errorMessage:
+          type: string
+          example: ''
+    CustomerDemograhicDetailsRes:
+      type: object
+      properties:
+        emailAddress:
+          maxLength: 60
+          type: string
+          description: Email Address - that indicates the e-mail address of the owner
+          example: QM422E7RJT@XVRAI.NET
+        middleName:
+          maxLength: 40
+          type: string
+          description: Middle Name - This field is the Middle name of the owner.
+          example: ''
+        firstName:
+          maxLength: 40
+          type: string
+          description: First Name - This field is the First name of the owner.
+          example: ABC
+        lastName:
+          maxLength: 40
+          type: string
+          description: Last Name - This field is the Last name of the owner.
+          example: ''
+        userDefinedField4:
+          type: string
+          description: User Defined Field 4 - User-defined fields for an owner.
+          example: Y
+        countryCode:
+          maxLength: 3
+          type: string
+          description: Country Code - Thevalue entered must be a valid country code
+            previously definedin the Security Subsystem and Common Routines (SSC)
+            system
+          example: AU
+        city:
+          maxLength: 30
+          type: string
+          description: City - City portion of the mailing address of the owner
+          example: SYDNEY
+        stateProvince:
+          maxLength: 3
+          type: string
+          description: State/Province - Abbreviation of the state or province portion
+            of the mailingaddress of the owner
+          example: NSW
+        addressLine1:
+          maxLength: 40
+          type: string
+          description: Address Line 1 - Mailing address for the owner
+          example: 77 30 HARVEY ISLAND
+        addressLine2:
+          maxLength: 40
+          type: string
+          description: Address Line 2 - Mailing address for the owner
+          example: ''
+        mobilePhoneFlag:
+          type: string
+          description: Mobile Phone Flag - this field is a code that indicates whether
+            youhave the owner’s permission to call this number. The values are0 =No,
+            do not contact the customer at this number,1=Yes, you can contact the
+            customer at thisnumber (Default) 2=Preferred contact method
+          example: '0'
+        mobileNumber:
+          maxLength: 20
+          type: string
+          description: Mobile Number - that indicates the mobile telephone number
+            of the owner
+          example: '+61440372725'
+        smsFlag:
+          maxLength: 1
+          type: string
+          description: SMS Flag - Code that indicates whether an SMS (short message
+            service)message can be sent to the owner. The values are 0=No, do not
+            contact the customer via SMS, 1=Yes, you can contact the customer via
+            SMS(Default)
+          example: '0'
+        faxPhoneFlag:
+          maxLength: 1
+          type: string
+          description: Fax Phone Flag - This field is a code that specifies whether
+            theyou have the owner’s permission to call this number. The values 0 =No,
+            do not contact the customer at this number,1=Yes, you can contact the
+            customer at thisnumber (Default) 2=Preferred contact method
+          example: '0'
+        postalCode:
+          maxLength: 10
+          type: string
+          description: Postal Code - Postal code portion of the mailing address of
+            the owner
+          example: '110004'
+        faxNumber:
+          maxLength: 20
+          type: string
+          description: Fax Number - This field is the owner’s fax number.
+          example: ''
+        dateOfBirth:
+          maxLength: 10
+          type: string
+          description: Date Of Birth - Date of Birth of the customer, The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control)
+          example: 06/24/1986
+        nameLine2:
+          maxLength: 40
+          type: string
+          description: Name Line 2 - This field indicates the owner name.
+          example: KK
+        houseNumber:
+          maxLength: 20
+          type: string
+          description: House Number - This field indicates the House number of the
+            owner.
+          example: ''
+        addressLine4:
+          maxLength: 40
+          type: string
+          description: Address Line 4 - This is mailing address for the owner.
+          example: DELHI
+        addressLine3:
+          maxLength: 40
+          type: string
+          description: Address Line 3 - Mailing address for the owner
+          example: ''
+        nameLine3:
+          maxLength: 40
+          type: string
+          description: Name Line 3 - This field indicates the owner name.
+          example: ''
+        homePhoneNumber:
+          maxLength: 20
+          type: string
+          description: Home Phone Number - that indicates the home telephone number
+            of the owner
+          example: '+61440372725'
+        homePhoneFlag:
+          type: string
+          description: Home Phone Flag - this field is a code that specifies whether
+            theyou have the owner’s permission to call this number. The values 0 =No,
+            do not contact the customer at this number,1=Yes, you can contact the
+            customer at thisnumber (Default) 2=Preferred contact method
+          example: '0'
+        nameLine1:
+          maxLength: 40
+          type: string
+          description: Name Line 1 - This field indicates the owner personal name,
+            business name, or  a generic name.
+          example: M S SWAMY
+        languageIndicator:
+          maxLength: 3
+          type: string
+          description: Language Indicator - User-defined code that indicates the language
+            spoken by the owner.
+          example: AUS
     UpdateCustomerDemographicResponseModel:
       required:
-      - businessUnit
       - customerNumber
       type: object
       properties:
@@ -849,17 +1011,8 @@ components:
           description: Customer Number - This field is Identification number of the
             Name and Address record.
           example: '0000020000065439605'
-        OF3:
-          $ref: '#/components/schemas/Of3'
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        errorMessage:
-          type: string
-          example: ''
+        customerDemograhicDetailsRes:
+          $ref: '#/components/schemas/CustomerDemograhicDetailsRes'
     SearchCustomerReqModel:
       required:
       - optionalDataMatch
@@ -953,8 +1106,8 @@ components:
         dateOfBirth:
           maxLength: 10
           type: string
-          description: Date Of Birth - Date of Birth of Customer. The format is MMDDYYYY
-            or DDMMYYYY depending on the date format established on the System record
+          description: Date Of Birth - Date of Birth of Customer. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
             (DATE FORMAT on System Control)
           example: '0'
         title:
@@ -1142,8 +1295,8 @@ components:
         dateOfBirth:
           maxLength: 10
           type: string
-          description: Date of Birth - Customer Date of Birth. The format is MMDDYYYY
-            or DDMMYYYY depending on the date format established on the System record
+          description: Date of Birth - Customer Date of Birth. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
             (DATE FORMAT on System Control)
           example: 01/02/2010
         addressLine3:
@@ -1199,12 +1352,11 @@ components:
           example: '0000000001000000007'
     CustomersNameAddressInquireResponseModel:
       required:
-      - businessUnit
       - customerNumber
       type: object
       properties:
-        OF8:
-          $ref: '#/components/schemas/Of8'
+        customerDemograhicDetailsRes:
+          $ref: '#/components/schemas/CustomerDemograhicDetailsRes'
         businessUnit:
           maxLength: 3
           type: number
@@ -1217,154 +1369,752 @@ components:
           description: Customer Number - This field is Identification number of the
             Name and Address record.
           example: '0000020000066806355'
-    Of8:
+    CardListRes:
       type: object
       properties:
-        emailAddress:
-          maxLength: 60
+        dateLastWalletUsed:
+          maxLength: 10
           type: string
-          description: Email Address - that indicates the e-mail address of the owner
-          example: QM422E7RJT@XVRAI.NET
-        middleName:
-          maxLength: 40
+          description: Date the last wallet associated with card is used, The format
+            is MM/DD/YYYY or DD/MM/YYYY depending on the date format established on
+            the System record (DATE FORMAT on System Control)
+          example: '0'
+        dateLastPlasticSupresed:
+          maxLength: 10
           type: string
-          description: Middle Name - This field is the Middle name of the owner.
-          example: ''
-        firstName:
-          maxLength: 40
+          description: Date the last plastic usage is suppressed, The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: '0'
+        plasticSuppressStatus:
+          maxLength: 1
           type: string
-          description: First Name - This field is the First name of the owner.
-          example: ABC
-        lastName:
-          maxLength: 40
+          description: Flag for plastic usage suppression
+          example: N
+        cardTechnology:
+          maxLength: 1
           type: string
-          description: Last Name - This field is the Last name of the owner.
-          example: ''
-        userDefinedField4:
+          description: Technology (chip / magnetic / contactless) used to emboss the
+            card
+          example: '3'
+          enum:
+          - '0'
+          - '1'
+          - '3'
+          - '5'
+          - '2'
+          - '4'
+        atmFlag:
+          maxLength: 1
           type: string
-          description: User Defined Field 4 - User-defined fields for an owner.
+          description: Flag for ATM usage
           example: Y
-        countryCode:
-          maxLength: 3
+        cardIssueDate:
+          maxLength: 10
           type: string
-          description: Country Code - Thevalue entered must be a valid country code
-            previously definedin the Security Subsystem and Common Routines (SSC)
-            system
-          example: AU
-        city:
+          description: Date the Card is Issued, The format is MM/DD/YYYY or DD/MM/YYYY
+            depending on the date format established on the System record (DATE FORMAT
+            on System Control)
+          example: 28/09/2020
+        posFlag:
+          maxLength: 1
+          type: string
+          description: Flag for POS usage
+          example: Y
+        warningCode:
+          maxLength: 1
+          type: string
+          description: Warning Code applied to the card
+          example: '0'
+        ecomActFlag:
+          maxLength: 1
+          type: string
+          description: Flag for e-commerce usage
+          example: Y
+        lastCardExpirationDate:
+          maxLength: 10
+          type: string
+          description: Expiration Date of the last card issued to cardholder, The
+            format is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
+            on the System record (DATE FORMAT on System Control)
+          example: 00/00/0000
+        lastCardNeedActivation:
+          maxLength: 1
+          type: string
+          description: Last Card Need Activation
+          example: Y
+        embrName2:
+          maxLength: 26
+          type: string
+          description: Embossed Name-2 on the Card
+          example: ''
+        dateLastPlasticUsed:
+          maxLength: 10
+          type: string
+          description: Date the last plastic is used, The format is MM/DD/YYYY or
+            DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: '13815'
+        blockDate:
+          maxLength: 10
+          type: string
+          description: Date the Block Code is assigned on the card, The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control)
+          example: 00/00/0000
+        chequeAccountNbr:
+          maxLength: 19
+          type: string
+          description: Checking Account number associated with the card (Debit Card
+            Only)
+          example: ''
+        currentCardNeedActivation:
+          maxLength: 1
+          type: string
+          description: Current Card Activation Status
+          example: Y
+        savingsAccountNbr:
+          maxLength: 17
+          type: string
+          description: Saving Account number associated with the card (Debit Card
+            Only)
+          example: ''
+        currCardAction:
+          maxLength: 1
+          type: string
+          description: Current Embossing Action requested on the card
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+        lastCardAction:
+          maxLength: 1
+          type: string
+          description: Last Embossing Action requested on the card
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+        cardExpirationDate:
+          maxLength: 10
+          type: string
+          description: Expiration Date on the card, The format is MM/DD/YYYY or DD/MM/YYYY
+            depending on the date format established on the System record (DATE FORMAT
+            on System Control)
+          example: 16/09/2023
+        cardActivatedDate:
+          maxLength: 10
+          type: string
+          description: Date the card is activated, The format is MM/DD/YYYY or DD/MM/YYYY
+            depending on the date format established on the System record (DATE FORMAT
+            on System Control)
+          example: 00/00/0000
+        mccLimit4:
+          maxLength: 11
+          type: string
+          description: Occurence-4 of the MCC limit applied on the Card
+          example: $0.00
+        mccLimit5:
+          maxLength: 11
+          type: string
+          description: Occurence-5 of the MCC limit applied on the Card
+          example: $0.00
+        mccLimit6:
+          maxLength: 11
+          type: string
+          description: Occurence-6 of the MCC limit applied on the Card
+          example: $0.00
+        mccLimit7:
+          maxLength: 11
+          type: string
+          description: Occurence-7 of the MCC limit applied on the Card
+          example: $0.00
+        mccLimit8:
+          maxLength: 11
+          type: string
+          description: Occurence-8 of the MCC limit applied on the Card
+          example: $0.00
+        mccLimit9:
+          maxLength: 11
+          type: string
+          description: Occurence-9 of the MCC limit applied on the Card
+          example: $0.00
+        mccLimit10:
+          maxLength: 11
+          type: string
+          description: Occurence-10 of the MCC limit applied on the Card
+          example: $0.00
+        mccLimit2:
+          maxLength: 11
+          type: string
+          description: Occurence-2 of the MCC limit applied on the Card
+          example: $0.00
+        mccLimit3:
+          maxLength: 11
+          type: string
+          description: Occurence-3 of the MCC limit applied on the Card
+          example: $0.00
+        timeLastPlasticIssue:
+          maxLength: 6
+          type: number
+          description: Time Last Plastic Issue
+          example: 131201
+        mccLimit1:
+          maxLength: 11
+          type: string
+          description: Occurence-1 of the MCC limit applied on the Card
+          example: $0.01
+        nameOnCard:
+          maxLength: 26
+          type: string
+          description: Embossed Name On Card
+          example: U T UATMLNCUST448
+        businessUnit:
+          maxLength: 3
+          type: number
+          description: Business Unit - Identification number of the business unit
+            associated with the  customer
+          example: 100
+        cardNumber:
+          maxLength: 19
+          type: string
+          description: Card Number - Token Number assigned to the cardholder embosser
+            record
+          example: '0009846801010009405'
+        numberOfCards:
+          maxLength: 2
+          type: string
+          description: Number of wallet token associated with card
+          example: '0'
+        digitalId:
+          maxLength: 10
+          type: string
+          description: digital id of the wallet
+          example: ''
+        pinOffset:
+          maxLength: 6
+          type: string
+          description: Pin offset
+          example: '329861'
+        motoFlag:
+          maxLength: 1
+          type: string
+          description: Flag to determine MOTO transaction is allowed
+          example: ''
+        dateOpened:
+          maxLength: 10
+          type: string
+          description: Date the Card is issued, The format is MM/DD/YYYY or DD/MM/YYYY
+            depending on the date format established on the System record (DATE FORMAT
+            on System Control)
+          example: 17/09/2020
+        payWaveFlag:
+          maxLength: 1
+          type: string
+          description: Flag for Paywave usage
+          example: Y
+        embosserRecordStatus:
+          maxLength: 1
+          type: string
+          description: Status of the card
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - F
+          - S
+          - T
+          - P
+          - ' '
+        intAtmPosFlag:
+          maxLength: 1
+          type: string
+          description: Flag for international ATM POS usage
+          example: Y
+        blockCode:
+          maxLength: 1
+          type: string
+          description: Block Code on the card
+          example: ''
+        cashBackTranFlag:
+          maxLength: 1
+          type: string
+          description: Flag for cashback usage
+          example: Y
+        cardSequence:
+          maxLength: 4
+          type: number
+          description: Sequence of the card ID
+          example: 1
+        postToAccount:
+          maxLength: 19
+          type: string
+          description: Account to which the card is linked
+          example: '0001000011000052268'
+        maskCardNumber:
+          maxLength: 19
+          type: string
+          description: Mask Card number of the actual card number associated with
+            the card Id
+          example: 000984680XXXXXX9405
+        product:
+          maxLength: 3
+          type: number
+          description: Product associated with the Card
+          example: 1
+        productDescription:
           maxLength: 30
           type: string
-          description: City - City portion of the mailing address of the owner
-          example: SYDNEY
-        stateProvince:
-          maxLength: 3
+          description: Description of the Card
+          example: VISA PLATINUM DEBIT
+        cardholderType:
+          maxLength: 1
+          type: number
+          description: Type of Cardholder - Main or Supplementary
+          example: 1
+    ListCustomersCardResponseModel:
+      type: object
+      properties:
+        object2:
+          $ref: '#/components/schemas/Object2'
+        workPhoneNumber:
+          maxLength: 20
           type: string
-          description: State/Province - Abbreviation of the state or province portion
-            of the mailingaddress of the owner
-          example: NSW
-        addressLine1:
-          maxLength: 40
-          type: string
-          description: Address Line 1 - Mailing address for the owner
-          example: 77 30 HARVEY ISLAND
-        addressLine2:
-          maxLength: 40
-          type: string
-          description: Address Line 2 - Mailing address for the owner
-          example: ''
-        mobilePhoneFlag:
-          type: string
-          description: Mobile Phone Flag - this field is a code that indicates whether
-            youhave the owner’s permission to call this number. The values are0 =No,
-            do not contact the customer at this number,1=Yes, you can contact the
-            customer at thisnumber (Default) 2=Preferred contact method
-          example: '0'
+          description: Work Phone Number of the Customer
+          example: ++61430010348
         mobileNumber:
           maxLength: 20
           type: string
-          description: Mobile Number - that indicates the mobile telephone number
-            of the owner
-          example: '+61440372725'
-        smsFlag:
-          maxLength: 1
+          description: Mobile Number of the Customer
+          example: ++61430010348
+        businessUnit:
+          maxLength: 3
           type: string
-          description: SMS Flag - Code that indicates whether an SMS (short message
-            service)message can be sent to the owner. The values are 0=No, do not
-            contact the customer via SMS, 1=Yes, you can contact the customer via
-            SMS(Default)
-          example: '0'
-        faxPhoneFlag:
-          maxLength: 1
+          description: Business Unit - Identification number of the business unit
+            associated with the  customer
+          example: '200'
+        customerNumber:
+          maxLength: 19
           type: string
-          description: Fax Phone Flag - This field is a code that specifies whether
-            theyou have the owner’s permission to call this number. The values 0 =No,
-            do not contact the customer at this number,1=Yes, you can contact the
-            customer at thisnumber (Default) 2=Preferred contact method
-          example: '0'
-        postalCode:
-          maxLength: 10
-          type: string
-          description: Postal Code - Postal code portion of the mailing address of
-            the owner
-          example: '110004'
-        faxNumber:
-          maxLength: 20
-          type: string
-          description: Fax Number - This field is the owner’s fax number.
-          example: ''
-        dateOfBirth:
-          type: string
-          description: Date Of Birth - Date of Birth of the customer, The format is
-            MMDDYYYY or DDMMYYYY depending on the date format established on the System
-            record (DATE FORMAT on System Control)
-          example: 06/24/1986
-        nameLine2:
+          description: Customer Number - This field is Identification number of the
+            Name and Address record.
+          example: '0000020000067163587'
+        customerName:
           maxLength: 40
           type: string
-          description: Name Line 2 - This field indicates the owner name.
-          example: KK
-        houseNumber:
+          description: Name of the Customer
+          example: UATMFNCU448
+        homeDistricName:
           maxLength: 20
           type: string
-          description: House Number - This field indicates the owner name.
+          description: Home Distric Name of the Customer
+          example: ''
+        numberOfAccounts:
+          maxLength: 3
+          type: string
+          description: Number of Accounts associated with the Customer
+          example: '1'
+        userDefinedField4:
+          maxLength: 1
+          type: string
+          description: User Defined Field 4
+          example: ''
+        emailAddress:
+          maxLength: 60
+          type: string
+          description: Email Address of the Customer
+          example: UATMFNCU448@GMAIL.COM
+        homePhoneNumber:
+          maxLength: 20
+          type: string
+          description: Home Phone Number of the Customer
+          example: ++61430010348
+        addressLine1:
+          maxLength: 40
+          type: string
+          description: Address line 1 of the Customer
+          example: 62 CHARTERIS DR
+        addressLine2:
+          maxLength: 40
+          type: string
+          description: Address Line 2 of the Customer
+          example: ''
+        addressLine3:
+          maxLength: 40
+          type: string
+          description: Address Line 3 of the Customer
           example: ''
         addressLine4:
           maxLength: 40
           type: string
-          description: Address Line 4 - This is mailing address for the owner.
-          example: DELHI
-        addressLine3:
-          maxLength: 40
-          type: string
-          description: Address Line 3 - Mailing address for the owner
+          description: Address Line 4 of the Customer
           example: ''
-        nameLine3:
-          maxLength: 40
+        numberOfCards:
+          maxLength: 3
           type: string
-          description: Name Line 3 - This field indicates the owner name.
+          description: Number of Cards associated with the Customer
+          example: '1'
+        ssnId:
+          maxLength: 25
+          type: string
+          description: SSN ID of the Customer
+          example: '113902'
+        relationshipNbr:
+          maxLength: 19
+          type: string
+          description: Relationship number associated with the customer (if relationship
+            is active)
           example: ''
-        homePhoneNumber:
-          maxLength: 20
+        gender:
+          maxLength: 1
           type: string
-          description: Home Phone Number - that indicates the home telephone number
-            of the owner
-          example: '+61440372725'
-        homePhoneFlag:
-          type: string
-          description: Home Phone Flag - this field is a code that specifies whether
-            theyou have the owner’s permission to call this number. The values 0 =No,
-            do not contact the customer at this number,1=Yes, you can contact the
-            customer at thisnumber (Default) 2=Preferred contact method
+          description: Gender of the Customer
           example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        relName:
+          maxLength: 40
+          type: string
+          description: Name on the relationship Record  (if relationship is active)
+          example: ''
+        dateOfBirth:
+          maxLength: 10
+          type: string
+          description: Date of Birth of the Customer, The format is MM/DD/YYYY or
+            DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: 14/11/1940
+        creditLimit:
+          maxLength: 17
+          type: string
+          description: Overall Credit Limit at the relationship level  (if relationship
+            is active)
+          example: $0.00"
+        status:
+          maxLength: 1
+          type: string
+          description: Status of the Relationship Record  (if relationship is active)
+          enum:
+          - '0'
+          - '1'
+          - '8'
+          - P
+          - '9'
+          example: ''
         nameLine1:
           maxLength: 40
           type: string
-          description: Name Line 1 - This field indicates the owner personal name,
-            business name, or  a generic name.
-          example: M S SWAMY
-        languageIndicator:
+          description: First Name of the Customer
+          example: UATMFNCU448 TWOPPPUATMLNCUST448
+        billingLvl:
+          maxLength: 1
+          type: string
+          description: Flag indicating the Level of billing is at relationship level
+            or at subordnate account level
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        totalAvailable:
+          maxLength: 17
+          type: string
+          description: Total Available balance at the relationship level
+          example: $0.00
+    Object2:
+      type: object
+      properties:
+        cardListRes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardListRes'
+    AccountListRes:
+      type: object
+      properties:
+        suppressToken:
+          maxLength: 1
+          type: string
+          description: Flag to supporess the wallet token creation
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        internalStatus:
+          maxLength: 1
+          type: string
+          description: Status of the account
+          example: D
+          enum:
+          - N
+          - A
+          - F
+          - D
+          - I
+          - M
+          - Z
+          - B
+          - C
+          - H
+          - V
+          - X
+          - Q
+          - J
+          - V
+          - T
+          - R
+          - K
+          - J
+          - '8'
+          - '9'
+          - P
+          - H
+        reissContolMethod:
+          maxLength: 1
+          type: number
+          description: Flag to indicate method to reissue
+          example: 0
+        nbrOfTokenizedCards:
+          maxLength: 2
+          type: number
+          description: Number of wallet cards associated with account
+          example: 0
+        amountMemoDebit:
+          maxLength: 17
+          type: string
+          description: 'Amount of Debit Authorization that holds the Open to Buy '
+          example: $0.00
+        ddaAccountNumber:
+          maxLength: 17
+          type: string
+          description: Debit Account number associated with the account
+          example: '890005226'
+        businessUnit:
           maxLength: 3
           type: string
-          description: Language Indicator - User-defined code that indicates the language
-            spoken by the owner.
-          example: AUS
+          description: Business Unit - Identification number of the business unit
+            associated with the  account
+          example: '100'
+        amountMemoCredit:
+          maxLength: 17
+          type: string
+          description: Amount of Credit Authorization applied on hte account
+          example: $0.00
+        accountNumber:
+          maxLength: 19
+          type: string
+          description: Account ID assigned to the customer for a given product
+          example: '0001000011000052268'
+        product:
+          maxLength: 3
+          type: string
+          description: Product associated with the account
+          example: '1'
+        blockCode1:
+          maxLength: 1
+          type: string
+          description: Block Code 1 on the account
+          example: A
+        mailingIndicator:
+          maxLength: 1
+          type: string
+          description: Mailing Indicator for sending mails to either Office Address
+            or Home Address
+          example: ''
+          enum:
+          - H
+          - O
+        blockCode2:
+          maxLength: 1
+          type: string
+          description: Block Code 2 on the account
+          example: ''
+        blockCode1Date:
+          maxLength: 10
+          type: string
+          description: Date the Block Code 1 is applied, The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: 19/08/2021
+        blockCode2Date:
+          maxLength: 10
+          type: string
+          description: Date the Block Code 2 is applied, The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: 00/00/0000
+    ListCustomersAccountResponseModel:
+      type: object
+      properties:
+        workPhoneNumber:
+          maxLength: 20
+          type: string
+          description: Work Phone Number of the Customer
+          example: ++61430010348
+        object1:
+          $ref: '#/components/schemas/Object1'
+        mobileNumber:
+          maxLength: 20
+          type: string
+          description: Mobile Number of the Customer
+          example: ++61430010348
+        businessUnit:
+          maxLength: 3
+          type: string
+          description: Business Unit - Identification number of the business unit
+            associated with the  customer
+          example: '200'
+        customerNumber:
+          maxLength: 19
+          type: string
+          description: Customer Number - This field is Identification number of the
+            Name and Address record.
+          example: '0000020000067163587'
+        customerName:
+          maxLength: 40
+          type: string
+          description: Name of the Customer
+          example: UATMFNCU448
+        homeDistricName:
+          maxLength: 20
+          type: string
+          description: Home Distric Name of the Customer
+          example: ''
+        numberOfAccounts:
+          maxLength: 3
+          type: string
+          description: Number of Accounts associated with the Customer
+          example: '1'
+        userDefinedField4:
+          maxLength: 1
+          type: string
+          description: User Defined Field 4
+          example: ''
+        emailAddress:
+          maxLength: 60
+          type: string
+          description: Email Address of the Customer
+          example: UATMFNCU448@GMAIL.COM
+        homePhoneNumber:
+          maxLength: 20
+          type: string
+          description: Home Phone Number of the Customer
+          example: ++61430010348
+        addressLine1:
+          maxLength: 40
+          type: string
+          description: Address line 1 of the Customer
+          example: 62 CHARTERIS DR
+        addressLine2:
+          maxLength: 40
+          type: string
+          description: Address Line 2 of the Customer
+          example: ''
+        addressLine3:
+          maxLength: 40
+          type: string
+          description: Address Line 3 of the Customer
+          example: ''
+        addressLine4:
+          maxLength: 40
+          type: string
+          description: Address Line 4 of the Customer
+          example: ''
+        numberOfCards:
+          maxLength: 3
+          type: string
+          description: Number of Cards associated with the Customer
+          example: '1'
+        ssnId:
+          maxLength: 25
+          type: string
+          description: SSN ID of the Customer
+          example: '113902'
+        relationshipNbr:
+          maxLength: 19
+          type: string
+          description: Relationship number associated with the customer (if relationship
+            is active)
+          example: ''
+        gender:
+          maxLength: 1
+          type: string
+          description: Gender of the Customer
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        relName:
+          maxLength: 40
+          type: string
+          description: Name on the relationship Record  (if relationship is active)
+          example: ''
+        dateOfBirth:
+          maxLength: 10
+          type: string
+          description: Date of Birth of the Customer, The format is MM/DD/YYYY or
+            DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: 14/11/1940
+        creditLimit:
+          maxLength: 17
+          type: string
+          description: Overall Credit Limit at the relationship level  (if relationship
+            is active)
+          example: $0.00"
+        status:
+          maxLength: 1
+          type: string
+          description: Status of the Relationship Record  (if relationship is active)
+          enum:
+          - '0'
+          - '1'
+          - '8'
+          - P
+          - '9'
+          example: ''
+        nameLine1:
+          maxLength: 40
+          type: string
+          description: First Name of the Customer
+          example: UATMFNCU448 TWOPPPUATMLNCUST448
+        billingLvl:
+          maxLength: 1
+          type: string
+          description: Flag indicating the Level of billing is at relationship level
+            or at subordnate account level
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        totalAvailable:
+          maxLength: 17
+          type: string
+          description: Total Available balance at the relationship level
+          example: $0.00
+    Object1:
+      type: object
+      properties:
+        accountListRes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountListRes'
