@@ -52,16 +52,8 @@ paths:
               $ref: '#/components/schemas/UserSignonReqModel'
         required: true
       responses:
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -76,8 +68,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -90,14 +98,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserSignonResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -154,16 +154,8 @@ paths:
               $ref: '#/components/schemas/AddUserReqModel'
         required: true
       responses:
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -178,16 +170,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -200,6 +184,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddUserResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -259,22 +259,14 @@ components:
       - signonExpiryDate
       type: object
       properties:
-        clientId:
-          maxLength: 5
-          type: number
-          description: Client ID - Identification number, referred to as Client ID,
-            assigned to your institution by the processor
-          example: 1
-        name:
-          maxLength: 15
+        sourceGroupType:
+          maxLength: 1
           type: string
-          description: Name - Sign-on name that the person assigned this User Security
-            Signon record will use to sign on to the system. The sign-on name can
-            consist of letters (A–Z), numbers (0–9), and embedded spaces, but not
-            a leading space. When adding a new sign-on record, the sign-on name must
-            be a unique name not already assigned to any existing User Security Sign-on
-            records for your institution (client ID)
-          example: NABTEST25
+          description: Source Group Type - Code that identifies the source group assigned
+            to this User Security Sign-on record. Each source group defines a set
+            of security parameters established by the processor in the Client Options
+            record for your institution
+          example: '2'
         dateToActivate:
           maxLength: 10
           type: string
@@ -294,29 +286,13 @@ components:
             This service privilege group determines the services that can be accessed
             by the person who signs on with this sign-on record
           example: CLTUSER
-        businessUnitPrivilegeId:
-          maxLength: 8
-          type: string
-          description: Business Unit Privilege ID - Name that identifies an existing
-            organization privilege group assigned to this User Security Sign-on record.
-            This organization privilege group determines the organizations that can
-            be accessed by the person who signs on with this sign-on record. An organization
-            privilege group assigned to a sign-on record must have the same client
-            ID and security type as the sign-on record. Access rights to additional
-            organizations can be included or excluded using the I/E and ORG fields,
-            which are listed on this screen under the ORG INCLUDE/EXCLUDE heading
-          example: CTLUSER
-        OF2:
-          $ref: '#/components/schemas/Of2'
         customerServiceBusinessUnit:
           maxLength: 3
           type: number
           description: Customer Service Business Unit
           example: 100
-        OF4:
-          $ref: '#/components/schemas/Of4'
-        OF3:
-          $ref: '#/components/schemas/Of3'
+        screenPrivilegeTableReq:
+          $ref: '#/components/schemas/ScreenPrivilegeTableReq'
         signonExpiryDate:
           maxLength: 10
           type: string
@@ -330,24 +306,54 @@ components:
             or DDMMYYYY depending on the date format established on the System record
             (DATE FORMAT on System Controls)
           example: 31/12/2025
-        supervisorId:
-          maxLength: 3
-          type: string
-          description: Supervisor ID
-          example: ''
-        OF6:
-          $ref: '#/components/schemas/Of6'
         operatorId:
           maxLength: 3
           type: string
           description: Operator ID - Rep id of Operator
           example: ABC
-        OF5:
-          $ref: '#/components/schemas/Of5'
-    Of2:
+        userApplicationAccessReq:
+          $ref: '#/components/schemas/UserApplicationAccessReq'
+        clientId:
+          maxLength: 5
+          type: number
+          description: Client ID - Identification number, referred to as Client ID,
+            assigned to your institution by the processor
+          example: 1
+        name:
+          maxLength: 15
+          type: string
+          description: Name - Sign-on name that the person assigned this User Security
+            Signon record will use to sign on to the system. The sign-on name can
+            consist of letters (A–Z), numbers (0–9), and embedded spaces, but not
+            a leading space. When adding a new sign-on record, the sign-on name must
+            be a unique name not already assigned to any existing User Security Sign-on
+            records for your institution (client ID)
+          example: NABTEST25
+        businessUnitPrivilegeId:
+          maxLength: 8
+          type: string
+          description: Business Unit Privilege ID - Name that identifies an existing
+            organization privilege group assigned to this User Security Sign-on record.
+            This organization privilege group determines the organizations that can
+            be accessed by the person who signs on with this sign-on record. An organization
+            privilege group assigned to a sign-on record must have the same client
+            ID and security type as the sign-on record. Access rights to additional
+            organizations can be included or excluded using the I/E and ORG fields,
+            which are listed on this screen under the ORG INCLUDE/EXCLUDE heading
+          example: CTLUSER
+        businessUnitIncludeExcludeFlagReq:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlagReq'
+        userServicePrivilegeReq:
+          $ref: '#/components/schemas/UserServicePrivilegeReq'
+        supervisorId:
+          maxLength: 3
+          type: string
+          description: Supervisor ID
+          example: ''
+    BusinessUnitIncludeExcludeFlag10Req:
       type: object
       properties:
-        businessUnit5:
+        businessUnit10:
           maxLength: 3
           type: string
           description: Business Unit - Organization number assigned to this User Security
@@ -356,43 +362,7 @@ components:
             are in addition to the access rights granted by the organization privilege
             group that is assigned to this sign-on record in the ORG PRIVILEGE field
           example: ''
-        businessUnit6:
-          maxLength: 3
-          type: string
-          description: Business Unit - Organization number assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this organization. Access rights to this organization
-            are in addition to the access rights granted by the organization privilege
-            group that is assigned to this sign-on record in the ORG PRIVILEGE field
-          example: ''
-        businessUnit7:
-          maxLength: 3
-          type: string
-          description: Business Unit - Organization number assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this organization. Access rights to this organization
-            are in addition to the access rights granted by the organization privilege
-            group that is assigned to this sign-on record in the ORG PRIVILEGE field
-          example: ''
-        businessUnit8:
-          maxLength: 3
-          type: string
-          description: Business Unit - Organization number assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this organization. Access rights to this organization
-            are in addition to the access rights granted by the organization privilege
-            group that is assigned to this sign-on record in the ORG PRIVILEGE field
-          example: ''
-        businessUnit9:
-          maxLength: 3
-          type: string
-          description: Business Unit - Organization number assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this organization. Access rights to this organization
-            are in addition to the access rights granted by the organization privilege
-            group that is assigned to this sign-on record in the ORG PRIVILEGE field
-          example: ''
-        inclusionExclusionFlag3:
+        inclusionExclusionFlag10:
           maxLength: 1
           type: string
           description: Business Unit Inclusion Exclusion Flag - Code that indicates
@@ -405,33 +375,10 @@ components:
           - E
           - D
           - ' '
-        inclusionExclusionFlag4:
-          maxLength: 1
-          type: string
-          description: Business Unit Inclusion Exclusion Flag - Code that indicates
-            whether to include or exclude access rights to the organization number(s)
-            listed in the corresponding ORG field, or to delete the organization number(s)
-            from the list on this screen
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
+    BusinessUnitIncludeExcludeFlag1Req:
+      type: object
+      properties:
         inclusionExclusionFlag1:
-          maxLength: 1
-          type: string
-          description: Business Unit Inclusion Exclusion Flag - Code that indicates
-            whether to include or exclude access rights to the organization number(s)
-            listed in the corresponding ORG field, or to delete the organization number(s)
-            from the list on this screen
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        inclusionExclusionFlag2:
           maxLength: 1
           type: string
           description: Business Unit Inclusion Exclusion Flag - Code that indicates
@@ -453,7 +400,10 @@ components:
             are in addition to the access rights granted by the organization privilege
             group that is assigned to this sign-on record in the ORG PRIVILEGE field
           example: ''
-        inclusionExclusionFlag7:
+    BusinessUnitIncludeExcludeFlag2Req:
+      type: object
+      properties:
+        inclusionExclusionFlag2:
           maxLength: 1
           type: string
           description: Business Unit Inclusion Exclusion Flag - Code that indicates
@@ -475,20 +425,10 @@ components:
             are in addition to the access rights granted by the organization privilege
             group that is assigned to this sign-on record in the ORG PRIVILEGE field
           example: ''
-        inclusionExclusionFlag8:
-          maxLength: 1
-          type: string
-          description: Business Unit Inclusion Exclusion Flag - Code that indicates
-            whether to include or exclude access rights to the organization number(s)
-            listed in the corresponding ORG field, or to delete the organization number(s)
-            from the list on this screen
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        inclusionExclusionFlag10:
+    BusinessUnitIncludeExcludeFlag3Req:
+      type: object
+      properties:
+        inclusionExclusionFlag3:
           maxLength: 1
           type: string
           description: Business Unit Inclusion Exclusion Flag - Code that indicates
@@ -510,7 +450,10 @@ components:
             are in addition to the access rights granted by the organization privilege
             group that is assigned to this sign-on record in the ORG PRIVILEGE field
           example: ''
-        inclusionExclusionFlag5:
+    BusinessUnitIncludeExcludeFlag4Req:
+      type: object
+      properties:
+        inclusionExclusionFlag4:
           maxLength: 1
           type: string
           description: Business Unit Inclusion Exclusion Flag - Code that indicates
@@ -532,6 +475,43 @@ components:
             are in addition to the access rights granted by the organization privilege
             group that is assigned to this sign-on record in the ORG PRIVILEGE field
           example: ''
+    BusinessUnitIncludeExcludeFlag5Req:
+      type: object
+      properties:
+        businessUnit5:
+          maxLength: 3
+          type: string
+          description: Business Unit - Organization number assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this organization. Access rights to this organization
+            are in addition to the access rights granted by the organization privilege
+            group that is assigned to this sign-on record in the ORG PRIVILEGE field
+          example: ''
+        inclusionExclusionFlag5:
+          maxLength: 1
+          type: string
+          description: Business Unit Inclusion Exclusion Flag - Code that indicates
+            whether to include or exclude access rights to the organization number(s)
+            listed in the corresponding ORG field, or to delete the organization number(s)
+            from the list on this screen
+          example: ''
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+    BusinessUnitIncludeExcludeFlag6Req:
+      type: object
+      properties:
+        businessUnit6:
+          maxLength: 3
+          type: string
+          description: Business Unit - Organization number assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this organization. Access rights to this organization
+            are in addition to the access rights granted by the organization privilege
+            group that is assigned to this sign-on record in the ORG PRIVILEGE field
+          example: ''
         inclusionExclusionFlag6:
           maxLength: 1
           type: string
@@ -545,6 +525,59 @@ components:
           - E
           - D
           - ' '
+    BusinessUnitIncludeExcludeFlag7Req:
+      type: object
+      properties:
+        businessUnit7:
+          maxLength: 3
+          type: string
+          description: Business Unit - Organization number assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this organization. Access rights to this organization
+            are in addition to the access rights granted by the organization privilege
+            group that is assigned to this sign-on record in the ORG PRIVILEGE field
+          example: ''
+        inclusionExclusionFlag7:
+          maxLength: 1
+          type: string
+          description: Business Unit Inclusion Exclusion Flag - Code that indicates
+            whether to include or exclude access rights to the organization number(s)
+            listed in the corresponding ORG field, or to delete the organization number(s)
+            from the list on this screen
+          example: ''
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+    BusinessUnitIncludeExcludeFlag8Req:
+      type: object
+      properties:
+        businessUnit8:
+          maxLength: 3
+          type: string
+          description: Business Unit - Organization number assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this organization. Access rights to this organization
+            are in addition to the access rights granted by the organization privilege
+            group that is assigned to this sign-on record in the ORG PRIVILEGE field
+          example: ''
+        inclusionExclusionFlag8:
+          maxLength: 1
+          type: string
+          description: Business Unit Inclusion Exclusion Flag - Code that indicates
+            whether to include or exclude access rights to the organization number(s)
+            listed in the corresponding ORG field, or to delete the organization number(s)
+            from the list on this screen
+          example: ''
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+    BusinessUnitIncludeExcludeFlag9Req:
+      type: object
+      properties:
         inclusionExclusionFlag9:
           maxLength: 1
           type: string
@@ -558,7 +591,7 @@ components:
           - E
           - D
           - ' '
-        businessUnit10:
+        businessUnit9:
           maxLength: 3
           type: string
           description: Business Unit - Organization number assigned to this User Security
@@ -567,264 +600,306 @@ components:
             are in addition to the access rights granted by the organization privilege
             group that is assigned to this sign-on record in the ORG PRIVILEGE field
           example: ''
-    Of3:
+    BusinessUnitIncludeExcludeFlagReq:
       type: object
       properties:
-        fieldSecurityCode8:
+        businessUnitIncludeExcludeFlag4Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag4Req'
+        businessUnitIncludeExcludeFlag5Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag5Req'
+        businessUnitIncludeExcludeFlag6Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag6Req'
+        businessUnitIncludeExcludeFlag7Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag7Req'
+        businessUnitIncludeExcludeFlag3Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag3Req'
+        businessUnitIncludeExcludeFlag8Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag8Req'
+        businessUnitIncludeExcludeFlag9Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag9Req'
+        businessUnitIncludeExcludeFlag1Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag1Req'
+        businessUnitIncludeExcludeFlag10Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag10Req'
+        businessUnitIncludeExcludeFlag2Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag2Req'
+    ScreenPrivilegeTable10Req:
+      type: object
+      properties:
+        screenInclusionExclusionFlag10:
           maxLength: 1
           type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        userCode25:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+        screenID10:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+        screenPage10:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+    ScreenPrivilegeTable1Req:
+      type: object
+      properties:
+        screenPage1:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+        screenID1:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+        screenInclusionExclusionFlag1:
           maxLength: 1
           type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        fieldSecurityCode7:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+    ScreenPrivilegeTable2Req:
+      type: object
+      properties:
+        screenPage2:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+        screenID2:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+        screenInclusionExclusionFlag2:
           maxLength: 1
           type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        userCode24:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+    ScreenPrivilegeTable3Req:
+      type: object
+      properties:
+        screenPage3:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+        screenID3:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+        screenInclusionExclusionFlag3:
           maxLength: 1
           type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        fieldSecurityCode6:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+    ScreenPrivilegeTable4Req:
+      type: object
+      properties:
+        screenPage4:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+        screenID4:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+        screenInclusionExclusionFlag4:
           maxLength: 1
           type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        userCode27:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+    ScreenPrivilegeTable5Req:
+      type: object
+      properties:
+        screenPage5:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+        screenID5:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+        screenInclusionExclusionFlag5:
           maxLength: 1
           type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        fieldSecurityCode5:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+    ScreenPrivilegeTable6Req:
+      type: object
+      properties:
+        screenID6:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+        screenInclusionExclusionFlag6:
           maxLength: 1
           type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        userCode26:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+        screenPage6:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+    ScreenPrivilegeTable7Req:
+      type: object
+      properties:
+        screenInclusionExclusionFlag7:
           maxLength: 1
           type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        fieldSecurityCode4:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+        screenPage7:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+        screenID7:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+    ScreenPrivilegeTable8Req:
+      type: object
+      properties:
+        screenInclusionExclusionFlag8:
           maxLength: 1
           type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        userCode21:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+        screenPage8:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+        screenID8:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+    ScreenPrivilegeTable9Req:
+      type: object
+      properties:
+        screenPage9:
+          maxLength: 2
+          type: string
+          description: Screen Page
+          example: ''
+        screenID9:
+          maxLength: 4
+          type: string
+          description: Screen ID
+          example: ''
+        screenInclusionExclusionFlag9:
           maxLength: 1
           type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
+          description: Inclusion Exclusion Flag - Code that indicates whether to include
+            or exclude access rights to the screen listed in the corresponding screen
+            field
           example: ''
-        fieldSecurityCode3:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode20:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode2:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode23:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode1:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode22:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        userCode29:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        userCode28:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode9:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode30:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        userCode9:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode16:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode8:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode17:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode7:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode14:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode6:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode15:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode5:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode12:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode4:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode13:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode3:
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+    ScreenPrivilegeTableReq:
+      type: object
+      properties:
+        screenPrivilegeTable8Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable8Req'
+        screenPrivilegeTable9Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable9Req'
+        screenPrivilegeTable10Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable10Req'
+        screenPrivilegeTable3Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable3Req'
+        screenPrivilegeTable4Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable4Req'
+        screenPrivilegeTable5Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable5Req'
+        screenPrivilegeTable7Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable7Req'
+        screenPrivilegeTable6Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable6Req'
+        screenPrivilegeTable1Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable1Req'
+        screenPrivilegeTable2Req:
+          $ref: '#/components/schemas/ScreenPrivilegeTable2Req'
+    UserApplicationAccess10Req:
+      type: object
+      properties:
+        userCode10:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
@@ -840,7 +915,10 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode2:
+    UserApplicationAccess11Req:
+      type: object
+      properties:
+        userCode11:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
@@ -856,121 +934,10 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        fieldSecurityCode18:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        fieldSecurityCode19:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode1:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode20:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode14:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode27:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode13:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode28:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode16:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode25:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode15:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode26:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        userCode10:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode23:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-        fieldSecurityCode24:
+    UserApplicationAccess12Req:
+      type: object
+      properties:
+        fieldSecurityCode12:
           maxLength: 1
           type: string
           description: Field Security Code - User-defined code that provides access
@@ -986,6 +953,187 @@ components:
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
+    UserApplicationAccess13Req:
+      type: object
+      properties:
+        userCode13:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode13:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccess14Req:
+      type: object
+      properties:
+        userCode14:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode14:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccess15Req:
+      type: object
+      properties:
+        userCode15:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode15:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccess16Req:
+      type: object
+      properties:
+        fieldSecurityCode16:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode16:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess17Req:
+      type: object
+      properties:
+        fieldSecurityCode17:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode17:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess18Req:
+      type: object
+      properties:
+        userCode18:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode18:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccess19Req:
+      type: object
+      properties:
+        userCode19:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode19:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccess1Req:
+      type: object
+      properties:
+        fieldSecurityCode1:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode1:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess20Req:
+      type: object
+      properties:
+        userCode20:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode20:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccess21Req:
+      type: object
+      properties:
+        userCode21:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
         fieldSecurityCode21:
           maxLength: 1
           type: string
@@ -995,7 +1143,10 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode11:
+    UserApplicationAccess22Req:
+      type: object
+      properties:
+        userCode22:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
@@ -1011,14 +1162,124 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode18:
+    UserApplicationAccess23Req:
+      type: object
+      properties:
+        fieldSecurityCode23:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode23:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-        userCode17:
+    UserApplicationAccess24Req:
+      type: object
+      properties:
+        userCode24:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode24:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccess25Req:
+      type: object
+      properties:
+        userCode25:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode25:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccess26Req:
+      type: object
+      properties:
+        userCode26:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode26:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccess27Req:
+      type: object
+      properties:
+        fieldSecurityCode27:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode27:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess28Req:
+      type: object
+      properties:
+        fieldSecurityCode28:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode28:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess29Req:
+      type: object
+      properties:
+        userCode29:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
@@ -1034,13 +1295,28 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode19:
+    UserApplicationAccess2Req:
+      type: object
+      properties:
+        fieldSecurityCode2:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode2:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
+    UserApplicationAccess30Req:
+      type: object
+      properties:
         fieldSecurityCode30:
           maxLength: 1
           type: string
@@ -1050,37 +1326,225 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-    Of4:
+        userCode30:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess3Req:
       type: object
       properties:
-        serviceVersion9:
-          maxLength: 6
+        fieldSecurityCode3:
+          maxLength: 1
           type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
           example: ''
-        serviceVersion8:
-          maxLength: 6
+        userCode3:
+          maxLength: 1
           type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
           example: ''
-        serviceName9:
-          maxLength: 30
+    UserApplicationAccess4Req:
+      type: object
+      properties:
+        fieldSecurityCode4:
+          maxLength: 1
           type: string
-          description: Service Name - Service name assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this service. Access rights to this service
-            are in addition to the access rights granted by the service privilege
-            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
-            field. The service name in this field and the service version in the corresponding
-            VERSION field must identify an existing service that was previously added
-            by the processor
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
           example: ''
+        userCode4:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess5Req:
+      type: object
+      properties:
+        fieldSecurityCode5:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode5:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess6Req:
+      type: object
+      properties:
+        fieldSecurityCode6:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode6:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess7Req:
+      type: object
+      properties:
+        fieldSecurityCode7:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode7:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess8Req:
+      type: object
+      properties:
+        fieldSecurityCode8:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+        userCode8:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+    UserApplicationAccess9Req:
+      type: object
+      properties:
+        userCode9:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode9:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    UserApplicationAccessReq:
+      type: object
+      properties:
+        userApplicationAccess15Req:
+          $ref: '#/components/schemas/UserApplicationAccess15Req'
+        userApplicationAccess16Req:
+          $ref: '#/components/schemas/UserApplicationAccess16Req'
+        userApplicationAccess17Req:
+          $ref: '#/components/schemas/UserApplicationAccess17Req'
+        userApplicationAccess18Req:
+          $ref: '#/components/schemas/UserApplicationAccess18Req'
+        userApplicationAccess13Req:
+          $ref: '#/components/schemas/UserApplicationAccess13Req'
+        userApplicationAccess14Req:
+          $ref: '#/components/schemas/UserApplicationAccess14Req'
+        userApplicationAccess1Req:
+          $ref: '#/components/schemas/UserApplicationAccess1Req'
+        userApplicationAccess2Req:
+          $ref: '#/components/schemas/UserApplicationAccess2Req'
+        userApplicationAccess19Req:
+          $ref: '#/components/schemas/UserApplicationAccess19Req'
+        userApplicationAccess20Req:
+          $ref: '#/components/schemas/UserApplicationAccess20Req'
+        userApplicationAccess21Req:
+          $ref: '#/components/schemas/UserApplicationAccess21Req'
+        userApplicationAccess22Req:
+          $ref: '#/components/schemas/UserApplicationAccess22Req'
+        userApplicationAccess4Req:
+          $ref: '#/components/schemas/UserApplicationAccess4Req'
+        userApplicationAccess26Req:
+          $ref: '#/components/schemas/UserApplicationAccess26Req'
+        userApplicationAccess5Req:
+          $ref: '#/components/schemas/UserApplicationAccess5Req'
+        userApplicationAccess27Req:
+          $ref: '#/components/schemas/UserApplicationAccess27Req'
+        userApplicationAccess6Req:
+          $ref: '#/components/schemas/UserApplicationAccess6Req'
+        userApplicationAccess28Req:
+          $ref: '#/components/schemas/UserApplicationAccess28Req'
+        userApplicationAccess7Req:
+          $ref: '#/components/schemas/UserApplicationAccess7Req'
+        userApplicationAccess29Req:
+          $ref: '#/components/schemas/UserApplicationAccess29Req'
+        userApplicationAccess23Req:
+          $ref: '#/components/schemas/UserApplicationAccess23Req'
+        userApplicationAccess24Req:
+          $ref: '#/components/schemas/UserApplicationAccess24Req'
+        userApplicationAccess3Req:
+          $ref: '#/components/schemas/UserApplicationAccess3Req'
+        userApplicationAccess25Req:
+          $ref: '#/components/schemas/UserApplicationAccess25Req'
+        userApplicationAccess12Req:
+          $ref: '#/components/schemas/UserApplicationAccess12Req'
+        userApplicationAccess8Req:
+          $ref: '#/components/schemas/UserApplicationAccess8Req'
+        userApplicationAccess30Req:
+          $ref: '#/components/schemas/UserApplicationAccess30Req'
+        userApplicationAccess9Req:
+          $ref: '#/components/schemas/UserApplicationAccess9Req'
+        userApplicationAccess10Req:
+          $ref: '#/components/schemas/UserApplicationAccess10Req'
+        userApplicationAccess11Req:
+          $ref: '#/components/schemas/UserApplicationAccess11Req'
+    UserServicePrivilege10Req:
+      type: object
+      properties:
+        serviceInclusionExclusionflag10:
+          maxLength: 1
+          type: string
+          description: Service Inclusion Exclusion Flag - Code that indicates whether
+            to include or exclude access rights to the service listed in the corresponding
+            SERVICE NAME and VERSION fields, or to delete the service name and version
+            from the list on this screen
+          example: ''
+          enum:
+          - I
+          - E
+          - D
+          - ' '
         serviceName10:
           maxLength: 30
           type: string
@@ -1093,7 +1557,7 @@ components:
             VERSION field must identify an existing service that was previously added
             by the processor
           example: ''
-        serviceVersion5:
+        serviceVersion10:
           maxLength: 6
           type: string
           description: Service Version - Service version assigned to this User Security
@@ -1101,130 +1565,9 @@ components:
             in the corresponding SERVICE NAME field must identify an existing service
             that was previously added by the processor
           example: ''
-        serviceName6:
-          maxLength: 30
-          type: string
-          description: Service Name - Service name assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this service. Access rights to this service
-            are in addition to the access rights granted by the service privilege
-            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
-            field. The service name in this field and the service version in the corresponding
-            VERSION field must identify an existing service that was previously added
-            by the processor
-          example: ''
-        serviceInclusionExclusionflag7:
-          maxLength: 1
-          type: string
-          description: Service Inclusion Exclusion Flag - Code that indicates whether
-            to include or exclude access rights to the service listed in the corresponding
-            SERVICE NAME and VERSION fields, or to delete the service name and version
-            from the list on this screen
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        serviceVersion4:
-          maxLength: 6
-          type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
-          example: ''
-        serviceName5:
-          maxLength: 30
-          type: string
-          description: Service Name - Service name assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this service. Access rights to this service
-            are in addition to the access rights granted by the service privilege
-            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
-            field. The service name in this field and the service version in the corresponding
-            VERSION field must identify an existing service that was previously added
-            by the processor
-          example: ''
-        serviceInclusionExclusionflag6:
-          maxLength: 1
-          type: string
-          description: Service Inclusion Exclusion Flag - Code that indicates whether
-            to include or exclude access rights to the service listed in the corresponding
-            SERVICE NAME and VERSION fields, or to delete the service name and version
-            from the list on this screen
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        serviceVersion7:
-          maxLength: 6
-          type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
-          example: ''
-        serviceName8:
-          maxLength: 30
-          type: string
-          description: Service Name - Service name assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this service. Access rights to this service
-            are in addition to the access rights granted by the service privilege
-            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
-            field. The service name in this field and the service version in the corresponding
-            VERSION field must identify an existing service that was previously added
-            by the processor
-          example: ''
-        serviceInclusionExclusionflag9:
-          maxLength: 1
-          type: string
-          description: Service Inclusion Exclusion Flag - Code that indicates whether
-            to include or exclude access rights to the service listed in the corresponding
-            SERVICE NAME and VERSION fields, or to delete the service name and version
-            from the list on this screen
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        serviceVersion6:
-          maxLength: 6
-          type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
-          example: ''
-        serviceName7:
-          maxLength: 30
-          type: string
-          description: Service Name - Service name assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this service. Access rights to this service
-            are in addition to the access rights granted by the service privilege
-            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
-            field. The service name in this field and the service version in the corresponding
-            VERSION field must identify an existing service that was previously added
-            by the processor
-          example: ''
-        serviceInclusionExclusionflag8:
-          maxLength: 1
-          type: string
-          description: Service Inclusion Exclusion Flag - Code that indicates whether
-            to include or exclude access rights to the service listed in the corresponding
-            SERVICE NAME and VERSION fields, or to delete the service name and version
-            from the list on this screen
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
+    UserServicePrivilege1Req:
+      type: object
+      properties:
         serviceVersion1:
           maxLength: 6
           type: string
@@ -1233,7 +1576,7 @@ components:
             in the corresponding SERVICE NAME field must identify an existing service
             that was previously added by the processor
           example: ''
-        serviceName2:
+        serviceName1:
           maxLength: 30
           type: string
           description: Service Name - Service name assigned to this User Security
@@ -1245,7 +1588,7 @@ components:
             VERSION field must identify an existing service that was previously added
             by the processor
           example: ''
-        serviceInclusionExclusionflag3:
+        serviceInclusionExclusionflag1:
           maxLength: 1
           type: string
           description: Service Inclusion Exclusion Flag - Code that indicates whether
@@ -1258,7 +1601,10 @@ components:
           - E
           - D
           - ' '
-        serviceName1:
+    UserServicePrivilege2Req:
+      type: object
+      properties:
+        serviceName2:
           maxLength: 30
           type: string
           description: Service Name - Service name assigned to this User Security
@@ -1283,7 +1629,7 @@ components:
           - E
           - D
           - ' '
-        serviceVersion3:
+        serviceVersion2:
           maxLength: 6
           type: string
           description: Service Version - Service version assigned to this User Security
@@ -1291,19 +1637,10 @@ components:
             in the corresponding SERVICE NAME field must identify an existing service
             that was previously added by the processor
           example: ''
-        serviceName4:
-          maxLength: 30
-          type: string
-          description: Service Name - Service name assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this service. Access rights to this service
-            are in addition to the access rights granted by the service privilege
-            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
-            field. The service name in this field and the service version in the corresponding
-            VERSION field must identify an existing service that was previously added
-            by the processor
-          example: ''
-        serviceInclusionExclusionflag5:
+    UserServicePrivilege3Req:
+      type: object
+      properties:
+        serviceInclusionExclusionflag3:
           maxLength: 1
           type: string
           description: Service Inclusion Exclusion Flag - Code that indicates whether
@@ -1316,7 +1653,7 @@ components:
           - E
           - D
           - ' '
-        serviceVersion2:
+        serviceVersion3:
           maxLength: 6
           type: string
           description: Service Version - Service version assigned to this User Security
@@ -1325,6 +1662,29 @@ components:
             that was previously added by the processor
           example: ''
         serviceName3:
+          maxLength: 30
+          type: string
+          description: Service Name - Service name assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this service. Access rights to this service
+            are in addition to the access rights granted by the service privilege
+            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
+            field. The service name in this field and the service version in the corresponding
+            VERSION field must identify an existing service that was previously added
+            by the processor
+          example: ''
+    UserServicePrivilege4Req:
+      type: object
+      properties:
+        serviceVersion4:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
+        serviceName4:
           maxLength: 30
           type: string
           description: Service Name - Service name assigned to this User Security
@@ -1349,20 +1709,10 @@ components:
           - E
           - D
           - ' '
-        serviceInclusionExclusionflag10:
-          maxLength: 1
-          type: string
-          description: Service Inclusion Exclusion Flag - Code that indicates whether
-            to include or exclude access rights to the service listed in the corresponding
-            SERVICE NAME and VERSION fields, or to delete the service name and version
-            from the list on this screen
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        serviceVersion10:
+    UserServicePrivilege5Req:
+      type: object
+      properties:
+        serviceVersion5:
           maxLength: 6
           type: string
           description: Service Version - Service version assigned to this User Security
@@ -1370,7 +1720,19 @@ components:
             in the corresponding SERVICE NAME field must identify an existing service
             that was previously added by the processor
           example: ''
-        serviceInclusionExclusionflag1:
+        serviceName5:
+          maxLength: 30
+          type: string
+          description: Service Name - Service name assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this service. Access rights to this service
+            are in addition to the access rights granted by the service privilege
+            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
+            field. The service name in this field and the service version in the corresponding
+            VERSION field must identify an existing service that was previously added
+            by the processor
+          example: ''
+        serviceInclusionExclusionflag5:
           maxLength: 1
           type: string
           description: Service Inclusion Exclusion Flag - Code that indicates whether
@@ -1383,18 +1745,172 @@ components:
           - E
           - D
           - ' '
-    Of5:
+    UserServicePrivilege6Req:
       type: object
       properties:
-        sourceGroupType:
+        serviceName6:
+          maxLength: 30
+          type: string
+          description: Service Name - Service name assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this service. Access rights to this service
+            are in addition to the access rights granted by the service privilege
+            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
+            field. The service name in this field and the service version in the corresponding
+            VERSION field must identify an existing service that was previously added
+            by the processor
+          example: ''
+        serviceInclusionExclusionflag6:
           maxLength: 1
           type: string
-          description: Source Group Type - Code that identifies the source group assigned
-            to this User Security Sign-on record. Each source group defines a set
-            of security parameters established by the processor in the Client Options
-            record for your institution
-          example: '2'
-    Of6:
+          description: Service Inclusion Exclusion Flag - Code that indicates whether
+            to include or exclude access rights to the service listed in the corresponding
+            SERVICE NAME and VERSION fields, or to delete the service name and version
+            from the list on this screen
+          example: ''
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+        serviceVersion6:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
+    UserServicePrivilege7Req:
       type: object
+      properties:
+        serviceInclusionExclusionflag7:
+          maxLength: 1
+          type: string
+          description: Service Inclusion Exclusion Flag - Code that indicates whether
+            to include or exclude access rights to the service listed in the corresponding
+            SERVICE NAME and VERSION fields, or to delete the service name and version
+            from the list on this screen
+          example: ''
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+        serviceVersion7:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
+        serviceName7:
+          maxLength: 30
+          type: string
+          description: Service Name - Service name assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this service. Access rights to this service
+            are in addition to the access rights granted by the service privilege
+            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
+            field. The service name in this field and the service version in the corresponding
+            VERSION field must identify an existing service that was previously added
+            by the processor
+          example: ''
+    UserServicePrivilege8Req:
+      type: object
+      properties:
+        serviceName8:
+          maxLength: 30
+          type: string
+          description: Service Name - Service name assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this service. Access rights to this service
+            are in addition to the access rights granted by the service privilege
+            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
+            field. The service name in this field and the service version in the corresponding
+            VERSION field must identify an existing service that was previously added
+            by the processor
+          example: ''
+        serviceInclusionExclusionflag8:
+          maxLength: 1
+          type: string
+          description: Service Inclusion Exclusion Flag - Code that indicates whether
+            to include or exclude access rights to the service listed in the corresponding
+            SERVICE NAME and VERSION fields, or to delete the service name and version
+            from the list on this screen
+          example: ''
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+        serviceVersion8:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
+    UserServicePrivilege9Req:
+      type: object
+      properties:
+        serviceInclusionExclusionflag9:
+          maxLength: 1
+          type: string
+          description: Service Inclusion Exclusion Flag - Code that indicates whether
+            to include or exclude access rights to the service listed in the corresponding
+            SERVICE NAME and VERSION fields, or to delete the service name and version
+            from the list on this screen
+          example: ''
+          enum:
+          - I
+          - E
+          - D
+          - ' '
+        serviceVersion9:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
+        serviceName9:
+          maxLength: 30
+          type: string
+          description: Service Name - Service name assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this service. Access rights to this service
+            are in addition to the access rights granted by the service privilege
+            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
+            field. The service name in this field and the service version in the corresponding
+            VERSION field must identify an existing service that was previously added
+            by the processor
+          example: ''
+    UserServicePrivilegeReq:
+      type: object
+      properties:
+        userServicePrivilege6Req:
+          $ref: '#/components/schemas/UserServicePrivilege6Req'
+        userServicePrivilege7Req:
+          $ref: '#/components/schemas/UserServicePrivilege7Req'
+        userServicePrivilege8Req:
+          $ref: '#/components/schemas/UserServicePrivilege8Req'
+        userServicePrivilege9Req:
+          $ref: '#/components/schemas/UserServicePrivilege9Req'
+        userServicePrivilege1Req:
+          $ref: '#/components/schemas/UserServicePrivilege1Req'
+        userServicePrivilege3Req:
+          $ref: '#/components/schemas/UserServicePrivilege3Req'
+        userServicePrivilege4Req:
+          $ref: '#/components/schemas/UserServicePrivilege4Req'
+        userServicePrivilege5Req:
+          $ref: '#/components/schemas/UserServicePrivilege5Req'
+        userServicePrivilege10Req:
+          $ref: '#/components/schemas/UserServicePrivilege10Req'
+        userServicePrivilege2Req:
+          $ref: '#/components/schemas/UserServicePrivilege2Req'
     AddUserResponseModel:
       type: object
