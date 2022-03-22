@@ -10,12 +10,11 @@ This service provides details of the unbilled transactions posted on a given acc
 
 ### Request Payload
 
-```json
+> Shoud be empty.
+> 
+> The Business Unit and Account Number should be sent as query parameters and path variable.
 
-Shoud be empty.
-***The Business Unit and Account Number should be sent as query parameters and path variable.***
 
-``` 
 
 ### Minimum Requirements
 
