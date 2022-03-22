@@ -11,7 +11,7 @@
 ### Request Payload
 
 > Shoud be empty. 
-> >The Business Unit/Product/Statement date and Account Number should be sent as query parameters and path variable.
+> The Business Unit/Product/Statement date and Account Number should be sent as query parameters and path variable.
 
 
 
