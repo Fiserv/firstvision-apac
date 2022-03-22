@@ -12,7 +12,7 @@ This service provides details of the unbilled transactions posted on a given acc
 
 > Shoud be empty.
 > 
-> The Business Unit and Account Number should be sent as query parameters and path variable.
+> ***The Business Unit and Account Number should be sent as query parameters and path variable.***
 
 
 
