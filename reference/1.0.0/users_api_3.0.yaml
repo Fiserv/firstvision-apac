@@ -52,6 +52,28 @@ paths:
               $ref: '#/components/schemas/UserSignonReqModel'
         required: true
       responses:
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSignonResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -68,14 +90,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -84,20 +98,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserSignonResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -154,16 +154,8 @@ paths:
               $ref: '#/components/schemas/AddUserReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -184,16 +176,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddUserResponseModel'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -218,17 +218,17 @@ components:
       - securityName
       type: object
       properties:
-        secret:
-          maxLength: 512
-          type: string
-          description: Encrypted Data 1 - Password for signing on to the system
-          example: A3CDCAE523A132FFAE3800958AC12AB7B62E0DA876C4C91A10C9AC4FF7DF18BF6940F5AEAF33BA381522594D03108CB7A8B46FF39BEE944A98DD26201F36ACFA71D15A875947741961188B661123BF507AB6A9D5E82BA5083D0DB98F54E6D857D9A5B4A48D2750A81A405563B656352230D9613D80F3A362867C1C59BBA09FFED3669DE30905631A4DD9DF68CA47F6E58A0987CCDECBEBD72229F8312684F7E3A5DBDB7E1F99690B7AD44A645EBA0D3BC5CD26F411E6FBED3F430BD2BA372118D934350A7BAC7DBD18BFDB54B3DEFCBC24A8C75768C3C9C766FE75AD3032BAFED6F886F02692DD1C38FF6088088069B281CFF12F745606F758932E83301878CA
         securityName:
           maxLength: 128
           type: string
           description: Security Name - Sign-on name assigned to the person signing
             on to the system
           example: 00001NABTEST5
+        secret:
+          maxLength: 512
+          type: string
+          description: Encrypted Data 1 - Password for signing on to the system
+          example: A3CDCAE523A132FFAE3800958AC12AB7B62E0DA876C4C91A10C9AC4FF7DF18BF6940F5AEAF33BA381522594D03108CB7A8B46FF39BEE944A98DD26201F36ACFA71D15A875947741961188B661123BF507AB6A9D5E82BA5083D0DB98F54E6D857D9A5B4A48D2750A81A405563B656352230D9613D80F3A362867C1C59BBA09FFED3669DE30905631A4DD9DF68CA47F6E58A0987CCDECBEBD72229F8312684F7E3A5DBDB7E1F99690B7AD44A645EBA0D3BC5CD26F411E6FBED3F430BD2BA372118D934350A7BAC7DBD18BFDB54B3DEFCBC24A8C75768C3C9C766FE75AD3032BAFED6F886F02692DD1C38FF6088088069B281CFF12F745606F758932E83301878CA
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -259,14 +259,23 @@ components:
       - signonExpiryDate
       type: object
       properties:
-        sourceGroupType:
-          maxLength: 1
+        clientId:
+          maxLength: 5
+          type: integer
+          description: Client ID - Identification number, referred to as Client ID,
+            assigned to your institution by the processor
+          format: int32
+          example: '1'
+        name:
+          maxLength: 15
           type: string
-          description: Source Group Type - Code that identifies the source group assigned
-            to this User Security Sign-on record. Each source group defines a set
-            of security parameters established by the processor in the Client Options
-            record for your institution
-          example: '2'
+          description: Name - Sign-on name that the person assigned this User Security
+            Signon record will use to sign on to the system. The sign-on name can
+            consist of letters (A–Z), numbers (0–9), and embedded spaces, but not
+            a leading space. When adding a new sign-on record, the sign-on name must
+            be a unique name not already assigned to any existing User Security Sign-on
+            records for your institution (client ID)
+          example: NABTEST25
         dateToActivate:
           maxLength: 10
           type: string
@@ -278,21 +287,6 @@ components:
             format is MMDDYYYY or DDMMYYYY depending on the date format established
             on the System record (DATE FORMAT on System Controls)
           example: 27/02/2022
-        servicePrivilegeGroupId:
-          maxLength: 8
-          type: string
-          description: Service Privilege Group - Name that identifies an existing
-            service privilege group assigned to this User Security Sign-on record.
-            This service privilege group determines the services that can be accessed
-            by the person who signs on with this sign-on record
-          example: CLTUSER
-        customerServiceBusinessUnit:
-          maxLength: 3
-          type: number
-          description: Customer Service Business Unit
-          example: 100
-        screenPrivilegeTableReq:
-          $ref: '#/components/schemas/ScreenPrivilegeTableReq'
         signonExpiryDate:
           maxLength: 10
           type: string
@@ -311,24 +305,12 @@ components:
           type: string
           description: Operator ID - Rep id of Operator
           example: ABC
-        userApplicationAccessReq:
-          $ref: '#/components/schemas/UserApplicationAccessReq'
-        clientId:
-          maxLength: 5
-          type: number
-          description: Client ID - Identification number, referred to as Client ID,
-            assigned to your institution by the processor
-          example: 1
-        name:
-          maxLength: 15
-          type: string
-          description: Name - Sign-on name that the person assigned this User Security
-            Signon record will use to sign on to the system. The sign-on name can
-            consist of letters (A–Z), numbers (0–9), and embedded spaces, but not
-            a leading space. When adding a new sign-on record, the sign-on name must
-            be a unique name not already assigned to any existing User Security Sign-on
-            records for your institution (client ID)
-          example: NABTEST25
+        customerServiceBusinessUnit:
+          maxLength: 3
+          type: integer
+          description: Customer Service Business Unit
+          format: int32
+          example: '100'
         businessUnitPrivilegeId:
           maxLength: 8
           type: string
@@ -341,27 +323,36 @@ components:
             organizations can be included or excluded using the I/E and ORG fields,
             which are listed on this screen under the ORG INCLUDE/EXCLUDE heading
           example: CTLUSER
-        businessUnitIncludeExcludeFlagReq:
-          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlagReq'
-        userServicePrivilegeReq:
-          $ref: '#/components/schemas/UserServicePrivilegeReq'
+        servicePrivilegeGroupId:
+          maxLength: 8
+          type: string
+          description: Service Privilege Group - Name that identifies an existing
+            service privilege group assigned to this User Security Sign-on record.
+            This service privilege group determines the services that can be accessed
+            by the person who signs on with this sign-on record
+          example: CLTUSER
         supervisorId:
           maxLength: 3
           type: string
           description: Supervisor ID
           example: ''
+        sourceGroupType:
+          maxLength: 1
+          type: string
+          description: Source Group Type - Code that identifies the source group assigned
+            to this User Security Sign-on record. Each source group defines a set
+            of security parameters established by the processor in the Client Options
+            record for your institution
+          example: '2'
+        businessUnitIncludeExcludeFlagReq:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlagReq'
+        userApplicationAccessReq:
+          $ref: '#/components/schemas/UserApplicationAccessReq'
+        userServicePrivilegeReq:
+          $ref: '#/components/schemas/UserServicePrivilegeReq'
     BusinessUnitIncludeExcludeFlag10Req:
       type: object
       properties:
-        businessUnit10:
-          maxLength: 3
-          type: string
-          description: Business Unit - Organization number assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this organization. Access rights to this organization
-            are in addition to the access rights granted by the organization privilege
-            group that is assigned to this sign-on record in the ORG PRIVILEGE field
-          example: ''
         inclusionExclusionFlag10:
           maxLength: 1
           type: string
@@ -375,6 +366,15 @@ components:
           - E
           - D
           - ' '
+        businessUnit10:
+          maxLength: 3
+          type: string
+          description: Business Unit - Organization number assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this organization. Access rights to this organization
+            are in addition to the access rights granted by the organization privilege
+            group that is assigned to this sign-on record in the ORG PRIVILEGE field
+          example: ''
     BusinessUnitIncludeExcludeFlag1Req:
       type: object
       properties:
@@ -478,15 +478,6 @@ components:
     BusinessUnitIncludeExcludeFlag5Req:
       type: object
       properties:
-        businessUnit5:
-          maxLength: 3
-          type: string
-          description: Business Unit - Organization number assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this organization. Access rights to this organization
-            are in addition to the access rights granted by the organization privilege
-            group that is assigned to this sign-on record in the ORG PRIVILEGE field
-          example: ''
         inclusionExclusionFlag5:
           maxLength: 1
           type: string
@@ -500,10 +491,7 @@ components:
           - E
           - D
           - ' '
-    BusinessUnitIncludeExcludeFlag6Req:
-      type: object
-      properties:
-        businessUnit6:
+        businessUnit5:
           maxLength: 3
           type: string
           description: Business Unit - Organization number assigned to this User Security
@@ -512,6 +500,9 @@ components:
             are in addition to the access rights granted by the organization privilege
             group that is assigned to this sign-on record in the ORG PRIVILEGE field
           example: ''
+    BusinessUnitIncludeExcludeFlag6Req:
+      type: object
+      properties:
         inclusionExclusionFlag6:
           maxLength: 1
           type: string
@@ -525,10 +516,7 @@ components:
           - E
           - D
           - ' '
-    BusinessUnitIncludeExcludeFlag7Req:
-      type: object
-      properties:
-        businessUnit7:
+        businessUnit6:
           maxLength: 3
           type: string
           description: Business Unit - Organization number assigned to this User Security
@@ -537,6 +525,9 @@ components:
             are in addition to the access rights granted by the organization privilege
             group that is assigned to this sign-on record in the ORG PRIVILEGE field
           example: ''
+    BusinessUnitIncludeExcludeFlag7Req:
+      type: object
+      properties:
         inclusionExclusionFlag7:
           maxLength: 1
           type: string
@@ -550,10 +541,7 @@ components:
           - E
           - D
           - ' '
-    BusinessUnitIncludeExcludeFlag8Req:
-      type: object
-      properties:
-        businessUnit8:
+        businessUnit7:
           maxLength: 3
           type: string
           description: Business Unit - Organization number assigned to this User Security
@@ -562,6 +550,9 @@ components:
             are in addition to the access rights granted by the organization privilege
             group that is assigned to this sign-on record in the ORG PRIVILEGE field
           example: ''
+    BusinessUnitIncludeExcludeFlag8Req:
+      type: object
+      properties:
         inclusionExclusionFlag8:
           maxLength: 1
           type: string
@@ -575,6 +566,15 @@ components:
           - E
           - D
           - ' '
+        businessUnit8:
+          maxLength: 3
+          type: string
+          description: Business Unit - Organization number assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this organization. Access rights to this organization
+            are in addition to the access rights granted by the organization privilege
+            group that is assigned to this sign-on record in the ORG PRIVILEGE field
+          example: ''
     BusinessUnitIncludeExcludeFlag9Req:
       type: object
       properties:
@@ -603,6 +603,12 @@ components:
     BusinessUnitIncludeExcludeFlagReq:
       type: object
       properties:
+        businessUnitIncludeExcludeFlag1Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag1Req'
+        businessUnitIncludeExcludeFlag2Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag2Req'
+        businessUnitIncludeExcludeFlag3Req:
+          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag3Req'
         businessUnitIncludeExcludeFlag4Req:
           $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag4Req'
         businessUnitIncludeExcludeFlag5Req:
@@ -611,291 +617,12 @@ components:
           $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag6Req'
         businessUnitIncludeExcludeFlag7Req:
           $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag7Req'
-        businessUnitIncludeExcludeFlag3Req:
-          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag3Req'
         businessUnitIncludeExcludeFlag8Req:
           $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag8Req'
         businessUnitIncludeExcludeFlag9Req:
           $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag9Req'
-        businessUnitIncludeExcludeFlag1Req:
-          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag1Req'
         businessUnitIncludeExcludeFlag10Req:
           $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag10Req'
-        businessUnitIncludeExcludeFlag2Req:
-          $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag2Req'
-    ScreenPrivilegeTable10Req:
-      type: object
-      properties:
-        screenInclusionExclusionFlag10:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        screenID10:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-        screenPage10:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-    ScreenPrivilegeTable1Req:
-      type: object
-      properties:
-        screenPage1:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-        screenID1:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-        screenInclusionExclusionFlag1:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-    ScreenPrivilegeTable2Req:
-      type: object
-      properties:
-        screenPage2:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-        screenID2:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-        screenInclusionExclusionFlag2:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-    ScreenPrivilegeTable3Req:
-      type: object
-      properties:
-        screenPage3:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-        screenID3:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-        screenInclusionExclusionFlag3:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-    ScreenPrivilegeTable4Req:
-      type: object
-      properties:
-        screenPage4:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-        screenID4:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-        screenInclusionExclusionFlag4:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-    ScreenPrivilegeTable5Req:
-      type: object
-      properties:
-        screenPage5:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-        screenID5:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-        screenInclusionExclusionFlag5:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-    ScreenPrivilegeTable6Req:
-      type: object
-      properties:
-        screenID6:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-        screenInclusionExclusionFlag6:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        screenPage6:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-    ScreenPrivilegeTable7Req:
-      type: object
-      properties:
-        screenInclusionExclusionFlag7:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        screenPage7:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-        screenID7:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-    ScreenPrivilegeTable8Req:
-      type: object
-      properties:
-        screenInclusionExclusionFlag8:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-        screenPage8:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-        screenID8:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-    ScreenPrivilegeTable9Req:
-      type: object
-      properties:
-        screenPage9:
-          maxLength: 2
-          type: string
-          description: Screen Page
-          example: ''
-        screenID9:
-          maxLength: 4
-          type: string
-          description: Screen ID
-          example: ''
-        screenInclusionExclusionFlag9:
-          maxLength: 1
-          type: string
-          description: Inclusion Exclusion Flag - Code that indicates whether to include
-            or exclude access rights to the screen listed in the corresponding screen
-            field
-          example: ''
-          enum:
-          - I
-          - E
-          - D
-          - ' '
-    ScreenPrivilegeTableReq:
-      type: object
-      properties:
-        screenPrivilegeTable8Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable8Req'
-        screenPrivilegeTable9Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable9Req'
-        screenPrivilegeTable10Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable10Req'
-        screenPrivilegeTable3Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable3Req'
-        screenPrivilegeTable4Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable4Req'
-        screenPrivilegeTable5Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable5Req'
-        screenPrivilegeTable7Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable7Req'
-        screenPrivilegeTable6Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable6Req'
-        screenPrivilegeTable1Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable1Req'
-        screenPrivilegeTable2Req:
-          $ref: '#/components/schemas/ScreenPrivilegeTable2Req'
     UserApplicationAccess10Req:
       type: object
       properties:
@@ -937,6 +664,13 @@ components:
     UserApplicationAccess12Req:
       type: object
       properties:
+        userCode12:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
         fieldSecurityCode12:
           maxLength: 1
           type: string
@@ -945,13 +679,6 @@ components:
             record in the Credit Management System (CMS) and/or Merchant Bankcard
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
-          example: ''
-        userCode12:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
           example: ''
     UserApplicationAccess13Req:
       type: object
@@ -1013,6 +740,13 @@ components:
     UserApplicationAccess16Req:
       type: object
       properties:
+        userCode16:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
         fieldSecurityCode16:
           maxLength: 1
           type: string
@@ -1022,16 +756,16 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode16:
+    UserApplicationAccess17Req:
+      type: object
+      properties:
+        userCode17:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-    UserApplicationAccess17Req:
-      type: object
-      properties:
         fieldSecurityCode17:
           maxLength: 1
           type: string
@@ -1040,13 +774,6 @@ components:
             record in the Credit Management System (CMS) and/or Merchant Bankcard
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
-          example: ''
-        userCode17:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
           example: ''
     UserApplicationAccess18Req:
       type: object
@@ -1089,6 +816,13 @@ components:
     UserApplicationAccess1Req:
       type: object
       properties:
+        userCode1:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
         fieldSecurityCode1:
           maxLength: 1
           type: string
@@ -1097,13 +831,6 @@ components:
             record in the Credit Management System (CMS) and/or Merchant Bankcard
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
-          example: ''
-        userCode1:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
           example: ''
     UserApplicationAccess20Req:
       type: object
@@ -1165,6 +892,13 @@ components:
     UserApplicationAccess23Req:
       type: object
       properties:
+        userCode23:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
         fieldSecurityCode23:
           maxLength: 1
           type: string
@@ -1173,13 +907,6 @@ components:
             record in the Credit Management System (CMS) and/or Merchant Bankcard
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
-          example: ''
-        userCode23:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
           example: ''
     UserApplicationAccess24Req:
       type: object
@@ -1241,6 +968,13 @@ components:
     UserApplicationAccess27Req:
       type: object
       properties:
+        userCode27:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
         fieldSecurityCode27:
           maxLength: 1
           type: string
@@ -1250,16 +984,16 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode27:
+    UserApplicationAccess28Req:
+      type: object
+      properties:
+        userCode28:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-    UserApplicationAccess28Req:
-      type: object
-      properties:
         fieldSecurityCode28:
           maxLength: 1
           type: string
@@ -1268,13 +1002,6 @@ components:
             record in the Credit Management System (CMS) and/or Merchant Bankcard
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
-          example: ''
-        userCode28:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
           example: ''
     UserApplicationAccess29Req:
       type: object
@@ -1298,6 +1025,13 @@ components:
     UserApplicationAccess2Req:
       type: object
       properties:
+        userCode2:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
         fieldSecurityCode2:
           maxLength: 1
           type: string
@@ -1307,16 +1041,16 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode2:
+    UserApplicationAccess30Req:
+      type: object
+      properties:
+        userCode30:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-    UserApplicationAccess30Req:
-      type: object
-      properties:
         fieldSecurityCode30:
           maxLength: 1
           type: string
@@ -1326,16 +1060,16 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode30:
+    UserApplicationAccess3Req:
+      type: object
+      properties:
+        userCode3:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-    UserApplicationAccess3Req:
-      type: object
-      properties:
         fieldSecurityCode3:
           maxLength: 1
           type: string
@@ -1345,16 +1079,16 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode3:
+    UserApplicationAccess4Req:
+      type: object
+      properties:
+        userCode4:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-    UserApplicationAccess4Req:
-      type: object
-      properties:
         fieldSecurityCode4:
           maxLength: 1
           type: string
@@ -1364,16 +1098,16 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode4:
+    UserApplicationAccess5Req:
+      type: object
+      properties:
+        userCode5:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-    UserApplicationAccess5Req:
-      type: object
-      properties:
         fieldSecurityCode5:
           maxLength: 1
           type: string
@@ -1383,16 +1117,16 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode5:
+    UserApplicationAccess6Req:
+      type: object
+      properties:
+        userCode6:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-    UserApplicationAccess6Req:
-      type: object
-      properties:
         fieldSecurityCode6:
           maxLength: 1
           type: string
@@ -1402,16 +1136,16 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode6:
+    UserApplicationAccess7Req:
+      type: object
+      properties:
+        userCode7:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-    UserApplicationAccess7Req:
-      type: object
-      properties:
         fieldSecurityCode7:
           maxLength: 1
           type: string
@@ -1421,16 +1155,16 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-        userCode7:
+    UserApplicationAccess8Req:
+      type: object
+      properties:
+        userCode8:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-    UserApplicationAccess8Req:
-      type: object
-      properties:
         fieldSecurityCode8:
           maxLength: 1
           type: string
@@ -1439,13 +1173,6 @@ components:
             record in the Credit Management System (CMS) and/or Merchant Bankcard
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
-          example: ''
-        userCode8:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
           example: ''
     UserApplicationAccess9Req:
       type: object
@@ -1469,6 +1196,34 @@ components:
     UserApplicationAccessReq:
       type: object
       properties:
+        userApplicationAccess1Req:
+          $ref: '#/components/schemas/UserApplicationAccess1Req'
+        userApplicationAccess2Req:
+          $ref: '#/components/schemas/UserApplicationAccess2Req'
+        userApplicationAccess3Req:
+          $ref: '#/components/schemas/UserApplicationAccess3Req'
+        userApplicationAccess4Req:
+          $ref: '#/components/schemas/UserApplicationAccess4Req'
+        userApplicationAccess5Req:
+          $ref: '#/components/schemas/UserApplicationAccess5Req'
+        userApplicationAccess6Req:
+          $ref: '#/components/schemas/UserApplicationAccess6Req'
+        userApplicationAccess7Req:
+          $ref: '#/components/schemas/UserApplicationAccess7Req'
+        userApplicationAccess8Req:
+          $ref: '#/components/schemas/UserApplicationAccess8Req'
+        userApplicationAccess9Req:
+          $ref: '#/components/schemas/UserApplicationAccess9Req'
+        userApplicationAccess10Req:
+          $ref: '#/components/schemas/UserApplicationAccess10Req'
+        userApplicationAccess11Req:
+          $ref: '#/components/schemas/UserApplicationAccess11Req'
+        userApplicationAccess12Req:
+          $ref: '#/components/schemas/UserApplicationAccess12Req'
+        userApplicationAccess13Req:
+          $ref: '#/components/schemas/UserApplicationAccess13Req'
+        userApplicationAccess14Req:
+          $ref: '#/components/schemas/UserApplicationAccess14Req'
         userApplicationAccess15Req:
           $ref: '#/components/schemas/UserApplicationAccess15Req'
         userApplicationAccess16Req:
@@ -1477,14 +1232,6 @@ components:
           $ref: '#/components/schemas/UserApplicationAccess17Req'
         userApplicationAccess18Req:
           $ref: '#/components/schemas/UserApplicationAccess18Req'
-        userApplicationAccess13Req:
-          $ref: '#/components/schemas/UserApplicationAccess13Req'
-        userApplicationAccess14Req:
-          $ref: '#/components/schemas/UserApplicationAccess14Req'
-        userApplicationAccess1Req:
-          $ref: '#/components/schemas/UserApplicationAccess1Req'
-        userApplicationAccess2Req:
-          $ref: '#/components/schemas/UserApplicationAccess2Req'
         userApplicationAccess19Req:
           $ref: '#/components/schemas/UserApplicationAccess19Req'
         userApplicationAccess20Req:
@@ -1493,42 +1240,22 @@ components:
           $ref: '#/components/schemas/UserApplicationAccess21Req'
         userApplicationAccess22Req:
           $ref: '#/components/schemas/UserApplicationAccess22Req'
-        userApplicationAccess4Req:
-          $ref: '#/components/schemas/UserApplicationAccess4Req'
-        userApplicationAccess26Req:
-          $ref: '#/components/schemas/UserApplicationAccess26Req'
-        userApplicationAccess5Req:
-          $ref: '#/components/schemas/UserApplicationAccess5Req'
-        userApplicationAccess27Req:
-          $ref: '#/components/schemas/UserApplicationAccess27Req'
-        userApplicationAccess6Req:
-          $ref: '#/components/schemas/UserApplicationAccess6Req'
-        userApplicationAccess28Req:
-          $ref: '#/components/schemas/UserApplicationAccess28Req'
-        userApplicationAccess7Req:
-          $ref: '#/components/schemas/UserApplicationAccess7Req'
-        userApplicationAccess29Req:
-          $ref: '#/components/schemas/UserApplicationAccess29Req'
         userApplicationAccess23Req:
           $ref: '#/components/schemas/UserApplicationAccess23Req'
         userApplicationAccess24Req:
           $ref: '#/components/schemas/UserApplicationAccess24Req'
-        userApplicationAccess3Req:
-          $ref: '#/components/schemas/UserApplicationAccess3Req'
         userApplicationAccess25Req:
           $ref: '#/components/schemas/UserApplicationAccess25Req'
-        userApplicationAccess12Req:
-          $ref: '#/components/schemas/UserApplicationAccess12Req'
-        userApplicationAccess8Req:
-          $ref: '#/components/schemas/UserApplicationAccess8Req'
+        userApplicationAccess26Req:
+          $ref: '#/components/schemas/UserApplicationAccess26Req'
+        userApplicationAccess27Req:
+          $ref: '#/components/schemas/UserApplicationAccess27Req'
+        userApplicationAccess28Req:
+          $ref: '#/components/schemas/UserApplicationAccess28Req'
+        userApplicationAccess29Req:
+          $ref: '#/components/schemas/UserApplicationAccess29Req'
         userApplicationAccess30Req:
           $ref: '#/components/schemas/UserApplicationAccess30Req'
-        userApplicationAccess9Req:
-          $ref: '#/components/schemas/UserApplicationAccess9Req'
-        userApplicationAccess10Req:
-          $ref: '#/components/schemas/UserApplicationAccess10Req'
-        userApplicationAccess11Req:
-          $ref: '#/components/schemas/UserApplicationAccess11Req'
     UserServicePrivilege10Req:
       type: object
       properties:
@@ -1568,26 +1295,6 @@ components:
     UserServicePrivilege1Req:
       type: object
       properties:
-        serviceVersion1:
-          maxLength: 6
-          type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
-          example: ''
-        serviceName1:
-          maxLength: 30
-          type: string
-          description: Service Name - Service name assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this service. Access rights to this service
-            are in addition to the access rights granted by the service privilege
-            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
-            field. The service name in this field and the service version in the corresponding
-            VERSION field must identify an existing service that was previously added
-            by the processor
-          example: ''
         serviceInclusionExclusionflag1:
           maxLength: 1
           type: string
@@ -1601,10 +1308,7 @@ components:
           - E
           - D
           - ' '
-    UserServicePrivilege2Req:
-      type: object
-      properties:
-        serviceName2:
+        serviceName1:
           maxLength: 30
           type: string
           description: Service Name - Service name assigned to this User Security
@@ -1616,6 +1320,17 @@ components:
             VERSION field must identify an existing service that was previously added
             by the processor
           example: ''
+        serviceVersion1:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
+    UserServicePrivilege2Req:
+      type: object
+      properties:
         serviceInclusionExclusionflag2:
           maxLength: 1
           type: string
@@ -1629,6 +1344,18 @@ components:
           - E
           - D
           - ' '
+        serviceName2:
+          maxLength: 30
+          type: string
+          description: Service Name - Service name assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this service. Access rights to this service
+            are in addition to the access rights granted by the service privilege
+            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
+            field. The service name in this field and the service version in the corresponding
+            VERSION field must identify an existing service that was previously added
+            by the processor
+          example: ''
         serviceVersion2:
           maxLength: 6
           type: string
@@ -1653,14 +1380,6 @@ components:
           - E
           - D
           - ' '
-        serviceVersion3:
-          maxLength: 6
-          type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
-          example: ''
         serviceName3:
           maxLength: 30
           type: string
@@ -1673,10 +1392,7 @@ components:
             VERSION field must identify an existing service that was previously added
             by the processor
           example: ''
-    UserServicePrivilege4Req:
-      type: object
-      properties:
-        serviceVersion4:
+        serviceVersion3:
           maxLength: 6
           type: string
           description: Service Version - Service version assigned to this User Security
@@ -1684,18 +1400,9 @@ components:
             in the corresponding SERVICE NAME field must identify an existing service
             that was previously added by the processor
           example: ''
-        serviceName4:
-          maxLength: 30
-          type: string
-          description: Service Name - Service name assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this service. Access rights to this service
-            are in addition to the access rights granted by the service privilege
-            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
-            field. The service name in this field and the service version in the corresponding
-            VERSION field must identify an existing service that was previously added
-            by the processor
-          example: ''
+    UserServicePrivilege4Req:
+      type: object
+      properties:
         serviceInclusionExclusionflag4:
           maxLength: 1
           type: string
@@ -1709,18 +1416,7 @@ components:
           - E
           - D
           - ' '
-    UserServicePrivilege5Req:
-      type: object
-      properties:
-        serviceVersion5:
-          maxLength: 6
-          type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
-          example: ''
-        serviceName5:
+        serviceName4:
           maxLength: 30
           type: string
           description: Service Name - Service name assigned to this User Security
@@ -1732,6 +1428,17 @@ components:
             VERSION field must identify an existing service that was previously added
             by the processor
           example: ''
+        serviceVersion4:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
+    UserServicePrivilege5Req:
+      type: object
+      properties:
         serviceInclusionExclusionflag5:
           maxLength: 1
           type: string
@@ -1745,10 +1452,7 @@ components:
           - E
           - D
           - ' '
-    UserServicePrivilege6Req:
-      type: object
-      properties:
-        serviceName6:
+        serviceName5:
           maxLength: 30
           type: string
           description: Service Name - Service name assigned to this User Security
@@ -1760,6 +1464,17 @@ components:
             VERSION field must identify an existing service that was previously added
             by the processor
           example: ''
+        serviceVersion5:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
+    UserServicePrivilege6Req:
+      type: object
+      properties:
         serviceInclusionExclusionflag6:
           maxLength: 1
           type: string
@@ -1773,6 +1488,18 @@ components:
           - E
           - D
           - ' '
+        serviceName6:
+          maxLength: 30
+          type: string
+          description: Service Name - Service name assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this service. Access rights to this service
+            are in addition to the access rights granted by the service privilege
+            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
+            field. The service name in this field and the service version in the corresponding
+            VERSION field must identify an existing service that was previously added
+            by the processor
+          example: ''
         serviceVersion6:
           maxLength: 6
           type: string
@@ -1797,14 +1524,6 @@ components:
           - E
           - D
           - ' '
-        serviceVersion7:
-          maxLength: 6
-          type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
-          example: ''
         serviceName7:
           maxLength: 30
           type: string
@@ -1817,21 +1536,17 @@ components:
             VERSION field must identify an existing service that was previously added
             by the processor
           example: ''
+        serviceVersion7:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
     UserServicePrivilege8Req:
       type: object
       properties:
-        serviceName8:
-          maxLength: 30
-          type: string
-          description: Service Name - Service name assigned to this User Security
-            Sign-on record. The corresponding I/E field indicates whether to include
-            or exclude access rights to this service. Access rights to this service
-            are in addition to the access rights granted by the service privilege
-            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
-            field. The service name in this field and the service version in the corresponding
-            VERSION field must identify an existing service that was previously added
-            by the processor
-          example: ''
         serviceInclusionExclusionflag8:
           maxLength: 1
           type: string
@@ -1845,6 +1560,18 @@ components:
           - E
           - D
           - ' '
+        serviceName8:
+          maxLength: 30
+          type: string
+          description: Service Name - Service name assigned to this User Security
+            Sign-on record. The corresponding I/E field indicates whether to include
+            or exclude access rights to this service. Access rights to this service
+            are in addition to the access rights granted by the service privilege
+            group that is assigned to this sign-on record in the SERVICE PRIVILEGE
+            field. The service name in this field and the service version in the corresponding
+            VERSION field must identify an existing service that was previously added
+            by the processor
+          example: ''
         serviceVersion8:
           maxLength: 6
           type: string
@@ -1869,14 +1596,6 @@ components:
           - E
           - D
           - ' '
-        serviceVersion9:
-          maxLength: 6
-          type: string
-          description: Service Version - Service version assigned to this User Security
-            Sign-on record. The service version in this field and the service name
-            in the corresponding SERVICE NAME field must identify an existing service
-            that was previously added by the processor
-          example: ''
         serviceName9:
           maxLength: 30
           type: string
@@ -1889,9 +1608,27 @@ components:
             VERSION field must identify an existing service that was previously added
             by the processor
           example: ''
+        serviceVersion9:
+          maxLength: 6
+          type: string
+          description: Service Version - Service version assigned to this User Security
+            Sign-on record. The service version in this field and the service name
+            in the corresponding SERVICE NAME field must identify an existing service
+            that was previously added by the processor
+          example: ''
     UserServicePrivilegeReq:
       type: object
       properties:
+        userServicePrivilege1Req:
+          $ref: '#/components/schemas/UserServicePrivilege1Req'
+        userServicePrivilege2Req:
+          $ref: '#/components/schemas/UserServicePrivilege2Req'
+        userServicePrivilege3Req:
+          $ref: '#/components/schemas/UserServicePrivilege3Req'
+        userServicePrivilege4Req:
+          $ref: '#/components/schemas/UserServicePrivilege4Req'
+        userServicePrivilege5Req:
+          $ref: '#/components/schemas/UserServicePrivilege5Req'
         userServicePrivilege6Req:
           $ref: '#/components/schemas/UserServicePrivilege6Req'
         userServicePrivilege7Req:
@@ -1900,17 +1637,7 @@ components:
           $ref: '#/components/schemas/UserServicePrivilege8Req'
         userServicePrivilege9Req:
           $ref: '#/components/schemas/UserServicePrivilege9Req'
-        userServicePrivilege1Req:
-          $ref: '#/components/schemas/UserServicePrivilege1Req'
-        userServicePrivilege3Req:
-          $ref: '#/components/schemas/UserServicePrivilege3Req'
-        userServicePrivilege4Req:
-          $ref: '#/components/schemas/UserServicePrivilege4Req'
-        userServicePrivilege5Req:
-          $ref: '#/components/schemas/UserServicePrivilege5Req'
         userServicePrivilege10Req:
           $ref: '#/components/schemas/UserServicePrivilege10Req'
-        userServicePrivilege2Req:
-          $ref: '#/components/schemas/UserServicePrivilege2Req'
     AddUserResponseModel:
       type: object
