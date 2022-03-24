@@ -53,7 +53,7 @@ paths:
         required: true
         schema:
           maxLength: 3
-          type: long
+          type: number
           example: 600
       - name: productNumber
         in: path
@@ -62,7 +62,7 @@ paths:
         required: true
         schema:
           maxLength: 3
-          type: long
+          type: number
           example: '001'
       requestBody:
         content:
@@ -71,6 +71,36 @@ paths:
               $ref: '#/components/schemas/UpdateLogoCardControlReqModel'
         required: true
       responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLogoCardControlResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -95,6 +125,98 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      x-proxy-name: Update Logo Card Controls
+      x-group-name: Product Management
+  /v1/products/{productNumber}/serviceChargeDetails:
+    get:
+      tags:
+      - Product Management
+      summary: Inquire Service Charge Table
+      description: This service provides various service fee details available in
+        the system for a given Org, Product and table ID combinationtags Product Management
+      operationId: InquireServiceChargeTable
+      parameters:
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: true
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: X-Name
+        in: header
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: X-context
+        in: header
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: businessUnit
+        in: query
+        description: Business Unit - Identification number of the business unit associated
+          with this Service Charge/Fee table. The values are 000–998.
+        required: true
+        schema:
+          maxLength: 3
+          type: number
+          example: 600
+      - name: productNumber
+        in: path
+        description: Product Number - Identification number of the product associated
+          with this Service Charge/Fee table. The values are 000–998.
+        required: true
+        schema:
+          maxLength: 3
+          type: number
+          example: 0
+      - name: recordType
+        in: query
+        description: Record Type - This field indicates fee record type. Default value
+          is 4 and it is not maintainable.
+        required: false
+        schema:
+          maxLength: 1
+          type: string
+          example: 4
+      - name: tableNumber
+        in: query
+        description: Table Number - Identification number of the Service Charge/Fee
+          table. The values are 001–998.
+        required: true
+        schema:
+          maxLength: 3
+          type: number
+          example: 1
+      - name: feeProduct
+        in: query
+        description: Fee Product - Default value is spaces and it is not maintainable.
+        required: false
+        schema:
+          maxLength: 2
+          type: string
+      responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -103,8 +225,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -116,16 +246,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateLogoCardControlResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+                $ref: '#/components/schemas/InquireServiceChargeTableResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      x-proxy-name: Update Logo Card Controls
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      x-proxy-name: Inquire Service Charge Table
       x-group-name: Product Management
   /v1/products/{productNumber}/details:
     get:
@@ -171,7 +309,7 @@ paths:
         required: true
         schema:
           maxLength: 3
-          type: long
+          type: number
           example: 600
       - name: productNumber
         in: path
@@ -180,9 +318,39 @@ paths:
         required: true
         schema:
           maxLength: 3
-          type: long
+          type: number
           example: '001'
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireProductResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -207,36 +375,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireProductResponseModel'
       x-proxy-name: Inquire Product
       x-group-name: Product Management
   /v1/products/{planNumber}/planDetails:
@@ -283,7 +421,7 @@ paths:
         required: true
         schema:
           maxLength: 3
-          type: long
+          type: number
           example: 600
       - name: planNumber
         in: path
@@ -293,15 +431,39 @@ paths:
         required: true
         schema:
           maxLength: 5
-          type: long
+          type: number
           example: 10002
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquirePlanMasterResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -326,37 +488,64 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Inquire Plan Master
       x-group-name: Product Management
 components:
   schemas:
-    Of18:
+    CardControlFieldsReq:
       type: object
       properties:
+        atmCashNumber:
+          maxLength: 9
+          type: number
+          description: ATM Cash Number - Maximum number of ATM cash authorizations
+            allowed for the frequency defined in the FREQ field
+          example: 5
+        transactionLimitAtm:
+          maxLength: 17
+          type: string
+          description: Transaction Limit ATM - This is the Maximum authorization amount
+            in monetary units and subunits for a single ATM transaction
+          example: '100.0'
+        otcCashAmount:
+          maxLength: 17
+          type: string
+          description: OTC Cash Amount - Maximum amount in monetary units and subunits
+            of ATM cash authorizations allowed for the frequency defined in the FREQ
+            field
+          example: '1500.0'
+        otcCashNumber:
+          maxLength: 9
+          type: number
+          description: OTC Cash Number - Maximum number of ATM cash authorizations
+            allowed for the frequency defined in the FREQ field
+          example: 6
+        transactionLimitOtc:
+          maxLength: 17
+          type: string
+          description: Transaction Limit OTC - This is the Maximum authorization amount
+            in monetary units and subunits for a single ATM transaction
+          example: '200.0'
+        retailPurchaseAmount:
+          maxLength: 17
+          type: string
+          description: Retail Purchase Amount - Maximum amount in monetary units and
+            subunits of retail authorizations allowed for the freqency defined in
+            the FREQ field
+          example: '100000.0'
+        retailPurchaseNumber:
+          maxLength: 9
+          type: number
+          description: Retail Purchase Number - Maximum number of retail authorizations
+            allowed for the frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY
+            field
+          example: 10
+        transactionLimitRetail:
+          maxLength: 17
+          type: string
+          description: Transaction Limit Retail - This is the Maximum amount in monetary
+            units and subunits for a single retail authorization
+          example: '10000.0'
         maximumAuthorizationLimitFrequency:
           maxLength: 1
           type: string
@@ -377,61 +566,7 @@ components:
             of ATM cash authorizations allowed for the frequency defined in the FREQ
             field
           example: '2000.0'
-        atmCashNumber:
-          maxLength: 9
-          type: integer
-          description: ATM Cash Number - Maximum number of ATM cash authorizations
-            allowed for the frequency defined in the FREQ field
-          format: int32
-          example: '5'
-        transactionLimitAtm:
-          maxLength: 17
-          type: string
-          description: Transaction Limit ATM - This is the Maximum authorization amount
-            in monetary units and subunits for a single ATM transaction
-          example: '100.0'
-        otcCashAmount:
-          maxLength: 17
-          type: string
-          description: OTC Cash Amount - Maximum amount in monetary units and subunits
-            of ATM cash authorizations allowed for the frequency defined in the FREQ
-            field
-          example: '1500.0'
-        otcCashNumber:
-          maxLength: 9
-          type: integer
-          description: OTC Cash Number - Maximum number of ATM cash authorizations
-            allowed for the frequency defined in the FREQ field
-          format: int32
-          example: '6'
-        transactionLimitOtc:
-          maxLength: 17
-          type: string
-          description: Transaction Limit OTC - This is the Maximum authorization amount
-            in monetary units and subunits for a single ATM transaction
-          example: '200.0'
-        retailPurchaseAmount:
-          maxLength: 17
-          type: string
-          description: Retail Purchase Amount - Maximum amount in monetary units and
-            subunits of retail authorizations allowed for the freqency defined in
-            the FREQ field
-          example: '100000.0'
-        retailPurchaseNumber:
-          maxLength: 9
-          type: integer
-          description: Retail Purchase Number - Maximum number of retail authorizations
-            allowed for the frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY
-            field
-          format: int32
-          example: '10'
-        transactionLimitRetail:
-          maxLength: 17
-          type: string
-          description: Transaction Limit Retail - This is the Maximum amount in monetary
-            units and subunits for a single retail authorization
-          example: '10000.0'
-    Of19:
+    CardControlFlagsReq:
       type: object
       properties:
         atmFlag:
@@ -462,15 +597,6 @@ components:
           - '1'
           - '0'
           - ' '
-        motoFlag:
-          maxLength: 1
-          type: string
-          description: MOTO Flag - Flag indicates MOTO transactions are active or
-            not
-          example: N
-          enum:
-          - Y
-          - N
         intAtmPosFlag:
           maxLength: 1
           type: string
@@ -480,10 +606,45 @@ components:
           enum:
           - Y
           - N
-    Of20:
+        motoFlag:
+          maxLength: 1
+          type: string
+          description: MOTO Flag - Flag indicates MOTO transactions are active or
+            not
+          example: N
+          enum:
+          - Y
+          - N
+    UpdateLogoCardControlReqModel:
       type: object
       properties:
-        yeartodateCountryRiskSpendLimitActive:
+        yearToDateCountryRiskSpendLimitsReq:
+          $ref: '#/components/schemas/YearToDateCountryRiskSpendLimitsReq'
+        cardControlFieldsReq:
+          $ref: '#/components/schemas/CardControlFieldsReq'
+        cardControlFlagsReq:
+          $ref: '#/components/schemas/CardControlFlagsReq'
+    YearToDateCountryRiskSpendLimitsReq:
+      type: object
+      properties:
+        yearToDateMaxAuthAmountHighRiskCountry:
+          maxLength: 17
+          type: string
+          description: Year-To-Date Max Auth Amount High Risk Country - Maximum amount
+            of authorizations in monetary units and subunits allowed for the cumulative
+            year-to-date spending by an account in high-risk countries. Maximum amount
+            of authorizations in monetary units and subunits allowed for the cumulative
+            year-to-date spending by an account in high-risk countries
+          example: '10000.0'
+        yearToDateMaxAuthAmountOtherRiskCountry:
+          maxLength: 17
+          type: string
+          description: Year-To-Date Max Auth Amount Other Risk Country - Maximum amount
+            of authorizations in monetary units and subunits allowed for the cumulative
+            year-to-date spending by an account in non-high-risk countries. Risk is
+            designated by country code in the Financial Authorization System (FAS)
+          example: '15000.0'
+        yearToDateCountryRiskSpendLimitActive:
           maxLength: 1
           type: string
           description: Year-To-Date Country Risk Spending Limit Active - This is a
@@ -493,7 +654,157 @@ components:
           enum:
           - '0'
           - '1'
-        yeartodateMaxAuthAmountHighRiskCountry:
+    CardControlFieldsRes:
+      type: object
+      properties:
+        atmCashNumber:
+          maxLength: 9
+          type: number
+          description: ATM Cash Number - Maximum number of ATM cash authorizations
+            allowed for the frequency defined in the FREQ field
+          example: 5
+        transactionLimitAtm:
+          maxLength: 17
+          type: string
+          description: Transaction Limit ATM - This is the Maximum authorization amount
+            in monetary units and subunits for a single ATM transaction
+          example: '100.0'
+        otcCashAmount:
+          maxLength: 17
+          type: string
+          description: OTC Cash Amount - Maximum amount in monetary units and subunits
+            of ATM cash authorizations allowed for the frequency defined in the FREQ
+            field
+          example: '1500.0'
+        otcCashNumber:
+          maxLength: 9
+          type: number
+          description: OTC Cash Number - Maximum number of ATM cash authorizations
+            allowed for the frequency defined in the FREQ field
+          example: 6
+        transactionLimitOtc:
+          maxLength: 17
+          type: string
+          description: Transaction Limit OTC - This is the Maximum authorization amount
+            in monetary units and subunits for a single ATM transaction
+          example: '200.0'
+        retailPurchaseAmount:
+          maxLength: 17
+          type: string
+          description: Retail Purchase Amount - Maximum amount in monetary units and
+            subunits of retail authorizations allowed for the freqency defined in
+            the FREQ field
+          example: '100000.0'
+        retailPurchaseNumber:
+          maxLength: 9
+          type: number
+          description: Retail Purchase Number - Maximum number of retail authorizations
+            allowed for the frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY
+            field
+          example: 10
+        transactionLimitRetail:
+          maxLength: 17
+          type: string
+          description: Transaction Limit Retail - This is the Maximum amount in monetary
+            units and subunits for a single retail authorization
+          example: '10000.0'
+        maximumAuthorizationLimitFrequency:
+          maxLength: 1
+          type: string
+          description: Maximum Authorization Limit Frequency - This is a flag which
+            indicates the frequency for the maximum authorization parameters. This
+            frequency applies to the RETAIL PURCHASE AMOUNT to TRANSACTION LIMIT RETAIL
+            fields
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        atmCashAmount:
+          maxLength: 17
+          type: string
+          description: ATM Cash Amount - Maximum amount in monetary units and subunits
+            of ATM cash authorizations allowed for the frequency defined in the FREQ
+            field
+          example: '2000.0'
+    CardControlFlagsRes:
+      type: object
+      properties:
+        atmFlag:
+          maxLength: 1
+          type: string
+          description: ATM Flag - Flag indicates ATM transactions are active or not
+          example: Y
+          enum:
+          - Y
+          - N
+          - ' '
+        posFlag:
+          maxLength: 1
+          type: string
+          description: POS Flag - Flag indicates POS transactions are active or not
+          example: Y
+          enum:
+          - Y
+          - N
+          - ' '
+        ecomFlag:
+          maxLength: 1
+          type: string
+          description: ECOM Flag - Flag indicates ECOM transactions are active or
+            not
+          example: '1'
+          enum:
+          - '1'
+          - '0'
+          - ' '
+        intAtmPosFlag:
+          maxLength: 1
+          type: string
+          description: International ATM POS Flag - Flag indicates International ATM,
+            POS transactions are active or not
+          example: N
+          enum:
+          - Y
+          - N
+        motoFlag:
+          maxLength: 1
+          type: string
+          description: MOTO Flag - Flag indicates MOTO transactions are active or
+            not
+          example: N
+          enum:
+          - Y
+          - N
+    UpdateLogoCardControlResponseModel:
+      required:
+      - businessUnit
+      - productNumber
+      type: object
+      properties:
+        yearToDateCountryRiskSpendLimitsRes:
+          $ref: '#/components/schemas/YearToDateCountryRiskSpendLimitsRes'
+        businessUnit:
+          maxLength: 3
+          type: number
+          description: Business Unit - Identification number associated with this
+            Account Base Segment record, the values are 001–998
+          example: 600
+        productNumber:
+          maxLength: 3
+          type: number
+          description: Product - This field is the Identification number of the Logo
+            record
+          example: 1
+        cardControlFieldsRes:
+          $ref: '#/components/schemas/CardControlFieldsRes'
+        cardControlFlagsRes:
+          $ref: '#/components/schemas/CardControlFlagsRes'
+    YearToDateCountryRiskSpendLimitsRes:
+      type: object
+      properties:
+        yearToDateMaxAuthAmountHighRiskCountry:
           maxLength: 17
           type: string
           description: Year-To-Date Max Auth Amount High Risk Country - Maximum amount
@@ -502,7 +813,7 @@ components:
             of authorizations in monetary units and subunits allowed for the cumulative
             year-to-date spending by an account in high-risk countries
           example: '10000.0'
-        yeartodateMaxAuthAmountOtherRiskCountry:
+        yearToDateMaxAuthAmountOtherRiskCountry:
           maxLength: 17
           type: string
           description: Year-To-Date Max Auth Amount Other Risk Country - Maximum amount
@@ -510,15 +821,16 @@ components:
             year-to-date spending by an account in non-high-risk countries. Risk is
             designated by country code in the Financial Authorization System (FAS)
           example: '15000.0'
-    UpdateLogoCardControlReqModel:
-      type: object
-      properties:
-        OF18:
-          $ref: '#/components/schemas/Of18'
-        OF19:
-          $ref: '#/components/schemas/Of19'
-        OF20:
-          $ref: '#/components/schemas/Of20'
+        yearToDateCountryRiskSpendLimitActive:
+          maxLength: 1
+          type: string
+          description: Year-To-Date Country Risk Spending Limit Active - This is a
+            flag that indicates whether a year-to-date spending limit for accounts
+            initiating transactions in high-risk and non-high-risk countries is active
+          example: '1'
+          enum:
+          - '0'
+          - '1'
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -528,35 +840,248 @@ components:
         errorMessage:
           type: string
           example: ''
-    UpdateLogoCardControlResponseModel:
+    InquireServiceChargeTableResponseModel:
       required:
       - businessUnit
       - productNumber
+      - tableNumber
       type: object
       properties:
         businessUnit:
           maxLength: 3
-          type: integer
-          description: Business Unit - Identification number associated with this
-            Account Base Segment record, the values are 001–998
-          format: int32
-          example: '600'
+          type: number
+          description: Business Unit - Identification number of the business unit
+            associated with this Service Charge/Fee table. The values are 000–998.
+          example: 600
+        serviceFeeChargeTablesRes:
+          $ref: '#/components/schemas/ServiceFeeChargeTablesRes'
         productNumber:
           maxLength: 3
-          type: integer
-          description: Product - This field is the Identification number of the Logo
-            record
-          format: int32
+          type: number
+          description: Product Number - Identification number of the product associated
+            with this Service Charge/Fee table. The values are 000–998.
+          example: 0
+        tableNumber:
+          maxLength: 3
+          type: number
+          description: Table Number - Identification number of the Service Charge/Fee
+            table. The values are 001–998.
+          example: 1
+    ServiceFeeChargeTable1Res:
+      type: object
+      properties:
+        tier1ServiceFee1:
+          maxLength: 17
+          type: number
+          description: Tier1 Service Fee1  - Fixed amount in monetary units and subunits
+            or percentage of the transaction amount to assess for the service charge
+            up to the number of transactions in the TRANSACTION LIMIT field, inclusive.
+            If METHOD is 1, enter a fixed amount. If METHOD is 2, enter a percentage.
+            For a percentage, the first two positions must be zero.
+          example: '0.0'
+        serviceFeeMinimumCapping1:
+          maxLength: 9
+          type: number
+          description: Single Fee Minimum Capping1 - Minimum amount, in monetary units
+            and subunits, of the service charge to assess. This amount must be less
+            than the SINGLE FEE MAXIMUM amount.
+          example: '0.0'
+        transactionLimitFrequence1:
+          maxLength: 1
+          type: string
+          description: Transaction Limit Frequency1 - Code that determines whether
+            the TRANSACTION LIMIT number is a daily limit or cycle limit for the number
+            of transactions assessed service charges by TIER 1 FEE AMOUNT.
           example: '1'
-        OF18:
-          $ref: '#/components/schemas/Of18'
-        OF19:
-          $ref: '#/components/schemas/Of19'
-        OF20:
-          $ref: '#/components/schemas/Of20'
+          enum:
+          - '0'
+          - '1'
+        initiatingTransactionCode1:
+          maxLength: 5
+          type: number
+          description: Initiating Transaction Code1 - Monetary transaction code that
+            will trigger CMS to generate the service charge. The service charge posts
+            to each plan that has activity identified by this transaction code.
+          example: 1301
+        feePlan1:
+          maxLength: 1
+          type: string
+          description: Fee Plan2 - Code that indicates the plan to which the service
+            fee is posted.
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        maximumIndicator1:
+          maxLength: 1
+          type: string
+          description: Maximum Indicator2 - Code that indicates whether the maximum
+            amount (SINGLE FEE MAXIMUM) is applied as the daily fee maximum that can
+            be assessed for the transaction code or as the maximum fee that any individual
+            transaction can be assessed for the transaction code.
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        dailyFeeDescription1:
+          maxLength: 40
+          type: string
+          description: Daily Fee Description2 - Description of the transaction code.
+            If FEE POSTING FREQUENCY is 0 (daily), this field is the description of
+            the service charge that prints on account statements. If FEE POSTING FREQUENCY
+            1 (cycle), this field must be blank.
+          example: Service Fees
+        transactionLimit1:
+          maxLength: 2
+          type: number
+          description: Transaction Limit1 - Number of transactions to assess the service
+            fee defined by FEE AMOUNT per day or cycle based on the TRANSACTION LIMIT
+            FREQUENCE value. The values are 00–99.
+          example: 3
+        serviceFeeMiximumCapping2:
+          maxLength: 9
+          type: number
+          description: Single Fee Maximum Capping2 - Maximum amount, in monetary units
+            and subunits, of the service charge to assess. This amount must be greater
+            than the SINGLE FEE MINIMUM amount.
+          example: '0.0'
+        feeReverseTransactionCode1:
+          maxLength: 4
+          type: number
+          description: Fee Reverse Transaction Code1 - Monetary transaction code that
+            will trigger CMS to generate a service charge fee reversal. If this value
+            is 0000, CMS does not automatically generate a service charge reversal
+            transaction for a reversal transaction.
+          example: 7474
+        tier2ServiceFee1:
+          maxLength: 17
+          type: number
+          description: Tier2 Service Fee1 -  Fixed amount in monetary units and subunits
+            or percentage of the transaction amount to assess for the service charge
+            for transactions in excess of the number in the TRANSACTION LIMIT field.
+            For a percentage, the first two positions must be zero.
+          example: '0.0'
+        method1:
+          maxLength: 1
+          type: string
+          description: Method1 - Code that indicates how CMS calculates the service
+            charge (Amount or Percentage).
+          example: '1'
+          enum:
+          - '1'
+          - '2'
+        feePostingFrequency1:
+          maxLength: 1
+          type: string
+          description: Fee Posting Frequency1 - Code that indicates the frequency
+            CMS posts the service charge to the account.
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+    ServiceFeeChargeTable2Res:
+      type: object
+      properties:
+        initiatingTransactionCode2:
+          maxLength: 5
+          type: number
+          description: Initiating Transaction Code2 - Monetary transaction code that
+            will trigger CMS to generate the service charge. The service charge posts
+            to each plan that has activity identified by this transaction code.
+          example: 1301
+        tier1ServiceFee2:
+          maxLength: 17
+          type: number
+          description: Tier1 Service Fee2 - Fixed amount in monetary units and subunits
+            or percentage of the transaction amount to assess for the service charge
+            up to the number of transactions in the TRANSACTION LIMIT field, inclusive.
+            If METHOD is 1, enter a fixed amount. If METHOD is 2, enter a percentage.
+            For a percentage, the first two positions must be zero.
+          example: '0.0'
+        transactionLimit2:
+          maxLength: 2
+          type: number
+          description: Transaction Limit2 - Number of transactions to assess the service
+            fee defined by FEE AMOUNT per day or cycle based on the TRANSACTION LIMIT
+            FREQUENCE value. The values are 00–99.
+          example: 3
+        transactionLimitFrequence2:
+          maxLength: 1
+          type: string
+          description: Transaction Limit Frequency2 - Code that determines whether
+            the TRANSACTION LIMIT number is a daily limit or cycle limit for the number
+            of transactions assessed service charges by TIER 1 FEE AMOUNT.
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        tier2ServiceFee2:
+          maxLength: 17
+          type: number
+          description: Tier2 Service Fee2 -  Fixed amount in monetary units and subunits
+            or percentage of the transaction amount to assess for the service charge
+            for transactions in excess of the number in the TRANSACTION LIMIT field.
+            For a percentage, the first two positions must be zero.
+          example: '0.0'
+        feePostingFrequency2:
+          maxLength: 1
+          type: string
+          description: Fee Posting Frequency2 - Code that indicates the frequency
+            CMS posts the service charge to the account.
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        feeReverseTransactionCode2:
+          maxLength: 4
+          type: number
+          description: Fee Reverse Transaction Code2 - Monetary transaction code that
+            will trigger CMS to generate a service charge fee reversal. If this value
+            is 0000, CMS does not automatically generate a service charge reversal
+            transaction for a reversal transaction.
+          example: 7474
+        serviceFeeMinimumCapping2:
+          maxLength: 9
+          type: number
+          description: Single Fee Minimum Capping2 - Minimum amount, in monetary units
+            and subunits, of the service charge to assess. This amount must be less
+            than the SINGLE FEE MAXIMUM amount.
+          example: '0.0'
+        method2:
+          maxLength: 1
+          type: string
+          description: Method2 - Code that indicates how CMS calculates the service
+            charge (Amount or Percentage).
+          example: '1'
+          enum:
+          - '1'
+          - '2'
+    ServiceFeeChargeTablesRes:
+      type: object
+      properties:
+        maximumCycleServiceFees:
+          maxLength: 17
+          type: string
+          description: Maximum Cycle Service Fees - Maximum amount, in monetary units
+            and subunits, of service charges to assess in one cycle. CMS will not
+            assess a service charge unless this field is greater than zero.
+          example: $10000.00
+        serviceFeeChargeTable1Res:
+          $ref: '#/components/schemas/ServiceFeeChargeTable1Res'
+        serviceFeeChargeTable2Res:
+          $ref: '#/components/schemas/ServiceFeeChargeTable2Res'
     CardActivationControlsRes:
       type: object
       properties:
+        replacementCardActivation:
+          maxLength: 1
+          type: string
+          description: Replacement Card Activation - This flag indicates whether to
+            use card activation for replacement cards
+          example: Y
         newCardActivation:
           maxLength: 1
           type: string
@@ -575,123 +1100,21 @@ components:
           description: Reissue Card Activation - This flag indicates whether to use
             card activation for reissued cards
           example: Y
-        replacementCardActivation:
-          maxLength: 1
-          type: string
-          description: Replacement Card Activation - This flag indicates whether to
-            use card activation for replacement cards
-          example: Y
     InquireProductResponseModel:
       required:
       - businessUnit
       - productNumber
       type: object
       properties:
-        businessUnit:
-          maxLength: 3
-          type: integer
-          description: Business Unit - Identification number associated with this
-            Account Base Segment record, the values are 001–998
-          format: int32
-          example: '600'
-        productNumber:
-          maxLength: 3
-          type: integer
-          description: Product - This field is the Identification number of the Logo
-            record
-          format: int32
-          example: '1'
-        productDescription:
-          maxLength: 30
-          type: string
-          description: Product Description - This filed is the description of the
-            Logo record. This description enables you to identify the kind of accounts
-            processed by this product
-          example: VISA CREDIT CONSUMER
-        cardProductDisplay:
+        vipOverrideFlag:
           maxLength: 1
           type: string
-          description: Card Product Display - Flag that indicates whether cards in
-            this logo display a logo symbol for PLUS, Cirrus, or Maestro
-          example: '0'
+          description: VIP override Flag - This flag indicates if VIP override is
+            active or not
+          example: N
           enum:
-          - '0'
-          - '1'
-          - '2'
-          - '3'
-          - '4'
-          - '5'
-        quarterlyAffiliateCardProduct:
-          maxLength: 3
-          type: string
-          description: Quaterly Affilicate Card Product - Code that indicates the
-            card association card product. This field is required if the Logo record
-            processes bankcard accounts (TYPE OF ACCOUNTS PROCESSED field is D, X,
-            or Y) to identify the quarterly reporting classification or card product
-          example: V1
-        loanFeatureActive:
-          maxLength: 1
-          type: string
-          description: Loan Feature Active - Flag that indicates whether the loans
-            feature is active for the product
-          example: '1'
-          enum:
-          - '0'
-          - '1'
-        paymentHolidaysAllowed:
-          maxLength: 1
-          type: string
-          description: Payment Holidays Allowed - Code that indicates whether manual
-            skip payments are allowed for accounts in this product
-          example: Y
-          enum:
-          - N
           - Y
-        sameDayEmbossingAllowed:
-          maxLength: 1
-          type: string
-          description: Same Day Embossing Allowed -  This flag indicates whether same-day
-            embossing is allowed for accounts within this product
-          example: '1'
-          enum:
-          - '0'
-          - '1'
-        chipPinCardAllowed:
-          maxLength: 1
-          type: string
-          description: CHIP or PIN Card Allowed - This flag identifies whether smart
-            cards can be issued for cards in this product
-          example: '1'
-          enum:
-          - '0'
-          - '1'
-        delinquencyAgeing:
-          maxLength: 1
-          type: string
-          description: Delinquency Ageing - Code that specifies whethre delinquency
-            aging occurs on payment due date or cycle date
-          example: D
-          enum:
-          - D
-          - S
-        processingControlLevel:
-          maxLength: 1
-          type: string
-          description: Processing Control Level - This is a flag which indicates the
-            processing control level for accounts in this product
-          example: O
-          enum:
-          - S
-          - O
-          - L
-        collectionsActive:
-          maxLength: 1
-          type: string
-          description: Collections Active - This flag indicates whether CTA is active
-          example: Y
-          enum:
           - N
-          - Y
         automaticAccountNumberGeneration:
           maxLength: 1
           type: string
@@ -702,6 +1125,15 @@ components:
           - Y
           - I
           - N
+        crossBorder:
+          maxLength: 1
+          type: string
+          description: Cross Border - This is the flag that indicates the alert setting
+            for cross border transactions at the cardholder level
+          example: '0'
+          enum:
+          - '0'
+          - '1'
         authAlerts:
           maxLength: 1
           type: string
@@ -713,33 +1145,6 @@ components:
           - '0'
           - '1'
           - '2'
-        falcon6Active:
-          maxLength: 1
-          type: string
-          description: Falcon 6 Active - This is the flag that indicates whether the
-            Falcon 6 interface is active for this product
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-        vipOverrideFlag:
-          maxLength: 1
-          type: string
-          description: VIP override Flag - This flag indicates if VIP override is
-            active or not
-          example: N
-          enum:
-          - Y
-          - N
-        secureCodeActive:
-          maxLength: 1
-          type: string
-          description: Secure Code Active - Flag that indicates whether the Connection
-            Management System (CCM) is active
-          example: '0'
-          enum:
-          - '0'
-          - '1'
         loyaltyManagementActive:
           maxLength: 1
           type: string
@@ -758,81 +1163,116 @@ components:
           enum:
           - '0'
           - '1'
-        tokenizationServiceActive:
+        cardMailerNameaddress:
           maxLength: 1
           type: string
-          description: Tokenization Service Active - This flag indicates whether the
-            tokenization functionality is active for the product
-          example: '1'
-          enum:
-          - '0'
-          - '1'
-        sameDayEmboss:
-          maxLength: 1
-          type: string
-          description: Same Day Embossing - This flag indicates whether same-day embossing
-            is allowed for the accounts within the product.
+          description: Card Mailer Name/Address - determines the name and address
+            to print on Card mailer
           example: '0'
-          enum:
-          - '0'
-          - '1'
-        manualPinResetAllowed:
-          maxLength: 1
-          type: string
-          description: Manual PIN Reset Allowed - Flag that indicates whether the
-            PIN try counter field on the Embosser record is allowed to be manually
-            reset for accounts in this product
-          example: '1'
-          enum:
-          - '0'
-          - '1'
-        cardActionTableActive:
-          maxLength: 1
-          type: string
-          description: Card Action Table Active - This flag indicates whether the
-            enhanced PIN and card warehousing functionality provided by the card action
-            table is enabled
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-        defaultCardTechnology:
-          maxLength: 1
-          type: string
-          description: Default Card Technology - Default Card Technology to be used
-            during new account setup
-          example: '3'
           enum:
           - '0'
           - '1'
           - '2'
           - '3'
-          - '4'
-          - '5'
+        pinMailerNameaddress:
+          maxLength: 1
+          type: string
+          description: PIN Mailer Name/Address - determines the name and address to
+            print on PIN mailer wthe PIN and card mailer
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        businessUnit:
+          maxLength: 3
+          type: number
+          description: Business Unit - Identification number associated with this
+            Account Base Segment record, the values are 001–998
+          example: 600
+        collectionsActive:
+          maxLength: 1
+          type: string
+          description: Collections Active - This flag indicates whether CTA is active
+          example: Y
+          enum:
+          - N
+          - Y
+        productNumber:
+          maxLength: 3
+          type: number
+          description: Product - This field is the Identification number of the Logo
+            record
+          example: 1
+        overlimitProcessingOptinIndicator:
+          maxLength: 1
+          type: string
+          description: Overlimit Processing Opt-in Indicator - This field is a code
+            that indicates whether the product participates in overlimit opt-in processing
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        paymentProcessingControlsRes:
+          $ref: '#/components/schemas/PaymentProcessingControlsRes'
+        delinquencyAgeing:
+          maxLength: 1
+          type: string
+          description: Delinquency Ageing - Code that specifies whethre delinquency
+            aging occurs on payment due date or cycle date
+          example: D
+          enum:
+          - D
+          - S
+        cardBureauFeedbackActive:
+          maxLength: 1
+          type: string
+          description: Card Bureau Feedback Active - This flag indicates whether CMS
+            uses the Card Bureau Feedback (ATAD) file to update the MAILER DATE field
+            on the Embosser record
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        processingControlLevel:
+          maxLength: 1
+          type: string
+          description: Processing Control Level - This is a flag which indicates the
+            processing control level for accounts in this product
+          example: O
+          enum:
+          - S
+          - O
+          - L
+        newCardPlastics:
+          maxLength: 1
+          type: string
+          description: New Card Plastics - This flag indicates whether CMS generates
+            a tape for embossing plastics for new accounts
+          example: Y
+          enum:
+          - N
+          - Y
+          - B
+          - F
+        newCardDefaultActive:
+          maxLength: 1
+          type: string
+          description: New Card Default Active - Code that indicates whether the value
+            in the ENHANCED PRODUCT field defaults to the Embosser records for new
+            cards in this product
+          example: '0'
+          enum:
+          - '0'
+          - '1'
         scriptingActive:
           maxLength: 1
           type: string
           description: Scripting Active - This is a flag which indicates whether the
             smart card scripting functionality provided by CMS, FAS (Financial Authorization
             System), ESS (EMV Scripting System), and RIS is active for this product.
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-        sweepOptionAllowed:
-          maxLength: 1
-          type: string
-          description: Sweep Option Allowed - This flag indicates whether sweep processing
-            is allowed for this product
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-        crossBorder:
-          maxLength: 1
-          type: string
-          description: Cross Border - This is the flag that indicates the alert setting
-            for cross border transactions at the cardholder level
           example: '0'
           enum:
           - '0'
@@ -849,26 +1289,6 @@ components:
           - '1'
           - '2'
           - '3'
-        approvedCardUse:
-          maxLength: 1
-          type: string
-          description: Approved Card Use - This flag indicates if the cards that are
-            assigned to accounts in this product are approved for local use only or
-            international use
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-        newCardDefaultActive:
-          maxLength: 1
-          type: string
-          description: New Card Default Active - Code that indicates whether the value
-            in the ENHANCED PRODUCT field defaults to the Embosser records for new
-            cards in this product
-          example: '0'
-          enum:
-          - '0'
-          - '1'
         enhancedProductsEligible:
           maxLength: 1
           type: string
@@ -879,40 +1299,16 @@ components:
           - '0'
           - '1'
           - '4'
-        virtualCardEdits:
+        cardActionTableActive:
           maxLength: 1
           type: string
-          description: Virtual Card Edits - This flag indicates whether virtual card
-            accounts are allowed for the product and whether FAS restricts card-present
-            transactions for virtual card accounts
-          example: ''
+          description: Card Action Table Active - This flag indicates whether the
+            enhanced PIN and card warehousing functionality provided by the card action
+            table is enabled
+          example: '0'
           enum:
-          - X
-          - Y
-          - ' '
-        newCardPlastics:
-          maxLength: 1
-          type: string
-          description: New Card Plastics - This flag indicates whether CMS generates
-            a tape for embossing plastics for new accounts
-          example: Y
-          enum:
-          - N
-          - Y
-          - B
-          - F
-        embossingFilesKeyType:
-          maxLength: 1
-          type: string
-          description: Embosser Key Type - Key type for Embosser Files
-          example: B
-          enum:
-          - B
-          - E
-          - F
-          - G
-          - H
-          - ' '
+          - '0'
+          - '1'
         keyTypeForPinMailerFiles:
           maxLength: 1
           type: string
@@ -925,34 +1321,60 @@ components:
           - G
           - H
           - ' '
-        pinMailerNameaddress:
+        cardActivationControlsRes:
+          $ref: '#/components/schemas/CardActivationControlsRes'
+        markUpFeeControlsRes:
+          $ref: '#/components/schemas/MarkUpFeeControlsRes'
+        chipPinCardAllowed:
           maxLength: 1
           type: string
-          description: PIN Mailer Name/Address - determines the name and address to
-            print on PIN mailer wthe PIN and card mailer
+          description: CHIP or PIN Card Allowed - This flag identifies whether smart
+            cards can be issued for cards in this product
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        defaultCardTechnology:
+          maxLength: 1
+          type: string
+          description: Default Card Technology - Default Card Technology to be used
+            during new account setup
+          example: '3'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        cardProductDisplay:
+          maxLength: 1
+          type: string
+          description: Card Product Display - Flag that indicates whether cards in
+            this logo display a logo symbol for PLUS, Cirrus, or Maestro
           example: '0'
           enum:
           - '0'
           - '1'
           - '2'
           - '3'
-        cardMailerNameaddress:
+          - '4'
+          - '5'
+        approvedCardUse:
           maxLength: 1
           type: string
-          description: Card Mailer Name/Address - determines the name and address
-            to print on Card mailer
+          description: Approved Card Use - This flag indicates if the cards that are
+            assigned to accounts in this product are approved for local use only or
+            international use
           example: '0'
           enum:
           - '0'
           - '1'
-          - '2'
-          - '3'
-        cardBureauFeedbackActive:
+        sameDayEmboss:
           maxLength: 1
           type: string
-          description: Card Bureau Feedback Active - This flag indicates whether CMS
-            uses the Card Bureau Feedback (ATAD) file to update the MAILER DATE field
-            on the Embosser record
+          description: Same Day Embossing - This flag indicates whether same-day embossing
+            is allowed for the accounts within the product.
           example: '0'
           enum:
           - '0'
@@ -961,68 +1383,42 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PinMailerForCardActionRes'
-        directDebitcreditActive:
-          maxLength: 1
-          type: string
-          description: Direct Debit/Credit Active - Code that indicates whether direct
-            debit and direct credit processing is active for accounts in this product
-          example: N
-          enum:
-          - N
-          - Y
-          - A
-        overlimitProcessingOptinIndicator:
-          maxLength: 1
-          type: string
-          description: Overlimit Processing Opt-in Indicator - This field is a code
-            that indicates whether the product participates in overlimit opt-in processing
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-        openToBuyCreditBalance:
-          maxLength: 1
-          type: string
-          description: Open to Buy Credit Balance - This field indicates whether CMS
-            includes the credit balance, disputed amounts, and original loan amount
-            when calculating the open-to-buy amount
-          example: '1'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-          - '3'
-        includeDisputedAmounts:
-          maxLength: 1
-          type: string
-          description: Include Disputed Amount - Code that indicates whether CMS includes
-            disputed amounts in the open-to-buy (OTB) calculation of accounts
-          example: '0'
-          enum:
-          - ZERO
-          - '1'
         stateOfResidenceId:
           maxLength: 3
           type: string
           description: Sate of Residence ID - Default Residence ID that identifies
             the state, province, or country in which the account holder resides
           example: SX1
-        stateOfIssueId:
-          maxLength: 3
-          type: string
-          description: State of Residence ID - This field identifies the state, province,
-            or country where the account was issued
-          example: SX1
-        wspTokenEligible:
+        sameDayEmbossingAllowed:
           maxLength: 1
           type: string
-          description: 'WSP token Eligibility - This field is used to determine if
-            a particular logo allows tokenization '
+          description: Same Day Embossing Allowed -  This flag indicates whether same-day
+            embossing is allowed for accounts within this product
           example: '1'
           enum:
           - '0'
           - '1'
+        falcon6Active:
+          maxLength: 1
+          type: string
+          description: Falcon 6 Active - This is the flag that indicates whether the
+            Falcon 6 interface is active for this product
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        embossingFilesKeyType:
+          maxLength: 1
+          type: string
+          description: Embosser Key Type - Key type for Embosser Files
+          example: B
+          enum:
+          - B
+          - E
+          - F
+          - G
+          - H
+          - ' '
         typeOfAccountsProcessed:
           maxLength: 1
           type: string
@@ -1039,29 +1435,143 @@ components:
           - Y
           - X
           - Z
-        markUpFeeControlsRes:
-          $ref: '#/components/schemas/MarkUpFeeControlsRes'
-        cardActivationControlsRes:
-          $ref: '#/components/schemas/CardActivationControlsRes'
-        paymentProcessingControlsRes:
-          $ref: '#/components/schemas/PaymentProcessingControlsRes'
+        stateOfIssueId:
+          maxLength: 3
+          type: string
+          description: State of Residence ID - This field identifies the state, province,
+            or country where the account was issued
+          example: SX1
+        includeDisputedAmounts:
+          maxLength: 1
+          type: string
+          description: Include Disputed Amount - Code that indicates whether CMS includes
+            disputed amounts in the open-to-buy (OTB) calculation of accounts
+          example: '0'
+          enum:
+          - ZERO
+          - '1'
+        directDebitcreditActive:
+          maxLength: 1
+          type: string
+          description: Direct Debit/Credit Active - Code that indicates whether direct
+            debit and direct credit processing is active for accounts in this product
+          example: N
+          enum:
+          - N
+          - Y
+          - A
+        wspTokenEligible:
+          maxLength: 1
+          type: string
+          description: 'WSP token Eligibility - This field is used to determine if
+            a particular logo allows tokenization '
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        secureCodeActive:
+          maxLength: 1
+          type: string
+          description: Secure Code Active - Flag that indicates whether the Connection
+            Management System (CCM) is active
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        quarterlyAffiliateCardProduct:
+          maxLength: 3
+          type: string
+          description: Quaterly Affilicate Card Product - Code that indicates the
+            card association card product. This field is required if the Logo record
+            processes bankcard accounts (TYPE OF ACCOUNTS PROCESSED field is D, X,
+            or Y) to identify the quarterly reporting classification or card product
+          example: V1
+        sweepOptionAllowed:
+          maxLength: 1
+          type: string
+          description: Sweep Option Allowed - This flag indicates whether sweep processing
+            is allowed for this product
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        manualPinResetAllowed:
+          maxLength: 1
+          type: string
+          description: Manual PIN Reset Allowed - Flag that indicates whether the
+            PIN try counter field on the Embosser record is allowed to be manually
+            reset for accounts in this product
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        loanFeatureActive:
+          maxLength: 1
+          type: string
+          description: Loan Feature Active - Flag that indicates whether the loans
+            feature is active for the product
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        virtualCardEdits:
+          maxLength: 1
+          type: string
+          description: Virtual Card Edits - This flag indicates whether virtual card
+            accounts are allowed for the product and whether FAS restricts card-present
+            transactions for virtual card accounts
+          example: ''
+          enum:
+          - X
+          - Y
+          - ' '
+        productDescription:
+          maxLength: 30
+          type: string
+          description: Product Description - This filed is the description of the
+            Logo record. This description enables you to identify the kind of accounts
+            processed by this product
+          example: VISA CREDIT CONSUMER
+        paymentHolidaysAllowed:
+          maxLength: 1
+          type: string
+          description: Payment Holidays Allowed - Code that indicates whether manual
+            skip payments are allowed for accounts in this product
+          example: Y
+          enum:
+          - N
+          - Y
+        tokenizationServiceActive:
+          maxLength: 1
+          type: string
+          description: Tokenization Service Active - This flag indicates whether the
+            tokenization functionality is active for the product
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        openToBuyCreditBalance:
+          maxLength: 1
+          type: string
+          description: Open to Buy Credit Balance - This field indicates whether CMS
+            includes the credit balance, disputed amounts, and original loan amount
+            when calculating the open-to-buy amount
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
     MarkUpFeeControlsRes:
       type: object
       properties:
-        markupIssuerActive:
+        markupActiveCreditFee:
           maxLength: 1
           type: string
-          description: Markup Issuer Active - This is a flag that indicates whether
-            the issuer-markup fee option is active for this product
-          example: '0'
-          enum:
-          - '1'
-          - '0'
-        markupSchemeActive:
-          maxLength: 1
-          type: string
-          description: Markup Scheme Active - This is a flag which indicates whether
-            the scheme-markup fee option is active for this product
+          description: Markup Active Credit Fee - This is a flag which indicates whether
+            the credit fee option is active for this product. When this option is
+            active, the cardholder receives reimbursement for issuer and/or scheme
+            fees on credit transactions
           example: '0'
           enum:
           - '1'
@@ -1077,13 +1587,20 @@ components:
           enum:
           - '1'
           - '0'
-        markupActiveCreditFee:
+        markupSchemeActive:
           maxLength: 1
           type: string
-          description: Markup Active Credit Fee - This is a flag which indicates whether
-            the credit fee option is active for this product. When this option is
-            active, the cardholder receives reimbursement for issuer and/or scheme
-            fees on credit transactions
+          description: Markup Scheme Active - This is a flag which indicates whether
+            the scheme-markup fee option is active for this product
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        markupIssuerActive:
+          maxLength: 1
+          type: string
+          description: Markup Issuer Active - This is a flag that indicates whether
+            the issuer-markup fee option is active for this product
           example: '0'
           enum:
           - '1'
@@ -1091,6 +1608,27 @@ components:
     PaymentProcessingControlsRes:
       type: object
       properties:
+        prepaymentsAllowed:
+          maxLength: 1
+          type: string
+          description: Prepayments Allowed - Code that indicates whether prepayments
+            are allowed for accounts in this product
+          example: '0'
+          enum:
+          - '0'
+          - '2'
+          - '1'
+        paymentApplicationLevel:
+          maxLength: 1
+          type: string
+          description: Payment Application Level - Code that indicates whether CMS
+            applies payments to accounts with multiple credit plan segments by the
+            plan priority defined on the Credit Plan Master record or the plan priority
+            defined on the Logo record
+          example: P
+          enum:
+          - P
+          - L
         applicationMethodForAr:
           maxLength: 1
           type: string
@@ -1129,27 +1667,6 @@ components:
           - M
           - N
           - O
-        prepaymentsAllowed:
-          maxLength: 1
-          type: string
-          description: Prepayments Allowed - Code that indicates whether prepayments
-            are allowed for accounts in this product
-          example: '0'
-          enum:
-          - '0'
-          - '2'
-          - '1'
-        paymentApplicationLevel:
-          maxLength: 1
-          type: string
-          description: Payment Application Level - Code that indicates whether CMS
-            applies payments to accounts with multiple credit plan segments by the
-            plan priority defined on the Credit Plan Master record or the plan priority
-            defined on the Logo record
-          example: P
-          enum:
-          - P
-          - L
     PinMailerForCardActionRes:
       type: object
       properties:
@@ -1170,22 +1687,6 @@ components:
     ConsolidatedDetailsRes:
       type: object
       properties:
-        controllingCreditPlanMaster:
-          maxLength: 5
-          type: integer
-          description: Controlling Credit Plan Master - Plan number of the Credit
-            Plan Master record used for consolidated payment calculations
-          format: int32
-          example: '10003'
-        consolidatedStatement:
-          maxLength: 1
-          type: string
-          description: Consolidated Statement - Code that indicates whether CMS consolidates
-            statements for credit plans assigned the same plan number
-          example: Y
-          enum:
-          - N
-          - Y
         consolidatedPayment:
           maxLength: 1
           type: string
@@ -1198,27 +1699,27 @@ components:
           - R
           - B
           - Y
+        consolidatedStatement:
+          maxLength: 1
+          type: string
+          description: Consolidated Statement - Code that indicates whether CMS consolidates
+            statements for credit plans assigned the same plan number
+          example: Y
+          enum:
+          - N
+          - Y
+        controllingCreditPlanMaster:
+          maxLength: 5
+          type: number
+          description: Controlling Credit Plan Master - Plan number of the Credit
+            Plan Master record used for consolidated payment calculations
+          example: 10003
     InquirePlanMasterResponseModel:
       required:
       - businessUnit
       - planNumber
       type: object
       properties:
-        businessUnit:
-          maxLength: 3
-          type: integer
-          description: Business Unit - Identification number associated with this
-            Account Base Segment record, the values are 001–998
-          format: int32
-          example: '600'
-        planNumber:
-          maxLength: 5
-          type: integer
-          description: Plan Number - Identification number of the Credit Plan Master
-            record. The values are 00001–99998. You can establish as many as 99,998
-            Credit Plan Master records for each organization
-          format: int32
-          example: '10002'
         description:
           maxLength: 30
           type: string
@@ -1226,6 +1727,18 @@ components:
             This description defaults to the Credit Plan Segment records for credit
             plans associated with this Credit Plan Master record
           example: RETAIL PLAN
+        balanceTransferType:
+          maxLength: 1
+          type: string
+          description: Balance Transfer - Code that indicates whether the Interest
+            Table Override (ITO) that sets a special interest rate for balance transfer
+            credit plans can be extended, not extended, or is in effect until a specific
+            date
+          example: N
+          enum:
+          - E
+          - N
+          - S
         planType:
           maxLength: 1
           type: string
@@ -1244,6 +1757,16 @@ components:
           - Y
           - T
           - L
+        interestRateTableId:
+          maxLength: 2
+          type: string
+          description: Interest Rate Table ID - Rate table occurrence indicator (RTOI)
+            that identifies which one of the 12 interest tables on the Processing
+            Control Table to assign to credit plans generated by this Credit Plan
+            Master record
+          example: '1'
+          enum:
+          - 01-12
         multipleSales:
           maxLength: 1
           type: string
@@ -1258,6 +1781,23 @@ components:
           - N
           - I
           - C
+        graceBalanceQualification:
+          maxLength: 1
+          type: string
+          description: Grace Balance Qualification - Field that determines the plan
+            balances, or portions of plan balances, that CMS considers when qualifying
+            an account for grace processing logic
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        businessUnit:
+          maxLength: 3
+          type: number
+          description: Business Unit - Identification number associated with this
+            Account Base Segment record, the values are 001–998
+          example: 600
         minimumPaymentCalculation:
           maxLength: 1
           type: string
@@ -1285,56 +1825,22 @@ components:
           - G
           - W
           - K
-        balanceTransferType:
-          maxLength: 1
-          type: string
-          description: Balance Transfer - Code that indicates whether the Interest
-            Table Override (ITO) that sets a special interest rate for balance transfer
-            credit plans can be extended, not extended, or is in effect until a specific
-            date
-          example: N
-          enum:
-          - E
-          - N
-          - S
-        graceBalanceQualification:
-          maxLength: 1
-          type: string
-          description: Grace Balance Qualification - Field that determines the plan
-            balances, or portions of plan balances, that CMS considers when qualifying
-            an account for grace processing logic
-          example: '1'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-        interestRateTableId:
-          maxLength: 2
-          type: string
-          description: Interest Rate Table ID - Rate table occurrence indicator (RTOI)
-            that identifies which one of the 12 interest tables on the Processing
-            Control Table to assign to credit plans generated by this Credit Plan
-            Master record
-          example: '1'
-          enum:
-          - 01-12
+        planNumber:
+          maxLength: 5
+          type: number
+          description: Plan Number - Identification number of the Credit Plan Master
+            record. The values are 00001–99998. You can establish as many as 99,998
+            Credit Plan Master records for each organization
+          example: 10002
         interestRateTableOverrideRes:
           $ref: '#/components/schemas/InterestRateTableOverrideRes'
-        consolidatedDetailsRes:
-          $ref: '#/components/schemas/ConsolidatedDetailsRes'
         promotionalPlanDetailsRes:
           $ref: '#/components/schemas/PromotionalPlanDetailsRes'
+        consolidatedDetailsRes:
+          $ref: '#/components/schemas/ConsolidatedDetailsRes'
     InterestRateTableOverrideRes:
       type: object
       properties:
-        interestRateTableOverride:
-          maxLength: 3
-          type: integer
-          description: Interest Rate Table Override - Identification number of the
-            Interest table used to calculate interest for credit plans generated by
-            this Credit Plan Master record
-          format: int32
-          example: '1'
         itoExpirationDate:
           maxLength: 10
           type: string
@@ -1343,6 +1849,13 @@ components:
             depending on the date format established on the System record (DATE FORMAT
             on System Controls)
           example: 15/08/2023
+        interestRateTableOverride:
+          maxLength: 3
+          type: number
+          description: Interest Rate Table Override - Identification number of the
+            Interest table used to calculate interest for credit plans generated by
+            this Credit Plan Master record
+          example: 1
     PromotionalPlanDetailsRes:
       type: object
       properties:
@@ -1362,49 +1875,13 @@ components:
           - '3'
           - '5'
           - '6'
-        delinquencyLevelToCancel:
-          maxLength: 1
-          type: string
-          description: Delinquency Level To Cancel - Contractual or recency delinquency
-            level to cancel a deferred plan or ITO plan
-          example: '6'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-          - '3'
-          - '4'
-          - '5'
-          - '6'
-          - '7'
-          - '8'
-          - '9'
-        cancellationLetterId:
-          maxLength: 3
-          type: string
-          description: Cancellation Letter ID - Code that identifies the letter in
-            the CTA system or LTS system that is sent upon cancellation of a deferment
-            or Interest Table Override (ITO)
-          example: ''
-        rollCancelledPlanToPlanId:
+        rollExpiredPlanToPlanId:
           maxLength: 5
-          type: integer
-          description: Roll Cancelled Plan To Plan ID - Number that identifies the
-            Credit Plan Master record that generates the rollover credit plan upon
-            cancellation of a deferment or Interest Table Override (ITO)
-          format: int32
-          example: '50002'
-        cancelledPlanRollMethod:
-          maxLength: 1
-          type: string
-          description: Cancelled Plan Roll Method - Code that indicates the method
-            for rolling over a deferred or ITO credit plan that was canceled due to
-            delinquency or a payment not received when due
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
+          type: number
+          description: Roll Expired Plan To Plan ID - Number that identifies the Credit
+            Plan Master record that generates the rollover credit plan upon expiration
+            of a deferred credit plan
+          example: 50001
         expirationRollover:
           maxLength: 1
           type: string
@@ -1424,14 +1901,6 @@ components:
             CTA system or LTS system that is sent upon expiration of a deferred credit
             plan
           example: EXP
-        rollExpiredPlanToPlanId:
-          maxLength: 5
-          type: integer
-          description: Roll Expired Plan To Plan ID - Number that identifies the Credit
-            Plan Master record that generates the rollover credit plan upon expiration
-            of a deferred credit plan
-          format: int32
-          example: '50001'
         expiredPlanRollMethod:
           maxLength: 1
           type: string
@@ -1442,3 +1911,45 @@ components:
           - '0'
           - '1'
           - '2'
+        cancelledPlanRollMethod:
+          maxLength: 1
+          type: string
+          description: Cancelled Plan Roll Method - Code that indicates the method
+            for rolling over a deferred or ITO credit plan that was canceled due to
+            delinquency or a payment not received when due
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        cancellationLetterId:
+          maxLength: 3
+          type: string
+          description: Cancellation Letter ID - Code that identifies the letter in
+            the CTA system or LTS system that is sent upon cancellation of a deferment
+            or Interest Table Override (ITO)
+          example: ''
+        rollCancelledPlanToPlanId:
+          maxLength: 5
+          type: number
+          description: Roll Cancelled Plan To Plan ID - Number that identifies the
+            Credit Plan Master record that generates the rollover credit plan upon
+            cancellation of a deferment or Interest Table Override (ITO)
+          example: 50002
+        delinquencyLevelToCancel:
+          maxLength: 1
+          type: string
+          description: Delinquency Level To Cancel - Contractual or recency delinquency
+            level to cancel a deferred plan or ITO plan
+          example: '6'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
