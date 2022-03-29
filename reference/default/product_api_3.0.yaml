@@ -55,7 +55,7 @@ paths:
           maxLength: 3
           type: integer
           example: '600'
-      - name: productNumber
+      - name: product
         in: path
         description: Product - This field is the Identification number of the Logo
           record
@@ -71,16 +71,16 @@ paths:
               $ref: '#/components/schemas/UpdateLogoCardControlReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -101,6 +101,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateLogoCardControlResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -109,16 +117,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -183,32 +183,8 @@ paths:
           type: integer
           example: '001'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -223,6 +199,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireProductResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -231,12 +221,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireProductResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Inquire Product
       x-group-name: Product Management
   /v1/products/{planNumber}/planDetails:
@@ -296,32 +296,8 @@ paths:
           type: integer
           example: '10002'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -336,6 +312,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquirePlanMasterResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -344,17 +334,27 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquirePlanMasterResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Inquire Plan Master
       x-group-name: Product Management
 components:
   schemas:
-    Of18:
+    CardControlFieldsReq:
       type: object
       properties:
         maximumAuthorizationLimitFrequency:
@@ -431,7 +431,7 @@ components:
           description: Transaction Limit Retail - This is the Maximum amount in monetary
             units and subunits for a single retail authorization
           example: '10000.0'
-    Of19:
+    CardControlFlagsReq:
       type: object
       properties:
         atmFlag:
@@ -480,10 +480,19 @@ components:
           enum:
           - Y
           - N
-    Of20:
+    UpdateLogoCardControlReqModel:
       type: object
       properties:
-        yeartodateCountryRiskSpendLimitActive:
+        cardControlFieldsReq:
+          $ref: '#/components/schemas/CardControlFieldsReq'
+        cardControlFlagsReq:
+          $ref: '#/components/schemas/CardControlFlagsReq'
+        yearToDateCountryRiskSpendLimitsReq:
+          $ref: '#/components/schemas/YearToDateCountryRiskSpendLimitsReq'
+    YearToDateCountryRiskSpendLimitsReq:
+      type: object
+      properties:
+        yearToDateCountryRiskSpendLimitActive:
           maxLength: 1
           type: string
           description: Year-To-Date Country Risk Spending Limit Active - This is a
@@ -493,7 +502,7 @@ components:
           enum:
           - '0'
           - '1'
-        yeartodateMaxAuthAmountHighRiskCountry:
+        yearToDateMaxAuthAmountHighRiskCountry:
           maxLength: 17
           type: string
           description: Year-To-Date Max Auth Amount High Risk Country - Maximum amount
@@ -502,7 +511,7 @@ components:
             of authorizations in monetary units and subunits allowed for the cumulative
             year-to-date spending by an account in high-risk countries
           example: '10000.0'
-        yeartodateMaxAuthAmountOtherRiskCountry:
+        yearToDateMaxAuthAmountOtherRiskCountry:
           maxLength: 17
           type: string
           description: Year-To-Date Max Auth Amount Other Risk Country - Maximum amount
@@ -510,15 +519,6 @@ components:
             year-to-date spending by an account in non-high-risk countries. Risk is
             designated by country code in the Financial Authorization System (FAS)
           example: '15000.0'
-    UpdateLogoCardControlReqModel:
-      type: object
-      properties:
-        OF18:
-          $ref: '#/components/schemas/Of18'
-        OF19:
-          $ref: '#/components/schemas/Of19'
-        OF20:
-          $ref: '#/components/schemas/Of20'
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -528,10 +528,136 @@ components:
         errorMessage:
           type: string
           example: ''
+    CardControlFieldsRes:
+      type: object
+      properties:
+        maximumAuthorizationLimitFrequency:
+          maxLength: 1
+          type: string
+          description: Maximum Authorization Limit Frequency - This is a flag which
+            indicates the frequency for the maximum authorization parameters. This
+            frequency applies to the RETAIL PURCHASE AMOUNT to TRANSACTION LIMIT RETAIL
+            fields
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        atmCashAmount:
+          maxLength: 17
+          type: string
+          description: ATM Cash Amount - Maximum amount in monetary units and subunits
+            of ATM cash authorizations allowed for the frequency defined in the FREQ
+            field
+          example: '2000.0'
+        atmCashNumber:
+          maxLength: 9
+          type: integer
+          description: ATM Cash Number - Maximum number of ATM cash authorizations
+            allowed for the frequency defined in the FREQ field
+          format: int32
+          example: '5'
+        transactionLimitAtm:
+          maxLength: 17
+          type: string
+          description: Transaction Limit ATM - This is the Maximum authorization amount
+            in monetary units and subunits for a single ATM transaction
+          example: '100.0'
+        otcCashAmount:
+          maxLength: 17
+          type: string
+          description: OTC Cash Amount - Maximum amount in monetary units and subunits
+            of ATM cash authorizations allowed for the frequency defined in the FREQ
+            field
+          example: '1500.0'
+        otcCashNumber:
+          maxLength: 9
+          type: integer
+          description: OTC Cash Number - Maximum number of ATM cash authorizations
+            allowed for the frequency defined in the FREQ field
+          format: int32
+          example: '6'
+        transactionLimitOtc:
+          maxLength: 17
+          type: string
+          description: Transaction Limit OTC - This is the Maximum authorization amount
+            in monetary units and subunits for a single ATM transaction
+          example: '200.0'
+        retailPurchaseAmount:
+          maxLength: 17
+          type: string
+          description: Retail Purchase Amount - Maximum amount in monetary units and
+            subunits of retail authorizations allowed for the freqency defined in
+            the FREQ field
+          example: '100000.0'
+        retailPurchaseNumber:
+          maxLength: 9
+          type: integer
+          description: Retail Purchase Number - Maximum number of retail authorizations
+            allowed for the frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY
+            field
+          format: int32
+          example: '10'
+        transactionLimitRetail:
+          maxLength: 17
+          type: string
+          description: Transaction Limit Retail - This is the Maximum amount in monetary
+            units and subunits for a single retail authorization
+          example: '10000.0'
+    CardControlFlagsRes:
+      type: object
+      properties:
+        atmFlag:
+          maxLength: 1
+          type: string
+          description: ATM Flag - Flag indicates ATM transactions are active or not
+          example: Y
+          enum:
+          - Y
+          - N
+          - ' '
+        posFlag:
+          maxLength: 1
+          type: string
+          description: POS Flag - Flag indicates POS transactions are active or not
+          example: Y
+          enum:
+          - Y
+          - N
+          - ' '
+        ecomFlag:
+          maxLength: 1
+          type: string
+          description: ECOM Flag - Flag indicates ECOM transactions are active or
+            not
+          example: '1'
+          enum:
+          - '1'
+          - '0'
+          - ' '
+        motoFlag:
+          maxLength: 1
+          type: string
+          description: MOTO Flag - Flag indicates MOTO transactions are active or
+            not
+          example: N
+          enum:
+          - Y
+          - N
+        intAtmPosFlag:
+          maxLength: 1
+          type: string
+          description: International ATM POS Flag - Flag indicates International ATM,
+            POS transactions are active or not
+          example: N
+          enum:
+          - Y
+          - N
     UpdateLogoCardControlResponseModel:
       required:
       - businessUnit
-      - productNumber
+      - product
       type: object
       properties:
         businessUnit:
@@ -541,19 +667,49 @@ components:
             Account Base Segment record, the values are 001–998
           format: int32
           example: '600'
-        productNumber:
+        product:
           maxLength: 3
           type: integer
           description: Product - This field is the Identification number of the Logo
             record
           format: int32
           example: '1'
-        OF18:
-          $ref: '#/components/schemas/Of18'
-        OF19:
-          $ref: '#/components/schemas/Of19'
-        OF20:
-          $ref: '#/components/schemas/Of20'
+        cardControlFieldsRes:
+          $ref: '#/components/schemas/CardControlFieldsRes'
+        cardControlFlagsRes:
+          $ref: '#/components/schemas/CardControlFlagsRes'
+        yearToDateCountryRiskSpendLimitsRes:
+          $ref: '#/components/schemas/YearToDateCountryRiskSpendLimitsRes'
+    YearToDateCountryRiskSpendLimitsRes:
+      type: object
+      properties:
+        yearToDateCountryRiskSpendLimitActive:
+          maxLength: 1
+          type: string
+          description: Year-To-Date Country Risk Spending Limit Active - This is a
+            flag that indicates whether a year-to-date spending limit for accounts
+            initiating transactions in high-risk and non-high-risk countries is active
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        yearToDateMaxAuthAmountHighRiskCountry:
+          maxLength: 17
+          type: string
+          description: Year-To-Date Max Auth Amount High Risk Country - Maximum amount
+            of authorizations in monetary units and subunits allowed for the cumulative
+            year-to-date spending by an account in high-risk countries. Maximum amount
+            of authorizations in monetary units and subunits allowed for the cumulative
+            year-to-date spending by an account in high-risk countries
+          example: '10000.0'
+        yearToDateMaxAuthAmountOtherRiskCountry:
+          maxLength: 17
+          type: string
+          description: Year-To-Date Max Auth Amount Other Risk Country - Maximum amount
+            of authorizations in monetary units and subunits allowed for the cumulative
+            year-to-date spending by an account in non-high-risk countries. Risk is
+            designated by country code in the Financial Authorization System (FAS)
+          example: '15000.0'
     CardActivationControlsRes:
       type: object
       properties:
