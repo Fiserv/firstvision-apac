@@ -71,8 +71,8 @@ paths:
               $ref: '#/components/schemas/UpdateWaiveFeeReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -81,6 +81,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -109,87 +117,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      x-proxy-name: Update Waive Fee
-      x-group-name: Account Management
-  /v1/accounts/{accountNumber}/tokenSupressIndicator:
-    put:
-      tags:
-      - Account Management
-      summary: Update Token Supress Indicator
-      description: This service is used to update the token supress Indicator for
-        given account. 0 and 1 are valid values. 0 indicates supress token is inactive
-        whereas 1 indicates supress token is active.
-      operationId: UpdateTokenSupressIndicator
-      parameters:
-      - name: X-Correl-Id
-        in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: true
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: X-Name
-        in: header
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
-      - name: X-context
-        in: header
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
-      - name: businessUnit
-        in: query
-        description: Business Unit - Identification number associated with the cardholder
-          embosser record.
-        required: false
-        schema:
-          maxLength: 3
-          type: integer
-          example: '600'
-      - name: accountNumber
-        in: path
-        description: Account Number - Unique Identification numbers of the Account.
-        required: true
-        schema:
-          maxLength: 19
-          type: string
-          example: '0006000011000000137'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateTokenSupressIndicatorReqModel'
-        required: true
-      responses:
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -198,53 +125,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateTokenSupressIndicatorResponseModel'
-      x-proxy-name: Update Token Supress Indicator
+      x-proxy-name: Update Waive Fee
       x-group-name: Account Management
   /v1/accounts/{accountNumber}/tempCreditLimit:
     put:
@@ -307,14 +188,8 @@ paths:
               $ref: '#/components/schemas/UpdateTemporaryCreditLimitReqModel'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateTemporaryCreditLimitResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -323,6 +198,20 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateTemporaryCreditLimitResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -345,16 +234,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -425,24 +306,8 @@ paths:
               $ref: '#/components/schemas/UpdateStatementPreferenceReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -455,8 +320,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateStatementPreferenceResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -471,8 +336,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -543,8 +424,8 @@ paths:
               $ref: '#/components/schemas/UpdatePricingControlReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -565,6 +446,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdatePricingControlResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -581,16 +470,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -640,7 +521,7 @@ paths:
         in: query
         description: Business Unit - Identification number associated with this Account
           Base Segment record, the values are 001–998
-        required: true
+        required: false
         schema:
           maxLength: 3
           type: integer
@@ -654,14 +535,8 @@ paths:
           type: string
           example: '0006000011000000137'
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireDirectDebitResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -670,6 +545,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -692,22 +575,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/InquireDirectDebitResponseModel'
       x-proxy-name: Inquire Direct Debit
       x-group-name: Account Management
     put:
@@ -770,8 +651,8 @@ paths:
               $ref: '#/components/schemas/UpdateAccountsDirectDebitReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -786,6 +667,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAccountsDirectDebitResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -802,28 +697,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateAccountsDirectDebitResponseModel'
       x-proxy-name: 'Update Accounts'' Direct Debit '
       x-group-name: Account Management
   /v1/accounts/{accountNumber}/customersProfile:
@@ -868,11 +749,11 @@ paths:
         in: query
         description: Business Unit - Identification number associated with this Account
           Base Segment record, the values are 001–998
-        required: true
+        required: false
         schema:
           maxLength: 3
           type: integer
-          example: '0'
+          example: '600'
       - name: accountNumber
         in: path
         description: Account Number - Unique Identification number of the Account
@@ -888,16 +769,30 @@ paths:
               $ref: '#/components/schemas/UpdateCustomersProfileReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomersProfileResponseModel'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -920,28 +815,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomersProfileResponseModel'
       x-proxy-name: Update Customer's Profile
       x-group-name: Account Management
   /v1/accounts/{accountNumber}/creditLimit:
@@ -1005,8 +886,8 @@ paths:
               $ref: '#/components/schemas/CreditLimitUpdateReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -1015,6 +896,20 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditLimitUpdateResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1037,28 +932,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreditLimitUpdateResponseModel'
       x-proxy-name: Update Credit limit
       x-group-name: Account Management
   /v1/accounts/{accountNumber}/chargeoff:
@@ -1122,8 +1003,8 @@ paths:
               $ref: '#/components/schemas/UpdateAccountChargeOffReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -1138,12 +1019,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateAccountChargeOffResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -1160,22 +1043,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/UpdateAccountChargeOffResponseModel'
       x-proxy-name: 'Update Account Charge-Off '
       x-group-name: Account Management
   /v1/accounts/{accountNumber}/blockUnblock:
@@ -1239,16 +1120,30 @@ paths:
               $ref: '#/components/schemas/BlockUnblockAccountReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockUnblockAccountResponseModel'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1271,28 +1166,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BlockUnblockAccountResponseModel'
       x-proxy-name: Block-Unblock Account
       x-group-name: Account Management
   /v1/accounts/{accountNumber}/billingCycle:
@@ -1357,8 +1238,14 @@ paths:
               $ref: '#/components/schemas/UpdateBillingCycleReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingCycleResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -1367,6 +1254,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1389,22 +1284,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateBillingCycleResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1464,8 +1345,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RealTimePaymentResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -1474,6 +1355,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1496,16 +1385,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1513,107 +1394,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Real Time Payments
-      x-group-name: Account Management
-  /v1/accounts/productTransfer:
-    post:
-      tags:
-      - Account Management
-      summary: Upgrade Accounts Product
-      description: This service will validate input message details and perform Upgrade
-        Accounts Product
-      operationId: UpgradeAccountsProduct
-      parameters:
-      - name: X-Correl-Id
-        in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: true
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: X-Name
-        in: header
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
-      - name: X-context
-        in: header
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpgradeAccountsProductReqModel'
-        required: true
-      responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpgradeAccountsProductResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      x-proxy-name: Upgrade Accounts Product
       x-group-name: Account Management
   /v1/accounts/monetaryAction:
     post:
@@ -1659,8 +1439,8 @@ paths:
               $ref: '#/components/schemas/MonetaryActionReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -1669,6 +1449,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1691,16 +1479,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1759,8 +1539,8 @@ paths:
               $ref: '#/components/schemas/BoardAccountReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -1769,6 +1549,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1791,16 +1579,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1860,8 +1640,14 @@ paths:
               $ref: '#/components/schemas/AddMemoLineReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddMemoLineResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -1870,6 +1656,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1892,22 +1686,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddMemoLineResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1972,8 +1752,8 @@ paths:
           type: string
           example: '0006000022000000431'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -1988,12 +1768,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListOutstandingAuthResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -2010,22 +1792,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/ListOutstandingAuthResponseModel'
       x-proxy-name: List Outstanding Authorization
       x-group-name: Account Management
   /v1/accounts/{accountRelationshipNbr}/transactions/cycleToDate:
@@ -2084,22 +1864,30 @@ paths:
           type: string
           example: '0001000010000510001'
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListUnbilledTransactionResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUnbilledTransactionResponseModel'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -2122,16 +1910,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -2207,8 +1987,8 @@ paths:
           type: string
           example: 30/06/2021
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -2217,6 +1997,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -2239,16 +2027,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -2330,8 +2110,8 @@ paths:
           type: string
           example: 18/08/2021
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -2352,6 +2132,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireStatementResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -2368,16 +2156,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -2442,8 +2222,8 @@ paths:
           type: string
           example: '0006000011000000137'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -2452,6 +2232,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -2474,8 +2262,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -2488,129 +2276,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquirePaymentHistoryResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Inquire Payment History
-      x-group-name: Account Management
-  /v1/accounts/{accountNumber}/memoList:
-    get:
-      tags:
-      - Account Management
-      summary: Inquire Memo
-      description: This service will retrieve all ASM memos for the associated Card/Account
-        number requested. A maximum of 50 memos will be retrieved per search. If an
-        account has more than 50 memos, additional calls to the service will be required,
-        and must include the HIST_DATE, HIST_TIME and REC_TYPE.
-      operationId: InquireMemo
-      parameters:
-      - name: X-Correl-Id
-        in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: true
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: X-Name
-        in: header
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
-      - name: X-context
-        in: header
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
-      - name: businessUnit
-        in: query
-        description: Business Unit - Number that identifies the organization associated
-          with the account
-        required: false
-        schema:
-          maxLength: 3
-          type: integer
-          example: '600'
-      - name: accountNumber
-        in: path
-        description: Account Number - Identification number of the account
-        required: true
-        schema:
-          maxLength: 19
-          type: string
-          example: '0006000011000000160'
-      responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireMemoResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      x-proxy-name: Inquire Memo
       x-group-name: Account Management
   /v1/accounts/{accountNumber}/listCardsByAccount:
     get:
@@ -2651,6 +2317,15 @@ paths:
           maxLength: 20
           type: string
           example: 00000AUNAB
+      - name: businessUnit
+        in: query
+        description: Business Unit - Identification number associated with this Account
+          Base Segment record, the values are 001–998.
+        required: false
+        schema:
+          maxLength: 3
+          type: integer
+          example: '600'
       - name: accountNumber
         in: path
         description: Account Number - Must be numeric and greater than zeroes, Must
@@ -2661,8 +2336,8 @@ paths:
           type: string
           example: '0006000022000000076'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -2677,8 +2352,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -2691,6 +2366,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListCardsbyAccountResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -2699,16 +2382,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -2773,8 +2448,8 @@ paths:
           type: string
           example: '0002000010000403266'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -2789,16 +2464,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -2811,95 +2478,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountDetailResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      x-proxy-name: Inquire Account Details
-      x-group-name: Account Management
-  /v1/accounts/{accountNumber}/deliquencyDetails:
-    get:
-      tags:
-      - Account Management
-      summary: Inquire Delinquency
-      description: This service provides delinquency details for a given account number.
-      operationId: InquireDelinquency
-      parameters:
-      - name: X-Correl-Id
-        in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: true
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: X-Name
-        in: header
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
-      - name: X-context
-        in: header
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
-      - name: businessUnit
-        in: query
-        description: Business Unit - Identification number of the business unit associated
-          with the account. The values are 001-998.
-        required: false
-        schema:
-          maxLength: 3
-          type: integer
-          example: '600'
-      - name: accountNumber
-        in: path
-        description: Account - Identification number of the account.
-        required: true
-        schema:
-          maxLength: 19
-          type: string
-          example: '0006000011000000509'
-      responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -2916,29 +2494,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireDelinquencyResponseModel'
-      x-proxy-name: Inquire Delinquency
+      x-proxy-name: Inquire Account Details
       x-group-name: Account Management
   /v1/accounts/{accountNumber}/balances:
     get:
@@ -2995,8 +2559,8 @@ paths:
           type: string
           example: '0006000011000000343'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -3005,6 +2569,20 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAccountBalanceResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -3027,28 +2605,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAccountBalanceResponseModel'
       x-proxy-name: Inquire Account Balances
       x-group-name: Account Management
 components:
@@ -4048,43 +3612,6 @@ components:
           - '1'
           - '2'
           - '3'
-    UpdateTokenSupressIndicatorReqModel:
-      required:
-      - suppressToken
-      type: object
-      properties:
-        suppressToken:
-          type: string
-          description: Suppress Token - Token suppression at account level indicator.
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-    UpdateTokenSupressIndicatorResponseModel:
-      required:
-      - accountNumber
-      - suppressToken
-      type: object
-      properties:
-        businessUnit:
-          maxLength: 3
-          type: integer
-          description: Business Unit - Identification number associated with the cardholder
-            embosser record.
-          format: int32
-          example: '600'
-        accountNumber:
-          maxLength: 19
-          type: string
-          description: Account Number - Unique Identification numbers of the Account.
-          example: '0006000011000000137'
-        suppressToken:
-          type: string
-          description: Suppress Token - Token suppression at account level indicator.
-          example: '0'
-          enum:
-          - '0'
-          - '1'
     UpdateTemporaryCreditLimitReqModel:
       required:
       - temporaryCreditLimit
@@ -4109,7 +3636,6 @@ components:
     UpdateTemporaryCreditLimitResponseModel:
       required:
       - accountNumber
-      - product
       - temporaryCreditLimit
       - temporaryCreditLimitExpiryDate
       type: object
@@ -4126,14 +3652,6 @@ components:
           type: string
           description: Account Number - Unique Identification numbers of the Account
           example: '0006000011000000103'
-        product:
-          maxLength: 3
-          type: integer
-          description: Product - Identification number of the logo associated with
-            this Account Base Segment record. The values are 001–998. This field displays
-            only in add mode (ARAB)
-          format: int32
-          example: '1'
         creditLimit:
           maxLength: 17
           type: string
@@ -4461,7 +3979,7 @@ components:
             expires for the account. The format is MM/DD/YYYY or DD/MM/YYYY depending
             on the date format established on the System record (DATE FORMAT on System
             Control)
-          example: 04/11/2022
+          example: 04/11/2021
         ddRoutingBankId:
           maxLength: 10
           type: string
@@ -4483,7 +4001,7 @@ components:
           maxLength: 17
           type: string
           description: DD Account Number - This field is the account number
-          example: '1000000057'
+          example: '00000001000000057'
         fixedPaymentAmount:
           maxLength: 1
           type: string
@@ -4499,8 +4017,8 @@ components:
         ddNominatedPaymentAmtOrPercentage:
           maxLength: 17
           type: string
-          description: DD Nominated Payment Amt / Percentage - This field is the amount
-            or percentage of direct debit
+          description: DD Nominated Payment Amt/Percentage - This field is the amount/percentage
+            of direct debit
           example: '10'
     UpdateAccountsDirectDebitResponseModel:
       required:
@@ -4521,7 +4039,7 @@ components:
           example: '0006000011000000103'
         directDebitDetailsRes:
           $ref: '#/components/schemas/DirectDebitDetailsRes'
-    Of11:
+    AlternateCustomerDetailsReq:
       type: object
       properties:
         alternateCustomerNumberFlag:
@@ -4541,13 +4059,14 @@ components:
           description: Alternate Customer Number - Number that identifies the alternate
             Customer Name/Address record containing an alternate address for statements
             and other correspondence
-          example: '0000000001000000032'
-        altCustomerExpiryDate:
+          example: '0000000001000000065'
+        alternateCustomerExpiryDate:
           maxLength: 10
           type: string
           description: Alternate Customer Number Expiry Date - Expiration date of
-            the alternate customer address, The format is MMDDYYYY or DDMMYYYY depending
-            on the date format established on the System record (DATE FORMAT on ARMS01)
+            the alternate customer address, The format is MM/DD/YYYY or DD/MM/YYYY
+            depending on the date format established on the System record (DATE FORMAT
+            on System Control)
           example: 15/04/2022
     UpdateCustomersProfileReqModel:
       type: object
@@ -4558,7 +4077,7 @@ components:
           description: Customer Number - Customer number that identifies the Customer
             Name/Address record to which this account is assigned. A valid customer
             name and address must be on file for this account
-          example: '9006000000000300015'
+          example: '0000000001000000032'
         correspondenceCustomerNumber:
           maxLength: 19
           type: string
@@ -4566,12 +4085,40 @@ components:
             Customer Name/Address record that contains the correspondence customer
             address for statements and other correspondence
           example: '0000000001000000065'
-        OF11:
-          $ref: '#/components/schemas/Of11'
+        alternateCustomerDetailsReq:
+          $ref: '#/components/schemas/AlternateCustomerDetailsReq'
+    AlternateCustomerDetailsRes:
+      type: object
+      properties:
+        alternateCustomerNumberFlag:
+          type: string
+          description: Altermate Customer Number Flag - Code that indicates how CMS
+            generates statements and other correspondence when an alternate Customer
+            Name/Address record exists for the account
+          example: A
+          enum:
+          - ' '
+          - A
+          - B
+          - C
+        alternateCustomerNumber:
+          maxLength: 19
+          type: string
+          description: Alternate Customer Number - Number that identifies the alternate
+            Customer Name/Address record containing an alternate address for statements
+            and other correspondence
+          example: '0000000001000000065'
+        alternateCustomerExpiryDate:
+          maxLength: 10
+          type: string
+          description: Alternate Customer Number Expiry Date - Expiration date of
+            the alternate customer address, The format is MM/DD/YYYY or DD/MM/YYYY
+            depending on the date format established on the System record (DATE FORMAT
+            on System Control)
+          example: 15/04/2022
     UpdateCustomersProfileResponseModel:
       required:
       - accountNumber
-      - businessUnit
       type: object
       properties:
         businessUnit:
@@ -4580,7 +4127,7 @@ components:
           description: Business Unit - Identification number associated with this
             Account Base Segment record, the values are 001–998
           format: int32
-          example: '0'
+          example: '600'
         accountNumber:
           maxLength: 19
           type: string
@@ -4592,7 +4139,7 @@ components:
           description: Customer Number - Customer number that identifies the Customer
             Name/Address record to which this account is assigned. A valid customer
             name and address must be on file for this account
-          example: '9006000000000300015'
+          example: '0000000001000000032'
         correspondenceCustomerNumber:
           maxLength: 19
           type: string
@@ -4600,8 +4147,8 @@ components:
             Customer Name/Address record that contains the correspondence customer
             address for statements and other correspondence
           example: '0000000001000000065'
-        OF11:
-          $ref: '#/components/schemas/Of11'
+        alternateCustomerDetailsRes:
+          $ref: '#/components/schemas/AlternateCustomerDetailsRes'
     CreditLimitUpdateReqModel:
       type: object
       properties:
@@ -5331,161 +4878,6 @@ components:
           description: Referral REP ID - This field displays the identification number
             of the representative referred
           example: ''
-    UpgradeAccountsProductReqModel:
-      required:
-      - account
-      - accountNumber
-      - function
-      type: object
-      properties:
-        account:
-          maxLength: 19
-          type: string
-          description: Account - Must be numeric and greater than zeroes, Must exist
-            as a valid Account number and Account should not be in ADD PENDING status
-            or CLOSED or TO BE PURGED status
-          example: '0004440010000000033'
-        businessUnit:
-          maxLength: 3
-          type: integer
-          description: Business Unit - Identification number associated with this
-            Account Base Segment record, the values are 001–998
-          format: int32
-          example: '0'
-        function:
-          maxLength: 1
-          type: string
-          description: Function - Funtions performed as - product transfer
-          example: P
-        transferAuthDays:
-          maxLength: 2
-          type: integer
-          description: Transfer Auth Days - Number of days that CMS allows authorizations
-            on the old(“transfer from”) account after a product transfer
-          format: int32
-          example: '0'
-        accountNumber:
-          maxLength: 19
-          type: string
-          description: Account Number -  Must be numeric and greater than zeroes,
-            Must exist as a valid Account number and Account should not be in ADD
-            PENDING status or CLOSED or TO BE PURGED status
-          example: /
-        product:
-          maxLength: 3
-          type: integer
-          description: Product - Logo number associated with the account entered on
-            the Locate screen
-          format: int32
-          example: '2'
-        customer:
-          maxLength: 19
-          type: string
-          description: Customer - Customer number that identifies the Customer Name/Address
-            record associated with the new account
-          example: ''
-        billingCycle:
-          maxLength: 2
-          type: integer
-          description: ' Billing Cycle -  Number that identifies the billing cycle
-            of the account'
-          format: int32
-          example: '0'
-        effectiveDate:
-          maxLength: 1
-          type: string
-          description: Effective Date -  Effective date of the transfer. The format
-            is MM/DD/YYYY or DD/MM/YYYY depending on the date format established on
-            the System record.
-          example: '0'
-        transferReplcementIndicator:
-          maxLength: 1
-          type: string
-          description: Transfer Replcement Indicator - Code that indicates whether
-            CMS replaces cards for card scheme 3 accounts
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-        hcsProduct:
-          maxLength: 3
-          type: integer
-          description: HCS Product - Identification number of the HCS product assigned
-            to the account.
-          format: int32
-          example: '0'
-        hcsProductDefault:
-          maxLength: 1
-          type: string
-          description: HCS Product Default - Field that indicates whether the HCS
-            product record parameters for sweeping, redirection, indemnity, authorization,
-            and PIN suppression will apply to the account
-          example: '1'
-          enum:
-          - '1'
-          - '0'
-        newCardTechnology:
-          maxLength: 1
-          type: string
-          description: 'New Card Technology - Field that indicates the card technology
-            CMS will use when reissuing the transferred card. The values are: 0 =
-            Reissue magnetic-stripe cards 1 = Reissue smart cards'
-          example: '1'
-          enum:
-          - ' '
-          - '0'
-          - '1'
-          - '2'
-          - '3'
-          - '4'
-          - '5'
-        continueWithReissue:
-          maxLength: 1
-          type: string
-          description: Continue With Reissue - Field that indicates whether you want
-            to continue with the reissue of new cards as a result of this transfer
-            request
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-        processType:
-          maxLength: 1
-          type: string
-          description: Process Type - Code that indicates whether CMS processes card
-            reissue for the “transfer to” account during the nightly batch processing
-            cycle or in the same-day embossing processing cycle.
-          example: ''
-          enum:
-          - ' '
-          - '0'
-          - '1'
-        sdp:
-          maxLength: 1
-          type: string
-          description: 'SDP -   Flag that indicates whether the old card on the transfer
-            from account has a pending SDP processing request. The values are: Yes
-            = Old card has a pending SDP request No = The old cards do not have a
-            pending SDP request or SDP processing has not been requested'
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-    UpgradeAccountsProductResponseModel:
-      type: object
-      properties:
-        businessUnit:
-          maxLength: 3
-          type: integer
-          description: Business Unit - Identification number associated with this
-            Account Base Segment record, the values are 001–998
-          format: int32
-          example: '600'
-        newAccount:
-          maxLength: 19
-          type: string
-          description: New Account - New account no. after service passed
-          example: '0006000022000000621'
     LetterDetailReq:
       type: object
       properties:
@@ -7427,8 +6819,8 @@ components:
           maxLength: 10
           type: string
           description: Payment Date - Effective date of the Payment, The format is
-            MMDDYYYY or DDMMYYYY depending on the date format established on the System
-            record (DATE FORMAT on System Controls)
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Controls)
           example: 04/02/2022
         cycleDue:
           maxLength: 1
@@ -7521,142 +6913,6 @@ components:
           description: Cycle Due9 Delinquency Paid Amount9 - Amount Past Due 210more
             days that was cleared by this Payment
           example: $0.00
-    InquireMemoResponseModel:
-      type: object
-      properties:
-        memoListRes:
-          type: array
-          items:
-            $ref: '#/components/schemas/MemoListRes'
-    MemoListRes:
-      required:
-      - accountNumber
-      type: object
-      properties:
-        accountNumber:
-          maxLength: 19
-          type: string
-          description: Account Number - Identification number of the account
-          example: '0006000011000000160'
-        historyDate:
-          maxLength: 10
-          type: string
-          description: History Date - Date to be used to start the search. ASM displays
-            the first action initiated on this date in the Contact History list
-          example: 15/03/2022
-        historyTime:
-          maxLength: 7
-          type: integer
-          description: History Time - Time to be used to start the search
-          format: int32
-          example: '83516'
-        recordType:
-          maxLength: 1
-          type: string
-          description: Record Type - Type of action code, The values are:F = Prepaid
-            funding, I = Inquiry, M = Monetary, N = Nonmonetary, P = Point, R = Manual
-            authorization resolution, T = Transcript, W = Multi-wallet
-          example: M
-          enum:
-          - F
-          - I
-          - M
-          - N
-          - T
-          - R
-          - W
-        alternateOrganization:
-          maxLength: 3
-          type: integer
-          description: Alternate Organization - Alternate ASM organization number
-          format: int32
-          example: '600'
-        caseNumber:
-          maxLength: 11
-          type: string
-          description: Case Number - Number assigned to action items to be displayed.
-            The system displays all items with this case number, regardless of the
-            representative who initiated the action or the account number to which
-            the system has assigned the action item
-          example: '1018064005'
-        alternateHistoryDate:
-          maxLength: 10
-          type: string
-          description: Alternate History Date
-          example: 15/03/2022
-        alternateHistoryTime:
-          maxLength: 7
-          type: integer
-          description: Alternate History Time
-          format: int32
-          example: '83516'
-        status:
-          maxLength: 1
-          type: string
-          description: Status - Current status of the action. The values are:A = Approved
-            (valid for prepaid funding action only). C = Closed. The action was processed,
-            deleted, or maintained. The description for this field indicates whether
-            the action was deleted or maintained. D = Declined (valid for prepaid
-            funding action only). O = Open. The action was put on hold for later completion.
-            Q = Queued. The action was processed but has a manual review date for
-            follow-up. R = Referred. The action was sent to another representative
-            for further handling.
-          enum:
-          - O
-          - C
-          - R
-          - A
-          - D
-          example: ''
-        referredAsmOrganization:
-          maxLength: 3
-          type: integer
-          description: Referred ASM Organization
-          format: int32
-          example: '0'
-        referralRepresentativeId:
-          maxLength: 3
-          type: string
-          description: Referral Representative Id - identification of the representative
-            to whom the transcript memo is referred for review at a later date
-          example: ''
-        actionCode:
-          maxLength: 4
-          type: string
-          description: Action Code - Action code used to further define the history
-            search. ASM displays all items with this action code for the account selected
-          example: RLP3
-        actionDescription:
-          maxLength: 20
-          type: string
-          description: Action Description - Description of the action code as defined
-            on the Action Code record
-          example: REAL-TIME PAYMENT3
-        actionNote1:
-          maxLength: 60
-          type: string
-          description: Action Note 1 - Free-form message concerning the action
-          example: ''
-        actionNote2:
-          maxLength: 60
-          type: string
-          description: Action Note 2 - Free-form message concerning the action
-          example: ''
-        actionNote3:
-          maxLength: 60
-          type: string
-          description: Action Note 3 - Free-form message concerning the action
-          example: ''
-        actionNote4:
-          maxLength: 60
-          type: string
-          description: Action Note 4 - Free-form message concerning the action
-          example: ''
-        actionNote5:
-          maxLength: 60
-          type: string
-          description: Action Note 5 - Free-form message concerning the action
-          example: ''
     ListCardsbyAccountResponseModel:
       type: object
       properties:
@@ -7669,6 +6925,13 @@ components:
       - accountNumber
       type: object
       properties:
+        businessUnit:
+          maxLength: 3
+          type: integer
+          description: Business Unit - Identification number associated with this
+            Account Base Segment record, the values are 001–998.
+          format: int32
+          example: '600'
         accountNumber:
           maxLength: 19
           type: string
@@ -7710,7 +6973,6 @@ components:
       required:
       - accountNumber
       - billingAcctInd
-      - businessUnit
       type: object
       properties:
         businessUnit:
@@ -7733,75 +6995,8 @@ components:
             account etc.
           format: int32
           example: '1'
-        OF5:
-          $ref: '#/components/schemas/Of5'
-    Of5:
-      type: object
-      properties:
-        paymentRemittanceMethod:
-          maxLength: 1
-          type: string
-          description: Payment Remittance Method - Code that indicates the payment
-            remittance method for the account
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-        ddPaymentStartDate:
-          maxLength: 7
-          type: string
-          description: DD Payment Start Date - Date on which direct debit processing
-            starts for the account.  The format is MM/DD/YYYY or DD/MM/YYYY depending
-            on the date format established on the System Control
-          example: 04/10/2021
-        ddPaymentExpiryDate:
-          maxLength: 7
-          type: string
-          description: DD Payment Expiry Date - Date on which direct debit processing
-            expires for the account. The format is MM/DD/YYYY or DD/MM/YYYY depending
-            on the date format established on the System Control
-          example: 04/11/2021
-        ddRoutingBankId:
-          maxLength: 10
-          type: string
-          description: DD Routing Bank ID - Dual-use field that accepts a nine-digit
-            routing/transit number (ACH format) or a ten-digit bank ID (non-ACH format)
-            to identify the financial institution to receive direct debit transactions
-            for account payments
-          example: '123456'
-        ddAccountType:
-          maxLength: 1
-          type: string
-          description: DD Account Type - This field is a code that indicates the type
-            of account to which the direct debit is sent
-          example: D
-          enum:
-          - D
-          - S
-        ddAccountNumber:
-          maxLength: 19
-          type: string
-          description: DD Account Number - This field is the account number
-          example: '0000000001000000057'
-        fixedPaymentAmount:
-          maxLength: 1
-          type: string
-          description: DD Nominated Type - Code that indicates the type of customer-nominated
-            payment
-          example: '1'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-          - '3'
-          - '9'
-        ddNominatedPaymentAmtOrPercentage:
-          maxLength: 17
-          type: string
-          description: DD Nominated Payment Amt/% - This field is the amount of direct
-            debit
-          example: '10'
+        directDebitDetailsRes:
+          $ref: '#/components/schemas/DirectDebitDetailsRes'
     AccountDetailResponseModel:
       required:
       - accountNumber
@@ -8431,118 +7626,6 @@ components:
             or DD/MM/YYYY depending on the date format established on the System record
             (DATE FORMAT on System Control).
           example: 00/00/0000
-    DelinquencyDetailsRes:
-      type: object
-      properties:
-        lastDeliquentDate:
-          maxLength: 10
-          type: string
-          description: Last Deliquent Date - Date on which the account was last delinquent
-            The format is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
-            on the System record (DATE FORMAT on System Control).
-          example: 14/12/2021
-        paymentDaysDeliquent:
-          maxLength: 3
-          type: integer
-          description: Payment Days Deliquent -  Number of days the account remained
-            delinquent for the previous delinquency occurrence.
-          format: int32
-          example: '66'
-        cycleDue:
-          maxLength: 1
-          type: string
-          description: Cycle Due - Code that identifies the level of contractual delinquency.
-            The contractual delinquency (also called the cycle due code), indicates
-            the number of cycles for which payments are due.
-          example: '6'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-          - 3-9
-        currentDue:
-          maxLength: 17
-          type: string
-          description: Current Due - Total current due amount for the account.
-          example: $50.00
-        pastDuePaymentAmount:
-          maxLength: 17
-          type: string
-          description: Past Due Payment Amount -  This field indicates the amount
-            delinquent for the account that has been delinquent for 1 to 29 days (also
-            called “X” days).
-          example: $120.00
-        30daysDelinquentAmount:
-          maxLength: 17
-          type: string
-          description: Amount of 30 Days Delinquent - This field indicates the amount
-            delinquent for the account that has been delinquent 30 to 59 days.
-          example: $260.00
-        60daysDelinquentAmount:
-          maxLength: 17
-          type: string
-          description: Amount of 60 Days Delinquent - This field indicates the amount
-            delinquent for the account that has been delinquent 60 to 89 days.
-          example: $120.00
-        90daysDelinquentAmount:
-          maxLength: 17
-          type: string
-          description: Amount of 90 Days Delinquent - This field indicates the amount
-            delinquent and the number of times the account has been delinquent for
-            90 to 119 days.
-          example: $0.00
-        120daysDelinquentAmount:
-          maxLength: 17
-          type: string
-          description: ' Amount of 120 Days Delinquent - This field indicates the
-            amount delinquent for the account that has been delinquent for 120 to
-            149 days.'
-          example: $0.00
-        150daysDelinquentAmount:
-          maxLength: 17
-          type: string
-          description: Amount of 150 Days Delinquent - This field indicates the amount
-            delinquent for the account that has been delinquent for 150 to 179 days.
-          example: $0.00
-        180daysDelinquentAmount:
-          maxLength: 17
-          type: string
-          description: Amount of 180 Days Delinquent - This field indicates the amount
-            delinquent for the account that has been delinquent for 180 to 209 days.
-          example: $0.00
-        210daysDelinquentAmount:
-          maxLength: 17
-          type: string
-          description: Amount of 210 Days Delinquent - This field indicates the amount
-            delinquent for the account that has been delinquent for 210 or more days.
-          example: $0.00
-        previousCycleDue:
-          maxLength: 1
-          type: integer
-          description: Previous Cycle Due - Number of cycles due as of the previous
-            cycle. This field is necessary to determine whether delinquency has worsened
-            since the previous cycle or has actually improved or remained the same.
-          format: int32
-          example: '5'
-    InquireDelinquencyResponseModel:
-      required:
-      - accountNumber
-      type: object
-      properties:
-        businessUnit:
-          maxLength: 3
-          type: integer
-          description: Business Unit - Identification number of the business unit
-            associated with the account. The values are 001-998.
-          format: int32
-          example: '600'
-        accountNumber:
-          maxLength: 19
-          type: string
-          description: Account - Identification number of the account.
-          example: '0006000011000000509'
-        delinquencyDetailsRes:
-          $ref: '#/components/schemas/DelinquencyDetailsRes'
     InquireAccountBalanceResponseModel:
       required:
       - accountNumber
