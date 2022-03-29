@@ -52,16 +52,16 @@ paths:
               $ref: '#/components/schemas/UserSignonReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -82,6 +82,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -90,16 +98,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -154,38 +154,8 @@ paths:
               $ref: '#/components/schemas/AddUserReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddUserResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -200,8 +170,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddUserResponseModel'
         '400':
           description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -247,6 +247,25 @@ components:
           description: Security Context - This field is the security context of the
             person signing on to the system
           example: '00004753153543545'
+    AccountManagementReq:
+      type: object
+      properties:
+        userCode5:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode5:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
     AddUserReqModel:
       required:
       - businessUnitPrivilegeId
@@ -284,7 +303,7 @@ components:
             to sign on unless this field is a valid past or current date. This field
             enables a sign-on record to be added and assigned a future activation
             date so that the record is automatically active on that future date, The
-            format is MMDDYYYY or DDMMYYYY depending on the date format established
+            format is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
             on the System record (DATE FORMAT on System Controls)
           example: 27/02/2022
         signonExpiryDate:
@@ -296,8 +315,8 @@ components:
             date, the system sets this field to zero. When this field is zero, signon
             attempts fail and are reported on the Security Violations Report (T130).
             This date must be changed to a valid future expiration date to enable
-            the sign-on record to be used for signing on again, The format is MMDDYYYY
-            or DDMMYYYY depending on the date format established on the System record
+            the sign-on record to be used for signing on again, The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
             (DATE FORMAT on System Controls)
           example: 31/12/2025
         operatorId:
@@ -322,7 +341,7 @@ components:
             ID and security type as the sign-on record. Access rights to additional
             organizations can be included or excluded using the I/E and ORG fields,
             which are listed on this screen under the ORG INCLUDE/EXCLUDE heading
-          example: CTLUSER
+          example: CLTUSER
         servicePrivilegeGroupId:
           maxLength: 8
           type: string
@@ -350,6 +369,44 @@ components:
           $ref: '#/components/schemas/UserApplicationAccessReq'
         userServicePrivilegeReq:
           $ref: '#/components/schemas/UserServicePrivilegeReq'
+    AuthorizationsReq:
+      type: object
+      properties:
+        userCode7:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode7:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    BusinessMessagingReq:
+      type: object
+      properties:
+        userCode2:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode2:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
     BusinessUnitIncludeExcludeFlag10Req:
       type: object
       properties:
@@ -623,235 +680,7 @@ components:
           $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag9Req'
         businessUnitIncludeExcludeFlag10Req:
           $ref: '#/components/schemas/BusinessUnitIncludeExcludeFlag10Req'
-    UserApplicationAccess10Req:
-      type: object
-      properties:
-        userCode10:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode10:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess11Req:
-      type: object
-      properties:
-        userCode11:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode11:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess12Req:
-      type: object
-      properties:
-        userCode12:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode12:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess13Req:
-      type: object
-      properties:
-        userCode13:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode13:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess14Req:
-      type: object
-      properties:
-        userCode14:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode14:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess15Req:
-      type: object
-      properties:
-        userCode15:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode15:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess16Req:
-      type: object
-      properties:
-        userCode16:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode16:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess17Req:
-      type: object
-      properties:
-        userCode17:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode17:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess18Req:
-      type: object
-      properties:
-        userCode18:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode18:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess19Req:
-      type: object
-      properties:
-        userCode19:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode19:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess1Req:
-      type: object
-      properties:
-        userCode1:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode1:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess20Req:
-      type: object
-      properties:
-        userCode20:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode20:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess21Req:
+    ClientSupportReq:
       type: object
       properties:
         userCode21:
@@ -870,254 +699,7 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-    UserApplicationAccess22Req:
-      type: object
-      properties:
-        userCode22:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode22:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess23Req:
-      type: object
-      properties:
-        userCode23:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode23:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess24Req:
-      type: object
-      properties:
-        userCode24:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode24:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess25Req:
-      type: object
-      properties:
-        userCode25:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode25:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess26Req:
-      type: object
-      properties:
-        userCode26:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode26:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess27Req:
-      type: object
-      properties:
-        userCode27:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode27:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess28Req:
-      type: object
-      properties:
-        userCode28:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode28:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess29Req:
-      type: object
-      properties:
-        userCode29:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode29:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess2Req:
-      type: object
-      properties:
-        userCode2:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode2:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess30Req:
-      type: object
-      properties:
-        userCode30:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode30:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess3Req:
-      type: object
-      properties:
-        userCode3:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode3:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess4Req:
-      type: object
-      properties:
-        userCode4:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode4:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess5Req:
-      type: object
-      properties:
-        userCode5:
-          maxLength: 1
-          type: string
-          description: User Code - User-defined code that provides access to custom
-            code features within programs. The values are a letter (A–Z), a number
-            (0–9), or space
-          example: ''
-        fieldSecurityCode5:
-          maxLength: 1
-          type: string
-          description: Field Security Code - User-defined code that provides access
-            to custom code features within programs or that identifies a Field Security
-            record in the Credit Management System (CMS) and/or Merchant Bankcard
-            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
-            or space
-          example: ''
-    UserApplicationAccess6Req:
+    CollectionManagementReq:
       type: object
       properties:
         userCode6:
@@ -1136,17 +718,17 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-    UserApplicationAccess7Req:
+    CommercialCardReq:
       type: object
       properties:
-        userCode7:
+        userCode10:
           maxLength: 1
           type: string
           description: User Code - User-defined code that provides access to custom
             code features within programs. The values are a letter (A–Z), a number
             (0–9), or space
           example: ''
-        fieldSecurityCode7:
+        fieldSecurityCode10:
           maxLength: 1
           type: string
           description: Field Security Code - User-defined code that provides access
@@ -1155,7 +737,64 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-    UserApplicationAccess8Req:
+    ConnectionManagerReq:
+      type: object
+      properties:
+        userCode23:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode23:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    CtryCurrencyCatCodesReq:
+      type: object
+      properties:
+        userCode1:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode1:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    CustomerCommunicationManagementReq:
+      type: object
+      properties:
+        userCode25:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode25:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    CustomerServiceReq:
       type: object
       properties:
         userCode8:
@@ -1174,7 +813,292 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
-    UserApplicationAccess9Req:
+    DecisionEngineSystemReq:
+      type: object
+      properties:
+        userCode26:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode26:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    EmbScriptingSystemReq:
+      type: object
+      properties:
+        userCode14:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode14:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    ExceptionProcessingReq:
+      type: object
+      properties:
+        userCode4:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode4:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    FutureUse03Req:
+      type: object
+      properties:
+        userCode3:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode3:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    FutureUse16Req:
+      type: object
+      properties:
+        userCode16:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode16:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    FutureUse18Req:
+      type: object
+      properties:
+        userCode18:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode18:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    FutureUse27Req:
+      type: object
+      properties:
+        userCode27:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode27:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    FutureUse28Req:
+      type: object
+      properties:
+        userCode28:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode28:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    FutureUse30Req:
+      type: object
+      properties:
+        userCode30:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode30:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    InternationalLanguageReq:
+      type: object
+      properties:
+        userCode19:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode19:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    KeyManagementSystemReq:
+      type: object
+      properties:
+        userCode15:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode15:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    LetterRequestsReq:
+      type: object
+      properties:
+        userCode17:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode17:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    MerchantSettlementReq:
+      type: object
+      properties:
+        userCode12:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode12:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    OfferManagementReq:
+      type: object
+      properties:
+        userCode11:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode11:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    PosDeviceManagementReq:
+      type: object
+      properties:
+        userCode24:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode24:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    RemoteInterfaceReq:
       type: object
       properties:
         userCode9:
@@ -1193,69 +1117,126 @@ components:
             System (MBS) applications. The values are a letter (A–Z), a number (0–9),
             or space
           example: ''
+    RewardManagementReq:
+      type: object
+      properties:
+        userCode20:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode20:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    SecurityReq:
+      type: object
+      properties:
+        userCode22:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode22:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
+    TransactionManagementReq:
+      type: object
+      properties:
+        userCode29:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode29:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
     UserApplicationAccessReq:
       type: object
       properties:
-        userApplicationAccess1Req:
-          $ref: '#/components/schemas/UserApplicationAccess1Req'
-        userApplicationAccess2Req:
-          $ref: '#/components/schemas/UserApplicationAccess2Req'
-        userApplicationAccess3Req:
-          $ref: '#/components/schemas/UserApplicationAccess3Req'
-        userApplicationAccess4Req:
-          $ref: '#/components/schemas/UserApplicationAccess4Req'
-        userApplicationAccess5Req:
-          $ref: '#/components/schemas/UserApplicationAccess5Req'
-        userApplicationAccess6Req:
-          $ref: '#/components/schemas/UserApplicationAccess6Req'
-        userApplicationAccess7Req:
-          $ref: '#/components/schemas/UserApplicationAccess7Req'
-        userApplicationAccess8Req:
-          $ref: '#/components/schemas/UserApplicationAccess8Req'
-        userApplicationAccess9Req:
-          $ref: '#/components/schemas/UserApplicationAccess9Req'
-        userApplicationAccess10Req:
-          $ref: '#/components/schemas/UserApplicationAccess10Req'
-        userApplicationAccess11Req:
-          $ref: '#/components/schemas/UserApplicationAccess11Req'
-        userApplicationAccess12Req:
-          $ref: '#/components/schemas/UserApplicationAccess12Req'
-        userApplicationAccess13Req:
-          $ref: '#/components/schemas/UserApplicationAccess13Req'
-        userApplicationAccess14Req:
-          $ref: '#/components/schemas/UserApplicationAccess14Req'
-        userApplicationAccess15Req:
-          $ref: '#/components/schemas/UserApplicationAccess15Req'
-        userApplicationAccess16Req:
-          $ref: '#/components/schemas/UserApplicationAccess16Req'
-        userApplicationAccess17Req:
-          $ref: '#/components/schemas/UserApplicationAccess17Req'
-        userApplicationAccess18Req:
-          $ref: '#/components/schemas/UserApplicationAccess18Req'
-        userApplicationAccess19Req:
-          $ref: '#/components/schemas/UserApplicationAccess19Req'
-        userApplicationAccess20Req:
-          $ref: '#/components/schemas/UserApplicationAccess20Req'
-        userApplicationAccess21Req:
-          $ref: '#/components/schemas/UserApplicationAccess21Req'
-        userApplicationAccess22Req:
-          $ref: '#/components/schemas/UserApplicationAccess22Req'
-        userApplicationAccess23Req:
-          $ref: '#/components/schemas/UserApplicationAccess23Req'
-        userApplicationAccess24Req:
-          $ref: '#/components/schemas/UserApplicationAccess24Req'
-        userApplicationAccess25Req:
-          $ref: '#/components/schemas/UserApplicationAccess25Req'
-        userApplicationAccess26Req:
-          $ref: '#/components/schemas/UserApplicationAccess26Req'
-        userApplicationAccess27Req:
-          $ref: '#/components/schemas/UserApplicationAccess27Req'
-        userApplicationAccess28Req:
-          $ref: '#/components/schemas/UserApplicationAccess28Req'
-        userApplicationAccess29Req:
-          $ref: '#/components/schemas/UserApplicationAccess29Req'
-        userApplicationAccess30Req:
-          $ref: '#/components/schemas/UserApplicationAccess30Req'
+        ctryCurrencyCatCodesReq:
+          $ref: '#/components/schemas/CtryCurrencyCatCodesReq'
+        businessMessagingReq:
+          $ref: '#/components/schemas/BusinessMessagingReq'
+        futureUse03Req:
+          $ref: '#/components/schemas/FutureUse03Req'
+        exceptionProcessingReq:
+          $ref: '#/components/schemas/ExceptionProcessingReq'
+        accountManagementReq:
+          $ref: '#/components/schemas/AccountManagementReq'
+        collectionManagementReq:
+          $ref: '#/components/schemas/CollectionManagementReq'
+        authorizationsReq:
+          $ref: '#/components/schemas/AuthorizationsReq'
+        customerServiceReq:
+          $ref: '#/components/schemas/CustomerServiceReq'
+        remoteInterfaceReq:
+          $ref: '#/components/schemas/RemoteInterfaceReq'
+        commercialCardReq:
+          $ref: '#/components/schemas/CommercialCardReq'
+        OfferManagementReq:
+          $ref: '#/components/schemas/OfferManagementReq'
+        merchantSettlementReq:
+          $ref: '#/components/schemas/MerchantSettlementReq'
+        "\tapplicationProcessingReq":
+          $ref: '#/components/schemas/applicationProcessingReq'
+        embScriptingSystemReq:
+          $ref: '#/components/schemas/EmbScriptingSystemReq'
+        keyManagementSystemReq:
+          $ref: '#/components/schemas/KeyManagementSystemReq'
+        futureUse16Req:
+          $ref: '#/components/schemas/FutureUse16Req'
+        letterRequestsReq:
+          $ref: '#/components/schemas/LetterRequestsReq'
+        futureUse18Req:
+          $ref: '#/components/schemas/FutureUse18Req'
+        internationalLanguageReq:
+          $ref: '#/components/schemas/InternationalLanguageReq'
+        rewardManagementReq:
+          $ref: '#/components/schemas/RewardManagementReq'
+        clientSupportReq:
+          $ref: '#/components/schemas/ClientSupportReq'
+        securityReq:
+          $ref: '#/components/schemas/SecurityReq'
+        connectionManagerReq:
+          $ref: '#/components/schemas/ConnectionManagerReq'
+        posDeviceManagementReq:
+          $ref: '#/components/schemas/PosDeviceManagementReq'
+        customerCommunicationManagementReq:
+          $ref: '#/components/schemas/CustomerCommunicationManagementReq'
+        decisionEngineSystemReq:
+          $ref: '#/components/schemas/DecisionEngineSystemReq'
+        futureUse27Req:
+          $ref: '#/components/schemas/FutureUse27Req'
+        futureUse28Req:
+          $ref: '#/components/schemas/FutureUse28Req'
+        transactionManagementReq:
+          $ref: '#/components/schemas/TransactionManagementReq'
+        futureUse30Req:
+          $ref: '#/components/schemas/FutureUse30Req'
     UserServicePrivilege10Req:
       type: object
       properties:
@@ -1639,5 +1620,24 @@ components:
           $ref: '#/components/schemas/UserServicePrivilege9Req'
         userServicePrivilege10Req:
           $ref: '#/components/schemas/UserServicePrivilege10Req'
+    applicationProcessingReq:
+      type: object
+      properties:
+        userCode13:
+          maxLength: 1
+          type: string
+          description: User Code - User-defined code that provides access to custom
+            code features within programs. The values are a letter (A–Z), a number
+            (0–9), or space
+          example: ''
+        fieldSecurityCode13:
+          maxLength: 1
+          type: string
+          description: Field Security Code - User-defined code that provides access
+            to custom code features within programs or that identifies a Field Security
+            record in the Credit Management System (CMS) and/or Merchant Bankcard
+            System (MBS) applications. The values are a letter (A–Z), a number (0–9),
+            or space
+          example: ''
     AddUserResponseModel:
       type: object
