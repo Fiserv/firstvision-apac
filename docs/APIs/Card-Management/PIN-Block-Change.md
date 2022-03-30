@@ -2,8 +2,6 @@
 
 The PIN Block change service is used to update the PIN Block with the prerequisite that the existing PIN block must be supplied and validated.
 
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
-
 ## Endpoint
 
 `PUT /v1/cards/{cardNumber}/pinBlockChange`
@@ -14,17 +12,13 @@ Fields that are not provided in the request object will be initialised to their 
 
 ```json
 {
-  "userFiller": " ",
-  "product": 1,
-  "signonName": " ",
-  "requestedPinBlock": 123456,
+  "requestedPinBlock": "123456",
+  "currentPinBlock": "2673217",
+  "pinOffset": 0,
   "pinChannel": "A",
-  "securitySignon": " ",
-  "currentPinBlock": " ",
-  "keyAssociation": " ",
-  "vgsFiller": " ",
-  "pinOffset": 0
+  "keyAssociation": ""
 }
+
 ```
 
 ### Minimum Requirements
@@ -35,19 +29,19 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
-| `currentPinBlock` | Payload | *string* | 16 | Current PIN Block |
-| `requestedPinBlock` | Payload | *string* | 16 | PIN block to be updated |
+| `currentPinBlock` | Payload | *string* | 16 | Code that indicates the original PIN encrypted under a zone PIN key. |
+| `requestedPinBlock` | Payload | *string* | 16 | Code that indicates the requested PIN encrypted under a zone PIN key. |
+| `pinOffset` | Payload | *number* | 04 | Code that CMS uses to calculate the Personal Identification Number (PIN) for this card. |
+| `pinChannel` | Payload | *string* | 01 | Code that indicates the source for reporting purposes. |
 
 ### Successful Response Payload
 
 ```json
 {
-    "cardNumber": "0009543491000080172",
-    "userFiller": "",
-    "filler": "",
+  "cardNumber": "0009544410000000047"
 }
+
 ```
 
 ### Error Response Payload

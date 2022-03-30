@@ -11,7 +11,8 @@ The service is used for the purpose of the card look up where the account number
 ### Request Payload
 
 > Should be empty.
-***The Business Unit and Account Number should be sent as query parameters and path variable.***
+>
+>***The Account Number should be sent as and path variable.***
 
 ### Minimum Requirements
 
@@ -19,7 +20,7 @@ The below table contains the mandatory fields required for a successful request.
 
 The below table identifies the required parameters in the request payload.
 
-| Variable | Passed as | Type | Leuith | Description/Values |
+| Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account.|
 
@@ -27,189 +28,18 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "listOfCards": [
+  "listOfCardsRes": [
     {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010015644528",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010020927363",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010044487782",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010058164574",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010084810463",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
+      "accountNumber": "0006000022000000076",
       "blockCode": "",
       "businessUnit": 600,
       "cardHolderType": 1,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010092387371",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010262797243",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010369465561",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010388834920",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010415574424",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010425015947",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010462782698",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010501612690",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010554156348",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010572183043",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010613722064",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010641905491",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010698097747",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010698241410",
-      "status": "1"
-    },
-    {
-      "accountNumber": "0004440010000000017",
-      "blockCode": "",
-      "businessUnit": 600,
-      "cardHolderType": 0,
-      "embeddedCardBusinessUnit": "600",
-      "embeddedCardNumber": "0004440010731293865",
+      "cardNumber": "0004440020051355558",
+      "nameOnCard": "",
       "status": "1"
     }
   ]
 }
-```
 
+```
 

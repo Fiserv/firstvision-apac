@@ -2,8 +2,6 @@
 
 This service is used update pricing control structure over an accounts. This service will update PCT Override, PCT Start Date, State Of Residency, State Of Issuance and PCT Expiry Date.
 
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
-
 ## Endpoint
 
 `PUT /v1/accounts/{accountNumber}/pricingControls`
@@ -14,11 +12,11 @@ Fields that are not provided in the request object will be initialised to their 
 
 ```json
 {
-  "pctOverride": "HCS",
-  "stateOfResidency": "SX1",
   "stateOfIssuance": "SX1",
-  "pctExpiryDate": "31/12/2025",
-  "pctStartDate": "29/01/2022"
+  "stateOfResidency": "SX1",
+  "pctOverride": "HCS",
+  "pctStartDate": "29/01/2022",
+  "pctExpiryDate": "31/12/2025"
 }
 ```
 
@@ -30,25 +28,21 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. |
-| `pCTOverride` | Payload | *string* | 3 | Code that identifies an existing Processing Control Table (PCT ID). | 
-| `pCTStartDate` | Payload | *Date* | DD/MM/YYYY | Date on which the special pricing controls start for the account. | 
-| `stateOfResidency` | Payload | *string* | 3 | Code that identifies the state, province, or country in which the account holder resides. | 
-| `stateOfIssuance` | Payload | *string* | 3 | Code that identifies the state, province or country in which the account was issued. | 
-| `pCTExpiryDate` | Payload | *Date* | DD/MM/YYYY | Date on which the special pricing controls expire for the account. |  
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
 {
+  "accountNumber": "0006000011000000137",
   "businessUnit": 600,
-  "pctOverride": "HCS",
-  "stateOfResidency": "SX1",
-  "stateOfIssuance": "SX1",
   "pctExpiryDate": "31/12/2025",
-  "accountNumber": 6000011000000137,
-  "pctStartDate": "29/01/2022"
+  "pctOverride": "HCS",
+  "pctStartDate": "29/01/2022",
+  "stateOfIssuance": "SX1",
+  "stateOfResidency": "SX1"
 }
 ```
 

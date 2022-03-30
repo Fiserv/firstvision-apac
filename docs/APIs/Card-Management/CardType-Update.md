@@ -2,8 +2,6 @@
 
 This service is used to update the type of cardholder between primary and supplementary (Joint Cardholder). 
 
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
-
 ## Endpoint
 
 `PUT /v1/cards/{cardNumber}/profile`
@@ -26,7 +24,6 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. | 
 | `cardholderType` | Payload | *numeric* | 1 | Pass value 1 for single primary cardholder. Pass value 0 for Joint cardholder |
 
@@ -34,12 +31,11 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "cardholderType": "1",
   "businessUnit": 100,
-  "cardSequence": 1,
-  "postToAccountNumber": "000100001NNNNN0760",
-  "cardNumber": "000984680NNNNN73613"
+  "cardNumber": "0009846801010273613",
+  "cardholderType": "1"
 }
+
 ```
 
 ### Error Response Payload

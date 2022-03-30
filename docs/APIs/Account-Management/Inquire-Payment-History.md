@@ -11,13 +11,14 @@ This API is used to retrive latest six payment details for given account number 
 ### Request Payload
 
 >Should be empty. 
-***The Business Unit and Account Number should be sent as query parameters and path variable.***
+>
+>***The Business Unit and Account Number should be sent as query parameters and path variable.***
  
 ### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountNumber}/paymentHistory).
 
-The below table identifies the required parameters in the request payload. Test
+The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Leuith | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |

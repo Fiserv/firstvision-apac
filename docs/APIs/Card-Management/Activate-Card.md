@@ -26,9 +26,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
-| `currentCardRequireActivation` | Payload | *string* | 1 | Value ‘N’ To be passed to activate the card. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 

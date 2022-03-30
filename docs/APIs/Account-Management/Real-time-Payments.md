@@ -12,44 +12,58 @@ This service is used post the real-time payments which increases open to buy imm
 
 ```json
 {
-  "ticketNumber": 0,
-  "letterCode": "",
-  "departmentCode": "",
-  "salesClerk": "",
-  "letterBusinessUnit": 0,
-  "referralRepBusinessUnit": 0,
+  "cmsBusinessUnit": "600",
   "accountNumber": "0006000011000000160",
-  "referralRepresentativeId": " ",
-  "asmRepresentative": "NAB",
-  "skuNumber": 0,
-  "caseNumber": 5313031301,
-  "transactionAmount": 1000,
-  "lineData3": "",
-  "lineData2": "",
-  "referralOption": 0,
-  "lineData5": "",
-  "cmsBusinessUnit": 600,
   "actionCode": "RLP3",
-  "lineData4": "",
+  "transactionAmount": "1000.0",
   "effectiveDate": "25/02/2022",
-  "lineData1": "",
-  "asmBusinessUnit": 600,
-  "cardNumber": "0006000011000000160"
+  "departmentCode": "",
+  "skuNumber": 0,
+  "salesClerk": "",
+  "cardNumber": "0000000000000000000",
+  "ticketNumber": "0",
+  "caseNumber": "05313031301",
+  "actionNotesReq": {
+    "lineData1": "",
+    "lineData2": "",
+    "lineData3": "",
+    "lineData4": "",
+    "lineData5": ""
+  },
+  "representativeDetailsReq": {
+    "asmBusinessUnit": "600",
+    "asmRepresentative": "NAB",
+    "referralOption": "0",
+    "referralRepBusinessUnit": 0,
+    "referralRepresentativeId": ""
+  },
+  "letterDetailsReq": {
+    "letterCode": "",
+    "letterBusinessUnit": ""
+  }
 }
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](..api/?type=post&path=/v1/accounts/realTimePayments).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/realTimePayments).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Payload | *string* | 19 | Account Number - Unique Identification number of the account. | 
-| `actionCode` | Payload | *string* | 4 | Action Code - Action code placed on the account. |
-| `transactionAmount` | Payload | *number* | 17 | Transaction Amount - Transaction amount to be posted. |
- 
+| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
+| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
+| `actionCode` | Payload | *string* | 4 | Action code placed on the account. | 
+| `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. |
+| `effectiveDate` | Payload | *DATE* | 10	 | Date when this action is to take effect. |
+| `cardNumber` | Payload | *string* | 19 | This field represents the card number associated with the transaction. |
+| `storeNumber` | Payload | *number* | 9 | Store number associated with the transaction. |
+| `asmBusinessUnit` | Payload | *string* | 1 | This field indicates the business unit of the ASM. |  
+| `letterBusinessUnit` | Payload | *number* | 3 | This field indicates the business unit of the LTS letter to be sent to the customer. | 
+| `referralRepresentativeId` | Payload | *string* | 3 | This field is the identification number of the referral representative. |  
+| `letterCode` | Payload | *string* | 3 | This field indicates the user-defined letter code of the LTS letter to be sent to the customer through batch processing. |
+
 ### Successful Response Payload
 
 ```json
@@ -58,29 +72,41 @@ The below table identifies the required parameters in the request payload.
   "accountNumber": "0006000011000000160",
   "actionCode": "RLP3",
   "actionCodeDescription": "REAL-TIME PAYMENT3",
+  "actionNotesRes": {
+    "note1": "",
+    "note2": "",
+    "note3": "",
+    "note4": "",
+    "note5": ""
+  },
   "actionRepId": "NAB",
   "autoReferenceFlag": 1,
+  "balancesRes": {
+    "cashAvailable": "$0.00",
+    "creditLimit": "$0.50",
+    "currentBalance": "$72.00",
+    "openToBuy": "-$166,771.50"
+  },
   "cardNumber": "0006000011000000160",
-  "cashAvailable": "$0.00",
   "clerk": "",
-  "creditLimit": "$0.50",
-  "currentBalance": "$72.00",
   "departmentCode": "",
   "departmentNumber": "",
   "effectiveDate": "25/02/2022",
-  "historyDate": "04/03/2022",
-  "historyTime": 144835,
-  "letterBusinessUnit": 0,
-  "letterCode": "",
-  "memoLines": [],
+  "historyDate": "30/03/2022",
+  "historyTime": 54014,
+  "letterDetailsRes": {
+    "letterBusinessUnit": 0,
+    "letterCode": ""
+  },
   "name": "RACHEL TEST BY SASHI",
-  "openToBuy": "-$166,771.50",
-  "referralRepBusinessUnit": 0,
-  "referralRepId": "",
-  "repBusinessUnit": 600,
+  "representativeDetailsRes": {
+    "referralRepBusinessUnit": 0,
+    "referralRepId": "",
+    "repBusinessUnit": 600
+  },
   "skuNumber": 0,
   "ticketNumber": "0",
-  "transactionAmount": "$10.00",
+  "transactionAmount": "$100.00",
   "transactionDescription": "API TRANSMISSION TESTING3",
   "workExtension": 0,
   "workPhone": "00000000000000000000"
@@ -126,4 +152,4 @@ Below table provides the list of application's error code and its description.
 | `V8MA4030EG` | Referal option must be valid 0, spaces or 1 |  
 | `V8MA4031EG` | Manual org must be numeric and 001-998 |  
 | `V8MA4032EG` | Manual referal rep ID was not supplied |  
-| `V8MA4036EA` | ASM rep not allowed to access account org |  
+| `V8MA4036EA` | ASM rep not allowed to access account org | 

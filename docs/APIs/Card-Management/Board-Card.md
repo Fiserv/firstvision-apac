@@ -60,25 +60,28 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Leuith | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `baseAccountNumber` | Payload | *string* | 19 | This is an identification number to assign to the new account base segment record.|
-| `createEmbosserRecords` | Payload | *string* | 01 | This is the code that indicates whether to add a new embosser record. |
-| `customerNumber` | Payload | *string* | 19 | Number that identifies the Customer Name/Address record of the account holder. |
 | `businessUnit` | Payload | *number* | 03 | Identification number associated with this account base segment record, the values are 001–998. |
-| `product` | Payload | *number* | 03 | Identification number of the product associated with the  account or relationship. | |
+| `product` | Payload | *number* | 03 | Identification number of the product associated with the  account or relationship. | 
+| `baseAccountNumber` | Payload | *string* | 19 | This is an identification number to assign to the new account base segment record.|
+| `customerNumber` | Payload | *string* | 19 | Number that identifies the Customer Name/Address record of the account holder. |
+| 'embossedName1` | Payload | *string* | 26 | This field that specifies the default generic name line 1. |
+| `cardholderFlag` | Payload | *string* | 01 | This is the code that indicates whether the card is issued as a primary or secondary card. |
+| `deviceIndicator` | Payload | *string* | 01 | Code that indicates the type of device (form factor) written to the track data on the card. |
+| `suppressLetter` | Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "expiryDate": "01/10/2025",
-  "product": 1,
   "businessUnit": 600,
-  "cardActivationStatus": " ",
-  "tempCardNbr": " ",
-  "nameOnCard": "JOHN",
-  "maskedPanNumber": 4440010847192688,
-  "cardNumberfvToken": 4440010847192688
+  "cardActivationStatus": "0",
+  "cardNumberFvToken": "0004440010902927457",
+  "expiryDate": "18/01/2024",
+  "maskedPanNumber": "0004440010902927457",
+  "nameOnCard": "John Brono",
+  "product": 1
 }
+
 ```
 
 ### Error Response Payload

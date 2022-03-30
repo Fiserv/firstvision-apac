@@ -12,41 +12,42 @@ This service will update the Open-to-Buy, memo debit and credit fields on the Ac
 
 ```json
 {
-  "ticketNumber": 0,
-  "storeNumber": 999999998,
-  "flag": " ",
-  "authorizationCode": " ",
-  "actionCodePriority": 0,
-  "departmentCode": " ",
-  "salesClerk": " ",
-  "letterBusinessUnit": 0,
-  "referralRepresentativeId": " ",
-  "insuranceCode": " ",
-  "skuNumber": 0,
-  "referenceNumber": 0,
-  "caseNumber": 0,
-  "transactionAmount": 3000,
-  "lineData3": " ",
-  "lineData2": " ",
-  "lineData5": " ",
+  "cmsBusinessUnit": "600",
+  "accountNumber": "0006000011000000160",
   "actionCode": "AINQ",
-  "lineData4": " ",
-  "lineData1": " ",
-  "walletId": " ",
-  "cardSequence": 0,
-  "letterCode": " ",
-  "referralRepBusinessUnit": 0,
-  "foreignUseIndicator": 0,
-  "planNumber": 10002,
-  "asmRepresentative": "NAB",
-  "planSequence": 1,
-  "signonName": "string",
-  "purchaseOrderNumber": 0,
-  "referralOption": 0,
-  "securitySignon": "string",
+  "transactionAmount": "3000.0",
   "effectiveDate": "18/08/2021",
-  "asmBusinessUnit": 600,
-  "cardNumber": 6000011000000160
+  "departmentCode": "",
+  "skuNumber": 0,
+  "salesClerk": "",
+  "cardNumber": "0006000011000000160",
+  "ticketNumber": "0",
+  "caseNumber": "0",
+  "purchaseOrderNumber": "0",
+  "planNumber": 10002,
+  "storeNumber": 999999998,
+  "authorizationCode": "",
+  "referenceNumber": 0,
+  "actionCodePriority": 0,
+  "insuranceCode": "",
+  "memoLinesReq": {
+    "lineData1": "",
+    "lineData2": "",
+    "lineData3": "",
+    "lineData4": "",
+    "lineData5": ""
+  },
+  "representativeDetailReq": {
+    "asmBusinessUnit": "600",
+    "asmRepresentative": "NAB",
+    "referralOption": "0",
+    "referralRepBusinessUnit": 0,
+    "referralRepresentativeId": ""
+  },
+  "letterDetailReq": {
+    "letterCode": "",
+    "letterBusinessUnit": "0"
+  }
 }
 ```
 
@@ -60,114 +61,83 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
-| `walletID` | Payload | *string* | 3 | This field is the identification Wallet associated with the transaction. |  
-| `ticketNumber` | Payload | *string* | 15 | Ticket number (invoice number) associated with the transaction. | 
+| `actionCode` | Payload | *string* | 4 | Action code placed on the account. | 
+| `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. |
+| `effectiveDate` | Payload | *DATE* | 10	 | Date when this action is to take effect. |
+| `cardNumber` | Payload | *string* | 19 | This field represents the card number associated with the transaction. |
 | `storeNumber` | Payload | *number* | 9 | Store number associated with the transaction. |
-| `flag` | Payload | *string* | 3 | flag. | 
-| `authorizationCode` | Payload | *string* | 6 | Authorization code associated with the transaction. | 
-| `actionCodePriority` | Payload | *number* | 1 | This field helps to set priority for the action code. |  
-| `departmentCode` | Payload | *string* | 4 | This field displays the identification of the department code associated with the transaction. | 
-| `salesClerk` | Payload | *string* | 12 | Sales clerk associated with the transaction. | 
+| `asmBusinessUnit` | Payload | *string* | 1 | This field indicates the business unit of the ASM. |  
 | `letterBusinessUnit` | Payload | *number* | 3 | This field indicates the business unit of the LTS letter to be sent to the customer. | 
 | `referralRepresentativeId` | Payload | *string* | 3 | This field is the identification number of the referral representative. |  
-| `insuranceCode` | Payload | *string* | 2 | Code that identifies the insurance product associated with the transaction. | 
-| `referenceNumber` | Payload | *string* | 14 | This field is used for the identification of the reference number associated with the transaction. |  
-| `caseNumber` | Payload | *number* | 11 | This field is the identification number of the case related to the transaction. |
-| `aSMRepresentative` | Payload | *number* | 3 | ASM Representative. | 
-| `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. | 
-| `lineData 1` | Payload | *string* | 60 | This field is used to enter a note for the action to be taken. |  
-| `aSMBusinessUnit` | Payload | *string* | 1 | Waive Late Charges. |  
-| `lineData2` | Payload | *string* | 60 | This field is used to enter a note for the action to be taken. |  
-| `lineData5` | Payload | *string* | 60 | This field is used to enter a note for the action to be taken. | 
-| `actionCode` | Payload | *string* | 4 | Action code placed on the account. | 
-| `lineData4` | Payload | *string* | 60 | This field is used to enter a note for the action to be taken. |  
-| `lineData1` | Payload | *string* | 60 | This field is used to enter a note for the action to be taken. | 
-| `sKUNumber` | Payload | *number* | 9 | SKU number associated with the transaction. | 
-| `cardSequence` | Payload | *number* | 5 | This field represents the card sequence number associated with the card number of the transaction. | 
-| `letterCode` | Payload | *string* | 3 | This field indicates the user-defined letter code of the LTS letter to be sent to the customer through batch processing. | 
-| `referralRepBusinessUnit` | Payload | *string* | 3 | This field is the identification number of the Business unit of the referral representative. | 
-| `foreignUseIndicator` | Payload | *string* | 1 | Foreign Use Indicator. | 
-| `planNumber` | Payload | *number* | 5 | Credit plan number associated with the transaction. |  
-| `planSequence` | Payload | *number* | 2 | Sequence number of the plan segment associated with the transaction. |   
-| `signonName` | Payload | *number* | 20 | Sign on Name. |  
-| `purchaseOrderNumber` | Payload | *string* | 16 | Waive Late Charges. |   
-| `referralOption` | Payload | *string* | 1 | This field helps to provide referral option manually. |   
-| `securitySignon` | Payload | *string* | 1 | Context name. | 
-| `effectiveDate` | Payload | *DATE* | DD/MM/YYYY	 | Date when this action is to take effect. |  
-| `cardNumber` | Payload | *string* | 19 | This field represents the card number associated with the transaction. | 
-
+| `letterCode` | Payload | *string* | 3 | This field indicates the user-defined letter code of the LTS letter to be sent to the customer through batch processing. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "insurance": "",
-  "storeNumber": 999999998,
-  "collectionSequenceNumber": 0,
-  "currrencyNod": 2,
-  "departmentCode": "",
-  "pointsProgram": 0,
-  "letterBusinessUnit": 0,
-  "transactionDescription": "  ",
-  "historyDate": "27/01/2022",
-  "notePurgeDate": "00/00/0000",
-  "skuNumber": 0,
-  "referenceNumber": "",
-  "cashAvailable": "$0.00",
-  "creditLimit": "$5,000.00",
-  "repBusinessUnit": 600,
-  "actionCode": "AINQ",
-  "resolutionReferenceNumber": 0,
-  "cardSequenceNumber": 1,
-  "walletId": "",
-  "letterCode": "",
-  "fundingCardNumber": " ",
-  "currentBalance": "$72.00",
-  "nextReviewTime": 0,
-  "actionRepId": "NAB",
-  "transactionCode": 2006,
-  "foreignUseIndicator": 0,
-  "memoLines": [
-    {
-      "note": ""
-    }
-  ],
-  "planNumber": 10002,
-  "authorizationNumber": "",
-  "departmentNumber": "",
-  "notesHistoryStatus": "O",
-  "name": "RACHEL TEST BY SASHI",
-  "cardNumber": 6000011000000160,
   "accountBusinessUnit": 600,
-  "ticketNumber": 0,
-  "retentionDuration": "",
-  "actionCodePriority": 0,
-  "workExtension": 0,
-  "autoReferenceFlag": 1,
-  "nextReviewDate": "00/00/0000",
-  "transactionAmount": "$3,000.00",
-  "storeBusinessUnit": 0,
+  "accountNumber": "0006000011000000160",
   "accountProduct": 1,
+  "actionCode": "AINQ",
+  "actionCodeDescription": "ACCOUNT INQ",
   "actionDate": "00/00/0000",
-  "actionCodeDescription": "ACCOUNT INQ",
-  "declineReason": " ",
-  "ctaFile": "",
-  "decision": "A",
-  "pointsAmount": "$0.00",
-  "recordType": "M",
-  "planSequenceNumber": 1,
-  "referralRepBusinessUnit": 0,
-  "openToBuy": "-$80,072.00",
-  "accountNumber": 6000011000000160,
+  "authorizationNumber": "",
+  "autoReferenceFlag": 1,
+  "cardNumber": "0006000011000000160",
+  "cashAvailable": "$0.00",
   "clerk": "",
-  "transactionType": "",
+  "creditLimit": "$0.50",
+  "currentBalance": "$72.00",
+  "currrencyNod": 2,
+  "decision": "A",
+  "declineReason": "",
+  "departmentCode": "",
+  "effectiveDate": "18/08/2021",
   "feeAmount": "$0.00",
-  "purchaseOrderNumber": 0,
-  "referralRepId": "",
-  "workPhone": 0,
-  "historyTime": 101933,
-  "currencyCode": 36,
-  "effectiveDate": "18/08/2021"
+  "foreignUseIndicator": 0,
+  "historyDate": "30/03/2022",
+  "historyTime": 50812,
+  "insurance": "",
+  "letterDetailRes": {
+    "letterBusinessUnit": 0,
+    "letterCode": ""
+  },
+  "memoLinesRes": {
+    "note1": "",
+    "note2": "",
+    "note3": "",
+    "note4": "",
+    "note5": ""
+  },
+  "name": "RACHEL TEST BY SASHI",
+  "nextReviewDate": "00/00/0000",
+  "nextReviewTime": 0,
+  "notePurgeDate": "00/00/0000",
+  "notesHistoryStatus": "O",
+  "openToBuy": "-$166,771.50",
+  "planNumber": 10002,
+  "pointsAmount": "$0.00",
+  "pointsProgram": 0,
+  "purchaseOrderNumber": "0",
+  "referenceNumber": "",
+  "representativeDetailRes": {
+    "actionRepId": "NAB",
+    "referralRepBusinessUnit": 0,
+    "referralRepId": "",
+    "repBusinessUnit": 600
+  },
+  "resolutionReferenceNumber": "0",
+  "retentionDuration": "",
+  "skuNumber": 0,
+  "storeBusinessUnit": 0,
+  "storeNumber": 999999998,
+  "ticketNumber": "0",
+  "transactionAmount": "$300.00",
+  "transactionCode": 2006,
+  "transactionDescription": "000   000   000   000   000   000   000",
+  "transactionType": "",
+  "workExtension": 0,
+  "workPhone": "00000000000000000000"
 }
 ```
 

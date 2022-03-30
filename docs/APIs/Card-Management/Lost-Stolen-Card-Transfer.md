@@ -1,8 +1,7 @@
 # Transfer Lost Stolen Card 
 
-This Lost or Stolen service is used to block the lost card and request for the replacement card.
-
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
+This Lost or Stolen service is used to block the lost card and request for the replacement card. If the transfer is a product 
+transfer, smart card transfer, or product graduation transfer, both the new account and the old account are available.
 
 ## Endpoint
 
@@ -14,23 +13,19 @@ Fields that are not provided in the request object will be initialised to their 
 
 ```json
 {
-  "blockCode": "L",
+  "cardNumber": "0009846801010000461",
+  "accountNumber": "0001000011000032014",
   "product": 1,
-  "cardReplacementIndicator": 0,
-  "terminalId": " ",
-  "accountNumber": 0001000010000003777,
-  "customerBusinessUnit": 0,
-  "transferToAccount": " ",
-  "transferToCustomer": " ",
-  "signonName": " ",
-  "action": "T",
-  "securitySignon": " ",
-  "processType": " ",
-  "operatorId": " ",
-  "effectiveDate": " ",
-  "cardSequenceNumber": 1,
-  "startDate": " "
+  "startDate": "0",
+  "transferToAccount": "",
+  "transferToCustomer": "",
+  "effectiveDate": "0",
+  "cardReplacementIndicator": "0",
+  "blockCode": "L",
+  "businessUnit": 600,
+  "processType": "0"
 }
+
 ```
 
 ### Minimum Requirements
@@ -53,14 +48,13 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "serviceReturnCode": "P",
-  "numberOfErrors": "0",
-  "maskCardnumber": "000404940XXXXXX4481",
-  "cardNumber": "0009846801010000089",
-  "effectiveDate": "10/01/2021",
-  "transferFromAccount": "0001000010000003777",
-  "blockCode": "L"
+  "cardNumber": "0004049400000006087",
+  "effectiveDate": "19/08/2021",
+  "maskCardNumber": "000404940XXXXXX6087",
+  "transferToAccount": "",
+  "transferToCustomer": ""
 }
+
 ```
 
 ### Error Response Payload

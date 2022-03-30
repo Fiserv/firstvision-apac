@@ -12,17 +12,19 @@ This service is used to update the various customer profiles like customer numbe
 
 ```json
 {
-  "altCustomerExpiryDate": "15/04/2022",
-  "alternateCustomerNumber": "0000000001000000032",
-  "alternateCustomerNumberFlag": "A",
-  "customerNumber": "9006000000000300015",
-  "correspondenceCustomerNumber": "0000000001000000065"
+  "customerNumber": "0000000001000000032",
+  "correspondenceCustomerNumber": "0000000001000000065",
+  "alternateCustomerDetailsReq": {
+    "alternateCustomerNumberFlag": "A",
+    "alternateCustomerNumber": "0000000001000000065",
+    "alternateCustomerExpiryDate": "15/04/2022"
+  }
 }
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](..api/?type=put&path=/v1/accounts/{accountNumber}/customersProfile).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/customersProfile).
 
 The below table identifies the required parameters in the request payload.
 
@@ -37,12 +39,14 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "accountNumber": "0004440010000000017",
-  "altCustomerExpiryDate": "15/04/2022",
-  "alternateCustomerNumber": "0000000001000000032",
-  "alternateCustomerNumberFlag": "A",
+  "alternateCustomerDetailsRes": {
+    "alternateCustomerExpiryDate": "15/04/2022",
+    "alternateCustomerNumber": "0000000001000000065",
+    "alternateCustomerNumberFlag": "A"
+  },
   "businessUnit": 600,
   "correspondenceCustomerNumber": "0000000001000000065",
-  "customerNumber": "9006000000000300015"
+  "customerNumber": "0000000001000000032"
 }
 ```
 

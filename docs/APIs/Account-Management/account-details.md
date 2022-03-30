@@ -1,6 +1,6 @@
 # Inquire Account Details
 
-The service provides the basic details of the account associated with the customer. This API can be called using business unit and account number.
+The service provides the basic details of the account associated with the customer. Some basic details include short name, credit limit, billing cycle etc.
 
 ## Endpoint
 
@@ -10,12 +10,10 @@ The service provides the basic details of the account associated with the custom
 
 ### Request Payload
 
-```json
+>Should be empty. 
+>
+>***The Account Number should be sent as and path variable.***
 
-Shoud be empty.
-***The Business Unit and Account Number should be sent as query parameters and path variable.*** 
-
-```   
 
 ### Minimum Requirements
 
@@ -25,7 +23,6 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. |
 
 ### Successful Response Payload
@@ -33,75 +30,75 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "businessUnit": 200,
-  "userDefinedChargeOffReason": " ",
-  "cardScheme": 3,
-  "alternateCustomerNumber": 0,
-  "collateralCode": " ",
-  "customerStatementFlag": 1,
-  "customerStatementLetterFlag": 1,
-  "correspondenceCustomerNumber": " ",
-  "cardFeeDate": "00/00/0000",
-  "flexBillingFlag": "N",
-  "permanentCollector": " ",
-  "returnMailDate": "00/00/0000",
-  "creditLimit": "$0.00",
-  "chargeOffStatus": 0,
-  "letterRequest": " ",
-  "userAccountNumber": 0,
-  "returnMailUser": " ",
-  "internalStatus": "D",
-  "altCustomerExpiryDate": "00/00/0000",
-  "nextStatementDate": "31/08/2021",
-  "dateLastMaintenance": "2021-09-11",
-  "billingCycle": 31,
-  "reissueScheme": 0,
-  "accountDisplayRequest": "N",
-  "dateAccountOpened": "17/08/2021",
-  "ownerFlag": " ",
-  "statementReprintDate": "00/00/0000",
-  "vipStatus": 0,
+  "accountNumber": "0002000010000403266",
+  "product": 1,
+  "billingAcctInd": 0,
   "shortName": "TESTING",
+  "customerNumber": "0002000002000007799",
+  "alternateCustomerNumberFlag": "",
+  "alternateCustomerNumber": "0000000000000000000",
+  "userAccountNumber": "0000000000000000000",
+  "internalStatus": "D",
+  "chargeOffStatus": "0",
+  "blockCode1": "",
+  "blockCode2": "",
+  "billingCycle": 31,
+  "statementFlag": "",
+  "statementFrequency": "1",
+  "returnMailCounter": 0,
+  "returnMailUser": "",
+  "returnMailDate": "00/00/0000",
+  "permanentCollector": "",
+  "collateralCode": "",
+  "ownerFlag": "",
+  "employeeCode": "",
+  "letterRequest": "",
+  "collateralCardRequest": "N",
+  "accountDisplayRequest": "N",
+  "restructureFlag": "N",
+  "statementReprintFlag": "C",
+  "flexBillingFlag": "N",
   "applicationDate": "00/00/0000",
-  "primaryAccountFlag": " ",
-  "statementFlag": " ",
+  "dateAccountOpened": "17/08/2021",
+  "blockCodeDate1": "00/00/0000",
+  "blockCodeDate2": "00/00/0000",
+  "dateClosed": "00/00/0000",
+  "cardFeeDate": "00/00/0000",
+  "nextStatementDate": "31/08/2021",
+  "dateLastMaintenance": "09/12/2021",
+  "altCustomerExpiryDate": "00/00/0000",
+  "statementReprintDate": "00/00/0000",
+  "dateOfNotificationReceived": "00/00/0000",
+  "cardExpirationDate": "00/00/0000",
+  "creditLimit": "$0.00",
+  "highBalanceAmount": "$0.00",
   "incomeOfTheAccount": "$0.00",
   "numberOfUnblockedCards": 2,
-  "restructureFlag": "N",
-  "altCustomerAddressEffectiveDate": "00/00/0000",
-  "statementFrequency": 1,
-  "reportFraudulentActivity": "N",
-  "dueDay": 0,
-  "dateClosed": "00/00/0000",
-  "employeeCode": " ",
-  "blockCodeDate1": "00/00/0000",
-  "dateNextCrIntPymt": "00/00/0000",
-  "blockCodeDate2": "00/00/0000",
-  "returnMailCounter": 0,
-  "ccmCustomerId": " ",
   "numberOfChargeOffDays": 0,
-  "billingLevel": 1,
-  "highBalanceAmount": "$0.00",
-  "dateLastCycle": "31/07/2021",
-  "product": 1,
-  "deferMembershipFeeDate": "00/00/0000",
-  "dualBillingFlag": 0,
-  "systemDefinedChargeOffReason": " ",
-  "memoBillingCurrency": 36,
-  "resetChargeoffDaysSwitch": 0,
-  "alternateCustomerNumberFlag": " ",
-  "customerNumber": 2000002000007799,
-  "accountNumber": 70369818052278,
-  "liabilityIndicator": 0,
-  "collateralCardRequest": "N",
-  "billingAcctInd": 0,
-  "dateOfNotificationReceived": "00/00/0000",
-  "relationshipNumber": " ",
-  "statementReprintFlag": "C",
+  "resetChargeoffDaysSwitch": "0",
+  "reportFraudulentActivity": "N",
+  "systemDefinedChargeOffReason": "",
+  "userDefinedChargeOffReason": "",
   "greatestExpiryDate": "16/08/2024",
-  "blockCode1": " ",
-  "cardExpirationDate": "00/00/0000",
-  "blockCode2": " ",
-  "currencyCode": 36
+  "relationshipNumber": "",
+  "cardScheme": "3",
+  "primaryAccountFlag": "",
+  "reissueScheme": "0",
+  "dateLastCycle": "31/07/2021",
+  "memoBillingCurrency": 36,
+  "customerStatementFlag": "1",
+  "customerStatementLetterFlag": "1",
+  "currencyCode": 36,
+  "billingLevel": "1",
+  "vipStatus": "0",
+  "dualBillingFlag": "0",
+  "liabilityIndicator": "0",
+  "dueDay": 0,
+  "deferMembershipFeeDate": "00/00/0000",
+  "correspondenceCustomerNumber": "",
+  "altCustomerAddressEffectiveDate": "00/00/0000",
+  "ccmCustomerId": "",
+  "dateNextCrIntPymt": "00/00/0000"
 }
 ```
 

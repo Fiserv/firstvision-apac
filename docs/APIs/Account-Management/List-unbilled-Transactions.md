@@ -10,10 +10,9 @@ This service provides details of the unbilled transactions posted on a given acc
 
 ### Request Payload
 
-> Shoud be empty.
-> 
-> ***The Business Unit and Account Number should be sent as query parameters and path variable.***
-
+>Should be empty. 
+>
+>***The Account Number should be sent as and path variable.***
 
 
 ### Minimum Requirements
@@ -25,155 +24,153 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "transactionList": [
+  "transactionListRes": [
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052205",
-      "creditPlan1": 10001,
-      "description1": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate1": "17/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "17/08/2021",
-      "recordNumber1": 1,
-      "reference1": "FV090921017335430013773",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052205",
+      "creditPlan": 10001,
+      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
+      "effectiveDate": "17/08/2021",
+      "logicModule": 99,
+      "postingDate": "17/08/2021",
+      "recordNumber": 1,
+      "referenceNumber": "FV090921017335430013773",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     },
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052206",
-      "creditPlan1": 10001,
-      "description1": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate1": "17/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "17/08/2021",
-      "recordNumber1": 2,
-      "reference1": "FV090921019032730013773",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052206",
+      "creditPlan": 10001,
+      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
+      "effectiveDate": "17/08/2021",
+      "logicModule": 99,
+      "postingDate": "17/08/2021",
+      "recordNumber": 2,
+      "referenceNumber": "FV090921019032730013773",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     },
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052210",
-      "creditPlan1": 10001,
-      "description1": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate1": "17/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "17/08/2021",
-      "recordNumber1": 3,
-      "reference1": "FV091321014345330013773",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052210",
+      "creditPlan": 10001,
+      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
+      "effectiveDate": "17/08/2021",
+      "logicModule": 99,
+      "postingDate": "17/08/2021",
+      "recordNumber": 3,
+      "referenceNumber": "FV091321014345330013773",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     },
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052213",
-      "creditPlan1": 10001,
-      "description1": "VISA Domestic Restaurant Melbourne    AU",
-      "effectiveDate1": "17/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "17/08/2021",
-      "recordNumber1": 4,
-      "reference1": "FV091321017220871972150",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052213",
+      "creditPlan": 10001,
+      "description": "VISA Domestic Restaurant Melbourne    AU",
+      "effectiveDate": "17/08/2021",
+      "logicModule": 99,
+      "postingDate": "17/08/2021",
+      "recordNumber": 4,
+      "referenceNumber": "FV091321017220871972150",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     },
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052219",
-      "creditPlan1": 10001,
-      "description1": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate1": "17/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "17/08/2021",
-      "recordNumber1": 5,
-      "reference1": "FV091321023074830013773",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052219",
+      "creditPlan": 10001,
+      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
+      "effectiveDate": "17/08/2021",
+      "logicModule": 99,
+      "postingDate": "17/08/2021",
+      "recordNumber": 5,
+      "referenceNumber": "FV091321023074830013773",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     },
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052220",
-      "creditPlan1": 10001,
-      "description1": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate1": "17/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "17/08/2021",
-      "recordNumber1": 6,
-      "reference1": "FV091421013262530013773",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052220",
+      "creditPlan": 10001,
+      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
+      "effectiveDate": "17/08/2021",
+      "logicModule": 99,
+      "postingDate": "17/08/2021",
+      "recordNumber": 6,
+      "referenceNumber": "FV091421013262530013773",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     },
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052226",
-      "creditPlan1": 10001,
-      "description1": "Dom POS via VISA         SYDNEY       AU",
-      "effectiveDate1": "17/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "17/08/2021",
-      "recordNumber1": 7,
-      "reference1": "FV0914210164216L14299",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052226",
+      "creditPlan": 10001,
+      "description": "Dom POS via VISA         SYDNEY       AU",
+      "effectiveDate": "17/08/2021",
+      "logicModule": 99,
+      "postingDate": "17/08/2021",
+      "recordNumber": 7,
+      "referenceNumber": "FV0914210164216L14299",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     },
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052227",
-      "creditPlan1": 10001,
-      "description1": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate1": "17/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "17/08/2021",
-      "recordNumber1": 8,
-      "reference1": "FV091421018113030013773",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052227",
+      "creditPlan": 10001,
+      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
+      "effectiveDate": "17/08/2021",
+      "logicModule": 99,
+      "postingDate": "17/08/2021",
+      "recordNumber": 8,
+      "referenceNumber": "FV091421018113030013773",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     },
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052205",
-      "creditPlan1": 10001,
-      "description1": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate1": "18/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "18/08/2021",
-      "recordNumber1": 9,
-      "reference1": "FV090921017335430013773",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052205",
+      "creditPlan": 10001,
+      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
+      "effectiveDate": "18/08/2021",
+      "logicModule": 99,
+      "postingDate": "18/08/2021",
+      "recordNumber": 9,
+      "referenceNumber": "FV090921017335430013773",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     },
     {
-      "cardNbr": "0009846801010272888",
-      "amount1": "$0.00",
-      "authorizationCode1": "052206",
-      "creditPlan1": 10001,
-      "description1": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate1": "18/08/2021",
-      "logicModule1": 99,
-      "postingDate1": "18/08/2021",
-      "recordNumber1": 10,
-      "reference1": "FV090921019032730013773",
-      "transactionCode1": 9000,
-      "typeOfTransaction1": "M"
+      "CardNumber": "0009846801010272888",
+      "amount": "$0.00",
+      "authorizationCode": "052206",
+      "creditPlan": 10001,
+      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
+      "effectiveDate": "18/08/2021",
+      "logicModule": 99,
+      "postingDate": "18/08/2021",
+      "recordNumber": 10,
+      "referenceNumber": "FV090921019032730013773",
+      "transactionCode": 9000,
+      "typeOfTransaction": "M"
     }
-  ],
-  "transactionType": 1
+  ]
 }
 ```
 ### Error Response Payload

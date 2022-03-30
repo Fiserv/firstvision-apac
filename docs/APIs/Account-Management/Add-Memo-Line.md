@@ -2,8 +2,6 @@
 
 The service will validate input message details and add memo line for monetary and non-monetary action applied on account.
 
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
-
 ## Endpoint
 
 `POST /v1/accounts/addMemoLine`
@@ -14,22 +12,17 @@ Fields that are not provided in the request object will be initialised to their 
 
 ```json
 {
-  "businessUnit": 600,
-  "letterCode": " ",
-  "memoLine1": " ",
-  "letterBusinessUnit": 0,
-  "referralRepBusinessUnit": 0,
-  "memoLine5": " ",
+  "businessUnit": "600",
   "accountNumber": "0006000011000000152",
-  "memoLine4": " ",
-  "memoLine3": " ",
-  "memoLine2": " ",
-  "reviewDate": "31/12/2021",
-  "manualReferralOption": 0,
-  "referralRepId": " ",
   "actionCode": "AINQ",
-  "reviewTime": 0,
-  "cardNumber": " "
+  "cardNumber": "",
+  "memoLinesReq": {
+    "lineData1": "",
+    "lineData2": "",
+    "lineData3": "",
+    "lineData4": "",
+    "lineData5": ""
+  } "
 }
 ``` 
 
@@ -39,7 +32,7 @@ The below table contains the mandatory fields required for a successful request.
 
 The below table identifies the required parameters in the request payload.
 
-| Variable | Passed as | Type | Leuith | Description/Values |
+| Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountNumber` | Payload | *string* | 19 | Unique identification number of the account.|
 | `actionCode` | Payload | *string* | 04 | Four character user assigned code for the action.|
@@ -48,46 +41,22 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "Note": [],
   "actionCode": "AINQ",
   "actionCodeDescription": "ACCOUNT INQ",
+  "actionCodePriority": 0,
   "actionRepId": "NAB",
-  "authorizationNumber": "",
   "cardNumber": "",
-  "cardSequenceNumber": 1,
-  "clerk": "",
-  "collectionSequenceNumber": "0",
-  "ctaFile": "",
-  "decision": "",
-  "declineReason": "",
-  "departmentNumber": "",
-  "effectiveDate": "00/00/0000",
-  "fundingCardNumber": "",
-  "historyDate": "09/03/2022",
-  "historyTime": "06:40:23",
-  "insurance": "",
-  "letterBusinessUnit": 0,
-  "letterCode": "",
-  "nextReviewDate": "31/12/2021",
-  "nextReviewTime": 0,
-  "notePurgeDate": "03/04/2022",
-  "notesHistoryStatus": "C",
-  "planNumber": "0",
-  "planSequenceNumber": "0",
-  "pointsAmount": "$0.00",
-  "pointsProgram": "0",
-  "purchaseOrderNumber": "",
-  "referenceNumber": "",
-  "referralRepBusinessUnit": 0,
-  "referralRepId": "",
-  "repBusinessUnit": 600,
-  "retentionDuration": "",
-  "skuNumber": "0",
-  "storeBusinessUnit": "0",
-  "storeNumber": "0",
-  "ticketNumber": "",
-  "transactionAmount": "0",
-  "transactionType": ""
+  "historyDate": "29/03/2022",
+  "historyTime": "00:27:04",
+  "memoLinesRes": {
+    "note1": "",
+    "note2": "",
+    "note3": "",
+    "note4": "",
+    "note5": ""
+  },
+  "notePurgeDate": "23/04/2022",
+  "notesHistoryStatus": "C"
 }
 ```
 ### Error Response Payload

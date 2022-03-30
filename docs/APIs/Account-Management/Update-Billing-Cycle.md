@@ -24,7 +24,7 @@ The below table contains the mandatory fields required for a successful request.
 
 The below table identifies the required parameters in the request payload.
 
-| Variable | Passed as | Type | Leuith | Description/Values |
+| Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the Account.|
 | `billingCycle` | payload | *number* | 02 | Cycle code that indicates the day of the month that CMS performs cycle processing for the account. The values are 01–31.|

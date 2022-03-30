@@ -11,7 +11,7 @@ This service fetches the card controls for a given card number like maximum numb
 ### Request Payload
 
 >Should be empty.  
-***The Business Unit and Card Number should be sent as query parameters and path variable.***
+***The Card Number should be sent as path variable.***
 
 ### Minimum Requirements
 
@@ -21,32 +21,21 @@ The below table identifies the required query parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "maximumAmountOtcCashAuthorizationsAllowed": "$1,000.00",
-  "businessUnit": 600,
-  "maximumNumberRetailAuthorizationsAllowed": 2,
+  "atmFlag": "Y",
+  "businessUnit": 100,
+  "cardNumber": "0009846801010434751",
+  "cashBackTranFlag": "Y",
+  "ecomActiveSwitch": "0",
+  "intAtmPosFlag": "Y",
   "motoFlag": "Y",
   "payWaveSwitch": "N",
-  "maximumNumberOtcAuthorizationsAllowed": 5,
-  "cashBackTranFlag": "Y",
-  "maximumNumberAtmCashAuthorizationsAllowed": 2,
-  "singleOtcCashAuthorizationAllowed": "$100.00",
-  "maximumAmountSingleAtmTransactionAllowed": "$2,000.00",
-  "singleRetailAuthorizationAllowed": "$1,000.00",
-  "maximumAmountRetailAuthorizationsAllowed": "$1,000.00",
-  "ecomActiveSwitch": 1,
-  "atmFlag": "Y",
-  "posFlag": "N",
-  "maximumAmountAtmCashAuthorizationsAllowed": "$1,000.00",
-  "maximumAuthorizationsFrequnecy": 1,
-  "intAtmPosFlag": "Y",
-  "cardNumber": 9544410000000062
+  "posFlag": "N"
 }
 ```
 

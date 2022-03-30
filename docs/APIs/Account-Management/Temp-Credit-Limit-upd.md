@@ -25,22 +25,20 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `accountNumber` | Path Variable | *string* | 19 | Unique identification number of the account. | 
-| `temporaryCreditLimitExpiryDate` | Payload | *Date* | DD/MM/YYYY  | Temporary credit limit expiry date |  
-| `temporaryCreditLimit` | Payload | *string* | 17 | Temporary line of credit for the account in whole monetary units. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
+
 {
-   "accountNumber": "0006000011000000103",
-   "billingAcctInd": "0",
-   "businessUnit": "600",
-   "creditLimit": "$10.00",
-   "product": "1",
-   "temporaryCreditLimit": "$900.00",
-   "temporaryCreditLimitExpiryDate": "31/10/2022"
+  "accountNumber": "0006000011000000103",
+  "businessUnit": 600,
+  "creditLimit": "$1,000.00",
+  "temporaryCreditLimit": "$0.00",
+  "temporaryCreditLimitExpiryDate": "31/10/2022"
 }
 ```
 
@@ -49,7 +47,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5BS0601EA",
-  "errorMessage": " Temp credit limit does not conform to currency nod "  
+  "errorMessage": " Temp credit limit does not conform to currency NOD "  
 }
 ```
 

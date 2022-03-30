@@ -2,8 +2,6 @@
 
 This service is used to update the block codes and the reason codes for the block codes for cards and accounts. Same service can be used to unblock the card by passing spaces in the block-code field of the request body.
 
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
-
 ## Endpoint
 
 `PUT /v1/cards/{cardNumber}/blockUnblock`
@@ -14,8 +12,10 @@ Fields that are not provided in the request object will be initialised to their 
 
 ```json
 {
-  "blockCode": "X"
+  "blockCode": "X",
+  "warningCode1": "1"
 }
+
 ```
 
 ### Minimum Requirements
@@ -26,23 +26,21 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the card. |
 | `cardNumber` | Path Variable | *string* | 19 | Token number associated with the clear PAN. | 
-| `blockCode1` | Payload | *string* | 1 | Block Code to assign to the Card. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
 {
+  "blockCode": "X",
+  "blockDate": "19/08/2021",
   "businessUnit": 100,
-  "cardholderType": "1",
-  "blockCode": "E",
-  "blockDate": "00/00/0000",
-  "cardSequence": 1,
-  "postToAccountNumber": "ABCDEFGHIJABCDEFGHI",
-  "cardNumber": "00098468CCCCC273605",
-  "warningCode1": "0"
+  "cardNumber": "0009846801010273605",
+  "warningCode1": "1"
 }
+
 ```
 
 ### Error Response Payload

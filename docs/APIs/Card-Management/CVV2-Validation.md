@@ -25,16 +25,20 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. | 
-| `cVV2` | Payload | *string* | 3 | CVV2 value of the card |
+| `cvv2` | Payload | *string* | 3 | CVV2 value of the card |
+| `expiryDateMmyy` | *date* | 10 | Field that indicates the  card expiry date | 
 
 ### Successful Response Payload
 
 ```json
-{
-    "cardNumber": "0009846801010065787"
-}
+[
+  {
+    "errorCode": "V5VC4003AE",
+    "errorMessage": " Invalid CVV2"
+  }
+]
+
 ```
 
 ### Error Response Payload
@@ -50,9 +54,9 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5VC4001EA` | Invalid business unit|
-|`V5VC0287EA` | Business unit not found or in add-pending status|
-|`V5VC4002EA` | Invalid card number|
+|`V5VC4001EA` | Invalid business unit |
+|`V5VC0287EA` | Business unit not found or in add-pending status |
+|`V5VC4002EA` | Invalid card number |
 |`V5VC4002EA` | Card number not found |
-|`V5VC4004AE` | Invalid expiry date|
+|`V5VC4004AE` | Invalid expiry date |
 |`V5VC4003AE` | Invalid CVV2 | 

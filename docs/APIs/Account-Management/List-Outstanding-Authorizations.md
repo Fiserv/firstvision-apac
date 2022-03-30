@@ -10,12 +10,10 @@ This service provides details of the memo-posted authorizations on a given accou
 
 ### Request Payload
 
-```json
+>Should be empty. 
+>
+>***The Account Number should be sent as and path variable.***
 
-Shoud be empty.
-***The Business Unit and Account Number should be sent as query parameters and path variable.*** 
-
-```  
 
 ### Minimum Requirements
 
@@ -26,171 +24,91 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "aRIndicator": "A",
-  "accountNumber": "0000000001000000057",
-  "businessUnit": "600",
-  "fileFlag": "",
-  "fileFlag1": "Y",
-  "product": "0",
-  "transactionList": [
+  "transactionListRes": [
     {
-      "amount": "$2.00",
+      "CardNumber": " ",
+      "amount": "$3,000.00",
       "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
+      "creditPlan": 10002,
       "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
+      "effectiveDate": "18/08/2021",
+      "logicModule": 0,
+      "postingDate": "19/08/2021",
+      "referenceNumber": " ",
+      "transactionCode": 0,
+      "transactionType": " "
     },
     {
-      "amount": "$2.00",
+      "CardNumber": " ",
+      "amount": "$10.00",
       "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
+      "creditPlan": 10002,
       "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
+      "effectiveDate": "18/08/2021",
+      "logicModule": 0,
+      "postingDate": "19/08/2021",
+      "referenceNumber": " ",
+      "transactionCode": 0,
+      "transactionType": " "
     },
     {
-      "amount": "$2.00",
+      "CardNumber": " ",
+      "amount": "$10.00",
       "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
+      "creditPlan": 10002,
+      "description": "MEMO POSTED CREDIT",
+      "effectiveDate": "18/08/2021",
+      "logicModule": 0,
+      "postingDate": "19/08/2021",
+      "referenceNumber": " ",
+      "transactionCode": 0,
+      "transactionType": " "
     },
     {
-      "amount": "$2.00",
+      "CardNumber": " ",
+      "amount": "$10.00",
       "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
+      "creditPlan": 10002,
+      "description": "MEMO POSTED CREDIT",
+      "effectiveDate": "18/08/2021",
+      "logicModule": 0,
+      "postingDate": "19/08/2021",
+      "referenceNumber": " ",
+      "transactionCode": 0,
+      "transactionType": " "
     },
     {
-      "amount": "$2.00",
+      "CardNumber": " ",
+      "amount": "$10.00",
       "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
+      "creditPlan": 10002,
+      "description": "MEMO POSTED CREDIT",
+      "effectiveDate": "18/08/2021",
+      "logicModule": 0,
+      "postingDate": "19/08/2021",
+      "referenceNumber": " ",
+      "transactionCode": 0,
+      "transactionType": " "
     },
     {
-      "amount": "$2.00",
+      "CardNumber": " ",
+      "amount": "$10.00",
       "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
-    },
-    {
-      "amount": "$2.00",
-      "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
-    },
-    {
-      "amount": "$2.00",
-      "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
-    },
-    {
-      "amount": "$2.00",
-      "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
-    },
-    {
-      "amount": "$2.00",
-      "authorizationCode": " ",
-      "creditPlan": "10001",
-      "date": "2021260",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "17/09/2021",
-      "logicModule": "0",
-      "postingDate": "18/08/2021",
-      "recordNumber": "0",
-      "reference": " ",
-      "time": "233208",
-      "transactionCode": "0",
-      "typeOfTransaction": " "
+      "creditPlan": 10002,
+      "description": "MEMO POSTED CREDIT",
+      "effectiveDate": "18/08/2021",
+      "logicModule": 0,
+      "postingDate": "19/08/2021",
+      "referenceNumber": " ",
+      "transactionCode": 0,
+      "transactionType": " "
     }
-  ],
-  "transactionType": "MEMO POSTED TRANSACTION"
+  ]
 }
 ```
 ### Error Response Payload

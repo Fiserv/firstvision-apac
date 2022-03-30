@@ -1,8 +1,6 @@
 # Update Accounts' Direct Debit
 
-The Direct Debit Update message enables the user to update the Direct Debit information on an account. The information that can be updated includes:  bank account and routing data and various other associated fields. This service does not initiate the Direct Debit, it just provides a mechanism to update the Direct Debit related fields.
-
-*It is necessary to perform an inquiry using the Direct Debit/Credit inquiry message first, as this service requires all fields to be sent in the request, whether they have been changed or not. If a tag is sent in empty, it is presumed that the field is to be deleted.*
+The Direct Debit Update message enables the user to update the Direct Debit information on an account. The information that can be updated includes: bank account and routing data and various other associated fields. This service does not initiate the Direct Debit, it just provides a mechanism to update the Direct Debit related fields.
 
 ## Endpoint
 
@@ -14,16 +12,16 @@ The Direct Debit Update message enables the user to update the Direct Debit info
 
 ```json
 {
-  "ddNominatedPaymentAmtOrPercentage": 10,
-  "product": 0,
-  "ddPaymentExpiryDate": "10/04/2022",
-  "ddAccountNumber": 1000000057,
-  "fixedPaymentAmount": 1,
-  "ddAccountType": "D",
-  "ddPaymentStartDate": "09/04/2022",
-  "paymentRemittanceMethod": 0,
-  "billingAcctInd": 0,
-  "ddRoutingBankId": 123456
+  "directDebitDetailsReq": {
+    "paymentRemittanceMethod": "0",
+    "ddPaymentStartDate": "04/10/2021",
+    "ddPaymentExpiryDate": "04/11/2022",
+    "ddRoutingBankId": "123456",
+    "ddAccountType": "D",
+    "ddAccountNumber": "1000000057",
+    "fixedPaymentAmount": "1",
+    "ddNominatedPaymentAmtOrPercentage": "10"
+  }
 }
 ```
 
@@ -35,30 +33,27 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 03 | Identification number of the organization associated with the account. |
 | `accountNumber` | Path Variable | *string* | 19 | Unique identification number of the Account. | 
-| `paymentRemittanceMethod` | Payload | *number* | 01 | Payment Remittance Method. |
-| `dDPaymentStartDate` | Payload | *string* | 10 | DD Payment Start Date. |
-| `dDPaymentExpiryDate` | Payload | *string* | 10 | DD Payment Expiry Date. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
 {
-  "accountNumber": "0000000001000000057",
-  "billingAcctInd": "0",
-  "businessUnit": "600",
-  "ddAccountNumber": "1000000057",
-  "ddAccountType": "D",
-  "ddNominatedPaymentAmtOrPercentage": "10",
-  "ddPaymentExpiryDate": "10/04/2022",
-  "ddPaymentStartDate": "09/04/2022",
-  "ddRoutingBankId": "123456",
-  "fixedPaymentAmount": "1",
-  "paymentRemittanceMethod": "0",
-  "product": "600"
-}
-
+ "accountNumber": "0006000011000000103",
+  "businessUnit": 600,
+  "directDebitDetailsRes": {
+    "ddAccountNumber": "1000000057",
+    "ddAccountType": "D",
+    "ddNominatedPaymentAmtOrPercentage": "10",
+    "ddPaymentExpiryDate": "04/11/2022",
+    "ddPaymentStartDate": "04/10/2021",
+    "ddRoutingBankId": "123456",
+    "fixedPaymentAmount": "1",
+    "paymentRemittanceMethod": "0"
+  }
+}  
 ```
 
 ### Error Response Payload
@@ -102,4 +97,3 @@ Below table provides the list of application's error code and its description.
 | `V5BS0627EC` | DD nominated payment amount/percent must be less than 100% and not 0 when DD nom indicator is 2 or 9 |
 | `V5BS0627EE` | Nominated ach pct/amt not editable when debit active at logo |
 | `V5BS0627SG` | ACH pct amount is not zero |
-

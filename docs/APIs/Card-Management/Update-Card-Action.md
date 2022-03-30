@@ -1,8 +1,6 @@
 # Update Card Action
 
 Card Action on Embosser record enables client to update actions like replacement, reissue, PIN mailer etc. This field (Card Action) determines the action that system performs on that embosser record during the next batch run. 
-
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
   
 ## Endpoint
 
@@ -57,5 +55,5 @@ Below table provides the list of application's error code and its description.
 | `V5ED0204EC` | Card cannot be reissued |         
 | `V5ED0204EE` | Additional card not allowed for smart card |               
 | `V5ED0204EM` | Valid actions are 0 and 1 when a card has never been issued |                
-| `V5ED0204SV` | AMED - invalid  card-action |         
+| `V5ED0204SV` | Invalid  card action |         
 | `V5ED0222EB` | Value is required and cannot equal spaces |         
