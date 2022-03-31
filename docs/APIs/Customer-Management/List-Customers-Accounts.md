@@ -1,6 +1,6 @@
 # List Customers' Accounts
 
- The service provides list of accounts associated with the customer.
+The service provides list of accounts associated with the customer. This API also retrive the other information like memo credit/debit balance, block codes and so on.
 
 ## Endpoint
 
@@ -80,7 +80,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5DB4001AS",
-  "errorMessage": "Cust nbr not found"  
+  "errorMessage": "Customer nbr not found"  
 }
 ```
 
@@ -88,4 +88,4 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5DB4001AS` |Cust nbr not found|
+| `V5DB4001AS` |Customer nbr not found|
