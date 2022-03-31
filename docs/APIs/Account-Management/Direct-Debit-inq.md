@@ -1,6 +1,6 @@
 # Inquire Direct Debit
 
-This service is used to get detail for direct debit.
+This service is used to get detail for direct debit for given account. It shows current parameter setup enabled on current account.
 
 ## Endpoint
 
@@ -10,12 +10,10 @@ This service is used to get detail for direct debit.
 
 ### Request Payload
 
-```json
-{
-Shoud be empty.
-***The Business Unit and Account Number should be sent as query parameters and path variable.*** 
-}
-```
+>Should be empty. 
+>
+>***The Account Number should be sent as and path variable.***
+
 
 ### Minimum Requirements
 
@@ -25,25 +23,25 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
-| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
+| `accountNumber` | Path Variable | *string* | 19 | Account number of the cardholder. | 
 
 ### Successful Response Payload
 
 ```json
 {
-  "accountNumber": "0000000001000000057",
-  "billingAcctInd": "0",
-  "businessUnit": "600",
-  "ddAccountNumber": " ",
-  "ddAccountType": "D",
-  "ddNominatedPaymentAmtorPercentage": "10",
-  "ddPaymentExpiryDate": "00/00/0000",
-  "ddPaymentStartDate": "04/10/2021",
-  "ddRoutingBankID": "0",
-  "fixedPaymentAmount": "1",
-  "paymentRemittanceMethod": "2",
-  "product": "600"
+"accountNumber": "0006000011000000137",
+  "billingAcctInd": 0,
+  "businessUnit": 600,
+  "directDebitDetailsRes": {
+    "ddAccountNumber": " ",
+    "ddAccountType": "D",
+    "ddNominatedPaymentAmtOrPercentage": "10",
+    "ddPaymentExpiryDate": "04/12/2022",
+    "ddPaymentStartDate": "04/01/2022",
+    "ddRoutingBankId": "654321",
+    "fixedPaymentAmount": "1",
+    "paymentRemittanceMethod": "0"
+  }
 }
 ```
 

@@ -12,8 +12,10 @@ This service is used to update the block codes and the reason codes for the bloc
 
 ```json
 {
-  "blockCode": "X"
+  "blockCode": "X",
+  "warningCode1": "1"
 }
+
 ```
 
 ### Minimum Requirements
@@ -24,23 +26,21 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the Card. |
-| `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. | 
-| `blockCode1` | Payload | *string* | 1 | Block Code to assign to the Card. |
+| `cardNumber` | Path Variable | *string* | 19 | Token number associated with the clear PAN. | 
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
 {
+  "blockCode": "X",
+  "blockDate": "19/08/2021",
   "businessUnit": 100,
-  "cardholderType": "1",
-  "blockCode": "E",
-  "blockDate": "00/00/0000",
-  "cardSequence": 1,
-  "postToAccountNumber": "ABCDEFGHIJABCDEFGHI",
-  "cardNumber": "00098468CCCCC273605",
-  "warningCode1": "0"
+  "cardNumber": "0009846801010273605",
+  "warningCode1": "1"
 }
+
 ```
 
 ### Error Response Payload
@@ -56,13 +56,13 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5ED4001SA` | Business Unit not found |
-| `V5ED4001SB` | Business Unit is in Add Pending Status |
-| `V5ED4001SC` | Business Unit is in Purge Status |
+| `V5ED4001SA` | Business unit not found |
+| `V5ED4001SB` | Business unit is in Add Pending Status |
+| `V5ED4001SC` | Business unit is in Purge Status |
 | `V5ED0010SF` | Update Request - Record not found |
 | `V5ED0011SF` | Update Request - Record Add Pending |
-| `V5ED4002ED` | Card Number must be provided |
-| `V5ED4003ED` | CARD Sequence number must be greater than zero |
+| `V5ED4002ED` | Card number must be provided |
+| `V5ED4003ED` | Card sequence number must be greater than zero |
 | `V5ED4004SF` | Invalid Card Sequence |
 | `V5ED0301EA` | Priority of new block code cannnot be lower than the existing block code |
 | `V5ED0301EB` | Block Code not maintainable for card scheme 0 |

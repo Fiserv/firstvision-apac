@@ -10,8 +10,9 @@ This service is used to fetch the clear pan for the requested First Vision's Tok
 
 ### Request Payload
 
->Shoud be empty.  
-***The Business Unit and Card Number should be sent as query parameters and path variable.***
+>Should be empty. 
+>
+>***The Card Number should be sent as and path variable.***
 
 ### Minimum Requirements
 
@@ -21,8 +22,7 @@ The below table identifies the required query parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
-| `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
+| `cardNumber` | Path Variable | *string* | 19 | Token number associated with the clear PAN. |
 
 ### Successful Response Payload
 
@@ -44,7 +44,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5CL4001EA` |Invalid Business Unit|
-|`V5CL4002EA` |Invalid card number|
-|`V5CL4001AS` |Business Unit not found|
-|`V5CL4002AS` |Token number not found|
+|`V5CL4001EA` | Invalid business unit |
+|`V5CL4002EA` | Invalid card number |
+|`V5CL4001AS` | Business unit not found |
+|`V5CL4002AS` | Token number not found |

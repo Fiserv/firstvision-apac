@@ -1,6 +1,6 @@
 # List Customers' Cards
 
- The service provides list of cards associated with the customer.
+The service provides list of cards associated with the customer. FirstVision allows to retrive card details either using account or customer number.
 
 ## Endpoint
 
@@ -106,7 +106,7 @@ The below table identifies the required parameters in the request payload.
   "status": "",
   "totalAvailable": "$0.00",
   "userDefinedField4": "Y",
-  "workPhoneNumber": "++61430010348"
+  "workPhoneNumber": "+61430010348"
 }
 ```
 
@@ -115,7 +115,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5DB4001AS",
-  "errorMessage": "Cust Nbr not found"  
+  "errorMessage": "Customer Nbr not found"  
 }
 ```
 
@@ -123,4 +123,4 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5DB4001AS` |Cust Nbr not found|
+| `V5DB4001AS` |Customer Nbr not found|
