@@ -1,7 +1,7 @@
 # Update Waive Fee
 
-The Account Fee Waive Flags Update Service is used to update flag for Waive Intrest, User Fee 1/2/3/4/5/6, Waive tax calculation, Waive letter fee, Service fee, Cash advance fee etc.
-  
+The account fee waive flags update service is used to update flag for waive intrest, user Fee 1/2/3/4/5/6, waive tax calculation, waive letter fee, service fee, cash advance fee etc.
+
 ## Endpoint
 
 `PUT /v1/accounts/{accountNumber}/waiveFee`
@@ -12,31 +12,55 @@ The Account Fee Waive Flags Update Service is used to update flag for Waive Intr
 
 ```json
 {
-  "waiveInterest": 1,
-  "userFees5": 0,
-  "userFees4": 1,
-  "suppressMembershipFee": 0,
-  "userFees6": 0,
-  "userFees1": 0,
-  "waiveOverlimitFee": 0,
-  "userFees3": "string",
-  "userFees2": 1,
-  "waiveTaxCalculation": 1,
-  "waiveMembership": 0,
-  "waiveLateCharges": 1,
-  "waiveCardIssuanceFees": 1,
-  "waiveNSF15Fees": 3,
-  "waiveLetterFee": 1,
-  "serviceFees": [
-    {
-      "serviceFees1": "string"
-    }
-  ],
-  "cashAdvanceFees": [
-    {
-      "waiveCashAdvance1": "string"
-    }
-  ]
+  "waiveLateCharges": "1",
+  "waiveInterest": "1",
+  "waiveMembership": "0",
+  "waiveOverlimitFee": "0",
+  "waiveNsf15Fees": "3",
+  "waiveCardIssuanceFees": "1",
+  "waiveLetterFee": "1",
+  "userFees1": "0",
+  "userFees2": "1",
+  "userFees3": "1",
+  "userFees4": "1",
+  "userFees5": "0",
+  "userFees6": "0",
+  "suppressMembershipFee": "0",
+  "waiveTaxCalculation": "1",
+  "waiveCashAdvanceFeeGroupReq": {
+    "waiveCashAdvance1": "1",
+    "waiveCashAdvance2": "1",
+    "waiveCashAdvance3": "1",
+    "waiveCashAdvance4": "1",
+    "waiveCashAdvance5": "1"
+  },
+  "waiveServiceFeeGroupReq": {
+    "serviceFee1": "1",
+    "serviceFee10": "1",
+    "serviceFee11": "1",
+    "serviceFee12": "1",
+    "serviceFee13": "1",
+    "serviceFee14": "1",
+    "serviceFee15": "1",
+    "serviceFee16": "1",
+    "serviceFee17": "1",
+    "serviceFee18": "1",
+    "serviceFee19": "1",
+    "serviceFee2": "1",
+    "serviceFee20": "1",
+    "serviceFee21": "1",
+    "serviceFee22": "1",
+    "serviceFee23": "1",
+    "serviceFee24": "1",
+    "serviceFee25": "1",
+    "serviceFee3": "1",
+    "serviceFee4": "1",
+    "serviceFee5": "1",
+    "serviceFee6": "1",
+    "serviceFee7": "1",
+    "serviceFee8": "1",
+    "serviceFee9": "1"
+  }
 }
 ```
 
@@ -48,139 +72,65 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. | 
-| `product` | Payload | *number* | 1 |  Identification number of prodcust associated with account. | 
-| `waiveLateCharges` | Payload | *string* | 1 | Waive Late Charges. | 
-| `waiveInterest` | Payload | *string* | 1 | Waive Interest. | 
-| `waiveMembership` | Payload | *string* | 1 | Waive Membership. | 
-| `waiveOverlimitFee` | Payload | *string* | 1 | Waive Overlimit Fee | 
-| `waiveNSF1-5Fee` | Payload | *string* | 1 | Waive NSF 1-5 Fees. | 
-| `waiveCardIssuanceFees` | Payload | *string* | 1 | Waive Card Issuance Fee. |
-| `waiveLetterFee` | Payload | *string* | 1 | Waive Letter Fee. |
-| `waiveUserFee1-6` | Payload | *string* | 1 | Waive User Fee 1-6. |
-| `suppressMembershipFee` | Payload | *string* | 1 | Supress Membership Fee. |
-| `waiveTaxCalculation` | Payload | *string* | 1 | Waive Tax Calculation Fee. |
-| `serviceFees1-25` | Payload | *string* | 1 | Service Fees. |
-| `waiveCashAdvance1-5` | Payload | *string* | 1 | Waive Cash Advance Fee. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
-
 {
-  "accountNumber": "0000000001000000115",
-  "billingAcctInd": "0",
-  "businessUnit": "600",
-  "product": "600",
+  "accountNumber": "0006000011000000178",
+  "businessUnit": 600,
+  "product": 1,
   "suppressMembershipFee": "0",
-  "table2": [
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    },
-    {
-      "serviceFees1": "0"
-    }
-  ],
-  "table4": [
-    {
-      "waiveCashAdvance1": "0"
-    },
-    {
-      "waiveCashAdvance1": "0"
-    },
-    {
-      "waiveCashAdvance1": "0"
-    },
-    {
-      "waiveCashAdvance1": "0"
-    },
-    {
-      "waiveCashAdvance1": "0"
-    }
-  ],
   "userFees1": "0",
   "userFees2": "1",
-  "userFees3": "0",
+  "userFees3": "1",
   "userFees4": "1",
   "userFees5": "0",
   "userFees6": "0",
   "waiveCardIssuanceFees": "1",
+  "waiveCashAdvanceFeeGroupRes": {
+    "waiveCashAdvance1": "1",
+    "waiveCashAdvance2": "1",
+    "waiveCashAdvance3": "1",
+    "waiveCashAdvance4": "1",
+    "waiveCashAdvance5": "1"
+  },
   "waiveInterest": "1",
   "waiveLateCharges": "1",
   "waiveLetterFee": "1",
   "waiveMembership": "0",
-  "waiveNSF15Fees": "3",
+  "waiveNsf15Fees": "3",
   "waiveOverlimitFee": "0",
+  "waiveServiceFeeGroupRes": {
+    "serviceFee1": "1",
+    "serviceFee10": "1",
+    "serviceFee11": "1",
+    "serviceFee12": "1",
+    "serviceFee13": "1",
+    "serviceFee14": "1",
+    "serviceFee15": "1",
+    "serviceFee16": "1",
+    "serviceFee17": "1",
+    "serviceFee18": "1",
+    "serviceFee19": "1",
+    "serviceFee2": "1",
+    "serviceFee20": "1",
+    "serviceFee21": "1",
+    "serviceFee22": "1",
+    "serviceFee23": "1",
+    "serviceFee24": "1",
+    "serviceFee25": "1",
+    "serviceFee3": "1",
+    "serviceFee4": "1",
+    "serviceFee5": "1",
+    "serviceFee6": "1",
+    "serviceFee7": "1",
+    "serviceFee8": "1",
+    "serviceFee9": "1"
+  },
   "waiveTaxCalculation": "1"
 }
 ```

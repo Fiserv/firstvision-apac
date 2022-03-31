@@ -2,6 +2,8 @@
 
 This service is used to update the spending limits to control the card usage.  These limits are set at individual card level.
 
+Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
+
 ## Endpoint
 
 `PUT /v1/cards/{cardNumber}/spendLimits`
@@ -64,7 +66,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5ED0319ED",
-  "errorMessage": "Atm cash amt field update is not allowed"  
+  "errorMessage": "ATM cash AMT field update is not allowed"  
 }
 ```
 
@@ -72,21 +74,21 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5ED4001SA` |Business Unit not found|
-|`V5ED4001SB` |Business Unit is in add pending status|
-|`V5ED4001SC` |Business Unit is in purged status|
-|`V5ED4001SE` |Invalid Business Unit|
-|`V5ED0010SF` |Update request - record not found|
-|`V5ED0011SF` |Update request - record add pending|
-|`V5ED4003ED` |Card seq number must be greater than zero|
-|`V5ED4004SF` |Invalid card sequence|
-|`V5ED0319ED` |Atm cash amt field update is not allowed|
-|`V5ED0328EA` |Maximum freq input not allowed when no auth limit overrd|
-|`V5ED0320EE` |Atm cash nbr field update is not allowed |
-|`V5ED0321EH` |Txn limit atm field update is not allowed |
-|`V5ED0322EF` |OTC cash amt field update is not allowed|  
-|`V5ED0323EG` |OTC cash nbr field update is not allowed|
-|`V5ED0324EI` |Txn limit otc field update is not allowed |
-|`V5ED0325EB` |Retail amt field update is not allowed |
-|`V5ED0326EC` |Retail nbr field update is not allowed|
-|`V5ED0327EJ` |Txn limit retail field update is not allowed|  
+|`V5ED4001SA` | Business unit not found |
+|`V5ED4001SB` | Business unit is in add pending status |
+|`V5ED4001SC` | Business unit is in purged status |
+|`V5ED4001SE` | Invalid business unit |
+|`V5ED0010SF` | Update request - Record not found |
+|`V5ED0011SF` | Update request - Record add pending |
+|`V5ED4003ED` | Card seq number must be greater than zero |
+|`V5ED4004SF` | Invalid card sequence |
+|`V5ED0319ED` | ATM cash amt field update is not allowed |
+|`V5ED0328EA` | Maximum freq input not allowed when no auth limit overrd |
+|`V5ED0320EE` | ATM cash nbr field update is not allowed |
+|`V5ED0321EH` | TXN limit atm field update is not allowed |
+|`V5ED0322EF` | OTC cash amt field update is not allowed |  
+|`V5ED0323EG` | OTC cash nbr field update is not allowed |
+|`V5ED0324EI` | Txn limit otc field update is not allowed |
+|`V5ED0325EB` | Retail amt field update is not allowed |
+|`V5ED0326EC` | Retail nbr field update is not allowed |
+|`V5ED0327EJ` | Txn limit retail field update is not allowed | 

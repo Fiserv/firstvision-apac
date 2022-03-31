@@ -1,7 +1,6 @@
 # Activate Card
 
 This service is used to activate the card after successful verification of the cardholder.
-
 >Cardholder verification is the separate API that must be called in the card activation workflow.  Please [click here](./?path=docs/APIs/Card-Management/CVV2-Validation.md) to explore the cardholder verfication APIs.
 
 ## Endpoint
@@ -27,9 +26,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
 | `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
-| `currentCardRequireActivation` | Payload | *string* | 1 | Value ‘N’ To be passed to activate the card. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
@@ -50,7 +49,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5ED4001SA",
-  "errorMessage": "Business Unit not found in the system"  
+  "errorMessage": "Business unit not found in the system"  
 }
 ```
 
@@ -58,11 +57,11 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-| `V5ED0010SF` | Update Request - Record not found |  
-| `V5ED0011SF` | Update Request - Record Add Pending |
-| `V5ED4002ED` | Card Number must be provided |
-| `V5ED4001SA` | Business Unit not found in the system |
-| `V5ED4001SB` | Business Unit is in Add Pending Status |
-| `V5ED4001SC` | Business Unit is in Purge Status |
-| `V5ED0309SV` | Invalid Current Card Activation |
-| `V5ED0310SV` | Invalid Last Card Activation |
+| `V5ED0010SF` | Update request - record not found |  
+| `V5ED0011SF` | Update request - record add pending |
+| `V5ED4002ED` | Card number must be provided |
+| `V5ED4001SA` | Business unit not found in the system |
+| `V5ED4001SB` | Business unit is in add pending status |
+| `V5ED4001SC` | Business unit is in purge status |
+| `V5ED0309SV` | Invalid current card activation |
+| `V5ED0310SV` | Invalid last card activation |
