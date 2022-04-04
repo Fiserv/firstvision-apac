@@ -11,11 +11,12 @@ This service provides plan details for a given credit plan. Credit plans are con
 ### Request Payload
 
 >Should be empty.
-***The Business Unit and Plan Number should be sent as query parameters and path variable.*** 
+>
+>***The Business Unit and Plan Number should be sent as query parameters and path variable.*** 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](..api/?type=get&path=/v1/products/{planNumber}/planDetails).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{planNumber}/planDetails).
 
 The below table identifies the required parameters in the request payload.
 
@@ -30,26 +31,33 @@ The below table identifies the required parameters in the request payload.
 {
   "balanceTransferType": "N",
   "businessUnit": 600,
-  "cancellationLetterId": "",
-  "cancelledPlanRollMethod": "0",
-  "consolidatedPayment": "Y",
-  "consolidatedStatement": "Y",
-  "controllingCreditPlanMaster": 10002,
-  "delinquencyLevelToCancel": "0",
-  "expirationLetter": "",
-  "expirationRollover": "0",
-  "expiredPlanRollMethod": "0",
+  "consolidatedDetailsRes": {
+    "consolidatedPayment": "Y",
+    "consolidatedStatement": "Y",
+    "controllingCreditPlanMaster": 10002
+  },
+  "description": "RETAIL PLAN",
   "graceBalanceQualification": "0",
   "interestRateTableId": "2",
-  "interestRateTableOverride": 0,
-  "itoExpirationDate": "00/00/0000",
-  "latePaymentCancelRoll": "0",
+  "interestRateTableOverrideRes": {
+    "interestRateTableOverride": 0,
+    "itoExpirationDate": "00/00/0000"
+  },
   "minimumPaymentCalculation": "T",
   "multipleSales": "Y",
   "planNumber": 10002,
   "planType": "R",
-  "rollCancelledPlanToPlanId": 0,
-  "rollExpiredPlanToPlanId": 0
+  "promotionalPlanDetailsRes": {
+    "cancellationLetterId": "",
+    "cancelledPlanRollMethod": "0",
+    "delinquencyLevelToCancel": "0",
+    "expirationLetter": "",
+    "expirationRollover": "0",
+    "expiredPlanRollMethod": "0",
+    "latePaymentCancelRoll": "0",
+    "rollCancelledPlanToPlanId": 0,
+    "rollExpiredPlanToPlanId": 0
+  }
 }
 ```
 
