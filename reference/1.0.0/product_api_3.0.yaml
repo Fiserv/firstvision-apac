@@ -71,36 +71,12 @@ paths:
               $ref: '#/components/schemas/UpdateLogoCardControlReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateLogoCardControlResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -117,6 +93,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -125,7 +109,267 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Update Logo Card Controls
+      x-group-name: Product Management
+  /v1/products/{productNumber}/serviceChargeDetails:
+    get:
+      tags:
+      - Product Management
+      summary: Inquire Service Charge Table
+      description: This service provides various service fee details available in
+        the system for a given Org, Product and table ID combination
+      operationId: InquireServiceChargeTable
+      parameters:
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: true
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: X-Name
+        in: header
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: X-context
+        in: header
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: businessUnit
+        in: query
+        description: Business Unit - Identification number of the business unit associated
+          with this Service Charge/Fee table. The values are 000–998.
+        required: true
+        schema:
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productNumber
+        in: path
+        description: Product Number - Identification number of the product associated
+          with this Service Charge/Fee table. The values are 000–998.
+        required: true
+        schema:
+          maxLength: 3
+          type: integer
+          example: '0'
+      - name: tableNumber
+        in: query
+        description: Table Number - Identification number of the Service Charge/Fee
+          table. The values are 001–998.
+        required: true
+        schema:
+          maxLength: 3
+          type: integer
+          example: '3'
+      responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireServiceChargeTableResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      x-proxy-name: Inquire Service Charge Table
+      x-group-name: Product Management
+  /v1/products/{productNumber}/interestTable:
+    get:
+      tags:
+      - Product Management
+      summary: Inquire Interest Table
+      description: This service provides details of Interest Table. An Interest table
+        identifies a set of parameters that system uses to calculate interest.
+      operationId: InquireInterestTable
+      parameters:
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: true
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: X-Name
+        in: header
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: X-context
+        in: header
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: tableNumber
+        in: query
+        description: Table Number - Identification number of the Interest table. The
+          values are 001–998.
+        required: true
+        schema:
+          maxLength: 3
+          type: integer
+          example: '001'
+      - name: businessUnit
+        in: query
+        description: Business Unit - Identification number of the business unit associated
+          with this Interest table. The values are 000–998.
+        required: true
+        schema:
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productNumber
+        in: path
+        description: Product Number - Identification number of the product associated
+          with this Interest table. The values are 000–998.
+        required: true
+        schema:
+          maxLength: 3
+          type: integer
+          example: '0'
+      responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireInterestTableResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      x-proxy-name: Inquire Interest Table
       x-group-name: Product Management
   /v1/products/{productNumber}/details:
     get:
@@ -183,36 +427,12 @@ paths:
           type: integer
           example: '001'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireProductResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -229,8 +449,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -296,36 +540,12 @@ paths:
           type: integer
           example: '10002'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquirePlanMasterResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -342,8 +562,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -519,15 +763,6 @@ components:
             year-to-date spending by an account in non-high-risk countries. Risk is
             designated by country code in the Financial Authorization System (FAS)
           example: '15000.0'
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        errorMessage:
-          type: string
-          example: ''
     CardControlFieldsRes:
       type: object
       properties:
@@ -710,6 +945,1037 @@ components:
             year-to-date spending by an account in non-high-risk countries. Risk is
             designated by country code in the Financial Authorization System (FAS)
           example: '15000.0'
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        errorMessage:
+          type: string
+          example: ''
+    InquireServiceChargeTableResponseModel:
+      required:
+      - businessUnit
+      - productNumber
+      - tableNumber
+      type: object
+      properties:
+        businessUnit:
+          maxLength: 3
+          type: integer
+          description: Business Unit - Identification number of the business unit
+            associated with this Service Charge/Fee table. The values are 000–998.
+          format: int32
+          example: '600'
+        productNumber:
+          maxLength: 3
+          type: integer
+          description: Product Number - Identification number of the product associated
+            with this Service Charge/Fee table. The values are 000–998.
+          format: int32
+          example: '0'
+        tableNumber:
+          maxLength: 3
+          type: integer
+          description: Table Number - Identification number of the Service Charge/Fee
+            table. The values are 001–998.
+          format: int32
+          example: '3'
+        maximumCycleServiceFees:
+          maxLength: 17
+          type: string
+          description: Maximum Cycle Service Fees - Maximum amount, in monetary units
+            and subunits, of service charges to assess in one cycle. CMS will not
+            assess a service charge unless this field is greater than zero.
+          example: $99999.00
+        serviceChargeDetailsRes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceChargeDetailsRes'
+    ServiceChargeDetailsRes:
+      type: object
+      properties:
+        initiatingTransactionCode:
+          maxLength: 5
+          type: integer
+          description: Initiating Transaction Code - Monetary transaction code that
+            will trigger CMS to generate the service charge. The service charge posts
+            to each plan that has activity identified by this transaction code.
+          format: int32
+          example: '1301'
+        transactionLimitFrequency:
+          maxLength: 1
+          type: string
+          description: Transaction Limit Frequency - Code that determines whether
+            the TRANSACTION LIMIT number is a daily limit or cycle limit for the number
+            of transactions assessed service charges by TIER 1 FEE AMOUNT.
+          example: '1'
+        transactionLimit:
+          maxLength: 2
+          type: integer
+          description: Transaction Limit - Number of transactions to assess the service
+            fee defined by FEE AMOUNT per day or cycle based on the TRANSACTION LIMIT
+            FREQUENCE value. The values are 00–99.
+          format: int32
+          example: '3'
+        tier1ServiceFee:
+          maxLength: 17
+          type: string
+          description: Tier1 Service Fee - Fixed amount in monetary units and subunits
+            or percentage of the transaction amount to assess for the service charge
+            up to the number of transactions in the TRANSACTION LIMIT field, inclusive.
+            If METHOD is 1, enter a fixed amount. If METHOD is 2, enter a percentage.
+            For a percentage, the first two positions must be zero.
+          example: '100'
+        tier2ServiceFee:
+          maxLength: 17
+          type: string
+          description: Tier2 Service Fee -  Fixed amount in monetary units and subunits
+            or percentage of the transaction amount to assess for the service charge
+            for transactions in excess of the number in the TRANSACTION LIMIT field.
+            For a percentage, the first two positions must be zero.
+          example: '500'
+        method:
+          maxLength: 1
+          type: string
+          description: Method - Code that indicates how CMS calculates the service
+            charge (Amount or Percentage).
+          example: '1'
+        serviceFeeMinimumCapping:
+          maxLength: 9
+          type: integer
+          description: Single Fee Minimum Capping - Minimum amount, in monetary units
+            and subunits, of the service charge to assess. This amount must be less
+            than the SINGLE FEE MAXIMUM amount.
+          format: int32
+          example: '0'
+        serviceFeeMaximumCapping:
+          maxLength: 9
+          type: integer
+          description: Single Fee Maximum Capping - Maximum amount, in monetary units
+            and subunits, of the service charge to assess. This amount must be greater
+            than the SINGLE FEE MINIMUM amount.
+          format: int32
+          example: '999999999'
+        feePostingFrequency:
+          maxLength: 1
+          type: string
+          description: Fee Posting Frequency - Code that indicates the frequency CMS
+            posts the service charge to the account.
+          example: '1'
+        feeReverseTransactionCode:
+          maxLength: 4
+          type: integer
+          description: Fee Reverse Transaction Code - Monetary transaction code that
+            will trigger CMS to generate a service charge fee reversal. If this value
+            is 0000, CMS does not automatically generate a service charge reversal
+            transaction for a reversal transaction.
+          format: int32
+          example: '7474'
+        feePlan:
+          maxLength: 1
+          type: string
+          description: Fee Plan - Code that indicates the plan to which the service
+            fee is posted.
+          example: '0'
+        dailyFeeDescription:
+          maxLength: 40
+          type: string
+          description: Daily Fee Description - Description of the transaction code.
+            If FEE POSTING FREQUENCY is 0 (daily), this field is the description of
+            the service charge that prints on account statements. If FEE POSTING FREQUENCY
+            1 (cycle), this field must be blank.
+          example: Service Fees
+        maximumIndicator:
+          maxLength: 1
+          type: string
+          description: Maximum Indicator - Code that indicates whether the maximum
+            amount (SINGLE FEE MAXIMUM) is applied as the daily fee maximum that can
+            be assessed for the transaction code or as the maximum fee that any individual
+            transaction can be assessed for the transaction code.
+          example: '1'
+    BalancesForInterestCalculationRes:
+      type: object
+      properties:
+        chargeInterestOnMembership:
+          maxLength: 1
+          type: string
+          description: Charge Interest On Membership - Code that indicates whether
+            to charge interest on membership fees (also referred to as annual fees).
+          example: '1'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnInterest:
+          maxLength: 1
+          type: string
+          description: Charge Interest On Interest - Code that indicates whether to
+            charge interest on interest (finance charge compounding).
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnService:
+          maxLength: 1
+          type: string
+          description: Charge Interest On Service - Code that indicates whether to
+            charge interest on service charges.
+          example: '1'
+          enum:
+          - '1'
+          - '0'
+        interestOnNsfFee:
+          maxLength: 1
+          type: string
+          description: Interest On NSF Fee - Code that indicates whether to charge
+            interest on fees assessed for items returned due to nonsufficient funds.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnOverLimit:
+          maxLength: 1
+          type: string
+          description: Charge Interest On Over Limit - Code that indicates whether
+            to charge interest on over limit fees.
+          example: '1'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnInsurance:
+          maxLength: 1
+          type: string
+          description: Charge Interest On Insurance - Code that indicates whether
+            to charge interest on insurance premiums.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        interestOnLateCharge:
+          maxLength: 1
+          type: string
+          description: Interest On Late Charge - Code that indicates whether to charge
+            interest on late fees.
+          example: '1'
+          enum:
+          - '1'
+          - '0'
+        interestOnCollectionFees:
+          maxLength: 1
+          type: string
+          description: Interest On Collection Fees - Code that indicates whether to
+            charge interest on collection fees.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        interestOnRecoveryFees:
+          maxLength: 1
+          type: string
+          description: Interest On Recovery Fees - Code that indicates whether to
+            charge interest on recovery fees.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnUserFee1:
+          maxLength: 1
+          type: string
+          description: Charge Interest On User Fee 1 - Code that indicates whether
+            to charge interest on user-defined fees 1.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnUserFee2:
+          maxLength: 1
+          type: string
+          description: Charge Interest On User Fee 2 - Code that indicates whether
+            to charge interest on user-defined fees 2.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnUserFee3:
+          maxLength: 1
+          type: string
+          description: Charge Interest On User Fee 3 - Code that indicates whether
+            to charge interest on user-defined fees 3.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnUserFee4:
+          maxLength: 1
+          type: string
+          description: Charge Interest On User Fee 4 - Code that indicates whether
+            to charge interest on user-defined fees 4.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnUserFee5:
+          maxLength: 1
+          type: string
+          description: Charge Interest On User Fee 5 - Code that indicates whether
+            to charge interest on user-defined fees 5.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        chargeInterestOnUserFee6:
+          maxLength: 1
+          type: string
+          description: Charge Interest On User Fee 6 - Code that indicates whether
+            to charge interest on user-defined fees 6.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+    CeilingLimitsRes:
+      type: object
+      properties:
+        floorRate1:
+          maxLength: 7
+          type: string
+          description: Floor Rate1 - Minimum allowable interest rate for credit plans
+            using this Interest table. CMS uses this rate if the plan balance is less
+            than or equal to the value in the LMT 1 field.
+          example: 0.00000%
+        ceilingRate1:
+          maxLength: 7
+          type: string
+          description: Ceiling Rate1 - Maximum allowable interest rate for credit
+            plans using this Interest table if the plan balance is less than or equal
+            to the balance limit.
+          example: 99.99999%
+        floorRate2:
+          maxLength: 7
+          type: string
+          description: Floor Rate2 - Maximum allowable interest rate for credit plans
+            using this Interest table if the plan balance is greater than the balance
+            limit (BALANCE LIMIT).
+          example: 0.00000%
+        ceilingRate2:
+          maxLength: 7
+          type: string
+          description: Ceiling Rate2 - Minimum allowable interest rate for credit
+            plans using this Interest table. Regardless of the value of the rate index,
+            adjusted by the variance, the actual interest rate assessed for credit
+            plans using this Interest table will not fall below this percentage.
+          example: 99.99999%
+        balanceLimit:
+          maxLength: 17
+          type: string
+          description: Balance Limit - Balance limit for FLOOR RATE 1 and CEILING
+            RATE 1 in whole monetary amounts. If you are using both FLOOR RATE 1-2
+            and CEILING RATE 1–2, the value of this field must be greater than zero.
+          example: $0.00
+    InquireInterestTableResponseModel:
+      required:
+      - businessUnit
+      - productNumber
+      - tableNumber
+      type: object
+      properties:
+        businessUnit:
+          maxLength: 3
+          type: integer
+          description: Business Unit - Identification number of the business unit
+            associated with this Interest table. The values are 000–998.
+          format: int32
+          example: '600'
+        productNumber:
+          maxLength: 3
+          type: integer
+          description: Product Number - Identification number of the product associated
+            with this Interest table. The values are 000–998.
+          format: int32
+          example: '0'
+        tableNumber:
+          maxLength: 3
+          type: integer
+          description: Table Number - Identification number of the Interest table.
+            The values are 001–998.
+          format: int32
+          example: '1'
+        tableName:
+          maxLength: 40
+          type: string
+          description: Table Name - This field indicates the Description of the Interest
+            table.
+          example: INTEREST RATE TABLE FOR CASH PLAN
+        interestControlsRes:
+          $ref: '#/components/schemas/InterestControlsRes'
+        interestCalculationOptionsRes:
+          $ref: '#/components/schemas/InterestCalculationOptionsRes'
+        interestRatesRes:
+          $ref: '#/components/schemas/InterestRatesRes'
+        balancesForInterestCalculationRes:
+          $ref: '#/components/schemas/BalancesForInterestCalculationRes'
+        interestParametersForCombinedGraceAndCycleOptionsRes:
+          $ref: '#/components/schemas/InterestParametersForCombinedGraceAndCycleOptionsRes'
+    InterestCalculationOptionsRes:
+      type: object
+      properties:
+        accrualMethod:
+          maxLength: 1
+          type: string
+          description: Accrual Method - Code that indicates the accrual method CMS
+            uses for interest calculations.
+          example: D
+          enum:
+          - D
+          - B
+          - A
+          - E
+        yearBase:
+          maxLength: 1
+          type: string
+          description: Year Base - Code that indicates the year base CMS uses for
+            interest calculations.
+          example: '0'
+          enum:
+          - ZERO
+          - '1'
+          - '2'
+        startInterestOnDebitTransaction:
+          maxLength: 1
+          type: string
+          description: Start Interest On Debit Transaction - Code that indicates when
+            interest calculations begin on debit transactions.
+          example: P
+          enum:
+          - S
+          - P
+          - T
+          - G
+          - D
+        startInterestOnCreditTransaction:
+          maxLength: 1
+          type: string
+          description: Start Interest On Credit Transaction - Code that indicates
+            when credit transactions affect the calculation of interest.
+          example: T
+          enum:
+          - P
+          - T
+        interestNextStatement:
+          maxLength: 1
+          type: string
+          description: Interest Next Statement - Code that indicates how CMS charges
+            interest on new transactions posted in the current billing cycle.
+          example: C
+          enum:
+          - N
+          - G
+          - R
+          - L
+          - M
+          - Y
+          - D
+          - A
+          - P
+          - S
+          - T
+          - Z
+          - B
+          - Q
+          - U
+          - C
+    InterestControlsRes:
+      type: object
+      properties:
+        interestRounding:
+          maxLength: 1
+          type: string
+          description: Interest Rounding - Code that indicates the rounding method
+            CMS uses to round or truncate interest calculations.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        examineCycleInterestVariance:
+          maxLength: 1
+          type: string
+          description: Examine Cycle Interest Variance - Code that indicates whether
+            CMS examines the cycle interest variance field on the Logo record (EXAMINE
+            CYCLE INTEREST VARIANCE on Products -> 14-Product Processing Additional)
+            during disposition of interest at cycle.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        allowNsfPaymentReversal:
+          maxLength: 1
+          type: string
+          description: Allow NSF Payment Reversal - Code that indicates whether an
+            NSF payment reversal should be considered in the interest waive decision.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        ceilingLimitsRes:
+          $ref: '#/components/schemas/CeilingLimitsRes'
+    InterestParametersForCombinedGraceAndCycleOptionsRes:
+      type: object
+      properties:
+        transactionQualification:
+          maxLength: 1
+          type: string
+          description: Transactions That Qualify - Code that identifies the type of
+            transactions that qualify an account or plan balance as paid in full.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+        waivePriorDeferredInterest:
+          maxLength: 1
+          type: string
+          description: Waive Prior Deferred Interest - Code that indicates whether
+            interest deferred in the prior cycle should be waived if specific account
+            conditions are met.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        usePriorDeferredNsfPaymentReversal:
+          maxLength: 1
+          type: string
+          description: Use Prior Deferred NSF Payment Reversal - Code that indicates
+            whether an NSF payment reversal should be considered in the interest waive
+            decision for prior deferred interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        priorDeferredInterestBalanceIndicator:
+          maxLength: 1
+          type: string
+          description: Prior Deferred Interest Balance Indicator - Code that indicates
+            whether an account or plan beginning balance is used in the interest disposition
+            decisions.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        usePriorDeferredBeginBalance:
+          maxLength: 1
+          type: string
+          description: Use Prior Deferred Begin Balance - This field identifies whether
+            the beginning balance is considered in the waive decision.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        priorDeferredBeginBalanceThreshold:
+          maxLength: 17
+          type: string
+          description: Prior Deferred Begin Balance Threshold - This field indicates
+            the balance threshold that the beginning balance must be less than or
+            equal to before interest is waived.
+          example: $0.00
+        usePriorDeferredEndingBalance:
+          maxLength: 1
+          type: string
+          description: Use Prior Deferred Ending Balance - This field identifies whether
+            the ending balance is considered in the waive decision.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        priorDeferredEndBalanceThreshold:
+          maxLength: 17
+          type: string
+          description: Prior Deferred End Balance Threshold - This field identifies
+            the balance threshold that the ending balance must be less than or equal
+            to before interest is waived.
+          example: $0.00
+        priorDeferredPaidDateQualification:
+          maxLength: 1
+          type: string
+          description: Prior Deferred Paid Date Qualification - Code that indicates
+            whether the date when the account or plan beginning balance is paid is
+            used to qualify the account or plan to waive interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        waiveCurrentCycleInterest:
+          maxLength: 1
+          type: string
+          description: Waive Current Cycle Interest - Code that indicates whether
+            current cycle interest should be waived or deferred if specific account
+            conditions are met.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        useCurrentCycleNsfPaymentReversal:
+          maxLength: 1
+          type: string
+          description: Use Current Cycle NSF Payment Reversal - Code that indicates
+            whether an NSF payment reversal should be considered in the decision to
+            waive or defer interest for the current cycle.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        currentCycleInterestBalanceIndicator:
+          maxLength: 1
+          type: string
+          description: Current Cycle Interest Balance Indicator - Code that indicates
+            whether an account or plan beginning balance is used in the interest disposition
+            decisions.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        useCurrentCycleBeginBalance:
+          maxLength: 1
+          type: string
+          description: Use Current Cycle Begin Balance - This field identifies whether
+            the beginning balance is considered in the decision to waive or defer
+            interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        currentCycleBeginBalanceThreshold:
+          maxLength: 17
+          type: string
+          description: Current Cycle Begin Balance Threshold - This field identifies
+            balance threshold that the beginning balance must be less than or equal
+            to before interest is waived or deferred.
+          example: $0.00
+        useCurrentCycleEndingBalance:
+          maxLength: 1
+          type: string
+          description: Use Current Cycle Ending Balance - This field identifies whether
+            the ending balance is considered in the decision to waive or defer interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        currentCycleEndBalanceThreshold:
+          maxLength: 17
+          type: string
+          description: Current Cycle End Balance Threshold - This field identifies
+            the balance threshold that the ending balance must be less than or equal
+            to before interest is deferred or waived.
+          example: $0.00
+        currentCyclePaidDateQualification:
+          maxLength: 1
+          type: string
+          description: Current Cycle Paid Date Qualification - Code that indicates
+            whether the date when the account or plan beginning balance is paid is
+            used to qualify the account or plan to waive or defer current cycle interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        waivePriorCycleInterest:
+          maxLength: 1
+          type: string
+          description: Waive Prior Cycle Interest - Code that indicates whether prior
+            cycle interest should be waived if specific account conditions are met.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        usePriorCycleNsfPaymentReversal:
+          maxLength: 1
+          type: string
+          description: Use Prior Cycle NSF Payment Reversal - Code that indicates
+            whether an NSF payment reversal should be considered in the decision to
+            waive interest for the prior cycle.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        priorCycleInterestBalanceIndicator:
+          maxLength: 1
+          type: string
+          description: Prior Cycle Interest Balance Indicator - Code that indicates
+            whether an account or plan beginning balance is used in the interest disposition
+            decisions.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        usePriorCycleBeginBalance:
+          maxLength: 1
+          type: string
+          description: Use Prior Cycle Begin Balance - This field identifies whether
+            the beginning balance is considered in the decision to waive interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        priorCycleBeginBalanceThreshold:
+          maxLength: 17
+          type: string
+          description: Prior Cycle Begin Balance Threshold -  This field identifies
+            the balance threshold that the beginning balance must be less than or
+            equal to before interest is waived.
+          example: $0.00
+        usePriorCycleEndingBalance:
+          maxLength: 1
+          type: string
+          description: Use Prior Cycle Ending Balance - This field identifies whether
+            the ending balance is considered in the decision to waive interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        priorCycleEndBalanceThreshold:
+          maxLength: 17
+          type: string
+          description: Prior Cycle End Balance Threshold - The second part of the
+            field is the balance threshold that the ending balance must be less than
+            or equal to before interest is waived.
+          example: $0.00
+        priorCyclePaidDateQualification:
+          type: string
+          description: Prior Cycle Paid Date Qualification - Code that indicates whether
+            the date when the account or plan beginning balance is paid is used to
+            qualify the account or plan to waive prior cycle interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        waiveResidualInterest:
+          maxLength: 1
+          type: string
+          description: Waive Residual Interest - Code that indicates whether residual
+            interest should be waived if specific account conditions are met.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        useResidualInterestNsfPaymentReversal:
+          maxLength: 1
+          type: string
+          description: Use Residual Interest NSF Payment Reversal - Code that indicates
+            whether an NSF payment reversal should be considered in the decision to
+            waive residual interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        residualInterestBalanceIndicator:
+          maxLength: 1
+          type: integer
+          description: Residual Interest Balance Indicator - Code that indicates whether
+            an account or plan beginning balance is used in the interest disposition
+            decisions.
+          format: int32
+          example: '0'
+        useResidualInterestBeginBalance:
+          maxLength: 1
+          type: string
+          description: Use Residual Interest Begin Balance - This field identifies
+            whether the beginning balance is considered in the decision to waive interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        residualInterestBeginBalanceThreshold:
+          maxLength: 17
+          type: string
+          description: Residual Interest Begin Balance Threshold - This field identifies
+            balance threshold that the beginning balance must be less than or equal
+            to before interest is waived.
+          example: $0.00
+        useResidualInterestEndingBalance:
+          maxLength: 1
+          type: string
+          description: Use Residual Interest Ending Balance - This field identifies
+            whether the ending balance is considered in the decision to waive interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        residualInterestEndBalanceThreshold:
+          maxLength: 17
+          type: string
+          description: Residual Interest End Balance Threshold - This field identifies
+            balance threshold that the ending balance must be less than or equal to
+            before interest is waived.
+          example: $0.00
+        residualInterestPaidDateQualification:
+          maxLength: 1
+          type: string
+          description: Residual Interest Paid Date Qualification - Code that indicates
+            whether the date when the account or plan beginning balance is paid is
+            used to qualify the account or plan to waive residual interest.
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+    InterestRatesRes:
+      type: object
+      properties:
+        tierLimitIndicator:
+          maxLength: 1
+          type: string
+          description: Tier Limit Indicator - Code that indicates how to handle tier
+            limits.
+          example: '0'
+          enum:
+          - '1'
+          - '0'
+        rateType:
+          maxLength: 1
+          type: string
+          description: Rate Type - Code that indicates the type of interest rate.
+          example: F
+          enum:
+          - F
+          - T
+          - V
+          - U
+          - Z
+        rateIndexTable:
+          maxLength: 3
+          type: integer
+          description: Rate Index Table - Code that identifies the rate index within
+            the associated Rate Index Table that determines the base rate.
+          format: int32
+          example: '6'
+        rate7:
+          maxLength: 7
+          type: string
+          description: Rate 7 - Interest rate that CMS charges on account balances
+            not greater than the amount in the LIMIT7 field. Interest rate must be
+            within the floor rate and the ceiling rate assigned to the Interest table.
+          example: 0.00000%
+        variance7:
+          maxLength: 7
+          type: string
+          description: Variance 7 - Variance rate that CMS adds to or subtracts from
+            the base rate to determine the interest rate charged. The corresponding
+            +/– field determines whether the variance rate is added to or subtracted
+            from the base rate. The base rate is determined by the index rate assigned
+            to the Interest table.
+          example: 0.00000%
+        limit7:
+          maxLength: 17
+          type: string
+          description: Limit 7 - Account balance limit for interest rates in the RATE
+            7 field or for each of the corresponding variance rates in the VARIANCE
+            fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+            to the Interest table.
+          example: $0.00
+        rate8:
+          maxLength: 7
+          type: string
+          description: Rate 8 - Interest rate that CMS charges on account balances
+            not greater than the amount in the LIMIT8 field. Interest rate must be
+            within the floor rate and the ceiling rate assigned to the Interest table.
+          example: 0.00000%
+        variance8:
+          maxLength: 7
+          type: string
+          description: Variance 8 - Variance rate that CMS adds to or subtracts from
+            the base rate to determine the interest rate charged. The corresponding
+            +/– field determines whether the variance rate is added to or subtracted
+            from the base rate. The base rate is determined by the index rate assigned
+            to the Interest table.
+          example: 0.00000%
+        limit8:
+          maxLength: 17
+          type: string
+          description: Limit 8 - Account balance limit for interest rates in the RATE
+            8 field or for each of the corresponding variance rates in the VARIANCE
+            fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+            to the Interest table.
+          example: $0.00
+        rate9:
+          maxLength: 7
+          type: string
+          description: Rate 9 - Interest rate that CMS charges on account balances
+            not greater than the amount in the LIMIT9 field. Interest rate must be
+            within the floor rate and the ceiling rate assigned to the Interest table.
+          example: 0.00000%
+        variance9:
+          maxLength: 7
+          type: string
+          description: Variance 9 - Variance rate that CMS adds to or subtracts from
+            the base rate to determine the interest rate charged. The corresponding
+            +/– field determines whether the variance rate is added to or subtracted
+            from the base rate. The base rate is determined by the index rate assigned
+            to the Interest table.
+          example: 0.00000%
+        rate1:
+          maxLength: 7
+          type: string
+          description: Rate 1 - Interest rate that CMS charges on account balances
+            not greater than the amount in the LIMIT1 field. Interest rate must be
+            within the floor rate and the ceiling rate assigned to the Interest table.
+          example: 0.00000%
+        variance1:
+          maxLength: 7
+          type: string
+          description: Variance 1 - Variance rate that CMS adds to or subtracts from
+            the base rate to determine the interest rate charged. The corresponding
+            +/– field determines whether the variance rate is added to or subtracted
+            from the base rate. The base rate is determined by the index rate assigned
+            to the Interest table.
+          example: 8.99000%
+        limit1:
+          maxLength: 17
+          type: string
+          description: Limit 1 - Account balance limit for interest rates in the RATE
+            1 field or for each of the corresponding variance rates in the VARIANCE
+            fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+            to the Interest table.
+          example: $999,999,999,999,999.00
+        rate2:
+          maxLength: 7
+          type: string
+          description: Rate 2 - Interest rate that CMS charges on account balances
+            not greater than the amount in the LIMIT2 field. Interest rate must be
+            within the floor rate and the ceiling rate assigned to the Interest table.
+          example: 0.00000%
+        variance2:
+          maxLength: 7
+          type: string
+          description: Variance 2 - Variance rate that CMS adds to or subtracts from
+            the base rate to determine the interest rate charged. The corresponding
+            +/– field determines whether the variance rate is added to or subtracted
+            from the base rate. The base rate is determined by the index rate assigned
+            to the Interest table.
+          example: 0.00000%
+        limit2:
+          maxLength: 17
+          type: string
+          description: Limit 2 - Account balance limit for interest rates in the RATE
+            2 field or for each of the corresponding variance rates in the VARIANCE
+            fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+            to the Interest table.
+          example: $0.00
+        rate3:
+          maxLength: 7
+          type: string
+          description: Rate 3 - Interest rate that CMS charges on account balances
+            not greater than the amount in the LIMIT3 field. Interest rate must be
+            within the floor rate and the ceiling rate assigned to the Interest table.
+          example: 0.00000%
+        variance3:
+          maxLength: 7
+          type: string
+          description: Variance 3 - Variance rate that CMS adds to or subtracts from
+            the base rate to determine the interest rate charged. The corresponding
+            +/– field determines whether the variance rate is added to or subtracted
+            from the base rate. The base rate is determined by the index rate assigned
+            to the Interest table.
+          example: 0.00000%
+        limit3:
+          maxLength: 17
+          type: string
+          description: Limit 3 - Account balance limit for interest rates in the RATE
+            3 field or for each of the corresponding variance rates in the VARIANCE
+            fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+            to the Interest table.
+          example: $0.00
+        rate4:
+          maxLength: 7
+          type: string
+          description: Rate 4 - Interest rate that CMS charges on account balances
+            not greater than the amount in the LIMIT4 field. Interest rate must be
+            within the floor rate and the ceiling rate assigned to the Interest table.
+          example: 0.00000%
+        variance4:
+          maxLength: 7
+          type: string
+          description: Variance 4 - Variance rate that CMS adds to or subtracts from
+            the base rate to determine the interest rate charged. The corresponding
+            +/– field determines whether the variance rate is added to or subtracted
+            from the base rate. The base rate is determined by the index rate assigned
+            to the Interest table.
+          example: 0.00000%
+        limit4:
+          maxLength: 17
+          type: string
+          description: Limit 4 - Account balance limit for interest rates in the RATE
+            4 field or for each of the corresponding variance rates in the VARIANCE
+            fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+            to the Interest table.
+          example: $0.00
+        rate5:
+          maxLength: 7
+          type: string
+          description: Rate 5 - Interest rate that CMS charges on account balances
+            not greater than the amount in the LIMIT5 field. Interest rate must be
+            within the floor rate and the ceiling rate assigned to the Interest table.
+          example: 0.00000%
+        variance5:
+          maxLength: 7
+          type: string
+          description: Variance 5 - Variance rate that CMS adds to or subtracts from
+            the base rate to determine the interest rate charged. The corresponding
+            +/– field determines whether the variance rate is added to or subtracted
+            from the base rate. The base rate is determined by the index rate assigned
+            to the Interest table.
+          example: 0.00000%
+        limit5:
+          maxLength: 17
+          type: string
+          description: Limit 5 - Account balance limit for interest rates in the RATE
+            5 field or for each of the corresponding variance rates in the VARIANCE
+            fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+            to the Interest table.
+          example: $0.00
+        rate6:
+          maxLength: 7
+          type: string
+          description: Rate 6 - Interest rate that CMS charges on account balances
+            not greater than the amount in the LIMIT6 field. Interest rate must be
+            within the floor rate and the ceiling rate assigned to the Interest table.
+          example: 0.00000%
+        variance6:
+          maxLength: 7
+          type: string
+          description: Variance 6 - Variance rate that CMS adds to or subtracts from
+            the base rate to determine the interest rate charged. The corresponding
+            +/– field determines whether the variance rate is added to or subtracted
+            from the base rate. The base rate is determined by the index rate assigned
+            to the Interest table.
+          example: 0.00000%
+        limit6:
+          maxLength: 17
+          type: string
+          description: Limit 6 - Account balance limit for interest rates in the RATE
+            6 field or for each of the corresponding variance rates in the VARIANCE
+            fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+            to the Interest table.
+          example: $0.00
     CardActivationControlsRes:
       type: object
       properties:
