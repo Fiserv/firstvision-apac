@@ -53,36 +53,6 @@ paths:
               $ref: '#/components/schemas/BoardEntityReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardEntityResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -99,6 +69,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardEntityResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -107,7 +91,127 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Board Entities
+      x-group-name: Miscellaneous
+  /v1/misc/{orgNumber}/orgDetails:
+    get:
+      tags:
+      - Miscellaneous
+      summary: Inquire Organization
+      description: This service is used to view important paramter available at organization
+        level.
+      operationId: InquireOrganization
+      parameters:
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: true
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: X-Name
+        in: header
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: X-context
+        in: header
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: orgNumber
+        in: path
+        description: Business Unit - Identification number of the business unit associated
+          with the  account
+        required: true
+        schema:
+          maxLength: 3
+          type: integer
+          example: '600'
+      responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireOrganizationResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      x-proxy-name: Inquire Organization
       x-group-name: Miscellaneous
 components:
   schemas:
@@ -1346,3 +1450,1051 @@ components:
             or DD/MM/YYYY depending on the date format established on the System record
             (DATE FORMAT on System Control)
           example: 18/01/2024
+    BillingCyclAssignment10Res:
+      type: object
+      properties:
+        dateOfLastStatement10:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  10 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay10:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 10 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment11Res:
+      type: object
+      properties:
+        dateOfLastStatement11:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  11 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay11:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 11 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment12Res:
+      type: object
+      properties:
+        dateOfLastStatement12:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  12 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay12:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 12 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment13Res:
+      type: object
+      properties:
+        dateOfLastStatement13:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  13 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay13:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 13 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment14Res:
+      type: object
+      properties:
+        dateOfLastStatement14:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  14 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay14:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 14 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment15Res:
+      type: object
+      properties:
+        dateOfLastStatement15:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  15 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay15:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 15 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment16Res:
+      type: object
+      properties:
+        dateOfLastStatement16:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  16 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay16:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 16 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment17Res:
+      type: object
+      properties:
+        dateOfLastStatement17:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  17 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay17:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 17 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment18Res:
+      type: object
+      properties:
+        dateOfLastStatement18:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  18 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay18:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 18 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment19Res:
+      type: object
+      properties:
+        dateOfLastStatement19:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  19 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay19:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 19 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment1Res:
+      type: object
+      properties:
+        dateOfLastStatement1:
+          maxLength: 10
+          type: string
+          description: Date of Last Statement  1 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control).The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: 18/02/2021
+        nextCycleCallDay1:
+          maxLength: 2
+          type: integer
+          description: 'Next Cycle Call Day 1 -  Day of the month on which the related
+            billing cycle occurs during the current month (CCC - Call Cycle Control) '
+          format: int32
+          example: '10'
+    BillingCyclAssignment20Res:
+      type: object
+      properties:
+        dateOfLastStatement20:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  20 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay20:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 20 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment21Res:
+      type: object
+      properties:
+        dateOfLastStatement21:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  21 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay21:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 21 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment22Res:
+      type: object
+      properties:
+        dateOfLastStatement22:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  22 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay22:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 22 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment23Res:
+      type: object
+      properties:
+        dateOfLastStatement23:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  23 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay23:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 23 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment24Res:
+      type: object
+      properties:
+        dateOfLastStatement24:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  24 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay24:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 24 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment25Res:
+      type: object
+      properties:
+        dateOfLastStatement25:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  25 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay25:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 25 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment26Res:
+      type: object
+      properties:
+        dateOfLastStatement26:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  26 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay26:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 26 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment27Res:
+      type: object
+      properties:
+        dateOfLastStatement27:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  27 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay27:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 27 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment28Res:
+      type: object
+      properties:
+        dateOfLastStatement28:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  28 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay28:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 28 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment29Res:
+      type: object
+      properties:
+        dateOfLastStatement29:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  29 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay29:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 29 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment2Res:
+      type: object
+      properties:
+        dateOfLastStatement2:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  2 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control).The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay2:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 2 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment30Res:
+      type: object
+      properties:
+        dateOfLastStatement30:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  30 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay30:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 30 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment31Res:
+      type: object
+      properties:
+        dateOfLastStatement31:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  31 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay31:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 31 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment3Res:
+      type: object
+      properties:
+        dateOfLastStatement3:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  3 - Date on which the corresponding
+            billing cycle was last produced during a statement run.The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay3:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 3 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment4Res:
+      type: object
+      properties:
+        dateOfLastStatement4:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  4 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay4:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 4 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment5Res:
+      type: object
+      properties:
+        dateOfLastStatement5:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  5 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay5:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 5 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment6Res:
+      type: object
+      properties:
+        dateOfLastStatement6:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  6 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay6:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 6 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment7Res:
+      type: object
+      properties:
+        dateOfLastStatement7:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  7 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay7:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 7 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment8Res:
+      type: object
+      properties:
+        dateOfLastStatement8:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  8 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay8:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 8 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignment9Res:
+      type: object
+      properties:
+        dateOfLastStatement9:
+          maxLength: 10
+          type: string
+          description: 'Date of Last Statement  9 - Date on which the corresponding
+            billing cycle was last produced during a statement run. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control) '
+          example: 18/02/2021
+        nextCycleCallDay9:
+          maxLength: 2
+          type: integer
+          description: Next Cycle Call Day 9 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          format: int32
+          example: '10'
+    BillingCyclAssignmentsRes:
+      type: object
+      properties:
+        billingCyclAssignment1Res:
+          $ref: '#/components/schemas/BillingCyclAssignment1Res'
+        billingCyclAssignment2Res:
+          $ref: '#/components/schemas/BillingCyclAssignment2Res'
+        billingCyclAssignment3Res:
+          $ref: '#/components/schemas/BillingCyclAssignment3Res'
+        billingCyclAssignment4Res:
+          $ref: '#/components/schemas/BillingCyclAssignment4Res'
+        billingCyclAssignment5Res:
+          $ref: '#/components/schemas/BillingCyclAssignment5Res'
+        billingCyclAssignment6Res:
+          $ref: '#/components/schemas/BillingCyclAssignment6Res'
+        billingCyclAssignment7Res:
+          $ref: '#/components/schemas/BillingCyclAssignment7Res'
+        billingCyclAssignment8Res:
+          $ref: '#/components/schemas/BillingCyclAssignment8Res'
+        billingCyclAssignment9Res:
+          $ref: '#/components/schemas/BillingCyclAssignment9Res'
+        billingCyclAssignment10Res:
+          $ref: '#/components/schemas/BillingCyclAssignment10Res'
+        billingCyclAssignment11Res:
+          $ref: '#/components/schemas/BillingCyclAssignment11Res'
+        billingCyclAssignment12Res:
+          $ref: '#/components/schemas/BillingCyclAssignment12Res'
+        billingCyclAssignment13Res:
+          $ref: '#/components/schemas/BillingCyclAssignment13Res'
+        billingCyclAssignment14Res:
+          $ref: '#/components/schemas/BillingCyclAssignment14Res'
+        billingCyclAssignment15Res:
+          $ref: '#/components/schemas/BillingCyclAssignment15Res'
+        billingCyclAssignment16Res:
+          $ref: '#/components/schemas/BillingCyclAssignment16Res'
+        billingCyclAssignment17Res:
+          $ref: '#/components/schemas/BillingCyclAssignment17Res'
+        billingCyclAssignment18Res:
+          $ref: '#/components/schemas/BillingCyclAssignment18Res'
+        billingCyclAssignment19Res:
+          $ref: '#/components/schemas/BillingCyclAssignment19Res'
+        billingCyclAssignment20Res:
+          $ref: '#/components/schemas/BillingCyclAssignment20Res'
+        billingCyclAssignment21Res:
+          $ref: '#/components/schemas/BillingCyclAssignment21Res'
+        billingCyclAssignment22Res:
+          $ref: '#/components/schemas/BillingCyclAssignment22Res'
+        billingCyclAssignment23Res:
+          $ref: '#/components/schemas/BillingCyclAssignment23Res'
+        billingCyclAssignment24Res:
+          $ref: '#/components/schemas/BillingCyclAssignment24Res'
+        billingCyclAssignment25Res:
+          $ref: '#/components/schemas/BillingCyclAssignment25Res'
+        billingCyclAssignment26Res:
+          $ref: '#/components/schemas/BillingCyclAssignment26Res'
+        billingCyclAssignment27Res:
+          $ref: '#/components/schemas/BillingCyclAssignment27Res'
+        billingCyclAssignment28Res:
+          $ref: '#/components/schemas/BillingCyclAssignment28Res'
+        billingCyclAssignment29Res:
+          $ref: '#/components/schemas/BillingCyclAssignment29Res'
+        billingCyclAssignment30Res:
+          $ref: '#/components/schemas/BillingCyclAssignment30Res'
+        billingCyclAssignment31Res:
+          $ref: '#/components/schemas/BillingCyclAssignment31Res'
+    GeneralLedgerDetailsRes:
+      type: object
+      properties:
+        businessUnitLevel:
+          maxLength: 1
+          type: string
+          description: 'Business Unit Level - Code that determines whether CMS generates
+            general ledger transactions at the business unit level '
+          example: Y
+          enum:
+          - Y
+          - N
+        generateProductLevelGlReporting:
+          maxLength: 1
+          type: string
+          description: 'Generate Product Level GL Reporting - Code that determines
+            whether CMS generates general ledger transactions at the product level '
+          example: Y
+          enum:
+          - Y
+          - N
+        generatePlanLevelGlReporting:
+          maxLength: 1
+          type: string
+          description: 'Generate Plan Level GL Reporting - Code that determines whether
+            CMS generates general ledger transactions at the credit plan level '
+          example: Y
+          enum:
+          - Y
+          - N
+        accountingMethod:
+          maxLength: 1
+          type: string
+          description: 'Accounting Method - Code that determines whether the business
+            unit uses a cash basis or an accrual basis accounting method '
+          example: A
+          enum:
+          - A
+          - C
+        nonpostedDebits:
+          maxLength: 19
+          type: string
+          description: 'Non-Posted Debits - Default general ledger account numbers
+            for nonposted debit transactions '
+          example: ''
+        nonpostedDebitReversals:
+          maxLength: 19
+          type: string
+          description: 'Non-Posted Debit Reversals - Default general ledger account
+            numbers for nonposted debit reversal transactions '
+          example: ''
+        nonpostedDebitPurges:
+          maxLength: 19
+          type: string
+          description: 'Non-Posted Debit Purges - Default general ledger account numbers
+            for nonposted debit purge transactions '
+          example: ''
+        batchNonpostedDebits:
+          maxLength: 19
+          type: string
+          description: 'Batch Non-Posted Debits - Default general ledger account numbers
+            for nonposted debit transactions in batch '
+          example: ''
+        batchNonpostDebitReversals:
+          maxLength: 19
+          type: string
+          description: 'Batch Non-Post Debit Reversals - Default general ledger account
+            numbers for nonposted debit reversal transactions in batch '
+          example: ''
+        defaultGlAccountForDebits:
+          maxLength: 19
+          type: string
+          description: 'Default GL Account For Debits - Default general ledger account
+            numbers for any transaction that does not have a corresponding general
+            ledger account '
+          example: ''
+        nonpostedCredits:
+          maxLength: 19
+          type: string
+          description: 'Non-Posted Credits - Default transaction code assigned to
+            a nonposted credit record '
+          example: ''
+        nonpostedCreditReversals:
+          maxLength: 19
+          type: string
+          description: 'Non-Posted Credit Reversals - Default transaction code assigned
+            to a nonposted credit reversal record '
+          example: ''
+        nonpostedCreditPurges:
+          maxLength: 19
+          type: string
+          description: 'Non-Posted Credit Purges - Default general ledger account
+            numbers for nonposted credit purge transactions '
+          example: Y
+        batchNonpostedCredits:
+          maxLength: 19
+          type: string
+          description: 'Batch Non-Posted Credits - Default transaction code assigned
+            to a batch nonposted credit record '
+          example: ''
+        batchNonpostCreditReversals:
+          maxLength: 19
+          type: string
+          description: 'Batch Non-Post Credit Reversals - Default transaction code
+            assigned to a batch nonposted credit reversal record '
+          example: ''
+        defaultGlAccountForCredits:
+          maxLength: 19
+          type: string
+          description: 'Default GL Account For Credits - Default general ledger account
+            numbers for any transaction that does not have a corresponding general
+            ledger account '
+          example: ''
+        generalLedgerReportingType:
+          maxLength: 1
+          type: string
+          description: 'General Ledger Reporting Type -  General reporting type '
+          example: D
+          enum:
+          - D
+          - C
+          - M
+    InquireOrganizationResponseModel:
+      required:
+      - orgNumber
+      type: object
+      properties:
+        orgNumber:
+          maxLength: 3
+          type: integer
+          description: Business Unit - Identification number of the business unit
+            associated with the  account
+          format: int32
+          example: '600'
+        businessUnitName:
+          maxLength: 40
+          type: string
+          description: Business Unit Name - Description or name of the business unit
+          example: NAB
+        countryCode:
+          maxLength: 3
+          type: string
+          description: Country Code - Code that identifies the country in which this
+            business unit is located
+          example: AUS
+        currencyCode:
+          maxLength: 3
+          type: integer
+          description: Currency Code - ISO Standard Currency Code that identifies
+            the unit of currency for this business unit
+          format: int32
+          example: '36'
+        businessUnitRegion:
+          maxLength: 1
+          type: string
+          description: Business Unit Region - Code that identifies the quarterly reporting
+            region for the business unit
+          example: '1'
+          enum:
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - ' '
+        todaysDate:
+          maxLength: 10
+          type: string
+          description: Todays Date - Date when CMS last processed the business unit
+          example: 18/08/2021
+        dateNextProcess:
+          maxLength: 10
+          type: string
+          description: Date Next Process - Next processing date for the business unit
+          example: 19/08/2021
+        dateInterestAccruedThrough:
+          maxLength: 10
+          type: string
+          description: Date Interest Accrued Through - Date through which interest
+            accrued for all accounts within this business unit
+          example: 18/08/2021
+        dateLastMaintenance:
+          maxLength: 10
+          type: string
+          description: Date Last Maintenance- Date of the last maintenance on this
+            Organization record
+          example: 18/08/2021
+        generalLedgerDetailsRes:
+          $ref: '#/components/schemas/GeneralLedgerDetailsRes'
+        accruedDebit:
+          maxLength: 4
+          type: integer
+          description: 'Accrued Debit - Debit Accrual transaction code '
+          format: int32
+          example: '1234'
+        accruedCredit:
+          maxLength: 4
+          type: integer
+          description: 'Accrued Credit - Credit Accrual transaction code '
+          format: int32
+          example: '1235'
+        transactionBasedOffers:
+          maxLength: 1
+          type: integer
+          description: Transaction Based Offers - the code that indicates offers based
+            on type of transaction
+          format: int32
+          example: '1'
+        useServiceCharges:
+          maxLength: 1
+          type: string
+          description: User Service Charges - Code that indicates whether this business
+            unit uses service charges
+          example: Y
+          enum:
+          - Y
+          - N
+        processingControlsRes:
+          $ref: '#/components/schemas/ProcessingControlsRes'
+        commercialCardsAllowed:
+          maxLength: 1
+          type: string
+          description: Commercial Cards Allowed - Flag that indicates whether CMS
+            allows commercial card accounts for this business unit
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        relationshipAuthorisationActive:
+          maxLength: 1
+          type: string
+          description: Relationship Authorisation Active - Flag that indicates whether
+            the relationship authorization feature is active for relationship accounts
+            added in this business unit
+          enum:
+          - '0'
+          - '1'
+          example: ''
+        cashCreditLimitCalculationMethod:
+          maxLength: 1
+          type: string
+          description: Cash Credit Limit Calculation Method - This field indicates
+            whether the cash credit limit is a monetary amount or a percentage of
+            the relationship credit limit
+          example: A
+          enum:
+          - A
+          - P
+        cashCreditLimit:
+          maxLength: 17
+          type: string
+          description: Cash Credit Limit - This field that indicates the default cash
+            limit value for a relationship in this business unit
+          example: $100,000.00
+        loanLimitCalculationMethod:
+          maxLength: 1
+          type: string
+          description: 'Loan Limit Calculation Method - This field indicates whether
+            the loan limit is a monetary amount or a percentage of the relationship
+            credit limit '
+          example: A
+          enum:
+          - A
+          - P
+        loanCreditLimit:
+          maxLength: 17
+          type: string
+          description: Loan Credit Limit - This field indicates the default loan limit
+            value for a relationship in this business unit
+          example: $0.00
+        excludeDefaultDisputedAmounts:
+          maxLength: 1
+          type: string
+          description: Exclude Default Disputed Amounts - The code indicates dispute
+            amount to be considered while calculating OTB
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        mccLimitsRes:
+          $ref: '#/components/schemas/MccLimitsRes'
+        earlySettlementQuotesProcess:
+          maxLength: 1
+          type: string
+          description: Early Settlement Quotes Process - Flag that indicates whether
+            CMS calculates early settlement quotes for loans during the CMS daily
+            run in batch processing
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        installmentLoansActive:
+          maxLength: 1
+          type: string
+          description: 'Installment Loans Active - Flag that indicates whether CMS
+            allows installment loans for this business unit '
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        billingCyclAssignmentsRes:
+          $ref: '#/components/schemas/BillingCyclAssignmentsRes'
+    MccLimitsRes:
+      type: object
+      properties:
+        mccLimitAmount1:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 1 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+        mccLimitAmount2:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 2 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+        mccLimitAmount3:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 3 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+        mccLimitAmount4:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 4 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+        mccLimitAmount5:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 5 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+        mccLimitAmount6:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 6 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+        mccLimitAmount7:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 7 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+        mccLimitAmount8:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 8 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+        mccLimitAmount9:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 9 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+        mccLimitAmount10:
+          maxLength: 11
+          type: string
+          description: MCC LIMIT AMOUNT 10 -  Day of the month on which the related
+            billing cycle occurs during the current month
+          example: $0.00
+    ProcessingControlsRes:
+      type: object
+      properties:
+        allowConsolidatedPayments:
+          maxLength: 1
+          type: string
+          description: 'Allow Consolidated Payments - Flag that indicates whether
+            CMS allows consolidated payments for relationships within this business
+            unit '
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        addUnpaidMinAmountDueBalances:
+          maxLength: 1
+          type: string
+          description: Add Unpaid Min. Amount Due Balances - This field helps to identify
+            how to transfer unpaid minimum amount due balances from foreign accounts
+            to local accounts
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        autoChargebackActive:
+          maxLength: 1
+          type: string
+          description: 'Auto Chargeback Active - Flag that indicates whether automatic
+            chargeback processing is active for the business unit '
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        actionOnLateFee:
+          maxLength: 1
+          type: string
+          description: 'Action On Late Fee - Code that indicates whether CMS waives
+            the late fee when late fee assessment is delayed into the next cycle '
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        actionOnFinanceCharge:
+          maxLength: 1
+          type: string
+          description: 'Action On Finance Charge - Code that indicates whether CMS
+            waives or defers interest processing when a statement is delayed at the
+            printing vendor site '
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
