@@ -1,6 +1,6 @@
 # Update User profile
 
-This service is used to update the issue and re-issue delivery options.	
+This service is used to update security sign-on records like business unit include/exclude flags, User application access record, user service privileged record etc.
 
 ## Endpoint
 
