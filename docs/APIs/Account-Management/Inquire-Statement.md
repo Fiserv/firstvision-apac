@@ -1,10 +1,10 @@
 # Inquire Statement
 
- This service is used to fetch statement details for a given account number. 
+This service is used to fetch statement details for a given account number.
 
 ## Endpoint
 
-`GET /v1/accounts/{accountNumber}/statement/details`
+`GET /v1/accounts/{accountNumber}/statementDetails`
 
 ## Payload Example
 
@@ -12,18 +12,18 @@
 
 >Should be empty. 
 >
->***The Account Number should be sent as and path variable.***
+>***The Account Number should be sent as path variable.***
 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountNumber}/statement/details).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountNumber}/statementDetails).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the Account. | 
+| `accountNumber` | Path Variable | *string* | 19 | Unique identification number of the account. | 
 
 ### Successful Response Payload
 

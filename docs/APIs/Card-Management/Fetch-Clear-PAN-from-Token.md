@@ -12,7 +12,7 @@ This service is used to fetch the clear pan for the requested First Vision's Tok
 
 >Should be empty. 
 >
->***The Card Number should be sent as and path variable.***
+>***The Card Number should be sent as path variable.***
 
 ### Minimum Requirements
 
