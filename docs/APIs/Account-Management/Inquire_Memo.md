@@ -434,18 +434,3 @@ The below table identifies the required parameters in the request payload.
 }
 
 ```
-
-### Error Response Payload
-
-```json
-{
-  "errorCode": "V5PH0004SF",
-  "errorMessage": "Get Request - Record Not Found"  
-}
-```
-
-Below table provides the list of application's error code and its description.
-
-| ErrorCode |  Description/Values |
-| --------  | ------------------ |
-| `V5PH0004SF` | Get Request - Record Not Found |

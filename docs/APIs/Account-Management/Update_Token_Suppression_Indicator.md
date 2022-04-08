@@ -1,6 +1,6 @@
 # Update Token Supress Indicator
 
-This service is used to update the token supress Indicator for given account. 0 and 1 are valid values. 0 indicates supress token is inactive whereas 1 indicates supress token is active.	
+This service is used to update the token supress Indicator for given account.
 
 ## Endpoint
 

@@ -1,6 +1,6 @@
 # Upgrade Account Product
 
-This service will validate input message details and perform upgrade Accounts Product. 
+This service will validate input message and upgrades customer's account product. 
 
 ## Endpoint
 

@@ -54,7 +54,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5BS0004SF",
-  "errorMessage": "NGet Request - Record Not Found"  
+  "errorMessage": "Get Request - Record Not Found"  
 }
 ```
 

@@ -13,7 +13,7 @@
 
 >Should be empty. 
 >
->***The Business Unit/Table Number and Account Number should be sent as query and path variable.***
+>***The Business Unit/Table Number and Product Number should be sent as query and path variable.***
 
 
 ### Minimum Requirements
@@ -26,7 +26,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `businessUnit` | Query Parameter | *number* | 3 | Identification number of the business unit associated with this Interest table. | 
 | `tableNumber` | Query parameter | *number* | 3 | Identification number of the product associated with this Interest table. | 
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the Account. | 
+| `productNumber` | Path Variable | *number* | 3 | dentification number of the product associated with this Interest table. | 
 
 ### Successful Response Payload
 

@@ -1,6 +1,6 @@
 # Board Customer
 
-This API is used to board the new customer in real time. 
+This API is used to create a new customer record. This record will have demographic information of customer.
 
 Fields that are not provided in the Request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
 
@@ -14,37 +14,37 @@ Fields that are not provided in the Request object will be initialised to their 
 
 ```json
 {
-  "dualFlag": 0,
-  "postalCode1": 112345,
-  "city1": "La Vegas",
-  "nameLine21": " Jacob ",
   "businessUnit": 600,
-  "firstName1": " Samuel",
-  "state1": "California",
-  "middleName1": " ",
-  "email1": "abc@goole.com",
-  "addressLine21": " S.H. Qo",
-  "addressLine41": "USA",
-  "lastName1": "Christopher",
-  "nameTypeInd21": 0,
-  "employeePhone1": 67894,
-  "nameLine31": "Samuel",
-  "nameLine11": "John",
-  "product": 600,
-  "gender1": 1,
-  "title1": "ADWSQQ",
-  "mobileNumber1": 11231232,
-  "homePhone1": 11230342,
-  "nationalId1": "2363-12-2839-1",
-  "countryCode1": "USA ",
-  "residenceFlag1": 1,
-  "altEmail1": "abc1@google.com",
-  "addressLine31": "California",
-  "addressLine11": "House No. 12",
-  "emailFlag1": 1,
-  "nameTypeInd31": 0,
-  "nameTypeInd11": 0,
-  "dateOfBirth1": "01/02/2010"
+  "product": 2,
+  "dualFlag": 0,
+  "title": "ADWSQQ",
+  "nameTypeIndicator1": "0",
+  "nameTypeIndicator2": "0",
+  "nameTypeIndicator3": "0",
+  "nameLine1": "John",
+  "nameLine2": "Jacob ",
+  "nameLine3": "Samuel",
+  "addressLine1": "House No. 12",
+  "addressLine2": "S.H. Qo",
+  "addressLine3": "California",
+  "addressLine4": "USA",
+  "city": "La Vegas",
+  "state": "CL",
+  "postalCode": "112345",
+  "countryCode": "USA",
+  "residentialFlag": "1",
+  "homePhone": "11230342",
+  "employeePhone": "67894",
+  "dateOfBirth": "01/02/2010",
+  "lastName": "Christopher",
+  "middleName": "",
+  "firstName": "Samuel",
+  "nationalID": "2363-12-2839-1",
+  "gender": "1",
+  "email": "abc@goole.com",
+  "alternateEmail": "abc1@google.com",
+  "mobileNumber": "11231232",
+  "emailFlag": "1"
 }
 ``` 
 
@@ -56,37 +56,16 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `Business Unit` | Payload | *number* | 3 | Identification number of the business unit associated with the  account or relationship. |
-| `Product` | Payload | *number* | 3 | Identification number of the product associated with the  account or relationship. |
-| `Dual Flag` | Payload | *number* | 1 | This field indicates whether CMS adds a duplicate customer  record in the associated business unit for dual currency processing. |
-| `Title` | Payload | *string* | 20 | Customer title. |
-| `Name Type Ind***` | Payload | *number* | 1 | Name Type indiacators 1/2/3. |
-| `Name Line***` | Payload | *string* | 40 | Customer name line 1/2/3. |
-| `Address Line***` | Payload | *string* | 40 | Customer address line 1/2/3/4. |
-| `City` | Payload | *string* | 30 | Name of customer city. |
-| `State` | Payload | *string* | 30 | Name of state. |
-| `Postal Code` | Payload | *string* | 10 | Postal code. |
-| `Country Code` | Payload | *string* | 03 | code of country. |
-| `Residence Flag` | Payload | *number* | 1 | Residential status. |
-| `Home Phone` | Payload | *string* | 20 | Residential phone number. |
-| `Employee Phone` | Payload | *string* | 20 | Employee phone number. |
-| `Date of Birth` | Payload | *date* | DD/MM/YYYY | Customer date of birth. |
-| `Last Name` | Payload | *string* | 40 | Last name of customer. |
-| `Middle Name` | Payload | *string* | 40 | Middle name of customer. |
-| `First Name` | Payload | *string* | 40 | First name of customer. |
-| `National ID` | Payload | *string* | 25 | Customer national ID number. |
-| `Gender` | Payload | *number* | 1 | Gender of customer. |
-| `E-Mail` | Payload | *string* | 60 | customer primary mail id. |
-| `Alt E-Mail` | Payload | *string* | 50 | Customer alternate mail id. |
-| `Mobile Number` | Payload | *string* | 20 | Customer mobile number. |
-| `E-Mail Flag` | Payload | *number* | 1 | This is the code that indicates to select mail id for communication.|
+| `businessUnit` | Payload | *number* | 3 | Identification number of the business unit associated with the  account or relationship. |
+| `product` | Payload | *number* | 3 | Identification number of the product associated with the  account or relationship. |
+| `firstName` | Payload | *string* | 40 | First name of customer. |
 
 ### Successful Response Payload
 
 ```json
 {
   "businessUnit": 600,
-  "customerNumber": 0000000001000000007
+  "customerNumber": "0006000012000000543"
 }
 ```
 

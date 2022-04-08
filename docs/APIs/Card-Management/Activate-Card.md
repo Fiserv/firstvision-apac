@@ -13,7 +13,7 @@ This service is used to activate the card after successful verification of the c
 
 ```json
 {
-  "currentCardRequireActivation": "N",
+  "currentCardNeedActivation": "N",
   "lastCardActivation": "Y"
 }
 ```
@@ -35,11 +35,9 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "businessUnit": 100,
-  "cardSequence": 1,
-  "postToAccountNumber": "00010000CCCCC510760",
-  "cardNumber": "00098468CCCCC273613",
-  "currentCardRequireActivation": "N",
-  "cardActivatedDate": "01/10/2021",
+  "cardActivatedDate": "19/08/2021",
+  "cardNumber": "0009846801010273613",
+  "currentCardNeedActivation": "N",
   "lastCardActivation": "Y"
 }
 ```

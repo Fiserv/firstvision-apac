@@ -12,7 +12,7 @@ This service retrieves the account and card details associated with a Customer n
 
 >Should be empty.
 >
->***The Account Number should be sent as path variable.***
+>***The Customer Number should be sent as path variable.***
 
 
 ### Minimum Requirements
@@ -23,7 +23,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the Account.|
+| `customerNumber` | Path Variable | *string* | 19 | An identifier of the customer.|
+
 
 ### Successful Response Payload
 
