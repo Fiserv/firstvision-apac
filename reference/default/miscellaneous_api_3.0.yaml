@@ -61,8 +61,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -77,14 +85,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardEntityResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -99,14 +101,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/BoardEntityResponseModel'
       x-proxy-name: Board Entities
       x-group-name: Miscellaneous
   /v1/misc/{orgNumber}/orgDetails:
@@ -165,38 +165,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -211,6 +179,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireOrganizationResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Inquire Organization
       x-group-name: Miscellaneous
 components:
@@ -328,49 +328,7 @@ components:
           description: 'Issuance ID - This flag identifies the state, province or
             country in which the  account holder resides '
           example: '600'
-        idOfThePctOverrideTables:
-          maxLength: 3
-          minLength: 0
-          type: string
-          description: ID Of The PCT Override Tables - Code that identifies an existing
-            Processing Control Table (PCT ID) used to establish special pricing controls
-            for the account
-          example: ''
-        startDateOfTheOverride:
-          maxLength: 10
-          minLength: 0
-          type: string
-          description: Start Date Of The Override - This is the date on which the
-            special pricing controls start for the account. The format is MM/DD/YYYY
-            or DD/MM/YYYY depending on the date format established on the System record
-            (DATE FORMAT on System Control)
-          example: ''
-        expireDateOfTheOverride:
-          maxLength: 10
-          minLength: 0
-          type: string
-          description: Expire Date Of The Override - This is the date on which the
-            special pricing controls expire for the account. The format is MM/DD/YYYY
-            or DD/MM/YYYY depending on the date format established on the System record
-            (DATE FORMAT on System Control)
-          example: ''
-        processingControlLevel:
-          maxLength: 1
-          minLength: 0
-          type: string
-          description: Processing Control Level - This is a flag which indicates the
-            processing control level for accounts in this product
-          example: ''
-        startDateOfPctOverride:
-          maxLength: 10
-          minLength: 0
-          type: string
-          description: Start Date Of PCT Override - This is the date on which the
-            processing control level override starts for the account. The format is
-            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
-            System record (DATE FORMAT on System Control).
-          example: ''
-        expirationDateOfPctOverride:
+        pctLevelOverrideEndDate:
           maxLength: 10
           minLength: 0
           type: string
@@ -415,15 +373,6 @@ components:
           type: string
           description: Temporary Credit Limit - This is the temporary line of credit
             for the account in whole monetary units
-          example: ''
-        expiryDateOfTempCreditLimit:
-          maxLength: 10
-          minLength: 0
-          type: string
-          description: Expiry Date of Temp Credit Limit - This expiry date is for
-            the temporary line of credit for the account in whole monetary units.
-            The format is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
-            on the System record (DATE FORMAT on System Control)
           example: ''
         owningBranchNumber:
           maximum: 999999999
@@ -525,6 +474,8 @@ components:
           - S
           - T
           - ' '
+        OF7:
+          $ref: '#/components/schemas/Of7'
     AccountInsuranceProductDataReq:
       type: object
       properties:
@@ -1211,6 +1162,60 @@ components:
           - ZERO
           - '1'
           - '2'
+    Of7:
+      type: object
+      properties:
+        pctOverrideTableId:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: ID Of The PCT Override Tables - Code that identifies an existing
+            Processing Control Table (PCT ID) used to establish special pricing controls
+            for the account
+          example: ''
+        pctOverrideStartDate:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: Start Date Of The Override - This is the date on which the
+            special pricing controls start for the account. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: ''
+        pctOverrideEndDate:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: Expire Date Of The Override - This is the date on which the
+            special pricing controls expire for the account. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: ''
+        pctLevelOverride:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: Processing Control Level - This is a flag which indicates the
+            processing control level for accounts in this product
+          example: ''
+        pctLevelOverrideStartDate:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: Start Date Of PCT Override - This is the date on which the
+            processing control level override starts for the account. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the date format established on the
+            System record (DATE FORMAT on System Control).
+          example: ''
+        expiryDateOfTempCreditLimit:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: Expiry Date of Temp Credit Limit - This expiry date is for
+            the temporary line of credit for the account in whole monetary units.
+            The format is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
+            on the System record (DATE FORMAT on System Control)
+          example: ''
     RelationshipDetailsReq:
       type: object
       properties:
