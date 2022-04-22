@@ -54,6 +54,14 @@ paths:
               $ref: '#/components/schemas/UpdateUserReqModel'
         required: true
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -62,24 +70,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -92,16 +92,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateUserResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -154,38 +154,16 @@ paths:
               $ref: '#/components/schemas/SignonUserReqModel'
         required: true
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SignonUserResponseModel'
         '404':
           description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -202,6 +180,28 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignonUserResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -225,7 +225,7 @@ paths:
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
-        required: true
+        required: false
         schema:
           maxLength: 40
           type: string
@@ -262,32 +262,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddUserResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -304,6 +288,22 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -3389,6 +3389,7 @@ components:
       type: object
       properties:
         clientId:
+          maximum: 99999
           maxLength: 5
           type: integer
           description: Client ID - Identification number, referred to as Client ID,
@@ -3397,6 +3398,7 @@ components:
           example: '1'
         name:
           maxLength: 15
+          minLength: 0
           type: string
           description: Name - Sign-on name that the person assigned this User Security
             Signon record will use to sign on to the system. The sign-on name can
@@ -3407,6 +3409,7 @@ components:
           example: NABTEST25
         dateToActivate:
           maxLength: 10
+          minLength: 0
           type: string
           description: Date to Activate - Activation date of the User Security Sign-on
             record. The default value is zeros. The sign-on record cannot be used
@@ -3418,6 +3421,7 @@ components:
           example: 27/02/2022
         signonExpiryDate:
           maxLength: 10
+          minLength: 0
           type: string
           description: Sign-on Expiry Date - Expiration date of the User Security
             Sign-on record. The default value is zeros. The sign-on record cannot
@@ -3431,10 +3435,12 @@ components:
           example: 31/12/2025
         operatorId:
           maxLength: 3
+          minLength: 0
           type: string
           description: Operator ID - Rep id of Operator
           example: ABC
         customerServiceBusinessUnit:
+          maximum: 999
           maxLength: 3
           type: integer
           description: Customer Service Business Unit
@@ -3442,6 +3448,7 @@ components:
           example: '100'
         businessUnitPrivilegeId:
           maxLength: 8
+          minLength: 0
           type: string
           description: Business Unit Privilege ID - Name that identifies an existing
             organization privilege group assigned to this User Security Sign-on record.
@@ -3454,6 +3461,7 @@ components:
           example: CLTUSER
         servicePrivilegeGroupId:
           maxLength: 8
+          minLength: 0
           type: string
           description: Service Privilege Group - Name that identifies an existing
             service privilege group assigned to this User Security Sign-on record.
@@ -3462,11 +3470,13 @@ components:
           example: CLTUSER
         supervisorId:
           maxLength: 3
+          minLength: 0
           type: string
           description: Supervisor ID
-          example: ''
+          example: ' '
         sourceGroupType:
           maxLength: 1
+          minLength: 0
           type: string
           description: Source Group Type - Code that identifies the source group assigned
             to this User Security Sign-on record. Each source group defines a set
