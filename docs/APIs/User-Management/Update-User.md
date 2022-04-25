@@ -1,10 +1,10 @@
-# Update User profile
+# Update User
 
 This service is used to update security sign-on records like business unit include/exclude flags, User application access record, user service privileged record etc.
 
 ## Endpoint
 
-`PUT /v1/users/updateUserProfile`
+`PUT /v1/users/updateUser`
 
 ## Payload Example
 
@@ -244,7 +244,7 @@ This service is used to update security sign-on records like business unit inclu
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/users/updateUserProfile).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/users/updateUser).
 
 The below table identifies the required parameters in the request payload.
 
