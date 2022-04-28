@@ -52,6 +52,7 @@ paths:
           with the card, valid values are 001-998.
         required: false
         schema:
+          maximum: 999
           maxLength: 3
           type: integer
           example: '100'
@@ -61,6 +62,7 @@ paths:
         required: true
         schema:
           maxLength: 19
+          minLength: 0
           type: string
           example: '0009846801010434272'
       requestBody:
@@ -70,14 +72,8 @@ paths:
               $ref: '#/components/schemas/UpdateSpendLimitReqModel'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateSpendLimitResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -92,14 +88,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/UpdateSpendLimitResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -116,8 +110,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -189,24 +191,22 @@ paths:
               $ref: '#/components/schemas/UpdateCardTypeReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCardTypeResponseModel'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -229,20 +229,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateCardTypeResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Update Card Type
       x-group-name: Card Management
   /v1/cards/{cardNumber}/pinBlockChange:
@@ -308,8 +310,8 @@ paths:
               $ref: '#/components/schemas/ChangePINReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -324,24 +326,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -354,8 +340,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChangePINResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -427,8 +429,8 @@ paths:
               $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -443,14 +445,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -459,12 +459,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionResponseModel'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -473,8 +467,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -545,8 +547,8 @@ paths:
               $ref: '#/components/schemas/UpdateCardControlReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -561,16 +563,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -583,16 +593,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateCardControlResponseModel'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -665,8 +667,8 @@ paths:
               $ref: '#/components/schemas/BlockUnblockCardReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -681,8 +683,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -695,14 +697,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockUnblockCardResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -711,8 +705,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -784,8 +786,8 @@ paths:
               $ref: '#/components/schemas/ActivateCardReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -794,14 +796,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -824,20 +818,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ActivateCardResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Activate Card
       x-group-name: Card Management
   /v1/cards/{cardNumber}/action:
@@ -902,8 +904,8 @@ paths:
               $ref: '#/components/schemas/UpdateCardActionReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -918,14 +920,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/UpdateCardActionResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -942,20 +942,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateCardActionResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Update Card Action
       x-group-name: Card Management
   /v1/cards/{cardNumber}/validateCVV2:
@@ -1022,8 +1024,8 @@ paths:
               $ref: '#/components/schemas/CardSecureCodeReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1032,14 +1034,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1062,20 +1056,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardSecureCodeResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Validate CVV2
       x-group-name: Card Management
   /v1/cards/lostStolenCardTransfer:
@@ -1123,8 +1125,8 @@ paths:
               $ref: '#/components/schemas/TransferLostStolenCardReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1139,16 +1141,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1161,16 +1171,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferLostStolenCardResponseModel'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1223,8 +1225,16 @@ paths:
               $ref: '#/components/schemas/BoardCardReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -1237,22 +1247,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BoardCardResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -1269,8 +1263,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1335,24 +1337,8 @@ paths:
           type: string
           example: '0009544410000000047'
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1365,6 +1351,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireCardResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -1381,8 +1375,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1447,8 +1449,8 @@ paths:
           type: string
           example: '0009846801010434751'
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1463,20 +1465,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireCardControlResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -1493,8 +1481,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCardControlResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1560,8 +1562,8 @@ paths:
           type: string
           example: '0009846801010273605'
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1570,14 +1572,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1606,8 +1600,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1625,9 +1627,10 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: 'Maximum authorization frequency - Code that indicates the
-            frequency for the maximum authorization parameters. The values are: 0=Not
-            used(default)   1=Daily   2=Cycle-to-date   3=Year-to-date'
+          description: "Maximum authorization frequency - Code that indicates the\
+            \ frequency for the maximum authorization parameters. The values are:\
+            \ \n\n 0=Not used(default) \n\n 1=Daily \n\n\t 2=Cycle-to-date \n\n\t\
+            \ 3=Year-to-date"
           example: '1'
           enum:
           - '0'
@@ -1714,6 +1717,25 @@ components:
       properties:
         spendLimitControlsReq:
           $ref: '#/components/schemas/SpendLimitControlsReq'
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ''
+        errorMessage:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        invalid-params:
+          type: array
+          items:
+            type: string
     SpendLimitControlsRes:
       type: object
       properties:
@@ -1721,9 +1743,10 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: 'Maximum authorization frequency - Code that indicates the
-            frequency for the maximum authorization parameters. The values are: 0=Not
-            used(default)   1=Daily   2=Cycle-to-date   3=Year-to-date'
+          description: "Maximum authorization frequency - Code that indicates the\
+            \ frequency for the maximum authorization parameters. The values are:\
+            \ \n\n 0=Not used(default) \n\n 1=Daily \n\n\t 2=Cycle-to-date \n\n\t\
+            \ 3=Year-to-date"
           example: '1'
           enum:
           - '0'
@@ -1807,6 +1830,7 @@ components:
           example: '0000'
     UpdateSpendLimitResponseModel:
       required:
+      - businessUnit
       - tokenPan
       type: object
       properties:
@@ -1826,21 +1850,6 @@ components:
           example: '0009846801010434272'
         spendLimitControlsRes:
           $ref: '#/components/schemas/SpendLimitControlsRes'
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        status:
-          type: string
-          example: ''
-        errorMessage:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
     UpdateCardTypeReqModel:
       type: object
       properties:
