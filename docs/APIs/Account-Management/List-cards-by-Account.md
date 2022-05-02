@@ -4,15 +4,16 @@ The service is used for the purpose of the card look up where the account number
 
 ## Endpoint
 
-`GET /v1/accounts/{accountNumber}/listCardsByAccount`
+`POST /v1/accounts/{accountNumber}/listCardsByAccount`
 
 ## Payload Example
 
 ### Request Payload
 
-> Should be empty.
+>Should be empty.
 >
 >***The Account Number should be sent as path variable.***
+
 
 ### Minimum Requirements
 
@@ -20,9 +21,9 @@ The below table contains the mandatory fields required for a successful request.
 
 The below table identifies the required parameters in the request payload.
 
-| Variable | Passed as | Type | Length | Description/Values |
+| Variable | Passed as | Type | Leuith | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account.|
+| `accountNumber` | Payload | *string* | 19 | Unique Identification number of the Account.|
 
 ### Successful Response Payload
 
@@ -40,6 +41,6 @@ The below table identifies the required parameters in the request payload.
     }
   ]
 }
-
 ```
+
 

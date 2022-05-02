@@ -12,9 +12,9 @@ This API is used to update statement preference for a given account. Some inport
 
 ```json
 {
-  "statementReprintFlag": "C",
-  "statementFlag": "O",
-  "customerStatementFlag": 0
+  "statementModeOrStatus": "O",
+  "statementReprintAddressFlag": "C",
+  "owner/Co-ownerStatementFlag": "0"
 }
 ``` 
 
@@ -34,11 +34,11 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountNumber": "0000000001000000123",
+  "accountNumber": "0006000011000000145",
   "businessUnit": 600,
-  "customerStatementFlag": "0",
-  "statementFlag": "O",
-  "statementReprintFlag": "C"
+  "owner/Co-ownerStatementFlag": "0",
+  "statementModeOrStatus": "O",
+  "statementReprintAddressFlag": "C"
 }
 ```
 

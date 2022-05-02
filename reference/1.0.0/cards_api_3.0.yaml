@@ -8,7 +8,7 @@ servers:
 tags:
 - name: Card Management
 paths:
-  /v1/cards/{cardNumber}/spendLimits:
+  /v1/cards/{paymentInstrumentId}/spendLimits:
     put:
       tags:
       - Card Management
@@ -22,7 +22,7 @@ paths:
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
-        required: true
+        required: false
         schema:
           maxLength: 40
           type: string
@@ -48,20 +48,22 @@ paths:
           example: 00000AUNAB
       - name: businessUnit
         in: query
-        description: Business Unit -  Identification number associated with the cardholder
-          embosser record.
+        description: Unique Identification number associated with the organization.
+          Valid values from 001-998.
         required: false
         schema:
+          maximum: 999
           maxLength: 3
           type: integer
           example: '100'
-      - name: cardNumber
+      - name: paymentInstrumentId
         in: path
-        description: Card Number - Token Number assigned to the cardholder embosser
-          record.
+        description: Unique Alternate Identification number associated with Payment
+          Card Number.
         required: true
         schema:
           maxLength: 19
+          minLength: 0
           type: string
           example: '0009846801010434272'
       requestBody:
@@ -71,22 +73,6 @@ paths:
               $ref: '#/components/schemas/UpdateSpendLimitReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -103,8 +89,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateSpendLimitResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -119,12 +119,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateSpendLimitResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Update Spend Limits
       x-group-name: Card Management
   /v1/cards/{cardNumber}/profile:
@@ -190,22 +192,6 @@ paths:
               $ref: '#/components/schemas/UpdateCardTypeReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -236,8 +222,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -260,7 +262,7 @@ paths:
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
-        required: true
+        required: false
         schema:
           maxLength: 40
           type: string
@@ -309,22 +311,6 @@ paths:
               $ref: '#/components/schemas/ChangePINReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -355,6 +341,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -363,7 +357,134 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Change PIN
+      x-group-name: Card Management
+  /v1/cards/{cardNumber}/issueReissueDeliveryOption:
+    put:
+      tags:
+      - Card Management
+      summary: Issue Reissue Delivery Option
+      description: This service is used to update the issue and re-issue delivery
+        options.
+      operationId: UpdateIssueReissueDeliveryOption
+      parameters:
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: X-Name
+        in: header
+        description: User’s sign-on name. The value passed in this field will be validated
+          within application for user's authority to consume the requested API
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: X-context
+        in: header
+        description: A unique random ID assigned to the requestor once authenticated
+          to the First Vision application. Value passed in this field will be used
+          within application to authenticate the valid signed-on user
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          example: 00000AUNAB
+      - name: businessUnit
+        in: query
+        description: Business Unit - Identification number associated with the cardholder
+          embosser record.
+        required: false
+        schema:
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: cardNumber
+        in: path
+        description: Card Number - Token Number assigned to the cardholder embosser
+          record.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0009544410000000047'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionReqModel'
+        required: true
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      x-proxy-name: Update Issue Reissue Delivery Option
       x-group-name: Card Management
   /v1/cards/{cardNumber}/controls:
     put:
@@ -427,28 +548,6 @@ paths:
               $ref: '#/components/schemas/UpdateCardControlReqModel'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCardControlResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -465,6 +564,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCardControlResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -473,8 +578,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -547,28 +668,6 @@ paths:
               $ref: '#/components/schemas/BlockUnblockCardReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BlockUnblockCardResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -585,6 +684,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockUnblockCardResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -593,8 +698,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -666,22 +787,6 @@ paths:
               $ref: '#/components/schemas/ActivateCardReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -690,6 +795,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivateCardResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -706,6 +817,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -714,12 +833,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActivateCardResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Activate Card
       x-group-name: Card Management
   /v1/cards/{cardNumber}/action:
@@ -784,28 +905,6 @@ paths:
               $ref: '#/components/schemas/UpdateCardActionReqModel'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCardActionResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -830,8 +929,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCardActionResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -855,7 +976,7 @@ paths:
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
-        required: true
+        required: false
         schema:
           maxLength: 40
           type: string
@@ -904,24 +1025,16 @@ paths:
               $ref: '#/components/schemas/CardSecureCodeReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -934,14 +1047,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardSecureCodeResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -950,8 +1055,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -974,7 +1095,7 @@ paths:
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
-        required: true
+        required: false
         schema:
           maxLength: 40
           type: string
@@ -1005,22 +1126,6 @@ paths:
               $ref: '#/components/schemas/TransferLostStolenCardReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -1045,6 +1150,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -1059,6 +1172,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferLostStolenCardResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Transfer Lost Stolen Card
       x-group-name: Card Management
   /v1/cards/boardCard:
@@ -1074,7 +1195,7 @@ paths:
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
-        required: true
+        required: false
         schema:
           maxLength: 40
           type: string
@@ -1105,28 +1226,6 @@ paths:
               $ref: '#/components/schemas/BoardCardReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardCardResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -1143,6 +1242,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardCardResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -1151,8 +1256,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -1217,28 +1338,6 @@ paths:
           type: string
           example: '0009544410000000047'
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireCardResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -1263,8 +1362,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCardResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -1329,28 +1450,6 @@ paths:
           type: string
           example: '0009846801010434751'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireCardControlResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -1375,8 +1474,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCardControlResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -1399,7 +1520,7 @@ paths:
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
-        required: true
+        required: false
         schema:
           maxLength: 40
           type: string
@@ -1442,28 +1563,6 @@ paths:
           type: string
           example: '0009846801010273605'
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FetchClearPanResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -1488,8 +1587,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchClearPanResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -1505,80 +1626,88 @@ components:
       properties:
         maximumAuthorizationsFrequency:
           maxLength: 1
+          minLength: 0
           type: string
-          description: Maximum authorization frequency - Code that indicates the frequency
-            for the maximum authorization parameters The values are 0=Not used,1=Daily,2=Cycle-to-date,3=Year-to-date
+          description: 'Code that indicates the frequency for the maximum authorization
+            parameters. The values are: <br><br/>&nbsp;0 - Not used(default) <br/>&nbsp;1
+            - Daily<br/>&nbsp;2 - Cycle-to-date <br/>&nbsp;3 - Year-to-date'
           example: '1'
           enum:
           - '0'
           - '1'
           - '2'
           - '3'
-        maximumAmountAtmCashAuthorizationsAllowed:
+        maximumAtmCashAuthorizationsAmount:
           maxLength: 17
+          minLength: 0
           type: string
-          description: Maximum amount ATM cash authorization - Maximum amount in monetary
-            units and subunits of ATM cash authorizations allowed for this Embosser
-            record for the frequency defined in the FREQ field
-          example: '10000'
-        maximumNumberAtmCashAuthorizationsAllowed:
-          maxLength: 1
-          type: integer
-          description: Maximum number ATM cash authorization - Maximum number of ATM
-            cash authorizations allowed for this Embosser record for the frequency
-            defined in the FREQ field
-          format: int32
-          example: '1'
-        maximumAmountSingleAtmTransactionAllowed:
-          maxLength: 17
-          type: string
-          description: ' Maximum amount single ATM Transaction - Maximum authorization
-            amount in monetary units and subunits of a single ATM transaction allowed
-            for this Embosser record for the frequency defined in the FREQ field'
-          example: '10000'
-        maximumAmountOtcCashAuthorizationsAllowed:
-          maxLength: 17
-          type: string
-          description: Maximum amount OTC cash authorization - Maximum amount in monetary
-            units and subunits of OTC cash authorizations allowed for this Embosser
-            record for the frequency defined in the FREQ field
-          example: '20000'
-        maximumNumberOtcAuthorizationsAllowed:
-          maxLength: 1
-          type: integer
-          description: Maximum number OTC authorization - Maximum number of OTC authorizations
-            allowed for this Embosser record for the frequency defined in the FREQ
+          description: Maximum amount in monetary units and subunits of ATM cash authorizations
+            allowed for this Embosser entity for the frequency defined in the FREQ
             field
-          format: int32
-          example: '1'
-        singleOtcCashAuthorizationAllowed:
-          maxLength: 17
-          type: string
-          description: Maximum Amount Single OTC cash authorization allowed - Maximum
-            amount in monetary units and subunits of OTC authorizations allowed for
-            this Embosser record for the frequency defined in the FREQ field
           example: '10000'
-        maximumAmountRetailAuthorizationsAllowed:
-          maxLength: 17
-          type: string
-          description: Maximum amount retail authorization - Maximum amount in monetary
-            units and subunits of retail authorizations allowed for this Embosser
-            record for the frequency defined in the FREQ field
-          example: '10000'
-        maximumNumberRetailAuthorizationsAllowed:
+        maximumAtmCashAuthorizationsCount:
+          maximum: 9
           maxLength: 1
           type: integer
-          description: Maximum number retail authorization - Maximum number of retail
-            authorizations allowed for this Embosser record for the frequency defined
-            in the FREQ field
+          description: Maximum number of ATM cash authorizations allowed for this
+            Embosser entity for the frequency defined in the FREQ field
           format: int32
           example: '1'
-        singleRetailAuthorizationAllowed:
+        maximumSingleAtmTransactionAmount:
           maxLength: 17
+          minLength: 0
           type: string
-          description: Maximum Amount Single retail authorization allowed - Maximum
-            amount in monetary units and subunits of OTC authorizations allowed for
-            'this Embosser record for the frequency defined in the FREQ field
+          description: Maximum authorization amount in monetary units and subunits
+            of a single ATM transaction allowed for this Embosser entity for the frequency
+            defined in the FREQ field
+          example: '10000'
+        maximumOtcCashAuthorizationsAmount:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Maximum amount in monetary units and subunits of OTC cash authorizations
+            allowed for this Embosser entity for the frequency defined in the FREQ
+            field
+          example: '20000'
+        maximumOtcAuthorizationsCount:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Maximum number of OTC authorizations allowed for this Embosser
+            entity for the frequency defined in the FREQ field
+          format: int32
+          example: '1'
+        maximumSingleOtcCashAuthorizationAmount:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Maximum amount in monetary units and subunits of OTC authorizations
+            allowed for this Embosser entity for the frequency defined in the FREQ
+            field
+          example: '10000'
+        maximumRetailAuthorizationsAmount:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Maximum amount in monetary units and subunits of retail authorizations
+            allowed for this Embosser entity for the frequency defined in the FREQ
+            field
+          example: '10000'
+        maximumRetailAuthorizationsCount:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Maximum number of retail authorizations allowed for this Embosser
+            entity for the frequency defined in the FREQ field
+          format: int32
+          example: '1'
+        maximumSingleRetailAuthorizationAmount:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Maximum amount in monetary units and subunits of OTC authorizations
+            allowed for 'this Embosser entity for the frequency defined in the FREQ
+            field
           example: '0000'
     UpdateSpendLimitReqModel:
       type: object
@@ -1588,109 +1717,130 @@ components:
     ResponseErrorMessageInfo:
       type: object
       properties:
-        errorCode:
+        status:
           type: string
           example: ''
         errorMessage:
           type: string
           example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        invalid-params:
+          type: array
+          items:
+            type: string
     SpendLimitControlsRes:
       type: object
       properties:
         maximumAuthorizationsFrequency:
           maxLength: 1
+          minLength: 0
           type: string
-          description: Maximum authorization frequency - Code that indicates the frequency
-            for the maximum authorization parameters The values are 0=Not used,1=Daily,2=Cycle-to-date,3=Year-to-date
+          description: 'Code that indicates the frequency for the maximum authorization
+            parameters. The values are: <br><br/>&nbsp;0 - Not used(default) <br/>&nbsp;1
+            - Daily<br/>&nbsp;2 - Cycle-to-date <br/>&nbsp;3 - Year-to-date'
           example: '1'
           enum:
           - '0'
           - '1'
           - '2'
           - '3'
-        maximumAmountAtmCashAuthorizationsAllowed:
+        maximumAtmCashAuthorizationsAmount:
           maxLength: 17
+          minLength: 0
           type: string
-          description: Maximum amount ATM cash authorization - Maximum amount in monetary
-            units and subunits of ATM cash authorizations allowed for this Embosser
-            record for the frequency defined in the FREQ field
-          example: '10000'
-        maximumNumberAtmCashAuthorizationsAllowed:
-          maxLength: 1
-          type: integer
-          description: Maximum number ATM cash authorization - Maximum number of ATM
-            cash authorizations allowed for this Embosser record for the frequency
-            defined in the FREQ field
-          format: int32
-          example: '1'
-        maximumAmountSingleAtmTransactionAllowed:
-          maxLength: 17
-          type: string
-          description: ' Maximum amount single ATM Transaction - Maximum authorization
-            amount in monetary units and subunits of a single ATM transaction allowed
-            for this Embosser record for the frequency defined in the FREQ field'
-          example: '10000'
-        maximumAmountOtcCashAuthorizationsAllowed:
-          maxLength: 17
-          type: string
-          description: Maximum amount OTC cash authorization - Maximum amount in monetary
-            units and subunits of OTC cash authorizations allowed for this Embosser
-            record for the frequency defined in the FREQ field
-          example: '20000'
-        maximumNumberOtcAuthorizationsAllowed:
-          maxLength: 1
-          type: integer
-          description: Maximum number OTC authorization - Maximum number of OTC authorizations
-            allowed for this Embosser record for the frequency defined in the FREQ
+          description: Maximum amount in monetary units and subunits of ATM cash authorizations
+            allowed for this Embosser entity for the frequency defined in the FREQ
             field
-          format: int32
-          example: '1'
-        singleOtcCashAuthorizationAllowed:
-          maxLength: 17
-          type: string
-          description: Maximum Amount Single OTC cash authorization allowed - Maximum
-            amount in monetary units and subunits of OTC authorizations allowed for
-            this Embosser record for the frequency defined in the FREQ field
           example: '10000'
-        maximumAmountRetailAuthorizationsAllowed:
-          maxLength: 17
-          type: string
-          description: Maximum amount retail authorization - Maximum amount in monetary
-            units and subunits of retail authorizations allowed for this Embosser
-            record for the frequency defined in the FREQ field
-          example: '10000'
-        maximumNumberRetailAuthorizationsAllowed:
+        maximumAtmCashAuthorizationsCount:
+          maximum: 9
           maxLength: 1
           type: integer
-          description: Maximum number retail authorization - Maximum number of retail
-            authorizations allowed for this Embosser record for the frequency defined
-            in the FREQ field
+          description: Maximum number of ATM cash authorizations allowed for this
+            Embosser entity for the frequency defined in the FREQ field
           format: int32
           example: '1'
-        singleRetailAuthorizationAllowed:
+        maximumSingleAtmTransactionAmount:
           maxLength: 17
+          minLength: 0
           type: string
-          description: Maximum Amount Single retail authorization allowed - Maximum
-            amount in monetary units and subunits of OTC authorizations allowed for
-            'this Embosser record for the frequency defined in the FREQ field
+          description: Maximum authorization amount in monetary units and subunits
+            of a single ATM transaction allowed for this Embosser entity for the frequency
+            defined in the FREQ field
+          example: '10000'
+        maximumOtcCashAuthorizationsAmount:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Maximum amount in monetary units and subunits of OTC cash authorizations
+            allowed for this Embosser entity for the frequency defined in the FREQ
+            field
+          example: '20000'
+        maximumOtcAuthorizationsCount:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Maximum number of OTC authorizations allowed for this Embosser
+            entity for the frequency defined in the FREQ field
+          format: int32
+          example: '1'
+        maximumSingleOtcCashAuthorizationAmount:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Maximum amount in monetary units and subunits of OTC authorizations
+            allowed for this Embosser entity for the frequency defined in the FREQ
+            field
+          example: '10000'
+        maximumRetailAuthorizationsAmount:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Maximum amount in monetary units and subunits of retail authorizations
+            allowed for this Embosser entity for the frequency defined in the FREQ
+            field
+          example: '10000'
+        maximumRetailAuthorizationsCount:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Maximum number of retail authorizations allowed for this Embosser
+            entity for the frequency defined in the FREQ field
+          format: int32
+          example: '1'
+        maximumSingleRetailAuthorizationAmount:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Maximum amount in monetary units and subunits of OTC authorizations
+            allowed for 'this Embosser entity for the frequency defined in the FREQ
+            field
           example: '0000'
     UpdateSpendLimitResponseModel:
       required:
-      - cardNumber
+      - businessUnit
+      - paymentInstrumentId
       type: object
       properties:
         businessUnit:
+          maximum: 999
           maxLength: 3
           type: integer
-          description: Business Unit -  Identification number associated with the
-            cardholder embosser record.
+          description: Unique Identification number associated with the organization.
+            Valid values from 001-998.
           format: int32
           example: '100'
-        cardNumber:
+        paymentInstrumentId:
           maxLength: 19
+          minLength: 0
           type: string
-          description: Card Number - Token Number assigned to the cardholder embosser
-            record.
+          description: Unique Alternate Identification number associated with Payment
+            Card Number.
           example: '0009846801010434272'
         spendLimitControlsRes:
           $ref: '#/components/schemas/SpendLimitControlsRes'
@@ -1739,18 +1889,21 @@ components:
       type: object
       properties:
         requestedPinBlock:
-          maxLength: 3
+          maxLength: 16
+          minLength: 0
           type: string
           description: Requested PIN block(New PIN block) - The new PIN block should
             be provided, This will be new PIN Enter by customer
           example: '123456'
         currentPinBlock:
           maxLength: 16
+          minLength: 0
           type: string
           description: Current PIN block(Existing PIN block) - The existing PIN block
             should be provided
           example: '2673217'
         pinOffset:
+          maximum: 9999
           maxLength: 4
           type: integer
           description: Current PIN Offset( Old PIN Offset)- The old PIN block should
@@ -1759,6 +1912,7 @@ components:
           example: '0'
         pinChannel:
           maxLength: 1
+          minLength: 0
           type: string
           description: PIN channel - This field will identifiy the channel through
             which The request has been ititialted The valid values are A-ATM,I-IVR,
@@ -1770,19 +1924,78 @@ components:
           - W
         keyAssociation:
           maxLength: 3
+          minLength: 0
           type: string
           description: Key association - The value will be used to read the keys stored
             in KMS files,from input we always recive spaces
-          example: ''
+          example: ' '
     ChangePINResponseModel:
       type: object
       properties:
         cardNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: Card Number - Token Number assigned to the cardholder embosser
             record
           example: '0009544410000000047'
+    UpdateIssueReissueDeliveryOptionReqModel:
+      type: object
+      properties:
+        issueDeliveryOption:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: Issue Delivery Option - Delivery option for new cards.
+          example: '1'
+          enum:
+          - 0-999
+        reissueDeliveryOption:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: Card Reissue Delivery Option - Delivery option for reissued
+            cards (all card actions except 1).
+          example: '5'
+          enum:
+          - 0-999
+    UpdateIssueReissueDeliveryOptionResponseModel:
+      required:
+      - cardNumber
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Business Unit - Identification number associated with the cardholder
+            embosser record.
+          format: int32
+          example: '600'
+        cardNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: Card Number - Token Number assigned to the cardholder embosser
+            record.
+          example: '0009544410000000047'
+        issueDeliveryOption:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: Issue Delivery Option - Delivery option for new cards.
+          example: '1'
+          enum:
+          - 0-999
+        reissueDeliveryOption:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: Card Reissue Delivery Option - Delivery option for reissued
+            cards (all card actions except 1).
+          example: '5'
+          enum:
+          - 0-999
     UpdateCardControlReqModel:
       type: object
       properties:
@@ -2145,11 +2358,13 @@ components:
       properties:
         cvv2:
           maxLength: 3
+          minLength: 0
           type: string
           description: CVV2 - Security code assigned to the embosser record
           example: '855'
         expiryDateMmyy:
           maxLength: 4
+          minLength: 0
           type: string
           description: Expire Date - valid card expire date should be provided which
             is of 4 character with MMYY format
@@ -2161,6 +2376,7 @@ components:
       properties:
         cardNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: Card Number - Token Number assigned to the cardholder embosser
             record.
@@ -2180,18 +2396,21 @@ components:
       properties:
         cardNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: Card Number - Token Number assigned to the card-holder embosser
             record.
           example: '0009544401000009195'
         accountNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: Account Number - Identification number of the Account Base
             Segment record to which CMS posts transactions received for this Embosser
             record.
           example: '0006000011000000178'
         product:
+          maximum: 999
           maxLength: 3
           type: integer
           description: Product - Product associated with this Account. The values
@@ -2200,6 +2419,7 @@ components:
           example: '1'
         startDate:
           maxLength: 10
+          minLength: 0
           type: string
           description: Start date - the date when the service was called.The format
             is MM/DD/YYYY or DD/MM/YYYY depending on the date format established on
@@ -2207,22 +2427,25 @@ components:
           example: '0'
         transferToAccount:
           maxLength: 19
+          minLength: 0
           type: string
           description: Transfer to account - Number of the account to which you want
             to transfer the cardYou can enter a specific account number or enter a
             slash (/) ifthe auto-generation functionality is active for account numbers.
-          example: ''
+          example: ' '
         transferToCustomer:
           maxLength: 19
+          minLength: 0
           type: string
           description: Transfer to customer - Number that identifies the Customer
             Name/Address record associated with the transfer-to accountIf you are
             transferring the card to an existing accountdo notmake an entry in the
             CUSTOMER fieldCMS uses the customernumber associated with the existing
             account.
-          example: ''
+          example: ' '
         effectiveDate:
           maxLength: 10
+          minLength: 0
           type: string
           description: Effective date - Date that the fraud card transfer is effective
             The value must be a date less than or equal to today’sdateThe default
@@ -2232,6 +2455,7 @@ components:
           example: '0'
         cardReplacementIndicator:
           maxLength: 1
+          minLength: 0
           type: string
           description: Card replacement indicator - Code that indicates whether CMS
             replaces the transfer card by generating a new Embosser record on the
@@ -2243,11 +2467,13 @@ components:
           - '1'
         blockCode:
           maxLength: 1
+          minLength: 0
           type: string
           description: Block code - Block code to apply to the transfer card. The
             values are blank(or space) and A to Z.
           example: L
         businessUnit:
+          maximum: 999
           maxLength: 3
           type: integer
           description: Business Unit -  Identification number associated with the
@@ -2256,6 +2482,7 @@ components:
           example: '600'
         processType:
           maxLength: 1
+          minLength: 0
           type: string
           description: Process Type - Code that indicates whether CMS processes the
             card replacement during the nightly batch processing cycle or in the same-day
@@ -2271,28 +2498,33 @@ components:
       properties:
         maskCardNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: Mask Pan Number - The clear card number will be masked with
             XXXX from 9 digit to 15th digit.
           example: 0009544401XXXXX9208
         cardNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: New card number -  Token Number assigned to the cardholder
             embosser record.
           example: '0009544401000009208'
         transferToAccount:
           maxLength: 19
+          minLength: 0
           type: string
           description: Transfer To Account - The account associated to the new card.
-          example: ''
+          example: ' '
         transferToCustomer:
           maxLength: 19
+          minLength: 0
           type: string
           description: Transfer To Customer - The customer associated to the new card.
-          example: ''
+          example: ' '
         effectiveDate:
           maxLength: 10
+          minLength: 0
           type: string
           description: Effective Date - Date that the fraud card transfer is effective.The
             format is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
@@ -2309,11 +2541,13 @@ components:
       properties:
         baseAccountNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: Base Account Number - This is the identification number to
             assign to the new Account Base Segment record
           example: '0006000012000000263'
         businessUnit:
+          maximum: 999
           maxLength: 3
           type: integer
           description: Business Unit -  Identification number associated with the
@@ -2321,6 +2555,7 @@ components:
           format: int32
           example: '600'
         product:
+          maximum: 999
           maxLength: 3
           type: integer
           description: Product - Identification number of the product associated with
@@ -2329,11 +2564,13 @@ components:
           example: '1'
         customerNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: Customer Number -  Number that identifies the Customer Name/Address
             record of the account holder
           example: '0006000012000000256'
         cardSequence:
+          maximum: 9999
           maxLength: 4
           type: integer
           description: Card Sequence - Identification number assigned to an Embosser
@@ -2343,6 +2580,7 @@ components:
           example: '1'
         cardAction:
           maxLength: 1
+          minLength: 0
           type: string
           description: Card Action - This field is the card issue action code that
             determines the action CMS performs during the next run
@@ -2359,6 +2597,7 @@ components:
           - '8'
           - '9'
         numberOfCardsRequested:
+          maximum: 99
           maxLength: 2
           type: integer
           description: Number Of Cards Requested - This field identifies the number
@@ -2366,6 +2605,7 @@ components:
           format: int32
           example: '0'
         typeOfCard:
+          maximum: 99
           maxLength: 2
           type: integer
           description: Type Of Card - This field is a user-defined code that indicates
@@ -2373,6 +2613,7 @@ components:
           format: int32
           example: '0'
         requestedCardType:
+          maximum: 99
           maxLength: 2
           type: integer
           description: Requested Card Type - This field is a user-defined code that
@@ -2380,6 +2621,7 @@ components:
           format: int32
           example: '0'
         typeCardMailer:
+          maximum: 99
           maxLength: 2
           type: integer
           description: Type Card Mailer - This field is a user-defined code that identifies
@@ -2388,12 +2630,14 @@ components:
           example: '0'
         plasticId:
           maxLength: 10
+          minLength: 0
           type: string
           description: Plastic ID - User-defined code that identifies the plastic
             stock used to create a card for this Embosser record
-          example: ''
+          example: ' '
         name1TypeIndicator:
           maxLength: 1
+          minLength: 0
           type: string
           description: Name 1 Type Indicator - This field identifies the type of name
             for NAME LINE 1
@@ -2403,6 +2647,7 @@ components:
           - '3'
         name2TypeIndicator:
           maxLength: 1
+          minLength: 0
           type: string
           description: Name 2 Type Indicator - his field identifies the type of name
             for NAME LINE 2
@@ -2412,28 +2657,33 @@ components:
           - '3'
         embossedName1:
           maxLength: 26
+          minLength: 0
           type: string
           description: Embossed Name 1 - Name to be embossed on the first embossing
             line of the card
           example: 'John Brono '
         embossedName2:
           maxLength: 26
+          minLength: 0
           type: string
           description: Embossed Name 2  - This is the Additional name to be embossed
             on the second embossing line of the card
           example: Samuel Baro
         name1:
           maxLength: 40
+          minLength: 0
           type: string
           description: Name 1 - This field identifies the name of the cardholder
           example: ABCD
         name2:
           maxLength: 40
+          minLength: 0
           type: string
           description: Name 2 - This field identifies the name of the cardholder used
             for mailing the card and PIN mailers
           example: QWER
         posServiceCode:
+          maximum: 999
           maxLength: 3
           type: integer
           description: POS Service Code - This field indicates the type of point-of-sale
@@ -2442,6 +2692,7 @@ components:
           example: '0'
         cardholderFlag:
           maxLength: 1
+          minLength: 0
           type: string
           description: Cardholder Flag - This is the code that indicates whether the
             card is issued as a primary or secondary card
@@ -2451,40 +2702,47 @@ components:
           - '0'
         addressLine1:
           maxLength: 40
+          minLength: 0
           type: string
           description: Address Line 1 - First line of address used for mailing the
             card and PIN mailer
           example: 'House no. 12 '
         addressLine2:
           maxLength: 40
+          minLength: 0
           type: string
           description: Address Line 2 - Second line of address used for mailing the
             card and PIN mailer
           example: 'St. Paul Road '
         city:
           maxLength: 30
+          minLength: 0
           type: string
           description: City - This is the city portion of the mailing address for
             cards and PIN mailers
-          example: ''
+          example: ' '
         stateprovince:
           maxLength: 3
+          minLength: 0
           type: string
           description: State/Province - This field that identifies the state or province
           example: Uth
         postalCode:
           maxLength: 10
+          minLength: 0
           type: string
           description: Postal Code - This field identifies the postal code portions
             of the mailing address
           example: '1231'
         visaMiniIndicator:
           maxLength: 1
+          minLength: 0
           type: string
           description: Visa Mini Indicator - This Flag indicates whether Visa Mini
             cards are supported in this product
-          example: ''
+          example: ' '
         programId:
+          maximum: 9
           maxLength: 1
           type: integer
           description: Program ID - This is the identification number of the smart
@@ -2493,12 +2751,14 @@ components:
           example: '0'
         mobileDeviceId:
           maxLength: 20
+          minLength: 0
           type: string
           description: Mobile Device ID - Identification of the mobile device associated
             with a mobile payment instrument (PI) embosser
           example: '12343'
         mobileProvisionStatus:
           maxLength: 1
+          minLength: 0
           type: string
           description: Mobile Provision Status - This flag indicates whether the embosser
             is for a mobile payment instrument (PI) and the current provisioning status
@@ -2512,27 +2772,32 @@ components:
           - '4'
         deviceIndicator:
           maxLength: 1
+          minLength: 0
           type: string
           description: Device Indicator - Code that indicates the type of device (form
             factor) written to the track data on the card
           example: '0'
         mccGroupLimits:
           maxLength: 11
+          minLength: 0
           type: string
           description: MCC Group Limits - Merchat Limit
-          example: ''
+          example: ' '
         chequeAccountNbr:
           maxLength: 17
+          minLength: 0
           type: string
           description: Cheque account number - account cheque details
-          example: ''
+          example: ' '
         savingsAccountNbr:
           maxLength: 17
+          minLength: 0
           type: string
           description: Savings Account Nbr - customer Savings account number
-          example: ''
+          example: ' '
         suppressLetter:
           maxLength: 1
+          minLength: 0
           type: string
           description: Suppress Letter - This flag indicates whether to suppress all
             letters for the account
@@ -2544,6 +2809,7 @@ components:
       type: object
       properties:
         businessUnit:
+          maximum: 999
           maxLength: 3
           type: integer
           description: Business Unit -  Identification number associated with the
@@ -2551,6 +2817,7 @@ components:
           format: int32
           example: '600'
         product:
+          maximum: 999
           maxLength: 3
           type: integer
           description: Product - Identification number of the product associated with
@@ -2559,32 +2826,37 @@ components:
           example: '1'
         cardNumberFvToken:
           maxLength: 19
+          minLength: 0
           type: string
           description: Card Number/FV TOKEN - Token Number assigned to the cardholder
             embosser record
           example: '0004440010057325150'
         maskedPanNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: Masked PAN Number - Tokenized PAN Number
           example: '0004440010057325150'
         nameOnCard:
           maxLength: 26
+          minLength: 0
           type: string
           description: Name On Card - Name to be embossed on the first embossing line
             of the card
           example: JOHN
         expiryDate:
           maxLength: 10
+          minLength: 0
           type: string
           description: Expiry Date - Expiry date of the Card. Date format is DD/MM/YYYY.
           example: 01/10/2025
         cardActivationStatus:
           maxLength: 1
+          minLength: 0
           type: string
           description: Card Activation Status -  This field indicates the Primary
             Card Activation status
-          example: ''
+          example: ' '
     AuthorizationAccumulatorsRes:
       type: object
       properties:
@@ -3502,6 +3774,7 @@ components:
       properties:
         cardNumber:
           maxLength: 19
+          minLength: 0
           type: string
           description: Clear Pan - 19 digit Clear card number
           example: '0009846801010273605'

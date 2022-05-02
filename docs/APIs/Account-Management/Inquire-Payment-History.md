@@ -12,7 +12,7 @@ This API is used to retrive latest six payment details for given account number 
 
 >Should be empty. 
 >
->***The Business Unit and Account Number should be sent as query parameters and path variable.***
+>***The Account Number should be sent as path variable.***
  
 ### Minimum Requirements
 

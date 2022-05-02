@@ -10,8 +10,9 @@ The service provides list of accounts associated with the customer. This API als
 
 ### Request Payload
 
->Shoud be empty.  
-***Customer Number should be sent as Path Variable.***  
+>Should be empty.  
+>
+>***Customer Number should be sent as Path Variable.***  
 
 ### Minimum Requirements
 
@@ -26,53 +27,46 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
-  "accountList": [
+  "accountListRes": [
     {
-      "accountNumber": "0001000011000052268",
-      "amountMemoCredit": "$0.00",
-      "amountMemoDebit": "$0.00",
+      "accountNumber": "0002000010000400435",
       "blockCode1": " ",
       "blockCode1Date": "00/00/0000",
       "blockCode2": " ",
       "blockCode2Date": "00/00/0000",
-      "businessUnit": "100",
-      "ddaAccountNumber": "890005226",
-      "internalStatus": "D",
+      "ddaAccountNumber": "1240310048409873",
       "mailingIndicator": " ",
-      "nbrOfTokenizedCards": 0,
-      "product": "1",
-      "reissContolMethod": 0,
+      "memoCreditAmount": "$0.00",
+      "memoDebitAmount": "$0.00",
+      "noOfTokenizedCards": 0,
+      "product": 1,
+      "reissueControlMethod": "0",
+      "statusOfAccount": "D",
       "suppressToken": "0"
     }
   ],
-  "addressLine1": "62 CHARTERIS DR",
-  "addressLine2": "",
-  "addressLine3": "",
-  "addressLine4": "",
-  "billingLvl": "0",
-  "businessUnit": "0",
-  "creditLimit": "$0.00",
-  "customerName": "UATMFNCU448",
-  "customerNumber": "0001000000000113902",
-  "dateOfBirth": "14/11/1940",
-  "emailAddress": "UATMFNCU448@GMAIL.COM",
-  "gender": "0",
-  "homeDistricName": "",
-  "homePhoneNumber": "++61430010348",
-  "mobileNumber": "++61430010348",
-  "nameLine1": "UATMFNCU448 TWOPPPUATMLNCUST448",
-  "numberOfAccounts": "1",
-  "numberOfCards": "1",
-  "relName": "",
-  "relationshipNbr": "",
-  "ssnId": "113902",
-  "status": "",
-  "totalAvailable": "$0.00",
-  "userDefinedField4": "Y",
-  "workPhoneNumber": "++61430010348"
+  "customerInformationRes": {
+    "addressLine1": "10 4601 Denesik Overpass",
+    "addressLine2": "Lake Ofelia,QLD",
+    "addressLine3": "Clayfield QLD",
+    "addressLine4": "",
+    "businessUnit": 200,
+    "customerName": "Andre Reichel",
+    "customerNumber": "0000020000067163587",
+    "dateOfBirth": "21/10/1971",
+    "emailAddress": "Andre.Reichel@company1.com",
+    "firstName": "Andre",
+    "gender": "2",
+    "homePhoneNumber": "+61463514716",
+    "identificationNumber": "67163587",
+    "mobileNumber": "+61463514716",
+    "numberOfAccounts": 1,
+    "userDefinedField4": "N",
+    "workPhoneNumber": "+61463514716"
+  }
 }
+
 ```
 
 ### Error Response Payload
