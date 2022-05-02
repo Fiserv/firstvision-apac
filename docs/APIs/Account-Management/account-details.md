@@ -12,7 +12,7 @@ The service provides the basic details of the account associated with the custom
 
 >Should be empty. 
 >
->***The Account Number should be sent as and path variable.***
+>***The Account Number should be sent as path variable.***
 
 
 ### Minimum Requirements

@@ -12,7 +12,7 @@ This service provides details of the memo-posted authorizations on a given accou
 
 >Should be empty. 
 >
->***The Account Number should be sent as and path variable.***
+>***The Account Number should be sent as path variable.***
 
 
 ### Minimum Requirements

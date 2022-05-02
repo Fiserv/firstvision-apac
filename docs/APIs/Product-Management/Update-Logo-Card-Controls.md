@@ -12,25 +12,32 @@ This API is used to perform card control updates at product level. This API can 
 
 ```json
 {
-  "ecomFlag": 1,
-  "yearToDateMaxAuthAmountOtherRiskCountry": 15000,
-  "otcCashNumber": 6,
-  "yearToDateCountryRiskSpendLimitActive": 1,
-  "motoFlag": "N",
-  "transactionLimitOtc": 200,
-  "atmCashNumber": 5,
-  "retailPurchaseNumber": 10,
-  "transactionLimitAtm": 100,
-  "yearToDateMaxAuthAmountHighRiskCountry": 10000,
-  "atmFlag": "Y",
-  "maximumAuthorizationLimitFrequency": 1,
-  "posFlag": "Y",
-  "intAtmPosFlag": "N",
-  "otcCashAmount": 1500,
-  "atmCashAmount": 2000,
-  "transactionLimitRetail": 10000,
-  "retailPurchaseAmount": 100000
+  "cardControlFieldsReq": {
+    "maximumAuthorizationLimitFrequency": "1",
+    "atmCashAmount": "2000.0",
+    "atmCashNumber": 5,
+    "transactionLimitAtm": "100.0",
+    "otcCashAmount": "1500.0",
+    "otcCashNumber": 6,
+    "transactionLimitOtc": "200.0",
+    "retailPurchaseAmount": "100000.0",
+    "retailPurchaseNumber": 10,
+    "transactionLimitRetail": "10000.0"
+  },
+  "cardControlFlagsReq": {
+    "atmFlag": "Y",
+    "posFlag": "Y",
+    "ecomFlag": "1",
+    "motoFlag": "N",
+    "intAtmPosFlag": "N"
+  },
+  "yearToDateCountryRiskSpendLimitsReq": {
+    "yearToDateCountryRiskSpendLimitActive": "1",
+    "yearToDateMaxAuthAmountHighRiskCountry": "10000.0",
+    "yearToDateMaxAuthAmountOtherRiskCountry": "15000.0"
+  }
 }
+
 ``` 
 
 ### Minimum Requirements
@@ -50,27 +57,34 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "atmCashAmount": "$20.00",
-  "atmCashNumber": 5,
-  "atmFlag": "Y",
   "businessUnit": 600,
-  "ecomFlag": "1",
-  "intAtmPosFlag": "N",
-  "maximumAuthorizationLimitFrequency": "1",
-  "motoFlag": "N",
-  "otcCashAmount": "$15.00",
-  "otcCashNumber": 6,
-  "posFlag": "Y",
+  "cardControlFieldsRes": {
+    "atmCashAmount": "$200.00",
+    "atmCashNumber": 5,
+    "maximumAuthorizationLimitFrequency": "1",
+    "otcCashAmount": "$150.00",
+    "otcCashNumber": 6,
+    "retailPurchaseAmount": "$10,000.00",
+    "retailPurchaseNumber": 10,
+    "transactionLimitAtm": "$10.00",
+    "transactionLimitOtc": "$20.00",
+    "transactionLimitRetail": "$1,000.00"
+  },
+  "cardControlFlagsRes": {
+    "atmFlag": "Y",
+    "ecomFlag": "1",
+    "intAtmPosFlag": "N",
+    "motoFlag": "N",
+    "posFlag": "Y"
+  },
   "productNumber": 1,
-  "retailPurchaseAmount": "$1,000.00",
-  "retailPurchaseNumber": 10,
-  "transactionLimitAtm": "$1.00",
-  "transactionLimitOtc": "$2.00",
-  "transactionLimitRetail": "$100.00",
-  "yearToDateCountryRiskSpendLimitActive": "1",
-  "yearToDateMaxAuthAmountHighRiskCountry": "$100.00",
-  "yearToDateMaxAuthAmountOtherRiskCountry": "$150.00" 
+  "yearToDateCountryRiskSpendLimitsRes": {
+    "yearToDateCountryRiskSpendLimitActive": "1",
+    "yearToDateMaxAuthAmountHighRiskCountry": "$1,000.00",
+    "yearToDateMaxAuthAmountOtherRiskCountry": "$1,500.00"
+  }
 }
+
 ```
 
 ### Error Response Payload

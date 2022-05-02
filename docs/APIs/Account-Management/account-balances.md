@@ -12,7 +12,7 @@ The service provide account's balances such as available balance/ current balanc
 
 >Shoud be empty.
 >
->***The Account Number should be sent as and path variable.***
+>***The Account Number should be sent as path variable.***
 
 ### Minimum Requirements
 

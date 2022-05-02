@@ -12,7 +12,7 @@ This service is used to get detail for direct debit for given account. It shows 
 
 >Should be empty. 
 >
->***The Account Number should be sent as and path variable.***
+>***The Account Number should be sent as path variable.***
 
 
 ### Minimum Requirements
