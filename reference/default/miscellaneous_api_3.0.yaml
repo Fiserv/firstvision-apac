@@ -14,7 +14,7 @@ paths:
       - Miscellaneous
       summary: Board Entities
       description: This service is used to board the new account,embosser,customer
-        and relationship record.
+        and relationship entity.
       operationId: BoardEntities
       parameters:
       - name: X-Correl-Id
@@ -53,20 +53,6 @@ paths:
               $ref: '#/components/schemas/BoardEntityReqModel'
         required: true
       responses:
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardEntityResponseModel'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -75,8 +61,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardEntityResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -91,14 +83,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -107,16 +91,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Board Entities
       x-group-name: Miscellaneous
-  /v1/misc/{orgNumber}/orgDetails:
+  /v1/misc/{businessUnit}/details:
     get:
       tags:
       - Miscellaneous
-      summary: Inquire Organization
-      description: This service is used to view important paramter available at organization
-        level.
-      operationId: InquireOrganization
+      summary: Inquire Business Unit
+      description: This service is used to view important paramter available at Business
+        unit level.
+      operationId: InquireBusinessUnit
       parameters:
       - name: X-Correl-Id
         in: header
@@ -147,7 +147,7 @@ paths:
           maxLength: 20
           type: string
           example: 00000AUNAB
-      - name: orgNumber
+      - name: businessUnit
         in: path
         description: Unique identification number associated with the organization.
           Valid values from 001-998.
@@ -158,32 +158,8 @@ paths:
           type: integer
           example: '600'
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -198,8 +174,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -211,8 +203,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireOrganizationResponseModel'
-      x-proxy-name: Inquire Organization
+                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      x-proxy-name: Inquire Business Unit
       x-group-name: Miscellaneous
 components:
   schemas:
@@ -235,7 +235,7 @@ components:
           type: string
           description: This is a flag that indicates whether the account is the primary
             account in a relationship. <br/>The values are:<br/> &nbsp; ' ' - Not
-            the primary account <br/> &nbsp; 'P' - Primary account in a relationship.
+            the primary account <br/> &nbsp; 'P' - Primary account in a relationship
           example: ''
           enum:
           - ' '
@@ -264,7 +264,7 @@ components:
           description: This is the Code which indicates whether billing occurs for
             the account at the relationship level or subordinate account level. <br/>The
             values are:<br/> &nbsp; '0' - Relationship level <br/> &nbsp; '1' - Subordinate
-            account level (Default).
+            account level (Default)
           example: '1'
           enum:
           - '1'
@@ -278,10 +278,10 @@ components:
             foreign currency. Two statements are generated, one in the foreign currency
             and one in the local currency <br/> &nbsp; '1' - Dual billing is active.
             Bill the foreign account in the local currency. Two statements are generated
-            in the local currency.
+            in the local currency
           example: '0'
           enum:
-          - ZERO
+          - '0'
           - '1'
         alternateCustomerNumber:
           maxLength: 19
@@ -351,10 +351,10 @@ components:
             &nbsp; '2' - Magnetic-stripe contactless card(s) are on issue <br/> &nbsp;
             '3' - Smart contactless card(s) are on issue <br/> &nbsp; '4' - Mobile
             magnetic-stripe contactless payment instruments (PI) are on provision
-            <br/> &nbsp; '5' - Mobile smart contactless PIs are on provision.
+            <br/> &nbsp; '5' - Mobile smart contactless PIs are on provision
           example: '0'
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '2'
           - '3'
@@ -386,10 +386,10 @@ components:
           type: string
           description: Flag that indicates whether mobile payment instruments (PI)
             are allowed for this account. <br/>The values are:<br/> &nbsp; '0' - Do
-            not allow mobile PIs (Default) <br/> &nbsp; '1' - Allow mobile PIs.
+            not allow mobile PIs (Default) <br/> &nbsp; '1' - Allow mobile PIs
           example: '0'
           enum:
-          - ZERO
+          - '0'
           - '1'
         authorizationCriteriaTable:
           maxLength: 3
@@ -402,7 +402,7 @@ components:
           type: string
           description: Code that indicates whether to suppress all letters for the
             account. <br/>The values are:<br/> &nbsp; '0' - Do not suppress letters
-            (Default) <br/> &nbsp; '1' - Suppress all letters.
+            (Default) <br/> &nbsp; '1' - Suppress all letters
           example: ''
           enum:
           - '0'
@@ -418,43 +418,16 @@ components:
           - '1'
           - '2'
           - '3'
-        ddaRoutingNumber:
-          maximum: 9
-          maxLength: 1
-          type: integer
-          description: This is ABA-assigned routing and transit number that identifies
-            the financial institution at which the checking account is held.
-          format: int32
-          example: '0'
-        ddaAccountId:
-          maxLength: 17
-          type: string
-          description: Demand deposit account (DDA) number associated with direct
-            debit processing.
-          example: ''
-        savingsRoutingNumber:
-          maximum: 9
-          maxLength: 1
-          type: integer
-          description: This is ABA-assigned routing and transit number that identifies
-            the financial institution at which the savings account is held.
-          format: int32
-          example: '0'
-        savingsAccountNumber:
-          maxLength: 17
-          type: string
-          description: This is the savings account number
-          example: ''
         isSupressTokenEnabled:
           maxLength: 1
           type: string
           description: Code that indicates whether the account is eligible for tokenization.
             <br/>The values are:<br/> &nbsp; '0' - Suppress token functionality is
             inactive for the account <br/> &nbsp; '1' - Suppress token functionality
-            is active for the account.
+            is active for the account
           example: '0'
           enum:
-          - ZERO
+          - '0'
           - '1'
         coreBankingIndicator:
           maxLength: 25
@@ -468,6 +441,8 @@ components:
           - ' '
         pctOverrideDetailsReq:
           $ref: '#/components/schemas/PctOverrideDetailsReq'
+        ibsDetailsReq:
+          $ref: '#/components/schemas/IbsDetailsReq'
     AccountInsuranceProductDataReq:
       type: object
       properties:
@@ -511,7 +486,7 @@ components:
           description: Insured Party Indicator of Account Insurance/Product Data.
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '2'
           - '3'
@@ -559,7 +534,7 @@ components:
           description: Mail Letter of Account Insurance/Product Data.
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
         mailLetterFee:
           maxLength: 1
@@ -567,7 +542,7 @@ components:
           description: Mail Letter Fee for Account Insurance/Product Data.
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
         mailStatement:
           maxLength: 1
@@ -575,8 +550,52 @@ components:
           description: Mail Statement of Account Insurance/Product Data.
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
+    AddressDetailsReq:
+      type: object
+      properties:
+        addressLine1:
+          maxLength: 40
+          type: string
+          description: This is mailing address for the owner.
+          example: ''
+        addressLine2:
+          maxLength: 40
+          type: string
+          description: This is mailing address for the owner.
+          example: ''
+        addressLine3:
+          maxLength: 40
+          type: string
+          description: ' This is mailing address for the owner.'
+          example: ''
+        addressLine4:
+          maxLength: 40
+          type: string
+          description: This is mailing address for the owner.
+          example: ''
+        cityOfOwner:
+          maxLength: 30
+          type: string
+          description: City portion of the mailing address of the owner.
+          example: ''
+        state:
+          maxLength: 3
+          type: string
+          description: Name of state portion of the mailinga ddress of the owner.
+          example: ''
+        postalCode:
+          maxLength: 10
+          type: string
+          description: Postal code portion of the mailing address of the owner.
+          example: ''
+        countryCode:
+          maxLength: 3
+          type: string
+          description: The value entered must be a valid country code previously defined
+            in the Security Subsystem and Common Routines (SSC) system.
+          example: ''
     BoardEntityReqModel:
       required:
       - accountId
@@ -587,7 +606,7 @@ components:
       - isInsuranceProductEnabled
       - isPaymentInstrumentIdEnabled
       - isRelationshipEnabled
-      - isSameCustomer/AccountidEnabled
+      - isSameCustomerIdAccountIdEnabled
       - productId
       type: object
       properties:
@@ -596,14 +615,14 @@ components:
           type: string
           description: Unique identification number for cardholder billing account.
             <br/>The values are:<br/> &nbsp; 'Alphanumeric' - Predetermined account
-            number <br/> &nbsp; '/ (slash)' - CMS generates the account number automatically.
+            number <br/> &nbsp; '/ (slash)' - CMS generates the account number automatically
           example: /
         isCustomerIdEnabled:
           maxLength: 1
           type: string
           description: This is the code that indicates whether to add a new customer
             id.<br/>The values are:<br/> &nbsp; 'N' - Don't add <br/> &nbsp; 'Y' -
-            Add new entity.
+            Add new entity
           example: Y
           enum:
           - Y
@@ -613,12 +632,12 @@ components:
           type: string
           description: This is the code that indicates whether to add a new account
             id. <br/>The values are:<br/> &nbsp; 'N' - Don't add <br/> &nbsp; 'Y'
-            - Add new entity.
+            - Add new entity
           example: Y
           enum:
           - Y
           - N
-        isSameCustomer/AccountidEnabled:
+        isSameCustomerIdAccountIdEnabled:
           maxLength: 1
           type: string
           description: This is the code that indicates whether CUSTOMER IDENTIFICATION
@@ -626,7 +645,7 @@ components:
             &nbsp; 'N' - No, the customer number and account number are not the same
             number <br/> &nbsp; 'Y' - Yes, the customer number that identifies the
             Customer Name/Address entity and the account number that identifies the
-            Account Base Segment entity are the same number (Default).
+            Account Base Segment entity are the same number (Default)
           example: N
           enum:
           - Y
@@ -636,7 +655,7 @@ components:
           type: string
           description: This is the code that indicates whether to add a new Relationship
             entity.<br/>The values are:<br/> &nbsp; 'N' - Don't add <br/> &nbsp; 'Y'
-            - Add new entity.
+            - Add new entity
           example: N
           enum:
           - N
@@ -646,7 +665,7 @@ components:
           type: string
           description: This is the code that indicates whether to add a new payment
             instrument id. <br/>The values are:<br/> &nbsp; 'N' - Don't add <br/>
-            &nbsp; 'Y' - Add new entity.
+            &nbsp; 'Y' - Add new entity
           example: Y
           enum:
           - Y
@@ -673,8 +692,8 @@ components:
           description: Unique identification number assigned to a customer. <br/>The
             values are:<br/> &nbsp; 'Alphanumeric' - Predetermined customer number
             <br/> &nbsp; '/ (slash)' - CMS uses the account number assigned to the
-            Account Base Segment entity.
-          example: ''
+            Account Base Segment entity
+          example: /
         relationshipNumber:
           maxLength: 19
           type: string
@@ -685,7 +704,7 @@ components:
           type: string
           description: This is the code that indicates whether to add an Insurance
             Product entity. <br/>The values are:<br/> &nbsp; 'N' - Don't add entity
-            <br/> &nbsp; 'Y' - Add entity.
+            <br/> &nbsp; 'Y' - Add entity
           example: N
           enum:
           - N
@@ -728,10 +747,10 @@ components:
             with unique entity numbers) to 3 (unique card numbers) <br/> &nbsp; '9'
             - Card technology reissue. This systemgenerated value applies only to
             Embosser entity in the local business unit; this value does not appear
-            on an Embosser entity in a foreign business unit.
+            on an Embosser entity in a foreign business unit
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '2'
           - '3'
@@ -783,20 +802,20 @@ components:
           type: string
           description: This field identifies the type of name for NAME LINE 1. This
             field displays only for prepaid cards. <br/>The values are:<br/> &nbsp;
-            '0' - Personal name (Default) <br/> &nbsp; '3' - Generic name.
+            '0' - Personal name (Default) <br/> &nbsp; '3' - Generic name
           example: '0'
           enum:
-          - ZERO
+          - '0'
           - '3'
         name2TypeIndicator:
           maxLength: 1
           type: string
           description: This field identifies the type of name for NAME LINE 2. This
             field displays only for prepaid cards. <br/>The values are:<br/> &nbsp;
-            '0' - Personal name (Default) <br/> &nbsp; '3' - Generic name.
+            '0' - Personal name (Default) <br/> &nbsp; '3' - Generic name
           example: '0'
           enum:
-          - ZERO
+          - '0'
           - '3'
         embossedName1:
           maxLength: 26
@@ -869,7 +888,7 @@ components:
           type: string
           description: This Flag indicates whether Visa Mini cards are supported in
             this product. <br/>The values are:<br/> &nbsp; '0' - Inactive <br/> &nbsp;
-            '1' - Active.
+            '1' - Active
           example: ' '
         programId:
           maximum: 999999999
@@ -895,10 +914,10 @@ components:
             of the mobile PI was unsuccessful <br/> &nbsp; '4' - Previously provisioned
             mobile PI is removed and cannot be provisioned; the embosser is inactive.
             For example, this value can be set when the embosser is transferred for
-            fraud.
+            fraud
           example: '0'
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '2'
           - '3'
@@ -921,7 +940,7 @@ components:
             <br/> &nbsp; ''2'' - Standard mini card, noncontactless <br/> &nbsp; ''3''
             - Contactless mini card <br/> &nbsp; ''4'' - Micro tag <br/> &nbsp; ''5''
             - Mobile device <br/> &nbsp; ''6'' - Other contactless payment device
-            <br/> &nbsp; ''7'' to ''9'' - Reserved.'
+            <br/> &nbsp; ''7'' to ''9'' - Reserved'
           example: '0'
         mccGroupLimits:
           maxLength: 11
@@ -939,8 +958,6 @@ components:
           description: Customer Savings account number.
           example: ''
     CustomerDemographicDetailsReq:
-      required:
-      - firstName
       type: object
       properties:
         dualFlag:
@@ -951,7 +968,7 @@ components:
             entity in the associated business unit for dual currency processing. <br/>The
             values are: <br/> &nbsp; ''0'' - Do not duplicate the customer entity
             in the associated business unit (Default) <br/> &nbsp; ''1'' - Duplicate
-            the customer entity in the associated business unit.'
+            the customer entity in the associated business unit'
           format: int32
           example: '0'
         title:
@@ -966,10 +983,10 @@ components:
           description: This field identifies the type of the customer. <br/>The values
             are:<br/> &nbsp; '0' - Customer entity associated with personal account
             (Default) <br/> &nbsp; '1' - Customer entity is associated with business<br/>
-            &nbsp; '3' - Customer entity is generic customer.
+            &nbsp; '3' - Customer entity is generic customer
           example: '0'
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '3'
         nameTypeIndicator2:
@@ -978,7 +995,7 @@ components:
           description: This field identifies the type of the customer.
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '3'
         nameTypeIndicator3:
@@ -987,79 +1004,22 @@ components:
           description: This field identifies the type of the customer. <br/>The values
             are:<br/> &nbsp; '0' - Customer entity associated with personal account
             (Default) <br/> &nbsp; '1' - Customer entity is associated with business<br/>
-            &nbsp; '3' - Customer entity is a generic customer.
+            &nbsp; '3' - Customer entity is a generic customer
           example: '0'
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '3'
-        nameLine1:
-          maxLength: 40
-          type: string
-          description: This field indicates the owner personal name, business name,
-            or a generic name.
-          example: ''
-        nameLine2:
-          maxLength: 40
-          type: string
-          description: This field indicates the owner name.
-          example: ''
-        nameLine3:
-          maxLength: 40
-          type: string
-          description: This field indicates the owner name.
-          example: ''
-        addressLine1:
-          maxLength: 40
-          type: string
-          description: This is mailing address for the owner.
-          example: ''
-        addressLine2:
-          maxLength: 40
-          type: string
-          description: This is mailing address for the owner.
-          example: ''
-        addressLine3:
-          maxLength: 40
-          type: string
-          description: ' This is mailing address for the owner.'
-          example: ''
-        addressLine4:
-          maxLength: 40
-          type: string
-          description: This is mailing address for the owner.
-          example: ''
-        cityOfOwner:
-          maxLength: 30
-          type: string
-          description: City portion of the mailing address of the owner.
-          example: ''
-        state:
-          maxLength: 3
-          type: string
-          description: Name of state portion of the mailinga ddress of the owner.
-          example: ''
-        postalCode:
-          maxLength: 10
-          type: string
-          description: Postal code portion of the mailing address of the owner.
-          example: ''
-        countryCode:
-          maxLength: 3
-          type: string
-          description: The value entered must be a valid country code previously defined
-            in the Security Subsystem and Common Routines (SSC) system.
-          example: ''
         residenceFlag:
           maxLength: 1
           type: string
           description: This code indicates whether the owner owns or rents their primary
             residence. <br/>The values are:<br/> &nbsp; '0' - Unknown or unused (Default)
             <br/> &nbsp; '1' - Owns or is buying a home <br/> &nbsp; '2' - Rents or
-            leases a home <br/> &nbsp; '3' - Neither owns nor rents primary residence.
+            leases a home <br/> &nbsp; '3' - Neither owns nor rents primary residence
           example: '1'
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '2'
           - '3'
@@ -1079,21 +1039,6 @@ components:
           description: Customer Date of Birth. The format is MM/DD/YYYY or DD/MM/YYYY
             depending on the DATE FORMAT on System Control.
           example: 01/02/2010
-        lastName:
-          maxLength: 40
-          type: string
-          description: This field indicates the last name of the owner.
-          example: ''
-        middleName:
-          maxLength: 40
-          type: string
-          description: This field indicates the middle name of the owner.
-          example: ''
-        firstName:
-          maxLength: 40
-          type: string
-          description: This field indicates the first name of the owner.
-          example: Tom
         nationalId:
           maxLength: 25
           type: string
@@ -1104,10 +1049,10 @@ components:
           type: string
           description: This flag indicates the onwer's gender. <br/>The values are:<br/>
             &nbsp; '0' - Unspecified (Default) <br/> &nbsp; '1' - Male <br/> &nbsp;
-            '2' - Female.
+            '2' - Female
           example: '1'
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '2'
         email:
@@ -1132,12 +1077,195 @@ components:
             to use this e-mail address. <br/>The values are:<br/> &nbsp; '0' - No,
             owner may not be contacted using this e-mail address (Default) <br/> &nbsp;
             '1' - Yes, owner may be contacted using this e-mail address <br/> &nbsp;
-            '2' - Preferred contact method.
-          example: '1'
+            '2' - Preferred contact method
+          example: '0'
           enum:
-          - ZERO
+          - '0'
           - '1'
           - '2'
+        addressDetailsReq:
+          $ref: '#/components/schemas/AddressDetailsReq'
+        nameDetailsReq:
+          $ref: '#/components/schemas/NameDetailsReq'
+    FeeDetailsReq:
+      type: object
+      properties:
+        annualFeeAssessmentLevel:
+          maxLength: 1
+          type: string
+          description: 'This field is a code that indicates the level at which to
+            charge the annual fee for the relationship. <br/>The values are: <br/>&nbsp;
+            ''0'' - Subordinate account level (Default) <br/>&nbsp; ''1'' - Primary
+            account level <br/>&nbsp; ''2'' - Do not charge annual fee'
+          example: ''
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        isAnnualFeeModificationEnabled:
+          maxLength: 1
+          type: string
+          description: 'field indicates whether you can modify the waive annual fee
+            flag at the subordinate account level. <br/>The values are: <br/>&nbsp;
+            ''0'' - Modification is allowed (Default)<br/>&nbsp; ''1'' - Modification
+            is not allowed'
+          example: ''
+          enum:
+          - '0'
+          - '1'
+        lateFeeAssessmentLevel:
+          maxLength: 1
+          type: string
+          description: 'This field is a code that indicates the level at which to
+            charge late fees for the relationship. <br/>The values are: <br/>&nbsp;
+            ''0'' - Subordinate account level (Default) <br/>&nbsp; ''1'' - Primary
+            account level <br/>&nbsp; ''2'' - Do not charge late fees'
+          example: ''
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        isLateFeeModificationEnabled:
+          maxLength: 1
+          type: string
+          description: This field indicates whether you can modify the late waive
+            late charges flag assigned to the subordinate accounts within the relationship.
+            <br/>The values are:<br/>&nbsp; '0' - Modification is allowed (Default)<br/>&nbsp;
+            '1' - Modification is not allowed
+          example: ''
+          enum:
+          - '0'
+          - '1'
+        nsfFeeAssessmentLevel:
+          maxLength: 1
+          type: string
+          example: ''
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        isNsfFeeModificationEnabled:
+          maxLength: 1
+          type: string
+          description: this field indicates whether you can modify the waive NSF fee
+            flag at the subordinate account level. <br/>The values are:<br/>&nbsp;
+            '0' - Modification is allowed (Default)<br/>&nbsp; '1' - Modification
+            is not allowed
+          example: ''
+          enum:
+          - '0'
+          - '1'
+    IbsDetailsReq:
+      type: object
+      properties:
+        ddaRoutingId:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This is ABA-assigned routing and transit number that identifies
+            the financial institution at which the checking account is held.
+          format: int32
+          example: '0'
+        ddaAccountId:
+          maxLength: 17
+          type: string
+          description: Demand deposit account (DDA) number associated with direct
+            debit processing.
+          example: ''
+        savingsRoutingId:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This is ABA-assigned routing and transit number that identifies
+            the financial institution at which the savings account is held.
+          format: int32
+          example: '0'
+        savingsAccountId:
+          maxLength: 17
+          type: string
+          description: This is the savings account number
+          example: ''
+    MemoDetailsReq:
+      type: object
+      properties:
+        memoBillingCurrency:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: ISO currency code used to generate converted memo-billing information
+            on statements for this relationship. <br/>The values are:<br/>&nbsp; '000'
+            - Memo billing is not active(Default) <br/>&nbsp; '001' to '999' - Memo
+            billing is active
+          format: int32
+          example: '0'
+        memoPaymentTransactionCode:
+          maximum: 9999
+          maxLength: 4
+          type: integer
+          description: Code that identifies the transaction for the relationship payment.
+            When a consolidated relationship payment is received, a memo transaction
+            for the total payment amount will post to the relationship primary account
+            for information purposes.
+          format: int32
+          example: '0'
+        memoPaymentReversalTransactionCode:
+          maximum: 9999
+          maxLength: 4
+          type: integer
+          description: Code that identifies the transaction for the relationship payment
+            reversal. When a consolidated relationship payment is received, a memo
+            transaction for the total payment amount will post to the relationship
+            primary account for information purposes.
+          format: int32
+          example: '0'
+        memoBalanceIndicator:
+          maxLength: 1
+          type: string
+          description: Flag that indicates whether the relationship is updated with
+            the current balance, cash balance, memo debits, memo credits, and outstanding
+            cash authorizations from the subordinate accounts. <br/>The values are:<br/>&nbsp;
+            '0' - Do not update the relationship in batch<br/>&nbsp; '1' - Update
+            the relationship in batch
+          example: ''
+          enum:
+          - '0'
+          - '1'
+    NameDetailsReq:
+      required:
+      - firstName
+      type: object
+      properties:
+        nameLine1:
+          maxLength: 40
+          type: string
+          description: This field indicates the owner personal name, business name,
+            or a generic name.
+          example: ''
+        nameLine2:
+          maxLength: 40
+          type: string
+          description: This field indicates the owner name.
+          example: ''
+        nameLine3:
+          maxLength: 40
+          type: string
+          description: This field indicates the owner name.
+          example: ''
+        lastName:
+          maxLength: 40
+          type: string
+          description: This field indicates the last name of the owner.
+          example: ''
+        middleName:
+          maxLength: 40
+          type: string
+          description: This field indicates the middle name of the owner.
+          example: ''
+        firstName:
+          maxLength: 40
+          type: string
+          description: This field indicates the first name of the owner.
+          example: Tom
     PctOverrideDetailsReq:
       type: object
       properties:
@@ -1168,7 +1296,7 @@ components:
             is in effect, and if so, the level for the PCT ID in the PCT OVERRIDE
             field. <br/>The values are:<br/> &nbsp; ' ' - No override in effect (Default)
             <br/> &nbsp; 'L' - Product <br/> &nbsp; 'O' - Business Unit <br/> &nbsp;
-            'S' - System Control.
+            'S' - System Control
           example: ' '
         levelStartDate:
           maxLength: 10
@@ -1208,20 +1336,20 @@ components:
             values are:<br/>&nbsp; '0' - Use the address assigned to the Customer
             Name/Address entity that is associated with the account<br/>&nbsp; '1'
             - Use the address assigned to the Customer Name/Address entity that is
-            associated with the Relationship.
+            associated with the Relationship
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
         reserveAmountpctFlag:
           maxLength: 1
           type: string
           description: 'Flag that indicates whether the value entered in the AVAILABLE
             RESERVE AMT/% field is an amount or a percentage.  <br/> The values are:
-            <br/>&nbsp; ''0'' - Amount (Default) <br/>&nbsp; ''1'' - Percentage.'
+            <br/>&nbsp; ''0'' - Amount (Default) <br/>&nbsp; ''1'' - Percentage'
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
         availableReserveAmountpct:
           type: string
@@ -1235,10 +1363,10 @@ components:
             be produced. <br/>The values are:<br/>&nbsp; '0' - Produce a relationship
             statement with summary subordinate account statements (Default)<br/>&nbsp;
             '1' - Produce a relationship statement and detailed subordinate account
-            statements.
+            statements
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
         accountControlTableOverride:
           maximum: 999
@@ -1250,59 +1378,17 @@ components:
             to each account.
           format: int32
           example: '0'
-        memoBillingCurrency:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: ISO currency code used to generate converted memo-billing information
-            on statements for this relationship. <br/>The values are:<br/>&nbsp; 00'0'
-            - Memo billing is not active(Default) <br/>&nbsp; 001–999 - Memo billing
-            is active.
-          format: int32
-          example: '0'
-        memoPaymentTransactionCode:
-          maximum: 9999
-          maxLength: 4
-          type: integer
-          description: Code that identifies the transaction for the relationship payment.
-            When a consolidated relationship payment is received, a memo transaction
-            for the total payment amount will post to the relationship primary account
-            for information purposes.
-          format: int32
-          example: '0'
-        memoPaymentReversalTransactionCode:
-          maximum: 9999
-          maxLength: 4
-          type: integer
-          description: Code that identifies the transaction for the relationship payment
-            reversal. When a consolidated relationship payment is received, a memo
-            transaction for the total payment amount will post to the relationship
-            primary account for information purposes.
-          format: int32
-          example: '0'
-        memoBalanceIndicator:
-          maxLength: 1
-          type: string
-          description: Flag that indicates whether the relationship is updated with
-            the current balance, cash balance, memo debits, memo credits, and outstanding
-            cash authorizations from the subordinate accounts. <br/>The values are:<br/>&nbsp;
-            '0' - Do not update the relationship in batch<br/>&nbsp; '1' - Update
-            the relationship in batch.
-          example: ''
-          enum:
-          - '0'
-          - '1'
         billingLevel:
           maxLength: 1
           type: string
           description: This field (BILLING LEVEL) is the billing level for the relationship.
             <br/>The values are:<br/>&nbsp; '0' - Bill at relationship level<br/>&nbsp;
             '1' - Bill at subordinate level (Default)<br/>&nbsp; '2' - Combined billing
-            either at relationship or subordinate level.
+            either at relationship or subordinate level
           example: ''
           enum:
           - '1'
-          - ZERO
+          - '0'
           - '2'
         isBillingLevelModificationEnabled:
           maxLength: 1
@@ -1312,76 +1398,11 @@ components:
             level. <br/>The values are: <br/>&nbsp; ''0'' - Modification at the subordinate
             account level is allowed <br/>&nbsp; ''1'' - Modification at the subordinate
             account level is not allowed. Modification must be at the relationship
-            level only. (Default).'
+            level only (Default)'
           example: ''
           enum:
           - '1'
           - '0'
-        annualFeeAssessmentLevel:
-          maxLength: 1
-          type: string
-          description: 'This field is a code that indicates the level at which to
-            charge the annual fee for the relationship. <br/>The values are: <br/>&nbsp;
-            ''0'' - Subordinate account level (Default) <br/>&nbsp; ''1'' - Primary
-            account level <br/>&nbsp; ''2'' - Do not charge annual fee.'
-          example: ''
-          enum:
-          - ZERO
-          - '1'
-          - '2'
-        isAnnualFeeModificationEnabled:
-          maxLength: 1
-          type: string
-          description: 'field indicates whether you can modify the waive annual fee
-            flag at the subordinate account level. <br/>The values are: <br/>&nbsp;
-            ''0'' - Modification is allowed (Default)<br/>&nbsp; ''1'' - Modification
-            is not allowed.'
-          example: ''
-          enum:
-          - ZERO
-          - '1'
-        lateFeeAssessmentLevel:
-          maxLength: 1
-          type: string
-          description: 'This field is a code that indicates the level at which to
-            charge late fees for the relationship. <br/>The values are: <br/>&nbsp;
-            ''0'' - Subordinate account level (Default) <br/>&nbsp; ''1'' - Primary
-            account level <br/>&nbsp; ''2'' - Do not charge late fees.'
-          example: ''
-          enum:
-          - ZERO
-          - '1'
-          - '2'
-        isLateFeeModificationEnabled:
-          maxLength: 1
-          type: string
-          description: This field indicates whether you can modify the late waive
-            late charges flag assigned to the subordinate accounts within the relationship.
-            <br/>The values are:<br/>&nbsp; '0' - Modification is allowed (Default)<br/>&nbsp;
-            '1' - Modification is not allowed.
-          example: ''
-          enum:
-          - ZERO
-          - '1'
-        nsfFeeAssessmentLevel:
-          maxLength: 1
-          type: string
-          example: ''
-          enum:
-          - ZERO
-          - '1'
-          - '2'
-        isNsfFeeModificationEnabled:
-          maxLength: 1
-          type: string
-          description: this field indicates whether you can modify the waive NSF fee
-            flag at the subordinate account level. <br/>The values are:<br/>&nbsp;
-            '0' - Modification is allowed (Default)<br/>&nbsp; '1' - Modification
-            is not allowed.
-          example: ''
-          enum:
-          - ZERO
-          - '1'
         defaultCreditLimit:
           maxLength: 17
           type: string
@@ -1396,10 +1417,10 @@ components:
           description: This field is a code that indicates whether you can modify
             the credit limit at the subordinate account level. <br/>The values are:<br/>&nbsp;
             '0' - Modification is allowed (Default)<br/>&nbsp; '1' - Modification
-            is not allowed.
+            is not allowed
           example: ''
           enum:
-          - ZERO
+          - '0'
           - '1'
         corporateCustomerNumber:
           maxLength: 19
@@ -1427,9 +1448,9 @@ components:
           description: Flag that indicates whether the fiscal year-end report is to
             beproduced at the Merchant Category Code (MCC) level for the account.
             <br/>The values are:<br/>&nbsp; '00' - Do not produce report at MCC level.
-            (Default)<br/>&nbsp; '01–12' - Produce reports at MCC level for this account.
-            Values denote the fiscal month for the account when the fiscal year end
-            report is produced.
+            (Default)<br/>&nbsp; '01' to '12' - Produce reports at MCC level for this
+            account. Values denote the fiscal month for the account when the fiscal
+            year end report is produced
           format: int32
           example: '0'
         currentExpiryDate:
@@ -1458,6 +1479,36 @@ components:
           type: string
           description: User-defined field for any information about the relationship.
           example: ''
+        commercialFlag:
+          maxLength: 1
+          type: string
+          description: Flag that indicates whether this is a commercial card relationship.
+            <br/>The values are:<br/>&nbsp; '0' - Not a commercial card relationship
+            (Default)<br/>&nbsp; '1' - Visa corporate card relationship<br/>&nbsp;
+            '2' - Visa purchasing card relationship<br/>&nbsp; '3' - HCS commercial
+            card relationship<br/>&nbsp; '4' - Non-HCS commercial card
+          example: ''
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+        authorizationCriteriaTable:
+          maxLength: 3
+          type: string
+          description: Identification number of the Authorization Criteria table assigned
+            to the account.
+          example: ''
+        memoDetailsReq:
+          $ref: '#/components/schemas/MemoDetailsReq'
+        feeDetailsReq:
+          $ref: '#/components/schemas/FeeDetailsReq'
+        userDetailsReq:
+          $ref: '#/components/schemas/UserDetailsReq'
+    UserDetailsReq:
+      type: object
+      properties:
         userDate1:
           maxLength: 10
           type: string
@@ -1490,27 +1541,25 @@ components:
           type: string
           description: User-defined field 6 for any information about the relationship.
           example: ''
-        commercialFlag:
-          maxLength: 1
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        status:
           type: string
-          description: Flag that indicates whether this is a commercial card relationship.
-            <br/>The values are:<br/>&nbsp; '0' - Not a commercial card relationship
-            (Default)<br/>&nbsp; '1' - Visa corporate card relationship<br/>&nbsp;
-            '2' - Visa purchasing card relationship<br/>&nbsp; '3' - HCS commercial
-            card relationship<br/>&nbsp; '4' - Non-HCS commercial card.
           example: ''
-          enum:
-          - ZERO
-          - '1'
-          - '2'
-          - '3'
-          - '4'
-        authorizationCriteriaTable:
-          maxLength: 3
+        errorMessage:
           type: string
-          description: Identification number of the Authorization Criteria table assigned
-            to the account.
           example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        invalid-params:
+          type: array
+          items:
+            type: string
     BoardEntityResponseModel:
       type: object
       properties:
@@ -1575,32 +1624,13 @@ components:
             values are: <br/>&nbsp; ''0'' - Permanent<br/>&nbsp; ''1'' - Temporary<br/>&nbsp;
             ''F'' - Fraud<br/>&nbsp; ''S'' - Smart card manually reissued due to smart
             card restriction<br/>&nbsp; ''T'' - Permanent transfer out<br/>&nbsp;
-            ''P'' - Purged.'
+            ''P'' - Purged'
           example: '0'
         maskedPaymentInstrumentId:
           maxLength: 19
           type: string
           description: Masked Token Number
           example: ''
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        status:
-          type: string
-          example: ''
-        errorMessage:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        invalid-params:
-          type: array
-          items:
-            type: string
     GeneralLedgerDetailsRes:
       type: object
       properties:
@@ -1608,7 +1638,9 @@ components:
           maxLength: 1
           type: string
           description: Code that determines whether CMS generates general ledger transactions
-            at the business unit level.
+            at the business unit level. <br/>The values are:<br/> &nbsp; 'N' - Do
+            not generate general ledger transactions <br/> &nbsp; 'Y' - Generate general
+            ledger transactions (Default)
           example: Y
           enum:
           - Y
@@ -1617,7 +1649,9 @@ components:
           maxLength: 1
           type: string
           description: Code that determines whether CMS generates general ledger transactions
-            at the product level.
+            at the product level. <br/>The values are:<br/> &nbsp; 'N' - Do not generate
+            general ledger transactions at the product level (Default) <br/> &nbsp;
+            'Y' - Generate general ledger transactions at the product level
           example: Y
           enum:
           - Y
@@ -1626,7 +1660,10 @@ components:
           maxLength: 1
           type: string
           description: Code that determines whether CMS generates general ledger transactions
-            at the credit plan level.
+            at the credit plan level. <br/>The values are:<br/> &nbsp; 'N' - Do not
+            generate general ledger transactions at the Credit Plan level (Default)
+            <br/> &nbsp; 'Y' - Generate general ledger transactions at the Credit
+            Plan level
           example: Y
           enum:
           - Y
@@ -1635,7 +1672,8 @@ components:
           maxLength: 1
           type: string
           description: Code that determines whether the business unit uses a cash
-            basis or an accrual basis accounting method.
+            basis or an accrual basis accounting method. <br/>The values are:<br/>
+            &nbsp; 'A' - Accrual (Default) <br/> &nbsp; 'C' - Cash
           example: A
           enum:
           - A
@@ -1714,18 +1752,21 @@ components:
         generalLedgerReportingType:
           maxLength: 1
           type: string
-          description: 'General reporting type '
+          description: Code that determines when CMS generates interface transactions
+            to post to general ledger. <br/>The values are:<br/> &nbsp; 'C' - Calendar
+            month end <br/> &nbsp; 'D' - Daily (Default)  <br/> &nbsp; 'M' - Variable
+            month end
           example: D
           enum:
           - D
           - C
           - M
-    InquireOrganizationResponseModel:
+    InquireBusinessUnitResponseModel:
       required:
-      - orgNumber
+      - businessUnit
       type: object
       properties:
-        orgNumber:
+        businessUnit:
           maximum: 999
           maxLength: 3
           type: integer
@@ -1789,9 +1830,9 @@ components:
         dateLastMaintenance:
           maxLength: 10
           type: string
-          description: Date of the last maintenance on this Organization record.The
-            format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
-            Control.
+          description: Date of the last maintenance on this business unit entity.
+            The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on
+            System Control.
           example: 18/08/2021
         generalLedgerDetailsRes:
           $ref: '#/components/schemas/GeneralLedgerDetailsRes'
@@ -1813,14 +1854,24 @@ components:
           maximum: 9
           maxLength: 1
           type: integer
-          description: The code that indicates offers based on type of transaction.
+          description: This field identifies whether the business unit takes part
+            in transaction-based offers. <br/>The values are:<br/> &nbsp; '0' - Transaction-based
+            offers are not active (Default)<br/> &nbsp; '1' - Transaction-based pricing
+            offers are active but only on transactions with default plans <br/> &nbsp;
+            '2' - Transaction-based pricing offers are active and applicable to transactions
+            with all plans <br/> &nbsp; '3' - Transaction-based discount offers only
+            are active <br/> &nbsp; '4' - Transaction-based pricing offers on default
+            plans and transaction-based discount offers are active <br/> &nbsp; '5'
+            -  Transaction-based pricing offers on all plans and transaction-based
+            discount offers are active
           format: int32
           example: '1'
         useServiceCharges:
           maxLength: 1
           type: string
           description: Code that indicates whether this business unit uses service
-            charges.
+            charges. <br/>The values are:<br/> &nbsp; 'N' - No service charges used
+            (Default) <br/> &nbsp; 'Y' - Yes, services charges are used.
           example: Y
           enum:
           - Y
@@ -1830,8 +1881,11 @@ components:
         commercialCardsAllowed:
           maxLength: 1
           type: string
-          description: Flag that indicates whether CMS allows commercial card accounts
-            for this business unit.
+          description: 'Flag that indicates whether CMS allows commercial card accounts
+            for this business unit. <br/>The values are:<br/> &nbsp; ''0'' - Do not
+            allow commercial card accounts (Default) <br/> &nbsp; ''1'' - Allow commercial
+            card accounts <br/> &nbsp; ''2'' - Allow commercial card accounts for
+            this business unit in conjunction with HCS '
           example: '1'
           enum:
           - '0'
@@ -1842,6 +1896,9 @@ components:
           type: string
           description: Flag that indicates whether the relationship authorization
             feature is active for relationship accounts added in this business unit.
+            <br/>The values are:<br/> &nbsp; '0' - Relationship authorization feature
+            is not active (Default) <br/> &nbsp; '1' - Relationship authorization
+            feature is active
           enum:
           - '0'
           - '1'
@@ -1850,7 +1907,9 @@ components:
           maxLength: 1
           type: string
           description: This field indicates whether the cash credit limit is a monetary
-            amount or a percentage of the relationship credit limit.
+            amount or a percentage of the relationship credit limit. <br/>The values
+            are:<br/> &nbsp; 'A' - Monetary amount (Default) <br/> &nbsp; 'P' - Percentage
+            of the relationship credit limit
           example: A
           enum:
           - A
@@ -1865,7 +1924,9 @@ components:
           maxLength: 1
           type: string
           description: This field indicates whether the loan limit is a monetary amount
-            or a percentage of the relationship credit limit.
+            or a percentage of the relationship credit limit. <br/>The values are:<br/>
+            &nbsp; 'A' - Monetary amount (Default) <br/> &nbsp; 'P' - Percentage of
+            the relationship credit limit
           example: A
           enum:
           - A
@@ -1880,7 +1941,8 @@ components:
           maxLength: 1
           type: string
           description: The code indicates dispute amount to be considered while calculating
-            OTB.
+            OTB. <br/>The values are:<br/> &nbsp; '0' - Include disputed amounts (Default)
+            <br/> &nbsp; '1' - Exclude disputed amounts
           example: '0'
           enum:
           - '0'
@@ -1891,7 +1953,10 @@ components:
           maxLength: 1
           type: string
           description: Flag that indicates whether CMS calculates early settlement
-            quotes for loans during the CMS daily run in batch processing.
+            quotes for loans during the CMS daily run in batch processing. <br/>The
+            values are:<br/> &nbsp; '0' - Do not calculate early settlement quotes
+            (Default) <br/> &nbsp; '1' - Calculate early settlement quotes <br/> &nbsp;
+            '2' - Calculate early settlement quote for large overpayments
           example: '0'
           enum:
           - '0'
@@ -1901,7 +1966,8 @@ components:
           maxLength: 1
           type: string
           description: Flag that indicates whether CMS allows installment loans for
-            this business unit.
+            this business unit. <br/>The values are:<br/> &nbsp; '0' - Do not allow
+            installment loans (Default) <br/> &nbsp; '1' - Allow installment loans
           example: '0'
           enum:
           - '0'
@@ -1976,7 +2042,9 @@ components:
           maxLength: 1
           type: string
           description: Flag that indicates whether CMS allows consolidated payments
-            for relationships within this business unit.
+            for relationships within this business unit. <br/>The values are:<br/>
+            &nbsp; '0' - Consolidated payments are not allowed (Default) <br/> &nbsp;
+            '1' - Consolidated payments are allowed
           example: '0'
           enum:
           - '0'
@@ -1985,7 +2053,12 @@ components:
           maxLength: 1
           type: string
           description: This field helps to identify how to transfer unpaid minimum
-            amount due balances from foreign accounts to local accounts.
+            amount due balances from foreign accounts to local accounts. <br/>The
+            values are:<br/> &nbsp; '0' - Not active (Default) <br/> &nbsp; '1' -
+            Convert and transfer unpaid minimum amount due balances to the principal
+            balance of the local account <br/> &nbsp; '2' - Convert and transfer unpaid
+            minimum amount due balances to the principal balance and to the minimum
+            payment due of the local account
           example: '0'
           enum:
           - '0'
@@ -1995,7 +2068,8 @@ components:
           maxLength: 1
           type: string
           description: Flag that indicates whether automatic chargeback processing
-            is active for the business unit.
+            is active for the business unit. <br/>The values are:<br/> &nbsp; '0'
+            - Inactive (Default) <br/> &nbsp; '1' - Active
           example: '0'
           enum:
           - '0'
@@ -2004,7 +2078,11 @@ components:
           maxLength: 1
           type: string
           description: Code that indicates whether CMS waives the late fee when late
-            fee assessment is delayed into the next cycle.
+            fee assessment is delayed into the next cycle. <br/>The values are:<br/>
+            &nbsp; '0' - Do not waive the late fee even if late fee assessment is
+            delayed by a cycle because of statement delay processing (Default) <br/>
+            &nbsp; '1' - Waive the late fee if late fee assessment is delayed by a
+            cycle because of statement delay processing
           example: '0'
           enum:
           - '0'
@@ -2013,7 +2091,10 @@ components:
           maxLength: 1
           type: string
           description: Code that indicates whether CMS waives or defers interest processing
-            when a statement is delayed at the printing vendor site.
+            when a statement is delayed at the printing vendor site. <br/>The values
+            are:<br/> &nbsp; '0' - No change in interest processing (Default) <br/>
+            &nbsp; '1' - Extend grace day processing by the number of days <br/> &nbsp;
+            '2' - Waive finance charges for the statement that is delayed.
           example: '0'
           enum:
           - '0'
