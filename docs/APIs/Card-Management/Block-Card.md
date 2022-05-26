@@ -4,7 +4,7 @@ This service is used to update the block codes and the reason codes for the bloc
 
 ## Endpoint
 
-`PUT /v1/cards/{cardNumber}/blockUnblock`
+`PUT /v1/cards/{paymentInstrumentId}/blockUnblock`
 
 ## Payload Example
 
@@ -15,18 +15,17 @@ This service is used to update the block codes and the reason codes for the bloc
   "blockCode": "X",
   "warningCode1": "1"
 }
-
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{cardNumber}/blockUnblock).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/blockUnblock).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `cardNumber` | Path Variable | *string* | 19 | Token number associated with the clear PAN. | 
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -37,10 +36,9 @@ The below table identifies the required parameters in the request payload.
   "blockCode": "X",
   "blockDate": "19/08/2021",
   "businessUnit": 100,
-  "cardNumber": "0009846801010273605",
+  "paymentInstrumentId": "0009846801010273605",
   "warningCode1": "1"
 }
-
 ```
 
 ### Error Response Payload
@@ -56,8 +54,8 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5ED4001SA` | Business unit not found |
-| `V5ED4001SB` | Business unit is in Add Pending Status |
+| `V5ED4001SA` | Org not found |
+| `V5ED4001SB` | Organization is in Add pending status |
 | `V5ED4001SC` | Business unit is in Purge Status |
 | `V5ED0010SF` | Update Request - Record not found |
 | `V5ED0011SF` | Update Request - Record Add Pending |

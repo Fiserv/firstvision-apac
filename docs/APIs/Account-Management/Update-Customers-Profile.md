@@ -1,53 +1,59 @@
 # Update Customer's Profile
 
-This service is used to update the various customer profiles like customer number, corresponding customer number and alternate customer details for a given account number.
+This service is used to update the various customer profiles like customer id, corresponding customer id and alternate customer details for a given account id.
   
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/customersProfile`
+`PUT /v1/accounts/{accountId}/customersProfile`
 
 ## Payload Example
 
 ### Request Payload
 
 ```json
+
 {
-  "customerNumber": "0000000001000000032",
-  "correspondenceCustomerNumber": "0000000001000000065",
-  "alternateCustomerDetailsReq": {
-    "alternateCustomerNumberFlag": "A",
-    "alternateCustomerNumber": "0000000001000000065",
-    "alternateCustomerExpiryDate": "15/04/2022"
+  "customerId": "0000000001000000032",
+  "correspondenceCustomerId": "0000000001000000065",
+  "alternateCustomerIdDetailsReq": {
+    "customerIdFlag": "A",
+    "customerId": "0000000001000000065",
+    "customerIdExpiryDate": "15/04/2022",
+    "customerIdEffectiveDate": "14/01/2021"
   }
 }
+
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/customersProfile).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/customersProfile).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
+
 {
-  "accountNumber": "0004440010000000017",
-  "alternateCustomerDetailsRes": {
-    "alternateCustomerExpiryDate": "15/04/2022",
-    "alternateCustomerNumber": "0000000001000000065",
-    "alternateCustomerNumberFlag": "A"
-  },
   "businessUnit": 600,
-  "correspondenceCustomerNumber": "0000000001000000065",
-  "customerNumber": "0000000001000000032"
+  "accountId": "0004440010000000017",
+  "customerId": "0000000001000000032",
+  "correspondenceCustomerId": "0000000001000000065",
+  "alternateCustomerIdDetailsRes": {
+    "customerIdFlag": "A",
+    "customerIdExpiryDate": "15/04/2022",
+    "customerId": "0000000001000000065",
+    "customerIdEffectiveDate": "14/01/2021"
+  }
 }
+
 ```
 
 ### Error Response Payload

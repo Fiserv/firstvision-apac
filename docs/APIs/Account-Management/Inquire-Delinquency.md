@@ -1,10 +1,10 @@
 # Inquire Delinquency
 
- This service provides delinquency details for a given account number like 30 to 150 day delinquent amount, last deliquent date, current cycle due etc.
+This service provides delinquency details for a given account number like 30 to 150 day delinquent amount, last deliquent date, current cycle due etc.
 
 ## Endpoint
 
-`GET /v1/accounts/{accountNumber}/deliquencyDetails`
+`GET /v1/accounts/{accountId}/deliquencyDetails`
 
 ## Payload Example
 
@@ -12,24 +12,23 @@
 
 >Should be empty. 
 >
->***The Account Number should be sent as path variable.***
-
+>***Account id should be sent as path variable.***
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountNumber}/deliquencyDetails).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/deliquencyDetails).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the Account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 
 ### Successful Response Payload
 
 ```json
 {
-  "accountNumber": "0006000011000000509",
+  "accountId": "0006000011000000509",
   "businessUnit": 600,
   "delinquencyDetailsRes": {
     "120daysDelinquentAmount": "$0.00",
@@ -39,14 +38,15 @@ The below table identifies the required parameters in the request payload.
     "30daysDelinquentAmount": "$0.00",
     "60daysDelinquentAmount": "$0.00",
     "90daysDelinquentAmount": "$0.00",
-    "currentDue": "$0.00",
-    "cycleDue": "0",
-    "lastDeliquentDate": "00/00/0000",
+    "currentCycleDue": "0",
+    "currentDueAmount": "$0.00",
+    "lastDelinquentDate": "00/00/0000",
     "pastDuePaymentAmount": "$0.00",
-    "paymentDaysDeliquent": 0,
+    "paymentDaysDelinquentCount": 0,
     "previousCycleDue": 0
   }
 }
+
 ```
 
 ### Error Response Payload

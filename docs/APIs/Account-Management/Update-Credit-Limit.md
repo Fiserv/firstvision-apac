@@ -4,7 +4,7 @@ This service is used to update the credit limit of the cardholder’s account in
 
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/creditLimit`
+`PUT /v1/accounts/{accountId}/creditLimit`
 
 ## Payload Example
 
@@ -18,22 +18,22 @@ This service is used to update the credit limit of the cardholder’s account in
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/creditLimit).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/creditLimit).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 | `creditLimit` | Payload | *string* | 17 | Credit limit of the account. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "accountNumber": "0006000011000000103",
-  "businessUnit": "600",
-  "creditLimit": "$10.00",
+  "accountId": "0006000011000000152",
+  "businessUnit": 600,
+  "creditLimit": "$5.00",
   "creditLimitDate": "19/08/2021"
 }
 ```

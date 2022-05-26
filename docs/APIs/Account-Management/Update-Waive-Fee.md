@@ -4,134 +4,142 @@ The account fee waive flags update service is used to update flag for waive intr
 
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/waiveFee`
+`PUT /v1/accounts/{accountId}/waiveFee`
 
 ## Payload Example
 
 ### Request Payload
 
 ```json
+
 {
-  "waiveLateCharges": "1",
-  "waiveInterest": "1",
-  "waiveMembership": "0",
-  "waiveOverlimitFee": "0",
-  "waiveNsf15Fees": "3",
-  "waiveCardIssuanceFees": "1",
-  "waiveLetterFee": "1",
-  "userFees1": "0",
-  "userFees2": "1",
-  "userFees3": "1",
-  "userFees4": "1",
-  "userFees5": "0",
-  "userFees6": "0",
-  "suppressMembershipFee": "0",
-  "waiveTaxCalculation": "1",
-  "waiveCashAdvanceFeeGroupReq": {
-    "waiveCashAdvance1": "1",
-    "waiveCashAdvance2": "1",
-    "waiveCashAdvance3": "1",
-    "waiveCashAdvance4": "1",
-    "waiveCashAdvance5": "1"
+  "isWaiveLateChargeEnabled": "1",
+  "isWaiveInterestFeeEnabled": "1",
+  "isWaiveAnnualMembershipFeeEnabled": "0",
+  "isWaiveOverlimitFeeEnabled": "0",
+  "isWaiveNsf1-5FeeEnabled": "3",
+  "isWaiveCardIssuanceFeeEnabled": "1",
+  "isWaiveLetterFeeEnabled": "1",
+  "isWaiveAddOnMembershipFeeEnabled": "0",
+  "isWaiveTaxEnabled": "1",
+  "isWaiveCycleSpendFeeEnabled": "1",
+  "UserFeesReq": {
+    "isWaiveFee1Enabled": "1",
+    "isWaiveFee2Enabled": "1",
+    "isWaiveFee3Enabled": "1",
+    "isWaiveFee4Enabled": "1",
+    "isWaiveFee5Enabled": "0",
+    "isWaiveFee6Enabled": "0"
   },
-  "waiveServiceFeeGroupReq": {
-    "serviceFee1": "1",
-    "serviceFee10": "1",
-    "serviceFee11": "1",
-    "serviceFee12": "1",
-    "serviceFee13": "1",
-    "serviceFee14": "1",
-    "serviceFee15": "1",
-    "serviceFee16": "1",
-    "serviceFee17": "1",
-    "serviceFee18": "1",
-    "serviceFee19": "1",
-    "serviceFee2": "1",
-    "serviceFee20": "1",
-    "serviceFee21": "1",
-    "serviceFee22": "1",
-    "serviceFee23": "1",
-    "serviceFee24": "1",
-    "serviceFee25": "1",
-    "serviceFee3": "1",
-    "serviceFee4": "1",
-    "serviceFee5": "1",
-    "serviceFee6": "1",
-    "serviceFee7": "1",
-    "serviceFee8": "1",
-    "serviceFee9": "1"
+  "CashAdvanceFeesReq": {
+    "isWaiveFee1Enabled": "1",
+    "isWaiveFee2Enabled": "1",
+    "isWaiveFee3Enabled": "1",
+    "isWaiveFee4Enabled": "1",
+    "isWaiveFee5Enabled": "1"
+  },
+  "ServiceFeesReq": {
+    "isWaiveFee01Enabled": "1",
+    "isWaiveFee10Enabled": "1",
+    "isWaiveFee11Enabled": "1",
+    "isWaiveFee12Enabled": "1",
+    "isWaiveFee13Enabled": "1",
+    "isWaiveFee14Enabled": "1",
+    "isWaiveFee15Enabled": "1",
+    "isWaiveFee16Enabled": "1",
+    "isWaiveFee17Enabled": "1",
+    "isWaiveFee18Enabled": "1",
+    "isWaiveFee19Enabled": "1",
+    "isWaiveFee02Enabled": "1",
+    "isWaiveFee20Enabled": "1",
+    "isWaiveFee21Enabled": "1",
+    "isWaiveFee22Enabled": "1",
+    "isWaiveFee23Enabled": "1",
+    "isWaiveFee24Enabled": "1",
+    "isWaiveFee25Enabled": "1",
+    "isWaiveFee03Enabled": "1",
+    "isWaiveFee04Enabled": "1",
+    "isWaiveFee05Enabled": "1",
+    "isWaiveFee06Enabled": "1",
+    "isWaiveFee07Enabled": "1",
+    "isWaiveFee08Enabled": "1",
+    "isWaiveFee09Enabled": "1"
   }
 }
+
 ```
 
 ### Minimum	Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/waiveFee).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/waiveFee).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. | 
+| `accountid` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
+
 {
-  "accountNumber": "0006000011000000178",
   "businessUnit": 600,
-  "product": 1,
-  "suppressMembershipFee": "0",
-  "userFees1": "0",
-  "userFees2": "1",
-  "userFees3": "1",
-  "userFees4": "1",
-  "userFees5": "0",
-  "userFees6": "0",
-  "waiveCardIssuanceFees": "1",
-  "waiveCashAdvanceFeeGroupRes": {
-    "waiveCashAdvance1": "1",
-    "waiveCashAdvance2": "1",
-    "waiveCashAdvance3": "1",
-    "waiveCashAdvance4": "1",
-    "waiveCashAdvance5": "1"
+  "accountId": "0006000011000000178",
+  "isWaiveLateChargeEnabled": "1",
+  "isWaiveInterestFeeEnabled": "1",
+  "isWaiveAnnualMembershipFeeEnabled": "0",
+  "isWaiveOverlimitFeeEnabled": "0",
+  "isWaiveNsf1-5FeeEnabled": "3",
+  "isWaiveCardIssuanceFeeEnabled": "1",
+  "isWaiveLetterFeeEnabled": "1",
+  "isWaiveAddOnMembershipFeeEnabled": "0",
+  "isWaiveTaxEnabled": "1",
+  "isWaiveCycleSpendFeeEnabled": "1",
+  "UserFeesRes": {
+    "isWaiveFee1Enabled": "1",
+    "isWaiveFee2Enabled": "1",
+    "isWaiveFee3Enabled": "1",
+    "isWaiveFee4Enabled": "1",
+    "isWaiveFee5Enabled": "0",
+    "isWaiveFee6Enabled": "0"
   },
-  "waiveInterest": "1",
-  "waiveLateCharges": "1",
-  "waiveLetterFee": "1",
-  "waiveMembership": "0",
-  "waiveNsf15Fees": "3",
-  "waiveOverlimitFee": "0",
-  "waiveServiceFeeGroupRes": {
-    "serviceFee1": "1",
-    "serviceFee10": "1",
-    "serviceFee11": "1",
-    "serviceFee12": "1",
-    "serviceFee13": "1",
-    "serviceFee14": "1",
-    "serviceFee15": "1",
-    "serviceFee16": "1",
-    "serviceFee17": "1",
-    "serviceFee18": "1",
-    "serviceFee19": "1",
-    "serviceFee2": "1",
-    "serviceFee20": "1",
-    "serviceFee21": "1",
-    "serviceFee22": "1",
-    "serviceFee23": "1",
-    "serviceFee24": "1",
-    "serviceFee25": "1",
-    "serviceFee3": "1",
-    "serviceFee4": "1",
-    "serviceFee5": "1",
-    "serviceFee6": "1",
-    "serviceFee7": "1",
-    "serviceFee8": "1",
-    "serviceFee9": "1"
+  "CashAdvanceFeesRes": {
+    "isWaiveFee1Enabled": "1",
+    "isWaiveFee2Enabled": "1",
+    "isWaiveFee3Enabled": "1",
+    "isWaiveFee4Enabled": "1",
+    "isWaiveFee5Enabled": "1"
   },
-  "waiveTaxCalculation": "1"
+  "ServiceFeesRes": {
+    "isWaiveFee01Enabled": "1",
+    "isWaiveFee10Enabled": "1",
+    "isWaiveFee11Enabled": "1",
+    "isWaiveFee12Enabled": "1",
+    "isWaiveFee13Enabled": "1",
+    "isWaiveFee14Enabled": "1",
+    "isWaiveFee15Enabled": "1",
+    "isWaiveFee16Enabled": "1",
+    "isWaiveFee17Enabled": "1",
+    "isWaiveFee18Enabled": "1",
+    "isWaiveFee19Enabled": "1",
+    "isWaiveFee02Enabled": "1",
+    "isWaiveFee20Enabled": "1",
+    "isWaiveFee21Enabled": "1",
+    "isWaiveFee22Enabled": "1",
+    "isWaiveFee23Enabled": "1",
+    "isWaiveFee24Enabled": "1",
+    "isWaiveFee25Enabled": "1",
+    "isWaiveFee03Enabled": "1",
+    "isWaiveFee04Enabled": "1",
+    "isWaiveFee05Enabled": "1",
+    "isWaiveFee06Enabled": "1",
+    "isWaiveFee07Enabled": "1",
+    "isWaiveFee08Enabled": "1",
+    "isWaiveFee09Enabled": "1"
+  }
 }
 ```
 

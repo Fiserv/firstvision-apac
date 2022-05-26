@@ -4,7 +4,7 @@ This API retrives various service fee details available in the system for a give
 
 ## Endpoint
 
-`GET /v1/products/{productNumber}/serviceChargeDetails`
+`GET /v1/products/{productId}/serviceChargeDetails`
 
 ## Payload Example
 
@@ -12,19 +12,19 @@ This API retrives various service fee details available in the system for a give
 
 >Should be empty.
 >
->***The Business Unit and table number should be sent as query parameters whereas product number as path variable.***
+>***Business Unit and table id should be sent as query parameters whereas product id as path variable.***
  
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{productNumber}/serviceChargeDetails).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{productId}/serviceChargeDetails).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 03 | Identification number of the business unit associated with this Service Charge/Fee table. The values are 000–998.|
-| `productNumber` | Path Variable | *number* | 03 | Identification number of the product associated with this Service Charge/Fee table. The values are 000–998.|
-| `tableNumber` | Query Parameter | *number* | 03 | Identification number of the Service Charge/Fee table. The values are 001–998.|
+| `businessUnit` | Query Parameter | *number* | 03 | Unique identification number associated with the organization. Valid values from 001-998.|
+| `productId` | Path Variable | *number* | 03 | Unique identification number of the product associated with the organization. If the table is defined at organization level, populate this field as zeroes. For tables defined at product level, valid values are 001-998.|
+| `tableId` | Query Parameter | *number* | 03 | Identification number of the Service Charge/Fee table. The values are 001–998.|
 
 ### Successful Response Payload
 
@@ -32,386 +32,26 @@ The below table identifies the required parameters in the request payload.
 
 {
   "businessUnit": 600,
-  "maximumCycleServiceFees": "$9,999.00",
-  "productNumber": 0,
+  "productId": 0,
+  "tableId": 3,
+  "maximumCycleServiceFeeAmount": "$99999.00",
   "serviceChargeDetailsRes": [
     {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 3001,
-      "maximumIndicator": "0",
+      "initiatingTransactionCode": 1301,
+      "transactionLimitFrequency": "1",
+      "transactionLimit": 3,
+      "tier1Fee": "100",
+      "tier2Fee": "500",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "100",
-      "tier2ServiceFee": "1000",
-      "transactionLimit": 1,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
+      "singleFeeMinimumAmount": 0,
+      "singleFeeMaximumAmount": 999999999,
+      "feePostingFrequency": "1",
+      "feeReverseTransactionCode": 7474,
       "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
-    },
-    {
-      "dailyFeeDescription": " ",
-      "feePlan": "0",
-      "feePostingFrequency": "0",
-      "feeReverseTransactionCode": 0,
-      "initiatingTransactionCode": 0,
-      "maximumIndicator": "0",
-      "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
-      "transactionLimit": 0,
-      "transactionLimitFrequency": "0"
+      "dailyFeeDescription": "Service Fees",
+      "maximumIndicator": "1"
     }
-  ],
-  "tableNumber": 3
+  ]
 }
 
 ```
@@ -420,8 +60,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-   errorCode" :  V5PH0004SF" ,
-   errorMessage" : Get Request - Record Not Found"   
+   "errorCode" :  "V5PH0004SF" ,
+   "errorMessage" : "Get Request - Record Not Found"   
 }
 ```
 Below table provides the list of application's error code and its description.

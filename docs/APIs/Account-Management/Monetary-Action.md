@@ -4,67 +4,68 @@ This service will update the Open-to-Buy, memo debit and credit fields on the Ac
   
 ## Endpoint
 
-`POST /v1/accounts/{accountNumber}/monetaryAction`
+`POST /v1/accountId/monetaryAction`
 
 ## Payload Example
 
 ### Request Payload
 
 ```json
+
 {
-  "cmsBusinessUnit": "600",
-  "accountNumber": "0006000011000000160",
+  "businessUnit": "600",
+  "accountId": "0006000011000000160",
   "actionCode": "AINQ",
   "transactionAmount": "3000.0",
   "effectiveDate": "18/08/2021",
-  "departmentCode": "",
+  "departmentCode": " ",
   "skuNumber": 0,
-  "salesClerk": "",
-  "cardNumber": "0006000011000000160",
+  "salesClerk": " ",
+  "paymentInstrumentId": "0006000011000000160",
   "ticketNumber": "0",
   "caseNumber": "0",
   "purchaseOrderNumber": "0",
-  "planNumber": 10002,
+  "planId": 10002,
   "storeNumber": 999999998,
-  "authorizationCode": "",
-  "referenceNumber": 0,
+  "authorizationCode": " ",
+  "referenceNumber": "0",
   "actionCodePriority": 0,
-  "insuranceCode": "",
-  "memoLinesReq": {
-    "lineData1": "",
-    "lineData2": "",
-    "lineData3": "",
-    "lineData4": "",
-    "lineData5": ""
+  "insuranceCode": " ",
+  "actionNotesReq": {
+    "note1": "",
+    "note2": "",
+    "note3": "",
+    "note4": "",
+    "note5": ""
   },
   "representativeDetailReq": {
-    "asmBusinessUnit": "600",
-    "asmRepresentative": "NAB",
+    "representativeId": "NAB",
     "referralOption": "0",
     "referralRepBusinessUnit": 0,
-    "referralRepresentativeId": ""
+    "referralRepresentativeId": " "
   },
   "letterDetailReq": {
-    "letterCode": "",
+    "letterCode": " ",
     "letterBusinessUnit": "0"
   }
 }
+
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/{accountNumber}/monetaryAction).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accountId/monetaryAction).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
-| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
+| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 | `actionCode` | Payload | *string* | 4 | Action code placed on the account. | 
 | `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. |
 | `effectiveDate` | Payload | *DATE* | 10	 | Date when this action is to take effect. |
-| `cardNumber` | Payload | *string* | 19 | This field represents the card number associated with the transaction. |
+| `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment card number. |
 | `storeNumber` | Payload | *number* | 9 | Store number associated with the transaction. |
 | `asmBusinessUnit` | Payload | *string* | 1 | This field indicates the business unit of the ASM. |  
 | `letterBusinessUnit` | Payload | *number* | 3 | This field indicates the business unit of the LTS letter to be sent to the customer. | 
@@ -75,17 +76,21 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountBusinessUnit": 600,
-  "accountNumber": "0006000011000000160",
-  "accountProduct": 1,
+  "accountId": "0006000011000000160",
   "actionCode": "AINQ",
   "actionCodeDescription": "ACCOUNT INQ",
   "actionDate": "00/00/0000",
+  "actionNotesRes": {
+    "note1": "",
+    "note2": "",
+    "note3": "",
+    "note4": "",
+    "note5": ""
+  },
   "authorizationNumber": "",
   "autoReferenceFlag": 1,
-  "cardNumber": "0006000011000000160",
-  "cashAvailable": "$0.00",
-  "clerk": "",
+  "businessUnit": 600,
+  "cashAvailableAmount": "$0.00",
   "creditLimit": "$0.50",
   "currentBalance": "$72.00",
   "currrencyNod": 2,
@@ -95,19 +100,12 @@ The below table identifies the required parameters in the request payload.
   "effectiveDate": "18/08/2021",
   "feeAmount": "$0.00",
   "foreignUseIndicator": 0,
-  "historyDate": "30/03/2022",
-  "historyTime": 50812,
+  "historyDate": "21/05/2022",
+  "historyTime": 84853,
   "insurance": "",
   "letterDetailRes": {
     "letterBusinessUnit": 0,
     "letterCode": ""
-  },
-  "memoLinesRes": {
-    "note1": "",
-    "note2": "",
-    "note3": "",
-    "note4": "",
-    "note5": ""
   },
   "name": "RACHEL TEST BY SASHI",
   "nextReviewDate": "00/00/0000",
@@ -115,9 +113,11 @@ The below table identifies the required parameters in the request payload.
   "notePurgeDate": "00/00/0000",
   "notesHistoryStatus": "O",
   "openToBuy": "-$166,771.50",
+  "paymentInstrumentId": "0006000011000000160",
   "planNumber": 10002,
   "pointsAmount": "$0.00",
   "pointsProgram": 0,
+  "productId": 1,
   "purchaseOrderNumber": "0",
   "referenceNumber": "",
   "representativeDetailRes": {
@@ -128,6 +128,7 @@ The below table identifies the required parameters in the request payload.
   },
   "resolutionReferenceNumber": "0",
   "retentionDuration": "",
+  "salesClerk": "",
   "skuNumber": 0,
   "storeBusinessUnit": 0,
   "storeNumber": 999999998,

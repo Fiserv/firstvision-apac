@@ -1,10 +1,10 @@
-# List cards by Account
+# List Cards by Account
 
 The service is used for the purpose of the card look up where the account number is provided and service will send all cards associated with account.
 
 ## Endpoint
 
-`POST /v1/accounts/{accountNumber}/listCardsByAccount`
+`GET /v1/accounts/{accountId}/listCardsByAccount`
 
 ## Payload Example
 
@@ -12,35 +12,36 @@ The service is used for the purpose of the card look up where the account number
 
 >Should be empty.
 >
->***The Account Number should be sent as path variable.***
-
+>***Account id should be sent as path variable.***
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountNumber}/listCardsByAccount).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/listCardsByAccount).
 
 The below table identifies the required parameters in the request payload.
 
-| Variable | Passed as | Type | Leuith | Description/Values |
+| Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Payload | *string* | 19 | Unique Identification number of the Account.|
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
 
 ### Successful Response Payload
 
 ```json
+
 {
   "listOfCardsRes": [
     {
-      "accountNumber": "0006000022000000076",
+      "accountId": "0006000022000000076",
       "blockCode": "",
       "businessUnit": 600,
       "cardHolderType": 1,
-      "cardNumber": "0004440020051355558",
       "nameOnCard": "",
+      "paymentInstrumentId": "0004440020051355558",
       "status": "1"
     }
   ]
 }
+
 ```
 
 

@@ -4,69 +4,89 @@ This service provides product details for a given product number. Products are p
   
 ## Endpoint
 
-`GET /v1/products/{productNumber}/details`
+`GET /v1/products/{productId}/details`
 
 ## Payload Example
 
 ### Request Payload
 
 >Should be empty.
-***The Business Unit and Plan Number should be sent as query parameters and path variable.*** 
+>
+>***The Business Unit and Plan id should be sent as query parameters and path variable.*** 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{productNumber}/details).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{productId}/details).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Business Unit - Identification number associated with this account base segment record, the values are 001–998 |
-| `productNumber` | Path Variable | *number* | 3 | Product - This field is the identification number of the Logo record | 
+| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
+| `productId` | Path Variable | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 001-998. | 
 
 ### Successful Response Payload
 
 ```json
+
 {
-  "additionalCardActivation": "Y",
-  "applicationMethodForAr": "H",
-  "applicationMethodForPl": "D",
-  "approvedCardUse": "0",
   "authAlerts": "0",
   "automaticAccountNumberGeneration": "I",
   "businessUnit": 600,
-  "cardActionTableActive": "0",
-  "cardBureauFeedbackActive": "0",
+  "cardActivationControlsRes": {
+    "additionalCardActivation": "Y",
+    "newCardActivation": "Y",
+    "reissueCardActivation": "Y",
+    "replacementCardActivation": "Y"
+  },
   "cardMailerNameaddress": "0",
   "cardProductDisplay": "0",
-  "chippinCardAllowed": "1",
-  "collectionsActive": "Y",
   "creditLimitBypass": "0",
-  "crossBorder": "0",
-  "debitCardProcessActive": "0",
   "defaultCardTechnology": "3",
   "delinquencyAgeing": "D",
-  "directDebitcreditActive": "Y",
   "embossingFilesKeyType": "B",
   "enhancedProductsEligible": "0",
-  "falcon6Active": "0",
   "includeDisputedAmounts": "1",
+  "isCardActionTableEnabled": "0",
+  "isCardBureauFeedbackEnabled": "0",
+  "isCardPresenttransactionEnabled": "",
+  "isChipOrPinCardEnabled": "1",
+  "isCollectionsEnabled": "Y",
+  "isCrossBorderAlertEnabled": "0",
+  "isDebitCardProcessEnabled": "0",
+  "isDirectDebitCreditEnabled": "Y",
+  "isFalcon6Enabled": "0",
+  "isLoanFeatureEnabled": "1",
+  "isLocalorInternationalUsageEnabled": "0",
+  "isLoyaltyManagementEnabled": "1",
+  "isManualPinResetEnabled": "1",
+  "isNewCardDefaultEnabled": "0",
+  "isOverlimitProcessingOptinIndicator": "0",
+  "isPaymentHolidaysEnabled": "Y",
+  "isSameDayEmbossingEnabled": "0",
+  "isScriptingEnabled": "0",
+  "isSecureCodeEnabled": "0",
+  "isSweepOptionEnabled": "0",
+  "isTokenizationServiceEnabled": "1",
+  "isVipOverrideEnabled": "N",
+  "isWspTokenEnabled": "-16",
+  "issuanceId": "SX1",
   "keyTypeForPinMailerFiles": "B",
-  "loanFeatureActive": "1",
-  "loyaltyManagementActive": "1",
-  "manualPinResetAllowed": "1",
-  "markupActiveCreditFee": "0",
-  "markupIssuerActive": "0",
-  "markupSchemeActive": "0",
-  "markupUserDefinedActive": "0",
-  "newCardActivation": "Y",
-  "newCardDefaultActive": "0",
+  "markUpFeeControlsRes": {
+    "isCreditFeeEnabled": "0",
+    "isIssuerEnabled": "0",
+    "isSchemeEnabled": "0",
+    "isUserDefinedEnabled": "0"
+  },
   "newCardPlastics": "Y",
   "openToBuyCreditBalance": "3",
-  "overlimitProcessingOptinIndicator": "0",
-  "paymentApplicationLevel": "P",
-  "paymentHolidaysAllowed": "Y",
-  "pinMailerForCardAction": [
+  "paymentProcessingControlsRes": {
+    "applicationMethodForAr": "H",
+    "applicationMethodForPl": "D",
+    "paymentApplicationLevel": "P",
+    "prepaymentsAllowed": "0"
+  },
+  "pinMailerForCardActionRes": [
     {
       "cardActions": "0",
       "pinOptions": "0"
@@ -133,26 +153,14 @@ The below table identifies the required parameters in the request payload.
     }
   ],
   "pinMailerNameaddress": "0",
-  "prepaymentsAllowed": "0",
   "processingControlLevel": "O",
   "productDescription": "VISA CREDIT CONSUMER",
-  "productNumber": 1,
+  "productId": 1,
   "quarterlyAffiliateCardProduct": "V1",
-  "reissueCardActivation": "Y",
-  "replacementCardActivation": "Y",
-  "sameDayEmboss": "0",
-  "sameDayEmbossingAllowed": "0",
-  "scriptingActive": "0",
-  "secureCodeActive": "0",
-  "stateOfIssueId": "SX1",
-  "stateOfResidenceId": "SX1",
-  "sweepOptionAllowed": "0",
-  "tokenizationServiceActive": "1",
-  "typeOfAccountsProcessed": "X",
-  "vipOverrideFlag": "N",
-  "virtualCardEdits": "",
-  "wspTokenEligible": "-16"
+  "residenceId": "SX1",
+  "typeOfAccountsProcessed": "X"
 }
+
 ```
 
 ### Error Response Payload

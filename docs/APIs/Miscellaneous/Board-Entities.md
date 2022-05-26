@@ -11,73 +11,65 @@ This new API enables to choose the records you want to add (Customer Name/Addres
 ### Request Payload
 
 ```json
+
 {
-  "baseAccountNumber": "/",
-  "createCustomerRecord": "Y",
+{
+  "accountId": "/",
+  "isCustomerIdEnabled": "Y",
   "createAccountRecord": "Y",
-  "sameCustbaseNumber": "Y",
-  "createRelationshipRecord": "N",
-  "createEmbosserRecords": "Y",
+  "isSameCustomerIdAccountIdEnabled": "N",
+  "isRelationshipEnabled": "N",
+  "isPaymentInstrumentIdEnabled": "Y",
   "businessUnit": 600,
-  "product": 1,
-  "customerNumber": "",
+  "productId": 1,
+  "customerId": "/",
   "relationshipNumber": "",
-  "addInsuranceProduct": "N",
+  "isInsuranceProductEnabled": "N",
   "customerDemographicDetailsReq": {
     "dualFlag": 0,
     "title": "",
-    "nameTypeIndicator1": "",
+    "nameTypeIndicator1": "0",
     "nameTypeIndicator2": "",
-    "nameTypeIndicator3": "",
-    "nameLine1": "",
-    "nameLine2": "",
-    "nameLine3": "",
-    "addressLine1": "",
-    "addressLine2": "",
-    "addressLine3": "",
-    "addressLine4": "",
-    "cityOfOwner": "",
-    "state": "",
-    "postalCode": "",
-    "countryCode": "",
-    "residenceFlag": "",
+    "nameTypeIndicator3": "0",
+    "residenceFlag": "1",
     "homePhone": "11230342",
     "employeePhone": "67894",
-    "dateOfBirth": "01/02/2010",
-    "lastName": "",
-    "middleName": "",
-    "firstName": "Tom",
-    "nationalId": "",
-    "gender": "",
-    "email": "",
-    "alternateEmail": "",
+    "birthDate": "01/02/2010",
+    "externalId": "",
+    "gender": "1",
+    "emailAddress": "",
+    "alternateEmailAddress": "",
     "mobileNumber": "",
-    "emailFlag": ""
+    "emailAddressFlag": "0",
+    "addressDetailsReq": {
+      "addressLine1": "",
+      "addressLine2": "",
+      "city": "",
+      "stateprovince": "",
+      "postalCode": ""
+    },
+    "nameDetailsReq": {
+      "nameLine1": "",
+      "nameLine2": "",
+      "nameLine3": "",
+      "birthName": "",
+      "middleName": "",
+      "givenName": "Tom"
+    }
   },
   "relationshipDetailsReq": {
     "relationshipCreditLimit": "",
     "relationshipBlockCode": "",
     "mailCode": "",
     "reserveAmountpctFlag": "",
-    "availableReserveAmountpct": "",
-    "statementType": "",
+    "availableReservePctAmount": "",
+    "isStatememtTypeEnabled": "",
     "accountControlTableOverride": 0,
-    "memoBillingCurrency": 0,
-    "memoPaymentTransactionCode": 0,
-    "memoPaymentReversalTransactionCode": 0,
-    "memoBalanceIndicator": "",
-    "billingCycle": 0,
     "billingLevel": "",
-    "billingLevelmodify": "",
-    "annualFeeAssessmentLevel": "",
-    "annualFeeChangeAllowed": "",
-    "lateFeeAssessmentLevel": "",
-    "lateFeeChangeAllowed": "",
-    "nsfFeeAssessmentLevel": "",
-    "nsfFeeChangeAllowed": "",
+    "isBillingLevelModificationEnabled": "",
     "defaultCreditLimit": "",
-    "updateCreditLimit": "",
-    "corporateCustomerNumber": "",
+    "isCreditLimitModificationEnabled": "",
+    "corporateCustomerId": "",
     "customerGroupCode": "",
     "costCenterReportingNumber": "",
     "fiscalYearEnd": 0,
@@ -86,51 +78,69 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "contactName": "",
     "contactPhone": "",
     "officerName": "",
-    "userDate1": "",
-    "userDate2": "",
-    "userAmount1": "",
-    "userAmount2": "",
-    "userField5": "",
-    "userField6": "",
     "commercialFlag": "",
-    "authorizationCriteriaTable": ""
+    "authorizationCriteriaTable": "",
+    "memoDetailsReq": {
+      "billingCurrency": 0,
+      "paymentTransactionCode": 0,
+      "paymentReversalTransactionCode": 0,
+      "balanceIndicator": ""
+    },
+    "feeDetailsReq": {
+      "annualFeeAssessmentLevel": "",
+      "isAnnualFeeModificationEnabled": "",
+      "lateFeeAssessmentLevel": "",
+      "isLateFeeModificationEnabled": "",
+      "nsfFeeAssessmentLevel": "",
+      "isNsfFeeModificationEnabled": ""
+    },
+    "userDetailsReq": {
+      "userDate1": "",
+      "userDate2": "",
+      "userAmount1": "",
+      "userAmount2": "",
+      "userField5": "",
+      "userField6": ""
+    }
   },
   "accountDetailsReq": {
-    "corporateIdNumber": "",
+    "corporateId": "",
     "primaryAccountFlag": "",
     "shortName": "",
     "creditLimit": "1000",
     "billingCurrency": 0,
-    "billingLevel": "",
-    "dualBillingFlag": "",
-    "alternateCustomerNumber": "",
+    "billingLevel": "1",
+    "dualBillingFlag": "0",
     "customerSelectedDueDay": 0,
-    "cardNumberingScheme": 0,
     "billingCycle": 18,
     "residenceId": "",
     "issuanceId": "600",
-    "idOfThePctOverrideTables": "",
-    "startDateOfTheOverride": "",
-    "expireDateOfTheOverride": "",
-    "processingControlLevel": "",
-    "startDateOfPctOverride": "",
-    "expirationDateOfPctOverride": "",
-    "cashPlanNumber": 0,
-    "retailPlanNumber": 0,
-    "cardTechnology": "",
+    "cashPlanId": 0,
+    "retailPlanId": 0,
+    "cardTechnology": "0",
     "temporaryCreditLimit": "",
-    "expiryDateOfTempCreditLimit": "",
+    "temporaryCreditLimitExpiryDate": "",
     "owningBranchNumber": 999999998,
-    "mobilePiFlag": "",
+    "isMobilePiEnabled": "0",
     "authorizationCriteriaTable": "",
-    "suppressLetter": "",
-    "waiveMembershipFees": "",
-    "ibsDdaRoutingNumber": 0,
-    "ibsDdaAccountNumber": "",
-    "ibsSavingsRoutingNumber": 0,
-    "ibsSavingsAccountNumber": "",
-    "suppressTknAtAccntLevel": "",
-    "coreBankingIndicator": ""
+    "isSuppressLetterEnabled": "",
+    "isAnnualMembershipFeeEnabled": "0",
+    "isSupressTokenEnabled": "0",
+    "coreBankingIndicator": "",
+    "pctOverrideDetailsReq": {
+      "tableId": " ",
+      "tableIdStartDate": "0",
+      "tableIdExpireDate": "0",
+      "level": " ",
+      "levelStartDate": "0",
+      "levelExpireDate": "0"
+    },
+    "ibsDetailsReq": {
+      "ddaRoutingId": 0,
+      "ddaAccountId": "",
+      "savingsRoutingId": 0,
+      "savingsAccountId": ""
+    }
   },
   "accountInsuranceProductDataReq": {
     "dualIndicator": "",
@@ -148,37 +158,41 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "mailStatement": ""
   },
   "cardDetailsReq": {
-    "cardNumber": "/",
+    "paymentInstrumentId": "/",
     "cardAction": "",
     "numberOfCardsRequested": 0,
     "typeOfCard": 0,
     "requestedCardType": 0,
     "typeCardMailer": 0,
     "plasticId": "",
-    "name1TypeIndicator": "",
-    "name2TypeIndicator": "",
-    "embossedName1": "Trump",
-    "embossedName2": "",
-    "name1": "",
-    "name2": "",
+    "name1TypeIndicator": "0",
+    "name2TypeIndicator": "0",
     "posServiceCode": 0,
     "cardholderFlag": "1",
-    "addressLine1": "",
-    "addressLine2": "",
-    "city": "",
-    "stateprovince": "",
-    "postalCode": "",
-    "visaMiniIndicator": "",
+    "visaMiniIndicator": " ",
     "programId": 0,
     "mobileDeviceId": "",
-    "mobileProvisionStatus": "",
+    "mobileProvisionStatus": "0",
     "deviceIndicator": "0",
     "mccGroupLimits": "",
-    "chequeAccountNbr": "",
-    "savingsAccountNbr": "",
-    "tempCardNbr": ""
+    "chequeAccountId": "",
+    "savingAccountId": "",
+    "namesDetailsReq": {
+      "embossedName1": "Trump",
+      "embossedName2": "",
+      "name1": "",
+      "name2": ""
+    },
+    "addressDetailsReq": {
+      "addressLine1": "",
+      "addressLine2": "",
+      "city": "",
+      "stateprovince": "",
+      "postalCode": ""
+    }
   }
 }
+
 ``` 
 
 ### Minimum Requirements
@@ -189,25 +203,25 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `baseAccountNumber` | Payload | *string* | 19 | This is the identification number to assign to the new Account Base Segment record. |
-| `createCustomerRecord` | Payload | *string* | 01 | This is the code that indicates whether to add a new customer record. |
+| `baseAccountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
+| `isCustomerIdEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add a new customer record. |
 | `createAccountRecord` | Payload | *string* | 01 | This is the code that indicates whether to add a new account record. |
-| `sameCustbaseNumber` | Payload | *string* | 01 | This is the code that indicates whether CUSTOMER NUMBER and BASE ACCOUNT NUMBER are to be the same number. |
-| `createRelationshipRecord` | Payload | *string* | 01 | This is the code that indicates whether to add a new Relationship record. |
-| `createEmbosserRecords` | Payload | *string* | 01 | This is the code that indicates whether to add a new Embosser record. |
+| `isSameCustomerIdAccountIdEnabled` | Payload | *string* | 01 | This is the code that indicates whether CUSTOMER NUMBER and BASE ACCOUNT NUMBER are to be the same number. |
+| `isRelationshipEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add a new Relationship record. |
+| `isPaymentInstrumentIdEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add a new Embosser record. |
 | `businessUnit` | Payload | *number* | 03 | Identification number of the business unit associated with the  account. |
-| `product` | Payload | *number* | 03 | Identification number of the product associated with the account or relationship. |
-| `addInsuranceProduct` | Payload | *string* | 01 | This is the code that indicates whether to add an Insurance Product record. |
-| `firstName` | Payload | *string* | 40 | First name of the customer. |
+| `productId` | Payload | *number* | 03 | Identification number of the product associated with the account or relationship. |
+| `isInsuranceProductEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add an Insurance Product record. |
+| `givenName` | Payload | *string* | 40 | First name of the customer. |
 | `billingCycle` | Payload | *number* | 02 | Billing cycle of the account associated with the customer. |
 | `creditLimit` | Payload | *number* | 17 | Credit limit of this account. |
 | `billingCycle` | Payload | *number* | 02 | Billing cycle of the relationship associated with the customer. |
 | `owningBranchNumber` | Payload | *number* | 9 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
-| `suppressLetter` | Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
-| `waiveMembershipFees` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
-| `suppressTknAtAccntLevel` | Payload | *string* | 01 | Token suppression at account level indicator. |
+| `isSuppressLetterEnabled` | Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
+| `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
+| `isSupressTokenEnabled` | Payload | *string* | 01 | Token suppression at account level indicator. |
 | `coreBankingIndicator` | Payload | *string* | 01 | This is the code indicates type of banking. |
-| `cardNumber` | Payload | *string* | 19 | Token Number assigned to the cardholder embosser record. |
+| `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment card number. |
 | `embossedName1` | Payload | *string* | 26 | This field that specifies the default generic name line 1. |
 | `cardholderFlag` | Payload | *string* | 01 | This is the code that indicates whether the card is issued as primary or secondary card. |
 | `deviceIndicator` | Payload | *string* | 01 | Code that indicates the type of device (form factor) written to
@@ -216,21 +230,22 @@ the track data on the card. |
 ### Successful Response Payload
 
 ```json
+
 {
-  "accountNumber": "0006000012000000485",
-  "accountRecordCreationFlag": "Y",
   "businessUnit": 600,
+  "productId": 1,
+  "customerId": "0006000012000000191",
+  "relationshipId": "",
+  "accountId": "0006000012000000191",
   "cardDetailsRes": {
-    "cardNumberfvToken": "0004440010377453922",
-    "expiryDate": "18/01/2024",
-    "nameOnCard": "Trump"
-  },
-  "customerNumber": "0006000012000000485",
-  "customerRecordCreationFlag": "Y",
-  "embosserRecordCreationFlag": "Y",
-  "product": 1,
-  "relationshipNumber": ""
+    "paymentInstrumentId": "0004440010910990851",
+    "nameOnCard": "Trump",
+    "expirationDate": "18/01/2024",
+    "activationStatus": "0",
+    "maskedPaymentInstrumentId": ""
+  }
 }
+
 ```
 
 ### Error Response Payload

@@ -1,7 +1,6 @@
 # Transfer Lost Stolen Card 
 
-This Lost or Stolen service is used to block the lost card and request for the replacement card. If the transfer is a product 
-transfer, smart card transfer, or product graduation transfer, both the new account and the old account are available.
+This Lost or Stolen service is used to block the lost card and request for the replacement card. 
 
 ## Endpoint
 
@@ -13,12 +12,12 @@ transfer, smart card transfer, or product graduation transfer, both the new acco
 
 ```json
 {
-  "cardNumber": "0009846801010000461",
-  "accountNumber": "0001000011000032014",
-  "product": 1,
+  "paymentInstrumentId": "0009544401000009195",
+  "accountId": "0006000011000000178",
+  "productId": 1,
   "startDate": "0",
-  "transferToAccount": "",
-  "transferToCustomer": "",
+  "transferToAccountId": " ",
+  "transferToCustomerId": " ",
   "effectiveDate": "0",
   "cardReplacementIndicator": "0",
   "blockCode": "L",
@@ -30,17 +29,14 @@ transfer, smart card transfer, or product graduation transfer, both the new acco
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{cardNumber}/transfer).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/transfer).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
-| `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
-| `cardSequence` | Payload | *number* | 04 | A sequence number of the card in case of card scheme 2 else pass the default value of 0001. |
-| `accountNumber` | Payload | *string* | 19 | Unique Identification number of the Account. |
-| `action` | Payload | *string* | 19 | Pass value as "T" for transfer. |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "1" for replacement of card or "0" to avoid initiation of card Replacement . |
 | `blockCode` | Payload | *string* | 1 | Pass value as "L" to block the old card. |
 
@@ -48,11 +44,11 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "cardNumber": "0004049400000006087",
-  "effectiveDate": "19/08/2021",
-  "maskCardNumber": "000404940XXXXXX6087",
-  "transferToAccount": "",
-  "transferToCustomer": ""
+  "makedPaymentInstrumentId": "0009544401XXXXX9208",
+  "newPaymentInstrumentId": "0009544401000009208",
+  "transferToAccountId": " ",
+  "transferToCustomerId": " ",
+  "effectiveDate": "19/08/2021"
 }
 
 ```

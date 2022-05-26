@@ -14,41 +14,41 @@ Fields that are not provided in the Request object will be initialised to their 
 
 ```json
 {
+  "accountId": "0006000012000000263",
   "businessUnit": 600,
-  "mccGroupLimits": " ",
-  "cardholderFlag": 0,
-  "city": " ",
-  "typeCardMailer": 0,
-  "postalCode": 1231,
-  "savingsAccountNbr": " ",
-  "visaMiniIndicator": " ",
-  "mobileDeviceId": 12343,
-  "posServiceCode": 0,
-  "addressLine1": "House no. 12 ",
-  "addressLine2": "St. Paul Road ",
-  "mobileProvisionStatus": 0,
-  "embossedName2": "Samuel Baro",
-  "requestedCardType": 0,
-  "product": 600,
-  "embossedName1": "John Brono ",
-  "tempCardNbr": " ",
-  "name1TypeIndicator": 0,
-  "cardSequence": 1,
-  "typeOfCard": 0,
-  "plasticId": " ",
-  "name2TypeIndicator": 0,
-  "customerNumber": 9006000000000300000,
-  "stateprovince": "Utah",
-  "chequeAccountNbr": " ",
-  "suppressLetter": " ",
-  "baseAccountNumber": 4440010000000017,
-  "cardAction": 0,
+  "productId": 1,
+  "customerId": "0006000012000000256",
+  "cardAction": "0",
   "numberOfCardsRequested": 0,
-  "createEmbosserRecords": "Y",
-  "name2": "QWER",
-  "deviceIndicator": " ",
-  "name1": "ABCD",
-  "programId": 0
+  "typeOfCard": 0,
+  "requestedCardType": 0,
+  "typeCardMailer": 0,
+  "plasticId": " ",
+  "name1TypeIndicator": "0",
+  "name2TypeIndicator": "0",
+  "posServiceCode": 0,
+  "cardholderFlag": "0",
+  "isVisaMiniCardEnabled": " ",
+  "programId": 0,
+  "mobileDeviceId": "12343",
+  "mobileProvisionStatus": "0",
+  "deviceIndicator": "0",
+  "mccGroupLimits": " ",
+  "chequeAccountId": " ",
+  "savingsAccountId": " ",
+  "namesDataReq": {
+    "embossedName1": "John Brono ",
+    "embossedName2": "Samuel Baro",
+    "name1": "ABCD",
+    "name2": "QWER"
+  },
+  "addressDataReq": {
+    "addressLine1": "House no. 12 ",
+    "addressLine2": "St. Paul Road ",
+    "city": " ",
+    "stateprovince": "Uth",
+    "postalCode": "1231"
+  }
 }
 ``` 
 
@@ -60,36 +60,32 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Leuith | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 03 | Identification number associated with this account base segment record, the values are 001–998. |
-| `product` | Payload | *number* | 03 | Identification number of the product associated with the  account or relationship. | 
-| `baseAccountNumber` | Payload | *string* | 19 | This is an identification number to assign to the new account base segment record.|
-| `customerNumber` | Payload | *string* | 19 | Number that identifies the Customer Name/Address record of the account holder. |
-| 'embossedName1` | Payload | *string* | 26 | This field that specifies the default generic name line 1. |
-| `cardholderFlag` | Payload | *string* | 01 | This is the code that indicates whether the card is issued as a primary or secondary card. |
-| `deviceIndicator` | Payload | *string* | 01 | Code that indicates the type of device (form factor) written to the track data on the card. |
-| `suppressLetter` | Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
+| `businessUnit` | Payload | *number* | 03 | Unique identification number associated with the organization. Valid values from 001-998. |
+| `productId` | Payload | *number* | 03 | Unique identification number of the product associated with the organization. Valid values are 001-998. | 
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
+| `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
+| 'embossedName1` | Payload | *string* | 26 | Name to be embossed on the first embossing line of the card. |
 
 ### Successful Response Payload
 
 ```json
 {
   "businessUnit": 600,
-  "cardActivationStatus": "0",
-  "cardNumberFvToken": "0004440010902927457",
-  "expiryDate": "18/01/2024",
-  "maskedPanNumber": "0004440010902927457",
+  "activationStatus": "0",
+  "expirationDate": "18/01/2024",
+  "maskedPaymentInstrumentId": "0004440010014773468",
   "nameOnCard": "John Brono",
-  "product": 1
+  "paymentInstrumentId": "0004440010014773468",
+  "productId": 1
 }
-
 ```
 
 ### Error Response Payload
 
 ```json
 {
-   errorCode" :  V5SB4003EA" ,
-   errorMessage" : Base Account Number is requsted"   
+   "errorCode" :  V5SB4003EA" ,
+   "errorMessage" : "Base Account Number is requsted"   
 }
 ```
 

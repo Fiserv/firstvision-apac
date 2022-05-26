@@ -4,7 +4,7 @@ This service is used to update temporary credit limit to an account. This servic
 
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/tempCreditLimit`
+`PUT /v1/accounts/{accountId}/tempCreditLimit`
 
 ## Payload Example
 
@@ -12,20 +12,20 @@ This service is used to update temporary credit limit to an account. This servic
 
 ```json
 {
-  "temporaryCreditLimitExpiryDate": "31/10/2022",
-  "temporaryCreditLimit": 1000
+  "temporaryCreditLimit": "$1000.00",
+  "temporaryCreditLimitExpiryDate": "31/10/2022"
 }
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/tempCreditLimit).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/tempCreditLimit).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique identification number of the account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -34,7 +34,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 
 {
-  "accountNumber": "0006000011000000103",
+  "accountId": "0006000011000000103",
   "businessUnit": 600,
   "creditLimit": "$1,000.00",
   "temporaryCreditLimit": "$0.00",

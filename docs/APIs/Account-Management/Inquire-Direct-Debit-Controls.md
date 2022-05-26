@@ -1,10 +1,10 @@
-# Inquire Direct Debit
+# Inquire Direct Debit Controls
 
 This service is used to get detail for direct debit for given account. It shows current parameter setup enabled on current account.
 
 ## Endpoint
 
-`GET /v1/accounts/{accountNumber}/directDebit`
+`GET /v1/accounts/{accountId}/directDebit`
 
 ## Payload Example
 
@@ -12,35 +12,34 @@ This service is used to get detail for direct debit for given account. It shows 
 
 >Should be empty. 
 >
->***The Account Number should be sent as path variable.***
+>***Account id should be sent as path variable.***
 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountNumber}/directDebit).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/directDebit).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Account number of the cardholder. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 
 ### Successful Response Payload
 
 ```json
 {
-"accountNumber": "0006000011000000137",
-  "billingAcctInd": 0,
+  "accountId": "0006000011000000137",
   "businessUnit": 600,
   "directDebitDetailsRes": {
-    "ddAccountNumber": " ",
-    "ddAccountType": "D",
-    "ddNominatedPaymentAmtOrPercentage": "10",
-    "ddPaymentExpiryDate": "04/12/2022",
-    "ddPaymentStartDate": "04/01/2022",
-    "ddRoutingBankId": "654321",
-    "fixedPaymentAmount": "1",
-    "paymentRemittanceMethod": "0"
+    "accountType": "D",
+    "routingBankID": "654321",
+    "externalAccountId": " ",
+    "nominatedPaymentAmountPercentage": "10",
+    "nominatedType": "1",
+    "paymentExpiryDate": "04/12/2022",
+    "paymentRemittanceMethod": "0",
+    "paymentStartDate": "04/01/2022"
   }
 }
 ```

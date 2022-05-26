@@ -1,12 +1,10 @@
-# Customer Demographic Update
+# Update Customer Demographics
 
 This service will be used to update the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer.  The customer ID will be passed in the input request to retrieve the demographic information. 
 
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
-
 ## Endpoint
 
-`PUT /v1/customers/{customerNumber}/nameAddress`
+`PUT /v1/customers/{customerId}/nameAddress`
 
 ## Payload Example
 
@@ -14,80 +12,103 @@ Fields that are not provided in the request object will be initialised to their 
 
 ```json
 {
-  "postalCode1": "",
-  "city1": "DELHI",
-  "nameLine21": "KK",
-  "firstName1": "ABC",
-  "emailAddress1": "SAM@FISERV.COM",
-  "homePhoneFlag1": "",
-  "userDefinedField41": "Y",
-  "middleName1": "",
-  "faxNumber1": "",
-  "addressLine21": "RAINBOW APTS",
-  "smsFlag1": "",
-  "addressLine41": "",
-  "lastName1": "",
-  "faxPhoneFlag1": "",
-  "stateprovince1": "",
-  "nameLine31": " ",
-  "nameLine11": "M S SWAMY",
-  "mobileNumber1": 112233,
-  "countryCode1": "",
-  "languageIndicator1": "",
-  "addressLine31": "DELHI",
-  "homePhoneNumber1": 1234567,
-  "addressLine11": "FLAT NO:404",
-  "houseNumber1": "",
-  "mobilePhoneFlag1": "",
-  "dateOfBirth1": "06/04/1986"
+  "namesDataReq": {
+    "birthName": "",
+    "givenName": "ABC",
+    "middleName": "",
+    "nameLine1": "M S SWAMY",
+    "nameLine2": "KK",
+    "nameLine3": " "
+  },
+  "languageIndicator": "AUS",
+  "homePhoneNumber": "9241800756",
+  "homePhoneFlag": "0",
+  "faxNumber": "82364782",
+  "faxPhoneFlag": "0",
+  "mobileNumber": "112233",
+  "smsFlag": "0",
+  "mobilePhoneFlag": "0",
+  "emailAddress": "SAM@FISERV.COM",
+  "birthDate": "06/04/1986",
+  "isReturnMailEnabled": "Y",
+  "employerDataReq": {
+    "nameOfEmployer": "Y",
+    "addressLine1": "Y",
+    "addressLine2": "Y",
+    "phoneNumber": "Y",
+    "phoneFlag": "0",
+    "jobTitle": "Y"
+  },
+  "addressDataReq": {
+    "addressLine3": "CHITRAPURI",
+    "addressLine4": "DELHI",
+    "addressLine1": "FLAT NO:404",
+    "addressLine2": "RAINBOW APTS",
+    "city": "DELHI",
+    "stateProvince": "DL",
+    "countryCode": "IND",
+    "postalCode": "110004",
+    "houseNumber": "233"
+  }
 }
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/customers/{customerNumber}/nameAddress).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/customers/{customerId}/nameAddress).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the Card. |
-| `customerNumber` | Path Variable | *string* | 19 | Customer Number of the cardholder. |
+| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
 
-Along with above key fields any of the Name / address / Phone number / email ID information that is required to be updated.
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
 {
-  "postalCode1": "",
-  "city1": "DELHI",
-  "businessUnit": 100,
-  "nameLine21": "KK",
-  "firstName1": "ABC",
-  "emailAddress1": "SAM@FISERV.COM",
-  "homePhoneFlag1": "",
-  "userDefinedField41": "Y",
-  "middleName1": "",
-  "faxNumber1": "",
-  "addressLine21": "RAINBOW APTS",
-  "smsFlag1": "",
-  "addressLine41": "",
-  "lastName1": "",
-  "faxPhoneFlag1": "",
-  "stateprovince1": "",
-  "nameLine31": " ",
-  "nameLine11": "M S SWAMY",
-  "mobileNumber1": 112233,
-  "accountNumber": 1000000000150191,
-  "countryCode1": "",
-  "languageIndicator1": "",
-  "addressLine31": "DELHI",
-  "homePhoneNumber1": 1234567,
-  "addressLine11": "FLAT NO:404",
-  "houseNumber1": "",
-  "mobilePhoneFlag1": "",
-  "dateOfBirth1": "06/04/1986"
+  "addressDataRes": {
+    "addressLine1": "FLAT NO:404",
+    "addressLine2": "RAINBOW APTS",
+    "addressLine3": "CHITRAPURI",
+    "addressLine4": "DELHI",
+    "city": "DELHI",
+    "countryCode": "IND",
+    "houseNumber": "233",
+    "postalCode": "110004",
+    "stateProvince": "DL"
+  },
+  "birthDate": "06/04/1986",
+  "businessUnit": 200,
+  "customerId": "0000020000065439605",
+  "emailAddress": "SAM@FISERV.COM",
+  "employerDataRes": {
+    "addressLine1": "Y",
+    "addressLine2": "Y",
+    "jobTitle": "Y",
+    "nameOfEmployer": "Y",
+    "phoneFlag": "0",
+    "phoneNumber": "Y"
+  },
+  "faxNumber": "82364782",
+  "faxPhoneFlag": "0",
+  "homePhoneFlag": "0",
+  "homePhoneNumber": "9241800756",
+  "isReturnMailEnabled": "Y",
+  "languageIndicator": "AUS",
+  "mobileNumber": "112233",
+  "mobilePhoneFlag": "0",
+  "namesDataRes": {
+    "birthName": " ",
+    "givenName": "ABC",
+    "middleName": " ",
+    "nameLine1": "M S SWAMY",
+    "nameLine2": "KK",
+    "nameLine3": " "
+  },
+  "smsFlag": "0"
 }
 ```
 
@@ -95,8 +116,8 @@ Along with above key fields any of the Name / address / Phone number / email ID 
 
 ```json
 {
-  "errorCode": "V5NA4001SN",
-  "errorMessage": "Business unit is not numeric"  
+  "errorCode": "V5NA0010SF",
+  "errorMessage": "Update Request - Record not found"  
 }
 ```
 

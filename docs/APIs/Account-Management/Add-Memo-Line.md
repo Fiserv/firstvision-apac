@@ -13,17 +13,18 @@ The service will validate input message details and add memo line for monetary a
 ```json
 {
   "businessUnit": "600",
-  "accountNumber": "0006000011000000152",
+  "accountId": "0006000011000000152",
   "actionCode": "AINQ",
-  "cardNumber": "",
-  "memoLinesReq": {
-    "lineData1": "",
-    "lineData2": "",
-    "lineData3": "",
-    "lineData4": "",
-    "lineData5": ""
-  } "
+  "paymentInstrumentId": " ",
+  "actionNotesReq": {
+    "note1": "",
+    "note2": "",
+    "note3": "",
+    "note4": "",
+    "note5": ""
+  }
 }
+
 ``` 
 
 ### Minimum Requirements
@@ -34,7 +35,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Payload | *string* | 19 | Unique identification number of the account.|
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
 | `actionCode` | Payload | *string* | 04 | Four character user assigned code for the action.|
 
 ### Successful Response Payload
@@ -43,21 +44,21 @@ The below table identifies the required parameters in the request payload.
 {
   "actionCode": "AINQ",
   "actionCodeDescription": "ACCOUNT INQ",
-  "actionCodePriority": 0,
-  "actionRepId": "NAB",
-  "cardNumber": "",
-  "historyDate": "29/03/2022",
-  "historyTime": "00:27:04",
-  "memoLinesRes": {
+  "actionNotesRes": {
     "note1": "",
     "note2": "",
     "note3": "",
     "note4": "",
     "note5": ""
   },
-  "notePurgeDate": "23/04/2022",
-  "notesHistoryStatus": "C"
+  "actionRepId": "NAB",
+  "historyDate": "21/05/2022",
+  "historyTime": "07:46:44",
+  "notePurgeDate": "15/06/2022",
+  "notesHistoryStatus": "C",
+  "paymentInstrumentId": ""
 }
+
 ```
 ### Error Response Payload
 

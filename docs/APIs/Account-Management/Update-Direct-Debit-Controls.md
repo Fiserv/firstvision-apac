@@ -1,10 +1,12 @@
-# Update Accounts' Direct Debit
+# Update Direct Debit Controls
 
 The Direct Debit Update message enables the user to update the Direct Debit information on an account. The information that can be updated includes: bank account and routing data and various other associated fields. This service does not initiate the Direct Debit, it just provides a mechanism to update the Direct Debit related fields.
 
+*It is necessary to perform an inquiry using the Direct Debit/Credit inquiry message first, as this service requires all fields to be sent in the request, whether they have been changed or not. If a tag is sent in empty, it is presumed that the field is to be deleted.*
+
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/directDebit`
+`PUT /v1/accounts/{accountId}/directDebitControls`
 
 ## Payload Example
 
@@ -27,13 +29,13 @@ The Direct Debit Update message enables the user to update the Direct Debit info
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/directDebit).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/directDebitControls).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique identification number of the Account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -41,19 +43,20 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
- "accountNumber": "0006000011000000103",
+  "accountId": "0006000011000000103",
   "businessUnit": 600,
   "directDebitDetailsRes": {
-    "ddAccountNumber": "1000000057",
-    "ddAccountType": "D",
-    "ddNominatedPaymentAmtOrPercentage": "10",
-    "ddPaymentExpiryDate": "04/11/2022",
-    "ddPaymentStartDate": "04/10/2021",
-    "ddRoutingBankId": "123456",
-    "fixedPaymentAmount": "1",
-    "paymentRemittanceMethod": "0"
+    "accountType": "D",
+    "externalAccountId": "1000000057",
+    "nominatedPaymentAmountPercentage": "10",
+    "nominatedType": "1",
+    "paymentExpiryDate": "04/11/2022",
+    "paymentRemittanceMethod": "0",
+    "paymentStartDate": "04/10/2021",
+    "routingBankID": "123456"
   }
-}  
+}
+  
 ```
 
 ### Error Response Payload

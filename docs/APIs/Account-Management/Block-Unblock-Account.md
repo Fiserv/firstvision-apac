@@ -1,4 +1,4 @@
-# Block-Unblock Account
+# Block Unblock Account
 
 This service is used to update the Account Block Code.This service can be called with an account number. When either blockCode 1 or blockCode 2 has a value other than spaces, the new Block code can be applied to the unused entry on the account. This service is also used to remove block code from the account when space provided on existing block code field.
 
@@ -7,7 +7,7 @@ The system will check if the new block code 1 or 2 priority is greater than the 
   
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/blockUnblock`
+`PUT /v1/accounts/{accountId}/blockUnblock`
 
 ## Payload Example
 
@@ -22,13 +22,13 @@ The system will check if the new block code 1 or 2 priority is greater than the 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/blockUnblock).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/blockUnblock).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 | `blockCode1/blockCode2` | Payload | *string* | 1 | Block Code to assign to the account. |
 
 
@@ -36,13 +36,14 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountNumber": "0001000010000510481",
+  "accountId": "0001000010000510481",
   "blockCode1": "X",
+  "blockCode1Date": "19/08/2021",
   "blockCode2": " ",
-  "blockCodeDate1": "19/08/2021",
-  "blockCodeDate2": "00/00/0000",
+  "blockCode2Date": "19/08/2021",
   "businessUnit": 100
 }
+
 ```
 
 ### Error Response Payload

@@ -1,10 +1,10 @@
 # Update Issue Reissue Delivery Option
 
-This service is used to update the issue and re-issue delivery options on card.
+This service is used to update the issue and re-issue delivery options on Payment Card Number.
 
 ## Endpoint
 
-`PUT /v1/cards/{cardNumber}/issueReissueDeliveryOption`
+`PUT /v1/cards/{paymentInstrumentId}/issueReissueDeliveryOption`
 
 ## Payload Example
 
@@ -13,19 +13,19 @@ This service is used to update the issue and re-issue delivery options on card.
 ```json
 {
   "issueDeliveryOption": "1",
-  "cardReissueDeliveryOption": "5"
+  "reissueDeliveryOption": "5"
 }
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{cardNumber}/issueReissueDeliveryOption).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/issueReissueDeliveryOption).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. | 
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -34,9 +34,9 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "businessUnit": 600,
-  "cardNumber": "0009544410000000047",
-  "cardReissueDeliveryOption": "5",
-  "issueDeliveryOption": "1"
+  "issueDeliveryOption": "1",
+  "paymentInstrumentId": "0009544410000000047",
+  "reissueDeliveryOption": "5"
 }
 ```
 
@@ -56,5 +56,6 @@ Below table provides the list of application's error code and its description.
 | `V5ED0330SV` | Card - Invalid  Reissue-deliv-option |        
 | `V5ED0331SV` | Card - Invalid  Issue-deliv-option | 
 | `V5ED0010SF` | Update Request - Record not found | 
+
 
 

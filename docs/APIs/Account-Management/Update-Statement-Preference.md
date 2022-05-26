@@ -4,7 +4,7 @@ This API is used to update statement preference for a given account. Some inport
 
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/statementPreference`
+`PUT /v1/accounts/{accountId}/statementPreferences`
 
 ## Payload Example
 
@@ -14,19 +14,20 @@ This API is used to update statement preference for a given account. Some inport
 {
   "statementModeOrStatus": "O",
   "statementReprintAddressFlag": "C",
-  "owner/Co-ownerStatementFlag": "0"
+  "ownerCoOwnerStatementFlag": "0"
 }
+
 ``` 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/statementPreference).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/statementPreferences).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account.|
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -34,11 +35,11 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountNumber": "0006000011000000145",
   "businessUnit": 600,
-  "owner/Co-ownerStatementFlag": "0",
+  "accountId": "0006000011000000145",
   "statementModeOrStatus": "O",
-  "statementReprintAddressFlag": "C"
+  "statementReprintAddressFlag": "C",
+  "ownerCoOwnerStatementFlag": "0"
 }
 ```
 

@@ -4,7 +4,7 @@ This service is used update pricing control structure over an accounts. This ser
 
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/pricingControls`
+`PUT /v1/accounts/{accountId}/pricingControls`
 
 ## Payload Example
 
@@ -12,8 +12,8 @@ This service is used update pricing control structure over an accounts. This ser
 
 ```json
 {
-  "stateOfIssuance": "SX1",
-  "stateOfResidency": "SX1",
+  "issuanceId": "SX1",
+  "residenceId": "SX1",
   "pctOverride": "HCS",
   "pctStartDate": "29/01/2022",
   "pctExpiryDate": "31/12/2025"
@@ -22,13 +22,13 @@ This service is used update pricing control structure over an accounts. This ser
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/pricingControls).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/pricingControls).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -36,13 +36,13 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountNumber": "0006000011000000137",
   "businessUnit": 600,
-  "pctExpiryDate": "31/12/2025",
+  "accountId": "0006000011000000137",
+  "issuanceId": "SX1",
+  "residenceId": "SX1",
   "pctOverride": "HCS",
   "pctStartDate": "29/01/2022",
-  "stateOfIssuance": "SX1",
-  "stateOfResidency": "SX1"
+  "pctExpiryDate": "31/12/2025"
 }
 ```
 

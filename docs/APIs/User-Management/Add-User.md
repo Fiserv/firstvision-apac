@@ -14,234 +14,236 @@ sign-on record must be setup and active for each person authorized to access the
 ### Request Payload
 
 ```json
+
 {
   "clientId": 1,
-  "name": "NABTESTXX",
-  "dateToActivate": "27/02/2022",
+  "name": "NABTEST25",
+  "activationDate": "27/02/2022",
   "signonExpiryDate": "31/12/2025",
-  "operatorId": "XX1",
+  "operatorId": "ABC",
   "customerServiceBusinessUnit": 100,
   "businessUnitPrivilegeId": "CLTUSER",
   "servicePrivilegeGroupId": "CLTUSER",
-  "supervisorId": "",
+  "supervisorId": " ",
   "sourceGroupType": "2",
   "businessUnitIncludeExcludeFlagReq": {
     "businessUnitIncludeExcludeFlag1Req": {
-      "inclusionExclusionFlag1": "",
-      "businessUnit1": ""
+      "inclusionExclusionFlag1": " ",
+      "businessUnit1": " "
     },
     "businessUnitIncludeExcludeFlag2Req": {
-      "inclusionExclusionFlag2": "",
-      "businessUnit2": ""
+      "inclusionExclusionFlag2": " ",
+      "businessUnit2": " "
     },
     "businessUnitIncludeExcludeFlag3Req": {
-      "inclusionExclusionFlag3": "",
-      "businessUnit3": ""
+      "inclusionExclusionFlag3": " ",
+      "businessUnit3": " "
     },
     "businessUnitIncludeExcludeFlag4Req": {
-      "inclusionExclusionFlag4": "",
-      "businessUnit4": ""
+      "inclusionExclusionFlag4": " ",
+      "businessUnit4": " "
     },
     "businessUnitIncludeExcludeFlag5Req": {
-      "inclusionExclusionFlag5": "",
-      "businessUnit5": ""
+      "inclusionExclusionFlag5": " ",
+      "businessUnit5": " "
     },
     "businessUnitIncludeExcludeFlag6Req": {
-      "inclusionExclusionFlag6": "",
-      "businessUnit6": ""
+      "inclusionExclusionFlag6": " ",
+      "businessUnit6": " "
     },
     "businessUnitIncludeExcludeFlag7Req": {
-      "inclusionExclusionFlag7": "",
-      "businessUnit7": ""
+      "inclusionExclusionFlag7": " ",
+      "businessUnit7": " "
     },
     "businessUnitIncludeExcludeFlag8Req": {
-      "inclusionExclusionFlag8": "",
-      "businessUnit8": ""
+      "inclusionExclusionFlag8": " ",
+      "businessUnit8": " "
     },
     "businessUnitIncludeExcludeFlag9Req": {
-      "inclusionExclusionFlag9": "",
-      "businessUnit9": ""
+      "inclusionExclusionFlag9": " ",
+      "businessUnit9": " "
     },
     "businessUnitIncludeExcludeFlag10Req": {
-      "inclusionExclusionFlag10": "",
-      "businessUnit10": ""
+      "inclusionExclusionFlag10": " ",
+      "businessUnit10": " "
     }
   },
   "userApplicationAccessReq": {
     "ctryCurrencyCatCodesReq": {
-      "userCode1": "",
-      "fieldSecurityCode1": ""
+      "userCode1": " ",
+      "fieldSecurityCode1": " "
     },
     "businessMessagingReq": {
-      "userCode2": "",
-      "fieldSecurityCode2": ""
+      "userCode2": " ",
+      "fieldSecurityCode2": " "
     },
     "futureUse03Req": {
-      "userCode3": "",
-      "fieldSecurityCode3": ""
+      "userCode3": " ",
+      "fieldSecurityCode3": " "
     },
     "exceptionProcessingReq": {
-      "userCode4": "",
-      "fieldSecurityCode4": ""
+      "userCode4": " ",
+      "fieldSecurityCode4": " "
     },
     "accountManagementReq": {
-      "userCode5": "",
-      "fieldSecurityCode5": ""
+      "userCode5": " ",
+      "fieldSecurityCode5": " "
     },
     "collectionManagementReq": {
-      "userCode6": "",
-      "fieldSecurityCode6": ""
+      "userCode6": " ",
+      "fieldSecurityCode6": " "
     },
     "authorizationsReq": {
-      "userCode7": "",
-      "fieldSecurityCode7": ""
+      "userCode7": " ",
+      "fieldSecurityCode7": " "
     },
     "customerServiceReq": {
-      "userCode8": "",
-      "fieldSecurityCode8": ""
+      "userCode8": " ",
+      "fieldSecurityCode8": " "
     },
     "remoteInterfaceReq": {
-      "userCode9": "",
-      "fieldSecurityCode9": ""
+      "userCode9": " ",
+      "fieldSecurityCode9": " "
     },
     "commercialCardReq": {
-      "userCode10": "",
-      "fieldSecurityCode10": ""
+      "userCode10": " ",
+      "fieldSecurityCode10": " "
     },
     "OfferManagementReq": {
-      "userCode11": "",
-      "fieldSecurityCode11": ""
+      "userCode11": " ",
+      "fieldSecurityCode11": " "
     },
     "merchantSettlementReq": {
-      "userCode12": "",
-      "fieldSecurityCode12": ""
+      "userCode12": " ",
+      "fieldSecurityCode12": " "
     },
     "\tapplicationProcessingReq": {
-      "userCode13": "",
-      "fieldSecurityCode13": ""
+      "userCode13": " ",
+      "fieldSecurityCode13": " "
     },
     "embScriptingSystemReq": {
-      "userCode14": "",
-      "fieldSecurityCode14": ""
+      "userCode14": " ",
+      "fieldSecurityCode14": " "
     },
     "keyManagementSystemReq": {
-      "userCode15": "",
-      "fieldSecurityCode15": ""
+      "userCode15": " ",
+      "fieldSecurityCode15": " "
     },
     "futureUse16Req": {
-      "userCode16": "",
-      "fieldSecurityCode16": ""
+      "userCode16": " ",
+      "fieldSecurityCode16": " "
     },
     "letterRequestsReq": {
-      "userCode17": "",
-      "fieldSecurityCode17": ""
+      "userCode17": " ",
+      "fieldSecurityCode17": " "
     },
     "futureUse18Req": {
-      "userCode18": "",
-      "fieldSecurityCode18": ""
+      "userCode18": " ",
+      "fieldSecurityCode18": " "
     },
     "internationalLanguageReq": {
-      "userCode19": "",
-      "fieldSecurityCode19": ""
+      "userCode19": " ",
+      "fieldSecurityCode19": " "
     },
     "rewardManagementReq": {
-      "userCode20": "",
-      "fieldSecurityCode20": ""
+      "userCode20": " ",
+      "fieldSecurityCode20": " "
     },
     "clientSupportReq": {
-      "userCode21": "",
-      "fieldSecurityCode21": ""
+      "userCode21": " ",
+      "fieldSecurityCode21": " "
     },
     "securityReq": {
-      "userCode22": "",
-      "fieldSecurityCode22": ""
+      "userCode22": " ",
+      "fieldSecurityCode22": " "
     },
     "connectionManagerReq": {
-      "userCode23": "",
-      "fieldSecurityCode23": ""
+      "userCode23": " ",
+      "fieldSecurityCode23": " "
     },
     "posDeviceManagementReq": {
-      "userCode24": "",
-      "fieldSecurityCode24": ""
+      "userCode24": " ",
+      "fieldSecurityCode24": " "
     },
     "customerCommunicationManagementReq": {
-      "userCode25": "",
-      "fieldSecurityCode25": ""
+      "userCode25": " ",
+      "fieldSecurityCode25": " "
     },
     "decisionEngineSystemReq": {
-      "userCode26": "",
-      "fieldSecurityCode26": ""
+      "userCode26": " ",
+      "fieldSecurityCode26": " "
     },
     "futureUse27Req": {
-      "userCode27": "",
-      "fieldSecurityCode27": ""
+      "userCode27": " ",
+      "fieldSecurityCode27": " "
     },
     "futureUse28Req": {
-      "userCode28": "",
-      "fieldSecurityCode28": ""
+      "userCode28": " ",
+      "fieldSecurityCode28": " "
     },
     "transactionManagementReq": {
-      "userCode29": "",
-      "fieldSecurityCode29": ""
+      "userCode29": " ",
+      "fieldSecurityCode29": " "
     },
     "futureUse30Req": {
-      "userCode30": "",
-      "fieldSecurityCode30": ""
+      "userCode30": " ",
+      "fieldSecurityCode30": " "
     }
   },
   "userServicePrivilegeReq": {
     "userServicePrivilege1Req": {
-      "serviceInclusionExclusionflag1": "",
-      "serviceName1": "",
-      "serviceVersion1": ""
+      "serviceInclusionExclusionFlag1": " ",
+      "serviceName1": " ",
+      "serviceVersion1": " "
     },
     "userServicePrivilege2Req": {
-      "serviceInclusionExclusionflag2": "",
-      "serviceName2": "",
-      "serviceVersion2": ""
+      "serviceInclusionExclusionFlag2": " ",
+      "serviceName2": " ",
+      "serviceVersion2": " "
     },
     "userServicePrivilege3Req": {
-      "serviceInclusionExclusionflag3": "",
-      "serviceName3": "",
-      "serviceVersion3": ""
+      "serviceInclusionExclusionFlag3": " ",
+      "serviceName3": " ",
+      "serviceVersion3": " "
     },
     "userServicePrivilege4Req": {
-      "serviceInclusionExclusionflag4": "",
-      "serviceName4": "",
-      "serviceVersion4": ""
+      "serviceInclusionExclusionFlag4": " ",
+      "serviceName4": " ",
+      "serviceVersion4": " "
     },
     "userServicePrivilege5Req": {
-      "serviceInclusionExclusionflag5": "",
-      "serviceName5": "",
-      "serviceVersion5": ""
+      "serviceInclusionExclusionFlag5": " ",
+      "serviceName5": " ",
+      "serviceVersion5": " "
     },
     "userServicePrivilege6Req": {
-      "serviceInclusionExclusionflag6": "",
-      "serviceName6": "",
-      "serviceVersion6": ""
+      "serviceInclusionExclusionFlag6": " ",
+      "serviceName6": " ",
+      "serviceVersion6": " "
     },
     "userServicePrivilege7Req": {
-      "serviceInclusionExclusionflag7": "",
-      "serviceName7": "",
-      "serviceVersion7": ""
+      "serviceInclusionExclusionFlag7": " ",
+      "serviceName7": " ",
+      "serviceVersion7": " "
     },
     "userServicePrivilege8Req": {
-      "serviceInclusionExclusionflag8": "",
-      "serviceName8": "",
-      "serviceVersion8": ""
+      "serviceInclusionExclusionFlag8": " ",
+      "serviceName8": " ",
+      "serviceVersion8": " "
     },
     "userServicePrivilege9Req": {
-      "serviceInclusionExclusionflag9": "",
-      "serviceName9": "",
-      "serviceVersion9": ""
+      "serviceInclusionExclusionFlag9": " ",
+      "serviceName9": " ",
+      "serviceVersion9": " "
     },
     "userServicePrivilege10Req": {
-      "serviceInclusionExclusionflag10": "",
-      "serviceName10": "",
-      "serviceVersion10": ""
+      "serviceInclusionExclusionFlag10": " ",
+      "serviceName10": " ",
+      "serviceVersion10": " "
     }
   }
 }
+
 ``` 
 
 ### Minimum Requirements

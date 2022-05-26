@@ -11,31 +11,31 @@ This service is used post the real-time payments which increases open to buy imm
 ### Request Payload
 
 ```json
+
 {
-  "cmsBusinessUnit": "600",
-  "accountNumber": "0006000011000000160",
+  "businessUnit": "600",
+  "accountId": "0006000011000000160",
   "actionCode": "RLP3",
   "transactionAmount": "1000.0",
   "effectiveDate": "25/02/2022",
   "departmentCode": "",
   "skuNumber": 0,
   "salesClerk": "",
-  "cardNumber": "0000000000000000000",
+  "paymentInstrumentId": "0000000000000000000",
   "ticketNumber": "0",
   "caseNumber": "05313031301",
   "actionNotesReq": {
-    "lineData1": "",
-    "lineData2": "",
-    "lineData3": "",
-    "lineData4": "",
-    "lineData5": ""
+    "note1": "",
+    "note2": "",
+    "note3": "",
+    "note4": "",
+    "note5": ""
   },
   "representativeDetailsReq": {
-    "asmBusinessUnit": "600",
-    "asmRepresentative": "NAB",
+    "representativeId": "NAB",
     "referralOption": "0",
     "referralRepBusinessUnit": 0,
-    "referralRepresentativeId": ""
+    "referralRepresentativeId": " "
   },
   "letterDetailsReq": {
     "letterCode": "",
@@ -52,12 +52,12 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
-| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
+| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 | `actionCode` | Payload | *string* | 4 | Action code placed on the account. | 
 | `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. |
 | `effectiveDate` | Payload | *DATE* | 10	 | Date when this action is to take effect. |
-| `cardNumber` | Payload | *string* | 19 | This field represents the card number associated with the transaction. |
+| `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment card number. |
 | `storeNumber` | Payload | *number* | 9 | Store number associated with the transaction. |
 | `asmBusinessUnit` | Payload | *string* | 1 | This field indicates the business unit of the ASM. |  
 | `letterBusinessUnit` | Payload | *number* | 3 | This field indicates the business unit of the LTS letter to be sent to the customer. | 
@@ -67,9 +67,10 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
+
 {
   "accountBusinessUnit": 600,
-  "accountNumber": "0006000011000000160",
+  "accountId": "0006000011000000160",
   "actionCode": "RLP3",
   "actionCodeDescription": "REAL-TIME PAYMENT3",
   "actionNotesRes": {
@@ -87,18 +88,18 @@ The below table identifies the required parameters in the request payload.
     "currentBalance": "$72.00",
     "openToBuy": "-$166,771.50"
   },
-  "cardNumber": "0006000011000000160",
   "clerk": "",
   "departmentCode": "",
   "departmentNumber": "",
   "effectiveDate": "25/02/2022",
-  "historyDate": "30/03/2022",
-  "historyTime": 54014,
+  "historyDate": "21/05/2022",
+  "historyTime": 90934,
   "letterDetailsRes": {
     "letterBusinessUnit": 0,
     "letterCode": ""
   },
   "name": "RACHEL TEST BY SASHI",
+  "paymentInstrumentId": "0006000011000000160",
   "representativeDetailsRes": {
     "referralRepBusinessUnit": 0,
     "referralRepId": "",
@@ -111,6 +112,7 @@ The below table identifies the required parameters in the request payload.
   "workExtension": 0,
   "workPhone": "00000000000000000000"
 }
+
 ```
 
 ### Error Response Payload

@@ -4,109 +4,101 @@ The service provides list of cards associated with the customer. FirstVision all
 
 ## Endpoint
 
-`GET /v1/customers/{customerNumber}/cardList/`
+`GET /v1/customers/{customerId}/cardList/`
 
 ## Payload Example
 
 ### Request Payload
 
->Shoud be empty.  
-***Customer Number should be sent as Path Variable.***  
+>Should be empty.  
+>
+>***Customer Identification should be sent as Path Variable.***  
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerNumber}/cardList).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/cardList).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `customerNumber` | Path Variable | *string* | 19 | An identifier of the customer. |
+| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "addressLine1": "62 CHARTERIS DR",
-  "addressLine2": "",
-  "addressLine3": "",
-  "addressLine4": "",
-  "billingLvl": "0",
-  "businessUnit": "0",
-  "cardList": [
+  "cardListRes": [
     {
-      "atmFlag": "Y",
+      "accountId": "0006000012000000121",
       "blockCode": " ",
-      "blockDate": "00/00/0000",
-      "businessUnit": 100,
+      "blockCodeDate": "00/00/0000",
       "cardActivatedDate": "00/00/0000",
-      "cardExpirationDate": "16/09/2023",
-      "cardIssueDate": "28/09/2020",
-      "cardNumber": "0009846801010009405",
-      "cardSequence": 1,
+      "cardHolderType": 1,
+      "cardIssueDate": "00/00/0000",
+      "cardOpenedDate": "19/08/2021",
       "cardTechnology": "3",
-      "cardholderType": 1,
-      "cashBackTranFlag": "Y",
-      "chequeAccountNbr": " ",
-      "currCardAction": "0",
+      "chequeAccountId": " ",
+      "currentCardAction": "1",
       "currentCardNeedActivation": "Y",
-      "dateLastPlasticSupresed": "0",
-      "dateLastPlasticUsed": "0",
-      "dateLastWalletUsed": "0",
-      "dateOpened": "17/09/2020",
-      "digitalId": " ",
-      "e-comActFlag": "1",
-      "embosserRecordStatus": "0",
-      "embrName2": " ",
-      "intAtmPosFlag": "Y",
-      "lastCardAction": "1",
+      "lastPlasticUsedDate": "0",
+      "digitalID": " ",
+      "embosserName2": " ",
+      "expirationDate": "18/01/2024",
+      "isAtmEnabled": "Y",
+      "isCashBackEnabled": "N",
+      "isEcomEnabled": 1,
+      "isInternationalAtmPosEnabled": "N",
+      "isMotoEnabled": "N",
+      "isPayWaveEnabled": "N",
+      "isPosEnabled": "Y",
+      "lastCardAction": "0",
       "lastCardExpirationDate": "00/00/0000",
-      "lastCardNeedActivation": "Y",
-      "maskCardNumber": "000984680XXXXXX9405",
-      "mccLimit-1": "$0.01",
-      "mccLimit-10": "$0.00",
-      "mccLimit-2": "$0.00",
-      "mccLimit-3": "$0.00",
-      "mccLimit-4": "$0.00",
-      "mccLimit-5": "$0.00",
-      "mccLimit-6": "$0.00",
-      "mccLimit-7": "$0.00",
-      "mccLimit-8": "$0.00",
-      "mccLimit-9": "$0.00",
-      "motoFlag": " ",
-      "nameOnCard": "U T UATMLNCUST448",
-      "numberOfCards": "0",
-      "payWaveFlag": "Y",
-      "pinOffset": "329861",
+      "lastCardNeedActivation": "N",
+      "lastPlasticIssueDate": 0,
+      "lastPlasticSuppressedDate": "0",
+      "lastWalletUsedDate": "0",
+      "maskedPaymentInstrumentId": "000444001XXXXXX8266",
+      "mccLimit01": "$999,999,999.99",
+      "mccLimit02": "$999,999,999.99",
+      "mccLimit03": "$999,999,999.99",
+      "mccLimit04": "$999,999,999.99",
+      "mccLimit05": "$999,999,999.99",
+      "mccLimit06": "$999,999,999.99",
+      "mccLimit07": "$999,999,999.99",
+      "mccLimit08": "$0.00",
+      "mccLimit09": "$0.00",
+      "mccLimit10": "$0.00",
+      "nameOnCard": "JOHN1",
+      "numberOfTokens": 0,
+      "paymentInstrumentId": "0004440010880488266",
+      "pinOffset": 0,
       "plasticSuppressStatus": "N",
-      "posFlag": "Y",
-      "postToAccount": "0001000011000052268",
-      "product": 1,
-      "productDescription": "VISA PLATINUM DEBIT",
-      "savingsAccountNbr": " ",
-      "timeLastPlasticIssue": 13815,
-      "warningCode": "0"
+      "productDescription": "VISA CREDIT CONSUMER",
+      "savingsAccountId": " ",
+      "status": "0",
+      "warningCode1": "0"
     }
   ],
-  "creditLimit": "$0.00",
-  "customerName": "UATMFNCU448",
-  "customerNumber": "0001000000000113902",
-  "dateOfBirth": "14/11/1940",
-  "emailAddress": "UATMFNCU448@GMAIL.COM",
-  "gender": "0",
-  "homeDistricName": "",
-  "homePhoneNumber": "++61430010348",
-  "mobileNumber": "++61430010348",
-  "nameLine1": "UATMFNCU448 TWOPPPUATMLNCUST448",
-  "numberOfAccounts": "1",
-  "numberOfCards": "1",
-  "relName": "",
-  "relationshipNbr": "",
-  "ssnId": "113902",
-  "status": "",
-  "totalAvailable": "$0.00",
-  "userDefinedField4": "Y",
-  "workPhoneNumber": "+61430010348"
+  "customerInformationRes": {
+    "addressLine1": "HOUSE NO.102",
+    "addressLine2": "",
+    "addressLine3": "",
+    "addressLine4": "",
+    "birthDate": "01/02/2010",
+    "businessUnit": 600,
+    "customerId": "0006000011000000707",
+    "emailAddress": "123@FISERV.COM",
+    "externalId": "",
+    "gender": "1",
+    "givenName": "JOHN",
+    "homePhoneNumber": "12345",
+    "isReturnMailEnabled": "N",
+    "mobileNumber": "8877665544",
+    "nameLine1": "JOHN DSOUZA",
+    "numberOfCards": 1,
+    "workPhoneNumber": "67894"
+  }
 }
 ```
 
@@ -115,7 +107,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5DB4001AS",
-  "errorMessage": "Customer Nbr not found"  
+  "errorMessage": "AMNA org not found"  
 }
 ```
 
@@ -123,4 +115,5 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5DB4001AS` |Customer Nbr not found|
+| `V5NA0004SF` | Customer number can not be spaces |
+| `V5DB4001SF` | AMNA org not found |

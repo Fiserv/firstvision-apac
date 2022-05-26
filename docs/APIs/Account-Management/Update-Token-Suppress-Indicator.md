@@ -4,7 +4,7 @@ This service is used to update the token supress Indicator for given account.
 
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/tokenSupressIndicator`
+`PUT /v1/accounts/{accountId}/tokenSupressIndicator`
 
 ## Payload Example
 
@@ -12,19 +12,19 @@ This service is used to update the token supress Indicator for given account.
 
 ```json
 {
-  "suppressToken": "0"
+  "isSupressTokenEnabled": "0"
 }
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/tokenSupressIndicator).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/tokenSupressIndicator).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique identification number of the account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 | `suppressToken` | Payload | *number* | 1 | Token suppression at account level indicator. | 
 
 
@@ -33,8 +33,8 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "businessUnit": 600,
-  "accountNumber": "0006000011000000137",
-  "suppressToken": "0"
+  "accountId": "0006000011000000137",
+  "isSupressTokenEnabled": "0"
 }
 ```
 

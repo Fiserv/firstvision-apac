@@ -1,4 +1,4 @@
-# Upgrade Account Product
+# Product Transfer
 
 This service will validate input message and upgrades customer's account product. 
 
@@ -11,24 +11,23 @@ This service will validate input message and upgrades customer's account product
 ### Request Payload
 
 ```json
+
 {
-  "account": "0004440010000000033",
+  "accountId": "0004440010000000033",
   "businessUnit": 0,
-  "function": "P",
   "transferAuthDays": 0,
-  "accountNumber": "/",
-  "product": 2,
-  "customer": "",
+  "transferToAccountId": "/",
+  "transferToProductId": 2,
+  "customerId": " ",
   "billingCycle": 0,
   "effectiveDate": "0",
   "transferReplcementIndicator": "0",
-  "hcsProduct": 0,
-  "hcsProductDefault": "1",
   "newCardTechnology": "1",
   "continueWithReissue": "0",
-  "processType": "",
+  "processType": " ",
   "sdp": "0"
 }
+
 ```
 
 ### Minimum Requirements
@@ -39,9 +38,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 3 | Identification number of the organization associated with the account. |
-| `account` | Payload | *string* | 19 | Account Number of the cardholder. |
-| `accountNumber` | Payload | *string* | 19 | Transferred to account Number of the cardholder. |  
+| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
+| `transferToAccountId` | Payload | *string* | 19 | New transferred to account id of the cardholder billing account. |  
  
 ### Successful Response Payload
 
@@ -57,7 +56,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V8MA4005EA",
-  "errorMessage": "Account Or Card Not Found"  
+  "errorMessage": "Account or card not found"  
 }
 ```
 

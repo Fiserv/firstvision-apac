@@ -4,7 +4,7 @@ Card Action on Embosser record enables client to update actions like replacement
   
 ## Endpoint
 
-`PUT /v1/cards/{cardNumber}/action`
+`PUT /v1/cards/{paymentInstrumentId}/action`
 
 ## Payload Example
 
@@ -18,24 +18,24 @@ Card Action on Embosser record enables client to update actions like replacement
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{cardNumber}/action).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/action).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `cardNumber` | Path Variable | *string* | 19 | Card Number - Token Number associated with the clear PAN. |
-| `cardAction` | Payload | *number* | 1 | Card Action - The card issue action code that determines the action CMS performs during the next run of the Card Issue program. | 
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+| `cardAction` | Payload | *number* | 1 | The card issue action code that determines the action CMS performs during the next run of the Card Issue program. | 
 
 ### Successful Response Payload
 
 ```json
 {
   "businessUnit": 600,
+  "paymentInstrumentId": "0009544410000000021",
   "cardAction": "1",
-  "cardActionDate": "19/08/2021",
-  "cardNumber": "0000000001000000115",
-  "lastCardAction": 0
+  "lastCardAction": 1,
+  "cardActionDate": " "
 }
 ```
 
