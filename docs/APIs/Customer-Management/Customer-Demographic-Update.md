@@ -1,4 +1,4 @@
-# Update Customer Demographics
+# Update Customer
 
 This service will be used to update the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer.  The customer ID will be passed in the input request to retrieve the demographic information. 
 
