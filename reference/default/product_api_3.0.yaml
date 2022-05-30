@@ -4,7 +4,7 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: http://10.123.33.81:8080
+- url: https://stg34.visionplus.io/sandbox/
 tags:
 - name: Product Management
 paths:
@@ -66,6 +66,13 @@ paths:
           maxLength: 3
           type: integer
           example: '001'
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       requestBody:
         content:
           application/json:
@@ -73,8 +80,30 @@ paths:
               $ref: '#/components/schemas/UpdateProductCardControlReqModel'
         required: true
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateProductCardControlResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -89,14 +118,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateProductCardControlResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -111,22 +134,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Update Product Card Controls
       x-group-name: Product Management
   /v1/products/{productId}/serviceChargeDetails:
@@ -198,9 +208,38 @@ paths:
           maxLength: 3
           type: integer
           example: '3'
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireServiceChargeTableResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -215,14 +254,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireServiceChargeTableResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -237,22 +270,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Inquire Service Charge Table
       x-group-name: Product Management
   /v1/products/{productId}/interestTable:
@@ -323,9 +343,38 @@ paths:
           maxLength: 3
           type: integer
           example: '0'
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireInterestTableResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -340,14 +389,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireInterestTableResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -362,22 +405,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Inquire Interest Table
       x-group-name: Product Management
   /v1/products/{productId}/details:
@@ -437,17 +467,16 @@ paths:
           maxLength: 3
           type: integer
           example: '001'
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -460,24 +489,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireProductResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -492,6 +505,33 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Inquire Product
       x-group-name: Product Management
   /v1/products/{planId}/planDetails:
@@ -552,23 +592,14 @@ paths:
           maxLength: 5
           type: integer
           example: '10002'
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
@@ -583,16 +614,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -607,6 +630,33 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Inquire Plan Master
       x-group-name: Product Management
 components:
@@ -3352,3 +3402,7 @@ components:
           - '0'
           - '1'
           - '2'
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer

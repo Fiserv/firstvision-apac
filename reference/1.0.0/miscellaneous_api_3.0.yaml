@@ -4,7 +4,7 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: http://10.123.33.81:8080
+- url: https://stg34.visionplus.io/sandbox/
 tags:
 - name: Miscellaneous
 paths:
@@ -46,6 +46,13 @@ paths:
           maxLength: 20
           type: string
           example: 00000AUNAB
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       requestBody:
         content:
           application/json:
@@ -53,22 +60,6 @@ paths:
               $ref: '#/components/schemas/BoardEntityReqModel'
         required: true
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '201':
           description: " \nSuccess"
           content:
@@ -83,16 +74,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -107,6 +90,33 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Board Entities
       x-group-name: Miscellaneous
   /v1/misc/{businessUnit}/details:
@@ -157,6 +167,13 @@ paths:
           maxLength: 3
           type: integer
           example: '600'
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       responses:
         '200':
           description: " \nSuccess"
@@ -164,22 +181,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -188,16 +189,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -212,6 +205,33 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Inquire Business Unit
       x-group-name: Miscellaneous
 components:
@@ -1233,7 +1253,7 @@ components:
             for the account. The format is MM/DD/YYYY or DD/MM/YYYY depending on the
             DATE FORMAT on System Control.
           example: '0'
-        tableIdExpireDate:
+        tableIdExpiryDate:
           maxLength: 10
           type: string
           description: This is the date on which the special pricing controls expire
@@ -1256,7 +1276,7 @@ components:
             starts for the account. The format is MM/DD/YYYY or DD/MM/YYYY depending
             on the DATE FORMAT on System Control.
           example: '0'
-        levelExpireDate:
+        levelExpiryDate:
           maxLength: 10
           type: string
           description: This is the date on which the processing control level override
@@ -1492,28 +1512,6 @@ components:
           type: string
           description: User-defined field 6 for any information about the relationship.
           example: ''
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        status:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        Source:
-          type: string
-          example: ''
-        invalid-params:
-          type: array
-          items:
-            type: string
     BoardEntityResponseModel:
       type: object
       properties:
@@ -1538,16 +1536,16 @@ components:
           type: string
           description: Unique identification number assigned to a customer.
           example: '0006000012000000191'
-        relationshipNumber:
+        relationshipId:
           maxLength: 19
           type: string
-          description: Relationship no. of customer
+          description: Unique identification number of the relationship entity to
+            which account identification is assigned.
           example: ''
-        accountNumber:
+        accountId:
           maxLength: 19
           type: string
-          description: This is the identification number to assign to the new Account
-            Base Segment entity.
+          description: Unique identification number for cardholder billing account.
           example: '0006000012000000191'
         cardDetailsRes:
           $ref: '#/components/schemas/CardDetailsRes'
@@ -1571,7 +1569,7 @@ components:
           description: Expiry date of card. The format is MM/DD/YYYY or DD/MM/YYYY
             depending on the DATE FORMAT on System Control.
           example: 18/01/2024
-        cardActivationStatus:
+        activationStatus:
           maxLength: 1
           type: string
           description: 'Field that indicates the Embosser entity status. <br/>The
@@ -1585,6 +1583,28 @@ components:
           type: string
           description: Masked Token Number
           example: ''
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        Source:
+          type: string
+          example: ''
+        invalid-params:
+          type: array
+          items:
+            type: string
     GeneralLedgerDetailsRes:
       type: object
       properties:
@@ -1632,19 +1652,19 @@ components:
           enum:
           - A
           - C
-        nonpostedDebits:
+        nonPostedDebits:
           maxLength: 19
           type: string
           description: Default general ledger account numbers for nonposted debit
             transactions.
           example: ' '
-        nonpostedDebitReversals:
+        nonPostedDebitReversals:
           maxLength: 19
           type: string
           description: Default general ledger account numbers for nonposted debit
             reversal transactions.
           example: ' '
-        nonpostedDebitPurges:
+        nonPostedDebitPurges:
           maxLength: 19
           type: string
           description: Default general ledger account numbers for nonposted debit
@@ -1668,18 +1688,18 @@ components:
           description: Default general ledger account numbers for any transaction
             that does not have a corresponding general ledger account.
           example: ' '
-        nonpostedCredits:
+        nonPostedCredits:
           maxLength: 19
           type: string
           description: Default transaction code assigned to a nonposted credit record.
           example: ' '
-        nonpostedCreditReversals:
+        nonPostedCreditReversals:
           maxLength: 19
           type: string
           description: Default transaction code assigned to a nonposted credit reversal
             record.
           example: ' '
-        nonpostedCreditPurges:
+        nonPostedCreditPurges:
           maxLength: 19
           type: string
           description: Default general ledger account numbers for nonposted credit
@@ -2054,3 +2074,7 @@ components:
           - '0'
           - '1'
           - '2'
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer

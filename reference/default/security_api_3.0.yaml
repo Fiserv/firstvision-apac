@@ -6,12 +6,12 @@ info:
 servers:
 - url: https://stg34.visionplus.io/sandbox/
 tags:
-- name: Security
+- name: Security Management
 paths:
   /v1/getAccessToken:
     post:
       tags:
-      - Security
+      - Security Management
       summary: Get Access Token
       description: This service is used to get Access Token to authenticate other
         Api
@@ -27,25 +27,6 @@ paths:
           maxLength: 40
           type: string
           example: ABC123
-      - name: X-Name
-        in: header
-        description: User’s sign-on name. The value passed in this field will be validated
-          within application for user's authority to consume the requested API
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
-      - name: X-context
-        in: header
-        description: A unique random ID assigned to the requestor once authenticated
-          to the First Vision application. Value passed in this field will be used
-          within application to authenticate the valid signed-on user
-        required: true
-        schema:
-          maxLength: 20
-          type: string
-          example: 00000AUNAB
       - name: Authorization
         in: header
         description: Authorization Token once authenticated to the First Vision application
@@ -56,14 +37,6 @@ paths:
       responses:
         '404':
           description: " \nThe request resource does not exist"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             '*/*':
               schema:
@@ -86,14 +59,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -102,9 +67,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      security:
-      - Authorization: [
-          ]
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Get Access Token
       x-group-name: Security
 components:

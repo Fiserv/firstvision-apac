@@ -4,7 +4,7 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: http://10.123.33.81:8080
+- url: https://stg34.visionplus.io/sandbox/
 tags:
 - name: User Management
 paths:
@@ -47,6 +47,13 @@ paths:
           maxLength: 20
           type: string
           example: 00000AUNAB
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       requestBody:
         content:
           application/json:
@@ -54,22 +61,6 @@ paths:
               $ref: '#/components/schemas/UpdateUserReqModel'
         required: true
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -78,22 +69,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateUserResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -108,6 +85,39 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Update User
       x-group-name: User Management
   /v1/users/signOn:
@@ -147,6 +157,13 @@ paths:
           maxLength: 20
           type: string
           example: 00000AUNAB
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       requestBody:
         content:
           application/json:
@@ -154,8 +171,24 @@ paths:
               $ref: '#/components/schemas/SignonUserReqModel'
         required: true
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -176,8 +209,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SignonUserResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -192,22 +225,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Signon User
       x-group-name: User Management
   /v1/users/boardUser:
@@ -249,6 +269,13 @@ paths:
           maxLength: 20
           type: string
           example: 00000AUNAB
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       requestBody:
         content:
           application/json:
@@ -256,8 +283,30 @@ paths:
               $ref: '#/components/schemas/AddUserReqModel'
         required: true
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddUserResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -272,14 +321,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddUserResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -294,22 +337,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Add User
       x-group-name: User Management
   /v1/users/inquireUser:
@@ -374,9 +404,38 @@ paths:
           maxLength: 15
           type: string
           example: NABTEST25
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireUserResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -391,14 +450,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireUserResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -413,22 +466,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
       x-proxy-name: Inquire User
       x-group-name: User Management
 components:
@@ -541,7 +581,7 @@ components:
     UserServicePrivilege10Req:
       type: object
       properties:
-        serviceInclusionExclusionflag10:
+        serviceInclusionExclusionFlag10:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -581,7 +621,7 @@ components:
     UserServicePrivilege1Req:
       type: object
       properties:
-        serviceInclusionExclusionflag1:
+        serviceInclusionExclusionFlag1:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -621,7 +661,7 @@ components:
     UserServicePrivilege2Req:
       type: object
       properties:
-        serviceInclusionExclusionflag2:
+        serviceInclusionExclusionFlag2:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -661,7 +701,7 @@ components:
     UserServicePrivilege3Req:
       type: object
       properties:
-        serviceInclusionExclusionflag3:
+        serviceInclusionExclusionFlag3:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -701,7 +741,7 @@ components:
     UserServicePrivilege4Req:
       type: object
       properties:
-        serviceInclusionExclusionflag4:
+        serviceInclusionExclusionFlag4:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -741,7 +781,7 @@ components:
     UserServicePrivilege5Req:
       type: object
       properties:
-        serviceInclusionExclusionflag5:
+        serviceInclusionExclusionFlag5:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -781,7 +821,7 @@ components:
     UserServicePrivilege6Req:
       type: object
       properties:
-        serviceInclusionExclusionflag6:
+        serviceInclusionExclusionFlag6:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -821,7 +861,7 @@ components:
     UserServicePrivilege7Req:
       type: object
       properties:
-        serviceInclusionExclusionflag7:
+        serviceInclusionExclusionFlag7:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -861,7 +901,7 @@ components:
     UserServicePrivilege8Req:
       type: object
       properties:
-        serviceInclusionExclusionflag8:
+        serviceInclusionExclusionFlag8:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -901,7 +941,7 @@ components:
     UserServicePrivilege9Req:
       type: object
       properties:
-        serviceInclusionExclusionflag9:
+        serviceInclusionExclusionFlag9:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1091,7 +1131,7 @@ components:
     UserServicePrivilege10Res:
       type: object
       properties:
-        serviceInclusionExclusionflag10:
+        serviceInclusionExclusionFlag10:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1131,7 +1171,7 @@ components:
     UserServicePrivilege1Res:
       type: object
       properties:
-        serviceInclusionExclusionflag1:
+        serviceInclusionExclusionFlag1:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1171,7 +1211,7 @@ components:
     UserServicePrivilege2Res:
       type: object
       properties:
-        serviceInclusionExclusionflag2:
+        serviceInclusionExclusionFlag2:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1211,7 +1251,7 @@ components:
     UserServicePrivilege3Res:
       type: object
       properties:
-        serviceInclusionExclusionflag3:
+        serviceInclusionExclusionFlag3:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1251,7 +1291,7 @@ components:
     UserServicePrivilege4Res:
       type: object
       properties:
-        serviceInclusionExclusionflag4:
+        serviceInclusionExclusionFlag4:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1291,7 +1331,7 @@ components:
     UserServicePrivilege5Res:
       type: object
       properties:
-        serviceInclusionExclusionflag5:
+        serviceInclusionExclusionFlag5:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1331,7 +1371,7 @@ components:
     UserServicePrivilege6Res:
       type: object
       properties:
-        serviceInclusionExclusionflag6:
+        serviceInclusionExclusionFlag6:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1371,7 +1411,7 @@ components:
     UserServicePrivilege7Res:
       type: object
       properties:
-        serviceInclusionExclusionflag7:
+        serviceInclusionExclusionFlag7:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1411,7 +1451,7 @@ components:
     UserServicePrivilege8Res:
       type: object
       properties:
-        serviceInclusionExclusionflag8:
+        serviceInclusionExclusionFlag8:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -1451,7 +1491,7 @@ components:
     UserServicePrivilege9Res:
       type: object
       properties:
-        serviceInclusionExclusionflag9:
+        serviceInclusionExclusionFlag9:
           maxLength: 1
           type: string
           description: 'Code that indicates whether to include or exclude access rights
@@ -2628,3 +2668,7 @@ components:
           example: '100'
         userServicePrivilegeRes:
           $ref: '#/components/schemas/UserServicePrivilegeRes'
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer
