@@ -4,7 +4,7 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: https://stg34.visionplus.io:24500/fva_apac
+- url: https://stg34.visionplus.io/sandbox/
 tags:
 - name: Security
 paths:
@@ -46,6 +46,13 @@ paths:
           maxLength: 20
           type: string
           example: 00000AUNAB
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Basic UE9DX05BQl9EZXY6YkhXTVR6Y0VPQ3I3cXU2WWN5M21jUnV1eXdaRzdmT3VobXNiZWNaNGFOYlVRYU5HYWNqeFY0SkM5c0s5WkR6RQ==
       responses:
         '404':
           description: " \nThe request resource does not exist"
@@ -57,22 +64,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
           content:
             '*/*':
               schema:
@@ -95,8 +86,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
-      - authorization: [
+      - Authorization: [
           ]
       x-proxy-name: Get Access Token
       x-group-name: Security
@@ -125,6 +132,6 @@ components:
           items:
             type: string
   securitySchemes:
-    authorization:
+    Authorization:
       type: http
       scheme: basic
