@@ -56,12 +56,12 @@ The below table identifies the required parameters in the request payload.
     "generalLedgerReportingType": "D",
     "generatePlanLevelGlReporting": "N",
     "generateProductLevelGlReporting": "N",
-    "nonpostedCreditPurges": "2",
-    "nonpostedCreditReversals": "2",
-    "nonpostedCredits": "2",
-    "nonpostedDebitPurges": "1",
-    "nonpostedDebitReversals": "1",
-    "nonpostedDebits": "1"
+    "nonPostedCreditPurges": "2",
+    "nonPostedCreditReversals": "2",
+    "nonPostedCredits": "2",
+    "nonPostedDebitPurges": "1",
+    "nonPostedDebitReversals": "1",
+    "nonPostedDebits": "1"
   },
   "installmentLoansActive": "1",
   "loanCreditLimit": "$0.00",
