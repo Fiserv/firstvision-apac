@@ -47,8 +47,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-   errorCode" :  V5BS0010SF" ,
-   errorMessage" : Update Request - Record not found"   
+   "errorCode" :  "V5BS0010SF" ,
+   "errorMessage" : "Update Request - Record not found"   
 }
 ```
 

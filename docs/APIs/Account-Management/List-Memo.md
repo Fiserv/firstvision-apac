@@ -1,4 +1,4 @@
-# List Memo
+# List Memos
 
 This service will retrieve all ASM memos for the associated Account number requested. 
 

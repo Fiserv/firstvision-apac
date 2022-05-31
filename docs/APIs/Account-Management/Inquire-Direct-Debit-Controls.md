@@ -4,7 +4,7 @@ This service is used to get detail for direct debit for given account. It shows 
 
 ## Endpoint
 
-`GET /v1/accounts/{accountId}/directDebit`
+`GET /v1/accounts/{accountId}/directDebitControls`
 
 ## Payload Example
 
@@ -33,13 +33,13 @@ The below table identifies the required parameters in the request payload.
   "businessUnit": 600,
   "directDebitDetailsRes": {
     "accountType": "D",
-    "routingBankID": "654321",
     "externalAccountId": " ",
     "nominatedPaymentAmountPercentage": "10",
     "nominatedType": "1",
     "paymentExpiryDate": "04/12/2022",
     "paymentRemittanceMethod": "0",
-    "paymentStartDate": "04/01/2022"
+    "paymentStartDate": "04/01/2022",
+    "routingBankID": "654321"
   }
 }
 ```
@@ -49,7 +49,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5BS0628SV",
-  "errorMessage": " Update Request - Record not found "
+  "errorMessage": " Update request - Record not found "
 }
 ```
 
@@ -57,4 +57,4 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0010SF` | Update Request - Record not found |
+| `V5BS0010SF` | Update request - Record not found |

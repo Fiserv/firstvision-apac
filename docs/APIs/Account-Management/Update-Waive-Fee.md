@@ -1,6 +1,6 @@
 # Update Waive Fee
 
-The account fee waive flags update service is used to update flag for waive intrest, user Fee 1/2/3/4/5/6, waive tax calculation, waive letter fee, service fee, cash advance fee etc.
+The account fee waive flags update service is used to update flag for waive intrest, user fees, waive tax calculation, waive letter fee, service fees, cash advance fees etc.
 
 ## Endpoint
 

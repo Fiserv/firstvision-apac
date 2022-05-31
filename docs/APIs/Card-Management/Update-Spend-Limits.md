@@ -1,6 +1,6 @@
 # Update Spend Limits 
 
-This service is used to update the spending limits to control the card usage. These limits are set to individual card level.
+This service is used to update the spending limits to control the card usage. These limits are set to individual card level like maximum ATM, OTC, Retail etc authorizatoin amount and count.
 
 ## Endpoint
 

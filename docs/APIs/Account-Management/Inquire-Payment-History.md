@@ -148,8 +148,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-   errorCode" :  V5PH0004SF" ,
-   errorMessage" : Get Request - Record Not Found"   
+   "errorCode" :  "V5PH0004SF" ,
+   "errorMessage" : "Get Request - Record Not Found"   
 }
 ```
 

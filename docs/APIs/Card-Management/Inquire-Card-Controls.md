@@ -1,6 +1,6 @@
 # Inquire Card Controls
 
-This service fetches the card controls for a given Payment Instrument Identification like maximum number and amount of retail/OTC/Single ATM authorization allowed on Payment Instrument Identification as well as single otc cash/Retail authorization allowed.
+This service fetches the card controls for a given card like maximum number of transaction count and amount of Retail/OTC/Single ATM authorization, as well as single otc Cash/Retail authorization are allowed on card.
 
 ## Endpoint
 

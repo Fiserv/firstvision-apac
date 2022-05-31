@@ -12,7 +12,7 @@ This service is used to fetch statement details for a given account number.
 
 >Should be empty. 
 >
->***Account id should be sent as path variable.***
+>***Account id and statement date should be sent as path and query parameter.***
 
 
 ### Minimum Requirements

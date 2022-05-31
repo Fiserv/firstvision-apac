@@ -1,6 +1,6 @@
 # List Customers' Cards
 
-The service provides list of cards associated with the customer. FirstVision allows to retrive card details either using account or customer number.
+This service retrieves the card details associated with a Customer id along with customer demographic information.
 
 ## Endpoint
 

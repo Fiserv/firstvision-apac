@@ -1,6 +1,6 @@
 # Search Customers
 
-This service is used to retrieve customer's information based on primary and optional search values like Last name, Indentification number, Phone number etc.
+This service is used to retrieve customer's information based on primary and optional search values like last name, identification number, phone number etc.
 
 Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
 
@@ -121,8 +121,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-   errorCode" :  V5XL4001SA" ,
-   errorMessage" : Customer search screen is not available"   
+   "errorCode" :  "V5XL4001SA" ,
+   "errorMessage" : "Customer search screen is not available"   
 }
 ```
 

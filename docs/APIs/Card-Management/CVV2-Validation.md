@@ -27,7 +27,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
 | `cvv2` | Payload | *string* | 3 | CVV2 value of the card |
-| `expiryDate` | *date* | 10 | Field that indicates the  card expiry date | 
+| `expiryDate` | Payload | *date* | 4 | Field that indicates the card expiry date in MMYY format | 
 
 ### Successful Response Payload
 

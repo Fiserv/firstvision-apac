@@ -25,7 +25,7 @@ This service will validate input message and upgrades customer's account product
   "newCardTechnology": "1",
   "continueWithReissue": "0",
   "processType": " ",
-  "sdp": "0"
+  "sameDayProcessing": "0"
 }
 
 ```
@@ -47,7 +47,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "businessUnit": 600,
-  "newAccount": "0006000022000000621"
+  "accountId": "0006000022000000621"
 }
 ```
 

@@ -25,7 +25,7 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `suppressToken` | Payload | *number* | 1 | Token suppression at account level indicator. | 
+| `isSupressTokenEnabled` | Payload | *number* | 1 | Token suppression at account level indicator. | 
 
 
 ### Successful Response Payload

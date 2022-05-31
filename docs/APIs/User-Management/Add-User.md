@@ -1,9 +1,9 @@
 # Add User
 
-This service is used to add new security sign-on records. This newly created record determine the person’s access rights on the system.
-sign-on record must be setup and active for each person authorized to access the system. 
+This service is used to add new security sign-on entity. This newly created entity determine the person’s access rights on the system.
+Sign-on entity must be setup and active for each person authorized to access the system. 
 
-*More than one person cannot sign on to the system using the same sign-on record. A single person cannot sign on using the same sign-on record at multiple terminals at the same time.*
+*More than one person cannot sign on to the system using the same sign-on entity. A single person cannot sign on using the same sign-on entity at multiple terminals at the same time.*
 
 ## Endpoint
 
@@ -255,15 +255,13 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `clientID` | Payload | *string* | 05 | Identification number, referred to as Client ID, assigned to your institution by the processor. |
-| `name` | Payload | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the    system. The sign-on name can consist of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading space. When adding a new sign-on record, the sign-on name must be a unique name not already assigned to any existing User Security Sign-on records for your institution (client ID). |
-| `dateToActivate` | Payload | *date* | 05 | Activation date of the User Security Sign-on record. The default value is zeros. 
-The sign-on record cannot be used to sign on unless this field is a valid past or current date. This field enables a sign-on record to be added and assigned a future activation date so that the record is automatically active on that future date, The format is MMDDYYYY or DDMMYYYY depending on the date format established on the System record (DATE FORMAT on System Controls). |
+| `name` | Payload | *string* | 15 | Sign-on name that the person assigned this User Security Signon entity will use to sign on to the  system. |
+| `activationDate` | Payload | *date* | 10 | Activation date of the User Security Sign-on entity. |
 | `operatorID` | Payload | *string* | 03 | Representative ID of of an operator. |
 | `customerServiceBusinessUnit` | Payload | *number* | 03 | Customer business organization unit. |
-| `businessPreviligeID` | Payload | *number* | 03 | Name that identifies an existing organization privilege group assigned to this User Security Sign-on record. This organization privilege group determines the organizations that can be accessed by the person who signs on with this sign-on record. An organization privilege group assigned to a sign-on record must have the same client ID and security type as the sign-on record. Access rights to additional organizations can be included or excluded using the I/E and ORG fields, which are listed on this screen under the ORG INCLUDE/EXCLUDE heading. |
-| `servicePrivilegeGroup` | Payload | *number* | 03 |  Name that identifies an existing service privilege group assigned to this User Security Sign-on record. This service privilege group determines the services that can be accessed by the person who signs on with this sign-on record. |
-| `signOnExpiryDate` | Payload | *date* | 10 |  Expiration date of the User Security Sign-on record. The default value is zeros. 
-The sign-on record cannot be used to sign on unless this field is a valid future date. On the expiration date, the system sets this field to zero. When this field is zero, signon attempts fail and are reported on the Security Violations Report (T130). This date must be changed to a valid future expiration date to enable the sign-on record to be used for signing on again, The format is MMDDYYYY or DDMMYYYY depending on the date format established on the System record (DATE FORMAT on System Controls). |
+| `businessPreviligeID` | Payload | *number* | 03 | Name that identifies an existing organization privilege group assigned to this User Security Sign-on entity. |
+| `servicePrivilegeGroup` | Payload | *number* | 03 |  Name that identifies an existing service privilege group assigned to this User Security Sign-on entity. |
+| `signonExpiryDate` | Payload | *date* | 10 |  Expiration date of the User Security Sign-on entity. The default value is zeros. |
 
 ### Successful Response Payload
 

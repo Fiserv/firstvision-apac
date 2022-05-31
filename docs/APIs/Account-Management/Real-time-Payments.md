@@ -52,17 +52,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 | `actionCode` | Payload | *string* | 4 | Action code placed on the account. | 
 | `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. |
-| `effectiveDate` | Payload | *DATE* | 10	 | Date when this action is to take effect. |
-| `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment card number. |
-| `storeNumber` | Payload | *number* | 9 | Store number associated with the transaction. |
-| `asmBusinessUnit` | Payload | *string* | 1 | This field indicates the business unit of the ASM. |  
-| `letterBusinessUnit` | Payload | *number* | 3 | This field indicates the business unit of the LTS letter to be sent to the customer. | 
-| `referralRepresentativeId` | Payload | *string* | 3 | This field is the identification number of the referral representative. |  
-| `letterCode` | Payload | *string* | 3 | This field indicates the user-defined letter code of the LTS letter to be sent to the customer through batch processing. |
 
 ### Successful Response Payload
 

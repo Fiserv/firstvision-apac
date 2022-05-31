@@ -16,13 +16,13 @@ The Direct Debit Update message enables the user to update the Direct Debit info
 {
   "directDebitDetailsReq": {
     "paymentRemittanceMethod": "0",
-    "ddPaymentStartDate": "04/10/2021",
-    "ddPaymentExpiryDate": "04/11/2022",
-    "ddRoutingBankId": "123456",
-    "ddAccountType": "D",
-    "ddAccountNumber": "1000000057",
-    "fixedPaymentAmount": "1",
-    "ddNominatedPaymentAmtOrPercentage": "10"
+    "paymentStartDate": "04/10/2021",
+    "paymentExpiryDate": "04/11/2022",
+    "routingBankID": "123456",
+    "accountType": "D",
+    "externalAccountId": "1000000057",
+    "nominatedType": "1",
+    "nominatedPaymentAmountPercentage": "10"
   }
 }
 ```

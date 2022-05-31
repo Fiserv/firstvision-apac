@@ -1,6 +1,7 @@
 # Block-Unblock Card
 
-This service is used to update the block codes and the reason codes for the block codes for cards and accounts. Same service can be used to unblock the card by passing spaces in the block-code field of the request body.
+The Service will then determine the type of request, block or unblock a card. The block code passed on the input message will be subject to a priority check against the block code priority definition on the Block Code Matrix. No block code priority check will occur when an unblock request is processed. 
+The Service will update the block code field on the payment instrument id with the associated block code date using the next processing date from the account’s business unit.
 
 ## Endpoint
 
