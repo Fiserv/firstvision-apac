@@ -11,6 +11,12 @@ Our APIs are broadly grouped into following sub-catagories.  Please click to spe
 
 - [Card Management](./?path=/docs/Card-Management.md)
 
+- [Product Management](./?path=/docs/Product-Management.md)
+
+- [User Management](./?path=/docs/User-Management.md)
+
+- [Miscellaneous](./?path=/docs/Miscellaneous.md)
+
 ---
 
 ## Access FirstVision-APAC APIs
@@ -23,12 +29,14 @@ Request for APIs credentials through your Account relationship manager.
 
 ### 2. Getting your API key
 
-The Account relationship manager will share the credentials via the preferred secure channel.
+The Account relationship manager will share the credentials via the preferred secure channel.  The credentials is mapped to approve scope which determines which APIs clients can consume.
+
+### 3. Get OAuth bearer token
+
+Using the API key recieved, make a [getToken API](./?path=/docs/APIs/Security/get-token.md) request to receive the Auth token for the defined scope.
 
 ### 3. Constructing the API call
 
-Once the credentials are provided, make a call to the signon API. In the response, a a unique one-time token will be provided in the response. 
-
-Use the token for any subsequent API calls.  The token must be passed in the request header name "X-context".  In addition to token, passed the assigned credential name in the "X-name" tag.
+Use the bearer token for any subsequent API calls.  The bearer token must be passed in the authorization header.  
 
 ---
