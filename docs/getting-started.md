@@ -33,7 +33,7 @@ The Account relationship manager will share the credentials via the preferred se
 
 ### 3. Get OAuth bearer token
 
-Using the API key recieved, make a [getToken API](./?path=/docs/APIs/Security/get-token.md) request to receive the Auth token for the defined scope.
+Using the API key recieved, make a [getToken API](./?path=/docs/APIs/Security/get-access-token.md) request to receive the Auth token for the defined scope.
 
 ### 3. Constructing the API call
 
