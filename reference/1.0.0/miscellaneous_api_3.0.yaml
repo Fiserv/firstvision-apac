@@ -42,24 +42,16 @@ paths:
               $ref: '#/components/schemas/BoardEntityReqModel'
         required: true
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -74,8 +66,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -88,8 +88,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BoardEntityResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -139,30 +139,16 @@ paths:
           type: integer
           example: '600'
       responses:
-        '200':
-          description: " \nSuccess"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -177,16 +163,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -232,7 +232,8 @@ components:
         creditLimit:
           maxLength: 17
           type: string
-          description: This is the Credit limit of the account.
+          description: Credit limit of the account. This is mandatory field during
+            account addition.
           example: '1000'
         billingCurrency:
           maximum: 999
@@ -279,8 +280,8 @@ components:
           maximum: 99
           maxLength: 2
           type: integer
-          description: This flag indicates the day of the month that CMS performs
-            cycle processing for the account.
+          description: Cycle code that indicates the day of the month that system
+            performs cycle processing for the account. The values are 01–31.
           format: int32
           example: '18'
         residenceId:
@@ -292,8 +293,8 @@ components:
         issuanceId:
           maxLength: 3
           type: string
-          description: This flag identifies the state, province or country in which
-            the  account holder resides.
+          description: This is the flag which identifies the state, province or country
+            in which the account was issued.
           example: '600'
         cashPlanId:
           maximum: 99999
@@ -334,14 +335,14 @@ components:
           type: string
           description: This is the temporary line of credit for the account in whole
             monetary units.
-          example: ''
+          example: '0'
         temporaryCreditLimitExpiryDate:
           maxLength: 10
           type: string
           description: This expiry date is for the temporary line of credit for the
             account in whole monetary units. The format is MM/DD/YYYY or DD/MM/YYYY
             depending on the DATE FORMAT on System Control.
-          example: ''
+          example: 00/00/0000
         owningBranchNumber:
           maximum: 999999999
           maxLength: 9
@@ -376,11 +377,14 @@ components:
           enum:
           - '0'
           - '1'
-        isAnnualMembershipFeeEnabled:
+        isWaiveAnnualMembershipFeeEnabled:
           maxLength: 1
           type: string
-          description: This flag indicates whether to waive the annual membership
-            fee for the account.
+          description: Flag that indicates whether to waive the annual membership
+            fee for the account. <br/>The values are:<br/>&nbsp; '0' - Do not waive
+            membership fee (Default) <br/>&nbsp; '1' - Waive both the initial and
+            renewal membership fees <br/>&nbsp; '2' - Waive only the initial membership
+            fee <br/>&nbsp; '3' - Waive only the renewal membership fee
           example: '0'
           enum:
           - '0'
@@ -401,7 +405,9 @@ components:
         coreBankingIndicator:
           maxLength: 25
           type: string
-          description: This is the code indicates type of bannking.
+          description: Core Banking Indicator. <br/>The values are:<br/> &nbsp; '
+            ' - Default <br/> &nbsp; 'B' - BaaS <br/> &nbsp; 'T' - Temenos <br/> &nbsp;
+            'S' - Signature
           example: ''
           enum:
           - B
@@ -418,7 +424,8 @@ components:
         dualIndicator:
           maxLength: 1
           type: string
-          description: Dual Indicator of Insurance product.
+          description: Dual Indicator of Insurance product. <br/>The values are:<br/>
+            &nbsp; 'L' or ' ' - Local Account <br/> &nbsp; 'F' - Foreign Account
           example: ''
           enum:
           - L
@@ -432,7 +439,8 @@ components:
         statusCode:
           maxLength: 1
           type: string
-          description: Status Code of Account Insurance/Product Data.
+          description: Status Code of Account Insurance/Product Data. <br/>The values
+            are:<br/> &nbsp; 'I' or ' ' - Inactive <br/> &nbsp; 'F' - In Force
           example: ''
           enum:
           - F
@@ -453,6 +461,9 @@ components:
           maxLength: 1
           type: string
           description: Insured Party Indicator of Account Insurance/Product Data.
+            <br/>The values are:<br/> &nbsp; '0' - Owner valid <br/> &nbsp; '1' -
+            Co-owner valid <br/> &nbsp; '2' - Third-party valid <br/> &nbsp; '3' -
+            Both parties valid
           example: ''
           enum:
           - '0'
@@ -479,7 +490,16 @@ components:
         cancelReason:
           maxLength: 1
           type: string
-          description: Cancel Reason of Account Insurance/Product Data.
+          description: Cancel Reason of Account Insurance/Product Data. <br/>The values
+            are:<br/> &nbsp; 'C' - Insurance Chargeoff <br/> &nbsp; 'D' - Insurance
+            Delinquency <br/> &nbsp; 'R' - Insurance Requested <br/> &nbsp; 'U' -
+            Insurance Underwriting <br/> &nbsp; 'A' - Insurance Age <br/> &nbsp; 'P'
+            - Insurance Closed <br/> &nbsp; 'T' - Insurance Truncated <br/> &nbsp;
+            'X' - Insurance Other <br/> &nbsp; 'B' - Insurance Block Code Auto <br/>
+            &nbsp; 'M' - Insurance Block Code Man <br/> &nbsp; 'F' - Insurance Fiche
+            Number <br/> &nbsp; 'G' - Insurance Enroll Age <br/> &nbsp; 'I' - Insurance
+            Minimum Age <br/> &nbsp; 'J' - Insurance Invalid Table <br/> &nbsp; '
+            ' - Insurance In Force
           example: ''
           enum:
           - ' '
@@ -497,18 +517,22 @@ components:
           - I
           - J
           - R
-        mailLetter:
+        isMailLetterEnabled:
           maxLength: 1
           type: string
-          description: Mail Letter of Account Insurance/Product Data.
+          description: Mail Letter of Account Insurance/Product Data. <br/>The values
+            are:<br/> &nbsp; '0' - Dont send letter(default)<br/> &nbsp; '1' - Send
+            Letter
           example: ''
           enum:
           - '0'
           - '1'
-        mailLetterFee:
+        isMailLetterFeeEnabled:
           maxLength: 1
           type: string
-          description: Mail Letter Fee for Account Insurance/Product Data.
+          description: Mail Letter Fee for Account Insurance/Product Data. <br/>The
+            values are:<br/> &nbsp; '0' - Charge letter fee (default)<br/> &nbsp;
+            '1' - Do not charge letter fee
           example: ''
           enum:
           - '0'
@@ -516,7 +540,9 @@ components:
         mailStatement:
           maxLength: 1
           type: string
-          description: Mail Statement of Account Insurance/Product Data.
+          description: Mail Statement of Account Insurance/Product Data. <br/>The
+            values are:<br/> &nbsp; '0' - Dont send statement(default)<br/> &nbsp;
+            '1' - Send statement
           example: ''
           enum:
           - '0'
@@ -537,19 +563,18 @@ components:
         city:
           maxLength: 30
           type: string
-          description: This is the city portion of the mailing address for cards and
-            PIN mailers.
+          description: City portion of the mailing address for cards and PIN mailers.
           example: ''
         stateprovince:
           maxLength: 3
           type: string
-          description: This field that identifies the state or province.
+          description: State or province of the mailing address for cards and PIN
+            mailers.
           example: ''
         postalCode:
           maxLength: 10
           type: string
-          description: This field identifies the postal code portions of the mailing
-            address.
+          description: Postal code of the mailing address for cards and PIN mailers.
           example: ''
     BoardEntityReqModel:
       required:
@@ -784,7 +809,8 @@ components:
           maxLength: 1
           type: string
           description: This is the code that indicates whether the card is issued
-            as a primary or secondary card.
+            as a primary or secondary card. <br/>The values are:<br/> &nbsp; '0' -
+            Additional<br/> &nbsp; '1' - Primary
           example: '1'
           enum:
           - '1'
@@ -1204,20 +1230,20 @@ components:
     PctOverrideDetailsReq:
       type: object
       properties:
-        tableId:
+        pctOverride:
           maxLength: 3
           type: string
           description: Code that identifies an existing Processing Control Table (PCT
             ID) used to establish special pricing controls for the account.
           example: ' '
-        tableIdStartDate:
+        pctOverrideStartDate:
           maxLength: 10
           type: string
           description: This is the date on which the special pricing controls start
             for the account. The format is MM/DD/YYYY or DD/MM/YYYY depending on the
             DATE FORMAT on System Control.
           example: '0'
-        tableIdExpiryDate:
+        pctOverrideExpiryDate:
           maxLength: 10
           type: string
           description: This is the date on which the special pricing controls expire
@@ -1564,10 +1590,10 @@ components:
             card restriction<br/>&nbsp; ''T'' - Permanent transfer out<br/>&nbsp;
             ''P'' - Purged'
           example: '0'
-        maskedPaymentInstrumentId:
+        maskedPaymentCardNumber:
           maxLength: 19
           type: string
-          description: Masked Token Number
+          description: Masked payment card number.
           example: ''
     GeneralLedgerDetailsRes:
       type: object
@@ -1634,13 +1660,13 @@ components:
           description: Default general ledger account numbers for nonposted debit
             purge transactions.
           example: ' '
-        batchNonpostedDebits:
+        batchNonPostedDebits:
           maxLength: 19
           type: string
           description: Default general ledger account numbers for nonposted debit
             transactions in batch.
           example: ' '
-        batchNonpostDebitReversals:
+        batchNonPostedDebitReversals:
           maxLength: 19
           type: string
           description: 'Default general ledger account numbers for nonposted debit
@@ -1669,13 +1695,13 @@ components:
           description: Default general ledger account numbers for nonposted credit
             purge transactions.
           example: Y
-        batchNonpostedCredits:
+        batchNonPostedCredits:
           maxLength: 19
           type: string
           description: Default transaction code assigned to a batch nonposted credit
             record.
           example: ' '
-        batchNonpostCreditReversals:
+        batchNonPostedCreditReversals:
           maxLength: 19
           type: string
           description: Default transaction code assigned to a batch nonposted credit
@@ -1735,8 +1761,11 @@ components:
         businessUnitRegion:
           maxLength: 1
           type: string
-          description: Code that identifies the quarterly reporting region for the
-            business unit.
+          description: 'Code that identifies the quarterly reporting region for the
+            business unit. <br/>The values are:<br/> &nbsp; ''1'' - United States
+            <br/> &nbsp; ''2'' - Canada <br/> &nbsp; ''3'' - Europe <br/> &nbsp; ''4''
+            - Asia/Pacific <br/> &nbsp; ''5'' - Latic America <br/> &nbsp; ''6'' -
+            CEMEA '
           example: '1'
           enum:
           - '1'
