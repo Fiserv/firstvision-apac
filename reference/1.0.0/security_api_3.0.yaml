@@ -49,8 +49,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             '*/*':
               schema:
@@ -65,12 +65,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -79,6 +73,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -87,17 +87,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             '*/*':
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      security:
-      - Authorization: [
-          ]
       x-proxy-name: Get Access Token
       x-group-name: Security
 components:
@@ -110,11 +107,12 @@ components:
           items:
             type: string
             description: Used to control access of users' resource
-            example: READ,WRITE,EDIT
+            example: INQUIRE
             enum:
-            - READ
-            - WRITE
-            - EDIT
+            - INQUIRE
+            - ADD
+            - UPDATE
+            - LIST
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -130,7 +128,7 @@ components:
         instance:
           type: string
           example: ''
-        Source:
+        source:
           type: string
           example: ''
         invalid-params:
@@ -155,4 +153,4 @@ components:
   securitySchemes:
     Authorization:
       type: http
-      scheme: basic
+      scheme: bearer
