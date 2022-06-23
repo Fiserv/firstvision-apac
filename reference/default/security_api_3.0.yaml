@@ -4,7 +4,7 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: https://stg34.visionplus.io/sandbox/
+- url: http://localhost:8080/
 tags:
 - name: Security Management
 paths:
@@ -41,22 +41,14 @@ paths:
               $ref: '#/components/schemas/TokenRequest'
         required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/TokenResponse'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             '*/*':
               schema:
@@ -71,8 +63,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             '*/*':
               schema:
@@ -87,8 +87,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             '*/*':
               schema:
@@ -113,6 +113,21 @@ components:
             - ADD
             - UPDATE
             - LIST
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: 'Unique Bearer token neeed to be passed for all Vision10 API '
+          example: ''
+        token_type:
+          type: string
+          description: Type of token to be authenticated
+          example: Bearer
+        expires_in:
+          type: string
+          description: Time after which token will be expired
+          example: ''
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -135,21 +150,6 @@ components:
           type: array
           items:
             type: string
-    TokenResponse:
-      type: object
-      properties:
-        access_token:
-          type: string
-          description: 'Unique Bearer token neeed to be passed for all Vision10 API '
-          example: ''
-        token_type:
-          type: string
-          description: Type of token to be authenticated
-          example: Bearer
-        expires_in:
-          type: string
-          description: Time after which token will be expired
-          example: ''
   securitySchemes:
     Authorization:
       type: http

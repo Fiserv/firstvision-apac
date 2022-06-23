@@ -4,20 +4,20 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: https://stg34.visionplus.io/sandbox/
+- url: http://localhost:8080/
 tags:
 - name: Card Management
 paths:
   /v1/cards/{paymentInstrumentId}/spendLimits:
-    put:
+    get:
       tags:
       - Card Management
-      summary: Update Spend Limits
-      description: This service is used to update the spending limits to control the
-        card usage. These limits are set at individual card level.
-      operationId: UpdateSpendLimit
+      summary: Inquire Spend Limits
+      description: This service is used to inquire the spending limits to control
+        the card usage. These limits are set at individual card level.
+      operationId: InquireSpendLimit
       parameters:
-      - name: Authorization
+      - name: Authorization1
         in: header
         description: Token is used in token-based authentication to allow an application
           to access an API.
@@ -54,23 +54,9 @@ paths:
           maxLength: 19
           type: string
           example: '0009846801010434272'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateSpendLimitReqModel'
-        required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -90,9 +76,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateSpendLimitResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+                $ref: '#/components/schemas/InquireSpendLimitResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -107,8 +101,121 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Spend Limits
+      x-group-name: Card Management
+    put:
+      tags:
+      - Card Management
+      summary: Update Spend Limits
+      description: This service is used to update the spending limits to control the
+        card usage. These limits are set at individual card level.
+      operationId: UpdateSpendLimit
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          minLength: 0
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: 100
+      - name: paymentInstrumentId
+        in: path
+        description: Unique alternate identification number associated with Payment
+          Card Number.
+        required: true
+        schema:
+          maxLength: 19
+          minLength: 0
+          type: string
+          example: '0009846801010434272'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSpendLimitReqModel'
+        required: true
+      responses:
         '500':
           description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateSpendLimitResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -173,6 +280,28 @@ paths:
               $ref: '#/components/schemas/UpdateCardTypeReqModel'
         required: true
       responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCardTypeResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -189,28 +318,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCardTypeResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -219,8 +326,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -285,6 +392,22 @@ paths:
               $ref: '#/components/schemas/ChangePINReqModel'
         required: true
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -301,28 +424,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ChangePINResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -331,8 +432,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePINResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -397,6 +504,28 @@ paths:
               $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionReqModel'
         required: true
       responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -413,28 +542,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -443,8 +550,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -509,6 +616,28 @@ paths:
               $ref: '#/components/schemas/UpdateCardControlReqModel'
         required: true
       responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCardControlResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -525,28 +654,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCardControlResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -555,8 +662,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -622,6 +729,28 @@ paths:
               $ref: '#/components/schemas/BlockUnblockCardReqModel'
         required: true
       responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockUnblockCardResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -638,22 +767,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -662,14 +775,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BlockUnblockCardResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -734,6 +841,22 @@ paths:
               $ref: '#/components/schemas/ActivateCardReqModel'
         required: true
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -750,8 +873,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivateCardResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -766,28 +895,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ActivateCardResponseModel'
       security:
       - Authorization: [
           ]
@@ -846,6 +953,28 @@ paths:
               $ref: '#/components/schemas/UpdateCardActionReqModel'
         required: true
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCardActionResponseModel'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -862,28 +991,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCardActionResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -892,8 +999,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -959,16 +1066,8 @@ paths:
               $ref: '#/components/schemas/CardSecureCodeReqModel'
         required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -989,8 +1088,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1005,8 +1112,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1052,6 +1159,22 @@ paths:
               $ref: '#/components/schemas/TransferLostStolenCardReqModel'
         required: true
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -1074,22 +1197,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferLostStolenCardResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -1098,8 +1205,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1144,6 +1251,28 @@ paths:
               $ref: '#/components/schemas/BoardCardReqModel'
         required: true
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardCardResponseModel'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -1160,8 +1289,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1176,12 +1305,96 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Board Card
+      x-group-name: Card Management
+  /v1/cards/{paymentInstrumentId}/spendLimitStatistics:
+    get:
+      tags:
+      - Card Management
+      summary: Inquire Card Spend Limit Statistics
+      description: This service is used to fetch statistics for a given payment instrument
+        identification.
+      operationId: InquireCardSpendLimitStatistics
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: paymentInstrumentId
+        in: path
+        description: Unique alternate identification number associated with Payment
+          Card Number.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0009544410000000047'
+      responses:
+        '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BoardCardResponseModel'
+                $ref: '#/components/schemas/InquireCardSpendLimitStatisticResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -1190,8 +1403,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1201,7 +1414,7 @@ paths:
       security:
       - Authorization: [
           ]
-      x-proxy-name: Board Card
+      x-proxy-name: Inquire Card Spend Limit Statistics
       x-group-name: Card Management
   /v1/cards/{paymentInstrumentId}/details:
     get:
@@ -1250,6 +1463,28 @@ paths:
           type: string
           example: '0009544410000000047'
       responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCardResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -1266,22 +1501,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -1290,14 +1509,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireCardResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1356,6 +1569,28 @@ paths:
           type: string
           example: '0009846801010434751'
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCardControlResponseModel'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -1372,22 +1607,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -1396,14 +1615,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireCardControlResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1462,22 +1675,14 @@ paths:
           type: string
           example: '0009846801010273605'
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FetchClearPanResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -1492,8 +1697,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1508,8 +1721,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1520,6 +1733,111 @@ paths:
       - Authorization: [
           ]
       x-proxy-name: Fetch Clear PAN from Token
+      x-group-name: Card Management
+  /v1/cards/listVisaToken:
+    get:
+      tags:
+      - Card Management
+      summary: List Visa Token
+      description: This service is used to inquire token detail.
+      operationId: ListVisaToken
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '200'
+      - name: paymentInstrumentId
+        in: path
+        description: Unique alternate identification number associated with Payment
+          Card Number.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0009545880002462305'
+      responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVisaTokenResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: List Visa Token
       x-group-name: Card Management
 components:
   schemas:
@@ -2768,6 +3086,289 @@ components:
             card restriction<br/>&nbsp; ''T'' - Permanent transfer out<br/>&nbsp;
             ''P'' - Purged'
           example: '0'
+    InquireSpendLimitResponseModel:
+      required:
+      - businessUnit
+      - paymentInstrumentId
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 001-998.
+          format: int32
+          example: '100'
+        paymentInstrumentId:
+          maxLength: 19
+          type: string
+          description: Unique alternate identification number associated with Payment
+            Card Number.
+          example: '0009846801010434272'
+        spendLimitControls:
+          type: object
+          properties:
+            maximumAuthorizationsFrequency:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates the frequency for the maximum authorization
+                parameters. <br/>The values are: <br/>&nbsp; ''0'' - Not used(default)
+                <br/>&nbsp; ''1'' - Daily<br/>&nbsp; ''2'' - Cycle-to-date <br/>&nbsp;
+                ''3'' - Year-to-date'
+              example: '1'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+            maximumAtmCashAuthorizationsAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of ATM cash
+                authorizations allowed for this Embosser entity for the frequency
+                defined in the FREQ field.
+              example: '10000'
+            maximumAtmCashAuthorizationsCount:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Maximum number of ATM cash authorizations allowed for this
+                Embosser entity for the frequency defined in the FREQ field.
+              format: int32
+              example: '1'
+            maximumSingleAtmTransactionAmount:
+              maxLength: 17
+              type: string
+              description: Maximum authorization amount in monetary units and subunits
+                of a single ATM transaction allowed for this Embosser entity for the
+                frequency defined in the FREQ field.
+              example: '10000'
+            maximumOtcCashAuthorizationsAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of OTC cash
+                authorizations allowed for this Embosser entity for the frequency
+                defined in the FREQ field.
+              example: '20000'
+            maximumOtcAuthorizationsCount:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Maximum number of OTC authorizations allowed for this Embosser
+                entity for the frequency defined in the FREQ field.
+              format: int32
+              example: '1'
+            maximumSingleOtcCashAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of OTC authorizations
+                allowed for this Embosser entity for the frequency defined in the
+                FREQ field.
+              example: '10000'
+            maximumRetailAuthorizationsAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of retail
+                authorizations allowed for this Embosser entity for the frequency
+                defined in the FREQ field.
+              example: '10000'
+            maximumRetailAuthorizationsCount:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Maximum number of retail authorizations allowed for this
+                Embosser entity for the frequency defined in the FREQ field.
+              format: int32
+              example: '1'
+            maximumSingleRetailAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of OTC authorizations
+                allowed for this Embosser entity for the frequency defined in the
+                FREQ field.
+              example: '0000'
+    InquireCardSpendLimitStatisticResponseModel:
+      required:
+      - businessUnit
+      - paymentInstrumentId
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 001-998.
+          format: int32
+          example: '600'
+        paymentInstrumentId:
+          maxLength: 19
+          type: string
+          description: Unique alternate identification number associated with Payment
+            Card Number.
+          example: '0009544410000000047'
+        atmCashAuthorizationStatistics:
+          type: object
+          properties:
+            todaysAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of ATM cash authorizations for this card today.
+              example: $1000.00
+            todaysAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of ATM cash authorizations for this card today.
+              format: int32
+              example: '5'
+            ctdAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of ATM cash authorizations for this card cycle-to-date.
+              example: $10234.00
+            ctdAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of ATM cash authorizations for this card cycle-to-date.
+              format: int32
+              example: '6'
+            ytdAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of ATM cash authorizations for this card year-to-date.
+              example: $123456.00
+            ytdAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of ATM cash authorizations for this card year-to-date.
+              format: int32
+              example: '8'
+            ltdAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of ATM cash authorizations for this card life-to-date.
+              example: $1234560.00
+            ltdAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of ATM cash authorizations for this card life-to-date.
+              format: int32
+              example: '12'
+        otcCashAuthorizationStatistics:
+          type: object
+          properties:
+            todaysAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of OTC cash authorizations for this card today.
+              example: $1000.00
+            todaysAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of OTC cash authorizations for this card today.
+              format: int32
+              example: '5'
+            ctdAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of OTC cash authorizations for this card cycle-to-date.
+              example: $10234.00
+            ctdAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of OTC cash authorizations for this card cycle-to-date.
+              format: int32
+              example: '6'
+            ytdAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of OTC cash authorizations for this card year-to-date.
+              example: $123456.00
+            ytdAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of OTC cash authorizations for this card year-to-date.
+              format: int32
+              example: '8'
+            ltdAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of OTC cash authorizations for this card life-to-date.
+              example: $1234560.00
+            ltdAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of OTC cash authorizations for this card life-to-date.
+              format: int32
+              example: '12'
+        retailAuthorizationStatistics:
+          type: object
+          properties:
+            todaysAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of Retail cash authorizations for this card
+                today.
+              example: $1000.00
+            todaysAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of Retail cash authorizations for this card
+                today.
+              format: int32
+              example: '5'
+            ctdAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of Retail cash authorizations for this card
+                cycle-to-date.
+              example: $10234.00
+            ctdAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of Retail cash authorizations for this card
+                cycle-to-date.
+              format: int32
+              example: '6'
+            ytdAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of Retail cash authorizations for this card
+                year-to-date.
+              example: $123456.00
+            ytdAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of Retail cash authorizations for this card
+                year-to-date.
+              format: int32
+              example: '8'
+            ltdAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Total amount of Retail cash authorizations for this card
+                life-to-date.
+              example: $1234560.00
+            ltdAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total number of Retail cash authorizations for this card
+                life-to-date.
+              format: int32
+              example: '12'
     InquireCardResponseModel:
       required:
       - paymentInstrumentId
@@ -3445,6 +4046,36 @@ components:
           description: Unique identification number that appears on the front of the
             card (PAN).
           example: '0009846801010273605'
+    ListVisaTokenResponseModel:
+      type: object
+      properties:
+        tokenList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenList_ListVisaTokenResponseModel'
+    TokenList_ListVisaTokenResponseModel:
+      type: object
+      properties:
+        vtsTokennumber1:
+          maxLength: 19
+          type: string
+          description: Token number assigned by the Visa Tokenization Service(VTS).
+          example: '5077400005048482515'
+        tokenReferenceId1:
+          maxLength: 32
+          type: string
+          description: Reference identification code associated with the token.
+          example: f16ae3173df94aa08c6fea051304c4e2
+        tokenRequestorId1:
+          maxLength: 11
+          type: string
+          description: Identification number of the token requestor.
+          example: '06100000005'
+        cardhWalletAcctId1:
+          maxLength: 32
+          type: string
+          description: identifier of the card holder Wallet
+          example: ' '
   securitySchemes:
     Authorization:
       type: http

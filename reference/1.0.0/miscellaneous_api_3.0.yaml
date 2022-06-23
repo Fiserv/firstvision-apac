@@ -4,7 +4,7 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: https://stg34.visionplus.io/sandbox/
+- url: http://localhost:8080/
 tags:
 - name: Miscellaneous
 paths:
@@ -42,6 +42,28 @@ paths:
               $ref: '#/components/schemas/BoardEntityReqModel'
         required: true
       responses:
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardEntityResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -58,28 +80,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardEntityResponseModel'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -88,8 +88,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -139,6 +139,124 @@ paths:
           type: integer
           example: '600'
       responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Business Unit
+      x-group-name: Miscellaneous
+  /v1/misc/{businessUnit}/billingCycleAssignment:
+    get:
+      tags:
+      - Miscellaneous
+      summary: Inquire Billing Cycle Assignment
+      description: This service is used to retrieve billing cycle assignment details.
+      operationId: InquireBillingCycleAssignment
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: path
+        description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBillingCycleAssignmentResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -155,8 +273,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -171,12 +289,76 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Billing Cycle Assignment
+      x-group-name: Miscellaneous
+  /v1/misc/health:
+    get:
+      tags:
+      - Miscellaneous
+      summary: System Status
+      description: This service is used to verify CMS and FAS processing status.
+      operationId: CheckHealth
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.DeKHECWfxmqMQPBITESy2Z12KUh8Y_hxwchOFykacjFCOspMk5HJAyWCxASlKTz503YKqLLHK6YF-aAkNCeeikPWpHM8GWCOr-KqhKOkghVPHIbNHOUUiSIiO2KE2VuC3srhYgSMDxd_4rCNtfeGgZ7STgVYkxQAfKwWC0YRSySKckOdz1b0WzcZsAaIGp6BtyMz5js-lGaL5zIBfNfMtuWrlrH2n9Vhd8Qe74VrsR7JP6_GxtKaEONIYbhkDkwSOAaz64hLvpo6e5Z0v_UHuglSWZ2HNRJ2Tk1I0tpHSqvxejiZ_LMv4WUmMOct6vr9rjUMIRG6DqsTVBi5c6Vbng
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
+                $ref: '#/components/schemas/CheckHealthResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -185,8 +367,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -196,7 +378,7 @@ paths:
       security:
       - Authorization: [
           ]
-      x-proxy-name: Inquire Business Unit
+      x-proxy-name: Check Health
       x-group-name: Miscellaneous
 components:
   schemas:
@@ -1508,28 +1690,6 @@ components:
             addressDetails:
               type: object
               properties: *id001
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        status:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        invalid-params:
-          type: array
-          items:
-            type: string
     BoardEntityResponseModel:
       type: object
       properties:
@@ -1600,6 +1760,28 @@ components:
               type: string
               description: Masked payment card number.
               example: ''
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        invalid-params:
+          type: array
+          items:
+            type: string
     InquireBusinessUnitResponseModel:
       required:
       - businessUnit
@@ -2069,6 +2251,86 @@ components:
           enum:
           - '0'
           - '1'
+    BillingCycleAssignmentDetails_InquireBillingCycleAssignmentResponseModel:
+      type: object
+      properties:
+        lastStatementProducedDate:
+          maxLength: 10
+          type: string
+          description: Date on which the corresponding billing cycle was last produced
+            during a statement run. The day of the month entered in CCC DAY NEXT must
+            never be less than 25 days from this date.
+          example: 5/02/2021
+        callCycleNextDay:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Day of the month on which the related billing cycle occurs
+            during the current month. If you select a nonprocessing day, the cycle’s
+            statement is produced on the processing day that precedes the selected
+            day. This day must be at least 25 calendar days from the DATE LAST STATEMENT
+            PRODUCED date. It must also be equal to or greater than the NO. (CYCLE)
+            value.
+          format: int32
+          example: '30'
+    InquireBillingCycleAssignmentResponseModel:
+      required:
+      - businessUnit
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 001-998.
+          format: int32
+          example: '600'
+        billingMethod:
+          maxLength: 1
+          type: string
+          description: Type of billing method system uses. <br/>The values are:<br/>
+            &nbsp; 'C' - Call cycle <br/> &nbsp; 'D' - Demand (Default)
+          example: D
+          enum:
+          - D
+          - C
+        billingCycleAssignmentDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingCycleAssignmentDetails_InquireBillingCycleAssignmentResponseModel'
+    CheckHealthResponseModel:
+      type: object
+      properties:
+        creditManagementHealthStatus:
+          maxLength: 1
+          type: string
+          description: Code and description that indicate the current processing status
+            of CMS. <br/> The values are:<br/>&nbsp; '0' - Active; normal processing
+            can continue <br/>&nbsp; '1' - End-of-day processing <br/>&nbsp; '2' -
+            After-hours processing <br/>&nbsp; '3' - After-hours file update processing
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        authorizationHealthStatus:
+          maxLength: 1
+          type: string
+          description: Code and description that indicate the current processing status
+            of FAS. <br/> The values are:<br/>&nbsp; '0' - Active; normal processing
+            can continue <br/>&nbsp; '1' - End-of-day processing, FAS processing can
+            continue but authorizations will be posted to shadow files <br/>&nbsp;
+            '2' - After-hours processing, no FAS processing is allowed due to after-hours
+            transaction updates <br/>&nbsp; '3' - After-hours file update processing,
+            no processing
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
   securitySchemes:
     Authorization:
       type: http
