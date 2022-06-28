@@ -42,8 +42,14 @@ paths:
               $ref: '#/components/schemas/BoardEntityReqModel'
         required: true
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardEntityResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -58,12 +64,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardEntityResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -88,8 +88,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -139,8 +139,14 @@ paths:
           type: integer
           example: '600'
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -155,12 +161,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -185,8 +185,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -235,8 +235,14 @@ paths:
           type: integer
           example: '600'
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBillingCycleAssignmentResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -259,12 +265,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireBillingCycleAssignmentResponseModel'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -281,8 +281,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -321,8 +321,8 @@ paths:
           type: string
           example: ABC123
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -345,6 +345,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckHealthResponseModel'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -361,14 +367,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CheckHealthResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -499,19 +499,17 @@ components:
           type: object
           properties:
             dualFlag:
-              maximum: 9
               maxLength: 1
-              type: integer
+              type: string
               description: 'This field indicates whether CMS adds a duplicate customer
                 entity in the associated business unit for dual currency processing.
                 <br/>The values are: <br/> &nbsp; ''0'' - Do not duplicate the customer
                 entity in the associated business unit (Default) <br/> &nbsp; ''1''
                 - Duplicate the customer entity in the associated business unit'
-              format: int32
               example: '0'
               enum:
-              - 0
-              - 1
+              - '0'
+              - '1'
             title:
               maxLength: 20
               type: string
@@ -1749,28 +1747,6 @@ components:
             addressDetails:
               type: object
               properties: *id001
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        status:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        invalid-params:
-          type: array
-          items:
-            type: string
     BoardEntityResponseModel:
       type: object
       properties:
@@ -1848,6 +1824,28 @@ components:
               type: string
               description: Masked payment card number.
               example: ''
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        invalid-params:
+          type: array
+          items:
+            type: string
     InquireBusinessUnitResponseModel:
       required:
       - businessUnit
@@ -2070,9 +2068,8 @@ components:
           format: int32
           example: '1235'
         transactionBasedOffers:
-          maximum: 9
           maxLength: 1
-          type: integer
+          type: string
           description: This field identifies whether the business unit takes part
             in transaction-based offers. <br/>The values are:<br/> &nbsp; '0' - Transaction-based
             offers are not active (Default)<br/> &nbsp; '1' - Transaction-based pricing
@@ -2083,15 +2080,14 @@ components:
             plans and transaction-based discount offers are active <br/> &nbsp; '5'
             -  Transaction-based pricing offers on all plans and transaction-based
             discount offers are active
-          format: int32
           example: '1'
           enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
         useServiceCharges:
           maxLength: 1
           type: string
