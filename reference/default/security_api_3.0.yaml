@@ -4,7 +4,7 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: http://localhost:8080/
+- url: https://stg34.visionplus.io/sandbox/
 tags:
 - name: Security Management
 paths:
@@ -34,19 +34,14 @@ paths:
         schema:
           type: string
           example: Basic UE9DX05BQl9EZXY6YkhXTVR6Y0VPQ3I3cXU2WWN5M21jUnV1eXdaRzdmT3VobXNiZWNaNGFOYlVRYU5HYWNqeFY0SkM5c0s5WkR6RQ==
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TokenRequest'
+      - name: scope
+        in: query
+        description: Limit the amount of access that is granted to an access token
         required: true
+        schema:
+          type: string
+          example: accounts cards customers users products misc
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -55,24 +50,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
           content:
             '*/*':
               schema:
@@ -95,24 +80,52 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Get Access Token
       x-group-name: Security
 components:
   schemas:
-    TokenRequest:
+    ResponseErrorMessageInfo:
       type: object
       properties:
-        scope:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          format: int32
+          example: '0'
+        invalid-params:
           type: array
           items:
             type: string
-            description: Used to control access of users' resource
-            example: INQUIRE
-            enum:
-            - INQUIRE
-            - ADD
-            - UPDATE
-            - LIST
     TokenResponse:
       type: object
       properties:
@@ -128,28 +141,6 @@ components:
           type: string
           description: Time after which token will be expired
           example: ''
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        status:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        invalid-params:
-          type: array
-          items:
-            type: string
   securitySchemes:
     Authorization:
       type: http
