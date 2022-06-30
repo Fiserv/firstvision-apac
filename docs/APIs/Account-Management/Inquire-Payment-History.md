@@ -27,10 +27,11 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
+
 {
   "accountId": "0006000011000000137",
   "businessUnit": 600,
-  "paymentHistoryRes": [
+  "paymentHistory": [
     {
       "beforePaymentTotalDueAmount": "$70.00",
       "cycleDue": 1,
@@ -141,7 +142,6 @@ The below table identifies the required parameters in the request payload.
     }
   ]
 }
-
 ```
 
 ### Error Response Payload
@@ -149,7 +149,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
    "errorCode" :  "V5PH0004SF" ,
-   "errorMessage" : "Get Request - Record Not Found"   
+   "errorMessage" : "Get request - Record Not Found"   
 }
 ```
 
@@ -157,4 +157,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5PH0004SF` | Get Request - Record Not Found |
+| `V5PH0004SF` | Get request - Record Not Found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

@@ -51,4 +51,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `VMES0025EF` | Client/Name or password is invalid - Please retry |         
+| `VMES0025EF` | Client/Name or password is invalid - Please retry |   
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

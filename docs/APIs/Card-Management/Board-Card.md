@@ -20,15 +20,15 @@ Fields that are not provided in the Request object will be initialised to their 
   "customerId": "0006000012000000256",
   "cardAction": "0",
   "numberOfCardsRequested": 0,
-  "typeOfCard": 0,
+  "cardType": 0,
   "requestedCardType": 0,
-  "typeCardMailer": 0,
+  "cardMailerType": 0,
   "plasticId": " ",
   "name1TypeIndicator": "0",
   "name2TypeIndicator": "0",
   "posServiceCode": 0,
   "cardholderFlag": "0",
-  "isVisaMiniCardEnabled": " ",
+  "visaMiniCardVersion": "0",
   "programId": 0,
   "mobileDeviceId": "12343",
   "mobileProvisionStatus": "0",
@@ -36,13 +36,13 @@ Fields that are not provided in the Request object will be initialised to their 
   "mccGroupLimits": " ",
   "chequeAccountId": " ",
   "savingsAccountId": " ",
-  "namesDataReq": {
+  "namesData": {
     "embossedName1": "John Brono ",
     "embossedName2": "Samuel Baro",
     "name1": "ABCD",
     "name2": "QWER"
   },
-  "addressDataReq": {
+  "addressData": {
     "addressLine1": "House no. 12 ",
     "addressLine2": "St. Paul Road ",
     "city": " ",
@@ -70,12 +70,12 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "businessUnit": 600,
   "activationStatus": "0",
-  "expirationDate": "18/01/2024",
-  "maskedPaymentInstrumentId": "0004440010014773468",
+  "businessUnit": 600,
+  "expiryDate": "18/01/2024",
+  "maskedPaymentCardNumber": "0004440010737034347",
   "nameOnCard": "John Brono",
-  "paymentInstrumentId": "0004440010014773468",
+  "paymentInstrumentId": "0004440010737034347",
   "productId": 1
 }
 ```
@@ -85,7 +85,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
    "errorCode" :  V5SB4003EA" ,
-   "errorMessage" : "Base Account Number is requsted"   
+   "errorMessage" : "Base account number is requsted"   
 }
 ```
 
@@ -96,27 +96,29 @@ Below table provides the list of application's error code and its description.
 | `V5SB4003EA` | Base account number is requsted |
 | `V5SB4003EG` | Base account number must be numeric | 
 | `V5SB4003EH` | Base account number required |
-| `V5SB4005EA` | Customer NA account must be blank | 
-| `V5SB4005EB` | Customer NA account required |
-| `V5SB4005EG` | Customer NA account must be blank | 
-| `V5SB4005EH` | Customer NA account must be numeric | 
-| `V5SB4008EA` | Relationship not Valid for this ORG |
-| `V5SB4008EB` | Relationship not Valid for the DUAL ORG | 
+| `V5SB4005EA` | Customer na account must be blank | 
+| `V5SB4005EB` | Customer na account required |
+| `V5SB4005EG` | Customer na account must be blank | 
+| `V5SB4005EH` | Customer na account must be numeric | 
+| `V5SB4008EA` | Relationship not valid for this org |
+| `V5SB4008EB` | Relationship not valid for the dual org | 
 | `V5SB4001EA` | Organization not on file |
 | `V5SB4001SA` | Organization not on file |
-| `V5SB4002EA` | LOGO Record not on File |
-| `V5SB4002EB` | LOGO Record is incomplete | 
+| `V5SB4002EA` | Logo record not on file |
+| `V5SB4002EB` | Logo record is incomplete | 
 | `V5SB4009EA` | Relationship number required | 
 | `V5SB4011EA` | Insurance not allowed for prepaid accounts | 
-| `V5SB4012EA` | Sweeping not allowed this LOGO |
-| `V5SB4012EB` | HCS must be active for account type values 1,2,3 | 
+| `V5SB4012EA` | Sweeping not allowed this logo |
+| `V5SB4012EB` | Hcs must be active for account type values 1,2,3 | 
 | `V5SB4150EI` | No embosser record allowed for control account |
 | `V5SB4150EJ` | No embosser record allowed for diversion account | 
 | `V5SB4150EK` | No embosser record allowed for billing account |
-| `V5AP4061EA` | Number cards required must equal 0 OR 1 |
+| `V5AP4061EA` | Number cards required must equal 0 or 1 |
 | `V5AP4063EA` | Embossed name type must not equal 3 |
 | `V5AP4088EA` | Card delay days value must be numeric | 
 | `V5AP4097SA` | Card number and account number must be equal for card scheme | 
 | `V5AP4101SA` | Card number check digit is invalid |
 | `V5AP4105SA` | Card sequence already atmaximum for card number | 
 | `V5AP4106SA` | Card sequence already atmaximum for chip card number |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

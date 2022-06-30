@@ -28,39 +28,37 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
+  "balanceTransferType": "N",
   "businessUnit": 600,
-  "planId": 10002,
+  "consolidatedDetails": {
+    "consolidatedPayment": "Y",
+    "controllingCreditPlanMaster": 10002,
+    "isConsolidatedStatementEnabled": "Y"
+  },
   "description": "RETAIL PLAN",
-  "planType": "R",
+  "graceBalanceQualification": "0",
+  "interestRateTableId": "2",
+  "interestRateTableOverride": {
+    "expiryDate": "00/00/0000",
+    "tableId": 0
+  },
   "multipleSales": "Y",
   "paymentType": "T",
-  "balanceTransferType": "N",
-  "graceBalanceQualification": "1",
-  "interestRateTableId": "1",
-  "interestRateTableOverrideRes": {
-    "tableId": 1,
-    "expiryDate": "15/08/2023"
-  },
-  "consolidatedDetailsRes": {
-    "controllingCreditPlanMaster": 10003,
-    "isConsolidatedStatement": "Y",
-    "consolidatedPayment": "Y"
-  },
-  "promotionalPlanDetailsRes": {
-    "latePaymentCancelRoll": "1",
-    "delinquencyLevelToCancel": "6",
+  "planId": 10002,
+  "planType": "R",
+  "promotionalPlanDetails": {
     "cancellationLetterId": "",
-    "cancellationRollOverPlanId": 50002,
     "cancellationPlanRollOverMethod": "0",
-    "expirationRollover": "1",
-    "expirationLetter": "EXP",
-    "expirationRollOverPlanId": 50001,
-    "expirationPlanRollOverMethod": "0"
+    "cancellationRollOverPlanId": 0,
+    "delinquencyLevelToCancel": "0",
+    "expirationLetter": "",
+    "expirationPlanRollOverMethod": "0",
+    "expirationRollOverPlanId": 0,
+    "expirationRollover": "0",
+    "latePaymentCancelRoll": "0"
   }
 }
-
 ```
 
 ### Error Response Payload
@@ -68,7 +66,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5CP0004SF",
-  "errorMessage": "Get Request - Record not found"  
+  "errorMessage": "Get request - Record not found"  
 }
 ```
 
@@ -76,4 +74,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5CP0004SF` | Get Request - Record not found |         
+| `V5CP0004SF` | Get request - Record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

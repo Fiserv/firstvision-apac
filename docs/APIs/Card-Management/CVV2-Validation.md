@@ -50,9 +50,11 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5VC4001EA` | Invalid Org Number |
+|`V5VC4001EA` | Invalid org number |
 |`V5VC0287EA` | Org not found or in add-pending status |
 |`V5VC4002EA` | Invalid card number |
 |`V5VC4002EA` | Card number not found |
 |`V5VC4004AE` | Invalid expiry date |
 |`V5VC4003AE` | Invalid CVV2 | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

@@ -32,8 +32,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "businessUnit": 600,
   "accountId": "0006000011000000137",
+  "businessUnit": 600,
   "isSupressTokenEnabled": "0"
 }
 ```
@@ -54,5 +54,6 @@ Below table provides the list of application's error code and its description.
 | `V5BS0521SN` | Suppress token is not numeric |        
 | `V5BS0521SV` | Invalid suppress token | 
 | `V5BS0521SZ` | Update access not granted for Suppress Token | 
-| `V5BS0010SF` | Update Request - Record not found | 
+| `V5BS0010SF` | Update request - Record not found | 
 
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

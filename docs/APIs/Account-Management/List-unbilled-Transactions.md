@@ -30,13 +30,13 @@ The below table identifies the required parameters in the request payload.
 ```json
 
 {
-  "transactionListRes": [
+  "transactionList": [
     {
       "authorizationCode": "052205",
-      "creditPlan": 10001,
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "17/08/2021",
       "referenceNumber": "FV090921017335430013773",
       "transactionAmount": "$0.00",
@@ -45,10 +45,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": "052206",
-      "creditPlan": 10001,
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "17/08/2021",
       "referenceNumber": "FV090921019032730013773",
       "transactionAmount": "$0.00",
@@ -57,10 +57,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": "052210",
-      "creditPlan": 10001,
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091321014345330013773",
       "transactionAmount": "$0.00",
@@ -69,10 +69,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": "052213",
-      "creditPlan": 10001,
       "description": "VISA Domestic Restaurant Melbourne    AU",
       "effectiveDate": "17/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091321017220871972150",
       "transactionAmount": "$0.00",
@@ -81,10 +81,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": "052219",
-      "creditPlan": 10001,
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091321023074830013773",
       "transactionAmount": "$0.00",
@@ -93,10 +93,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": "052220",
-      "creditPlan": 10001,
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091421013262530013773",
       "transactionAmount": "$0.00",
@@ -105,10 +105,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": "052226",
-      "creditPlan": 10001,
       "description": "Dom POS via VISA         SYDNEY       AU",
       "effectiveDate": "17/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "17/08/2021",
       "referenceNumber": "FV0914210164216L14299",
       "transactionAmount": "$0.00",
@@ -117,10 +117,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": "052227",
-      "creditPlan": 10001,
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091421018113030013773",
       "transactionAmount": "$0.00",
@@ -129,10 +129,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": "052205",
-      "creditPlan": 10001,
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "18/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "18/08/2021",
       "referenceNumber": "FV090921017335430013773",
       "transactionAmount": "$0.00",
@@ -141,10 +141,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": "052206",
-      "creditPlan": 10001,
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "18/08/2021",
       "paymentInstrumentId": "0009846801010272888",
+      "planId": 10001,
       "postingDate": "18/08/2021",
       "referenceNumber": "FV090921019032730013773",
       "transactionAmount": "$0.00",
@@ -153,7 +153,6 @@ The below table identifies the required parameters in the request payload.
     }
   ]
 }
-
 ```
 ### Error Response Payload
 
@@ -169,3 +168,5 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5T24002SB` | No account on File |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

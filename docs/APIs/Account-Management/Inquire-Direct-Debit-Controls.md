@@ -17,7 +17,7 @@ This service is used to get detail for direct debit for given account. It shows 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/directDebit).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/directDebitControls.
 
 The below table identifies the required parameters in the request payload.
 
@@ -31,7 +31,7 @@ The below table identifies the required parameters in the request payload.
 {
   "accountId": "0006000011000000137",
   "businessUnit": 600,
-  "directDebitDetailsRes": {
+  "directDebitDetails": {
     "accountType": "D",
     "externalAccountId": " ",
     "nominatedPaymentAmountPercentage": "10",
@@ -58,3 +58,5 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5BS0010SF` | Update request - Record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

@@ -27,10 +27,8 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
-
 {
-  "planDetailsRes": [
+  "planDetails": [
     {
       "accountId": "0006000011000000137",
       "accruedThroughDate": "18/08/2021",
@@ -54,11 +52,10 @@ The below table identifies the required parameters in the request payload.
       "recordCount": 1,
       "recoveryFeeBilledNotPaidAmount": "$0.00",
       "serviceFeeBilledNotPaidAmount": "$0.00",
-      "status": "61"
+      "status": "1"
     }
   ]
 }
-
 ```
 
 ### Error Response Payload
@@ -72,3 +69,5 @@ The below table identifies the required parameters in the request payload.
 Below table provides the list of application's error code and its description.
 
 | `V5PS4010SA` | Account not present in account file | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

@@ -1,4 +1,4 @@
-# Update Customer
+# Update Customer Demographics
 
 This service will be used to update the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer.  The customer ID will be passed in the input request to retrieve the demographic information. 
 
@@ -12,7 +12,7 @@ This service will be used to update the customer demographic details such as Nam
 
 ```json
 {
-  "namesDataReq": {
+  "namesData": {
     "birthName": "",
     "givenName": "ABC",
     "middleName": "",
@@ -31,7 +31,7 @@ This service will be used to update the customer demographic details such as Nam
   "emailAddress": "SAM@FISERV.COM",
   "birthDate": "06/04/1986",
   "isReturnMailEnabled": "Y",
-  "employerDataReq": {
+  "employerData": {
     "nameOfEmployer": "Y",
     "addressLine1": "Y",
     "addressLine2": "Y",
@@ -39,7 +39,7 @@ This service will be used to update the customer demographic details such as Nam
     "phoneFlag": "0",
     "jobTitle": "Y"
   },
-  "addressDataReq": {
+  "addressData": {
     "addressLine3": "CHITRAPURI",
     "addressLine4": "DELHI",
     "addressLine1": "FLAT NO:404",
@@ -48,7 +48,7 @@ This service will be used to update the customer demographic details such as Nam
     "stateProvince": "DL",
     "countryCode": "IND",
     "postalCode": "110004",
-    "houseNumber": "233"
+    "houseNumber": ""
   }
 }
 ```
@@ -69,14 +69,14 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "addressDataRes": {
+  "addressData": {
     "addressLine1": "FLAT NO:404",
     "addressLine2": "RAINBOW APTS",
     "addressLine3": "CHITRAPURI",
     "addressLine4": "DELHI",
     "city": "DELHI",
     "countryCode": "IND",
-    "houseNumber": "233",
+    "houseNumber": " ",
     "postalCode": "110004",
     "stateProvince": "DL"
   },
@@ -84,7 +84,7 @@ The below table identifies the required parameters in the request payload.
   "businessUnit": 200,
   "customerId": "0000020000065439605",
   "emailAddress": "SAM@FISERV.COM",
-  "employerDataRes": {
+  "employerData": {
     "addressLine1": "Y",
     "addressLine2": "Y",
     "jobTitle": "Y",
@@ -100,7 +100,7 @@ The below table identifies the required parameters in the request payload.
   "languageIndicator": "AUS",
   "mobileNumber": "112233",
   "mobilePhoneFlag": "0",
-  "namesDataRes": {
+  "namesData": {
     "birthName": " ",
     "givenName": "ABC",
     "middleName": " ",
@@ -149,3 +149,5 @@ Below table provides the list of application's error code and its description.
 |`V5NA0333SZ` | Update access not granted for Mobile Number |
 |`V5NA0504SZ` | Update access not granted for User Defined Field 4 |
 |`V5NA0419SZ` | Update access not granted for Email Address |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

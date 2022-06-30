@@ -45,7 +45,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5ED0330SV",
-  "errorMessage": "Card - Invalid  Reissue-deliv-option"  
+  "errorMessage": "Card - invalid  reissue-deliv-option"  
 }
 ```
 
@@ -53,9 +53,11 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5ED0330SV` | Card - Invalid  Reissue-deliv-option |        
-| `V5ED0331SV` | Card - Invalid  Issue-deliv-option | 
-| `V5ED0010SF` | Update Request - Record not found | 
+| `V5ED0330SV` | Card - invalid  reissue-deliv-option |        
+| `V5ED0331SV` | Card - invalid  issue-deliv-option | 
+| `V5ED0010SF` | Update request - Record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).* 
 
 
 

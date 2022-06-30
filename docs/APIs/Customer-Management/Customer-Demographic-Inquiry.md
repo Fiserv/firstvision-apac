@@ -28,7 +28,7 @@ The below table identifies the required query parameters in the request message.
 
 ```json
 {
-  "addressDetailsRes": {
+  "addressDetails": {
     "addressLine1": "FLAT NO:404",
     "addressLine2": "RAINBOW APTS",
     "addressLine3": "CHITRAPURI",
@@ -43,7 +43,7 @@ The below table identifies the required query parameters in the request message.
   "businessUnit": 200,
   "customerId": "0000020000065439605",
   "emailAddress": "SAM@FISERV.COM",
-  "employerDetailsRes": {
+  "employerDetails": {
     "addressLine1": "Y",
     "addressLine2": "Y",
     "jobTitle": "Y",
@@ -59,7 +59,7 @@ The below table identifies the required query parameters in the request message.
   "languageIndicator": "AUS",
   "mobileNumber": "112233",
   "mobilePhoneFlag": "0",
-  "namesDetailsRes": {
+  "namesDetails": {
     "birthName": " ",
     "givenName": "ABC",
     "middleName": " ",
@@ -87,5 +87,7 @@ Below table provides the list of application's error code and its description.
 |`V5NA4002SA` | Customer account not found|
 |`V5NA4002SB` | Customer account is in add pending|
 |`V5NA4002SC` | Customer account is purged|
-|`V5NA0004SF` | Get  Request - Record not found|
-|`V5NA0005SF` | Get Request - Record add pending|
+|`V5NA0004SF` | Get  request - Record not found|
+|`V5NA0005SF` | Get request - Record add pending|
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

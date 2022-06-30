@@ -14,7 +14,7 @@ The Direct Debit Update message enables the user to update the Direct Debit info
 
 ```json
 {
-  "directDebitDetailsReq": {
+  "directDebitDetails": {
     "paymentRemittanceMethod": "0",
     "paymentStartDate": "04/10/2021",
     "paymentExpiryDate": "04/11/2022",
@@ -45,7 +45,7 @@ The below table identifies the required parameters in the request payload.
 {
   "accountId": "0006000011000000103",
   "businessUnit": 600,
-  "directDebitDetailsRes": {
+  "directDebitDetails": {
     "accountType": "D",
     "externalAccountId": "1000000057",
     "nominatedPaymentAmountPercentage": "10",
@@ -56,7 +56,6 @@ The below table identifies the required parameters in the request payload.
     "routingBankID": "123456"
   }
 }
-  
 ```
 
 ### Error Response Payload
@@ -100,3 +99,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS0627EC` | DD nominated payment amount/percent must be less than 100% and not 0 when DD nom indicator is 2 or 9 |
 | `V5BS0627EE` | Nominated ach pct/amt not editable when debit active at logo |
 | `V5BS0627SG` | ACH pct amount is not zero |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

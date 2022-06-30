@@ -28,12 +28,11 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
   "authAlerts": "0",
   "automaticAccountNumberGeneration": "I",
   "businessUnit": 600,
-  "cardActivationControlsRes": {
+  "cardActivationControls": {
     "additionalCardActivation": "Y",
     "newCardActivation": "Y",
     "reissueCardActivation": "Y",
@@ -61,7 +60,7 @@ The below table identifies the required parameters in the request payload.
   "isLoyaltyManagementEnabled": "1",
   "isManualPinResetEnabled": "1",
   "isNewCardDefaultEnabled": "0",
-  "isOverlimitProcessingOptinIndicator": "0",
+  "isOverlimitProcessingOptinIndicatorEnabled": "0",
   "isPaymentHolidaysEnabled": "Y",
   "isSameDayEmbossingEnabled": "0",
   "isScriptingEnabled": "0",
@@ -72,83 +71,83 @@ The below table identifies the required parameters in the request payload.
   "isWspTokenEnabled": "-16",
   "issuanceId": "SX1",
   "keyTypeForPinMailerFiles": "B",
-  "markUpFeeControlsRes": {
-    "isCreditFeeEnabled": "0",
+  "markUpFeeEnabled": {
     "isIssuerEnabled": "0",
+    "isReimburseIssuerOrSchemaEnabled": "0",
     "isSchemeEnabled": "0",
     "isUserDefinedEnabled": "0"
   },
   "newCardPlastics": "Y",
   "openToBuyCreditBalance": "3",
-  "paymentProcessingControlsRes": {
-    "applicationMethodForAr": "H",
-    "applicationMethodForPl": "D",
+  "paymentProcessingControls": {
+    "applicationMethodForAccountReceivable": "H",
+    "applicationMethodForProfitLoss": "D",
     "paymentApplicationLevel": "P",
     "prepaymentsAllowed": "0"
   },
-  "pinMailerForCardActionRes": [
+  "pinMailerForCardAction": [
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     },
     {
-      "cardActions": "0",
+      "cardAction": "0",
       "pinOptions": "0"
     }
   ],
@@ -160,7 +159,6 @@ The below table identifies the required parameters in the request payload.
   "residenceId": "SX1",
   "typeOfAccountsProcessed": "X"
 }
-
 ```
 
 ### Error Response Payload
@@ -168,7 +166,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5CR0004SF",
-  "errorMessage": "Get Request - Record not found"  
+  "errorMessage": "Get request - Record not found"  
 }
 ```
 
@@ -177,4 +175,6 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5CR0484EA` | Org not found |         
-| `V5CR0004SF` | Get Request - Record not found | 
+| `V5CR0004SF` | Get request - Record not found | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

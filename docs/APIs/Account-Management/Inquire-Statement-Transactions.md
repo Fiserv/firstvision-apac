@@ -1,10 +1,10 @@
-# Inquire Statement Transactions
+# Inquire Statement Transaction Details
 
 This service is used to fetch statement details for a given account number.
 
 ## Endpoint
 
-`GET /v1/accounts/{accountId}/statementTransactionDetails`
+`GET /v1/accounts/{accountId}/statementTransactions
 
 ## Payload Example
 
@@ -17,7 +17,7 @@ This service is used to fetch statement details for a given account number.
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/statementTransactionDetails).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/statementTransactions).
 
 The below table identifies the required parameters in the request payload.
 
@@ -32,7 +32,7 @@ The below table identifies the required parameters in the request payload.
 {
   "accountStatus": "A",
   "alternateCustomerId": "",
-  "amountDetailsRes": {
+  "amountDetails": {
     "beginningBalance": "$7.00",
     "calculatedInstallmentAmount": "$0.00",
     "cashAvailable": "$0.00",
@@ -61,22 +61,23 @@ The below table identifies the required parameters in the request payload.
   "blockCode1": "",
   "blockCode2": "",
   "businessUnit": 200,
+  "continuationToken": "2000002000010000066752202118q50052",
   "correspondingCustomerId": "",
   "creditClass": "N1",
   "creditCount": 78,
   "currencyConversionRate": 0,
   "customerId": "0002000000050256486",
   "cycleDue": 0,
-  "dateFieldsDetailsRes": {
+  "dateFieldsDetails": {
     "graceExpiryDate": "30/06/2021",
     "lastStatementDate": "11/05/2021",
     "thisStatementDate": "30/06/2021"
   },
   "daysInCycle": 0,
   "debitCount": 78,
-  "dueDetailsRes": {
+  "dueDetails": {
     "currentDueAmount": "$0.00",
-    "dueDate": "08/07/2021",
+    "paymentDueDate": "08/07/2021",
     "totalDueAmount": "$0.00",
     "totalDueBalance": "$0.00",
     "totalPastDueAmount": "$0.00"
@@ -85,19 +86,17 @@ The below table identifies the required parameters in the request payload.
   "lifeToDateCount": 3,
   "minimumPaymentAmount": 0,
   "noOfQualifiedTxns": 0,
-  "pageOffset": "2000002000010000066752202118q50052",
   "personalId": "",
   "relationshipId": "",
   "residenceId": "SX1",
   "revolvingStatus": "",
   "shortName": "TEST SHORT NAME",
   "statementModeOrStatus": "",
-  "transactionDetailsRes": [
+  "transactionDetails": [
     {
       "amount": "$10.00",
       "authorizationCode": "021447",
       "category": 5999,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Australia Bank         Melbaourne    AU",
       "effectiveDate": "13/05/2021",
@@ -105,19 +104,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "13/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211330002000010000025",
+      "referenceNumber": "VT211330002000010000025",
       "skuNumber": 0,
       "transactionCode": 4000,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$1.00",
       "authorizationCode": "021447",
       "category": 5999,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Australia Bank         Melbaourne    AU",
       "effectiveDate": "13/05/2021",
@@ -125,19 +124,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "13/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211330002000010000026",
+      "referenceNumber": "VT211330002000010000026",
       "skuNumber": 0,
       "transactionCode": 4579,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$10.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "13/05/2021",
@@ -145,19 +144,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "13/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980513199980010",
+      "referenceNumber": "19999999980513199980010",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$15.01",
       "authorizationCode": "022709",
       "category": 5999,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Wall Mart LLC AUS      Sydney        AU",
       "effectiveDate": "18/05/2021",
@@ -165,19 +164,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "18/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211380004000010000001",
+      "referenceNumber": "VT211380004000010000001",
       "skuNumber": 0,
       "transactionCode": 4567,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$15.01",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET DEBIT",
       "effectiveDate": "18/05/2021",
@@ -185,19 +184,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "18/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980518199980010",
+      "referenceNumber": "19999999980518199980010",
       "skuNumber": 0,
       "transactionCode": 7015,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$11.11",
       "authorizationCode": "023754",
       "category": 5999,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Wall Mart LLC          Sydney        AU",
       "effectiveDate": "19/05/2021",
@@ -205,19 +204,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211400002000010000010",
+      "referenceNumber": "VT211400002000010000010",
       "skuNumber": 0,
       "transactionCode": 4000,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$25.00",
       "authorizationCode": "023911",
       "category": 5331,
-      "creditPlan": 10002,
       "department": " ",
       "description": "CHIP EFTPOS              PHEASANTS NESAU",
       "effectiveDate": "20/05/2021",
@@ -225,19 +224,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000064",
+      "referenceNumber": "ST211400003000010000064",
       "skuNumber": 0,
       "transactionCode": 6800,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$21.00",
       "authorizationCode": "023912",
       "category": 5331,
-      "creditPlan": 10002,
       "department": " ",
       "description": "CHIP EFTPOS              PHEASANTS NESAU",
       "effectiveDate": "20/05/2021",
@@ -245,19 +244,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000065",
+      "referenceNumber": "ST211400003000010000065",
       "skuNumber": 0,
       "transactionCode": 6804,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$4.00",
       "authorizationCode": "023912",
       "category": 5331,
-      "creditPlan": 10002,
       "department": " ",
       "description": "CHIP EFTPOS              PHEASANTS NESAU",
       "effectiveDate": "20/05/2021",
@@ -265,19 +264,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000066",
+      "referenceNumber": "ST211400003000010000066",
       "skuNumber": 0,
       "transactionCode": 6806,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$10.00",
       "authorizationCode": "023913",
       "category": 5331,
-      "creditPlan": 10002,
       "department": " ",
       "description": "CHIP EFTPOS              PHEASANTS NESAU",
       "effectiveDate": "20/05/2021",
@@ -285,19 +284,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000067",
+      "referenceNumber": "ST211400003000010000067",
       "skuNumber": 0,
       "transactionCode": 6804,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$5.00",
       "authorizationCode": "023913",
       "category": 5331,
-      "creditPlan": 10002,
       "department": " ",
       "description": "CHIP EFTPOS              PHEASANTS NESAU",
       "effectiveDate": "20/05/2021",
@@ -305,19 +304,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000068",
+      "referenceNumber": "ST211400003000010000068",
       "skuNumber": 0,
       "transactionCode": 6806,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$10.03",
       "authorizationCode": "283763",
       "category": 5921,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Wall Mart LLC AUS      Sydney        AU",
       "effectiveDate": "20/05/2021",
@@ -325,19 +324,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211400002000010000042",
+      "referenceNumber": "VT211400002000010000042",
       "skuNumber": 0,
       "transactionCode": 4004,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$10.21",
       "authorizationCode": "283781",
       "category": 6051,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Australia Bank LLC     Sydney        AU",
       "effectiveDate": "20/05/2021",
@@ -345,19 +344,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211400002000010000048",
+      "referenceNumber": "VT211400002000010000048",
       "skuNumber": 0,
       "transactionCode": 4545,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$10.25",
       "authorizationCode": "283785",
       "category": 6051,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Australia Bank LLC     Sydney        AU",
       "effectiveDate": "20/05/2021",
@@ -365,19 +364,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211400002000010000050",
+      "referenceNumber": "VT211400002000010000050",
       "skuNumber": 0,
       "transactionCode": 4561,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$21.00",
       "authorizationCode": "023902",
       "category": 5999,
-      "creditPlan": 10002,
       "department": " ",
       "description": "EDAF EFTPOS              PEASANT NEST AU",
       "effectiveDate": "20/05/2021",
@@ -385,19 +384,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000059",
+      "referenceNumber": "ST211400003000010000059",
       "skuNumber": 0,
       "transactionCode": 6816,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$22.00",
       "authorizationCode": "023904",
       "category": 5999,
-      "creditPlan": 10002,
       "department": " ",
       "description": "EDAF EFTPOS              PEASANT NEST AU",
       "effectiveDate": "20/05/2021",
@@ -405,19 +404,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000060",
+      "referenceNumber": "ST211400003000010000060",
       "skuNumber": 0,
       "transactionCode": 6816,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$23.00",
       "authorizationCode": "023905",
       "category": 5999,
-      "creditPlan": 10002,
       "department": " ",
       "description": "EDAF EFTPOS              PEASANT NEST AU",
       "effectiveDate": "20/05/2021",
@@ -425,19 +424,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000062",
+      "referenceNumber": "ST211400003000010000062",
       "skuNumber": 0,
       "transactionCode": 6818,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$14.50",
       "authorizationCode": "023913",
       "category": 5331,
-      "creditPlan": 10002,
       "department": " ",
       "description": "CHIP EFTPOS              PHEASANTS NESAU",
       "effectiveDate": "20/05/2021",
@@ -445,19 +444,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000069",
+      "referenceNumber": "ST211400003000010000069",
       "skuNumber": 0,
       "transactionCode": 6805,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$0.50",
       "authorizationCode": "023913",
       "category": 5331,
-      "creditPlan": 10002,
       "department": " ",
       "description": "CHIP EFTPOS              PHEASANTS NESAU",
       "effectiveDate": "20/05/2021",
@@ -465,19 +464,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000070",
+      "referenceNumber": "ST211400003000010000070",
       "skuNumber": 0,
       "transactionCode": 6807,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$10.05",
       "authorizationCode": "283765",
       "category": 5921,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Wall Mart LLC USA      Florida       US",
       "effectiveDate": "20/05/2021",
@@ -485,19 +484,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "6",
-      "reference": "VT211400002000010000029",
+      "referenceNumber": "VT211400002000010000029",
       "skuNumber": 0,
       "transactionCode": 4106,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$0.00",
       "authorizationCode": "283765",
       "category": 5921,
-      "creditPlan": 10002,
       "department": " ",
       "description": "05/20/21          5.03  USD",
       "effectiveDate": "20/05/2021",
@@ -505,19 +504,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "6",
-      "reference": "VT211400002000010000029",
+      "referenceNumber": "VT211400002000010000029",
       "skuNumber": 0,
       "transactionCode": 96,
       "transactionStatus": " ",
-      "typeOfTransaction": "M"
+      "transactionType": "M"
     },
     {
       "amount": "$10.24",
       "authorizationCode": "283784",
       "category": 6051,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Australia Bank LLC     Sydney        AU",
       "effectiveDate": "20/05/2021",
@@ -525,19 +524,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211400002000010000041",
+      "referenceNumber": "VT211400002000010000041",
       "skuNumber": 0,
       "transactionCode": 4560,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$23.00",
       "authorizationCode": "023905",
       "category": 5999,
-      "creditPlan": 10002,
       "department": " ",
       "description": "EDAF EFTPOS              PEASANT NEST AU",
       "effectiveDate": "20/05/2021",
@@ -545,19 +544,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211400003000010000063",
+      "referenceNumber": "ST211400003000010000063",
       "skuNumber": 0,
       "transactionCode": 6819,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$11.11",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "19/05/2021",
@@ -565,19 +564,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "19/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980010",
+      "referenceNumber": "19999999980520199980010",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$25.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -585,19 +584,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980020",
+      "referenceNumber": "19999999980520199980020",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$21.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -605,19 +604,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980030",
+      "referenceNumber": "19999999980520199980030",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$4.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -625,19 +624,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980040",
+      "referenceNumber": "19999999980520199980040",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$10.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -645,19 +644,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980050",
+      "referenceNumber": "19999999980520199980050",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$5.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -665,19 +664,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980060",
+      "referenceNumber": "19999999980520199980060",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$10.03",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -685,19 +684,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980070",
+      "referenceNumber": "19999999980520199980070",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$10.21",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -705,19 +704,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980080",
+      "referenceNumber": "19999999980520199980080",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$10.25",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -725,19 +724,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980090",
+      "referenceNumber": "19999999980520199980090",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$21.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10001,
       "department": " ",
       "description": "DEBIT CARD OFFSET DEBIT",
       "effectiveDate": "20/05/2021",
@@ -745,19 +744,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10001,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980100",
+      "referenceNumber": "19999999980520199980100",
       "skuNumber": 0,
       "transactionCode": 7015,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$13.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "PRINCIPAL DEBIT ADJUSTMENT",
       "effectiveDate": "20/05/2021",
@@ -765,19 +764,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980110",
+      "referenceNumber": "19999999980520199980110",
       "skuNumber": 0,
       "transactionCode": 2701,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$13.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10001,
       "department": " ",
       "description": "PRINCIPAL CREDIT ADJUSTMENT",
       "effectiveDate": "20/05/2021",
@@ -785,19 +784,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10001,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980120",
+      "referenceNumber": "19999999980520199980120",
       "skuNumber": 0,
       "transactionCode": 1701,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$22.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10001,
       "department": " ",
       "description": "DEBIT CARD OFFSET DEBIT",
       "effectiveDate": "20/05/2021",
@@ -805,19 +804,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10001,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980130",
+      "referenceNumber": "19999999980520199980130",
       "skuNumber": 0,
       "transactionCode": 7015,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$14.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "PRINCIPAL DEBIT ADJUSTMENT",
       "effectiveDate": "20/05/2021",
@@ -825,19 +824,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980140",
+      "referenceNumber": "19999999980520199980140",
       "skuNumber": 0,
       "transactionCode": 2701,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$14.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10001,
       "department": " ",
       "description": "PRINCIPAL CREDIT ADJUSTMENT",
       "effectiveDate": "20/05/2021",
@@ -845,19 +844,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10001,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980150",
+      "referenceNumber": "19999999980520199980150",
       "skuNumber": 0,
       "transactionCode": 1701,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$23.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10001,
       "department": " ",
       "description": "DEBIT CARD OFFSET DEBIT",
       "effectiveDate": "20/05/2021",
@@ -865,19 +864,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10001,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980160",
+      "referenceNumber": "19999999980520199980160",
       "skuNumber": 0,
       "transactionCode": 7015,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$14.50",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET DEBIT",
       "effectiveDate": "20/05/2021",
@@ -885,19 +884,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980170",
+      "referenceNumber": "19999999980520199980170",
       "skuNumber": 0,
       "transactionCode": 7015,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$0.50",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET DEBIT",
       "effectiveDate": "20/05/2021",
@@ -905,19 +904,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980180",
+      "referenceNumber": "19999999980520199980180",
       "skuNumber": 0,
       "transactionCode": 7015,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$10.05",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET DEBIT",
       "effectiveDate": "20/05/2021",
@@ -925,19 +924,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980190",
+      "referenceNumber": "19999999980520199980190",
       "skuNumber": 0,
       "transactionCode": 7015,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$10.24",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET DEBIT",
       "effectiveDate": "20/05/2021",
@@ -945,19 +944,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980520199980200",
+      "referenceNumber": "19999999980520199980200",
       "skuNumber": 0,
       "transactionCode": 7015,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$20.00",
       "authorizationCode": "023862",
       "category": 5444,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Wall Mart LLC USA      Florida       US",
       "effectiveDate": "20/05/2021",
@@ -965,19 +964,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "21/05/2021",
       "qualifyingIndicator": "6",
-      "reference": "VT211410001000010000012",
+      "referenceNumber": "VT211410001000010000012",
       "skuNumber": 0,
       "transactionCode": 4006,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$0.00",
       "authorizationCode": "023862",
       "category": 5444,
-      "creditPlan": 10002,
       "department": " ",
       "description": "05/20/21         10.00  USD",
       "effectiveDate": "20/05/2021",
@@ -985,19 +984,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "21/05/2021",
       "qualifyingIndicator": "6",
-      "reference": "VT211410001000010000012",
+      "referenceNumber": "VT211410001000010000012",
       "skuNumber": 0,
       "transactionCode": 96,
       "transactionStatus": " ",
-      "typeOfTransaction": "M"
+      "transactionType": "M"
     },
     {
       "amount": "$26.00",
       "authorizationCode": "023916",
       "category": 5411,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Australia Bank LLC     Sydney        AU",
       "effectiveDate": "20/05/2021",
@@ -1005,19 +1004,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "21/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211410001000010000016",
+      "referenceNumber": "VT211410001000010000016",
       "skuNumber": 0,
       "transactionCode": 4511,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$20.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -1025,19 +1024,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980521199980010",
+      "referenceNumber": "19999999980521199980010",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$26.00",
       "authorizationCode": " ",
       "category": 0,
-      "creditPlan": 10002,
       "department": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20/05/2021",
@@ -1045,19 +1044,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 0,
       "paymentInstrumentId": "0002000010000066752",
+      "planId": 10002,
       "postingDate": "20/05/2021",
       "qualifyingIndicator": " ",
-      "reference": "19999999980521199980020",
+      "referenceNumber": "19999999980521199980020",
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "typeOfTransaction": "C"
+      "transactionType": "C"
     },
     {
       "amount": "$8.00",
       "authorizationCode": "025052",
       "category": 5411,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Wall Mart LLC USA      Sydney        AU",
       "effectiveDate": "21/05/2021",
@@ -1065,19 +1064,19 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "0",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "25/05/2021",
       "qualifyingIndicator": "3",
-      "reference": "VT211450002000010000003",
+      "referenceNumber": "VT211450002000010000003",
       "skuNumber": 0,
       "transactionCode": 4000,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     },
     {
       "amount": "$5.00",
       "authorizationCode": "027182",
       "category": 6011,
-      "creditPlan": 10002,
       "department": " ",
       "description": "Westpac ATM              Sydney CBD   AU",
       "effectiveDate": "25/05/2021",
@@ -1085,16 +1084,17 @@ The below table identifies the required parameters in the request payload.
       "merchantBusinessUnit": "200",
       "merchantStore": 999999998,
       "paymentInstrumentId": "000434968N7S8UZ5412",
+      "planId": 10002,
       "postingDate": "25/05/2021",
       "qualifyingIndicator": "2",
-      "reference": "ST211450004000010000029",
+      "referenceNumber": "ST211450004000010000029",
       "skuNumber": 0,
       "transactionCode": 6701,
       "transactionStatus": " ",
-      "typeOfTransaction": "D"
+      "transactionType": "D"
     }
   ],
-  "ytdAccumulatorDetailsRes": {
+  "ytdAccumulatorDetails": {
     "disclosedFeeAmount": "$0.00",
     "interestAmount": "$0.00",
     "lastInterestAmount": "$0.00",
@@ -1102,7 +1102,6 @@ The below table identifies the required parameters in the request payload.
     "overlimitFeeAmount": "$0.00"
   }
 }
-
 ```
 
 ### Error Response Payload
@@ -1119,3 +1118,5 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5S34003SA/V5S34003SB/V5S34003EB/V5S34003EF/V5S34003EG` | No statement history information found on file |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

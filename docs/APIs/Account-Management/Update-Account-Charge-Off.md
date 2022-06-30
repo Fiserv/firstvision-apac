@@ -16,7 +16,7 @@ This service is used to update account charge-off status.
 {
   "notificationReceivedDate": "01/01/2018",
   "chargeOffReason": "C"
-} 
+}
 ```
 
 ### Minimum Requirements
@@ -35,12 +35,12 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "businessUnit": 600,
   "accountId": "0006000011000000509",
-  "notificationReceivedDate": "01/01/2018",
-  "chargeOffStatus": "0",
+  "businessUnit": 600,
+  "chargeOffDaysCount": 0,
   "chargeOffReason": "C",
-  "chargeOffDaysCount": 0
+  "chargeOffStatus": "0",
+  "notificationReceivedDate": "01/01/2018"
 }
 ```
 
@@ -76,3 +76,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS0127SA` | Cannot Set A block Code On A Billing account |
 | `V5BS0127SB` | Block code 2 must be alphabetic |
 | `V5BS0127SC` | Block code cannot be Replaced With One Of A Lower priority |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

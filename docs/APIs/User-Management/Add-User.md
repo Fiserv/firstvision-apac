@@ -14,7 +14,6 @@ Sign-on entity must be setup and active for each person authorized to access the
 ### Request Payload
 
 ```json
-
 {
   "clientId": 1,
   "name": "NABTEST25",
@@ -26,224 +25,223 @@ Sign-on entity must be setup and active for each person authorized to access the
   "servicePrivilegeGroupId": "CLTUSER",
   "supervisorId": " ",
   "sourceGroupType": "2",
-  "businessUnitIncludeExcludeFlagReq": {
-    "businessUnitIncludeExcludeFlag1Req": {
+  "businessUnitIncludeExcludeFlag": {
+    "businessUnitIncludeExcludeFlag1": {
       "inclusionExclusionFlag1": " ",
       "businessUnit1": " "
     },
-    "businessUnitIncludeExcludeFlag2Req": {
+    "businessUnitIncludeExcludeFlag2": {
       "inclusionExclusionFlag2": " ",
       "businessUnit2": " "
     },
-    "businessUnitIncludeExcludeFlag3Req": {
+    "businessUnitIncludeExcludeFlag3": {
       "inclusionExclusionFlag3": " ",
       "businessUnit3": " "
     },
-    "businessUnitIncludeExcludeFlag4Req": {
+    "businessUnitIncludeExcludeFlag4": {
       "inclusionExclusionFlag4": " ",
       "businessUnit4": " "
     },
-    "businessUnitIncludeExcludeFlag5Req": {
+    "businessUnitIncludeExcludeFlag5": {
       "inclusionExclusionFlag5": " ",
       "businessUnit5": " "
     },
-    "businessUnitIncludeExcludeFlag6Req": {
+    "businessUnitIncludeExcludeFlag6": {
       "inclusionExclusionFlag6": " ",
       "businessUnit6": " "
     },
-    "businessUnitIncludeExcludeFlag7Req": {
+    "businessUnitIncludeExcludeFlag7": {
       "inclusionExclusionFlag7": " ",
       "businessUnit7": " "
     },
-    "businessUnitIncludeExcludeFlag8Req": {
+    "businessUnitIncludeExcludeFlag8": {
       "inclusionExclusionFlag8": " ",
       "businessUnit8": " "
     },
-    "businessUnitIncludeExcludeFlag9Req": {
+    "businessUnitIncludeExcludeFlag9": {
       "inclusionExclusionFlag9": " ",
       "businessUnit9": " "
     },
-    "businessUnitIncludeExcludeFlag10Req": {
+    "businessUnitIncludeExcludeFlag10": {
       "inclusionExclusionFlag10": " ",
       "businessUnit10": " "
     }
   },
-  "userApplicationAccessReq": {
-    "ctryCurrencyCatCodesReq": {
+  "userApplicationAccess": {
+    "ctryCurrencyCatCodes": {
       "userCode1": " ",
       "fieldSecurityCode1": " "
     },
-    "businessMessagingReq": {
+    "businessMessaging": {
       "userCode2": " ",
       "fieldSecurityCode2": " "
     },
-    "futureUse03Req": {
+    "futureUse03": {
       "userCode3": " ",
       "fieldSecurityCode3": " "
     },
-    "exceptionProcessingReq": {
+    "exceptionProcessing": {
       "userCode4": " ",
       "fieldSecurityCode4": " "
     },
-    "accountManagementReq": {
+    "accountManagement": {
       "userCode5": " ",
       "fieldSecurityCode5": " "
     },
-    "collectionManagementReq": {
+    "collectionManagement": {
       "userCode6": " ",
       "fieldSecurityCode6": " "
     },
-    "authorizationsReq": {
+    "authorizations": {
       "userCode7": " ",
       "fieldSecurityCode7": " "
     },
-    "customerServiceReq": {
+    "customerService": {
       "userCode8": " ",
       "fieldSecurityCode8": " "
     },
-    "remoteInterfaceReq": {
+    "remoteInterface": {
       "userCode9": " ",
       "fieldSecurityCode9": " "
     },
-    "commercialCardReq": {
+    "commercialCard": {
       "userCode10": " ",
       "fieldSecurityCode10": " "
     },
-    "OfferManagementReq": {
+    "OfferManagement": {
       "userCode11": " ",
       "fieldSecurityCode11": " "
     },
-    "merchantSettlementReq": {
+    "merchantSettlement": {
       "userCode12": " ",
       "fieldSecurityCode12": " "
     },
-    "\tapplicationProcessingReq": {
+    "applicationProcessing": {
       "userCode13": " ",
       "fieldSecurityCode13": " "
     },
-    "embScriptingSystemReq": {
+    "embScriptingSystem": {
       "userCode14": " ",
       "fieldSecurityCode14": " "
     },
-    "keyManagementSystemReq": {
+    "keyManagementSystem": {
       "userCode15": " ",
       "fieldSecurityCode15": " "
     },
-    "futureUse16Req": {
+    "futureUse16": {
       "userCode16": " ",
       "fieldSecurityCode16": " "
     },
-    "letterRequestsReq": {
+    "letterRequests": {
       "userCode17": " ",
       "fieldSecurityCode17": " "
     },
-    "futureUse18Req": {
+    "futureUse18": {
       "userCode18": " ",
       "fieldSecurityCode18": " "
     },
-    "internationalLanguageReq": {
+    "internationalLanguage": {
       "userCode19": " ",
       "fieldSecurityCode19": " "
     },
-    "rewardManagementReq": {
+    "rewardManagement": {
       "userCode20": " ",
       "fieldSecurityCode20": " "
     },
-    "clientSupportReq": {
+    "clientSupport": {
       "userCode21": " ",
       "fieldSecurityCode21": " "
     },
-    "securityReq": {
+    "security": {
       "userCode22": " ",
       "fieldSecurityCode22": " "
     },
-    "connectionManagerReq": {
+    "connectionManager": {
       "userCode23": " ",
       "fieldSecurityCode23": " "
     },
-    "posDeviceManagementReq": {
+    "posDeviceManagement": {
       "userCode24": " ",
       "fieldSecurityCode24": " "
     },
-    "customerCommunicationManagementReq": {
+    "customerCommunicationManagement": {
       "userCode25": " ",
       "fieldSecurityCode25": " "
     },
-    "decisionEngineSystemReq": {
+    "decisionEngineSystem": {
       "userCode26": " ",
       "fieldSecurityCode26": " "
     },
-    "futureUse27Req": {
+    "futureUse27": {
       "userCode27": " ",
       "fieldSecurityCode27": " "
     },
-    "futureUse28Req": {
+    "futureUse28": {
       "userCode28": " ",
       "fieldSecurityCode28": " "
     },
-    "transactionManagementReq": {
+    "transactionManagement": {
       "userCode29": " ",
       "fieldSecurityCode29": " "
     },
-    "futureUse30Req": {
+    "futureUse30": {
       "userCode30": " ",
       "fieldSecurityCode30": " "
     }
   },
-  "userServicePrivilegeReq": {
-    "userServicePrivilege1Req": {
-      "serviceInclusionExclusionFlag1": " ",
+  "userServicePrivilege": {
+    "userServicePrivilege1": {
+      "serviceInclusionExclusionflag1": " ",
       "serviceName1": " ",
       "serviceVersion1": " "
     },
-    "userServicePrivilege2Req": {
-      "serviceInclusionExclusionFlag2": " ",
+    "userServicePrivilege2": {
+      "serviceInclusionExclusionflag2": " ",
       "serviceName2": " ",
       "serviceVersion2": " "
     },
-    "userServicePrivilege3Req": {
-      "serviceInclusionExclusionFlag3": " ",
+    "userServicePrivilege3": {
+      "serviceInclusionExclusionflag3": " ",
       "serviceName3": " ",
       "serviceVersion3": " "
     },
-    "userServicePrivilege4Req": {
-      "serviceInclusionExclusionFlag4": " ",
+    "userServicePrivilege4": {
+      "serviceInclusionExclusionflag4": " ",
       "serviceName4": " ",
       "serviceVersion4": " "
     },
-    "userServicePrivilege5Req": {
-      "serviceInclusionExclusionFlag5": " ",
+    "userServicePrivilege5": {
+      "serviceInclusionExclusionflag5": " ",
       "serviceName5": " ",
       "serviceVersion5": " "
     },
-    "userServicePrivilege6Req": {
-      "serviceInclusionExclusionFlag6": " ",
+    "userServicePrivilege6": {
+      "serviceInclusionExclusionflag6": " ",
       "serviceName6": " ",
       "serviceVersion6": " "
     },
-    "userServicePrivilege7Req": {
-      "serviceInclusionExclusionFlag7": " ",
+    "userServicePrivilege7": {
+      "serviceInclusionExclusionflag7": " ",
       "serviceName7": " ",
       "serviceVersion7": " "
     },
-    "userServicePrivilege8Req": {
-      "serviceInclusionExclusionFlag8": " ",
+    "userServicePrivilege8": {
+      "serviceInclusionExclusionflag8": " ",
       "serviceName8": " ",
       "serviceVersion8": " "
     },
-    "userServicePrivilege9Req": {
-      "serviceInclusionExclusionFlag9": " ",
+    "userServicePrivilege9": {
+      "serviceInclusionExclusionflag9": " ",
       "serviceName9": " ",
       "serviceVersion9": " "
     },
-    "userServicePrivilege10Req": {
-      "serviceInclusionExclusionFlag10": " ",
+    "userServicePrivilege10": {
+      "serviceInclusionExclusionflag10": " ",
       "serviceName10": " ",
       "serviceVersion10": " "
     }
   }
 }
-
 ``` 
 
 ### Minimum Requirements
@@ -305,3 +303,5 @@ Below table provides the list of application's error code and its description.
 | `VMSF0304EB`  |  Service/version is universal & cannot be defined as an override |
 | `VMSF0304EC`  |  Service/version entered is not allowed |
 | `VMSF0304EE`  |  Valid entry requires entry in Incl/Excl name and version fields |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

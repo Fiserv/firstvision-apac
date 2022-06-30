@@ -66,3 +66,5 @@ Below table provides the list of application's error code and its description.
 |`V5CP4008SA`| PIN change not allowed for smart cards through web or IVR | 
 |`V5CP4009SA`| Card is not activated, pin change not allowed | 
 |`V5CP4010SA`| PIN suppression is on, pin change not allowed | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

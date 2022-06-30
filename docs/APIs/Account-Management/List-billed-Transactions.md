@@ -30,15 +30,15 @@ The below table identifies the required parameters in the request payload.
 
 {
   "accountId": "0006000011000000137",
-  "pageOffset": "99999999999999999999999999999999999999999999999999999999999999999999999999999999",
+  "continuationToken": "99999999999999999999999999999999999999999999999999999999999999999999999999999999",
   "statementDate": "18/08/2021",
-  "transactionListRes": [
+  "transactionList": [
     {
       "authorizationCode": " ",
-      "creditPlan": 10002,
       "description": "DOMESTIC RETAIL PURCHASE",
       "effectiveDate": "16/08/2021",
       "paymentInstrumentId": "0006000011000000137",
+      "planId": 10002,
       "postingDate": "17/08/2021",
       "referenceNumber": "09999999980816000020016",
       "transactionAmount": "$12.00",
@@ -47,10 +47,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": " ",
-      "creditPlan": 10002,
       "description": "DOMESTIC RETAIL PURCHASE",
       "effectiveDate": "16/08/2021",
       "paymentInstrumentId": "0006000011000000137",
+      "planId": 10002,
       "postingDate": "17/08/2021",
       "referenceNumber": "09999999980816000020024",
       "transactionAmount": "$8.00",
@@ -59,10 +59,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": " ",
-      "creditPlan": 10002,
       "description": "MEMBERSHIP FEE ASSESSED",
       "effectiveDate": "18/08/2021",
       "paymentInstrumentId": "0006000011000000137",
+      "planId": 10002,
       "postingDate": "18/08/2021",
       "referenceNumber": "19999999980818199970110",
       "transactionAmount": "$50.00",
@@ -71,7 +71,6 @@ The below table identifies the required parameters in the request payload.
     }
   ]
 }
-
 ```
 
 ### Error Response Payload
@@ -92,3 +91,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS4001SC` | Business unit is in purged status |
 | `V5BS4002SA` | Invalid account number |  
 | `V5S34003SA` | No statement history information found on file |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

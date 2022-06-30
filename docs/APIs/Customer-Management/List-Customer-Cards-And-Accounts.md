@@ -30,14 +30,14 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountListRes": [
+  "accountList": [
     {
-      "accountId": "0002000010000400435",
+      "accountId": "0006000012000000121",
       "blockCode1": " ",
       "blockCode1Date": "00/00/0000",
       "blockCode2": " ",
       "blockCode2Date": "00/00/0000",
-      "ddaAccountId": "1240310048409873",
+      "ddaAccountId": "0",
       "isSuppressTokenEnabled": "0",
       "mailingIndicator": " ",
       "memoCreditAmount": "$0.00",
@@ -45,80 +45,80 @@ The below table identifies the required parameters in the request payload.
       "noOfTokenizedCards": 0,
       "productId": 1,
       "reissueControlMethod": "0",
-      "statusOfAccount": "D"
+      "status": "N"
     }
   ],
-  "cardtListRes": [
+  "cardtList": [
     {
-      "accountId": "0002000010000400435",
+      "accountId": "0006000012000000121",
       "blockCode": " ",
       "blockCodeDate": "00/00/0000",
       "cardActivatedDate": "00/00/0000",
       "cardHolderType": 1,
-      "cardIssueDate": "09/04/2021",
-      "cardOpenedDate": "07/04/2021",
+      "cardIssueDate": "00/00/0000",
+      "cardOpenedDate": "19/08/2021",
       "cardTechnology": "3",
       "chequeAccountId": " ",
-      "currentCardAction": "0",
+      "currentCardAction": "1",
       "currentCardNeedActivation": "Y",
-      "lastPlasticUsedDate": "0",
       "digitalID": " ",
       "embosserName2": " ",
-      "expirationDate": "06/04/2024",
+      "expirationDate": "18/01/2024",
       "isAtmEnabled": "Y",
-      "isCashBackEnabled": "Y",
+      "isCashBackEnabled": "N",
       "isEcomEnabled": 1,
-      "isInternationalAtmPosEnabled": "Y",
-      "isMotoEnabled": "Y",
-      "isPayWaveEnabled": "Y",
+      "isInternationalAtmPosEnabled": "N",
+      "isMotoEnabled": "N",
+      "isPayWaveEnabled": "N",
       "isPosEnabled": "Y",
-      "lastCardAction": "1",
+      "lastCardAction": "0",
       "lastCardExpirationDate": "00/00/0000",
-      "lastCardNeedActivation": "Y",
-      "lastPlasticIssueDate": 210438,
+      "lastCardNeedActivation": "N",
+      "lastPlasticIssueDate": 0,
       "lastPlasticSuppressedDate": "0",
+      "lastPlasticUsedDate": "0",
       "lastWalletUsedDate": "0",
-      "maskedPaymentInstrumentId": "000954349XXXXXX9551",
-      "mccLimit1": "$999,999,999.99",
+      "maskedPaymentCardNumber": "000444001XXXXXX8266",
+      "mccLimit01": "$999,999,999.99",
+      "mccLimit02": "$999,999,999.99",
+      "mccLimit03": "$999,999,999.99",
+      "mccLimit04": "$999,999,999.99",
+      "mccLimit05": "$999,999,999.99",
+      "mccLimit06": "$999,999,999.99",
+      "mccLimit07": "$999,999,999.99",
+      "mccLimit08": "$0.00",
+      "mccLimit09": "$0.00",
       "mccLimit10": "$0.00",
-      "mccLimit2": "$999,999,999.99",
-      "mccLimit3": "$999,999,999.99",
-      "mccLimit4": "$999,999,999.99",
-      "mccLimit5": "$999,999,999.99",
-      "mccLimit6": "$999,999,999.99",
-      "mccLimit7": "$999,999,999.99",
-      "mccLimit8": "$0.00",
-      "mccLimit9": "$0.00",
-      "nameOnCard": "Andre Reichel",
+      "nameOnCard": "JOHN1",
       "numberOfTokens": 0,
-      "paymentInstrumentId": "0009543491000009551",
+      "paymentInstrumentId": "0004440010880488266",
       "pinOffset": 0,
       "plasticSuppressStatus": "N",
-      "productDescription": "VISA DEBIT PERSONAL",
-      "savingsAccountId": "1240310048409873",
+      "productDescription": "VISA CREDIT CONSUMER",
+      "savingsAccountId": " ",
       "statusOfCard": "0",
       "warningCode1": "0"
     }
   ],
-  "customerInformationRes": {
-    "addressLine1": "10 4601 Denesik Overpass",
-    "addressLine2": "Lake Ofelia,QLD",
-    "addressLine3": "Clayfield QLD",
+  "customerInformation": {
+    "addressLine1": "HOUSE NO.102",
+    "addressLine2": "",
+    "addressLine3": "",
     "addressLine4": "",
-    "birthDate": "21/10/1971",
-    "businessUnit": 200,
-    "customerId": "0000020000067163587",
-    "emailAddress": "Andre.Reichel@company1.com",
-    "externalId": "67163587",
-    "gender": "2",
-    "givenName": "Andre",
-    "homePhoneNumber": "+61463514716",
+    "birthDate": "01/02/2010",
+    "businessUnit": 600,
+    "customerId": "0006000011000000707",
+    "emailAddress": "123@FISERV.COM",
+    "externalId": "",
+    "gender": "1",
+    "givenName": "JOHN",
+    "homePhoneNumber": "12345",
     "isReturnMailEnabled": "N",
-    "mobileNumber": "+61463514716",
-    "nameLine1": "Andre Reichel",
+    "mobileNumber": "8877665544",
+    "nameLine1": "JOHN DSOUZA",
     "numberOfAccounts": 1,
     "numberOfCards": 1,
-    "workPhoneNumber": "+61463514716"
+    "workPhoneNumber": "67894"
   }
 }
 ```
@@ -138,3 +138,5 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5NA0004SF` | Customer Number can not be spaces |
 | `V5DB4001SF` | AMNA org not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

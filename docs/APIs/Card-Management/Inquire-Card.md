@@ -11,7 +11,8 @@ This service is used to retrive detailed information of card. This API response 
 ### Request Payload
 
 >Should be empty.  
-***The Payment Instrument Identification should be sent as path variable.***
+>
+>***The Payment Instrument Identification should be sent as path variable.***
 
 ### Minimum Requirements
 
@@ -28,65 +29,71 @@ The below table identifies the required query parameters in the request payload.
 ```json
 {
   "accountId": "0006000022000000050",
-  "addressFieldsRes": {
+  "addressFields": {
     "addressLine1": "FISERV",
     "addressLine2": "NAB",
     "city": "CHENNAI",
     "postalCode": "",
     "stateProvince": ""
   },
-  "authorizationCriteriaTableIdNumber": "800",
-  "blockCode": "X",
-  "blockDate": "19/08/2021",
-  "blockSecurityId": "NAB",
+  "authorizationCriteriaTableId": "800",
+  "blockCodeDetails": {
+    "blockCode": "X",
+    "blockDate": "19/08/2021",
+    "blockSecurityId": "NAB"
+  },
   "businessUnit": 600,
   "cardAction": "1",
-  "cardActivatedDate": "00/00/0000",
   "cardDelayDaysCount": 0,
-  "cardIssueDate": "00/00/0000",
   "cardReissueDeliveryLocation": 0,
   "cardReissueDeliveryOption": "5",
   "cardRequestedCount": 1,
   "cardReturnedCount": 0,
   "cardType": 0,
   "cardTypeRequested": 0,
-  "cardholderName1": "",
-  "cardholderName2": "",
   "cardholderType": "1",
   "currentCardNeedActivation": "N",
-  "currentCardValidDate": "00/00/0000",
   "customerId": "",
   "customersGender": "0",
+  "dateFields": {
+    "cardActivatedDate": "00/00/0000",
+    "cardIssueDate": "00/00/0000",
+    "currentCardValidDate": "00/00/0000",
+    "expiryDate": "17/08/2024",
+    "firstCardVerifyDate": "00/00/0000",
+    "lastCardExpiryDate": "00/00/0000",
+    "mailerDate": "00/00/0000",
+    "nextCardExpiryDate": "00/00/0000",
+    "statusChangeDate": "00/00/0000",
+    "transferEffectiveDate": "00/00/0000"
+  },
   "digitalId": "",
-  "emblem": 0,
-  "embossedName": "R0203 CARDHOLDER#3",
-  "expirationDate": "17/08/2024",
-  "firstCardVerifyDate": "00/00/0000",
+  "emblemId": 0,
   "firstIssueBranch": 0,
   "fraudCardTransferCount": "",
+  "isPinSuppressionEnabled": "0",
   "isSecureCodeEnabled": "0",
   "lastCardActivation": "N",
-  "lastCardExpirationDate": "00/00/0000",
-  "mailerDate": "00/00/0000",
   "mobileDeviceID": "",
   "mobileProvisionStatus": "0",
-  "name1TypeIndicator": "0",
-  "name2TypeIndicator": "0",
-  "nameOn2ndLine": "FISERV DEMO FACILITY",
-  "nextCardExpirationDate": "00/00/0000",
+  "nameFields": {
+    "cardholderName1": "",
+    "cardholderName2": "",
+    "embossedName": "R0203 CARDHOLDER#3",
+    "name1TypeIndicator": "0",
+    "name2TypeIndicator": "0",
+    "nameOn2ndLine": "FISERV DEMO FACILITY"
+  },
   "numberOfCardsOutstanding": 0,
   "paymentInstrumentId": "0009544410000000047",
   "pinDelayDaysCount": 0,
-  "isPinSuppressionEnabled": "0",
   "pinOverride": "1",
   "posServiceCode": "",
   "productId": 2,
   "reasonCode": "",
   "reissueAttemptCount": 0,
   "status": "0",
-  "statusChangeDate": "00/00/0000",
-  "transferEffectiveDate": "00/00/0000",
-  "userDefinedFieldsRes": {
+  "userDefinedFields": {
     "field1": "",
     "field2": "",
     "field3": "",
@@ -95,8 +102,11 @@ The below table identifies the required query parameters in the request payload.
   },
   "visaMiniCardVersion": "0",
   "visaPlusIndicator": "0",
-  "warningCode1": "1",
-  "warningCode7": "0"
+  "warningCodeDetails": {
+    "warningCode1": "1",
+    "warningCode1SetDate": "18/08/2021",
+    "warningCode7": "0"
+  }
 }
 ```
 
@@ -113,4 +123,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5ED0004SF` | Get Request - Record not found |
+|`V5ED0004SF` | Get request - Record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

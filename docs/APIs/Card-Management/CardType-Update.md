@@ -51,13 +51,15 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description |
 | --------  | ------------------ |
 |`V5ED4001SA` | Org not found |
-|`V5ED4001SB` | Organization is in Add pending status |
+|`V5ED4001SB` | Organization is in add pending status |
 |`V5ED4001SC` | Org in purged status |
-|`V5ED4001SE` | Invalid Org Number |
-|`V5ED0010SF` | Update Request - Record not found |
-|`V5ED0011SF` | Update Request - Record add pending |
+|`V5ED4001SE` | Invalid org number |
+|`V5ED0010SF` | Update request - Record not found |
+|`V5ED0011SF` | Update request - Record add pending |
 |`V5ED4003ED` | Card sequence must be greater than zeroes |
 |`V5ED4004SF` | Invalid card sequence |
 |`V5ED0237SV` | Invalid  cardholder-type |
 |`V5ED0237EA` | User not allowed to change cardholder type from 1 to 0 |
 |`V5ED0237EB` | Cannot have more than one primary card |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

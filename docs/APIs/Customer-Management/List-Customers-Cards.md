@@ -28,7 +28,7 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "cardListRes": [
+  "cardList": [
     {
       "accountId": "0006000012000000121",
       "blockCode": " ",
@@ -41,7 +41,7 @@ The below table identifies the required parameters in the request payload.
       "chequeAccountId": " ",
       "currentCardAction": "1",
       "currentCardNeedActivation": "Y",
-      "lastPlasticUsedDate": "0",
+      "dateLastPlasticUsed": "0",
       "digitalID": " ",
       "embosserName2": " ",
       "expirationDate": "18/01/2024",
@@ -58,7 +58,7 @@ The below table identifies the required parameters in the request payload.
       "lastPlasticIssueDate": 0,
       "lastPlasticSuppressedDate": "0",
       "lastWalletUsedDate": "0",
-      "maskedPaymentInstrumentId": "000444001XXXXXX8266",
+      "maskedPaymentCardNumber": "000444001XXXXXX8266",
       "mccLimit01": "$999,999,999.99",
       "mccLimit02": "$999,999,999.99",
       "mccLimit03": "$999,999,999.99",
@@ -80,7 +80,7 @@ The below table identifies the required parameters in the request payload.
       "warningCode1": "0"
     }
   ],
-  "customerInformationRes": {
+  "customerInformation": {
     "addressLine1": "HOUSE NO.102",
     "addressLine2": "",
     "addressLine3": "",
@@ -117,3 +117,5 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5NA0004SF` | Customer number can not be spaces |
 | `V5DB4001SF` | AMNA org not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

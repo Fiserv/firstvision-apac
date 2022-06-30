@@ -30,13 +30,13 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "accountId": "0002000010000403266",
-  "alternateCustomerIdDetailsRes": {
+  "alternateCustomerIdDetails": {
     "customerId": "0000000000000000000",
     "customerIdEffectiveDate": "00/00/0000",
     "customerIdExpiryDate": "00/00/0000",
     "customerIdFlag": ""
   },
-  "amountDetailsRes": {
+  "amountDetails": {
     "actualDirectDebitPaymentAmount": "$0.00",
     "cashAvailable": "$0.00",
     "cashBalance": "$0.00",
@@ -58,21 +58,21 @@ The below table identifies the required parameters in the request payload.
     "memoCreditAmount": "$0.00",
     "memoDebitAmount": "$0.00",
     "openToBuy": "$0.00",
-    "pastDuePaymentAmount": "$0.00",
+    "pastDueAmount": "$0.00",
     "projectedDdAmount": "$0.00",
     "totalDueAmount": "$0.00"
   },
   "billingAcctInd": 0,
   "billingCycle": 31,
   "billingLevel": "1",
-  "blockCodeDetailsRes": {
+  "blockCodeDetails": {
     "blockCode1": "",
     "blockCode1Date": "00/00/0000",
     "blockCode2": "",
     "blockCode2Date": "00/00/0000"
   },
   "businessUnit": 200,
-  "chargeOffDetailsRes": {
+  "chargeOffDetails": {
     "additionalChargeOffReason": "",
     "chargeOffDaysCount": 0,
     "chargeOffReason": "",
@@ -80,9 +80,9 @@ The below table identifies the required parameters in the request payload.
     "resetChargeoffDaysSwitch": "0"
   },
   "correspondenceCustomerId": "",
-  "currencyCode": 36,
+  "currencyCode": "36",
   "customerId": "0002000002000007799",
-  "dateFieldsDetailsRes": {
+  "dateFieldsDetails": {
     "accountClosedDate": "00/00/0000",
     "accountOpenDate": "17/08/2021",
     "cardFeeDate": "00/00/0000",
@@ -102,7 +102,7 @@ The below table identifies the required parameters in the request payload.
     "paymentDueDate": "00/00/0000"
   },
   "deferMembershipFeeDate": "00/00/0000",
-  "disputedDetailsRes": {
+  "disputedDetails": {
     "cashDisputedAmout": "$0.00",
     "cashDisputedItemsCount": 0,
     "disputedItemsCount": 0,
@@ -134,7 +134,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5BS0004SF",
-  "errorMessage": "Get Request - Record not found"  
+  "errorMessage": "Get request - Record not found"  
 }
 ```
 
@@ -142,4 +142,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0004SF` | Get Request - Record not found|
+| `V5BS0004SF` | Get request - Record not found|
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

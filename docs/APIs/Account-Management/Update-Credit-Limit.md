@@ -43,7 +43,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5BS0010SF",
-  "errorMessage": " Update Request - Record not found "
+  "errorMessage": " Update request - Record not found "
 }
 ```
 
@@ -51,10 +51,12 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0010SF` | Update Request - Record not found |
+| `V5BS0010SF` | Update request - Record not found |
 | `V5BS0103SA` | Credit limit not maintained if relationship level credit limit maintainanace is not allowed |
 | `V5BS0103SC` | Input credit limit cannot be greater than logo credit limit |
 | `V5BS0103SD` | Credit limit exceeds secured amount use |
 | `V5BS0103SE` | Credit limit does not conform to currency NOD |  
 | `V5BS0103SF` | Credit limit required |
 | `V5BS0010SF` | Update Request - Record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

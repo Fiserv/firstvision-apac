@@ -12,7 +12,7 @@ This service is used to update the spending limits to control the card usage. Th
 
 ```json
 {
-  "spendLimitControlsReq": {
+  "spendLimitControls": {
     "maximumAuthorizationsFrequency": "1",
     "maximumAtmCashAuthorizationsAmount": "10000",
     "maximumAtmCashAuthorizationsCount": 1,
@@ -43,10 +43,9 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-{
   "businessUnit": 100,
   "paymentInstrumentId": "0009846801010434272",
-  "spendLimitControlsRes": {
+  "spendLimitControls": {
     "maximumAtmCashAuthorizationsAmount": "$100.00",
     "maximumAtmCashAuthorizationsCount": 1,
     "maximumAuthorizationsFrequency": "1",
@@ -88,3 +87,5 @@ Below table provides the list of application's error code and its description.
 |`V5ED0325EB` | Retail amt field update is not allowed |
 |`V5ED0326EC` | Retail nbr field update is not allowed |
 |`V5ED0327EJ` | Txn limit retail field update is not allowed | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

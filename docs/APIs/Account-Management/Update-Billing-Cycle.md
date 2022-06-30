@@ -33,7 +33,7 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountNumber": "0000000001000000123",
+  "accountId": "0006000011000000111",
   "billingCycle": 15,
   "businessUnit": 600
 }
@@ -44,7 +44,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
    errorCode" :  V5BS0010SF" ,
-   errorMessage" : Update Request - Record not found"   
+   errorMessage" : Update request - Record not found"   
 }
 ```
 
@@ -52,6 +52,8 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0010SF` | Update Request - Record not found |
+| `V5BS0010SF` | Update request - Record not found |
 | `V5BS0121SA` | Valid entries are 01 Thru 31 |
 | `V5BS4001SG` | Org record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

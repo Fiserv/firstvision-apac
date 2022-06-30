@@ -28,15 +28,14 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
-  "transactionListRes": [
+  "transactionList": [
     {
       "authorizationCode": " ",
-      "creditPlan": 10002,
       "description": "MEMO POSTED DEBIT",
       "effectiveDate": "18/08/2021",
       "paymentInstrumentId": " ",
+      "planId": 10002,
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$3,000.00",
@@ -45,10 +44,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": " ",
-      "creditPlan": 10002,
       "description": "MEMO POSTED DEBIT",
       "effectiveDate": "18/08/2021",
       "paymentInstrumentId": " ",
+      "planId": 10002,
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -57,10 +56,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": " ",
-      "creditPlan": 10002,
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
       "paymentInstrumentId": " ",
+      "planId": 10002,
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -69,10 +68,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": " ",
-      "creditPlan": 10002,
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
       "paymentInstrumentId": " ",
+      "planId": 10002,
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -81,10 +80,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": " ",
-      "creditPlan": 10002,
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
       "paymentInstrumentId": " ",
+      "planId": 10002,
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -93,10 +92,10 @@ The below table identifies the required parameters in the request payload.
     },
     {
       "authorizationCode": " ",
-      "creditPlan": 10002,
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
       "paymentInstrumentId": " ",
+      "planId": 10002,
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -105,7 +104,6 @@ The below table identifies the required parameters in the request payload.
     }
   ]
 }
-
 ```
 ### Error Response Payload
 
@@ -121,3 +119,5 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5T24002SB` | No account on File |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

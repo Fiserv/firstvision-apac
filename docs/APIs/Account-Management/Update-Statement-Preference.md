@@ -16,7 +16,6 @@ This API is used to update statement preference for a given account. Some inport
   "statementReprintAddressFlag": "C",
   "ownerCoOwnerStatementFlag": "0"
 }
-
 ``` 
 
 ### Minimum Requirements
@@ -35,11 +34,11 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "businessUnit": 600,
   "accountId": "0006000011000000145",
+  "businessUnit": 600,
+  "ownerCoOwnerStatementFlag": "0",
   "statementModeOrStatus": "O",
-  "statementReprintAddressFlag": "C",
-  "ownerCoOwnerStatementFlag": "0"
+  "statementReprintAddressFlag": "C"
 }
 ```
 
@@ -48,7 +47,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
    "errorCode" :  "V5BS0010SF" ,
-   "errorMessage" : "Update Request - Record not found"   
+   "errorMessage" : "Update request - Record not found"   
 }
 ```
 
@@ -56,5 +55,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0010SF` | Update Request - Record not found |
+| `V5BS0010SF` | Update request - Record not found |
 | `V5BS0122SA` | Valid entries are 0 thru 9, H, O, R, S, U, Or Z |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

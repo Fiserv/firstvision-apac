@@ -54,8 +54,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "errorCode": "V5ED8120CX",
-  "errorMessage": "Saving acct nbr(or) cheque acct any one should be value"  
+  "errorCode": "V5ED9555SV",
+  "errorMessage": "Invalid pos flag"  
 }
 ```
 
@@ -63,11 +63,13 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5ED0010SF` | Update request - Record not found | 
-| `V5ED9555SV` | Invalid POS flag | 
-| `V5ED9556SV` | Invalid ATM flag |  
-| `V5ED8118SV` | Invalid PAY wave flag |  
-| `V5ED8119SV` | Invalid INT ATM POS flag |  
-| `V5ED8120SV` | Invalid Cash back tran flag |  
-| `V5ED8117SV` | Invalid ECOM act SW |  
-| `V5ED9557SV` | Invalid MOTO flag |  
+| `V5ED0010SF` | Update request - record not found | 
+| `V5ED9555SV` | Invalid pos flag | 
+| `V5ED9556SV` | Invalid atm flag |  
+| `V5ED8118SV` | Invalid pay wave flag |  
+| `V5ED8119SV` | Invalid int atm pos flag |  
+| `V5ED8120SV` | Invalid cash back tran flag |  
+| `V5ED8117SV` | Invalid ecom act sw |  
+| `V5ED9557SV` | Invalid moto flag |  
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

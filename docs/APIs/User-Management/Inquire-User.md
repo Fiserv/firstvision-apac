@@ -24,10 +24,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `clientId` | Query | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. | 
-| `name` | Query | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. | 
+| `clientId` | Query Parameter | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. | 
+| `name` | Query Parameter | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. | 
 
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
@@ -44,60 +43,59 @@ The below table identifies the required parameters in the request payload.
   "businessUnitPrivilegeId": "",
   "supervisorId": " ",
   "customerServiceBusinessUnit": 100,
-  "userServicePrivilegeRes": {
-    "userServicePrivilege1Res": {
+  "userServicePrivilege": {
+    "userServicePrivilege1": {
       "serviceInclusionExclusionFlag1": " ",
       "serviceName1": " ",
       "serviceVersion1": " "
     },
-    "userServicePrivilege2Res": {
+    "userServicePrivilege2": {
       "serviceInclusionExclusionFlag2": " ",
       "serviceName2": " ",
       "serviceVersion2": " "
     },
-    "userServicePrivilege3Res": {
+    "userServicePrivilege3": {
       "serviceInclusionExclusionFlag3": " ",
       "serviceName3": " ",
       "serviceVersion3": " "
     },
-    "userServicePrivilege4Res": {
+    "userServicePrivilege4": {
       "serviceInclusionExclusionFlag4": " ",
       "serviceName4": " ",
       "serviceVersion4": " "
     },
-    "userServicePrivilege5Res": {
-      "serviceInclusionExclusionflag5": " ",
+    "userServicePrivilege5": {
+      "serviceInclusionExclusionFlag5": " ",
       "serviceName5": " ",
       "serviceVersion5": " "
     },
-    "userServicePrivilege6Res": {
+    "userServicePrivilege6": {
       "serviceInclusionExclusionFlag6": " ",
       "serviceName6": " ",
       "serviceVersion6": " "
     },
-    "userServicePrivilege7Res": {
+    "userServicePrivilege7": {
       "serviceInclusionExclusionFlag7": " ",
       "serviceName7": " ",
       "serviceVersion7": " "
     },
-    "userServicePrivilege8Res": {
+    "userServicePrivilege8": {
       "serviceInclusionExclusionFlag8": " ",
       "serviceName8": " ",
       "serviceVersion8": " "
     },
-    "userServicePrivilege9Res": {
+    "userServicePrivilege9": {
       "serviceInclusionExclusionFlag9": " ",
       "serviceName9": " ",
       "serviceVersion9": " "
     },
-    "userServicePrivilege10Res": {
+    "userServicePrivilege10": {
       "serviceInclusionExclusionFlag10": " ",
       "serviceName10": " ",
       "serviceVersion10": " "
     }
   }
 }
-
 ```
 
 ### Error Response Payload
@@ -115,3 +113,5 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `VMSF0001SA` | Invalid request for this user security | 
 | `VMSF0011SF` | Record not found | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

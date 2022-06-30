@@ -4,7 +4,7 @@ This Lost or Stolen service is used to block the lost card and request for the r
 
 ## Endpoint
 
-`PUT /v1/cards/lostStolenCardTransfer`
+`POST /v1/cards/lostStolenCardTransfer`
 
 ## Payload Example
 	
@@ -29,7 +29,7 @@ This Lost or Stolen service is used to block the lost card and request for the r
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/lostStolenCardTransfer).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/lostStolenCardTransfer).
 
 The below table identifies the required parameters in the request payload.
 
@@ -44,7 +44,7 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "makedPaymentInstrumentId": "0009544401XXXXX9208",
+  "maskedPaymentInstrumentId": "0009544401XXXXX9208",
   "newPaymentInstrumentId": "0009544401000009208",
   "transferToAccountId": " ",
   "transferToCustomerId": " ",
@@ -99,3 +99,5 @@ Below table provides the list of application's error code and its description.
 |`V5E14032EA` | Business unit does not allow customer number generation |
 |`V5E10001SA` | System in after hours processing, re-try in few minutes |
 |`V5E10002SA` | System in no-processing status,re-try in few minutes |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

@@ -28,10 +28,8 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
-
 {
-  "memoLinesRes": [
+  "memoLines": [
     {
       "accountId": "0006000011000000160",
       "actionCode": "AINQ",
@@ -394,5 +392,8 @@ The below table identifies the required parameters in the request payload.
     }
   ]
 }
-
 ```
+
+### Error Response Payload
+
+*Please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

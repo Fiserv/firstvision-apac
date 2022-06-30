@@ -4,7 +4,7 @@ This service will update the Open-to-Buy, memo debit and credit fields for the g
   
 ## Endpoint
 
-`POST /v1/accountId/monetaryAction`
+`POST /v1/accounts/monetaryAction`
 
 ## Payload Example
 
@@ -29,32 +29,31 @@ This service will update the Open-to-Buy, memo debit and credit fields for the g
   "storeNumber": 999999998,
   "authorizationCode": " ",
   "referenceNumber": "0",
-  "actionCodePriority": 0,
+  "actionCodePriority": "0",
   "insuranceCode": " ",
-  "actionNotesReq": {
-    "note1": "",
-    "note2": "",
-    "note3": "",
-    "note4": "",
-    "note5": ""
+  "actionNotes": {
+    "note1": " ",
+    "note2": " ",
+    "note3": " ",
+    "note4": " ",
+    "note5": " "
   },
-  "representativeDetailReq": {
+  "representativeDetail": {
     "representativeId": "NAB",
     "referralOption": "0",
     "referralRepBusinessUnit": 0,
     "referralRepresentativeId": " "
   },
-  "letterDetailReq": {
+  "letterDetail": {
     "letterCode": " ",
     "letterBusinessUnit": "0"
   }
 }
-
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accountId/monetaryAction).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/monetaryAction).
 
 The below table identifies the required parameters in the request payload.
 
@@ -67,12 +66,13 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
+
 {
   "accountId": "0006000011000000160",
   "actionCode": "AINQ",
   "actionCodeDescription": "ACCOUNT INQ",
   "actionDate": "00/00/0000",
-  "actionNotesRes": {
+  "actionNotes": {
     "note1": "",
     "note2": "",
     "note3": "",
@@ -91,11 +91,10 @@ The below table identifies the required parameters in the request payload.
   "departmentCode": "",
   "effectiveDate": "18/08/2021",
   "feeAmount": "$0.00",
-  "foreignUseIndicator": 0,
-  "historyDate": "21/05/2022",
-  "historyTime": 84853,
+  "historyDate": "29/06/2022",
+  "historyTime": "73749",
   "insurance": "",
-  "letterDetailRes": {
+  "letterDetail": {
     "letterBusinessUnit": 0,
     "letterCode": ""
   },
@@ -112,7 +111,7 @@ The below table identifies the required parameters in the request payload.
   "productId": 1,
   "purchaseOrderNumber": "0",
   "referenceNumber": "",
-  "representativeDetailRes": {
+  "representativeDetail": {
     "actionRepId": "NAB",
     "referralRepBusinessUnit": 0,
     "referralRepId": "",
@@ -200,3 +199,5 @@ Below table provides the list of application's error code and its description.
 | `V8MA4036EA` | ASM rep not allowed to access account org | 
 | `V8MA4036EN` | Plan not found on file | 
 | `V8MA4036EO` | Store number not on file |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

@@ -11,7 +11,8 @@ This service fetches the card controls for a given card like maximum number of t
 ### Request Payload
 
 >Should be empty.  
-***The Payment Instrument Identification should be sent as path variable.***
+>
+>***The Payment Instrument Identification should be sent as path variable.***
 
 ### Minimum Requirements
 
@@ -44,7 +45,7 @@ The below table identifies the required query parameters in the request payload.
 ```json
 {
   "errorCode": "V5ED0004SF",
-  "errorMessage": "Get Request - Record not found"  
+  "errorMessage": "Get request - Record not found"  
 }
 ```
 
@@ -52,4 +53,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5ED0004SF` | Get Request - Record not found |
+|`V5ED0004SF` | Get request - Record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

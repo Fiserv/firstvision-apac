@@ -11,8 +11,6 @@ This new API enables to choose the records you want to add (Customer Name/Addres
 ### Request Payload
 
 ```json
-
-{
 {
   "accountId": "/",
   "isCustomerIdEnabled": "Y",
@@ -25,11 +23,11 @@ This new API enables to choose the records you want to add (Customer Name/Addres
   "customerId": "/",
   "relationshipNumber": "",
   "isInsuranceProductEnabled": "N",
-  "customerDemographicDetailsReq": {
-    "dualFlag": 0,
+  "customerDemographicDetails": {
+    "dualFlag": "0",
     "title": "",
     "nameTypeIndicator1": "0",
-    "nameTypeIndicator2": "",
+    "nameTypeIndicator2": "0",
     "nameTypeIndicator3": "0",
     "residenceFlag": "1",
     "homePhone": "11230342",
@@ -41,14 +39,14 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "alternateEmailAddress": "",
     "mobileNumber": "",
     "emailAddressFlag": "0",
-    "addressDetailsReq": {
+    "addressDetails": {
       "addressLine1": "",
       "addressLine2": "",
       "city": "",
       "stateprovince": "",
       "postalCode": ""
     },
-    "nameDetailsReq": {
+    "nameDetails": {
       "nameLine1": "",
       "nameLine2": "",
       "nameLine3": "",
@@ -57,18 +55,18 @@ This new API enables to choose the records you want to add (Customer Name/Addres
       "givenName": "Tom"
     }
   },
-  "relationshipDetailsReq": {
+  "relationshipDetails": {
     "relationshipCreditLimit": "",
-    "relationshipBlockCode": "",
-    "mailCode": "",
-    "reserveAmountpctFlag": "",
+    "relationshipBlockCode": " ",
+    "mailCode": "0",
+    "reserveAmountpctFlag": "0",
     "availableReservePctAmount": "",
-    "isStatememtTypeEnabled": "",
+    "isStatememtTypeEnabled": "0",
     "accountControlTableOverride": 0,
-    "billingLevel": "",
-    "isBillingLevelModificationEnabled": "",
+    "billingLevel": "1",
+    "isBillingLevelModificationEnabled": "0",
     "defaultCreditLimit": "",
-    "isCreditLimitModificationEnabled": "",
+    "isCreditLimitModificationEnabled": "0",
     "corporateCustomerId": "",
     "customerGroupCode": "",
     "costCenterReportingNumber": "",
@@ -78,23 +76,23 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "contactName": "",
     "contactPhone": "",
     "officerName": "",
-    "commercialFlag": "",
+    "commercialFlag": "0",
     "authorizationCriteriaTable": "",
-    "memoDetailsReq": {
+    "memoDetails": {
       "billingCurrency": 0,
       "paymentTransactionCode": 0,
       "paymentReversalTransactionCode": 0,
-      "balanceIndicator": ""
+      "balanceIndicator": "0"
     },
-    "feeDetailsReq": {
-      "annualFeeAssessmentLevel": "",
-      "isAnnualFeeModificationEnabled": "",
-      "lateFeeAssessmentLevel": "",
-      "isLateFeeModificationEnabled": "",
-      "nsfFeeAssessmentLevel": "",
-      "isNsfFeeModificationEnabled": ""
+    "feeDetails": {
+      "annualFeeAssessmentLevel": "0",
+      "isAnnualFeeModificationEnabled": "0",
+      "lateFeeAssessmentLevel": "0",
+      "isLateFeeModificationEnabled": "0",
+      "nsfFeeAssessmentLevel": "0",
+      "isNsfFeeModificationEnabled": "0"
     },
-    "userDetailsReq": {
+    "userDetails": {
       "userDate1": "",
       "userDate2": "",
       "userAmount1": "",
@@ -103,9 +101,9 @@ This new API enables to choose the records you want to add (Customer Name/Addres
       "userField6": ""
     }
   },
-  "accountDetailsReq": {
+  "accountDetails": {
     "corporateId": "",
-    "primaryAccountFlag": "",
+    "primaryAccountFlag": " ",
     "shortName": "",
     "creditLimit": "1000",
     "billingCurrency": 0,
@@ -118,58 +116,58 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "cashPlanId": 0,
     "retailPlanId": 0,
     "cardTechnology": "0",
-    "temporaryCreditLimit": "",
-    "temporaryCreditLimitExpiryDate": "",
+    "temporaryCreditLimit": "0",
+    "temporaryCreditLimitExpiryDate": "00/00/0000",
     "owningBranchNumber": 999999998,
     "isMobilePiEnabled": "0",
     "authorizationCriteriaTable": "",
-    "isSuppressLetterEnabled": "",
-    "isAnnualMembershipFeeEnabled": "0",
+    "isSuppressLetterEnabled": "0",
+    "isWaiveAnnualMembershipFeeEnabled": "0",
     "isSupressTokenEnabled": "0",
-    "coreBankingIndicator": "",
-    "pctOverrideDetailsReq": {
-      "tableId": " ",
-      "tableIdStartDate": "0",
-      "tableIdExpireDate": "0",
+    "coreBankingIndicator": " ",
+    "pctOverrideDetails": {
+      "pctOverride": " ",
+      "pctOverrideStartDate": "0",
+      "pctOverrideExpiryDate": "0",
       "level": " ",
       "levelStartDate": "0",
-      "levelExpireDate": "0"
+      "levelExpiryDate": "0"
     },
-    "ibsDetailsReq": {
+    "ibsDetails": {
       "ddaRoutingId": 0,
       "ddaAccountId": "",
       "savingsRoutingId": 0,
       "savingsAccountId": ""
     }
   },
-  "accountInsuranceProductDataReq": {
-    "dualIndicator": "",
+  "accountInsuranceProductData": {
+    "dualIndicator": " ",
     "productCode": "",
-    "statusCode": "",
+    "statusCode": " ",
     "effectiveDate": "",
     "enrollId": "",
-    "insuredPartyIndicator": "",
+    "insuredPartyIndicator": "0",
     "premiumRate": 0,
     "ficheNumber": "",
     "source": "",
-    "cancelReason": "",
-    "mailLetter": "",
-    "mailLetterFee": "",
-    "mailStatement": ""
+    "cancelReason": " ",
+    "isMailLetterEnabled": "0",
+    "isMailLetterFeeEnabled": "0",
+    "mailStatement": "0"
   },
-  "cardDetailsReq": {
+  "cardDetails": {
     "paymentInstrumentId": "/",
-    "cardAction": "",
+    "cardAction": "1",
     "numberOfCardsRequested": 0,
-    "typeOfCard": 0,
+    "cardType": 0,
     "requestedCardType": 0,
-    "typeCardMailer": 0,
+    "cardMailerType": 0,
     "plasticId": "",
     "name1TypeIndicator": "0",
     "name2TypeIndicator": "0",
     "posServiceCode": 0,
     "cardholderFlag": "1",
-    "visaMiniIndicator": " ",
+    "visaMiniIndicator": "0",
     "programId": 0,
     "mobileDeviceId": "",
     "mobileProvisionStatus": "0",
@@ -177,13 +175,13 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "mccGroupLimits": "",
     "chequeAccountId": "",
     "savingAccountId": "",
-    "namesDetailsReq": {
+    "namesDetails": {
       "embossedName1": "Trump",
       "embossedName2": "",
       "name1": "",
       "name2": ""
     },
-    "addressDetailsReq": {
+    "addressDetails": {
       "addressLine1": "",
       "addressLine2": "",
       "city": "",
@@ -192,7 +190,6 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     }
   }
 }
-
 ``` 
 
 ### Minimum Requirements
@@ -230,22 +227,20 @@ the track data on the card. |
 ### Successful Response Payload
 
 ```json
-
 {
   "businessUnit": 600,
   "productId": 1,
   "customerId": "0006000012000000191",
   "relationshipId": "",
   "accountId": "0006000012000000191",
-  "cardDetailsRes": {
+  "cardDetails": {
     "paymentInstrumentId": "0004440010910990851",
     "nameOnCard": "Trump",
-    "expirationDate": "18/01/2024",
+    "expiryDate": "18/01/2024",
     "activationStatus": "0",
-    "maskedPaymentInstrumentId": ""
+    "maskedPaymentCardNumber": ""
   }
 }
-
 ```
 
 ### Error Response Payload
@@ -341,3 +336,5 @@ Below table provides the list of application's error code and its description.
 | `V5AP4101SA` | Card number check digit is invalid |
 | `V5AP4105SA` | Card sequence already at maximum for card number |
 | `V5AP4106SA` | Card sequence already at maximum for chip card number |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

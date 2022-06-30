@@ -16,14 +16,13 @@ The service will validate input message details and add memo line for monetary a
   "accountId": "0006000011000000152",
   "actionCode": "AINQ",
   "paymentInstrumentId": " ",
-  "actionNotesReq": {
-    "note1": "",
-    "note2": "",
-    "note3": "",
-    "note4": "",
-    "note5": ""
+  "actionNotes": {
+    "note1": " ",
+    "note2": " ",
+    "note3": " ",
+    "note4": " ",
+    "note5": " "
   }
-}
 
 ``` 
 
@@ -44,7 +43,7 @@ The below table identifies the required parameters in the request payload.
 {
   "actionCode": "AINQ",
   "actionCodeDescription": "ACCOUNT INQ",
-  "actionNotesRes": {
+  "actionNotes": {
     "note1": "",
     "note2": "",
     "note3": "",
@@ -52,9 +51,9 @@ The below table identifies the required parameters in the request payload.
     "note5": ""
   },
   "actionRepId": "NAB",
-  "historyDate": "21/05/2022",
-  "historyTime": "07:46:44",
-  "notePurgeDate": "15/06/2022",
+  "historyDate": "29/06/2022",
+  "historyTime": "06:11:00",
+  "notePurgeDate": "24/07/2022",
   "notesHistoryStatus": "C",
   "paymentInstrumentId": ""
 }
@@ -88,3 +87,6 @@ Below table provides the list of application's error code and its description.
 | `V8NA4027EE` | Invalid card number |
 | `V8NA4029SA` | Manual referral org/rep not found | 
 | `V8NA4030SA` | Manual referral org/rep not eligible for this request |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+

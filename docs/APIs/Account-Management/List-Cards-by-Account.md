@@ -27,9 +27,8 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
-  "listOfCardsRes": [
+  "listOfCards": [
     {
       "accountId": "0006000022000000076",
       "blockCode": "",
@@ -41,7 +40,8 @@ The below table identifies the required parameters in the request payload.
     }
   ]
 }
-
 ```
 
+### Error Response Payload
 
+*Please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

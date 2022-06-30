@@ -23,7 +23,7 @@ The account fee waive flags update service is used to update flag for waive intr
   "isWaiveAddOnMembershipFeeEnabled": "0",
   "isWaiveTaxEnabled": "1",
   "isWaiveCycleSpendFeeEnabled": "1",
-  "UserFeesReq": {
+  "UserFees": {
     "isWaiveFee1Enabled": "1",
     "isWaiveFee2Enabled": "1",
     "isWaiveFee3Enabled": "1",
@@ -31,14 +31,14 @@ The account fee waive flags update service is used to update flag for waive intr
     "isWaiveFee5Enabled": "0",
     "isWaiveFee6Enabled": "0"
   },
-  "CashAdvanceFeesReq": {
+  "CashAdvanceFees": {
     "isWaiveFee1Enabled": "1",
     "isWaiveFee2Enabled": "1",
     "isWaiveFee3Enabled": "1",
     "isWaiveFee4Enabled": "1",
     "isWaiveFee5Enabled": "1"
   },
-  "ServiceFeesReq": {
+  "ServiceFees": {
     "isWaiveFee01Enabled": "1",
     "isWaiveFee10Enabled": "1",
     "isWaiveFee11Enabled": "1",
@@ -66,7 +66,6 @@ The account fee waive flags update service is used to update flag for waive intr
     "isWaiveFee09Enabled": "1"
   }
 }
-
 ```
 
 ### Minimum	Requirements
@@ -86,35 +85,23 @@ The below table identifies the required parameters in the request payload.
 ```json
 
 {
-  "businessUnit": 600,
-  "accountId": "0006000011000000178",
-  "isWaiveLateChargeEnabled": "1",
-  "isWaiveInterestFeeEnabled": "1",
-  "isWaiveAnnualMembershipFeeEnabled": "0",
-  "isWaiveOverlimitFeeEnabled": "0",
-  "isWaiveNsf1-5FeeEnabled": "3",
-  "isWaiveCardIssuanceFeeEnabled": "1",
-  "isWaiveLetterFeeEnabled": "1",
-  "isWaiveAddOnMembershipFeeEnabled": "0",
-  "isWaiveTaxEnabled": "1",
-  "isWaiveCycleSpendFeeEnabled": "1",
-  "UserFeesRes": {
-    "isWaiveFee1Enabled": "1",
-    "isWaiveFee2Enabled": "1",
-    "isWaiveFee3Enabled": "1",
-    "isWaiveFee4Enabled": "1",
-    "isWaiveFee5Enabled": "0",
-    "isWaiveFee6Enabled": "0"
-  },
-  "CashAdvanceFeesRes": {
+  "CashAdvanceFees": {
     "isWaiveFee1Enabled": "1",
     "isWaiveFee2Enabled": "1",
     "isWaiveFee3Enabled": "1",
     "isWaiveFee4Enabled": "1",
     "isWaiveFee5Enabled": "1"
   },
-  "ServiceFeesRes": {
+  "ServiceFees": {
     "isWaiveFee01Enabled": "1",
+    "isWaiveFee02Enabled": "1",
+    "isWaiveFee03Enabled": "1",
+    "isWaiveFee04Enabled": "1",
+    "isWaiveFee05Enabled": "1",
+    "isWaiveFee06Enabled": "1",
+    "isWaiveFee07Enabled": "1",
+    "isWaiveFee08Enabled": "1",
+    "isWaiveFee09Enabled": "1",
     "isWaiveFee10Enabled": "1",
     "isWaiveFee11Enabled": "1",
     "isWaiveFee12Enabled": "1",
@@ -125,21 +112,33 @@ The below table identifies the required parameters in the request payload.
     "isWaiveFee17Enabled": "1",
     "isWaiveFee18Enabled": "1",
     "isWaiveFee19Enabled": "1",
-    "isWaiveFee02Enabled": "1",
     "isWaiveFee20Enabled": "1",
     "isWaiveFee21Enabled": "1",
     "isWaiveFee22Enabled": "1",
     "isWaiveFee23Enabled": "1",
     "isWaiveFee24Enabled": "1",
-    "isWaiveFee25Enabled": "1",
-    "isWaiveFee03Enabled": "1",
-    "isWaiveFee04Enabled": "1",
-    "isWaiveFee05Enabled": "1",
-    "isWaiveFee06Enabled": "1",
-    "isWaiveFee07Enabled": "1",
-    "isWaiveFee08Enabled": "1",
-    "isWaiveFee09Enabled": "1"
-  }
+    "isWaiveFee25Enabled": "1"
+  },
+  "UserFees": {
+    "isWaiveFee1Enabled": "1",
+    "isWaiveFee2Enabled": "1",
+    "isWaiveFee3Enabled": "1",
+    "isWaiveFee4Enabled": "1",
+    "isWaiveFee5Enabled": "0",
+    "isWaiveFee6Enabled": "0"
+  },
+  "accountId": "0006000011000000178",
+  "businessUnit": 600,
+  "isWaiveAddOnMembershipFeeEnabled": "0",
+  "isWaiveAnnualMembershipFeeEnabled": "0",
+  "isWaiveCardIssuanceFeeEnabled": "1",
+  "isWaiveCycleSpendFeeEnabled": "1",
+  "isWaiveInterestFeeEnabled": "1",
+  "isWaiveLateChargeEnabled": "1",
+  "isWaiveLetterFeeEnabled": "1",
+  "isWaiveNsf1-5FeeEnabled": "3",
+  "isWaiveOverlimitFeeEnabled": "0",
+  "isWaiveTaxEnabled": "1"
 }
 ```
 
@@ -175,3 +174,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS1031SV` | Invalid  Waive Tax Calculation |
 | `V5BS1009SV` | Invalid  Waive Svc Change |
 | `V5BS1011SV` | Invalid  Waive Cash Adverse Fee |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

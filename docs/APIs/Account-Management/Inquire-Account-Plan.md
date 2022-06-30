@@ -31,7 +31,7 @@ The below table identifies the required parameters in the request payload.
 {
   "accountId": "0002000010000400044",
   "beginningBalance": "$0.00",
-  "billedNotPaidDetailsRes": {
+  "billedNotPaidDetails": {
     "annualFeeAmount": "$0.00",
     "collectionFeeAmount": "$0.00",
     "insuranceAmount": "$0.00",
@@ -39,6 +39,7 @@ The below table identifies the required parameters in the request payload.
     "lateFeeAmount": "$0.00",
     "nsfFeeAmount": "$0.00",
     "overlimitFeeAmount": "$0.00",
+    "principalAmount": "$0.00",
     "recoveryFeeAmount": "$0.00",
     "serviceFeeAmount": "$0.00",
     "userFee1Amount": "$0.00",
@@ -49,7 +50,7 @@ The below table identifies the required parameters in the request payload.
     "userFee6Amount": "$0.00"
   },
   "businessUnit": 200,
-  "dateFieldsDetailsRes": {
+  "dateFieldsDetails": {
     "accruedThroughDate": "31/12/2020",
     "billingBeginningDate": "00/00/0000",
     "effectiveDate": "01/03/2021",
@@ -66,7 +67,7 @@ The below table identifies the required parameters in the request payload.
     "userFee3assessmentDate": "00/00/0000"
   },
   "disputedAmount": "$0.00",
-  "generalDetailsRes": {
+  "generalDetails": {
     "consolidatedPayment": "N",
     "consolidatedStatement": "Y",
     "limitIndicator": 0,
@@ -75,13 +76,13 @@ The below table identifies the required parameters in the request payload.
     "rateType": "",
     "referenceNumber": ""
   },
-  "interestTableOverrideDetailsRes": {
+  "interestTableOverrideDetails": {
     "expiryDate": "00/00/0000",
     "status": "",
     "tableId": 0
   },
   "lastInterestRate": "0.00000%",
-  "miscellenousDetailsRes": {
+  "miscellenousDetails": {
     "balanceTransferMonthsRemaining": 0,
     "cycleToDatePostedPaymentAmount": "$0.00",
     "disclosureDays": 0,
@@ -96,19 +97,18 @@ The below table identifies the required parameters in the request payload.
     "lifeToDateReturnAmount": "$0.00",
     "paymentType": "T",
     "planNumberForConsolidatedPayments": 10002,
-    "planStatus": 1,
-    "planStatusChangeDate": "00/00/0000",
-    "planTotalDueAmount": "$0.00",
-    "planType": "R",
     "previousFixedPaymentAmount": "$0.00",
-    "previousPlanStatus": 0,
     "rateTableOccurrenceIndicator": 2,
     "userdefinedProductCode": "10002",
     "userdefinedPromotionalProductId": ""
   },
-  "principalAmount": "$0.00"
+  "planStatus": 1,
+  "planStatusChangeDate": "00/00/0000",
+  "planTotalDueAmount": "$0.00",
+  "planType": "R",
+  "previousPlanStatus": 0,
+  "recordNumber": 1
 }
-
 ```
 
 ### Error Response Payload
@@ -116,7 +116,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5PH0004SF",
-  "errorMessage": "Get Request - Record Not Found"  
+  "errorMessage": "Get request - Record Not Found"  
 }
 ```
 
@@ -124,4 +124,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5PH0004SF` | Get Request - Record Not Found |
+| `V5PH0004SF` | Get request - Record Not Found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

@@ -56,4 +56,6 @@ Below table provides the list of application's error code and its description.
 | `V5ED0204EE` | Additional card not allowed for smart card |               
 | `V5ED0204EM` | Valid actions are 0 and 1 when a card has never been issued |                
 | `V5ED0204SV` | Invalid  card action |         
-| `V5ED0222EB` | Value is required and cannot equal spaces |         
+| `V5ED0222EB` | Value is required and cannot equal spaces | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*        

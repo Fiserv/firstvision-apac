@@ -1,4 +1,4 @@
-# Real Time Payments
+# Post Payments
 
 This service is used post the real-time payments which increases open to buy immediately for a given account number without waiting for nightly processing takes place.
 
@@ -11,7 +11,6 @@ This service is used post the real-time payments which increases open to buy imm
 ### Request Payload
 
 ```json
-
 {
   "businessUnit": "600",
   "accountId": "0006000011000000160",
@@ -24,22 +23,22 @@ This service is used post the real-time payments which increases open to buy imm
   "paymentInstrumentId": "0000000000000000000",
   "ticketNumber": "0",
   "caseNumber": "05313031301",
-  "actionNotesReq": {
+  "actionNotes": {
     "note1": "",
     "note2": "",
     "note3": "",
     "note4": "",
     "note5": ""
   },
-  "representativeDetailsReq": {
+  "representativeDetails": {
     "representativeId": "NAB",
     "referralOption": "0",
     "referralRepBusinessUnit": 0,
     "referralRepresentativeId": " "
   },
-  "letterDetailsReq": {
+  "letterDetails": {
     "letterCode": "",
-    "letterBusinessUnit": ""
+    "letterBusinessUnit": "0"
   }
 }
 ```
@@ -65,7 +64,7 @@ The below table identifies the required parameters in the request payload.
   "accountId": "0006000011000000160",
   "actionCode": "RLP3",
   "actionCodeDescription": "REAL-TIME PAYMENT3",
-  "actionNotesRes": {
+  "actionNotes": {
     "note1": "",
     "note2": "",
     "note3": "",
@@ -73,8 +72,8 @@ The below table identifies the required parameters in the request payload.
     "note5": ""
   },
   "actionRepId": "NAB",
-  "autoReferenceFlag": 1,
-  "balancesRes": {
+  "autoReferenceFlag": "1",
+  "balances": {
     "cashAvailable": "$0.00",
     "creditLimit": "$0.50",
     "currentBalance": "$72.00",
@@ -82,17 +81,16 @@ The below table identifies the required parameters in the request payload.
   },
   "clerk": "",
   "departmentCode": "",
-  "departmentNumber": "",
   "effectiveDate": "25/02/2022",
-  "historyDate": "21/05/2022",
-  "historyTime": 90934,
-  "letterDetailsRes": {
+  "historyDate": "29/06/2022",
+  "historyTime": 75047,
+  "letterDetails": {
     "letterBusinessUnit": 0,
     "letterCode": ""
   },
   "name": "RACHEL TEST BY SASHI",
   "paymentInstrumentId": "0006000011000000160",
-  "representativeDetailsRes": {
+  "representativeDetails": {
     "referralRepBusinessUnit": 0,
     "referralRepId": "",
     "repBusinessUnit": 600
@@ -104,7 +102,6 @@ The below table identifies the required parameters in the request payload.
   "workExtension": 0,
   "workPhone": "00000000000000000000"
 }
-
 ```
 
 ### Error Response Payload
@@ -147,3 +144,5 @@ Below table provides the list of application's error code and its description.
 | `V8MA4031EG` | Manual org must be numeric and 001-998 |  
 | `V8MA4032EG` | Manual referal rep ID was not supplied |  
 | `V8MA4036EA` | ASM rep not allowed to access account org | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

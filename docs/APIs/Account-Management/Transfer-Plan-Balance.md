@@ -1,36 +1,31 @@
-# Product Transfer
+# Transfer Plan Balance
 
-This service will validate input message and upgrades customer's account product. 
+This service transfers the balance of a credit plan segment to a different credit plan segment within an account. With a plan transfer, you can transfer the entire balance of a credit plan segment.
 
 ## Endpoint
 
-`POST /v1/accounts/productTransfer`
+`POST /v1/accounts/transferPlanBalance`
 
 ## Payload Example
 
 ### Request Payload
 
 ```json
+
 {
-  "accountId": "0004440010000000033",
-  "businessUnit": 0,
-  "transferAuthDays": 0,
-  "transferToAccountId": "/",
-  "transferToProductId": 2,
-  "customerId": " ",
-  "billingCycle": 0,
-  "effectiveDate": "0",
-  "transferReplcementIndicator": "0",
-  "newCardTechnology": "1",
-  "continueWithReissue": "0",
-  "processType": " ",
-  "sameDayProcessing": "0"
+  "businessUnit": 200,
+  "accountId": "0002000010000066752",
+  "transferFromPlanId": 10002,
+  "transferFromRecordNumber": 1,
+  "transferToPlanId": 10001,
+  "transferToRecordNumber": 0
 }
+
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/productTransfer).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/transferPlanBalance).
 
 The below table identifies the required parameters in the request payload.
 
@@ -38,14 +33,20 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
-| `transferToAccountId` | Payload | *string* | 19 | New transferred to account id of the cardholder billing account. |  
- 
+| `transferToAccountId` | Payload | *number* | 5 | Plan number associated with the credit plan segment from which to transfer funds. |  
+| `transferFromRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account from which to transfer funds. |  
+| `transferToPlanId` | Payload | *number* | 5 | Plan number to which you want to transfer the funds. |  
+| `transferToRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account to which to transfer funds. |  
+
 ### Successful Response Payload
 
 ```json
+
 {
-  "businessUnit": 600,
-  "accountId": "0006000022000000621"
+  "businessUnit": 200,
+  "accountId": "0002000010000066752",
+  "transferToPlanId": 10001,
+  "transferToRecordNumber": 0
 }
 ```
 
@@ -53,8 +54,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "errorCode": "V8MA4005EA",
-  "errorMessage": "Account or card not found"  
+  "errorCode": "V5X24017SC",
+  "errorMessage": "Transfer/Copy to account must not be on file for this"  
 }
 ```
 
@@ -96,5 +97,3 @@ Below table provides the list of application's error code and its description.
 | `V5X24035SC` | Determined logo not equal xfr/copy from logo for billing acct |
 | `V5X24035SD` | Transfer to logo does not allow smart card-acct not transferred |
 | `V5X24035SG` | Please review smart card embosser detail record on embosser record |
-
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

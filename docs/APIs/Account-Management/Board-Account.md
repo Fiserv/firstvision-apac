@@ -13,6 +13,7 @@ Fields that are not provided in the request object will be initialised to their 
 ### Request Payload
 
 ```json
+
 {
   "isInsuranceProductEnabled": "N",
   "businessUnit": 600,
@@ -36,18 +37,18 @@ Fields that are not provided in the request object will be initialised to their 
   "isMobilePiEnabled": "0",
   "authorizationCriteriaTable": " ",
   "isSuppressLetterEnabled": "0",
-  "isAnnualMembershipFeeEnabled": "0",
+  "isWaiveAnnualMembershipFeeEnabled": "0",
   "isSupressTokenEnabled": "0",
   "coreBankingIndicator": " ",
-  "pctOverrideDetailsReq": {
-    "tableId": " ",
-    "tableIdStartDate": "0",
-    "tableIdExpireDate": "0",
+  "pctOverrideDetails": {
+    "pctOverride": " ",
+    "pctOverrideStartDate": "0",
+    "pctOverrideExpireDate": "0",
     "level": " ",
     "levelStartDate": "0",
     "levelExpireDate": "0"
   },
-  "ibsDetailsReq": {
+  "ibsDetails": {
     "ddaRoutingId": "0",
     "ddaAccountId": " ",
     "savingsRoutingId": "12345",
@@ -134,3 +135,5 @@ Below table provides the list of application's error code and its description.
 | `V5SB4160EB` | Invalid Base account number for this Org |
 | `V5SB4160EC` | Invalid Base account number digit for dual org |
 | `V5SB4160ED` | Invalid Base account number for dual org |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

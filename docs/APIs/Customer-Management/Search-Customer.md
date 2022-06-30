@@ -14,12 +14,12 @@ Fields that are not provided in the request object will be initialised to their 
 
 ```json
 {
-  "customerSearchReq": {
+  "customerSearch": {
     "primaryDataSwitch": "0",
     "primaryData": "Test*",
     "optionalDataMatch": "1"
   },
-  "optionalDataReq": {
+  "optionalData": {
     "givenName": "",
     "middleName": "",
     "birthName": "",
@@ -36,7 +36,6 @@ Fields that are not provided in the request object will be initialised to their 
     "businessUnit": 0
   }
 }
-
 ``` 
 
 ### Minimum Requirements
@@ -55,13 +54,13 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "customerlistRes": [
+  "customerlist": [
     {
       "birthDate": "09011985",
       "businessUnit": 200,
       "country": " ",
       "cust/Store/Merchant": "0002000000050623496",
-      "firstName": "CMS Fiserv",
+      "givenName": "CMS Fiserv",
       "identificationNumber": "0050623496",
       "last/Business/Store/GenericName": "Test 01",
       "middleName": " ",
@@ -80,7 +79,7 @@ The below table identifies the required parameters in the request payload.
       "businessUnit": 200,
       "country": " ",
       "cust/Store/Merchant": "0002000000050623502",
-      "firstName": "CMS Fiserv",
+      "givenName": "CMS Fiserv",
       "identificationNumber": "0050623502",
       "last/Business/Store/GenericName": "Test 02",
       "middleName": " ",
@@ -99,7 +98,7 @@ The below table identifies the required parameters in the request payload.
       "businessUnit": 200,
       "country": " ",
       "cust/Store/Merchant": "0002000000050625775",
-      "firstName": "CMS",
+      "givenName": "CMS",
       "identificationNumber": "0050625775",
       "last/Business/Store/GenericName": "Testing",
       "middleName": " ",
@@ -155,3 +154,5 @@ Below table provides the list of application's error code and its description.
 | `V5XL4003SA` | Service function code invalid |                                    
 | `V5XL4003SF` | Invalid svc function code |
 | `V5XL4003SB` | Valid value for optional data match is 0 or 1 |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

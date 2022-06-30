@@ -13,7 +13,7 @@ This API is used to perform card control updates at product level. This API can 
 ```json
 
 {
-  "cardControlFieldsReq": {
+  "cardControlFields": {
     "maximumAuthorizationLimitFrequency": "1",
     "maximumAtmCashAuthorizationsAmount": "2000.0",
     "maximumAtmCashAuthorizationsCount": 5,
@@ -25,7 +25,7 @@ This API is used to perform card control updates at product level. This API can 
     "maximumRetailAuthorizationsCount": 10,
     "maximumSingleRetailAuthorizationAmount": "10000.0"
   },
-  "cardControlFlagsReq": {
+  "cardControlFlags": {
     "isAtmEnabled": "Y",
     "isPosEnabled": "Y",
     "isEcomEnabled": "1",
@@ -34,13 +34,12 @@ This API is used to perform card control updates at product level. This API can 
     "isCashBackEnabled": "Y",
     "isPayWaveEnabled": "N"
   },
-  "yearToDateCountryRiskSpendLimitsReq": {
+  "yearToDateCountryRiskSpendLimits": {
     "isCountryRiskSpendLimitEnabled": "1",
     "highRiskCountryMaximumAuthAmount": "10000.0",
     "otherRiskCountryMaximumAuthAmount": "15000.0"
   }
 }
-
 ``` 
 
 ### Minimum Requirements
@@ -59,38 +58,36 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
   "businessUnit": 600,
-  "productId": 1,
-  "cardControlFieldsRes": {
-    "maximumAuthorizationLimitFrequency": "1",
-    "maximumAtmCashAuthorizationsAmount": "2000.0",
+  "cardControlFields": {
+    "maximumAtmCashAuthorizationsAmount": "$200.00",
     "maximumAtmCashAuthorizationsCount": 5,
-    "maximumSingleAtmTransactionAmount": "100.0",
-    "maximumOtcCashAuthorizationsAmount": "1500.0",
+    "maximumAuthorizationLimitFrequency": "1",
     "maximumOtcAuthorizationsCount": 6,
-    "maximumSingleOtcCashAuthorizationAmount": "200.0",
-    "maximumRetailAuthorizationsAmount": "100000.0",
+    "maximumOtcCashAuthorizationsAmount": "$150.00",
+    "maximumRetailAuthorizationsAmount": "$10,000.00",
     "maximumRetailAuthorizationsCount": 10,
-    "maximumSingleRetailAuthorizationAmount": "10000.0"
+    "maximumSingleAtmTransactionAmount": "$10.00",
+    "maximumSingleOtcCashAuthorizationAmount": "$20.00",
+    "maximumSingleRetailAuthorizationAmount": "$1,000.00"
   },
-  "cardControlFlagsRes": {
+  "cardControlFlags": {
     "isAtmEnabled": "Y",
-    "isPosEnabled": "Y",
-    "isEcomEnabled": "1",
-    "isMotoEnabled": "N",
-    "isInternationalAtmPosEnabled": "N",
     "isCashBackEnabled": "Y",
-    "isPayWaveEnabled": "N"
+    "isEcomEnabled": "1",
+    "isInternationalAtmPosEnabled": "N",
+    "isMotoEnabled": "N",
+    "isPayWaveEnabled": "N",
+    "isPosEnabled": "Y"
   },
-  "yearToDateCountryRiskSpendLimitsRes": {
+  "productId": 1,
+  "yearToDateCountryRiskSpendLimits": {
+    "highRiskCountryMaximumAuthAmount": "$1,000.00",
     "isCountryRiskSpendLimitEnabled": "1",
-    "highRiskCountryMaximumAuthAmount": "10000.0",
-    "otherRiskCountryMaximumAuthAmount": "15000.0"
+    "otherRiskCountryMaximumAuthAmount": "$1,500.00"
   }
 }
-
 ```
 
 ### Error Response Payload
@@ -107,4 +104,6 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5CR0484EA` | Org not found |
-| `V5CR0010SF` | Update Request - Record not found |
+| `V5CR0010SF` | Update request - Record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

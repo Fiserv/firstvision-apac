@@ -36,13 +36,13 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "businessUnit": 600,
   "accountId": "0006000011000000137",
+  "businessUnit": 600,
   "issuanceId": "SX1",
-  "residenceId": "SX1",
+  "pctExpiryDate": "31/12/2025",
   "pctOverride": "HCS",
   "pctStartDate": "29/01/2022",
-  "pctExpiryDate": "31/12/2025"
+  "residenceId": "SX1"
 }
 ```
 
@@ -78,3 +78,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS0304SB` | Enter pricing ctrl when using dates | 
 | `V5BS0304SC` | Start date less than the org next processing date | 
 | `V5BS0304SD` | Expire date less than the org next processing date | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

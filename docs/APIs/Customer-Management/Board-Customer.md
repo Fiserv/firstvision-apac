@@ -16,7 +16,7 @@ Fields that are not provided in the Request object will be initialised to their 
 {
   "businessUnit": 600,
   "productId": 2,
-  "dualFlag": 0,
+  "dualFlag": "0",
   "title": "Mr",
   "nameTypeIndicator1": "0",
   "nameTypeIndicator2": "0",
@@ -31,23 +31,23 @@ Fields that are not provided in the Request object will be initialised to their 
   "alternateEmailAddress": "abc1@google.com",
   "mobileNumber": "11231232",
   "emailAddressFlag": "1",
-  "addressDataReq": {
-    "addressLine3": "CHITRAPURI",
-    "addressLine4": "DELHI",
-    "addressLine1": "FLAT NO:404",
-    "addressLine2": "RAINBOW APTS",
-    "city": "DELHI",
-    "stateProvince": "DL",
-    "countryCode": "IND",
-    "postalCode": "110004"
+  "addressData": {
+    "addressLine1": "House No. 12",
+    "addressLine2": "S.H. Qo",
+    "addressLine3": "California",
+    "addressLine4": "USA",
+    "city": "La Vegas",
+    "state": "CL",
+    "postalCode": "112345",
+    "countryCode": "USA"
   },
-  "namesDataReq": {
-    "birthName": "",
-    "givenName": "ABC",
-    "middleName": "",
-    "nameLine1": "M S SWAMY",
-    "nameLine2": "KK",
-    "nameLine3": " "
+  "namesData": {
+    "nameLine1": "John",
+    "nameLine2": "Jacob ",
+    "nameLine3": "Samuel",
+    "birthName": "Christopher",
+    "middleName": " ",
+    "givenName": "Samuel"
   }
 }
 ``` 
@@ -69,7 +69,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "businessUnit": 600,
-  "customerId": "0006000012000000768"
+  "customerId": "0006000012000000846"
 }
 ```
 
@@ -99,3 +99,5 @@ Below table provides the list of application's error code and its description.
 | `V5SB4160EE` | Invalid Customer check digit for this org |                         
 | `V5SB4160EG` | Invalid Customer check digit for dual org |
 | `V5NA4081EA` | First name is required |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

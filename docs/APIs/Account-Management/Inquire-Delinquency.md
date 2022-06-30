@@ -27,10 +27,11 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
+
 {
   "accountId": "0006000011000000509",
   "businessUnit": 600,
-  "delinquencyDetailsRes": {
+  "delinquencyDetails": {
     "120daysDelinquentAmount": "$0.00",
     "150daysDelinquentAmount": "$0.00",
     "180daysDelinquentAmount": "$0.00",
@@ -41,12 +42,11 @@ The below table identifies the required parameters in the request payload.
     "currentCycleDue": "0",
     "currentDueAmount": "$0.00",
     "lastDelinquentDate": "00/00/0000",
-    "pastDuePaymentAmount": "$0.00",
+    "pastDueAmount": "$0.00",
     "paymentDaysDelinquentCount": 0,
     "previousCycleDue": 0
   }
 }
-
 ```
 
 ### Error Response Payload
@@ -54,7 +54,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5BS0004SF",
-  "errorMessage": "Get Request - Record Not Found"  
+  "errorMessage": "Get request - Record Not Found"  
 }
 ```
 
@@ -62,4 +62,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0004SF` | Get Request - Record Not Found |
+| `V5BS0004SF` | Get request - Record Not Found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

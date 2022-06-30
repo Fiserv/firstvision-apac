@@ -63,3 +63,5 @@ Below table provides the list of application's error code and its description.
 | `V5ED4001SC` | Business unit is in purge status |
 | `V5ED0309SV` | Invalid current card activation |
 | `V5ED0310SV` | Invalid last card activation |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

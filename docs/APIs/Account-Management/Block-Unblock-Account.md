@@ -68,3 +68,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS0127SV` | Account - Invalid block code 2 |
 | `V5BS0125SC` | Block Code 1 cannot be replaced with one of the lower priority |  
 | `V5BS0127SC` | Block Code 2 cannot be replaced with one of the lower priority |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

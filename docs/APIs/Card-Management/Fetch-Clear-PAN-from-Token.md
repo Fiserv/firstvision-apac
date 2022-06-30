@@ -47,3 +47,5 @@ Below table provides the list of application's error code and its description.
 |`V5CL4002EA` | Invalid card number |
 |`V5CL4001AS` | Org not found |
 |`V5CL4002AS` | Token number not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
