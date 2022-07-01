@@ -4,7 +4,7 @@ This API retrives various service fee details available in the system for a give
 
 ## Endpoint
 
-`GET /v1/products/{productNumber}/serviceChargeDetails`
+`GET /v1/products/{productId}/serviceChargeDetails`
 
 ## Payload Example
 
@@ -12,29 +12,28 @@ This API retrives various service fee details available in the system for a give
 
 >Should be empty.
 >
->***The Business Unit and table number should be sent as query parameters whereas product number as path variable.***
+>***Business Unit and table id should be sent as query parameters whereas product id as path variable.***
  
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{productNumber}/serviceChargeDetails).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{productId}/serviceChargeDetails).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 03 | Identification number of the business unit associated with this Service Charge/Fee table. The values are 000–998.|
-| `productNumber` | Path Variable | *number* | 03 | Identification number of the product associated with this Service Charge/Fee table. The values are 000–998.|
-| `tableNumber` | Query Parameter | *number* | 03 | Identification number of the Service Charge/Fee table. The values are 001–998.|
+| `businessUnit` | Query Parameter | *number* | 03 | Unique identification number associated with the organization. Valid values from 001-998.|
+| `productId` | Path Variable | *number* | 03 | Unique identification number of the product associated with the organization. If the table is defined at organization level, populate this field as zeroes. For tables defined at product level, valid values are 001-998.|
+| `tableId` | Query Parameter | *number* | 03 | Identification number of the Service Charge/Fee table. The values are 001–998.|
 
 ### Successful Response Payload
 
 ```json
-
 {
   "businessUnit": 600,
-  "maximumCycleServiceFees": "$9,999.00",
-  "productNumber": 0,
-  "serviceChargeDetailsRes": [
+  "maximumCycleServiceFeeAmount": "$9,999.00",
+  "productId": 0,
+  "serviceChargeDetails": [
     {
       "dailyFeeDescription": " ",
       "feePlan": "0",
@@ -43,10 +42,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 3001,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "100",
-      "tier2ServiceFee": "1000",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "100",
+      "tier2Fee": "1000",
       "transactionLimit": 1,
       "transactionLimitFrequency": "0"
     },
@@ -58,10 +57,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -73,10 +72,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -88,10 +87,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -103,10 +102,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -118,10 +117,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -133,10 +132,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -148,10 +147,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -163,10 +162,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -178,10 +177,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -193,10 +192,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -208,10 +207,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -223,10 +222,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -238,10 +237,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -253,10 +252,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -268,10 +267,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -283,10 +282,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -298,10 +297,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -313,10 +312,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -328,10 +327,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -343,10 +342,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -358,10 +357,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -373,10 +372,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -388,10 +387,10 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -403,27 +402,28 @@ The below table identifies the required parameters in the request payload.
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "serviceFeeMaximumCapping": 999999999,
-      "serviceFeeMinimumCapping": 0,
-      "tier1ServiceFee": "0",
-      "tier2ServiceFee": "0",
+      "singleFeeMaximumAmount": 999999999,
+      "singleFeeMinimumAmount": 0,
+      "tier1Fee": "0",
+      "tier2Fee": "0",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     }
   ],
-  "tableNumber": 3
+  "tableId": 3
 }
-
 ```
 
 ### Error Response Payload
 
 ```json
 {
-   errorCode" :  V5PH0004SF" ,
-   errorMessage" : Get Request - Record Not Found"   
+   "errorCode" :  "V5PH0004SF" ,
+   "errorMessage" : "Get request - Record Not Found"   
 }
 ```
 Below table provides the list of application's error code and its description.
 
-| `V5PH0004SF` | Get Request - Record Not Found | 
+| `V5PH0004SF` | Get request - Record Not Found | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
