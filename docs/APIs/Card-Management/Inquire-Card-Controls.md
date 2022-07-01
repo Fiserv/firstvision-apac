@@ -1,41 +1,42 @@
 # Inquire Card Controls
 
-This service fetches the card controls for a given card number like maximum number and amount of retail/OTC/Single ATM authorization allowed on card number as well as single otc cash/Retail authorization allowed.
+This service fetches the card controls for a given card like maximum number of transaction count and amount of Retail/OTC/Single ATM authorization, as well as single otc Cash/Retail authorization are allowed on card.
 
 ## Endpoint
 
-`GET v1/cards/{cardNumber}/controlDetails`
+`GET /v1/cards/{paymentInstrumentId}/controlDetails`
 
 ## Payload Example
 
 ### Request Payload
 
 >Should be empty.  
-***The Card Number should be sent as path variable.***
+>
+>***The Payment Instrument Identification should be sent as path variable.***
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{cardNumber}/controlDetails).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{paymentInstrumentId}/controlDetails).
 
 The below table identifies the required query parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "atmFlag": "Y",
   "businessUnit": 100,
-  "cardNumber": "0009846801010434751",
-  "cashBackTranFlag": "Y",
-  "ecomActiveSwitch": "0",
-  "intAtmPosFlag": "Y",
-  "motoFlag": "Y",
-  "payWaveSwitch": "N",
-  "posFlag": "N"
+  "isAtmEnabled": "Y",
+  "isCashBackEnabled": "Y",
+  "isEcomEnabled": "0",
+  "isInternationalAtmPosEnabled": "Y",
+  "isMotoEnabled": "Y",
+  "isPayWaveEnabled": "N",
+  "isPosEnabled": "N",
+  "paymentInstrumentId": "0009846801010434751"
 }
 ```
 
@@ -43,8 +44,8 @@ The below table identifies the required query parameters in the request payload.
 
 ```json
 {
-  "errorCode": "V5ED4003EQ",
-  "errorMessage": "Post to acct for dual org not on file"  
+  "errorCode": "V5ED0004SF",
+  "errorMessage": "Get request - Record not found"  
 }
 ```
 
@@ -52,5 +53,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5ED4001EC` | Dual org not found or add pending |
-|`V5ED4003EQ` | Post to acct for dual org not on file |
+|`V5ED0004SF` | Get request - Record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

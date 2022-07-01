@@ -1,10 +1,10 @@
 # Update Spend Limits 
 
-This service is used to update the spending limits to control the card usage.  These limits are set to individual card level.
+This service is used to update the spending limits to control the card usage. These limits are set to individual card level like maximum ATM, OTC, Retail etc authorizatoin amount and count.
 
 ## Endpoint
 
-`PUT /v1/cards/{cardNumber}/spendLimits`
+`PUT /v1/cards/{paymentInstrumentId}/spendLimits`
 
 ## Payload Example
 
@@ -12,31 +12,30 @@ This service is used to update the spending limits to control the card usage.  T
 
 ```json
 {
-  "spendLimitControlsReq": {
+  "spendLimitControls": {
     "maximumAuthorizationsFrequency": "1",
-    "maximumAmountAtmCashAuthorizationsAllowed": "10000",
-    "maximumNumberAtmCashAuthorizationsAllowed": 1,
-    "maximumAmountSingleAtmTransactionAllowed": "10000",
-    "maximumAmountOtcCashAuthorizationsAllowed": "20000",
-    "maximumNumberOtcAuthorizationsAllowed": 1,
-    "singleOtcCashAuthorizationAllowed": "10000",
-    "maximumAmountRetailAuthorizationsAllowed": "10000",
-    "maximumNumberRetailAuthorizationsAllowed": 1,
-    "singleRetailAuthorizationAllowed": "0000"
+    "maximumAtmCashAuthorizationsAmount": "10000",
+    "maximumAtmCashAuthorizationsCount": 1,
+    "maximumSingleAtmTransactionAmount": "10000",
+    "maximumOtcCashAuthorizationsAmount": "20000",
+    "maximumOtcAuthorizationsCount": 1,
+    "maximumSingleOtcCashAuthorizationAmount": "10000",
+    "maximumRetailAuthorizationsAmount": "10000",
+    "maximumRetailAuthorizationsCount": 1,
+    "maximumSingleRetailAuthorizationAmount": "0000"
   }
 }
-
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{cardNumber}/spendLimits).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/spendLimits).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -45,21 +44,20 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "businessUnit": 100,
-  "cardNumber": "0009846801010434272",
-  "spendLimitControlsRes": {
-    "maximumAmountAtmCashAuthorizationsAllowed": "$100.00",
-    "maximumAmountOtcCashAuthorizationsAllowed": "$200.00",
-    "maximumAmountRetailAuthorizationsAllowed": "$100.00",
-    "maximumAmountSingleAtmTransactionAllowed": "$100.00",
+  "paymentInstrumentId": "0009846801010434272",
+  "spendLimitControls": {
+    "maximumAtmCashAuthorizationsAmount": "$100.00",
+    "maximumAtmCashAuthorizationsCount": 1,
     "maximumAuthorizationsFrequency": "1",
-    "maximumNumberAtmCashAuthorizationsAllowed": 1,
-    "maximumNumberOtcAuthorizationsAllowed": 1,
-    "maximumNumberRetailAuthorizationsAllowed": 1,
-    "singleOtcCashAuthorizationAllowed": "$100.00",
-    "singleRetailAuthorizationAllowed": "$0.00"
+    "maximumOtcAuthorizationsCount": 1,
+    "maximumOtcCashAuthorizationsAmount": "$200.00",
+    "maximumRetailAuthorizationsAmount": "$100.00",
+    "maximumRetailAuthorizationsCount": 1,
+    "maximumSingleAtmTransactionAmount": "$100.00",
+    "maximumSingleOtcCashAuthorizationAmount": "$100.00",
+    "maximumSingleRetailAuthorizationAmount": "$0.00"
   }
 }
-
 ```
 
 ### Error Response Payload
@@ -75,10 +73,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5ED4001SA` | Business unit not found |
-|`V5ED4001SB` | Business unit is in add pending status |
-|`V5ED4001SC` | Business unit is in purged status |
-|`V5ED4001SE` | Invalid business unit |
 |`V5ED0010SF` | Update request - Record not found |
 |`V5ED0011SF` | Update request - Record add pending |
 |`V5ED4003ED` | Card seq number must be greater than zero |
@@ -93,3 +87,5 @@ Below table provides the list of application's error code and its description.
 |`V5ED0325EB` | Retail amt field update is not allowed |
 |`V5ED0326EC` | Retail nbr field update is not allowed |
 |`V5ED0327EJ` | Txn limit retail field update is not allowed | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

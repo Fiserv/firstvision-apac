@@ -1,6 +1,6 @@
 # List cards by Account
 
-The service is used for the purpose of the card look up where the account number is provided and service will send all cards associated with account.
+The service is used for the purpose of the card look up where the account Identification is provided and service will send all cards associated with account.
 
 ## Endpoint
 
@@ -12,7 +12,7 @@ The service is used for the purpose of the card look up where the account number
 
 > Should be empty.
 >
->***The Account Number should be sent as path variable.***
+>***The Account id should be sent as path variable.***
 
 ### Minimum Requirements
 
@@ -22,7 +22,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account.|
+| `accountId` | Path Variable | *string* | 19 | Unique Identification number of the account.|
 
 ### Successful Response Payload
 

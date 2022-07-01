@@ -14,41 +14,41 @@ Fields that are not provided in the Request object will be initialised to their 
 
 ```json
 {
+  "accountId": "0006000012000000263",
   "businessUnit": 600,
-  "mccGroupLimits": " ",
-  "cardholderFlag": 0,
-  "city": " ",
-  "typeCardMailer": 0,
-  "postalCode": 1231,
-  "savingsAccountNbr": " ",
-  "visaMiniIndicator": " ",
-  "mobileDeviceId": 12343,
-  "posServiceCode": 0,
-  "addressLine1": "House no. 12 ",
-  "addressLine2": "St. Paul Road ",
-  "mobileProvisionStatus": 0,
-  "embossedName2": "Samuel Baro",
-  "requestedCardType": 0,
-  "product": 600,
-  "embossedName1": "John Brono ",
-  "tempCardNbr": " ",
-  "name1TypeIndicator": 0,
-  "cardSequence": 1,
-  "typeOfCard": 0,
-  "plasticId": " ",
-  "name2TypeIndicator": 0,
-  "customerNumber": 9006000000000300000,
-  "stateprovince": "Utah",
-  "chequeAccountNbr": " ",
-  "suppressLetter": " ",
-  "baseAccountNumber": 4440010000000017,
-  "cardAction": 0,
+  "productId": 1,
+  "customerId": "0006000012000000256",
+  "cardAction": "0",
   "numberOfCardsRequested": 0,
-  "createEmbosserRecords": "Y",
-  "name2": "QWER",
-  "deviceIndicator": " ",
-  "name1": "ABCD",
-  "programId": 0
+  "cardType": 0,
+  "requestedCardType": 0,
+  "cardMailerType": 0,
+  "plasticId": " ",
+  "name1TypeIndicator": "0",
+  "name2TypeIndicator": "0",
+  "posServiceCode": 0,
+  "cardholderFlag": "0",
+  "visaMiniCardVersion": "0",
+  "programId": 0,
+  "mobileDeviceId": "12343",
+  "mobileProvisionStatus": "0",
+  "deviceIndicator": "0",
+  "mccGroupLimits": " ",
+  "chequeAccountId": " ",
+  "savingsAccountId": " ",
+  "namesData": {
+    "embossedName1": "John Brono ",
+    "embossedName2": "Samuel Baro",
+    "name1": "ABCD",
+    "name2": "QWER"
+  },
+  "addressData": {
+    "addressLine1": "House no. 12 ",
+    "addressLine2": "St. Paul Road ",
+    "city": " ",
+    "stateprovince": "Uth",
+    "postalCode": "1231"
+  }
 }
 ``` 
 
@@ -60,36 +60,32 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Leuith | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 03 | Identification number associated with this account base segment record, the values are 001–998. |
-| `product` | Payload | *number* | 03 | Identification number of the product associated with the  account or relationship. | 
-| `baseAccountNumber` | Payload | *string* | 19 | This is an identification number to assign to the new account base segment record.|
-| `customerNumber` | Payload | *string* | 19 | Number that identifies the Customer Name/Address record of the account holder. |
-| 'embossedName1` | Payload | *string* | 26 | This field that specifies the default generic name line 1. |
-| `cardholderFlag` | Payload | *string* | 01 | This is the code that indicates whether the card is issued as a primary or secondary card. |
-| `deviceIndicator` | Payload | *string* | 01 | Code that indicates the type of device (form factor) written to the track data on the card. |
-| `suppressLetter` | Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
+| `businessUnit` | Payload | *number* | 03 | Unique identification number associated with the organization. Valid values from 001-998. |
+| `productId` | Payload | *number* | 03 | Unique identification number of the product associated with the organization. Valid values are 001-998. | 
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
+| `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
+| 'embossedName1` | Payload | *string* | 26 | Name to be embossed on the first embossing line of the card. |
 
 ### Successful Response Payload
 
 ```json
 {
+  "activationStatus": "0",
   "businessUnit": 600,
-  "cardActivationStatus": "0",
-  "cardNumberFvToken": "0004440010902927457",
   "expiryDate": "18/01/2024",
-  "maskedPanNumber": "0004440010902927457",
+  "maskedPaymentCardNumber": "0004440010737034347",
   "nameOnCard": "John Brono",
-  "product": 1
+  "paymentInstrumentId": "0004440010737034347",
+  "productId": 1
 }
-
 ```
 
 ### Error Response Payload
 
 ```json
 {
-   errorCode" :  V5SB4003EA" ,
-   errorMessage" : Base Account Number is requsted"   
+   "errorCode" :  V5SB4003EA" ,
+   "errorMessage" : "Base account number is requsted"   
 }
 ```
 
@@ -100,27 +96,29 @@ Below table provides the list of application's error code and its description.
 | `V5SB4003EA` | Base account number is requsted |
 | `V5SB4003EG` | Base account number must be numeric | 
 | `V5SB4003EH` | Base account number required |
-| `V5SB4005EA` | Customer NA account must be blank | 
-| `V5SB4005EB` | Customer NA account required |
-| `V5SB4005EG` | Customer NA account must be blank | 
-| `V5SB4005EH` | Customer NA account must be numeric | 
-| `V5SB4008EA` | Relationship not Valid for this ORG |
-| `V5SB4008EB` | Relationship not Valid for the DUAL ORG | 
+| `V5SB4005EA` | Customer na account must be blank | 
+| `V5SB4005EB` | Customer na account required |
+| `V5SB4005EG` | Customer na account must be blank | 
+| `V5SB4005EH` | Customer na account must be numeric | 
+| `V5SB4008EA` | Relationship not valid for this org |
+| `V5SB4008EB` | Relationship not valid for the dual org | 
 | `V5SB4001EA` | Organization not on file |
 | `V5SB4001SA` | Organization not on file |
-| `V5SB4002EA` | LOGO Record not on File |
-| `V5SB4002EB` | LOGO Record is incomplete | 
+| `V5SB4002EA` | Logo record not on file |
+| `V5SB4002EB` | Logo record is incomplete | 
 | `V5SB4009EA` | Relationship number required | 
 | `V5SB4011EA` | Insurance not allowed for prepaid accounts | 
-| `V5SB4012EA` | Sweeping not allowed this LOGO |
-| `V5SB4012EB` | HCS must be active for account type values 1,2,3 | 
+| `V5SB4012EA` | Sweeping not allowed this logo |
+| `V5SB4012EB` | Hcs must be active for account type values 1,2,3 | 
 | `V5SB4150EI` | No embosser record allowed for control account |
 | `V5SB4150EJ` | No embosser record allowed for diversion account | 
 | `V5SB4150EK` | No embosser record allowed for billing account |
-| `V5AP4061EA` | Number cards required must equal 0 OR 1 |
+| `V5AP4061EA` | Number cards required must equal 0 or 1 |
 | `V5AP4063EA` | Embossed name type must not equal 3 |
 | `V5AP4088EA` | Card delay days value must be numeric | 
 | `V5AP4097SA` | Card number and account number must be equal for card scheme | 
 | `V5AP4101SA` | Card number check digit is invalid |
 | `V5AP4105SA` | Card sequence already atmaximum for card number | 
 | `V5AP4106SA` | Card sequence already atmaximum for chip card number |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

@@ -4,7 +4,7 @@ This service is used to fetch the clear pan for the requested First Vision's Tok
 
 ## Endpoint
 
-`GET /v1/cards/{cardNumber}/clearPan`
+`GET /v1/cards/{paymentInstrumentId}/clearPan`
 
 ## Payload Example
 
@@ -12,23 +12,23 @@ This service is used to fetch the clear pan for the requested First Vision's Tok
 
 >Should be empty. 
 >
->***The Card Number should be sent as path variable.***
+>***The Payment Instrument Identification should be sent as path variable.***
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{cardNumber}/clearPan).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{paymentInstrumentId}/clearPan).
 
 The below table identifies the required query parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `cardNumber` | Path Variable | *string* | 19 | Token number associated with the clear PAN. |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "cardNumber": 9846801010273604
+  "paymentCardNumber": "0009846801010273605"
 }
 ```
 ### Error Response Payload
@@ -44,7 +44,8 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5CL4001EA` | Invalid business unit |
 |`V5CL4002EA` | Invalid card number |
-|`V5CL4001AS` | Business unit not found |
+|`V5CL4001AS` | Org not found |
 |`V5CL4002AS` | Token number not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
