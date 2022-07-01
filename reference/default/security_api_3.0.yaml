@@ -1,0 +1,147 @@
+openapi: 3.0.1
+info:
+  title: Vision10 API Documentation
+  description: V10 open API document.
+  version: 1.0.0
+servers:
+- url: https://stg34.visionplus.io/sandbox/
+tags:
+- name: Security Management
+paths:
+  /v1/getAccessToken:
+    post:
+      tags:
+      - Security Management
+      summary: Get Access Token
+      description: This service is used to get Access Token to authenticate other
+        Api
+      operationId: GetAccessToken
+      parameters:
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Basic UE9DX05BQl9EZXY6YkhXTVR6Y0VPQ3I3cXU2WWN5M21jUnV1eXdaRzdmT3VobXNiZWNaNGFOYlVRYU5HYWNqeFY0SkM5c0s5WkR6RQ==
+      - name: scope
+        in: query
+        description: Limit the amount of access that is granted to an access token
+        required: true
+        schema:
+          type: string
+          example: accounts cards customers users products misc
+      responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      x-proxy-name: Get Access Token
+      x-group-name: Security
+components:
+  schemas:
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          format: int32
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: 'Unique Bearer token neeed to be passed for all Vision10 API '
+          example: ''
+        token_type:
+          type: string
+          description: Type of token to be authenticated
+          example: Bearer
+        expires_in:
+          type: string
+          description: Time after which token will be expired
+          example: ''
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer
