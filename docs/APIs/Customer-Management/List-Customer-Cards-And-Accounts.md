@@ -1,34 +1,54 @@
-# List Customers' Cards
+# List Customers' Cards And Accounts
 
-This service retrieves the card details associated with a Customer id along with customer demographic information.
+This service retrieves the account and card details associated with a Customer number along with demographic details.
 
 ## Endpoint
 
-`GET /v1/customers/{customerId}/cardList/`
+`GET /v1/customers/{customerId}/listCustomersCardsAndAccounts`
 
 ## Payload Example
 
 ### Request Payload
 
->Should be empty.  
+>Should be empty.
 >
->***Customer Identification should be sent as Path Variable.***  
+>***The Customer Identifiaction should be sent as path variable.***
+
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/cardList).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/listCustomersCardsAndAccounts).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
+| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer.|
+
 
 ### Successful Response Payload
 
 ```json
 {
-  "cardList": [
+  "accountList": [
+    {
+      "accountId": "0006000012000000121",
+      "blockCode1": " ",
+      "blockCode1Date": "00/00/0000",
+      "blockCode2": " ",
+      "blockCode2Date": "00/00/0000",
+      "ddaAccountId": "0",
+      "isSuppressTokenEnabled": "0",
+      "mailingIndicator": " ",
+      "memoCreditAmount": "$0.00",
+      "memoDebitAmount": "$0.00",
+      "noOfTokenizedCards": 0,
+      "productId": 1,
+      "reissueControlMethod": "0",
+      "status": "N"
+    }
+  ],
+  "cardtList": [
     {
       "accountId": "0006000012000000121",
       "blockCode": " ",
@@ -41,7 +61,6 @@ The below table identifies the required parameters in the request payload.
       "chequeAccountId": " ",
       "currentCardAction": "1",
       "currentCardNeedActivation": "Y",
-      "dateLastPlasticUsed": "0",
       "digitalID": " ",
       "embosserName2": " ",
       "expirationDate": "18/01/2024",
@@ -57,6 +76,7 @@ The below table identifies the required parameters in the request payload.
       "lastCardNeedActivation": "N",
       "lastPlasticIssueDate": 0,
       "lastPlasticSuppressedDate": "0",
+      "lastPlasticUsedDate": "0",
       "lastWalletUsedDate": "0",
       "maskedPaymentCardNumber": "000444001XXXXXX8266",
       "mccLimit01": "$999,999,999.99",
@@ -76,7 +96,7 @@ The below table identifies the required parameters in the request payload.
       "plasticSuppressStatus": "N",
       "productDescription": "VISA CREDIT CONSUMER",
       "savingsAccountId": " ",
-      "status": "0",
+      "statusOfCard": "0",
       "warningCode1": "0"
     }
   ],
@@ -96,6 +116,7 @@ The below table identifies the required parameters in the request payload.
     "isReturnMailEnabled": "N",
     "mobileNumber": "8877665544",
     "nameLine1": "JOHN DSOUZA",
+    "numberOfAccounts": 1,
     "numberOfCards": 1,
     "workPhoneNumber": "67894"
   }
@@ -106,8 +127,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "errorCode": "V5DB4001AS",
-  "errorMessage": "AMNA org not found"  
+  "errorCode": "V5NA0004SF",
+  "errorMessage": "Customer Number can not be spaces"  
 }
 ```
 
@@ -115,7 +136,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5NA0004SF` | Customer number can not be spaces |
+| `V5NA0004SF` | Customer Number can not be spaces |
 | `V5DB4001SF` | AMNA org not found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

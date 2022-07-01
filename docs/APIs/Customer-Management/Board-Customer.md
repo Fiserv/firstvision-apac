@@ -15,36 +15,40 @@ Fields that are not provided in the Request object will be initialised to their 
 ```json
 {
   "businessUnit": 600,
-  "product": 2,
-  "dualFlag": 0,
-  "title": "ADWSQQ",
+  "productId": 2,
+  "dualFlag": "0",
+  "title": "Mr",
   "nameTypeIndicator1": "0",
   "nameTypeIndicator2": "0",
   "nameTypeIndicator3": "0",
-  "nameLine1": "John",
-  "nameLine2": "Jacob ",
-  "nameLine3": "Samuel",
-  "addressLine1": "House No. 12",
-  "addressLine2": "S.H. Qo",
-  "addressLine3": "California",
-  "addressLine4": "USA",
-  "city": "La Vegas",
-  "state": "CL",
-  "postalCode": "112345",
-  "countryCode": "USA",
   "residentialFlag": "1",
   "homePhone": "11230342",
   "employeePhone": "67894",
-  "dateOfBirth": "01/02/2010",
-  "lastName": "Christopher",
-  "middleName": "",
-  "firstName": "Samuel",
-  "nationalID": "2363-12-2839-1",
+  "birthDate": "01/02/2010",
+  "externalId": "2363-12-2839-1",
   "gender": "1",
-  "email": "abc@goole.com",
-  "alternateEmail": "abc1@google.com",
+  "emailAddress": "abc@goole.com",
+  "alternateEmailAddress": "abc1@google.com",
   "mobileNumber": "11231232",
-  "emailFlag": "1"
+  "emailAddressFlag": "1",
+  "addressData": {
+    "addressLine1": "House No. 12",
+    "addressLine2": "S.H. Qo",
+    "addressLine3": "California",
+    "addressLine4": "USA",
+    "city": "La Vegas",
+    "state": "CL",
+    "postalCode": "112345",
+    "countryCode": "USA"
+  },
+  "namesData": {
+    "nameLine1": "John",
+    "nameLine2": "Jacob ",
+    "nameLine3": "Samuel",
+    "birthName": "Christopher",
+    "middleName": " ",
+    "givenName": "Samuel"
+  }
 }
 ``` 
 
@@ -56,8 +60,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 3 | Identification number of the business unit associated with the  account or relationship. |
-| `product` | Payload | *number* | 3 | Identification number of the product associated with the  account or relationship. |
+| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
+| `productId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 001-998. |
 | `firstName` | Payload | *string* | 40 | First name of customer. |
 
 ### Successful Response Payload
@@ -65,7 +69,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "businessUnit": 600,
-  "customerNumber": "0006000012000000543"
+  "customerId": "0006000012000000846"
 }
 ```
 
@@ -82,31 +86,18 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5SB4003EA` | Base account number is required |
-| `V5SB4003EG` | Base account number must be numeric |
-| `V5SB4003EH` | Base account number is required |
-| `V5SB4005EA` | Customer NA account must be blank | 
-| `V5SB4005EB` | Customer NA account required |
-| `V5SB4005EG` | Customer NA account must be blank |  
-| `V5SB4005EH` | Customer NA account must be numeric |  
-| `V5SB4008EA` | Relationship not valid for this ORG |
-| `V5SB4008EB` | Relationship not valid for the dual ORG |  
-| `V5SB4001EA` | Organization not on file |
 | `V5SB4001SA` | Organization not on file |
 | `V5SB4002EA` | Logo record not on file |
-| `V5SB4002EB` | Logo record is incomplete |
-| `V5SB4009EA` | Relationship number is required | 
-| `V5SB4011EA` | Insurance not allowed for prepaid accounts |  
-| `V5SB4012EA` | Sweeping not allowed in this Logo record |
-| `V5SB4012EB` | HCS must be active for account type values 1,2,3 |  
-| `V5SB4012EC` | Account type must be zero fora prepaid account |
-| `V5SB4154SA` | Customer number not on file for this ORG |
-| `V5SB4154SB` | Customer number already exist for this ORG |  
-| `V5SB4154SC` | Customer number must be generic for presonalized prepaid account |
-| `V5SB4154SD` | Generic customer not allowed |
-| `V5SB4155EA` | Customer number not on file for the dual ORG  |
-| `V5SB4155EB` | Generic customer not allowed |
-| `V5SB4155EC` | Customer number already exist for the dual ORG |
-| `V5SB4154EA` | Invalid customer number |
-| `V5SB4160EE` | Invalid customer check digit this ORG |
-| `V5SB4160EG` | Invalid customer check digit dual ORG |
+| `V5SB4002EB` | Logo record incomplete | 
+| `V5SB4154SA` | Customer number not on file for this org |
+| `V5SB4154SB` | Customer number already exists for this org | 
+| `V5SB4154SD` | Generic Customer not allowed |
+| `V5SB4155EA` | Customer number not on file for the dual org | 
+| `V5SB4155EB` | Generic Customer not allowed |
+| `V5SB4155EC` | Customer number already exists for the dual org |
+| `V5SB4154EA` | Invalid Customer number | 
+| `V5SB4160EE` | Invalid Customer check digit for this org |                         
+| `V5SB4160EG` | Invalid Customer check digit for dual org |
+| `V5NA4081EA` | First name is required |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
