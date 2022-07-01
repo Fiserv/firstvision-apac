@@ -4,7 +4,7 @@ This API is used to retrive latest six payment details for given account number 
 
 ## Endpoint
 
-`GET /v1/accounts/{accountNumber}/paymentHistory`
+`GET /v1/accounts/{accountId}/paymentHistory`
 
 ## Payload Example
 
@@ -12,26 +12,28 @@ This API is used to retrive latest six payment details for given account number 
 
 >Should be empty. 
 >
->***The Account Number should be sent as path variable.***
+>***Account id should be sent as path variable.***
  
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountNumber}/paymentHistory).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/paymentHistory).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Leuith | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account. |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 ### Successful Response Payload
 
 ```json
+
 {
-  "accountNumber": "0006000011000000137",
+  "accountId": "0006000011000000137",
   "businessUnit": 600,
   "paymentHistory": [
     {
+      "beforePaymentTotalDueAmount": "$70.00",
       "cycleDue": 1,
       "cycleDue1DelinquencyPaidAmount": "$40.00",
       "cycleDue2DelinquencyPaidAmount": "$50.00",
@@ -39,17 +41,17 @@ The below table identifies the required parameters in the request payload.
       "cycleDue4DelinquencyPaidAmount": "$70.00",
       "cycleDue5DelinquencyPaidAmount": "$80.00",
       "cycleDue6DelinquencyPaidAmount": "$90.00",
-      "cycleDue7DelinquencyPaidAmount": "$100.00",
-      "cycleDue8DelinquencyPaidAmount": "$110.00",
-      "cycleDue9DelinquencyPaidAmount": "$120.00",
+      "cycleDue7DelinquencyPaidAmount": "$10.00",
+      "cycleDue8DelinquencyPaidAmount": "$20.00",
+      "cycleDue9DelinquencyPaidAmount": "$30.00",
       "originalPaymentAmount": "$40.00",
       "paymentAmount": "$10.00",
       "paymentDate": "18/08/2021",
       "prepaymentAmount": "$20.00",
-      "reversalIndicator": "0",
-      "totalDueBeforePayment": "$70.00"
+      "reversalIndicator": "0"
     },
     {
+      "beforePaymentTotalDueAmount": "$30.00",
       "cycleDue": 1,
       "cycleDue1DelinquencyPaidAmount": "$10.00",
       "cycleDue2DelinquencyPaidAmount": "$20.00",
@@ -64,10 +66,10 @@ The below table identifies the required parameters in the request payload.
       "paymentAmount": "$10.00",
       "paymentDate": "19/08/2021",
       "prepaymentAmount": "$20.00",
-      "reversalIndicator": "0",
-      "totalDueBeforePayment": "$30.00"
+      "reversalIndicator": "0"
     },
     {
+      "beforePaymentTotalDueAmount": "$0.00",
       "cycleDue": 1,
       "cycleDue1DelinquencyPaidAmount": "$0.00",
       "cycleDue2DelinquencyPaidAmount": "$0.00",
@@ -82,10 +84,10 @@ The below table identifies the required parameters in the request payload.
       "paymentAmount": "$0.00",
       "paymentDate": "00/00/0000",
       "prepaymentAmount": "$0.00",
-      "reversalIndicator": "0",
-      "totalDueBeforePayment": "$0.00"
+      "reversalIndicator": "0"
     },
     {
+      "beforePaymentTotalDueAmount": "$0.00",
       "cycleDue": 1,
       "cycleDue1DelinquencyPaidAmount": "$0.00",
       "cycleDue2DelinquencyPaidAmount": "$0.00",
@@ -100,10 +102,10 @@ The below table identifies the required parameters in the request payload.
       "paymentAmount": "$0.00",
       "paymentDate": "00/00/0000",
       "prepaymentAmount": "$0.00",
-      "reversalIndicator": "0",
-      "totalDueBeforePayment": "$0.00"
+      "reversalIndicator": "0"
     },
     {
+      "beforePaymentTotalDueAmount": "$0.00",
       "cycleDue": 1,
       "cycleDue1DelinquencyPaidAmount": "$0.00",
       "cycleDue2DelinquencyPaidAmount": "$0.00",
@@ -118,10 +120,10 @@ The below table identifies the required parameters in the request payload.
       "paymentAmount": "$0.00",
       "paymentDate": "00/00/0000",
       "prepaymentAmount": "$0.00",
-      "reversalIndicator": "0",
-      "totalDueBeforePayment": "$0.00"
+      "reversalIndicator": "0"
     },
     {
+      "beforePaymentTotalDueAmount": "$0.00",
       "cycleDue": 1,
       "cycleDue1DelinquencyPaidAmount": "$0.00",
       "cycleDue2DelinquencyPaidAmount": "$0.00",
@@ -136,10 +138,9 @@ The below table identifies the required parameters in the request payload.
       "paymentAmount": "$0.00",
       "paymentDate": "00/00/0000",
       "prepaymentAmount": "$0.00",
-      "reversalIndicator": "0",
-      "totalDueBeforePayment": "$0.00"
+      "reversalIndicator": "0"
     }
-  ] 
+  ]
 }
 ```
 
@@ -147,8 +148,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-   errorCode" :  V5PH0004SF" ,
-   errorMessage" : Get Request - Record Not Found"   
+   "errorCode" :  "V5PH0004SF" ,
+   "errorMessage" : "Get request - Record Not Found"   
 }
 ```
 
@@ -156,4 +157,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5PH0004SF` | Get Request - Record Not Found |
+| `V5PH0004SF` | Get request - Record Not Found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

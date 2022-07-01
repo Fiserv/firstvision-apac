@@ -1,10 +1,10 @@
-# Update Customer's Profile
+# Update Customers' Profile
 
-This service is used to update the various customer profiles like customer number, corresponding customer number and alternate customer details for a given account number.
+This service is used to update the various customer profiles like customer id, corresponding customer id and alternate customer details for a given account id.
   
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/customersProfile`
+`PUT /v1/accounts/{accountId}/customersProfile`
 
 ## Payload Example
 
@@ -12,25 +12,27 @@ This service is used to update the various customer profiles like customer numbe
 
 ```json
 {
-  "customerNumber": "0000000001000000032",
-  "correspondenceCustomerNumber": "0000000001000000065",
-  "alternateCustomerDetailsReq": {
-    "alternateCustomerNumberFlag": "A",
-    "alternateCustomerNumber": "0000000001000000065",
-    "alternateCustomerExpiryDate": "15/04/2022"
+  "customerId": "0000000001000000032",
+  "correspondenceCustomerId": "0000000001000000065",
+  "alternateCustomerIdDetails": {
+    "customerIdFlag": "A",
+    "customerId": "0000000001000000065",
+    "customerIdExpiryDate": "15/04/2022",
+    "customerIdEffectiveDate": "14/01/2021"
   }
 }
+
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/customersProfile).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/customersProfile).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -38,15 +40,16 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountNumber": "0004440010000000017",
-  "alternateCustomerDetailsRes": {
-    "alternateCustomerExpiryDate": "15/04/2022",
-    "alternateCustomerNumber": "0000000001000000065",
-    "alternateCustomerNumberFlag": "A"
+  "accountId": "0004440010000000017",
+  "alternateCustomerIdDetails": {
+    "customerId": "0000000001000000065",
+    "customerIdEffectiveDate": "14/01/2021",
+    "customerIdExpiryDate": "15/04/2022",
+    "customerIdFlag": "A"
   },
   "businessUnit": 600,
-  "correspondenceCustomerNumber": "0000000001000000065",
-  "customerNumber": "0000000001000000032"
+  "correspondenceCustomerId": "0000000001000000065",
+  "customerId": "0000000001000000032"
 }
 ```
 
@@ -55,7 +58,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "errorCode": "V5BS0010SF",
-  "errorMessage": "Update Request - Record not found"  
+  "errorMessage": "Update request - Record not found"  
 }
 ```
 
@@ -63,7 +66,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0010SF` | Update Request - Record not found |  
+| `V5BS0010SF` | Update request - Record not found |  
 | `V5BS4001SG` | Org record not found |  
 | `V5BS0102SA` | Customer number cannot be zeroes |   
 | `V5BS0102SC/V5BS0172SB` | No active customer on file |    
@@ -72,3 +75,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS0111SA` | Valid entries are space, A, or B |  
 | `V5BS0111SD` | Both alt exp date and cust number required |  
 | `V5BS0112SA` | Alt cust expires date should be a future date |  
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

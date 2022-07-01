@@ -6,7 +6,7 @@ This service is used to update account charge-off status.
 
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/chargeoff`
+`PUT /v1/accounts/{accountId}/chargeoff`
 
 ## Payload Example
 
@@ -14,20 +14,20 @@ This service is used to update account charge-off status.
 
 ```json
 {
-  "dateofNotificationReceived": "01/01/2018",
-  "systemDefinedChargeOffReason": "C"
-} 
+  "notificationReceivedDate": "01/01/2018",
+  "chargeOffReason": "C"
+}
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/chargeoff).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/chargeoff).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *String* | 19 | Account Number of the cardholder. | 
+| `accountId` | Path Variable | *String* | 19 | Unique identification number for cardholder billing account. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -35,12 +35,12 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountNumber": "0000000001000000057",
-  "businessUnit": "600",
-  "chargeOffStatus": "3",
-  "dateofNotificationReceived": "01/01/2018",
-  "numberofChargeOffDays": "0",
-  "systemDefinedChargeOffReason": "C"
+  "accountId": "0006000011000000509",
+  "businessUnit": 600,
+  "chargeOffDaysCount": 0,
+  "chargeOffReason": "C",
+  "chargeOffStatus": "0",
+  "notificationReceivedDate": "01/01/2018"
 }
 ```
 
@@ -76,3 +76,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS0127SA` | Cannot Set A block Code On A Billing account |
 | `V5BS0127SB` | Block code 2 must be alphabetic |
 | `V5BS0127SC` | Block code cannot be Replaced With One Of A Lower priority |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
