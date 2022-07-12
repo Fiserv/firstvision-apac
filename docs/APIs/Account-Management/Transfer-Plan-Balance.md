@@ -97,3 +97,5 @@ Below table provides the list of application's error code and its description.
 | `V5X24035SC` | Determined logo not equal xfr/copy from logo for billing acct |
 | `V5X24035SD` | Transfer to logo does not allow smart card-acct not transferred |
 | `V5X24035SG` | Please review smart card embosser detail record on embosser record |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
