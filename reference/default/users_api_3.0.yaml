@@ -14,7 +14,7 @@ paths:
       - User Management
       summary: This service is used to update security Sign-on entity. A User Security
         Sign-on entity, also referred to as a Sign-on entity, holds the details that
-        determine a personâ€™s access rights on the system.
+        determine a person’s access rights on the system.
       description: This service is used to update security Sign-on entity.
       operationId: UpdateUser
       parameters:
@@ -43,8 +43,16 @@ paths:
               $ref: '#/components/schemas/UpdateUserReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -59,30 +67,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateUserResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -97,8 +89,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -116,7 +116,7 @@ paths:
       - User Management
       summary: This service is used to inquire additional field for security Sign-on
         entity. A User Security Sign-on entity, also referred to as a Sign-on entity,
-        holds the details that determine a personâ€™s access rights on the system
+        holds the details that determine a person’s access rights on the system
       description: This service is used to inquire business unit and user application
         fields of security Sign-on entity.
       operationId: InquireUserAccess
@@ -153,7 +153,7 @@ paths:
         in: query
         description: Sign-on name that the person assigned this User Security Signon
           entity will use to sign on to the system. The sign-on name can consist of
-          letters (Aâ€“Z), numbers (0â€“9), and embedded spaces, but not a leading space.
+          letters (A–Z), numbers (0–9), and embedded spaces, but not a leading space.
           When adding a new Sign-on entity, the sign-on name must be a unique name
           not already assigned to any existing User Security Sign-on entity for your
           institution (client ID).
@@ -163,30 +163,12 @@ paths:
           type: string
           example: NABTEST25
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/InquireUserAccessResponseModel'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -203,6 +185,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -211,14 +209,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireUserAccessResponseModel'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -235,7 +235,7 @@ paths:
       - User Management
       summary: This service is used to update additional field for security Sign-on
         entity. A User Security Sign-on entity, also referred to as a Sign-on entity,
-        holds the details that determine a personâ€™s access rights on the system
+        holds the details that determine a person’s access rights on the system
       description: This service is used to update business unit and user application
         fields of security Sign-on entity.
       operationId: UpdateUserAccess
@@ -271,30 +271,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateUserAccessResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -311,8 +287,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -321,6 +297,30 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -338,7 +338,7 @@ paths:
       - User Management
       summary: This service is used to add new security Sign-on entity. A User Security
         Sign-on entity, also referred to as a Sign-on entity, holds the details that
-        determine a personâ€™s access rights on the system
+        determine a person’s access rights on the system
       description: This service is used to add new security Sign-on entity.
       operationId: AddUser
       parameters:
@@ -367,32 +367,16 @@ paths:
               $ref: '#/components/schemas/AddUserReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -405,8 +389,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddUserResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -421,8 +413,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -440,7 +440,7 @@ paths:
       - User Management
       summary: This service is used to inquire security Sign-on entity. A User Security
         Sign-on entity, also referred to as a Sign-on entity, holds the details that
-        determine a personâ€™s access rights on the system.
+        determine a person’s access rights on the system.
       description: This service is used to inquire security Sign-on entity.
       operationId: InquireUser
       parameters:
@@ -476,7 +476,7 @@ paths:
         in: query
         description: Sign-on name that the person assigned this User Security Signon
           entity will use to sign on to the system. The sign-on name can consist of
-          letters (Aâ€“Z), numbers (0â€“9), and embedded spaces, but not a leading space.
+          letters (A–Z), numbers (0–9), and embedded spaces, but not a leading space.
           When adding a new Sign-on entity, the sign-on name must be a unique name
           not already assigned to any existing User Security Sign-on entity for your
           institution (client ID).
@@ -486,30 +486,6 @@ paths:
           type: string
           example: NABTEST25
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -532,8 +508,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -542,6 +518,30 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -574,7 +574,7 @@ components:
           type: string
           description: Sign-on name that the person assigned this User Security Signon
             entity will use to sign on to the system. The sign-on name can consist
-            of letters (Aâ€“Z), numbers (0â€“9), and embedded spaces, but not a leading
+            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
             space. When adding a new Sign-on entity, the sign-on name must be a unique
             name not already assigned to any existing User Security Sign-on entity
             for your institution (client ID).
@@ -661,7 +661,7 @@ components:
           description: Customer service representative business unit number assigned
             to this administrator or user for reporting purposes in the Account Services
             Management (ASM) application. This field is required for all Client Users
-            (type 5) and must be an business unit number (001â€“998).
+            (type 5) and must be an business unit number (001–998).
           format: int32
           example: '100'
         userServicePrivilege:
@@ -1133,7 +1133,7 @@ components:
           type: string
           description: Sign-on name that the person assigned this User Security Signon
             entity will use to sign on to the system. The sign-on name can consist
-            of letters (Aâ€“Z), numbers (0â€“9), and embedded spaces, but not a leading
+            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
             space. When adding a new Sign-on entity, the sign-on name must be a unique
             name not already assigned to any existing User Security Sign-on entity
             for your institution (client ID).
@@ -1220,7 +1220,7 @@ components:
           description: Customer service representative business unit number assigned
             to this administrator or user for reporting purposes in the Account Services
             Management (ASM) application. This field is required for all Client Users
-            (type 5) and must be an business unit number (001â€“998).
+            (type 5) and must be an business unit number (001–998).
           format: int32
           example: '100'
         userServicePrivilege:
@@ -1666,7 +1666,7 @@ components:
           type: string
           description: Sign-on name that the person assigned this User Security Signon
             entity will use to sign on to the system. The sign-on name can consist
-            of letters (Aâ€“Z), numbers (0â€“9), and embedded spaces, but not a leading
+            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
             space. When adding a new Sign-on entity, the sign-on name must be a unique
             name not already assigned to any existing User Security Sign-on entity
             for your institution (client ID).
@@ -1681,8 +1681,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode1:
                   maxLength: 1
@@ -1690,8 +1690,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             businessMessaging:
               type: object
@@ -1700,8 +1700,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode2:
                   maxLength: 1
@@ -1709,8 +1709,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse03:
               type: object
@@ -1719,8 +1719,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode3:
                   maxLength: 1
@@ -1728,8 +1728,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             exceptionProcessing:
               type: object
@@ -1738,8 +1738,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode4:
                   maxLength: 1
@@ -1747,8 +1747,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             accountManagement:
               type: object
@@ -1757,8 +1757,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode5:
                   maxLength: 1
@@ -1766,8 +1766,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             collectionManagement:
               type: object
@@ -1776,8 +1776,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode6:
                   maxLength: 1
@@ -1785,8 +1785,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             authorizations:
               type: object
@@ -1795,8 +1795,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode7:
                   maxLength: 1
@@ -1804,8 +1804,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             customerService:
               type: object
@@ -1814,8 +1814,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode8:
                   maxLength: 1
@@ -1823,8 +1823,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             remoteInterface:
               type: object
@@ -1833,8 +1833,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode9:
                   maxLength: 1
@@ -1842,8 +1842,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             commercialCard:
               type: object
@@ -1852,8 +1852,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode10:
                   maxLength: 1
@@ -1861,8 +1861,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             OfferManagement:
               type: object
@@ -1871,8 +1871,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode11:
                   maxLength: 1
@@ -1880,8 +1880,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             merchantSettlement:
               type: object
@@ -1890,8 +1890,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode12:
                   maxLength: 1
@@ -1899,8 +1899,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             "\tapplicationProcessing":
               type: object
@@ -1909,8 +1909,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode13:
                   maxLength: 1
@@ -1918,8 +1918,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             embScriptingSystem:
               type: object
@@ -1928,8 +1928,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode14:
                   maxLength: 1
@@ -1937,8 +1937,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             keyManagementSystem:
               type: object
@@ -1947,8 +1947,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode15:
                   maxLength: 1
@@ -1956,8 +1956,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse16:
               type: object
@@ -1966,8 +1966,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode16:
                   maxLength: 1
@@ -1975,8 +1975,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             letterRequests:
               type: object
@@ -1985,8 +1985,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode17:
                   maxLength: 1
@@ -1994,8 +1994,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse18:
               type: object
@@ -2004,8 +2004,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode18:
                   maxLength: 1
@@ -2013,8 +2013,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             internationalLanguage:
               type: object
@@ -2023,8 +2023,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode19:
                   maxLength: 1
@@ -2032,8 +2032,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             rewardManagement:
               type: object
@@ -2042,8 +2042,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode20:
                   maxLength: 1
@@ -2051,8 +2051,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             clientSupport:
               type: object
@@ -2061,8 +2061,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode21:
                   maxLength: 1
@@ -2070,8 +2070,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             security:
               type: object
@@ -2080,8 +2080,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode22:
                   maxLength: 1
@@ -2089,8 +2089,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             connectionManager:
               type: object
@@ -2099,8 +2099,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode23:
                   maxLength: 1
@@ -2108,8 +2108,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             posDeviceManagement:
               type: object
@@ -2118,8 +2118,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode24:
                   maxLength: 1
@@ -2127,8 +2127,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             customerCommunicationManagement:
               type: object
@@ -2137,8 +2137,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode25:
                   maxLength: 1
@@ -2146,8 +2146,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             decisionEngineSystem:
               type: object
@@ -2156,8 +2156,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode26:
                   maxLength: 1
@@ -2165,8 +2165,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse27:
               type: object
@@ -2175,8 +2175,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode27:
                   maxLength: 1
@@ -2184,8 +2184,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse28:
               type: object
@@ -2194,8 +2194,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode28:
                   maxLength: 1
@@ -2203,8 +2203,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             transactionManagement:
               type: object
@@ -2213,8 +2213,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode29:
                   maxLength: 1
@@ -2222,8 +2222,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse30:
               type: object
@@ -2232,8 +2232,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode30:
                   maxLength: 1
@@ -2241,8 +2241,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
         businessUnitIncludeExcludeFlag:
           type: object
@@ -2567,7 +2567,7 @@ components:
           type: string
           description: Sign-on name that the person assigned this User Security Signon
             entity will use to sign on to the system. The sign-on name can consist
-            of letters (Aâ€“Z), numbers (0â€“9), and embedded spaces, but not a leading
+            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
             space. When adding a new Sign-on entity, the sign-on name must be a unique
             name not already assigned to any existing User Security Sign-on entity
             for your institution (client ID).
@@ -2582,8 +2582,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode1:
                   maxLength: 1
@@ -2591,8 +2591,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             businessMessaging:
               type: object
@@ -2601,8 +2601,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode2:
                   maxLength: 1
@@ -2610,8 +2610,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse03:
               type: object
@@ -2620,8 +2620,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode3:
                   maxLength: 1
@@ -2629,8 +2629,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             exceptionProcessing:
               type: object
@@ -2639,8 +2639,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode4:
                   maxLength: 1
@@ -2648,8 +2648,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             accountManagement:
               type: object
@@ -2658,8 +2658,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode5:
                   maxLength: 1
@@ -2667,8 +2667,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             collectionManagement:
               type: object
@@ -2677,8 +2677,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode6:
                   maxLength: 1
@@ -2686,8 +2686,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             authorizations:
               type: object
@@ -2696,8 +2696,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode7:
                   maxLength: 1
@@ -2705,8 +2705,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             customerService:
               type: object
@@ -2715,8 +2715,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode8:
                   maxLength: 1
@@ -2724,8 +2724,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             remoteInterface:
               type: object
@@ -2734,8 +2734,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode9:
                   maxLength: 1
@@ -2743,8 +2743,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             commercialCard:
               type: object
@@ -2753,8 +2753,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode10:
                   maxLength: 1
@@ -2762,8 +2762,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             OfferManagement:
               type: object
@@ -2772,8 +2772,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode11:
                   maxLength: 1
@@ -2781,8 +2781,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             merchantSettlement:
               type: object
@@ -2791,8 +2791,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode12:
                   maxLength: 1
@@ -2800,8 +2800,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             "\tapplicationProcessing":
               type: object
@@ -2810,8 +2810,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode13:
                   maxLength: 1
@@ -2819,8 +2819,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             embScriptingSystem:
               type: object
@@ -2829,8 +2829,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode14:
                   maxLength: 1
@@ -2838,8 +2838,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             keyManagementSystem:
               type: object
@@ -2848,8 +2848,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode15:
                   maxLength: 1
@@ -2857,8 +2857,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse16:
               type: object
@@ -2867,8 +2867,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode16:
                   maxLength: 1
@@ -2876,8 +2876,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             letterRequests:
               type: object
@@ -2886,8 +2886,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode17:
                   maxLength: 1
@@ -2895,8 +2895,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse18:
               type: object
@@ -2905,8 +2905,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode18:
                   maxLength: 1
@@ -2914,8 +2914,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             internationalLanguage:
               type: object
@@ -2924,8 +2924,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode19:
                   maxLength: 1
@@ -2933,8 +2933,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             rewardManagement:
               type: object
@@ -2943,8 +2943,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode20:
                   maxLength: 1
@@ -2952,8 +2952,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             clientSupport:
               type: object
@@ -2962,8 +2962,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode21:
                   maxLength: 1
@@ -2971,8 +2971,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             security:
               type: object
@@ -2981,8 +2981,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode22:
                   maxLength: 1
@@ -2990,8 +2990,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             connectionManager:
               type: object
@@ -3000,8 +3000,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode23:
                   maxLength: 1
@@ -3009,8 +3009,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             posDeviceManagement:
               type: object
@@ -3019,8 +3019,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode24:
                   maxLength: 1
@@ -3028,8 +3028,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             customerCommunicationManagement:
               type: object
@@ -3038,8 +3038,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode25:
                   maxLength: 1
@@ -3047,8 +3047,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             decisionEngineSystem:
               type: object
@@ -3057,8 +3057,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode26:
                   maxLength: 1
@@ -3066,8 +3066,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse27:
               type: object
@@ -3076,8 +3076,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode27:
                   maxLength: 1
@@ -3085,8 +3085,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse28:
               type: object
@@ -3095,8 +3095,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode28:
                   maxLength: 1
@@ -3104,8 +3104,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             transactionManagement:
               type: object
@@ -3114,8 +3114,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode29:
                   maxLength: 1
@@ -3123,8 +3123,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse30:
               type: object
@@ -3133,8 +3133,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode30:
                   maxLength: 1
@@ -3142,8 +3142,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
         businessUnitIncludeExcludeFlag:
           type: object
@@ -3474,7 +3474,7 @@ components:
           type: string
           description: Sign-on name that the person assigned this User Security Signon
             entity will use to sign on to the system. The sign-on name can consist
-            of letters (Aâ€“Z), numbers (0â€“9), and embedded spaces, but not a leading
+            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
             space. When adding a new Sign-on entity, the sign-on name must be a unique
             name not already assigned to any existing User Security Sign-on entity
             for your institution (client ID).
@@ -3516,7 +3516,7 @@ components:
           description: Customer service representative business unit number assigned
             to this administrator or user for reporting purposes in the Account Services
             Management (ASM) application. This field is required for all Client Users
-            (type 5) and must be an business unit number (001â€“998).
+            (type 5) and must be an business unit number (001–998).
           format: int32
           example: '100'
         businessUnitPrivilegeId:
@@ -3875,8 +3875,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode1:
                   maxLength: 1
@@ -3884,8 +3884,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             businessMessaging:
               type: object
@@ -3894,8 +3894,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode2:
                   maxLength: 1
@@ -3903,8 +3903,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse03:
               type: object
@@ -3913,8 +3913,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode3:
                   maxLength: 1
@@ -3922,8 +3922,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             exceptionProcessing:
               type: object
@@ -3932,8 +3932,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode4:
                   maxLength: 1
@@ -3941,8 +3941,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             accountManagement:
               type: object
@@ -3951,8 +3951,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode5:
                   maxLength: 1
@@ -3960,8 +3960,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             collectionManagement:
               type: object
@@ -3970,8 +3970,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode6:
                   maxLength: 1
@@ -3979,8 +3979,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             authorizations:
               type: object
@@ -3989,8 +3989,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode7:
                   maxLength: 1
@@ -3998,8 +3998,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             customerService:
               type: object
@@ -4008,8 +4008,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode8:
                   maxLength: 1
@@ -4017,8 +4017,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             remoteInterface:
               type: object
@@ -4027,8 +4027,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode9:
                   maxLength: 1
@@ -4036,8 +4036,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             commercialCard:
               type: object
@@ -4046,8 +4046,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode10:
                   maxLength: 1
@@ -4055,8 +4055,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             OfferManagement:
               type: object
@@ -4065,8 +4065,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode11:
                   maxLength: 1
@@ -4074,8 +4074,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             merchantSettlement:
               type: object
@@ -4084,8 +4084,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode12:
                   maxLength: 1
@@ -4093,8 +4093,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             applicationProcessing:
               type: object
@@ -4103,8 +4103,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode13:
                   maxLength: 1
@@ -4112,8 +4112,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             embScriptingSystem:
               type: object
@@ -4122,8 +4122,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode14:
                   maxLength: 1
@@ -4131,8 +4131,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             keyManagementSystem:
               type: object
@@ -4141,8 +4141,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode15:
                   maxLength: 1
@@ -4150,8 +4150,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse16:
               type: object
@@ -4160,8 +4160,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode16:
                   maxLength: 1
@@ -4169,8 +4169,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             letterRequests:
               type: object
@@ -4179,8 +4179,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode17:
                   maxLength: 1
@@ -4188,8 +4188,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse18:
               type: object
@@ -4198,8 +4198,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode18:
                   maxLength: 1
@@ -4207,8 +4207,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             internationalLanguage:
               type: object
@@ -4217,8 +4217,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode19:
                   maxLength: 1
@@ -4226,8 +4226,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             rewardManagement:
               type: object
@@ -4236,8 +4236,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode20:
                   maxLength: 1
@@ -4245,8 +4245,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             clientSupport:
               type: object
@@ -4255,8 +4255,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode21:
                   maxLength: 1
@@ -4264,8 +4264,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             security:
               type: object
@@ -4274,8 +4274,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode22:
                   maxLength: 1
@@ -4283,8 +4283,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             connectionManager:
               type: object
@@ -4293,8 +4293,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode23:
                   maxLength: 1
@@ -4302,8 +4302,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             posDeviceManagement:
               type: object
@@ -4312,8 +4312,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode24:
                   maxLength: 1
@@ -4321,8 +4321,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             customerCommunicationManagement:
               type: object
@@ -4331,8 +4331,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode25:
                   maxLength: 1
@@ -4340,8 +4340,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             decisionEngineSystem:
               type: object
@@ -4350,8 +4350,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode26:
                   maxLength: 1
@@ -4359,8 +4359,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse27:
               type: object
@@ -4369,8 +4369,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode27:
                   maxLength: 1
@@ -4378,8 +4378,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse28:
               type: object
@@ -4388,8 +4388,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode28:
                   maxLength: 1
@@ -4397,8 +4397,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             transactionManagement:
               type: object
@@ -4407,8 +4407,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode29:
                   maxLength: 1
@@ -4416,8 +4416,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse30:
               type: object
@@ -4426,8 +4426,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode30:
                   maxLength: 1
@@ -4435,8 +4435,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
         userServicePrivilege:
           type: object
@@ -4882,7 +4882,7 @@ components:
           type: string
           description: Sign-on name that the person assigned this User Security Signon
             entity will use to sign on to the system. The sign-on name can consist
-            of letters (Aâ€“Z), numbers (0â€“9), and embedded spaces, but not a leading
+            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
             space. When adding a new Sign-on entity, the sign-on name must be a unique
             name not already assigned to any existing User Security Sign-on entity
             for your institution (client ID).
@@ -4969,7 +4969,7 @@ components:
           description: Customer service representative business unit number assigned
             to this administrator or user for reporting purposes in the Account Services
             Management (ASM) application. This field is required for all Client Users
-            (type 5) and must be an business unit number (001â€“998).
+            (type 5) and must be an business unit number (001–998).
           format: int32
           example: '100'
         userServicePrivilege:
@@ -5415,7 +5415,7 @@ components:
           type: string
           description: Sign-on name that the person assigned this User Security Signon
             entity will use to sign on to the system. The sign-on name can consist
-            of letters (Aâ€“Z), numbers (0â€“9), and embedded spaces, but not a leading
+            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
             space. When adding a new Sign-on entity, the sign-on name must be a unique
             name not already assigned to any existing User Security Sign-on entity
             for your institution (client ID).
@@ -5430,8 +5430,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode1:
                   maxLength: 1
@@ -5439,8 +5439,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             businessMessaging:
               type: object
@@ -5449,8 +5449,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode2:
                   maxLength: 1
@@ -5458,8 +5458,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse03:
               type: object
@@ -5468,8 +5468,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode3:
                   maxLength: 1
@@ -5477,8 +5477,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             exceptionProcessing:
               type: object
@@ -5487,8 +5487,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode4:
                   maxLength: 1
@@ -5496,8 +5496,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             accountManagement:
               type: object
@@ -5506,8 +5506,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode5:
                   maxLength: 1
@@ -5515,8 +5515,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             collectionManagement:
               type: object
@@ -5525,8 +5525,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode6:
                   maxLength: 1
@@ -5534,8 +5534,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             authorizations:
               type: object
@@ -5544,8 +5544,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode7:
                   maxLength: 1
@@ -5553,8 +5553,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             customerService:
               type: object
@@ -5563,8 +5563,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode8:
                   maxLength: 1
@@ -5572,8 +5572,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             remoteInterface:
               type: object
@@ -5582,8 +5582,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode9:
                   maxLength: 1
@@ -5591,8 +5591,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             commercialCard:
               type: object
@@ -5601,8 +5601,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode10:
                   maxLength: 1
@@ -5610,8 +5610,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             OfferManagement:
               type: object
@@ -5620,8 +5620,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode11:
                   maxLength: 1
@@ -5629,8 +5629,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             merchantSettlement:
               type: object
@@ -5639,8 +5639,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode12:
                   maxLength: 1
@@ -5648,8 +5648,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             applicationProcessing:
               type: object
@@ -5658,8 +5658,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode13:
                   maxLength: 1
@@ -5667,8 +5667,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             embScriptingSystem:
               type: object
@@ -5677,8 +5677,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode14:
                   maxLength: 1
@@ -5686,8 +5686,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             keyManagementSystem:
               type: object
@@ -5696,8 +5696,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode15:
                   maxLength: 1
@@ -5705,8 +5705,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse16:
               type: object
@@ -5715,8 +5715,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode16:
                   maxLength: 1
@@ -5724,8 +5724,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             letterRequests:
               type: object
@@ -5734,8 +5734,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode17:
                   maxLength: 1
@@ -5743,8 +5743,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse18:
               type: object
@@ -5753,8 +5753,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode18:
                   maxLength: 1
@@ -5762,8 +5762,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             internationalLanguage:
               type: object
@@ -5772,8 +5772,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode19:
                   maxLength: 1
@@ -5781,8 +5781,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             rewardManagement:
               type: object
@@ -5791,8 +5791,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode20:
                   maxLength: 1
@@ -5800,8 +5800,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             clientSupport:
               type: object
@@ -5810,8 +5810,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode21:
                   maxLength: 1
@@ -5819,8 +5819,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             security:
               type: object
@@ -5829,8 +5829,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode22:
                   maxLength: 1
@@ -5838,8 +5838,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             connectionManager:
               type: object
@@ -5848,8 +5848,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode23:
                   maxLength: 1
@@ -5857,8 +5857,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             posDeviceManagement:
               type: object
@@ -5867,8 +5867,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode24:
                   maxLength: 1
@@ -5876,8 +5876,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             customerCommunicationManagement:
               type: object
@@ -5886,8 +5886,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode25:
                   maxLength: 1
@@ -5895,8 +5895,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             decisionEngineSystem:
               type: object
@@ -5905,8 +5905,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode26:
                   maxLength: 1
@@ -5914,8 +5914,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse27:
               type: object
@@ -5924,8 +5924,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode27:
                   maxLength: 1
@@ -5933,8 +5933,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse28:
               type: object
@@ -5943,8 +5943,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode28:
                   maxLength: 1
@@ -5952,8 +5952,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             transactionManagement:
               type: object
@@ -5962,8 +5962,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode29:
                   maxLength: 1
@@ -5971,8 +5971,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
             futureUse30:
               type: object
@@ -5981,8 +5981,8 @@ components:
                   maxLength: 1
                   type: string
                   description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    features within programs. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
                 fieldSecurityCode30:
                   maxLength: 1
@@ -5990,8 +5990,8 @@ components:
                   description: User-defined code that provides access to custom code
                     features within programs or that identifies a Field Security entity
                     in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (Aâ€“Z), a number
-                    (0â€“9), or space.
+                    System (MBS) applications. The values are a letter (A–Z), a number
+                    (0–9), or space.
                   example: ' '
         businessUnitIncludeExcludeFlag:
           type: object
