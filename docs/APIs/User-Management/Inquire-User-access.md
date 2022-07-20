@@ -218,3 +218,5 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `VMSF0004SF` | Get request - Record not found | 
 | `VMSF0005SF` | Get Request - Record Add Pending | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

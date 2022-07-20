@@ -176,3 +176,5 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5CR0004SF` | Get request - Record Not Found |
 | `V5CR0284EA` | ORG field cannot be zero |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

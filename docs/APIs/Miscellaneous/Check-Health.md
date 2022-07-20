@@ -34,3 +34,8 @@ The below table identifies the required parameters in the request payload.
   "authorizationHealthStatus": "0"
 }
 ```
+
+### Error Response Payload
+
+*Please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+

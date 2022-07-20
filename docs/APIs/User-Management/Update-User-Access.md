@@ -398,3 +398,5 @@ Below table provides the list of application's error code and its description.
 | `VMSF0304EB` | Service/version is universal & cannot be defined as an override | 
 | `VMSF0304EC` | Service/version entered is not allowed | 
 | `VMSF0304EE` | Valid entry requires entry in incl/excl name and version fields |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

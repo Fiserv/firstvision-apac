@@ -29,8 +29,6 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
-
 {
   "continuationToken": " ",
   "shortName": "EPHTIARRAUHROE",
@@ -135,3 +133,5 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5S34003SA` | No statement history information found on file |
 | `V5S34003SD` | No Account on file |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
