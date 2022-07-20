@@ -18,7 +18,7 @@ This service is used for Authorization request on payment instrument id.
   "transactionAmount": 1,
   "planId": 10001,
   "expiryDate": 1123,
-  "securityCode": 0,
+  "securityCode": 123
 }
 ```
 
@@ -42,61 +42,13 @@ The below table identifies the required parameters in the request payload.
 ```json
 
 {
-  "accountDetail": {
-    "accountBlockCodeDetail": {
-      "blockCode1": "",
-      "blockCode1Date": "",
-      "blockCode2": "",
-      "blockCode2Date": ""
-    },
-    "accountOpenDate": "01/05/2021",
-    "accountType": "DEBIT CARD ACCOUNT",
-    "cardFeeDate": "00/00/0000",
-    "chargeOffReason": "",
-    "creditClassficationAndChargeoffStatus": "N1/0",
-    "creditLimitOverlimitPercentage:": "$1.00",
-    "customerid": "0001000000000150191",
-    "dateCgoff": "00/00/0000",
-    "delqLstDate": "00/00/0000",
-    "delqPymtDays": "000",
-    "lastPaymentAmount": "$0.00",
-    "lastPaymentDate": "00/00/0000",
-    "lastPurchaseAmount": "$0.00",
-    "lastPurchaseDate": "00/00/0000",
-    "lastReturnCheckDate": "00/00/0000",
-    "lastStatementDate": "30/04/2021",
-    "returnCheckCount": 0
-  },
-  "action": "A",
-  "authorizationCode": "055290",
-  "availableCredit": "$9,059.93",
-  "cardBlockCodeAndWarningCode": "/0000000",
-  "cashAvailable": "$0.00",
-  "collectionDate": "00/00/0000",
-  "collectionReason": 0,
-  "creditLimit": "$0.00",
-  "currentBalance": "$0.00",
-  "customerOpenDate": "01/05/2021",
-  "customerStatus": "A       ACTIVE",
-  "delqDays": 0,
-  "disputedAmount": "$0.00",
-  "disputedItemCount": 0,
-  "expiryDate": "30/04/2024",
-  "memoDetail": {
-    "memoCreditAmount": "$0.00",
-    "memoCreditCount": 0,
-    "memoDebitAmount": "$482.07",
-    "memoDebitCount": 59
-  },
-  "paymentDetail": {
-    "cycleDue": 0,
-    "totalDueAmount": "$0.00"
-  },
+  "authReferenceNumber": 3507600,
+  "authorizationCode": "055323",
+  "finalAction": "A",
   "reason": "APPROVED",
-  "responseCode": 0,
-  "temporaryCreditLimit": "$0.00",
-  "transactionAmount": ".01"
+  "responseCode": 0
 }
+ 
 ```
 
 ### Error Response Payload
@@ -129,3 +81,5 @@ Below table provides the list of application's error code and its description.
 |`V7RQ4008EA` | Expiration date is invalid |
 |`V7RQ4013EC` | Cvv2 presence indicator and cvv2/cvc2/cvn2/cav2 must be entered | 
 |`V7RQ4014EC` | Cvv2/cvc2 is entered the presence ind must be 1 |   
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
