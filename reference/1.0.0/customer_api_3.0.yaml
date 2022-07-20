@@ -4,16 +4,16 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: http://localhost:8080/
+- url: https://stg34.visionplus.io/sandbox/
 tags:
 - name: Customer Management
 paths:
-  /v1/customers/{customerId}/nameAddress:
+  /v1/customers/{customerNumber}/nameAddress:
     get:
       tags:
       - Customer Management
       summary: Inquire Customer
-      description: This service is used to inquire customer's details.
+      description: This service is used to inquire customer's details
       operationId: InquireCustomer
       parameters:
       - name: Authorization
@@ -36,25 +36,64 @@ paths:
           example: ABC123
       - name: businessUnit
         in: query
-        description: Unique identification number associated with the organization.
-          Valid values are 001-998.
+        description: Business Unit - Identification number of the organization associated
+          with thisAccount Base Segment record. The values are 001–998.
         required: false
         schema:
           maximum: 999
           maxLength: 3
           type: integer
           example: '200'
-      - name: customerId
+      - name: customerNumber
         in: path
-        description: Unique identification number assigned to a customer.
+        description: Customer Number - This field is Identification number of the
+          Name and Address record.
         required: true
         schema:
           maxLength: 19
           type: string
-          example: '0000020000065439605'
+          example: '0000020000066806355'
       responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCustomerResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -77,8 +116,89 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Customer
+      x-group-name: Customer Management
+    put:
+      tags:
+      - Customer Management
+      summary: Update Customer Demographics
+      description: This service will be used to update the customer demographic details
+        such as Name / Address / Phone Number / Email ID/ Date of Birth of the given
+        customer. The customer ID will be passed in the input request to retrieve
+        the demographic information.
+      operationId: UpdateCustomerDemographics
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Business Unit - Identification number of the Business Unit associated
+          with the Name and Address record. The values are 001–998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '200'
+      - name: customerNumber
+        in: path
+        description: Customer Number - This field is Identification number of the
+          Name and Address record.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0000020000065439605'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomerDemographicReqModel'
+        required: true
+      responses:
         '401':
           description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerDemographicResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -93,14 +213,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -109,17 +221,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireCustomerResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
       - Authorization: [
           ]
-      x-proxy-name: Inquire Customer
+      x-proxy-name: Update Customer Demographics
       x-group-name: Customer Management
+  /v1/customers/{customerId}/nameAddress:
     put:
       tags:
       - Customer Management
@@ -173,36 +296,6 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -211,8 +304,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -227,8 +320,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerResponseModel'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -280,9 +403,41 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SearchCustomerResponseModel'
+                type: string
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -299,38 +454,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -375,16 +498,16 @@ paths:
               $ref: '#/components/schemas/BoardCustomerReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -397,16 +520,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BoardCustomerResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -421,16 +536,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -488,8 +611,40 @@ paths:
           type: integer
           example: '600'
       responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -512,38 +667,6 @@ paths:
                 $ref: '#/components/schemas/ListCustomersCardsAndAccountResponseModel'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -601,8 +724,40 @@ paths:
           type: integer
           example: '600'
       responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -625,38 +780,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -714,36 +837,6 @@ paths:
           type: integer
           example: '600'
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListCustomersAccountResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -752,8 +845,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -768,8 +861,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersAccountResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -783,6 +906,391 @@ paths:
       x-group-name: Customer Management
 components:
   schemas:
+    UpdateCustomerDemographicReqModel:
+      type: object
+      properties:
+        customerDemograhicDetails:
+          type: object
+          properties:
+            nameLine1:
+              maxLength: 40
+              type: string
+              description: Name Line 1 - This field indicates the owner personal name,
+                business name, or  a generic name.
+              example: M S SWAMY
+            nameLine2:
+              maxLength: 40
+              type: string
+              description: Name Line 2 - This field indicates the owner name.
+              example: KK
+            nameLine3:
+              maxLength: 40
+              type: string
+              description: Name Line 3 - This field indicates the owner name.
+              example: ' '
+            houseNumber:
+              maxLength: 20
+              type: string
+              description: House Number - This field indicates the House number of
+                the owner.
+              example: ''
+            addressLine1:
+              maxLength: 40
+              type: string
+              description: Address Line 1 - This is mailing address for the owner.
+              example: FLAT NO:404
+            addressLine2:
+              maxLength: 40
+              type: string
+              description: Address Line 2 - This is mailing address for the owner.
+              example: RAINBOW APTS
+            addressLine3:
+              maxLength: 40
+              type: string
+              description: Address Line 3 - This is mailing address for the owner.
+              example: CHITRAPURI
+            addressLine4:
+              maxLength: 40
+              type: string
+              description: Address Line 4 - This is mailing address for the owner.
+              example: DELHI
+            city:
+              maxLength: 30
+              type: string
+              description: City - This field indicates the City portion of the mailing
+                address of  the owner.
+              example: DELHI
+            stateProvince:
+              maxLength: 3
+              type: string
+              description: State/Province - This field indicates the City portion
+                of the mailing address of  the owner.
+              example: DL
+            countryCode:
+              maxLength: 3
+              type: string
+              description: Country Code - The field is the country code. The value
+                entered must be a valid country code previously defined in the Security
+                Subsystem and Common Routines (SSC) system via the Country Code Definitions
+                service.
+              example: IND
+            postalCode:
+              maxLength: 10
+              type: string
+              description: Postal Code - This is the Postal code portion of the mailing
+                address of the owner.
+              example: '110004'
+            languageIndicator:
+              maxLength: 3
+              type: string
+              description: Language Indicator - This is User-defined code that indicates
+                the language spoken by the owner.
+              example: AUS
+            homePhoneNumber:
+              maxLength: 20
+              type: string
+              description: Home Phone Number - This field is the owner’s home telephone
+                number.
+              example: '9241800756'
+            homePhoneFlag:
+              maxLength: 1
+              type: string
+              description: Home Phone Flag - This flag indicates that whether you
+                have the owner’s permission to use this number.
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            faxNumber:
+              maxLength: 20
+              type: string
+              description: Fax Number - This field is the owner’s fax number.
+              example: '82364782'
+            faxPhoneFlag:
+              maxLength: 1
+              type: string
+              description: Fax Phone Flag - This flag indicates that whether you have
+                the owner’s permission to use this number.
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            mobileNumber:
+              maxLength: 20
+              type: string
+              description: Mobile Number - This field is the owner’s mobile number.
+              example: '112233'
+            smsFlag:
+              maxLength: 1
+              type: string
+              description: SMS Flag - This flag indicates that whether you have the
+                owner’s permission to use this number.
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            mobilePhoneFlag:
+              maxLength: 1
+              type: string
+              description: Mobile Phone Flag - This flag indicates that whether you
+                have the owner’s permission to use this number.
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            emailAddress:
+              maxLength: 60
+              type: string
+              description: Email Address - This field indicates e-mail address of
+                the owner.
+              example: SAM@FISERV.COM
+            dateOfBirth:
+              maxLength: 10
+              type: string
+              description: Date Of Birth - Date Of Birth of the owner, The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
+                on the System record (DATE FORMAT on System Control)
+              example: 06/04/1986
+            firstName:
+              maxLength: 40
+              type: string
+              description: First Name - This field is the First name of the owner.
+              example: ABC
+            middleName:
+              maxLength: 40
+              type: string
+              description: Middle Name - This field is the Middle name of the owner.
+              example: ''
+            lastName:
+              maxLength: 40
+              type: string
+              description: Last Name - This field is the Last name of the owner.
+              example: ''
+        userDefinedField4:
+          maxLength: 1
+          type: string
+          description: User Defined Field 4 - User-defined fields for an owner.
+          example: Y
+          enum:
+          - Y
+          - N
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          format: int32
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    UpdateCustomerDemographicResponseModel:
+      required:
+      - businessUnit
+      - customerNumber
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Business Unit - Identification number of the Business Unit
+            associated with the Name and Address record. The values are 001–998.
+          format: int32
+          example: '200'
+        customerNumber:
+          maxLength: 19
+          type: string
+          description: Customer Number - This field is Identification number of the
+            Name and Address record.
+          example: '0000020000065439605'
+        customerDemograhicDetails:
+          type: object
+          properties:
+            nameLine1:
+              maxLength: 40
+              type: string
+              description: Name Line 1 - This field indicates the owner personal name,
+                business name, or  a generic name.
+              example: M S SWAMY
+            nameLine2:
+              maxLength: 40
+              type: string
+              description: Name Line 2 - This field indicates the owner name.
+              example: KK
+            nameLine3:
+              maxLength: 40
+              type: string
+              description: Name Line 3 - This field indicates the owner name.
+              example: ' '
+            houseNumber:
+              maxLength: 20
+              type: string
+              description: House Number - This field indicates the House number of
+                the owner.
+              example: ''
+            addressLine1:
+              maxLength: 40
+              type: string
+              description: Address Line 1 - This is mailing address for the owner.
+              example: FLAT NO:404
+            addressLine2:
+              maxLength: 40
+              type: string
+              description: Address Line 2 - This is mailing address for the owner.
+              example: RAINBOW APTS
+            addressLine3:
+              maxLength: 40
+              type: string
+              description: Address Line 3 - This is mailing address for the owner.
+              example: CHITRAPURI
+            addressLine4:
+              maxLength: 40
+              type: string
+              description: Address Line 4 - This is mailing address for the owner.
+              example: DELHI
+            city:
+              maxLength: 30
+              type: string
+              description: City - This field indicates the City portion of the mailing
+                address of  the owner.
+              example: DELHI
+            stateProvince:
+              maxLength: 3
+              type: string
+              description: State/Province - This field indicates the City portion
+                of the mailing address of  the owner.
+              example: DL
+            countryCode:
+              maxLength: 3
+              type: string
+              description: Country Code - The field is the country code. The value
+                entered must be a valid country code previously defined in the Security
+                Subsystem and Common Routines (SSC) system via the Country Code Definitions
+                service.
+              example: IND
+            postalCode:
+              maxLength: 10
+              type: string
+              description: Postal Code - This is the Postal code portion of the mailing
+                address of the owner.
+              example: '110004'
+            languageIndicator:
+              maxLength: 3
+              type: string
+              description: Language Indicator - This is User-defined code that indicates
+                the language spoken by the owner.
+              example: AUS
+            homePhoneNumber:
+              maxLength: 20
+              type: string
+              description: Home Phone Number - This field is the owner’s home telephone
+                number.
+              example: '9241800756'
+            homePhoneFlag:
+              maxLength: 1
+              type: string
+              description: Home Phone Flag - This flag indicates that whether you
+                have the owner’s permission to use this number.
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            faxNumber:
+              maxLength: 20
+              type: string
+              description: Fax Number - This field is the owner’s fax number.
+              example: '82364782'
+            faxPhoneFlag:
+              maxLength: 1
+              type: string
+              description: Fax Phone Flag - This flag indicates that whether you have
+                the owner’s permission to use this number.
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            mobileNumber:
+              maxLength: 20
+              type: string
+              description: Mobile Number - This field is the owner’s mobile number.
+              example: '112233'
+            smsFlag:
+              maxLength: 1
+              type: string
+              description: SMS Flag - This flag indicates that whether you have the
+                owner’s permission to use this number.
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            mobilePhoneFlag:
+              maxLength: 1
+              type: string
+              description: Mobile Phone Flag - This flag indicates that whether you
+                have the owner’s permission to use this number.
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            emailAddress:
+              maxLength: 60
+              type: string
+              description: Email Address - This field indicates e-mail address of
+                the owner.
+              example: SAM@FISERV.COM
+            dateOfBirth:
+              maxLength: 10
+              type: string
+              description: Date Of Birth - Date Of Birth of the owner, The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
+                on the System record (DATE FORMAT on System Control)
+              example: 06/04/1986
+            firstName:
+              maxLength: 40
+              type: string
+              description: First Name - This field is the First name of the owner.
+              example: ABC
+            middleName:
+              maxLength: 40
+              type: string
+              description: Middle Name - This field is the Middle name of the owner.
+              example: ''
+            lastName:
+              maxLength: 40
+              type: string
+              description: Last Name - This field is the Last name of the owner.
+              example: ''
+        userDefinedField4:
+          maxLength: 1
+          type: string
+          description: User Defined Field 4 - User-defined fields for an owner.
+          example: Y
+          enum:
+          - Y
+          - N
     UpdateCustomerReqModel:
       type: object
       properties:
@@ -1001,32 +1509,6 @@ components:
               type: string
               description: This field indicates the House number of the owner.
               example: ''
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        status:
-          type: integer
-          format: int32
-          example: '0'
-        invalid-params:
-          type: array
-          items:
-            type: string
     UpdateCustomerResponseModel:
       required:
       - businessUnit
@@ -1262,235 +1744,126 @@ components:
               description: This field indicates the House number of the owner.
               example: ''
     SearchCustomerReqModel:
+      required:
+      - optionalDataMatch
+      - primaryData
+      - primaryDataSwitch
       type: object
       properties:
-        customerSearch:
-          required:
-          - optionalDataMatch
-          - primaryData
-          - primaryDataSwitch
-          type: object
-          properties:
-            primaryDataSwitch:
-              maxLength: 1
-              type: string
-              description: A primary search value must be supplied. <br/>The values
-                are:<br/> &nbsp; '0' - Last/Business/Store/Generic Name <br/> &nbsp;
-                '1' - Identification Number <br/> &nbsp; '2' - Phone Number <br/>
-                &nbsp; '3' - Postal Code <br/> &nbsp; '4' - Mobile Device ID
-              example: '0'
-              enum:
-              - '0'
-              - '1'
-              - '2'
-              - '3'
-              - '4'
-            primaryData:
-              maxLength: 40
-              type: string
-              description: Search field as per Primary data switch
-              example: Test*
-            optionalDataMatch:
-              maxLength: 1
-              type: string
-              description: Code that indicates the degree of matching required for
-                optional data fields. When an optional field contains a value greater
-                than spaces, this field defines whether the resulting search data
-                should match on all optional fields or on any optional field. <br/>The
-                values are:<br/> &nbsp; '0' - Display any optional field match (Default)
-                <br/> &nbsp; '1' - Display only those entitys that match all requested
-                optional fields
-              example: '1'
-              enum:
-              - '1'
-              - '0'
-        optionalData:
-          type: object
-          properties:
-            givenName:
-              maxLength: 40
-              type: string
-              description: First name of the customer
-              example: ''
-            middleName:
-              maxLength: 40
-              type: string
-              description: Middle name of the customer.
-              example: ''
-            birthName:
-              maxLength: 40
-              type: string
-              description: 'Last name of the Customer. '
-              example: ''
-            externalId:
-              maxLength: 25
-              type: string
-              description: This field identifies the Social Security number or tax
-                identification number.
-              example: ''
-            phoneNumber:
-              maxLength: 20
-              type: string
-              description: Phone Number of Customer
-              example: ''
-            postalcode:
-              maxLength: 10
-              type: string
-              description: Postal code portion of the mailing address of the owner
-              example: ''
-            mobileDeviceID:
-              maxLength: 20
-              type: string
-              description: 'Identification of a mobile device associated with a mobile
-                payment instrument (PI) embosser. CMS does not validate this field;
-                it is stored only. '
-              example: ''
-            birthDate:
-              maxLength: 10
-              type: string
-              description: Date Of Birth of the owner, The format is MM/DD/YYYY or
-                DD/MM/YYYY depending on the DATE FORMAT on System Control.
-              example: '0'
-            title:
-              maxLength: 20
-              type: string
-              description: Professional or honorary title of the customer
-              example: ''
-            suffixName:
-              maxLength: 20
-              type: string
-              description: Suffix for the customer. Examples include Jr., Sr., etc.
-              example: ''
-            countryCode:
-              maxLength: 3
-              type: string
-              description: Country for the customer. If you use this field, enter
-                the exact country code
-              example: ''
-            user14:
-              maxLength: 20
-              type: string
-              description: User-defined field for the search. This field literal displays
-                as User 14 unless changed on the Organization entity.
-              example: ''
-            user15:
-              maxLength: 20
-              type: string
-              description: User-defined field for the search. This field literal displays
-                as USER 15 unless changed on the Organization entity.
-              example: ''
-            businessUnit:
-              maximum: 999
-              maxLength: 3
-              type: integer
-              description: Unique identification number associated with the organization.
-                Valid values from 001-998.
-              format: int32
-              example: '0'
-    Customerlist_SearchCustomerResponseModel:
-      type: object
-      properties:
-        businessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number associated with the organization.
-            Valid values from 001-998.
-          format: int32
-          example: '200'
-        cust/Store/Merchant:
-          maxLength: 19
+        primaryDataSwitch:
+          maxLength: 1
           type: string
-          description: Number of the customer, store, or merchant entity that was
-            found to contain the name information.
-          example: '0002000000050623496'
-        last/Business/Store/GenericName:
+          description: Primary Data Switch - A primary search value must be supplied,
+            and can be based on one of four fields - last/business/generic/store name,
+            identification number, phone number, postal code or mobile device id
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+        primaryData:
           maxLength: 40
           type: string
-          description: Last/Busines/Store/Genric Name.
-          example: Test 01
+          description: Primary Data - Search field as per Primary data switch
+          example: '390539172'
+        optionalDataMatch:
+          maxLength: 1
+          type: string
+          description: 'Optional Data Match - Code that indicates the degree of matching
+            required for optional data fields. When an optional field contains a value
+            greater than spaces, this field defines whether the resulting search data
+            should match on all optional fields or on any optional field. The values
+            are: 0 = Display any optional field match (Default) 1 = Display only those
+            records that match all requested optional fields. '
+          example: '1'
+          enum:
+          - '1'
+          - '0'
+        firstName:
+          maxLength: 40
+          type: string
+          description: First Name - First name of the customer
+          example: ''
+        middleName:
+          maxLength: 40
+          type: string
+          description: Middle Name - Middle name of the customer.
+          example: ''
+        lastName:
+          maxLength: 40
+          type: string
+          description: 'Last Name - Last name of the Customer. '
+          example: ''
+        identificationNumber:
+          maxLength: 25
+          type: string
+          description: Identification Number -  Code that indicates if this number
+            is a Social Security number or other tax identification number.
+          example: ''
+        phoneNumber:
+          maxLength: 20
+          type: string
+          description: Phone Number - Phone Number of Customer
+          example: ''
         postalCode:
           maxLength: 10
           type: string
-          description: Postal code portion of the mailing address of the owner.
-          example: '6430'
+          description: Postal Code - Postal code portion of the mailing address of
+            the owner
+          example: ''
+        mobileDeviceId:
+          maxLength: 20
+          type: string
+          description: 'Mobile Device ID - Identification of a mobile device associated
+            with a mobile payment instrument (PI) embosser. CMS does not validate
+            this field; it is stored only. '
+          example: ''
+        dateOfBirth:
+          maxLength: 10
+          type: string
+          description: Date Of Birth - Date of Birth of Customer. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the date format established on the System record
+            (DATE FORMAT on System Control)
+          example: '0'
+        title:
+          maxLength: 20
+          type: string
+          description: Title - Professional or honorary title of the customer
+          example: ''
+        suffix:
+          maxLength: 20
+          type: string
+          description: Suffix - Suffix for the customer. Examples include Jr., Sr.,
+            etc.
+          example: ''
+        countryCode:
+          maxLength: 3
+          type: string
+          description: Country Code - Country for the customer. If you use this field,
+            enter the exact country code
+          example: ''
         user14:
           maxLength: 20
           type: string
-          description: User-defined field for the search. This field literal displays
-            as User 14 unless changed on the Organization entity.
+          description: User 14 - User-defined field for the search. This field literal
+            displays as User 14 unless changed on the Organization record (ARMO11).
           example: ''
         user15:
           maxLength: 20
           type: string
-          description: User-defined field for the search. This field literal displays
-            as USER 15 unless changed on the Organization entity.
+          description: User 15 - User-defined field for the search. This field literal
+            displays as USER 15 unless changed on the Organization record (ARMO11).
           example: ''
-        givenName:
-          maxLength: 40
-          type: string
-          description: First name of the customer.
-          example: CMS Fiserv
-        middleName:
-          maxLength: 40
-          type: string
-          description: Middle name of the customer.
-          example: ' '
-        identificationNumber:
-          maxLength: 25
-          type: string
-          description: Code that indicates if this number is a Social Security number
-            or other tax identification number.
-          example: '0050623496'
-        phoneNumber:
-          maxLength: 20
-          type: string
-          description: Phone Number of Customer
-          example: '0000000000000'
-        birthDate:
-          maxLength: 10
-          type: string
-          description: The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE
-            FORMAT on System Control.
-          example: '09011985'
-        suffix:
-          maxLength: 20
-          type: string
-          description: Suffix for the customer. Examples include Jr., Sr., etc.
-          example: ' '
-        country:
+        businessUnit:
+          maximum: 999
           maxLength: 3
-          type: string
-          description: The value entered must be a valid country code previously definedin
-            the Security Subsystem and Common Routines (SSC) system.
-          example: ' '
-        title:
-          maxLength: 20
-          type: string
-          description: Professional or honorary title of the customer.
-          example: ' '
-        sourceCode:
-          maxLength: 2
-          type: string
-          description: Source Code.
-          example: O1
-        nameField:
-          maxLength: 30
-          type: string
-          description: 'Name Field '
-          example: Ms CMS Test 01
-        nameAndOtherDetails:
-          maxLength: 76
-          type: string
-          description: Name and Other Details
-          example: Test/CMS//0050623496/             /9011985 ////6430///
-    SearchCustomerResponseModel:
-      type: object
-      properties:
-        customerlist:
-          type: array
-          items:
-            $ref: '#/components/schemas/Customerlist_SearchCustomerResponseModel'
+          type: integer
+          description: Business Unit - Identification number of the organization associated
+            with this Customer, the values are 001–998
+          format: int32
+          example: '0'
     BoardCustomerReqModel:
       required:
       - businessUnit
@@ -1740,237 +2113,194 @@ components:
     InquireCustomerResponseModel:
       required:
       - businessUnit
-      - customerId
+      - customerNumber
       type: object
       properties:
         businessUnit:
           maximum: 999
           maxLength: 3
           type: integer
-          description: Unique identification number associated with the organization.
-            Valid values are 001-998.
+          description: Business Unit - Identification number of the organization associated
+            with thisAccount Base Segment record. The values are 001–998.
           format: int32
           example: '200'
-        customerId:
+        customerNumber:
           maxLength: 19
           type: string
-          description: Unique identification number assigned to a customer.
-          example: '0000020000065439605'
-        namesDetails:
+          description: Customer Number - This field is Identification number of the
+            Name and Address record.
+          example: '0000020000066806355'
+        customerDemograhicDetails:
           type: object
           properties:
-            birthName:
+            addressLine1:
               maxLength: 40
               type: string
-              description: This field indicates the Last name of the owner.
-              example: ''
-            givenName:
+              description: Address Line 1 - Mailing address for the owner
+              example: 77 30 HARVEY ISLAND
+            addressLine2:
               maxLength: 40
               type: string
-              description: This field indicates the First name of the owner.
+              description: Address Line 2 - Mailing address for the owner
+              example: ' '
+            addressLine3:
+              maxLength: 40
+              type: string
+              description: Address Line 3 - Mailing address for the owner
+              example: ' '
+            addressLine4:
+              maxLength: 40
+              type: string
+              description: Address Line 4 - This is mailing address for the owner.
+              example: DELHI
+            city:
+              maxLength: 30
+              type: string
+              description: City - City portion of the mailing address of the owner
+              example: SYDNEY
+            stateProvince:
+              maxLength: 3
+              type: string
+              description: State/Province - Abbreviation of the state or province
+                portion of the mailingaddress of the owner
+              example: NSW
+            countryCode:
+              maxLength: 3
+              type: string
+              description: Country Code - Thevalue entered must be a valid country
+                code previously definedin the Security Subsystem and Common Routines
+                (SSC) system
+              example: AU
+            postalCode:
+              maxLength: 10
+              type: string
+              description: Postal Code - Postal code portion of the mailing address
+                of the owner
+              example: '110004'
+            languageIndicator:
+              maxLength: 3
+              type: string
+              description: Language Indicator - User-defined code that indicates the
+                language spoken by the owner.
+              example: AUS
+            homePhoneNumber:
+              maxLength: 20
+              type: string
+              description: Home Phone Number - that indicates the home telephone number
+                of the owner
+              example: '+61440372725'
+            homePhoneFlag:
+              type: string
+              description: Home Phone Flag - this field is a code that specifies whether
+                theyou have the owner’s permission to call this number. The values
+                0 =No, do not contact the customer at this number,1=Yes, you can contact
+                the customer at thisnumber (Default) 2=Preferred contact method
+              example: '0'
+            faxNumber:
+              maxLength: 20
+              type: string
+              description: Fax Number - This field is the owner’s fax number.
+              example: ' '
+            faxPhoneFlag:
+              maxLength: 1
+              type: string
+              description: Fax Phone Flag - This field is a code that specifies whether
+                theyou have the owner’s permission to call this number. The values
+                0 =No, do not contact the customer at this number,1=Yes, you can contact
+                the customer at thisnumber (Default) 2=Preferred contact method
+              example: '0'
+            mobileNumber:
+              maxLength: 20
+              type: string
+              description: Mobile Number - that indicates the mobile telephone number
+                of the owner
+              example: '+61440372725'
+            smsFlag:
+              maxLength: 1
+              type: string
+              description: SMS Flag - Code that indicates whether an SMS (short message
+                service)message can be sent to the owner. The values are 0=No, do
+                not contact the customer via SMS, 1=Yes, you can contact the customer
+                via SMS(Default)
+              example: '0'
+            mobilePhoneFlag:
+              type: string
+              description: Mobile Phone Flag - this field is a code that indicates
+                whether youhave the owner’s permission to call this number. The values
+                are0 =No, do not contact the customer at this number,1=Yes, you can
+                contact the customer at thisnumber (Default) 2=Preferred contact method
+              example: '0'
+            emailAddress:
+              maxLength: 60
+              type: string
+              description: Email Address - that indicates the e-mail address of the
+                owner
+              example: QM422E7RJT@XVRAI.NET
+            firstName:
+              maxLength: 40
+              type: string
+              description: First Name - This field is the First name of the owner.
               example: ABC
             middleName:
               maxLength: 40
               type: string
-              description: This field indicates the Middle name of the owner.
+              description: Middle Name - This field is the Middle name of the owner.
               example: ''
+            lastName:
+              maxLength: 40
+              type: string
+              description: Last Name - This field is the Last name of the owner.
+              example: ''
+            dateOfBirth:
+              maxLength: 10
+              type: string
+              description: Date Of Birth - Date of Birth of the customer, The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the date format established
+                on the System record (DATE FORMAT on System Control)
+              example: 06/24/1986
+            userDefinedField4:
+              type: string
+              description: User Defined Field 4 - User-defined fields for an owner.
+              example: Y
             nameLine1:
               maxLength: 40
               type: string
-              description: This field indicates the owner personal name, business
-                name, or  a generic name.
+              description: Name Line 1 - This field indicates the owner personal name,
+                business name, or  a generic name.
               example: M S SWAMY
             nameLine2:
               maxLength: 40
               type: string
-              description: This field indicates the owner name.
+              description: Name Line 2 - This field indicates the owner name.
               example: KK
             nameLine3:
               maxLength: 40
               type: string
-              description: This field indicates the owner name.
+              description: Name Line 3 - This field indicates the owner name.
               example: ' '
-        languageIndicator:
-          maxLength: 3
-          type: string
-          description: This is User-defined code that indicates the language spoken
-            by the owner.
-          example: AUS
-        homePhoneNumber:
-          maxLength: 20
-          type: string
-          description: This field indicates the owner’s home telephone number.
-          example: '9241800756'
-        homePhoneFlag:
-          maxLength: 1
-          type: string
-          description: This flag indicates that whether you have the owner’s permission
-            to use this number. <br/>The values are:<br/> &nbsp; '0' - Do not call
-            <br/> &nbsp; '1' - May be called <br/> &nbsp; '2' - Prefer to be called
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-        faxNumber:
-          maxLength: 20
-          type: string
-          description: This field indicates the owner’s fax number.
-          example: '82364782'
-        faxPhoneFlag:
-          maxLength: 1
-          type: string
-          description: This flag indicates that whether you have the owner’s permission
-            to use this number. <br/>The values are:<br/> &nbsp; '0' - Do not call
-            <br/> &nbsp; '1' - May be called <br/> &nbsp; '2' - Prefer to be called
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-        mobileNumber:
-          maxLength: 20
-          type: string
-          description: This field indicates the owner’s mobile number.
-          example: '112233'
-        smsFlag:
-          maxLength: 1
-          type: string
-          description: This flag indicates that whether you have the owner’s permission
-            to use this number. <br/>The values are:<br/> &nbsp; '0' - Do not send
-            <br/> &nbsp; '1' - May be send
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-        mobilePhoneFlag:
-          maxLength: 1
-          type: string
-          description: This flag indicates that whether you have the owner’s permission
-            to use this number. <br/>The values are:<br/> &nbsp; '0' - Do not call
-            <br/> &nbsp; '1' - May be called <br/> &nbsp; '2' - Prefer to be called
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-        emailAddress:
-          maxLength: 60
-          type: string
-          description: This field indicates e-mail address of the owner.
-          example: SAM@FISERV.COM
-        birthDate:
-          maxLength: 10
-          type: string
-          description: Date Of Birth of the owner, The format is MM/DD/YYYY or DD/MM/YYYY
-            depending on the DATE FORMAT on System Control.
-          example: 06/04/1986
-        isReturnMailEnabled:
-          type: string
-          description: User-defined fields to indicates return mail delivery is enabled
-            or not. <br/>The values are:<br/> &nbsp; 'Y' - Return mail <br/> &nbsp;
-            'N' - No return mail
-          example: Y
-          enum:
-          - Y
-          - N
-        employerDetails:
-          type: object
-          properties:
-            nameOfEmployer:
-              maxLength: 40
-              type: string
-              description: This field indicates name of the employer of the owner.
-              example: Y
-            addressLine1:
-              maxLength: 40
-              type: string
-              description: This field indicates the part of the mailing address of
-                the employer of the owner.
-              example: Y
-            addressLine2:
-              maxLength: 40
-              type: string
-              description: This field indicates the part of the mailing address of
-                the employer of the owner.
-              example: Y
-            phoneNumber:
+            houseNumber:
               maxLength: 20
               type: string
-              description: The second part of this field is the work telephone number.
-              example: Y
-            phoneFlag:
+              description: House Number - This field indicates the House number of
+                the owner.
+              example: ''
+            identificationType:
+              maxLength: 1
               type: string
-              description: This field indicates a flag that indicates whether you
-                have the owner’s permission to call this number.<br/>The values are:<br/>
-                &nbsp; '0' - No, owner may not be contacted using this number (Default)
-                <br/> &nbsp; '1' - Yes, owner may be contacted using this number <br/>
-                &nbsp; '2' - Preferred contact method
+              description: Identification type - Identifies the tax identification
+                number of the owner. The values are:0 = Social Security number (Default),
+                1 = Tax identification number, 2 = Other identification number.
               example: Y
               enum:
               - '0'
               - '1'
               - '2'
-            jobTitle:
-              maxLength: 4
+            identificationNumber:
+              maxLength: 25
               type: string
-              description: This is User-defined code to indicate the position or job
-                title of the owner.
+              description: Identification Number - Number that indicates if this number
+                is a Social Security number or other tax identification number.
               example: Y
-        addressDetails:
-          type: object
-          properties:
-            addressLine3:
-              maxLength: 40
-              type: string
-              description: This is mailing address for the owner.
-              example: CHITRAPURI
-            addressLine4:
-              maxLength: 40
-              type: string
-              description: This is mailing address for the owner.
-              example: DELHI
-            addressLine1:
-              maxLength: 40
-              type: string
-              description: This is mailing address for the owner.
-              example: FLAT NO:404
-            addressLine2:
-              maxLength: 40
-              type: string
-              description: This is mailing address for the owner.
-              example: RAINBOW APTS
-            city:
-              maxLength: 30
-              type: string
-              description: This field indicates the City portion of the mailing address
-                of  the owner.
-              example: DELHI
-            stateProvince:
-              maxLength: 3
-              type: string
-              description: This field indicates the City portion of the mailing address
-                of  the owner.
-              example: DL
-            countryCode:
-              maxLength: 3
-              type: string
-              description: The field is the country code. The value entered must be
-                a valid country code previously defined in the Security Subsystem
-                and Common Routines (SSC) system via the Country Code Definitions
-                service.
-              example: IND
-            postalCode:
-              maxLength: 10
-              type: string
-              description: This is the Postal code portion of the mailing address
-                of the owner.
-              example: '110004'
-            houseNumber:
-              maxLength: 20
-              type: string
-              description: This field indicates the House number of the owner.
-              example: ''
     AccountList_ListCustomersCardsAndAccountResponseModel:
       type: object
       properties:

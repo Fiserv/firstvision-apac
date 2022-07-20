@@ -4,7 +4,7 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: http://localhost:8080/
+- url: https://stg34.visionplus.io/sandbox/
 tags:
 - name: User Management
 paths:
@@ -36,6 +36,29 @@ paths:
           maxLength: 40
           type: string
           example: ABC123
+      - name: clientId
+        in: query
+        description: Identification number, referred to as Client ID, assigned to
+          your institution by the processor.
+        required: true
+        schema:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          example: '1'
+      - name: name
+        in: query
+        description: Sign-on name that the person assigned this User Security Signon
+          entity will use to sign on to the system. The sign-on name can consist of
+          letters (A–Z), numbers (0–9), and embedded spaces, but not a leading space.
+          When adding a new Sign-on entity, the sign-on name must be a unique name
+          not already assigned to any existing User Security Sign-on entity for your
+          institution (client ID).
+        required: true
+        schema:
+          maxLength: 15
+          type: string
+          example: NABTEST25
       requestBody:
         content:
           application/json:
@@ -43,36 +66,12 @@ paths:
               $ref: '#/components/schemas/UpdateUserReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateUserResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -81,8 +80,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -97,8 +96,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -162,20 +185,15 @@ paths:
           maxLength: 15
           type: string
           example: NABTEST25
-      - name: type
-        in: query
-        description: Security type of the User Security Sign-on entity. The security
-          type indicates the type of administrator or user for which the Sign-on entity
-          has been established. <br/>The values are:<br/>&nbsp; '1' - Processor Security
-          Administrato<br/>&nbsp; '2' - Processor Administrator <br/>&nbsp; '3' -
-          Processor User <br/>&nbsp; '4' - Client Administrator <br/>&nbsp; '5' -
-          Client User
-        required: true
-        schema:
-          maxLength: 1
-          type: string
-          example: '5'
       responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -184,24 +202,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -216,22 +218,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireUserAccessResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireUserAccessResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -278,36 +288,6 @@ paths:
               $ref: '#/components/schemas/UpdateUserAccessReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateUserAccessResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -316,8 +296,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -332,8 +312,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserAccessResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -380,30 +390,6 @@ paths:
               $ref: '#/components/schemas/AddUserReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -412,8 +398,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -428,8 +414,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -442,6 +444,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddUserResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
       - Authorization: [
           ]
@@ -499,8 +509,46 @@ paths:
           type: string
           example: NABTEST25
       responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireUserResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -523,44 +571,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireUserResponseModel'
       security:
       - Authorization: [
           ]
@@ -569,46 +579,8 @@ paths:
 components:
   schemas:
     UpdateUserReqModel:
-      required:
-      - clientId
-      - name
-      - securityType
       type: object
       properties:
-        clientId:
-          maximum: 99999
-          maxLength: 5
-          type: integer
-          description: Identification number, referred to as Client ID, assigned to
-            your institution by the processor.
-          format: int32
-          example: '1'
-        name:
-          maxLength: 15
-          type: string
-          description: Sign-on name that the person assigned this User Security Signon
-            entity will use to sign on to the system. The sign-on name can consist
-            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
-            space. When adding a new Sign-on entity, the sign-on name must be a unique
-            name not already assigned to any existing User Security Sign-on entity
-            for your institution (client ID).
-          example: NABTEST25
-        securityType:
-          maxLength: 1
-          type: string
-          description: Security type of the User Security Sign-on entity. The security
-            type indicates the type of administrator or user for which the Sign-on
-            entity has been established. <br/>The values are:<br/>&nbsp; '1' - Processor
-            Security Administrato<br/>&nbsp; '2' - Processor Administrator <br/>&nbsp;
-            '3' - Processor User <br/>&nbsp; '4' - Client Administrator <br/>&nbsp;
-            '5' - Client User
-          example: '5'
-          enum:
-          - '1'
-          - '2'
-          - '3'
-          - '4'
-          - '5'
         servicePrivilegeGroupId:
           maxLength: 8
           type: string
@@ -678,10 +650,10 @@ components:
             (type 5) and must be an business unit number (001–998).
           format: int32
           example: '100'
-        OF12:
+        userServicePrivilege01:
           type: object
-          properties: &id001
-            serviceInclusionExclusionFlag1:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -700,7 +672,7 @@ components:
               - E
               - D
               - ' '
-            serviceName1:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -712,7 +684,7 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion1:
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service version assigned to this User Security Sign-on
@@ -720,10 +692,10 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-        OF13:
+        userServicePrivilege02:
           type: object
-          properties: &id002
-            serviceInclusionExclusionFlag2:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -742,7 +714,7 @@ components:
               - E
               - D
               - ' '
-            serviceName2:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -754,7 +726,7 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion2:
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service version assigned to this User Security Sign-on
@@ -762,10 +734,10 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-        OF14:
+        userServicePrivilege03:
           type: object
-          properties: &id003
-            serviceInclusionExclusionFlag3:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -784,7 +756,7 @@ components:
               - E
               - D
               - ' '
-            serviceName3:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -796,7 +768,7 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion3:
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service Version - Service version assigned to this User
@@ -804,10 +776,10 @@ components:
                 service name in the corresponding SERVICE NAME field must identify
                 an existing service that was previously added by the processor.
               example: ' '
-        OF15:
+        userServicePrivilege04:
           type: object
-          properties: &id004
-            serviceInclusionExclusionFlag4:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -826,7 +798,7 @@ components:
               - E
               - D
               - ' '
-            serviceName4:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -838,7 +810,7 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion4:
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service version assigned to this User Security Sign-on
@@ -846,10 +818,10 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-        OF16:
+        userServicePrivilege05:
           type: object
-          properties: &id005
-            serviceInclusionExclusionFlag5:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -868,7 +840,7 @@ components:
               - E
               - D
               - ' '
-            serviceName5:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -880,7 +852,7 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion5:
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service version assigned to this User Security Sign-on
@@ -888,10 +860,10 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-        OF17:
+        userServicePrivilege06:
           type: object
-          properties: &id006
-            serviceInclusionExclusionFlag6:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -910,7 +882,7 @@ components:
               - E
               - D
               - ' '
-            serviceName6:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -922,7 +894,7 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion6:
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service version assigned to this User Security Sign-on
@@ -930,10 +902,10 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-        OF18:
+        userServicePrivilege07:
           type: object
-          properties: &id007
-            serviceInclusionExclusionFlag7:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -952,7 +924,7 @@ components:
               - E
               - D
               - ' '
-            serviceName7:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -964,7 +936,7 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion7:
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service version assigned to this User Security Sign-on
@@ -972,10 +944,10 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-        OF19:
+        userServicePrivilege08:
           type: object
-          properties: &id008
-            serviceInclusionExclusionFlag8:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -994,7 +966,7 @@ components:
               - E
               - D
               - ' '
-            serviceName8:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -1006,7 +978,7 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion8:
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service version assigned to this User Security Sign-on
@@ -1014,10 +986,10 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-        OF20:
+        userServicePrivilege09:
           type: object
-          properties: &id009
-            serviceInclusionExclusionFlag9:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -1036,7 +1008,7 @@ components:
               - E
               - D
               - ' '
-            serviceName9:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -1048,7 +1020,7 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion9:
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service version assigned to this User Security Sign-on
@@ -1056,10 +1028,10 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-        OF21:
+        userServicePrivilege10:
           type: object
-          properties: &id010
-            serviceInclusionExclusionFlag10:
+          properties:
+            serviceInclusionExclusionFlag:
               maxLength: 1
               type: string
               description: 'Code that indicates whether to include or exclude access
@@ -1078,7 +1050,7 @@ components:
               - E
               - D
               - ' '
-            serviceName10:
+            serviceName:
               maxLength: 30
               type: string
               description: Service name assigned to this User Security Sign-on entity.
@@ -1090,7 +1062,520 @@ components:
                 VERSION field must identify an existing service that was previously
                 added by the processor.
               example: ' '
-            serviceVersion10:
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+    UpdateUserResponseModel:
+      required:
+      - clientId
+      - name
+      type: object
+      properties:
+        clientId:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: Identification number, referred to as Client ID, assigned to
+            your institution by the processor.
+          format: int32
+          example: '1'
+        name:
+          maxLength: 15
+          type: string
+          description: Sign-on name that the person assigned this User Security Signon
+            entity will use to sign on to the system. The sign-on name can consist
+            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
+            space. When adding a new Sign-on entity, the sign-on name must be a unique
+            name not already assigned to any existing User Security Sign-on entity
+            for your institution (client ID).
+          example: NABTEST25
+        servicePrivilegeGroupId:
+          maxLength: 8
+          type: string
+          description: Service Privilege Group - Name that identifies an existing
+            service privilege group assigned to this User Security Sign-on entity.
+            This service privilege group determines the services that can be accessed
+            by the person who signs on with this sign-on entity.
+          example: ''
+        status:
+          maxLength: 1
+          type: string
+          description: 'Code that indicates the status of the User Security Sign-on
+            entity. <br/>The values are: <br/>&nbsp; 1 = Active (Default)<br/>&nbsp;
+            9 = To be purged. This sign-on record will be purged during the next reload
+            of the WSS master files.'
+          example: '1'
+          enum:
+          - '1'
+          - '9'
+        signonExpiryDate:
+          maxLength: 10
+          type: string
+          description: Expiration date of the User Security Sign-on entity. The default
+            value is zeros. The Sign-on entity cannot be used to sign on unless this
+            field is a valid future date. On the expiration date, the system sets
+            this field to zero. When this field is zero, signon attempts fail and
+            are reported on the Security Violations Report (T130). This date must
+            be changed to a valid future expiration date to enable the Sign-on entity
+            to be used for signing on again, The format is MM/DD/YYYY or DD/MM/YYYY
+            depending on the DATE FORMAT on System Control.
+          example: ''
+        activationDate:
+          maxLength: 10
+          type: string
+          description: Activation date of the User Security Sign-on entity. The default
+            value is zeros. The Sign-on entity cannot be used to sign on unless this
+            field is a valid past or current date. This field enables a Sign-on entity
+            to be added and assigned a future activation date so that the entity is
+            automatically active on that future date, The format is MM/DD/YYYY or
+            DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: ''
+        businessUnitPrivilegeId:
+          maxLength: 8
+          type: string
+          description: Name that identifies an existing organization privilege group
+            assigned to this User Security Sign-on entity. This organization privilege
+            group determines the organizations that can be accessed by the person
+            who signs on with this Sign-on entity. An organization privilege group
+            assigned to a Sign-on entity must have the same client ID and security
+            type as the Sign-on entity. Access rights to additional organizations
+            can be included or excluded using the I/E and ORG fields, which are listed
+            on this screen under the ORG INCLUDE/EXCLUDE heading.
+          example: ''
+        supervisorId:
+          maxLength: 3
+          type: string
+          description: Supervisor ID of the person who signs on with this User Security
+            Sign-on record.
+          example: ' '
+        customerServiceBusinessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Customer service representative business unit number assigned
+            to this administrator or user for reporting purposes in the Account Services
+            Management (ASM) application. This field is required for all Client Users
+            (type 5) and must be an business unit number (001–998).
+          format: int32
+          example: '100'
+        userServicePrivilege01:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege02:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege03:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service Version - Service version assigned to this User
+                Security Sign-on entity. The service version in this field and the
+                service name in the corresponding SERVICE NAME field must identify
+                an existing service that was previously added by the processor.
+              example: ' '
+        userServicePrivilege04:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege05:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege06:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege07:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege08:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege09:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege10:
+          type: object
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
               maxLength: 6
               type: string
               description: Service version assigned to this User Security Sign-on
@@ -1124,146 +1609,6 @@ components:
           type: array
           items:
             type: string
-    UpdateUserResponseModel:
-      required:
-      - clientId
-      - name
-      - securityType
-      type: object
-      properties:
-        clientId:
-          maximum: 99999
-          maxLength: 5
-          type: integer
-          description: Identification number, referred to as Client ID, assigned to
-            your institution by the processor.
-          format: int32
-          example: '1'
-        name:
-          maxLength: 15
-          type: string
-          description: Sign-on name that the person assigned this User Security Signon
-            entity will use to sign on to the system. The sign-on name can consist
-            of letters (A–Z), numbers (0–9), and embedded spaces, but not a leading
-            space. When adding a new Sign-on entity, the sign-on name must be a unique
-            name not already assigned to any existing User Security Sign-on entity
-            for your institution (client ID).
-          example: NABTEST25
-        securityType:
-          maxLength: 1
-          type: string
-          description: Security type of the User Security Sign-on entity. The security
-            type indicates the type of administrator or user for which the Sign-on
-            entity has been established. <br/>The values are:<br/>&nbsp; '1' - Processor
-            Security Administrato<br/>&nbsp; '2' - Processor Administrator <br/>&nbsp;
-            '3' - Processor User <br/>&nbsp; '4' - Client Administrator <br/>&nbsp;
-            '5' - Client User
-          example: '5'
-          enum:
-          - '1'
-          - '2'
-          - '3'
-          - '4'
-          - '5'
-        servicePrivilegeGroupId:
-          maxLength: 8
-          type: string
-          description: Service Privilege Group - Name that identifies an existing
-            service privilege group assigned to this User Security Sign-on entity.
-            This service privilege group determines the services that can be accessed
-            by the person who signs on with this sign-on entity.
-          example: ''
-        status:
-          maxLength: 1
-          type: string
-          description: 'Code that indicates the status of the User Security Sign-on
-            entity. <br/>The values are: <br/>&nbsp; 1 = Active (Default)<br/>&nbsp;
-            9 = To be purged. This sign-on record will be purged during the next reload
-            of the WSS master files.'
-          example: '1'
-          enum:
-          - '1'
-          - '9'
-        signonExpiryDate:
-          maxLength: 10
-          type: string
-          description: Expiration date of the User Security Sign-on entity. The default
-            value is zeros. The Sign-on entity cannot be used to sign on unless this
-            field is a valid future date. On the expiration date, the system sets
-            this field to zero. When this field is zero, signon attempts fail and
-            are reported on the Security Violations Report (T130). This date must
-            be changed to a valid future expiration date to enable the Sign-on entity
-            to be used for signing on again, The format is MM/DD/YYYY or DD/MM/YYYY
-            depending on the DATE FORMAT on System Control.
-          example: ''
-        activationDate:
-          maxLength: 10
-          type: string
-          description: Activation date of the User Security Sign-on entity. The default
-            value is zeros. The Sign-on entity cannot be used to sign on unless this
-            field is a valid past or current date. This field enables a Sign-on entity
-            to be added and assigned a future activation date so that the entity is
-            automatically active on that future date, The format is MM/DD/YYYY or
-            DD/MM/YYYY depending on the DATE FORMAT on System Control.
-          example: ''
-        businessUnitPrivilegeId:
-          maxLength: 8
-          type: string
-          description: Name that identifies an existing organization privilege group
-            assigned to this User Security Sign-on entity. This organization privilege
-            group determines the organizations that can be accessed by the person
-            who signs on with this Sign-on entity. An organization privilege group
-            assigned to a Sign-on entity must have the same client ID and security
-            type as the Sign-on entity. Access rights to additional organizations
-            can be included or excluded using the I/E and ORG fields, which are listed
-            on this screen under the ORG INCLUDE/EXCLUDE heading.
-          example: ''
-        supervisorId:
-          maxLength: 3
-          type: string
-          description: Supervisor ID of the person who signs on with this User Security
-            Sign-on record.
-          example: ' '
-        customerServiceBusinessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Customer service representative business unit number assigned
-            to this administrator or user for reporting purposes in the Account Services
-            Management (ASM) application. This field is required for all Client Users
-            (type 5) and must be an business unit number (001–998).
-          format: int32
-          example: '100'
-        OF12:
-          type: object
-          properties: *id001
-        OF13:
-          type: object
-          properties: *id002
-        OF14:
-          type: object
-          properties: *id003
-        OF15:
-          type: object
-          properties: *id004
-        OF16:
-          type: object
-          properties: *id005
-        OF17:
-          type: object
-          properties: *id006
-        OF18:
-          type: object
-          properties: *id007
-        OF19:
-          type: object
-          properties: *id008
-        OF20:
-          type: object
-          properties: *id009
-        OF21:
-          type: object
-          properties: *id010
     UpdateUserAccessReqModel:
       required:
       - clientId
@@ -1432,7 +1777,7 @@ components:
                 Credit Management System (CMS) and/or Merchant Bankcard System (MBS)
                 applications. The values are a letter (A–Z), a number (0–9), or space.
               example: ' '
-        applicationOfferManagement:
+        applicationCommercialCard:
           type: object
           properties:
             userCode:
@@ -1450,9 +1795,9 @@ components:
                 Credit Management System (CMS) and/or Merchant Bankcard System (MBS)
                 applications. The values are a letter (A–Z), a number (0–9), or space.
               example: ' '
-        OF119:
+        applicationOfferManagement:
           type: object
-          properties: &id011
+          properties:
             userCode:
               maxLength: 1
               type: string
@@ -1792,7 +2137,7 @@ components:
                 Credit Management System (CMS) and/or Merchant Bankcard System (MBS)
                 applications. The values are a letter (A–Z), a number (0–9), or space.
               example: ' '
-        businessUnitIncludeExcludeFlag1:
+        businessUnitIncludeExcludeFlag01:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -1821,7 +2166,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag2:
+        businessUnitIncludeExcludeFlag02:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -1850,7 +2195,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag3:
+        businessUnitIncludeExcludeFlag03:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -1879,7 +2224,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag4:
+        businessUnitIncludeExcludeFlag04:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -1908,7 +2253,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag5:
+        businessUnitIncludeExcludeFlag05:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -1937,7 +2282,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag6:
+        businessUnitIncludeExcludeFlag06:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -1966,7 +2311,7 @@ components:
               description: Unique identification number associated with the organization
                 assigned to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag7:
+        businessUnitIncludeExcludeFlag07:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -1995,7 +2340,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag8:
+        businessUnitIncludeExcludeFlag08:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2024,7 +2369,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag9:
+        businessUnitIncludeExcludeFlag09:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2286,6 +2631,24 @@ components:
                 Credit Management System (CMS) and/or Merchant Bankcard System (MBS)
                 applications. The values are a letter (A–Z), a number (0–9), or space.
               example: ' '
+        applicationCommercialCard:
+          type: object
+          properties:
+            userCode:
+              maxLength: 1
+              type: string
+              description: User-defined code that provides access to custom code features
+                within programs. The values are a letter (A–Z), a number (0–9), or
+                space.
+              example: ' '
+            fieldSecurityCode:
+              maxLength: 1
+              type: string
+              description: User-defined code that provides access to custom code features
+                within programs or that identifies a Field Security entity in the
+                Credit Management System (CMS) and/or Merchant Bankcard System (MBS)
+                applications. The values are a letter (A–Z), a number (0–9), or space.
+              example: ' '
         applicationOfferManagement:
           type: object
           properties:
@@ -2304,9 +2667,6 @@ components:
                 Credit Management System (CMS) and/or Merchant Bankcard System (MBS)
                 applications. The values are a letter (A–Z), a number (0–9), or space.
               example: ' '
-        OF119:
-          type: object
-          properties: *id011
         applicationMerchantSettlement:
           type: object
           properties:
@@ -2631,7 +2991,7 @@ components:
                 Credit Management System (CMS) and/or Merchant Bankcard System (MBS)
                 applications. The values are a letter (A–Z), a number (0–9), or space.
               example: ' '
-        businessUnitIncludeExcludeFlag1:
+        businessUnitIncludeExcludeFlag01:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2660,7 +3020,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag2:
+        businessUnitIncludeExcludeFlag02:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2689,7 +3049,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag3:
+        businessUnitIncludeExcludeFlag03:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2718,7 +3078,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag4:
+        businessUnitIncludeExcludeFlag04:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2747,7 +3107,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag5:
+        businessUnitIncludeExcludeFlag05:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2776,7 +3136,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag6:
+        businessUnitIncludeExcludeFlag06:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2805,7 +3165,7 @@ components:
               description: Unique identification number associated with the organization
                 assigned to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag7:
+        businessUnitIncludeExcludeFlag07:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2834,7 +3194,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag8:
+        businessUnitIncludeExcludeFlag08:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -2863,7 +3223,7 @@ components:
               description: Unique identification number associated with the organization  assigned
                 to this User Security Sign-on entity. Valid values from 001-998.
               example: ' '
-        businessUnitIncludeExcludeFlag9:
+        businessUnitIncludeExcludeFlag09:
           type: object
           properties:
             inclusionExclusionFlag:
@@ -4222,186 +4582,10 @@ components:
               example: ' '
     AddUserResponseModel:
       type: object
-      properties:
-        OF37:
-          type: object
-          properties:
-            OF38:
-              type: object
-              properties:
-                userCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-                fieldSecurityCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs or that identifies a Field Security entity
-                    in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-            OF39:
-              type: object
-              properties:
-                userCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-                fieldSecurityCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs or that identifies a Field Security entity
-                    in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-            OF40:
-              type: object
-              properties:
-                userCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-                fieldSecurityCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs or that identifies a Field Security entity
-                    in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-            OF41:
-              type: object
-              properties:
-                userCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-                fieldSecurityCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs or that identifies a Field Security entity
-                    in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-            OF42:
-              type: object
-              properties:
-                userCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-                fieldSecurityCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs or that identifies a Field Security entity
-                    in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-            OF43:
-              type: object
-              properties:
-                userCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-                fieldSecurityCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs or that identifies a Field Security entity
-                    in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-            OF44:
-              type: object
-              properties:
-                userCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-                fieldSecurityCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs or that identifies a Field Security entity
-                    in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-            OF45:
-              type: object
-              properties:
-                userCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-                fieldSecurityCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs or that identifies a Field Security entity
-                    in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-            OF46:
-              type: object
-              properties:
-                userCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
-                fieldSecurityCode:
-                  maxLength: 1
-                  type: string
-                  description: User-defined code that provides access to custom code
-                    features within programs or that identifies a Field Security entity
-                    in the Credit Management System (CMS) and/or Merchant Bankcard
-                    System (MBS) applications. The values are a letter (A–Z), a number
-                    (0–9), or space.
-                  example: ' '
     InquireUserResponseModel:
       required:
       - clientId
       - name
-      - securityType
       type: object
       properties:
         clientId:
@@ -4422,22 +4606,6 @@ components:
             name not already assigned to any existing User Security Sign-on entity
             for your institution (client ID).
           example: NABTEST25
-        securityType:
-          maxLength: 1
-          type: string
-          description: Security type of the User Security Sign-on entity. The security
-            type indicates the type of administrator or user for which the Sign-on
-            entity has been established. <br/>The values are:<br/>&nbsp; '1' - Processor
-            Security Administrato<br/>&nbsp; '2' - Processor Administrator <br/>&nbsp;
-            '3' - Processor User <br/>&nbsp; '4' - Client Administrator <br/>&nbsp;
-            '5' - Client User
-          example: '5'
-          enum:
-          - '1'
-          - '2'
-          - '3'
-          - '4'
-          - '5'
         servicePrivilegeGroupId:
           maxLength: 8
           type: string
@@ -4507,36 +4675,426 @@ components:
             (type 5) and must be an business unit number (001–998).
           format: int32
           example: '100'
-        OF12:
+        userServicePrivilege01:
           type: object
-          properties: *id001
-        OF13:
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege02:
           type: object
-          properties: *id002
-        OF14:
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege03:
           type: object
-          properties: *id003
-        OF15:
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service Version - Service version assigned to this User
+                Security Sign-on entity. The service version in this field and the
+                service name in the corresponding SERVICE NAME field must identify
+                an existing service that was previously added by the processor.
+              example: ' '
+        userServicePrivilege04:
           type: object
-          properties: *id004
-        OF16:
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege05:
           type: object
-          properties: *id005
-        OF17:
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege06:
           type: object
-          properties: *id006
-        OF18:
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege07:
           type: object
-          properties: *id007
-        OF19:
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege08:
           type: object
-          properties: *id008
-        OF20:
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege09:
           type: object
-          properties: *id009
-        OF21:
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
+        userServicePrivilege10:
           type: object
-          properties: *id010
+          properties:
+            serviceInclusionExclusionFlag:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether to include or exclude access
+                rights to the service listed in the corresponding SERVICE NAME and
+                VERSION fields, or to delete the service name and version from the
+                list on this screen. <br/> The values are: <br/>&nbsp; ''D'' or ''
+                '' - Delete the service name and version in the corresponding SERVICE
+                NAME and SERVICE VERSION fields from the list on this page <br/>&nbsp;
+                ''E'' - Exclude access rights to the service listed in the corresponding
+                SERVICE NAME and SERVICE VERSION fields <br/>&nbsp; ''I'' - Include
+                access rights to the service listed in the corresponding SERVICE NAME
+                and SERVICE VERSION fields'
+              example: ' '
+              enum:
+              - I
+              - E
+              - D
+              - ' '
+            serviceName:
+              maxLength: 30
+              type: string
+              description: Service name assigned to this User Security Sign-on entity.
+                The corresponding I/E field indicates whether to include or exclude
+                access rights to this service. Access rights to this service are in
+                addition to the access rights granted by the service privilege group
+                that is assigned to this Sign-on entity in the SERVICE PRIVILEGE field.
+                The service name in this field and the service version in the corresponding
+                VERSION field must identify an existing service that was previously
+                added by the processor.
+              example: ' '
+            serviceVersion:
+              maxLength: 6
+              type: string
+              description: Service version assigned to this User Security Sign-on
+                entity. The service version in this field and the service name in
+                the corresponding SERVICE NAME field must identify an existing service
+                that was previously added by the processor.
+              example: ' '
     InquireUserAccessResponseModel:
       required:
       - clientId
