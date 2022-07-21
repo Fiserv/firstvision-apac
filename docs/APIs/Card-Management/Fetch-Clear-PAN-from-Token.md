@@ -34,10 +34,19 @@ The below table identifies the required query parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5CL4002AS",
-  "errorMessage": "Token number not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/0009846801010273000/clearPan",
+    "invalid-params": [
+      "V5CL4002SA: CARD NUMBER NOT FOUND"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -47,5 +56,6 @@ Below table provides the list of application's error code and its description.
 |`V5CL4002EA` | Invalid card number |
 |`V5CL4001AS` | Org not found |
 |`V5CL4002AS` | Token number not found |
+|`V5CL4002SA` | Card Number not found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

@@ -101,10 +101,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "VMSF0011SF",
-  "errorMessage": "Record not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/users/inquireUser",
+    "invalid-params": [
+      "VMSF0010SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -112,6 +121,6 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `VMSF0001SA` | Invalid request for this user security | 
-| `VMSF0011SF` | Record not found | 
+| `VMSF0011SF` | Get request - Record not found | 
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

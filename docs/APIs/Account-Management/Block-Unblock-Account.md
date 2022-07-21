@@ -14,10 +14,19 @@ The system will check if the new block code 1 or 2 priority is greater than the 
 ### Request Payload
 
 ```json
-{
-  "blockCode1": "X",
-  "blockCode2": " "
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/0001000010000510481/blockUnblock",
+    "invalid-params": [
+      "V5BS0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 ### Minimum Requirements

@@ -68,17 +68,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5ED4001EN",
-  "errorMessage": "Record purged or add pending "  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/0009544410000000047/spendStatistics",
+    "invalid-params": [
+      "V5ED0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5ED4001EL` | Get request - Record not found |
+|`V5ED4001EL` | Get Request - Record not found |
 |`V5ED4001EN` | Record purged or add pending |
 |`V5ED4002EA` | Invalid card number |
 |`V5ED4002ED` | Card number must be provided |

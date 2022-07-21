@@ -76,16 +76,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5S34003SA",
-  "errorMessage": "No statement history information found on file"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/0006000011000000130/transactions/lastStatement",
+    "invalid-params": [
+      "V5S34003SD: NO ACCOUNT ON FILE"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5S34003SD` | No account on file |
 | `V5BS0011SF` | Update Request - Record add pending |
 | `V5BS4001EA` | Invalid business unit |
 | `V5BS4001SC` | Business unit is in purged status |

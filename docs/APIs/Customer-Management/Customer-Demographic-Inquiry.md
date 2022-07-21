@@ -74,16 +74,26 @@ The below table identifies the required query parameters in the request message.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5NA4002SA",
-  "errorMessage": "Customer account not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/customers/0000020000065439601/nameAddress",
+    "invalid-params": [
+      "V5NA0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+|`V5NA0010SF` | Update Request - Record not found|
 |`V5NA4002SA` | Customer account not found|
 |`V5NA4002SB` | Customer account is in add pending|
 |`V5NA4002SC` | Customer account is purged|

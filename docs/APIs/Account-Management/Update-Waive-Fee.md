@@ -145,16 +145,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5BS1002SV",
-  "errorMessage": "Invalid  Waive Late Change"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/0006000011000000178/waiveFee",
+    "invalid-params": [
+      "V5BS0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5BS0010SF` | Update Request - Record not found |
 | `V5BS0302SA` | Issuance ID must be equal to PERM issuance ID on logo |         
 | `V5BS1002SA` | Relationship does not allow ACCT level change for late charge |
 | `V5BS1002SV` | Invalid  Waive Late Change |

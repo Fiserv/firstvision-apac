@@ -76,10 +76,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   "errorCode" :  "V5SB4003EA" ,
-   "errorMessage" : "Base account number is required"   
-}
+[
+  {
+    "errorCode": "440401",
+    "detail": "Please refer to invalid-params for error details",
+    "title": "Not found",
+    "instance": "/v1/cards/boardCard",
+    "source": "VPL",
+    "status": 404,
+    "invalid-params": [
+        "V5AK4056SA: ORG/ACCOUNT NUMBER COMBINATION NOT FOUND"
+    ]
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -87,6 +96,7 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5SB4001SA` | Organization not on file |
+| `V5AK4056SA` | Org/Account number combination not found |
 | `V5SB4002EA` | Logo record not on file |
 | `V5SB4002EB` | Logo record incomplete | 
 | `V5SB4154SA` | Customer number not on file for this org |
