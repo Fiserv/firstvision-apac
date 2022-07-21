@@ -4,7 +4,7 @@ This service is used post the real-time payments which increases open to buy imm
 
 ## Endpoint
 
-`POST /v1/accounts/realTimePayments`
+`POST /v1/accounts/postPayments`
 
 ## Payload Example
 
@@ -45,7 +45,7 @@ This service is used post the real-time payments which increases open to buy imm
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/realTimePayments).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/postPayments).
 
 The below table identifies the required parameters in the request payload.
 
@@ -107,16 +107,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V8MA4005EA",
-  "errorMessage": "Account Or Card Not Found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/postPayments",
+    "invalid-params": [
+      "V5BS0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5BS0004SF` | Get Request - Record not found |  
 | `V8MA4005EA` | Account or card not found |  
 | `V8MA4005EB` | Account or card number required |  
 | `V8MA4005EC` | Invalid account status |  

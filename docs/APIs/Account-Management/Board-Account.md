@@ -55,7 +55,10 @@ Fields that are not provided in the request object will be initialised to their 
     "savingsAccountId": "12345"
   },
   "residenceId": "600",
-  "issuanceId": "600"
+  "issuanceId": "600",
+  "externalCustomerId": "000012672302",
+  "addressId": "HOME1",
+  "sourceCode": "mbk2"
 }
 ``` 
 
@@ -71,13 +74,14 @@ The below table identifies the required parameters in the request payload.
 | `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
 | `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
 | `creditLimit` | Payload | *string* | 17 | This is the credit limit of the account. |
-| `isSuppressLetterEnabledr`| Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
-| `billingCycle` | Payload | *number* | 02 | This flag indicates the day of the month that CMS performs cycle processing for the account. |
+| `isSuppressLetterEnabled`| Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
 | `isSupressTokenEnabled` | Payload | *number* | 01 | Code that indicates whether the account is eligible for tokenization. |
 | `coreBankingIndicator` | Payload | *string* | 01 | Code that indicates type of account. |
 | `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
 | `owningBranchNumber` | Payload | *number* | 09 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
 | `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 001-998. |
+| `externalCustomerId` | Payload | *string* | 14 | Unique identification number assigned to a customer from external system. |
+| `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Successful Response Payload
 
@@ -85,17 +89,26 @@ The below table identifies the required parameters in the request payload.
 {
   "accountId": "0006000012000000770",
   "businessUnit": 600,
-  "productId": 1
+  "productId": 1,
+  "externalCustomerId": "000012672302"
 }
 ```
 
 ### Error Response Payload
 
 ```json
-{
-   "errorCode" :  "V5SB4003EA" ,
-   "errorMessage" : "Base account number is required"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "instance": "/v1/accounts/boardAccount",
+    "invalid-params": [
+      "V5AK4056SA: ORG/ACCOUNT NUMBER COMBINATION NOT FOUND"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.

@@ -47,8 +47,11 @@ Fields that are not provided in the Request object will be initialised to their 
     "addressLine2": "St. Paul Road ",
     "city": " ",
     "stateprovince": "Uth",
-    "postalCode": "1231"
+    "postalCode": "1231",
+    "addressId": "13"    
   }
+  "physicalVirtualIndicator": "P",
+  "isDynamicCVV2Enabled": "0
 }
 ``` 
 
@@ -73,6 +76,7 @@ The below table identifies the required parameters in the request payload.
   "activationStatus": "0",
   "businessUnit": 600,
   "expiryDate": "18/01/2024",
+  "externalCustomerId": "99000001234501",
   "maskedPaymentCardNumber": "0004440010737034347",
   "nameOnCard": "John Brono",
   "paymentInstrumentId": "0004440010737034347",
@@ -83,16 +87,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   "errorCode" :  V5SB4003EA" ,
-   "errorMessage" : "Base account number is requsted"   
-}
+[
+  {
+    "errorCode": "440401",
+    "detail": "Please refer to invalid-params for error details",
+    "title": "Not found",
+    "instance": "/v1/cards/boardCard",
+    "source": "VPL",
+    "status": 404,
+    "invalid-params": [
+        "V5AK4056SA: ORG/ACCOUNT NUMBER COMBINATION NOT FOUND"
+    ]
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5AK4056SA` | Org/Account number combination not found |
 | `V5SB4003EA` | Base account number is requsted |
 | `V5SB4003EG` | Base account number must be numeric | 
 | `V5SB4003EH` | Base account number required |
@@ -105,7 +119,7 @@ Below table provides the list of application's error code and its description.
 | `V5SB4001EA` | Organization not on file |
 | `V5SB4001SA` | Organization not on file |
 | `V5SB4002EA` | Logo record not on file |
-| `V5SB4002EB` | Logo record is incomplete | 
+| `s4002EB` | Logo record is incomplete | 
 | `V5SB4009EA` | Relationship number required | 
 | `V5SB4011EA` | Insurance not allowed for prepaid accounts | 
 | `V5SB4012EA` | Sweeping not allowed this logo |

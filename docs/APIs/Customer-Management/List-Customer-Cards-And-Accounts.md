@@ -45,7 +45,9 @@ The below table identifies the required parameters in the request payload.
       "noOfTokenizedCards": 0,
       "productId": 1,
       "reissueControlMethod": "0",
-      "status": "N"
+      "status": "N",
+      "externalCustomerId": "990012679902",
+      "addressId": "HOME9902"
     }
   ],
   "cardtList": [
@@ -97,7 +99,9 @@ The below table identifies the required parameters in the request payload.
       "productDescription": "VISA CREDIT CONSUMER",
       "savingsAccountId": " ",
       "statusOfCard": "0",
-      "warningCode1": "0"
+      "warningCode1": "0",
+      "addressId": "C9902",
+      "physicalVirtualIndicator": "V"
     }
   ],
   "customerInformation": {
@@ -126,10 +130,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5NA0004SF",
-  "errorMessage": "Customer Number can not be spaces"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/customers/0006000011000000701/accountList",
+    "invalid-params": [
+      "V5DB4001AS: CUST NBR NOT FOUND"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -138,5 +151,6 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5NA0004SF` | Customer Number can not be spaces |
 | `V5DB4001SF` | AMNA org not found |
+| `V5DB4001AS` | Cust nbr not found|
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*

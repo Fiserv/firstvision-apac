@@ -43,10 +43,19 @@ The below table identifies the required query parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5ED0004SF",
-  "errorMessage": "Get request - Record not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/0009846801010434752/controlDetails",
+    "invalid-params": [
+      "V5ED0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.

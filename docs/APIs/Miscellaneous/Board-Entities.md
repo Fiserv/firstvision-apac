@@ -125,6 +125,9 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "isWaiveAnnualMembershipFeeEnabled": "0",
     "isSupressTokenEnabled": "0",
     "coreBankingIndicator": " ",
+    "externalCustomerId": "000012672302",
+    "addressId": "HOME1",
+    "sourceCode": "mbk2",
     "pctOverrideDetails": {
       "pctOverride": " ",
       "pctOverrideStartDate": "0",
@@ -175,6 +178,8 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "mccGroupLimits": "",
     "chequeAccountId": "",
     "savingAccountId": "",
+    "physicalVirtualIndicator": "V",
+    "isDynamicCVV2Enabled": "0",
     "namesDetails": {
       "embossedName1": "Trump",
       "embossedName2": "",
@@ -186,7 +191,8 @@ This new API enables to choose the records you want to add (Customer Name/Addres
       "addressLine2": "",
       "city": "",
       "stateprovince": "",
-      "postalCode": ""
+      "postalCode": "",
+      "addressId": "C01"
     }
   }
 }
@@ -210,7 +216,6 @@ The below table identifies the required parameters in the request payload.
 | `productId` | Payload | *number* | 03 | Identification number of the product associated with the account or relationship. |
 | `isInsuranceProductEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add an Insurance Product record. |
 | `givenName` | Payload | *string* | 40 | First name of the customer. |
-| `billingCycle` | Payload | *number* | 02 | Billing cycle of the account associated with the customer. |
 | `creditLimit` | Payload | *number* | 17 | Credit limit of this account. |
 | `billingCycle` | Payload | *number* | 02 | Billing cycle of the relationship associated with the customer. |
 | `owningBranchNumber` | Payload | *number* | 9 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
@@ -221,8 +226,9 @@ The below table identifies the required parameters in the request payload.
 | `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment card number. |
 | `embossedName1` | Payload | *string* | 26 | This field that specifies the default generic name line 1. |
 | `cardholderFlag` | Payload | *string* | 01 | This is the code that indicates whether the card is issued as primary or secondary card. |
-| `deviceIndicator` | Payload | *string* | 01 | Code that indicates the type of device (form factor) written to
-the track data on the card. |
+| `deviceIndicator` | Payload | *string* | 01 | Code that indicates the type of device (form factor) written to the track data on the card. |
+| `externalCustomerId` | Payload | *string* | 14 | Unique identification number assigned to a customer from external system. |
+| `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Successful Response Payload
 
@@ -238,7 +244,8 @@ the track data on the card. |
     "nameOnCard": "Trump",
     "expiryDate": "18/01/2024",
     "activationStatus": "0",
-    "maskedPaymentCardNumber": ""
+    "maskedPaymentCardNumber": "",
+    "externalCustomerId": "000012672302"
   }
 }
 ```
@@ -246,10 +253,19 @@ the track data on the card. |
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  V5SB4003EA" ,
-   errorMessage" : Base account number required"  
-}
+[
+  {
+    "errorCode": "440401",
+    "detail": "Please refer to invalid-params for error details",
+    "title": "Not found",
+    "instance": "/v1/misc/boardEntities",
+    "source": "VPL",
+    "status": 404,
+    "invalid-params": [
+        "V5S84154SB: CUSTOMER NUMBER ALREADY EXISTS FOR THIS ORG"
+    ]
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -275,6 +291,7 @@ Below table provides the list of application's error code and its description.
 | `V5SB4157ED` | Account nbr exist on relationship file for dual org |
 | `V5SB4158EA` | Account nbr cannot duplicate existing embosser for this org |
 | `V5SB4158EB` | Account nbr cannot duplicate existing embosser for dual org |
+| `V5S84154SB` | Customer number already exist for this ORG  |
 | `V5SB4151EA` | Logo does not allow billing account generation |
 | `V5SB4151EB` | Maximum number of 20 attempts made on billing account |
 | `V5SB4151EC` | Generated account number is greater than ending billing number |

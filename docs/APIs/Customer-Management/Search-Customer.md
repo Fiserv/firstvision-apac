@@ -119,10 +119,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   "errorCode" :  "V5XL4001SA" ,
-   "errorMessage" : "Customer search screen is not available"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/customers/searchCustomer",
+    "invalid-params": [
+      "V5XL4002EP: NO RESULT FOUND FOR THIS SEARCH CRITERIA"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.

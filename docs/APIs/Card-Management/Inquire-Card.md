@@ -27,9 +27,11 @@ The below table identifies the required query parameters in the request payload.
 ### Successful Response Payload
 
 ```json
+
 {
   "accountId": "0006000022000000050",
   "addressFields": {
+    "addressId": "",
     "addressLine1": "FISERV",
     "addressLine2": "NAB",
     "city": "CHENNAI",
@@ -69,8 +71,10 @@ The below table identifies the required query parameters in the request payload.
   },
   "digitalId": "",
   "emblemId": 0,
+  "externalCustomerId": "",
   "firstIssueBranch": 0,
   "fraudCardTransferCount": "",
+  "isDynamicCVV2Enabled": "",
   "isPinSuppressionEnabled": "0",
   "isSecureCodeEnabled": "0",
   "lastCardActivation": "N",
@@ -86,8 +90,10 @@ The below table identifies the required query parameters in the request payload.
   },
   "numberOfCardsOutstanding": 0,
   "paymentInstrumentId": "0009544410000000047",
+  "physicalVirtualIndicator": "",
   "pinDelayDaysCount": 0,
   "pinOverride": "1",
+  "plasticId": "VISA001",
   "posServiceCode": "",
   "productId": 2,
   "reasonCode": "",
@@ -113,10 +119,19 @@ The below table identifies the required query parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5ED0004SF",
-  "errorMessage": "Get Request - Record not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/0009544410000000041/details",
+    "invalid-params": [
+      "V5ED0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.

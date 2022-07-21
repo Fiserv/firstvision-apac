@@ -271,16 +271,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  VMSF4001EB" ,
-   errorMessage" : Client is invalid"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/users/boardUser",
+    "invalid-params": [
+      "VMSF0028SF: Record ADDED, SAVE not allowed."
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `VMSF0028SF`  |  Record added, save not allowed |
 | `VMSF4001EB`  |  Client is invalid | 
 | `VMSF4002SA`  |  Client name should not be spaces |
 | `VMSF0107EA`  |  Security expiration date is invalid |

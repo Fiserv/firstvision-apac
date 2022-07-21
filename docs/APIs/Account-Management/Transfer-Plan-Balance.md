@@ -53,16 +53,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5X24017SC",
-  "errorMessage": "Transfer/Copy to account must not be on file for this"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/transferPlanBalance",
+    "invalid-params": [
+      "V5XP4013EA: NO ORG RECORD ON FILE"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5XP4013EA` | No org record on file |
 | `V5X24017SA` | Transfer/Copy to account number invalid |
 | `V5X24017SC` | Transfer/Copy to account must not be on file for this |
 | `V5X24018SA` | Transfer/Copy to logo invalid |

@@ -62,16 +62,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  V8NA4004ED" ,
-   errorMessage" : Review date must be numeric and greater than zeros"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/addMemoLine",
+    "invalid-params": [
+      "V5BS0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5BS0004SF` | Get request - Record not found |
 | `V8NA4004ED` | Review date must be numeric and greater than zeros |
 | `V8NA4003SC` | Action code is required |
 | `V8NA4006EG` | Review time is invalid |

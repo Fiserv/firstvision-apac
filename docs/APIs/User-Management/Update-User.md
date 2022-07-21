@@ -162,16 +162,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5ED0330SV",
-  "errorMessage": "Card - Invalid  Reissue-deliv-option"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/users/updateUser",
+    "invalid-params": [
+      "VMSF0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `VMSF0010SF` | Update request - Record not found | 
 | `VMSF4001SE` | Security record selected cannot be viewed by the signed-on user | 
 | `VMSF4001ED` | Client is invalid | 
 | `VMSF4001SF` | Error in call to subroutine wsorule1 |  
