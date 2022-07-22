@@ -91,4 +91,4 @@ Below table provides the list of application's error code and its description.
 |`V7RQ4013EC` | Cvv2 presence indicator and cvv2/cvc2/cvn2/cav2 must be entered | 
 |`V7RQ4014EC` | Cvv2/cvc2 is entered the presence ind must be 1 |   
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common-Error-Codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
