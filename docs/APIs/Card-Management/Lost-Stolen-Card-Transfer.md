@@ -1,11 +1,10 @@
 # Transfer Lost Stolen Card 
 
-This Lost or Stolen service is used to block the lost card and request for the replacement card. If the transfer is a product 
-transfer, smart card transfer, or product graduation transfer, both the new account and the old account are available.
+This Lost or Stolen service is used to block the lost card and request for the replacement card. 
 
 ## Endpoint
 
-`PUT /v1/cards/{cardNumber}/transfer`
+`POST /v1/cards/lostStolenCardTransfer`
 
 ## Payload Example
 	
@@ -13,12 +12,12 @@ transfer, smart card transfer, or product graduation transfer, both the new acco
 
 ```json
 {
-  "cardNumber": "0009846801010000461",
-  "accountNumber": "0001000011000032014",
-  "product": 1,
+  "paymentInstrumentId": "0009544401000009195",
+  "accountId": "0006000011000000178",
+  "productId": 1,
   "startDate": "0",
-  "transferToAccount": "",
-  "transferToCustomer": "",
+  "transferToAccountId": " ",
+  "transferToCustomerId": " ",
   "effectiveDate": "0",
   "cardReplacementIndicator": "0",
   "blockCode": "L",
@@ -30,17 +29,14 @@ transfer, smart card transfer, or product graduation transfer, both the new acco
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{cardNumber}/transfer).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/lostStolenCardTransfer).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
-| `cardNumber` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
-| `cardSequence` | Payload | *number* | 04 | A sequence number of the card in case of card scheme 2 else pass the default value of 0001. |
-| `accountNumber` | Payload | *string* | 19 | Unique Identification number of the Account. |
-| `action` | Payload | *string* | 19 | Pass value as "T" for transfer. |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "1" for replacement of card or "0" to avoid initiation of card Replacement . |
 | `blockCode` | Payload | *string* | 1 | Pass value as "L" to block the old card. |
 
@@ -48,11 +44,11 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "cardNumber": "0004049400000006087",
-  "effectiveDate": "19/08/2021",
-  "maskCardNumber": "000404940XXXXXX6087",
-  "transferToAccount": "",
-  "transferToCustomer": ""
+  "maskedPaymentInstrumentId": "0009544401XXXXX9208",
+  "newPaymentInstrumentId": "0009544401000009208",
+  "transferToAccountId": " ",
+  "transferToCustomerId": " ",
+  "effectiveDate": "19/08/2021"
 }
 
 ```
@@ -60,10 +56,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5E10004EA",
-  "errorMessage": "Invalid card number"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/lostStolenCardTransfer",
+    "invalid-params": [
+      "V5E14015EA: EMBOSSER RECORD NOT FOUND"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -71,6 +76,7 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description |
 | --------  | ------------------ |
 |`V5E10004EA` | Invalid card number |
+|`V5E14015EA` | Embosser record not found |
 |`V5E10006EA` | Requested Business Unit is not found |
 |`V5E11020EA` | Only reversal or transfer can be done |
 |`V5E11021SA` | No reversal account number entered |
@@ -103,3 +109,5 @@ Below table provides the list of application's error code and its description.
 |`V5E14032EA` | Business unit does not allow customer number generation |
 |`V5E10001SA` | System in after hours processing, re-try in few minutes |
 |`V5E10002SA` | System in no-processing status,re-try in few minutes |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

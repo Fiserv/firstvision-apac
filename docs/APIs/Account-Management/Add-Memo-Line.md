@@ -13,17 +13,17 @@ The service will validate input message details and add memo line for monetary a
 ```json
 {
   "businessUnit": "600",
-  "accountNumber": "0006000011000000152",
+  "accountId": "0006000011000000152",
   "actionCode": "AINQ",
-  "cardNumber": "",
-  "memoLinesReq": {
-    "lineData1": "",
-    "lineData2": "",
-    "lineData3": "",
-    "lineData4": "",
-    "lineData5": ""
-  } "
-}
+  "paymentInstrumentId": " ",
+  "actionNotes": {
+    "note1": " ",
+    "note2": " ",
+    "note3": " ",
+    "note4": " ",
+    "note5": " "
+  }
+
 ``` 
 
 ### Minimum Requirements
@@ -34,7 +34,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Payload | *string* | 19 | Unique identification number of the account.|
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
 | `actionCode` | Payload | *string* | 04 | Four character user assigned code for the action.|
 
 ### Successful Response Payload
@@ -43,35 +43,45 @@ The below table identifies the required parameters in the request payload.
 {
   "actionCode": "AINQ",
   "actionCodeDescription": "ACCOUNT INQ",
-  "actionCodePriority": 0,
-  "actionRepId": "NAB",
-  "cardNumber": "",
-  "historyDate": "29/03/2022",
-  "historyTime": "00:27:04",
-  "memoLinesRes": {
+  "actionNotes": {
     "note1": "",
     "note2": "",
     "note3": "",
     "note4": "",
     "note5": ""
   },
-  "notePurgeDate": "23/04/2022",
-  "notesHistoryStatus": "C"
+  "actionRepId": "NAB",
+  "historyDate": "29/06/2022",
+  "historyTime": "06:11:00",
+  "notePurgeDate": "24/07/2022",
+  "notesHistoryStatus": "C",
+  "paymentInstrumentId": ""
 }
+
 ```
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  V8NA4004ED" ,
-   errorMessage" : Review date must be numeric and greater than zeros"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/addMemoLine",
+    "invalid-params": [
+      "V5BS0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5BS0004SF` | Get request - Record not found |
 | `V8NA4004ED` | Review date must be numeric and greater than zeros |
 | `V8NA4003SC` | Action code is required |
 | `V8NA4006EG` | Review time is invalid |
@@ -87,3 +97,6 @@ Below table provides the list of application's error code and its description.
 | `V8NA4027EE` | Invalid card number |
 | `V8NA4029SA` | Manual referral org/rep not found | 
 | `V8NA4030SA` | Manual referral org/rep not eligible for this request |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
+

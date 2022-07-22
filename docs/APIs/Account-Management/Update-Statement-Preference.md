@@ -4,7 +4,7 @@ This API is used to update statement preference for a given account. Some inport
 
 ## Endpoint
 
-`PUT /v1/accounts/{accountNumber}/statementPreference`
+`PUT /v1/accounts/{accountId}/statementPreferences`
 
 ## Payload Example
 
@@ -14,19 +14,19 @@ This API is used to update statement preference for a given account. Some inport
 {
   "statementModeOrStatus": "O",
   "statementReprintAddressFlag": "C",
-  "owner/Co-ownerStatementFlag": "0"
+  "ownerCoOwnerStatementFlag": "0"
 }
 ``` 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountNumber}/statementPreference).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/statementPreferences).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountNumber` | Path Variable | *string* | 19 | Unique Identification number of the account.|
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -34,9 +34,9 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountNumber": "0006000011000000145",
+  "accountId": "0006000011000000145",
   "businessUnit": 600,
-  "owner/Co-ownerStatementFlag": "0",
+  "ownerCoOwnerStatementFlag": "0",
   "statementModeOrStatus": "O",
   "statementReprintAddressFlag": "C"
 }
@@ -45,15 +45,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  V5BS0010SF" ,
-   errorMessage" : Update Request - Record not found"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/0006000011000000149/statementPreferences",
+    "invalid-params": [
+      "V5BS0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0010SF` | Update Request - Record not found |
+| `V5BS0010SF` | Update request - Record not found |
 | `V5BS0122SA` | Valid entries are 0 thru 9, H, O, R, S, U, Or Z |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

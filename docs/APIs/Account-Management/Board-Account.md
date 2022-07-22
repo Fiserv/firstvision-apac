@@ -1,6 +1,6 @@
 # Board Account
 
-This API is used to board the new account. API internally generate a new account number that identify record you are adding.
+This API is used to board the new account. API internally generate a new account id that identify record you are adding.
 
 Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces
 
@@ -13,47 +13,52 @@ Fields that are not provided in the request object will be initialised to their 
 ### Request Payload
 
 ```json
+
 {
-  "expirationDateOfPctOverride": 0,
-  "primaryAccountFlag": " ",
+  "isInsuranceProductEnabled": "N",
   "businessUnit": 600,
-  "alternateCustomerNumber": " ",
-  "expiryDateOfTempCreditLimit": 0,
-  "cashPlanNumber": 0,
-  "processingControlLevel": " ",
-  "expireDateOfTheOverride": 0,
-  "authorizationCriteriaTable": " ",
+  "productId": 1,
+  "customerId": "0006000012000000256",
+  "corporateId": "0",
+  "shortName": "Charlie",
+  "primaryAccountFlag": " ",
+  "creditLimit": "15000.0",
   "billingCurrency": 0,
-  "ibsSavingsRoutingNumber": 12345,
-  "ibsSavingsAccountNumber": 12345,
-  "issuanceId": 600,
-  "addInsuranceProduct": "N",
-  "creditLimit": 15000,
-  "billingLevel": 1,
-  "suppressTknAtAccntLevel": 0,
-  "product": 600,
-  "corporateIdNumber": 0,
-  "idOfThePctOverrideTables": " ",
-  "owningBranchNumber": 999999998,
-  "dualBillingFlag": 0,
-  "retailPlanNumber": 0,
-  "cardTechnology": 0,
-  "customerNumber": 1000000007,
-  "ibsDdaRoutingNumber": 0,
-  "startDateOfPctOverride": 0,
-  "residenceId": 600,
-  "ibsDdaAccountNumber": " ",
-  "startDateOfTheOverride": 0,
-  "suppressLetter": 0,
-  "waiveMembershipFees": 0,
-  "billingCycle": 18,
-  "coreBankingIndicator": "B",
-  "cardNumberingScheme": 0,
-  "relationshipLevelBillingCycle": 0,
+  "billingLevel": "1",
+  "dualBillingFlag": "0",
   "customerSelectedDueDay": 0,
-  "mobilePiFlag": 0,
-  "shortName": "ABCDE",
-  "temporaryCreditLimit": 0
+  "billingCycle": 18,
+  "cashPlanId": 0,
+  "retailPlanId": 0,
+  "cardTechnology": "0",
+  "temporaryCreditLimit": "0",
+  "temporaryCreditLimitExpiryDate": "0",
+  "owningBranchNumber": 999999998,
+  "isMobilePiEnabled": "0",
+  "authorizationCriteriaTable": " ",
+  "isSuppressLetterEnabled": "0",
+  "isWaiveAnnualMembershipFeeEnabled": "0",
+  "isSupressTokenEnabled": "0",
+  "coreBankingIndicator": " ",
+  "pctOverrideDetails": {
+    "pctOverride": " ",
+    "pctOverrideStartDate": "0",
+    "pctOverrideExpireDate": "0",
+    "level": " ",
+    "levelStartDate": "0",
+    "levelExpireDate": "0"
+  },
+  "ibsDetails": {
+    "ddaRoutingId": "0",
+    "ddaAccountId": " ",
+    "savingsRoutingId": "12345",
+    "savingsAccountId": "12345"
+  },
+  "residenceId": "600",
+  "issuanceId": "600",
+  "externalCustomerId": "000012672302",
+  "addressId": "HOME1",
+  "sourceCode": "mbk2"
 }
 ``` 
 
@@ -65,35 +70,45 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `addInsuranceProduct` | Payload | *string* | 01 | This is the code that indicates whether to add an Insurance Product record. |
-| `businessUnit` | Payload | *number* | 3 | Identification number of the business unit associated with the  account or relationship. |
-| `customerNumber` | Payload | *string* | 19 | This is the code that indicates customer number. |
+| `isInsuranceProductEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add an Insurance Product record. |
+| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
+| `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
 | `creditLimit` | Payload | *string* | 17 | This is the credit limit of the account. |
-| `suppressLetter`| Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
-| `billingCycle` | Payload | *number* | 02 | This flag indicates the day of the month that CMS performs cycle processing for the account. |
-| `SupressToken` | Payload | *number* | 01 | Code that indicates whether the account is eligible for tokenization. |
+| `isSuppressLetterEnabled`| Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
+| `isSupressTokenEnabled` | Payload | *number* | 01 | Code that indicates whether the account is eligible for tokenization. |
 | `coreBankingIndicator` | Payload | *string* | 01 | Code that indicates type of account. |
-| `waiveMembershipFees` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
+| `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
 | `owningBranchNumber` | Payload | *number* | 09 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
-| `Product` | Payload | *number* | 3 | Identification number of the product associated with the  account or relationship. |
+| `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 001-998. |
+| `externalCustomerId` | Payload | *string* | 14 | Unique identification number assigned to a customer from external system. |
+| `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Successful Response Payload
 
 ```json
 {
-  "product": 1,
+  "accountId": "0006000012000000770",
   "businessUnit": 600,
-  "accountNumber": 0006000011000002430
+  "productId": 1,
+  "externalCustomerId": "000012672302"
 }
 ```
 
 ### Error Response Payload
 
 ```json
-{
-   "errorCode" :  "V5SB4003EA" ,
-   "errorMessage" : "Base account number is required"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "instance": "/v1/accounts/boardAccount",
+    "invalid-params": [
+      "V5AK4056SA: ORG/ACCOUNT NUMBER COMBINATION NOT FOUND"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -133,3 +148,5 @@ Below table provides the list of application's error code and its description.
 | `V5SB4160EB` | Invalid Base account number for this Org |
 | `V5SB4160EC` | Invalid Base account number digit for dual org |
 | `V5SB4160ED` | Invalid Base account number for dual org |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

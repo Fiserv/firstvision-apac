@@ -1,10 +1,10 @@
 # Inquire Plan Master
 
-This service provides plan details for a given credit plan. Credit plans are control records that will be defined at the Business Unit level. Credit plans are defined to specify the various methods that are being offered to the customer. It will contain information like description, interest table override options, cancellation or expiry parameters based on account's performace etc.
+This service provides plan details for a given credit plan. Credit plans are control entities that will be defined at the Business Unit level. Credit plans are defined to specify the various methods that are being offered to the customer. It will contain information like description, interest table override options, cancellation or expiry parameters based on account's performace etc.
   
 ## Endpoint
 
-`GET /v1/products/{planNumber}/planDetails`
+`GET /v1/products/{planId}/planDetails`
 
 ## Payload Example
 
@@ -12,18 +12,18 @@ This service provides plan details for a given credit plan. Credit plans are con
 
 >Should be empty.
 >
->***The Business Unit and Plan Number should be sent as query parameters and path variable.*** 
+>***The Business Unit and Plan id should be sent as query parameters and path variable.*** 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{planNumber}/planDetails).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{planId}/planDetails).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number associated with this Account Base Segment record, the values are 001–998. |
-| `planNumber` | Path Variable | *number* | 5 | Identification number of the Credit Plan Master record. The values are 00001–99998. You can establish as many as 99,998 Credit Plan Master records for each organization. | 
+| `businessUnit` | Query Parameter | *number* | 3 | Identification number associated with this Account Base Segment entity, the values are 001–998. |
+| `planId` | Path Variable | *number* | 5 | Identification number of the Credit Plan Master entity. The values are 00001–99998. You can establish as many as 99,998 Credit Plan Master entities for each organization. | 
 
 ### Successful Response Payload
 
@@ -31,32 +31,32 @@ The below table identifies the required parameters in the request payload.
 {
   "balanceTransferType": "N",
   "businessUnit": 600,
-  "consolidatedDetailsRes": {
+  "consolidatedDetails": {
     "consolidatedPayment": "Y",
-    "consolidatedStatement": "Y",
-    "controllingCreditPlanMaster": 10002
+    "controllingCreditPlanMaster": 10002,
+    "isConsolidatedStatementEnabled": "Y"
   },
   "description": "RETAIL PLAN",
   "graceBalanceQualification": "0",
   "interestRateTableId": "2",
-  "interestRateTableOverrideRes": {
-    "interestRateTableOverride": 0,
-    "itoExpirationDate": "00/00/0000"
+  "interestRateTableOverride": {
+    "expiryDate": "00/00/0000",
+    "tableId": 0
   },
-  "minimumPaymentCalculation": "T",
   "multipleSales": "Y",
-  "planNumber": 10002,
+  "paymentType": "T",
+  "planId": 10002,
   "planType": "R",
-  "promotionalPlanDetailsRes": {
+  "promotionalPlanDetails": {
     "cancellationLetterId": "",
-    "cancelledPlanRollMethod": "0",
+    "cancellationPlanRollOverMethod": "0",
+    "cancellationRollOverPlanId": 0,
     "delinquencyLevelToCancel": "0",
     "expirationLetter": "",
+    "expirationPlanRollOverMethod": "0",
+    "expirationRollOverPlanId": 0,
     "expirationRollover": "0",
-    "expiredPlanRollMethod": "0",
-    "latePaymentCancelRoll": "0",
-    "rollCancelledPlanToPlanId": 0,
-    "rollExpiredPlanToPlanId": 0
+    "latePaymentCancelRoll": "0"
   }
 }
 ```
@@ -64,14 +64,25 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5CP0004SF",
-  "errorMessage": "Get Request - Record not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/products/10009/planDetails",
+    "invalid-params": [
+      "V5CP0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5CP0004SF` | Get Request - Record not found |         
+| `V5CP0004SF` | Get request - Record not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

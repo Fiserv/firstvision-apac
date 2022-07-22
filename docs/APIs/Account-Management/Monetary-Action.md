@@ -1,51 +1,51 @@
 # Monetary Action
 
-This service will update the Open-to-Buy, memo debit and credit fields on the Account Base Segment and generate an outstanding authorization record and log records.
+This service will update the Open-to-Buy, memo debit and credit fields for the given account and generate an outstanding authorization record and log records.
   
 ## Endpoint
 
-`POST /v1/accounts/{accountNumber}/monetaryAction`
+`POST /v1/accounts/monetaryAction`
 
 ## Payload Example
 
 ### Request Payload
 
 ```json
+
 {
-  "cmsBusinessUnit": "600",
-  "accountNumber": "0006000011000000160",
+  "businessUnit": "600",
+  "accountId": "0006000011000000160",
   "actionCode": "AINQ",
   "transactionAmount": "3000.0",
   "effectiveDate": "18/08/2021",
-  "departmentCode": "",
+  "departmentCode": " ",
   "skuNumber": 0,
-  "salesClerk": "",
-  "cardNumber": "0006000011000000160",
+  "salesClerk": " ",
+  "paymentInstrumentId": "0006000011000000160",
   "ticketNumber": "0",
   "caseNumber": "0",
   "purchaseOrderNumber": "0",
-  "planNumber": 10002,
+  "planId": 10002,
   "storeNumber": 999999998,
-  "authorizationCode": "",
-  "referenceNumber": 0,
-  "actionCodePriority": 0,
-  "insuranceCode": "",
-  "memoLinesReq": {
-    "lineData1": "",
-    "lineData2": "",
-    "lineData3": "",
-    "lineData4": "",
-    "lineData5": ""
+  "authorizationCode": " ",
+  "referenceNumber": "0",
+  "actionCodePriority": "0",
+  "insuranceCode": " ",
+  "actionNotes": {
+    "note1": " ",
+    "note2": " ",
+    "note3": " ",
+    "note4": " ",
+    "note5": " "
   },
-  "representativeDetailReq": {
-    "asmBusinessUnit": "600",
-    "asmRepresentative": "NAB",
+  "representativeDetail": {
+    "representativeId": "NAB",
     "referralOption": "0",
     "referralRepBusinessUnit": 0,
-    "referralRepresentativeId": ""
+    "referralRepresentativeId": " "
   },
-  "letterDetailReq": {
-    "letterCode": "",
+  "letterDetail": {
+    "letterCode": " ",
     "letterBusinessUnit": "0"
   }
 }
@@ -53,39 +53,36 @@ This service will update the Open-to-Buy, memo debit and credit fields on the Ac
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/{accountNumber}/monetaryAction).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/monetaryAction).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number of the organization associated with the account. |
-| `accountNumber` | Path Variable | *string* | 19 | Account Number of the cardholder. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
 | `actionCode` | Payload | *string* | 4 | Action code placed on the account. | 
 | `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. |
-| `effectiveDate` | Payload | *DATE* | 10	 | Date when this action is to take effect. |
-| `cardNumber` | Payload | *string* | 19 | This field represents the card number associated with the transaction. |
-| `storeNumber` | Payload | *number* | 9 | Store number associated with the transaction. |
-| `asmBusinessUnit` | Payload | *string* | 1 | This field indicates the business unit of the ASM. |  
-| `letterBusinessUnit` | Payload | *number* | 3 | This field indicates the business unit of the LTS letter to be sent to the customer. | 
-| `referralRepresentativeId` | Payload | *string* | 3 | This field is the identification number of the referral representative. |  
-| `letterCode` | Payload | *string* | 3 | This field indicates the user-defined letter code of the LTS letter to be sent to the customer through batch processing. |
 
 ### Successful Response Payload
 
 ```json
+
 {
-  "accountBusinessUnit": 600,
-  "accountNumber": "0006000011000000160",
-  "accountProduct": 1,
+  "accountId": "0006000011000000160",
   "actionCode": "AINQ",
   "actionCodeDescription": "ACCOUNT INQ",
   "actionDate": "00/00/0000",
+  "actionNotes": {
+    "note1": "",
+    "note2": "",
+    "note3": "",
+    "note4": "",
+    "note5": ""
+  },
   "authorizationNumber": "",
   "autoReferenceFlag": 1,
-  "cardNumber": "0006000011000000160",
-  "cashAvailable": "$0.00",
-  "clerk": "",
+  "businessUnit": 600,
+  "cashAvailableAmount": "$0.00",
   "creditLimit": "$0.50",
   "currentBalance": "$72.00",
   "currrencyNod": 2,
@@ -94,20 +91,12 @@ The below table identifies the required parameters in the request payload.
   "departmentCode": "",
   "effectiveDate": "18/08/2021",
   "feeAmount": "$0.00",
-  "foreignUseIndicator": 0,
-  "historyDate": "30/03/2022",
-  "historyTime": 50812,
+  "historyDate": "29/06/2022",
+  "historyTime": "73749",
   "insurance": "",
-  "letterDetailRes": {
+  "letterDetail": {
     "letterBusinessUnit": 0,
     "letterCode": ""
-  },
-  "memoLinesRes": {
-    "note1": "",
-    "note2": "",
-    "note3": "",
-    "note4": "",
-    "note5": ""
   },
   "name": "RACHEL TEST BY SASHI",
   "nextReviewDate": "00/00/0000",
@@ -115,12 +104,14 @@ The below table identifies the required parameters in the request payload.
   "notePurgeDate": "00/00/0000",
   "notesHistoryStatus": "O",
   "openToBuy": "-$166,771.50",
+  "paymentInstrumentId": "0006000011000000160",
   "planNumber": 10002,
   "pointsAmount": "$0.00",
   "pointsProgram": 0,
+  "productId": 1,
   "purchaseOrderNumber": "0",
   "referenceNumber": "",
-  "representativeDetailRes": {
+  "representativeDetail": {
     "actionRepId": "NAB",
     "referralRepBusinessUnit": 0,
     "referralRepId": "",
@@ -128,6 +119,7 @@ The below table identifies the required parameters in the request payload.
   },
   "resolutionReferenceNumber": "0",
   "retentionDuration": "",
+  "salesClerk": "",
   "skuNumber": 0,
   "storeBusinessUnit": 0,
   "storeNumber": 999999998,
@@ -144,17 +136,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5BS0010SF",
-  "errorMessage": "Invalid transaction type"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/monetaryAction",
+    "invalid-params": [
+      "V5CR0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0010SF` | Update Request - Record not found |
+| `V5BS0010SF` | Update request - Record not found |
 | `V8MA4004EA` | Invalid transaction type | 
 | `V8MA4005EA` | Account or card not found | 
 | `V8MA4005EB` | Account or card number required | 
@@ -207,3 +208,5 @@ Below table provides the list of application's error code and its description.
 | `V8MA4036EA` | ASM rep not allowed to access account org | 
 | `V8MA4036EN` | Plan not found on file | 
 | `V8MA4036EO` | Store number not on file |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

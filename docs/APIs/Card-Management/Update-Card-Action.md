@@ -4,7 +4,7 @@ Card Action on Embosser record enables client to update actions like replacement
   
 ## Endpoint
 
-`PUT /v1/cards/{cardNumber}/action`
+`PUT /v1/cards/{paymentInstrumentId}/action`
 
 ## Payload Example
 
@@ -18,42 +18,54 @@ Card Action on Embosser record enables client to update actions like replacement
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{cardNumber}/action).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/action).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `cardNumber` | Path Variable | *string* | 19 | Card Number - Token Number associated with the clear PAN. |
-| `cardAction` | Payload | *number* | 1 | Card Action - The card issue action code that determines the action CMS performs during the next run of the Card Issue program. | 
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+| `cardAction` | Payload | *number* | 1 | The card issue action code that determines the action CMS performs during the next run of the Card Issue program. | 
 
 ### Successful Response Payload
 
 ```json
 {
   "businessUnit": 600,
+  "paymentInstrumentId": "0009544410000000021",
   "cardAction": "1",
-  "cardActionDate": "19/08/2021",
-  "cardNumber": "0000000001000000115",
-  "lastCardAction": 0
+  "lastCardAction": 1,
+  "cardActionDate": " "
 }
 ```
 
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5ED0204EM",
-  "errorMessage": "Valid actions are 0 and 1 when a card has never been issued"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/0009544410000000022/action",
+    "invalid-params": [
+      "V5ED0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5ED0204EC` | Card cannot be reissued |         
+| `V5ED0010SF` | Update Request - Record not found |         
+| `V5ED0204EC` | Card cannot be reissued |    
 | `V5ED0204EE` | Additional card not allowed for smart card |               
 | `V5ED0204EM` | Valid actions are 0 and 1 when a card has never been issued |                
 | `V5ED0204SV` | Invalid  card action |         
-| `V5ED0222EB` | Value is required and cannot equal spaces |         
+| `V5ED0222EB` | Value is required and cannot equal spaces | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*      
