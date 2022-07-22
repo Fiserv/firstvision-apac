@@ -67,7 +67,7 @@ The below table identifies the required parameters in the request payload.
 | `productId` | Payload | *number* | 03 | Unique identification number of the product associated with the organization. Valid values are 001-998. | 
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
 | `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
-| 'embossedName1` | Payload | *string* | 26 | Name to be embossed on the first embossing line of the card. |
+| `embossedName1` | Payload | *string* | 26 | Name to be embossed on the first embossing line of the card. |
 
 ### Successful Response Payload
 

@@ -27,7 +27,6 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
   "accruedCredit": 0,
   "accruedDebit": 0,
@@ -44,12 +43,12 @@ The below table identifies the required parameters in the request payload.
   "dateNextProcess": "19/08/2021",
   "earlySettlementQuotesProcess": "1",
   "excludeDefaultDisputedAmounts": "1",
-  "generalLedgerDetailsRes": {
+  "generalLedgerDetails": {
     "accountingMethod": "A",
-    "batchNonpostCreditReversals": "2",
-    "batchNonpostDebitReversals": "1",
-    "batchNonpostedCredits": "2",
-    "batchNonpostedDebits": "1",
+    "batchNonPostedCreditReversals": "2",
+    "batchNonPostedCredits": "2",
+    "batchNonPostedDebitReversals": "1",
+    "batchNonPostedDebits": "1",
     "businessUnitLevel": "Y",
     "defaultGlAccountForCredits": "4",
     "defaultGlAccountForDebits": "3",
@@ -66,7 +65,7 @@ The below table identifies the required parameters in the request payload.
   "installmentLoansActive": "1",
   "loanCreditLimit": "$0.00",
   "loanLimitCalculationMethod": "A",
-  "mccLimitsRes": {
+  "mccLimits": {
     "mccLimitAmount1": "$999,999,999.99",
     "mccLimitAmount10": "$0.00",
     "mccLimitAmount2": "$999,999,999.99",
@@ -78,7 +77,7 @@ The below table identifies the required parameters in the request payload.
     "mccLimitAmount8": "$0.00",
     "mccLimitAmount9": "$0.00"
   },
-  "processingControlsRes": {
+  "processingControls": {
     "actionOnFinanceCharge": "0",
     "actionOnLateFee": "0",
     "addUnpaidMinAmountDueBalances": "0",
@@ -87,22 +86,32 @@ The below table identifies the required parameters in the request payload.
   },
   "relationshipAuthorisationActive": "1",
   "todaysDate": "18/08/2021",
-  "transactionBasedOffers": 0,
+  "transactionBasedOffers": "0",
   "useServiceCharges": "Y"
 }
-
 ```
 
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  V5PH0004SF" ,
-   errorMessage" : Get Request - Record Not Found"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/misc/900/details",
+    "invalid-params": [
+      "V5CR0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 Below table provides the list of application's error code and its description.
 
-| `V5PH0004SF` | Get Request - Record Not Found |  
-| `V5PS4009SA` | Org not present on file |
+| `V5PH0004SF` | Get request - Record Not Found |  
+| `V5PS4009SA` | Org not present on file |  
 | `V5PS4010SA` | Account is not present not on file | 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
