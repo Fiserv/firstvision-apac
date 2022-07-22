@@ -109,4 +109,4 @@ Below table provides the list of application's error code and its description.
 | `V5BS0627EE` | Nominated ach pct/amt not editable when debit active at logo |
 | `V5BS0627SG` | ACH pct amount is not zero |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

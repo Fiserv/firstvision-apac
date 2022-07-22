@@ -164,4 +164,4 @@ Below table provides the list of application's error code and its description.
 | `V5XL4003SF` | Invalid svc function code |
 | `V5XL4003SB` | Valid value for optional data match is 0 or 1 |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

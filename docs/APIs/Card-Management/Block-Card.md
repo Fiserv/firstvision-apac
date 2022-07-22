@@ -76,4 +76,4 @@ Below table provides the list of application's error code and its description.
 | `V5ED0301EB` | Block Code not maintainable for card scheme 0 |
 | `V5ED4005ED` | Can't update block code when card status is F |  
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

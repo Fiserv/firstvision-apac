@@ -149,4 +149,4 @@ Below table provides the list of application's error code and its description.
 | `V5SB4160EC` | Invalid Base account number digit for dual org |
 | `V5SB4160ED` | Invalid Base account number for dual org |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

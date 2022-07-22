@@ -68,4 +68,4 @@ Below table provides the list of application's error code and its description.
 | `V5BS0103SF` | Credit limit required |
 | `V5BS0010SF` | Update Request - Record not found |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
