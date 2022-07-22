@@ -37,6 +37,8 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "DOMESTIC RETAIL PURCHASE",
       "effectiveDate": "16/08/2021",
+	  "merchantCategoryCode": 0,
+      "merchantCity": " ",
       "paymentInstrumentId": "0006000011000000137",
       "planId": 10002,
       "postingDate": "17/08/2021",
@@ -49,6 +51,8 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "DOMESTIC RETAIL PURCHASE",
       "effectiveDate": "16/08/2021",
+	  "merchantCategoryCode": 0,
+      "merchantCity": " ",
       "paymentInstrumentId": "0006000011000000137",
       "planId": 10002,
       "postingDate": "17/08/2021",
@@ -61,6 +65,8 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMBERSHIP FEE ASSESSED",
       "effectiveDate": "18/08/2021",
+	  "merchantCategoryCode": 0,
+      "merchantCity": " ",
       "paymentInstrumentId": "0006000011000000137",
       "planId": 10002,
       "postingDate": "18/08/2021",
@@ -102,4 +108,4 @@ Below table provides the list of application's error code and its description.
 | `V5BS4002SA` | Invalid account number |  
 | `V5S34003SA` | No statement history information found on file |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

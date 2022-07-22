@@ -10,9 +10,10 @@ This service is used to get Access Token to authenticate and trigger the API's a
 
 ### Request Payload
 
-```json
-{scope: ["firstvision.accountmanagement.read"]}
-```
+>Should be empty. 
+>
+>***Scope detail for token sent as Query Parameter.***
+
 
 ### Minimum Requirements
 
@@ -22,7 +23,7 @@ The below table identifies the required query parameters in the request message.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `scope` | Path Variable | *string* | 50 | Scope for which the token has been requested. |
+| `scope` | Query Parameter | *string* | 50 | Scope for which the token has been requested. |
 
 ### Successful Response Payload
 
@@ -37,21 +38,26 @@ The below table identifies the required query parameters in the request message.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "AGT415UMT",
-  "errorMessage": "Content type is not provided"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "240101",
+    "instance": "/v1/getAccessToken",
+    "invalid-params": [
+      "Invalid client credentials or scope"
+    ],
+    "source": "AGT",
+    "status": 401,
+    "title": "Unauthorized"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-|`AGT415UMT` |Content type is not provided|  
-|`AGT415UMT` |Allowed content type for this client is application/json|
-|`AGT415UMT` |Allowed content type for this client is octet-stream|
-|`AGT400BR` |Payload is not valid|
-|`AGT400BR` |Authorization header is missing|
-|`AGT401UA` |Pass expired token in customer search API and get proper error message from gateway|
-|`AGT401UA` |Access token is missing in request|
+|`240101` | Invalid client credentials or scope|  
 
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

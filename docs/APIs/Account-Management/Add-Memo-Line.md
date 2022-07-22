@@ -98,5 +98,5 @@ Below table provides the list of application's error code and its description.
 | `V8NA4029SA` | Manual referral org/rep not found | 
 | `V8NA4030SA` | Manual referral org/rep not eligible for this request |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
 

@@ -14,19 +14,10 @@ The system will check if the new block code 1 or 2 priority is greater than the 
 ### Request Payload
 
 ```json
-[
-  {
-    "detail": "Please refer to invalid-params for error details",
-    "errorCode": "440401",
-    "instance": "/v1/accounts/0001000010000510481/blockUnblock",
-    "invalid-params": [
-      "V5BS0010SF: Update Request - Record not found"
-    ],
-    "source": "VPL",
-    "status": 404,
-    "title": "Not found"
-  }
-]
+{
+  "blockCode1": "X",
+  "blockCode2": " "
+}
 ```
 
 ### Minimum Requirements
@@ -58,10 +49,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5BS0125SV",
-  "errorMessage": "Account - Invalid block code 1"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/0001000010000510481/blockUnblock",
+    "invalid-params": [
+      "V5BS0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -78,4 +78,4 @@ Below table provides the list of application's error code and its description.
 | `V5BS0125SC` | Block Code 1 cannot be replaced with one of the lower priority |  
 | `V5BS0127SC` | Block Code 2 cannot be replaced with one of the lower priority |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

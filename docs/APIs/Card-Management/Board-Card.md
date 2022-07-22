@@ -135,4 +135,4 @@ Below table provides the list of application's error code and its description.
 | `V5AP4105SA` | Card sequence already atmaximum for card number | 
 | `V5AP4106SA` | Card sequence already atmaximum for chip card number |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

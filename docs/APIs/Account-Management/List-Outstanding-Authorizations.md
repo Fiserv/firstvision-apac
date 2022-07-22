@@ -34,6 +34,8 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED DEBIT",
       "effectiveDate": "18/08/2021",
+	  "merchantCategoryCode": 0,
+      "merchantCity": " ",
       "paymentInstrumentId": " ",
       "planId": 10002,
       "postingDate": "19/08/2021",
@@ -46,6 +48,8 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED DEBIT",
       "effectiveDate": "18/08/2021",
+	  "merchantCategoryCode": 0,
+      "merchantCity": " ",
       "paymentInstrumentId": " ",
       "planId": 10002,
       "postingDate": "19/08/2021",
@@ -58,6 +62,8 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
+	  "merchantCategoryCode": 0,
+      "merchantCity": " ",
       "paymentInstrumentId": " ",
       "planId": 10002,
       "postingDate": "19/08/2021",
@@ -70,6 +76,8 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
+	  "merchantCategoryCode": 0,
+      "merchantCity": " ",
       "paymentInstrumentId": " ",
       "planId": 10002,
       "postingDate": "19/08/2021",
@@ -82,6 +90,8 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
+	  "merchantCategoryCode": 0,
+      "merchantCity": " ",
       "paymentInstrumentId": " ",
       "planId": 10002,
       "postingDate": "19/08/2021",
@@ -94,6 +104,8 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
       "paymentInstrumentId": " ",
       "planId": 10002,
       "postingDate": "19/08/2021",
@@ -129,4 +141,4 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5T24002SB` | No account on File |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
