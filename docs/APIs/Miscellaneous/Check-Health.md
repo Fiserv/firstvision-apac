@@ -37,5 +37,21 @@ The below table identifies the required parameters in the request payload.
 
 ### Error Response Payload
 
+```json
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "240101",
+    "instance": "/v1/misc/health",
+    "invalid-params": [
+      "Bearer token is invalid"
+    ],
+    "source": "AGT",
+    "status": 401,
+    "title": "Unauthorized"
+  }
+]
+```
+
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
 
