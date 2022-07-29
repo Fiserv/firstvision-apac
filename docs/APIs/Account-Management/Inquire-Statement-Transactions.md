@@ -4,7 +4,7 @@ This service is used to fetch statement details for a given account number.
 
 ## Endpoint
 
-`GET /v1/accounts/{accountId}/statementTransactions
+`GET /v1/accounts/{accountId}/statementTransactions`
 
 ## Payload Example
 

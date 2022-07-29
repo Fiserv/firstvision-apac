@@ -72,5 +72,21 @@ The below table identifies the required parameters in the request payload.
 
 ### Error Response Payload
 
+```json
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "240010",
+    "instance": "/v1/cards/0009545880002462305/listVisaToken",
+    "invalid-params": [
+      "businessUnit: The maximum value for this field is 999"
+    ],
+    "source": "APT",
+    "status": 400,
+    "title": "Constraint(s) Violated"
+  }
+]
+```
+
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
 
