@@ -43,16 +43,16 @@ paths:
               $ref: '#/components/schemas/RequestAuthorizationReqModel'
         required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -67,6 +67,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -75,12 +81,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -109,6 +109,115 @@ paths:
       - Authorization: [
           ]
       x-proxy-name: Request Authorization
+      x-group-name: Authorization
+  /v1/auth/{RBA}/authDetails:
+    get:
+      tags:
+      - Authorization
+      summary: Inquire Authorizatoin detail
+      description: This service is used to provide Authorization detail of transaction
+        when internal reference number provided in input request. This service called
+        immediately after Auth Request service and it will provide authorization details
+        of the transaction. Kindly use List Outstanding Authorization API to fetch
+        detail of transaction when daily batch is completed or next day when transaction
+        is not available in FAS log file.
+      operationId: InquireAuthorizationDetails
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: internalReferenceNumber
+        in: path
+        description: This field indicate the internal reference number of the authorizatoin
+          transaction and used to identify transaction details from log file.
+        required: true
+        schema:
+          maximum: 999999999
+          maxLength: 9
+          type: integer
+          example: '3839400'
+      responses:
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Authorization Details
       x-group-name: Authorization
 components:
   schemas:
@@ -144,10 +253,9 @@ components:
           description: Field that identifies the store identification number.
           format: int32
           example: '999999998'
-        transactionAmount:
-          maximum: 9999999999999
+        authorizationAmount:
           maxLength: 13
-          type: number
+          type: string
           description: Authorized sales amount in the currency accepted by the particular
             merchant.
           example: '1.0'
@@ -240,14 +348,382 @@ components:
           description: FAS approval or decline code and description for this authorization
             request.
           example: APPROVED
-        authReferenceNumber:
+        internalReferenceNumber:
           maximum: 999999999
           maxLength: 9
           type: integer
-          description: Relative byte address (RBA) of the log record within the log
-            file.
+          description: This field indicate the internal reference number used to identify
+            authorization details from log file.
           format: int32
           example: '3239000'
+        maskedPaymentCardNumber:
+          maxLength: 19
+          type: string
+          description: Unique identification number that appears on the front of the
+            card (PAN) in masked format.
+          example: 000484680XXXXXX9405
+    InquireAuthorizationDetailResponseModel:
+      type: object
+      properties:
+        temporaryCreditLimit:
+          maxLength: 17
+          type: string
+          description: Temporary line of credit for the account in whole monetary
+            units. This amount overrides the credit limit assigned to the account.
+          example: $0.00
+        creditLimit:
+          maxLength: 17
+          type: string
+          description: Credit limit of the account.
+          example: $0.00
+        currentBalance:
+          maxLength: 17
+          type: string
+          description: Current monetary balance outstanding on the cardholder’s account.
+          example: $0.00
+        merchantDetails:
+          type: object
+          properties:
+            merchantBusinessUnit:
+              maxLength: 3
+              type: string
+              description: Field that identifies the business unit to which the store
+                is assigned. The values for the business unit are 001–998.
+              example: '100'
+            merchantId:
+              maxLength: 9
+              type: string
+              description: Field that identifies the store identification number.
+              example: '999999998'
+            merchantCategoryCode:
+              maxLength: 5
+              type: string
+              description: This field indicates merchant category code for the transaction.
+              example: '50367'
+        planId:
+          maxLength: 5
+          type: string
+          description: Plan number that identifies the Credit Plan Master entity associated
+            with the credit plan segment.
+          example: '0'
+        accountStatus:
+          maxLength: 5
+          type: string
+          description: Field that identifies the status of the account. <br/>The values
+            are:<br/>&nbsp; 'A' - Active<br/>&nbsp; 'B' - Conversion fraud<br/>&nbsp;
+            'C' - Conversion transfer<br/>&nbsp; 'D' - Dormant<br/>&nbsp; 'F' - Fraud
+            transfer<br/>&nbsp; 'H' - Closed or conversion<br/>&nbsp; 'I' - Inactive<br/>&nbsp;
+            'J' - Transfer in, migrated from inactive<br/>&nbsp; 'K' - Transfer out,
+            migrated from inactive<br/>&nbsp; 'M' - Migrated<br/>&nbsp; 'N' - New<br/>&nbsp;
+            'P' - To be purged in next reload<br/>&nbsp; 'Q' - Transfer in today<br/>&nbsp;
+            'R' - Transfer out today<br/>&nbsp; 'T' - Transfer<br/>&nbsp; 'V' - Conversion<br/>&nbsp;
+            'X' - Charge-off and conversion<br/>&nbsp; 'Z' - Charge-off<br/>&nbsp;
+            '8' - Closed<br/>&nbsp; '9' - To be purged after reload
+          example: '0'
+        availableCredit:
+          maxLength: 17
+          type: string
+          description: Available monetary credit for this account.
+          example: $9,072.00
+        expiryDate:
+          maxLength: 10
+          type: string
+          description: Date on which the most recently issued card expires, The format
+            is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 30/04/2024
+        memoDetails:
+          type: object
+          properties:
+            memoDebitCount:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Number of memo debits for this account
+              format: int32
+              example: '40'
+            memoDebitAmount:
+              maxLength: 17
+              type: string
+              description: Amount of outstanding memo debits for the account.
+              example: $470.00
+            memoCreditCount:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Number of memo credit for this account.
+              format: int32
+              example: '0'
+            memoCreditAmount:
+              maxLength: 17
+              type: string
+              description: Amount of outstanding memo credit for the account.
+              example: $0.00
+        transactionAmount:
+          maxLength: 17
+          type: string
+          description: Monetary amount of the current transaction for this account.
+          example: '1.0'
+        disputedItemCount:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: Field that identifies the number of disputed items for this
+            account.
+          format: int32
+          example: '0'
+        disputedAmount:
+          maxLength: 17
+          type: string
+          description: Field that identifies the monetary amount of disputed items
+            for this account.
+          example: $0.00
+        responseCode:
+          maxLength: 2
+          type: string
+          description: Code that indicates the numeric ISO response code for this
+            request.
+          example: '00'
+        authorizationCode:
+          maxLength: 6
+          type: string
+          description: Authorization code associated with the transaction.
+          example: '055271'
+        action:
+          maxLength: 1
+          type: string
+          description: Code that indicates the action the system returned.
+          example: A
+          enum:
+          - A
+          - D
+          - S
+          - P
+          - R
+          - C
+          - K
+          - X
+          - M
+          - F
+          - U
+        reason:
+          maxLength: 20
+          type: string
+          description: FAS approval or decline code and description for this authorization
+            request.
+          example: APPROVED
+        accountDetails:
+          type: object
+          properties:
+            customerid:
+              maxLength: 19
+              type: string
+              description: Unique identification number assigned to a customer.
+              example: '0001000000000150191'
+            'creditLimitOverlimitPercentage:':
+              maxLength: 4
+              type: string
+              description: 'Percentage that can be authorized in excess of the customer’s
+                credit limit on the CMS product entity entity. '
+              example: $1.00
+            accountOpenDate:
+              maxLength: 10
+              type: string
+              description: Date on which the account was opened. You can enter a date
+                that is earlier than today’s processing date (backdate). However,
+                you cannot enter a date that is later than today’s processing date
+                (future-date). The format is MM/DD/YYYY or DD/MM/YYYY depending on
+                the DATE FORMAT on System Control.
+              example: 01/05/2021
+            accountType:
+              maxLength: 19
+              type: string
+              description: Type of account. <br/>The values are:<br/>&nbsp; REVOLVING
+                ACCOUNT <br/>&nbsp; LAYAWAY ACCOUNT <br/>&nbsp; PROFIT-LOSS ACCOUNT
+                <br/>&nbsp; BAD CHECK ACCOUNT <br/>&nbsp; COD ACCOUNT <br/>&nbsp;
+                DEBIT CARD ACCOUNT <br/>&nbsp; BANKCARD ACCOUNT
+              example: DEBIT CARD ACCOUNT
+            creditClassification:
+              maxLength: 2
+              type: string
+              description: The first part (CR CL) is the credit classification, which
+                is based on the values set in the CMS Logo record.The first position
+                displays the type of account; the second position displays the performance
+                index for which the account qualified. <br/>The values are:<br/>&nbsp;
+                'N (1–6)' - New account 'I (1–6)' - Intermediate account 'E (1–6)'
+                - E-stablished account 'M (1–6)' - Marginal account
+              example: N1
+            chargeOffStatus:
+              maxLength: 1
+              type: string
+              description: Field indicate the charge-off status of the account. Values
+                1–3 indicate charge-offs in progress. Values 5–6 indicate charge-offs
+                completed. <br/>The values are:<br/>&nbsp; '0' - Not charged off (Default)
+                '1' - Potential (within 60 days of automatic charge-off) '2' - Pending
+                (within 30 days of automatic charge-off) '3' - Manual '4' - Blocked
+                '5' - Automatically completed '6' - Manually completed '9' - Account
+                abandoned
+              example: '0'
+            lastStatementDate:
+              maxLength: 10
+              type: string
+              description: Date on which the account last cycled. This date is systemgenerated;
+                you cannot change it. The format is MM/DD/YYYY or DD/MM/YYYY depending
+                on the DATE FORMAT on System Control.
+              example: 30/04/2021
+            chargeOffReason:
+              maxLength: 2
+              type: string
+              description: 'Code that identifies the charge-off reason for the account.
+                <br/> The values are: <br/>&nbsp; '' '' - No reason applied (Default)
+                <br/>&nbsp; ''C'' - Credit loss <br/>&nbsp; ''B'' - Bankruptcy <br/>&nbsp;
+                ''F'' - Fraud loss <br/>&nbsp; ''T'' - Counterfeit'
+              example: ''
+            dateCgoff:
+              maxLength: 10
+              type: string
+              description: Field that identifies the date of account was charged-off
+                as bad debt.
+              example: 00/00/0000
+            delqPymtDays:
+              maxLength: 3
+              type: string
+              description: field that identifies the number of days the account is
+                delinquent.
+              example: ''
+            delqLstDate:
+              maxLength: 10
+              type: string
+              description: Field that identifies the date the account was last delinquent.
+              example: ''
+            lastPaymentAmount:
+              maxLength: 17
+              type: string
+              description: Amount of the last payment made on the account.
+              example: $0.00
+            lastPaymentDate:
+              maxLength: 10
+              type: string
+              description: Date on which the last payment was made on the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 00/00/0000
+            lastReturnCheckDate:
+              maxLength: 10
+              type: string
+              description: Field that identifies the last date of returned check.
+              example: 00/00/0000
+            returnCheckCount:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Field that identifies the number of returned checks.
+              format: int32
+              example: '0'
+            lastPurchaseAmount:
+              maxLength: 1
+              type: string
+              description: Amount of the last purchase made on the account. This amount
+                is the total of all transactions that were made on the same day.
+              example: $0.00
+            lastPurchaseDate:
+              maxLength: 10
+              type: string
+              description: Effective date of the last purchase that posted to the
+                account. The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE
+                FORMAT on System Control.
+              example: 00/00/0000
+            cardFeeDate:
+              maxLength: 10
+              type: string
+              description: Date on which CMS assesses the membership fee (also called
+                an annual fee). The format is MM/DD/YYYY or DD/MM/YYYY depending on
+                the DATE FORMAT on System Control.
+              example: 00/00/0000
+        blockAndWarningCodeDetails:
+          type: object
+          properties:
+            blockCode1:
+              maxLength: 1
+              type: string
+              description: This field identifies the block code assigned to this account.
+                Block codes control specific processing options at the account level.
+                Valid block codes are the letters A to Z and blank (or space).
+              example: ' '
+            blockCode1Date:
+              maxLength: 10
+              type: string
+              description: Date on which block code 1 was entered. The value in this
+                field is system-generated; you cannot change it. The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 00/00/0000
+            blockCode2:
+              maxLength: 1
+              type: string
+              description: Date on which block code 2 was entered. The value in this
+                field is system-generated; you cannot change it. The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: ' '
+            blockCode2Date:
+              maxLength: 10
+              type: string
+              description: Date on which block code 2 was entered. The value in this
+                field is system-generated; you cannot change it. The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 00/00/0000
+            warningCode:
+              maxLength: 7
+              type: string
+              description: Seven-part field that identifies warning codes 1 to 7 assigned
+                to the account..
+              example: ' '
+        collectionDetails:
+          type: object
+          properties:
+            collectionReason:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Reason that specifies why the account went into collections.
+                <br/>The values are:<br/>&nbsp; '01' - First payment default<br/>&nbsp;
+                '02' - Overlimit<br/>&nbsp; '03' - Excessive use<br/>&nbsp; '04' -
+                Delinquent<br/>&nbsp; '05' - Manual (high priority)<br/>&nbsp; '06'
+                - Delinquent and recency<br/>&nbsp; '07' - Manual (low priority)<br/>&nbsp;
+                '08' - Charge-off<br/>&nbsp; '09' - Delinquent and overlimit<br/>&nbsp;
+                '99' - Account added by collector
+              format: int32
+              example: '0'
+            collectionDate:
+              maxLength: 10
+              type: string
+              description: Date the account went into collections.
+              example: 00/00/0000
+        '5214':
+          type: integer
+          format: int32
+          example: '0'
+        maskedPaymentCardNumber:
+          maxLength: 19
+          type: string
+          description: Unique identification number that appears on the front of the
+            card (PAN) in masked format.
+          example: 000484680XXXXXX9405
+        cycleDue:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: 'Number of billing cycles since the account was last current.
+            <br/>The values are: <br/>&nbsp; ''0''- Nothing due <br/>&nbsp; ''1''
+            - Current due <br/>&nbsp; ''2'' - X days <br/>&nbsp; ''3'' - 30 days <br/>&nbsp;
+            ''4'' - 60 days <br/>&nbsp; ''5'' - 90 days <br/>&nbsp; ''6'' - 120 days
+            <br/>&nbsp; ''7'' - 150 days <br/>&nbsp; ''8'' - 180 days <br/>&nbsp;
+            ''9'' - 210+ days'
+          format: int32
+          example: '0'
+        totalDueAmount:
+          maxLength: 17
+          type: string
+          description: Total amount due for the account.
+          example: $0.00
   securitySchemes:
     Authorization:
       type: http

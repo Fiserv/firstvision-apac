@@ -8,7 +8,7 @@ servers:
 tags:
 - name: Security Management
 paths:
-  /v1/getAccessToken:
+  /v1/api/oauth/token:
     post:
       tags:
       - Security Management
@@ -42,16 +42,16 @@ paths:
           type: string
           example: accounts cards customers users products misc auth
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             '*/*':
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             '*/*':
               schema:
@@ -74,12 +74,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -96,6 +90,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
       x-proxy-name: Get Access Token
       x-group-name: Security
 components:

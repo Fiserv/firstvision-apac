@@ -53,16 +53,16 @@ paths:
           type: string
           example: '0000020000065439605'
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -93,6 +93,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCustomerResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -109,12 +115,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireCustomerResponseModel'
       security:
       - Authorization: [
           ]
@@ -173,14 +173,6 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerReqModel'
         required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -189,12 +181,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateCustomerResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -235,6 +229,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerResponseModel'
       security:
       - Authorization: [
           ]
@@ -275,14 +275,6 @@ paths:
               $ref: '#/components/schemas/SearchCustomerReqModel'
         required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -291,6 +283,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCustomerResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -323,12 +329,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SearchCustomerResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -375,22 +375,16 @@ paths:
               $ref: '#/components/schemas/BoardCustomerReqModel'
         required: true
       responses:
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardCustomerResponseModel'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -437,10 +431,120 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardCustomerResponseModel'
       security:
       - Authorization: [
           ]
       x-proxy-name: Board Customer
+      x-group-name: Customer Management
+  /v1/customers/{externalCustomerId}/listExternalCustomersCardsAndAccounts:
+    get:
+      tags:
+      - Customer Management
+      summary: List External Customers' Cards and Accounts
+      description: The service provides account and card details for a given external
+        customer identification.
+      operationId: ListExternalCustomersCardsAndAccounts
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: X-Correl-Id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: externalCustomerId
+        in: path
+        description: Unique identification number assigned to a customer from external
+          system.
+        required: true
+        schema:
+          maxLength: 14
+          type: string
+          example: '000012672379'
+      responses:
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListExternalCustomersCardsAndAccountResponseModel'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: List External Customers' Cards and Accounts
       x-group-name: Customer Management
   /v1/customers/{customerId}/listCustomersCardsAndAccounts:
     get:
@@ -488,14 +592,6 @@ paths:
           type: integer
           example: '600'
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -504,6 +600,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersCardsAndAccountResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -528,12 +638,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListCustomersCardsAndAccountResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -601,16 +705,16 @@ paths:
           type: integer
           example: '600'
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -641,6 +745,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersCardResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -649,12 +759,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListCustomersCardResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -714,16 +818,16 @@ paths:
           type: integer
           example: '600'
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -738,12 +842,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListCustomersAccountResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -760,6 +858,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersAccountResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -896,6 +1000,7 @@ components:
             depending on the DATE FORMAT on System Control.
           example: 06/04/1986
         isReturnMailEnabled:
+          maxLength: 1
           type: string
           description: User-defined fields to indicates return mail delivery is enabled
             or not. <br/>The values are:<br/> &nbsp; 'Y' - Return mail <br/> &nbsp;
@@ -930,6 +1035,7 @@ components:
               description: The second part of this field is the work telephone number.
               example: Y
             phoneFlag:
+              maxLength: 1
               type: string
               description: This field indicates a flag that indicates whether you
                 have the owner’s permission to call this number.<br/>The values are:<br/>
@@ -1028,9 +1134,6 @@ components:
           items:
             type: string
     UpdateCustomerResponseModel:
-      required:
-      - businessUnit
-      - customerId
       type: object
       properties:
         businessUnit:
@@ -1156,6 +1259,7 @@ components:
             depending on the DATE FORMAT on System Control.
           example: 06/04/1986
         isReturnMailEnabled:
+          maxLength: 1
           type: string
           description: User-defined fields to indicates return mail delivery is enabled
             or not. <br/>The values are:<br/> &nbsp; 'Y' - Return mail <br/> &nbsp;
@@ -1190,6 +1294,7 @@ components:
               description: The second part of this field is the work telephone number.
               example: Y
             phoneFlag:
+              maxLength: 1
               type: string
               description: This field indicates a flag that indicates whether you
                 have the owner’s permission to call this number.<br/>The values are:<br/>
@@ -1746,10 +1851,243 @@ components:
           type: string
           description: Unique identification number assigned to a customer.
           example: '0000000001000000007'
+    CardList_ListExternalCustomersCardsAndAccountResponseModel:
+      type: object
+      properties:
+        paymentInstrumentId:
+          maxLength: 19
+          type: string
+          description: Unique alternate identification number associated with Payment
+            Card Number.
+          example: '0009544410000000047'
+        blockCode1:
+          maxLength: 1
+          type: string
+          description: Block Code assigned to the cardholder.
+          example: ' '
+          enum:
+          - A
+          - B
+          - C
+          - D
+          - E
+          - F
+          - G
+          - H
+          - I
+          - J
+          - K
+          - L
+          - M
+          - N
+          - O
+          - P
+          - Q
+          - R
+          - S
+          - T
+          - U
+          - V
+          - W
+          - X
+          - Y
+          - Z
+          - ' '
+        embossedName:
+          maxLength: 26
+          type: string
+          description: Name to be embossed on the first embossing line of the card.
+            Enter the name exactly as it is to appear on the card.
+          example: DAVID TEST 2
+        addressId:
+          maxLength: 15
+          type: string
+          description: 'Address identifier to determine the type of address. Ex: Home,
+            Office, etc.'
+          example: RESIDENTIAL
+        expiryDate:
+          maxLength: 10
+          type: string
+          description: Date on which the most recently issued card expires, The format
+            is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 16/08/2024
+        plasticId:
+          maxLength: 10
+          type: string
+          description: 'User-defined code that identifies the plastic stock used to
+            create a card for this Embosser record. For HCS-associated accounts, this
+            value defaults from the Company Product record '
+          example: ' '
+    ListExternalCustomersCardsAndAccountResponseModel:
+      type: object
+      properties:
+        externalCustomerId:
+          maxLength: 14
+          type: string
+          description: Unique identification number assigned to a customer from external
+            system.
+          example: '000012672379'
+        accountList:
+          type: object
+          properties:
+            businessUnit:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Unique identification number associated with the organization.
+                Valid values from 001-998.
+              format: int32
+              example: '600'
+            productId:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Unique identification number of the product associated
+                with the organization. Valid values are 001-998.
+              format: int32
+              example: '1'
+            accountId:
+              maxLength: 19
+              type: string
+              description: Unique identification number for cardholder billing account.
+              example: '0006000012000000256'
+            status:
+              maxLength: 1
+              type: string
+              description: Code that identifies the status of the account. This field
+                is not editable during add mode; it displays during maintenance mode
+                and inquiry mode only.<br/>The values are:<br/>&nbsp; 'A' - Active
+                <br/>&nbsp; 'B' - Conversion fraud <br/>&nbsp; 'C' - Conversion transfer
+                <br/>&nbsp; 'D' - Dormant <br/>&nbsp; 'F' - Fraud transfer <br/>&nbsp;
+                'H' - Closed/conversion <br/>&nbsp; 'I' - Inactive <br/>&nbsp; 'J'
+                - Transfer in, migrated from inactive <br/>&nbsp; 'K' - Transfer out,
+                migrated from inactive <br/>&nbsp; 'M' - Migrated <br/>&nbsp; 'N'
+                - New <br/>&nbsp; 'P' - To be purged in next reload <br/>&nbsp; 'Q'
+                - Transfer in today <br/>&nbsp; 'R' - Transfer out today <br/>&nbsp;
+                'T' - Transfer <br/>&nbsp; 'V' - Conversion <br/>&nbsp; 'X' - Charge-off/conversion
+                <br/>&nbsp; 'Z' - Charge-off <br/>&nbsp; '8' - Closed <br/>&nbsp;
+                '9' - To be purged after reload
+              example: A
+              enum:
+              - N
+              - A
+              - F
+              - D
+              - I
+              - M
+              - Z
+              - B
+              - C
+              - H
+              - V
+              - X
+              - Q
+              - J
+              - T
+              - R
+              - K
+              - '8'
+              - '9'
+              - P
+            memoDebitAmount:
+              maxLength: 1
+              type: string
+              description: This field identifies the block code assigned to this account.
+                Block codes control specific processing options at the account level.
+                Valid block codes are the letters A to Z and blank (or space).
+              example: A
+              enum:
+              - A
+              - B
+              - C
+              - D
+              - E
+              - F
+              - G
+              - H
+              - I
+              - J
+              - K
+              - L
+              - M
+              - N
+              - O
+              - P
+              - Q
+              - R
+              - S
+              - T
+              - U
+              - V
+              - W
+              - X
+              - Y
+              - Z
+              - ' '
+            blockCode2:
+              maxLength: 1
+              type: string
+              description: This field identifies the block code assigned to this account.
+                Block codes control specific processing options at the account level.
+                Valid block codes are the letters A to Z and blank (or space).
+              example: ' '
+              enum:
+              - A
+              - B
+              - C
+              - D
+              - E
+              - F
+              - G
+              - H
+              - I
+              - J
+              - K
+              - L
+              - M
+              - N
+              - O
+              - P
+              - Q
+              - R
+              - S
+              - T
+              - U
+              - V
+              - W
+              - X
+              - Y
+              - Z
+              - ' '
+            shortName:
+              maxLength: 20
+              type: string
+              description: This is the short name of the account holder.
+              example: Dhruv
+            residenceId:
+              maxLength: 3
+              type: string
+              description: This flag identifies the state, province or country in
+                which the  account holder resides.
+              example: SX1
+            addressId:
+              maxLength: 15
+              type: string
+              description: 'Address identifier to determine the type of address. Ex:
+                Home, Office, etc.'
+              example: RESIDENTIAL
+            totalCardsCount:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Total number of cards for a given external customer ID.
+              format: int32
+              example: '2'
+        cardList:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardList_ListExternalCustomersCardsAndAccountResponseModel'
     InquireCustomerResponseModel:
-      required:
-      - businessUnit
-      - customerId
       type: object
       properties:
         businessUnit:
@@ -1810,17 +2148,6 @@ components:
           type: string
           description: This field indicates the owner’s home telephone number.
           example: '9241800756'
-        homePhoneFlag:
-          maxLength: 1
-          type: string
-          description: This flag indicates that whether you have the owner’s permission
-            to use this number. <br/>The values are:<br/> &nbsp; '0' - Do not call
-            <br/> &nbsp; '1' - May be called <br/> &nbsp; '2' - Prefer to be called
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
         faxNumber:
           maxLength: 20
           type: string
@@ -1916,10 +2243,6 @@ components:
                 <br/> &nbsp; '1' - Yes, owner may be contacted using this number <br/>
                 &nbsp; '2' - Preferred contact method
               example: Y
-              enum:
-              - '0'
-              - '1'
-              - '2'
             jobTitle:
               maxLength: 4
               type: string
@@ -1969,17 +2292,17 @@ components:
                 and Common Routines (SSC) system via the Country Code Definitions
                 service.
               example: IND
-            postalCode:
-              maxLength: 10
-              type: string
-              description: This is the Postal code portion of the mailing address
-                of the owner.
-              example: '110004'
-            houseNumber:
-              maxLength: 20
-              type: string
-              description: This field indicates the House number of the owner.
-              example: ''
+        postalCode:
+          maxLength: 10
+          type: string
+          description: This is the Postal code portion of the mailing address of the
+            owner.
+          example: '110004'
+        houseNumber:
+          maxLength: 20
+          type: string
+          description: This field indicates the House number of the owner.
+          example: ''
     AccountList_ListCustomersCardsAndAccountResponseModel:
       type: object
       properties:
@@ -2718,14 +3041,14 @@ components:
               type: string
               description: This field is the owner’s mobile number.
               example: ++61430010348
-            numberOfCards:
+            totalCardsCount:
               maximum: 999
               maxLength: 3
               type: integer
               description: Number of Cards associated with the Customer.
               format: int32
               example: '1'
-            numberOfAccounts:
+            totalAccountsCount:
               maximum: 999
               maxLength: 3
               type: integer
@@ -3289,7 +3612,7 @@ components:
               type: string
               description: This field is the owner’s mobile number.
               example: ++61430010348
-            numberOfCards:
+            totalCardsCount:
               maximum: 999
               maxLength: 3
               type: integer
@@ -3602,7 +3925,7 @@ components:
               type: string
               description: This field indicates the owner’s mobile number.
               example: ++61430010348
-            numberOfAccounts:
+            totalAccountsCount:
               maximum: 999
               maxLength: 3
               type: integer
