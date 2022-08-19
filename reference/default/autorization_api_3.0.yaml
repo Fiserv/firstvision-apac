@@ -51,16 +51,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -89,16 +97,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -110,7 +110,7 @@ paths:
           ]
       x-proxy-name: Request Authorization
       x-group-name: Authorization
-  /v1/auth/{RBA}/authDetails:
+  /v1/auth/{internalReferenceNumber}/authDetails:
     get:
       tags:
       - Authorization
@@ -160,6 +160,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -168,14 +184,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -192,22 +206,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -407,7 +407,7 @@ components:
             with the credit plan segment.
           example: '0'
         accountStatus:
-          maxLength: 5
+          maxLength: 1
           type: string
           description: Field that identifies the status of the account. <br/>The values
             are:<br/>&nbsp; 'A' - Active<br/>&nbsp; 'B' - Conversion fraud<br/>&nbsp;
@@ -419,7 +419,28 @@ components:
             'R' - Transfer out today<br/>&nbsp; 'T' - Transfer<br/>&nbsp; 'V' - Conversion<br/>&nbsp;
             'X' - Charge-off and conversion<br/>&nbsp; 'Z' - Charge-off<br/>&nbsp;
             '8' - Closed<br/>&nbsp; '9' - To be purged after reload
-          example: '0'
+          example: A
+          enum:
+          - N
+          - A
+          - F
+          - D
+          - I
+          - M
+          - Z
+          - B
+          - C
+          - H
+          - V
+          - X
+          - Q
+          - J
+          - T
+          - R
+          - K
+          - '8'
+          - '9'
+          - P
         availableCredit:
           maxLength: 17
           type: string
@@ -519,7 +540,7 @@ components:
               type: string
               description: Unique identification number assigned to a customer.
               example: '0001000000000150191'
-            'creditLimitOverlimitPercentage:':
+            creditLimitOverlimitPercentage:
               maxLength: 4
               type: string
               description: 'Percentage that can be authorized in excess of the customer’s
@@ -534,14 +555,6 @@ components:
                 (future-date). The format is MM/DD/YYYY or DD/MM/YYYY depending on
                 the DATE FORMAT on System Control.
               example: 01/05/2021
-            accountType:
-              maxLength: 19
-              type: string
-              description: Type of account. <br/>The values are:<br/>&nbsp; REVOLVING
-                ACCOUNT <br/>&nbsp; LAYAWAY ACCOUNT <br/>&nbsp; PROFIT-LOSS ACCOUNT
-                <br/>&nbsp; BAD CHECK ACCOUNT <br/>&nbsp; COD ACCOUNT <br/>&nbsp;
-                DEBIT CARD ACCOUNT <br/>&nbsp; BANKCARD ACCOUNT
-              example: DEBIT CARD ACCOUNT
             creditClassification:
               maxLength: 2
               type: string
@@ -549,8 +562,9 @@ components:
                 is based on the values set in the CMS Logo record.The first position
                 displays the type of account; the second position displays the performance
                 index for which the account qualified. <br/>The values are:<br/>&nbsp;
-                'N (1–6)' - New account 'I (1–6)' - Intermediate account 'E (1–6)'
-                - E-stablished account 'M (1–6)' - Marginal account
+                'N (1–6)' - New account <br/>&nbsp; 'I (1–6)' - Intermediate account
+                <br/>&nbsp; 'E (1–6)' - E-stablished account <br/>&nbsp; 'M (1–6)'
+                - Marginal account
               example: N1
             chargeOffStatus:
               maxLength: 1
@@ -558,10 +572,11 @@ components:
               description: Field indicate the charge-off status of the account. Values
                 1–3 indicate charge-offs in progress. Values 5–6 indicate charge-offs
                 completed. <br/>The values are:<br/>&nbsp; '0' - Not charged off (Default)
-                '1' - Potential (within 60 days of automatic charge-off) '2' - Pending
-                (within 30 days of automatic charge-off) '3' - Manual '4' - Blocked
-                '5' - Automatically completed '6' - Manually completed '9' - Account
-                abandoned
+                <br/>&nbsp; '1' - Potential (within 60 days of automatic charge-off)
+                <br/>&nbsp; '2' - Pending (within 30 days of automatic charge-off)
+                <br/>&nbsp; '3' - Manual <br/>&nbsp; '4' - Blocked <br/>&nbsp; '5'
+                - Automatically completed <br/>&nbsp; '6' - Manually completed <br/>&nbsp;
+                '9' - Account abandoned
               example: '0'
             lastStatementDate:
               maxLength: 10
@@ -578,23 +593,29 @@ components:
                 <br/>&nbsp; ''C'' - Credit loss <br/>&nbsp; ''B'' - Bankruptcy <br/>&nbsp;
                 ''F'' - Fraud loss <br/>&nbsp; ''T'' - Counterfeit'
               example: ''
-            dateCgoff:
+              enum:
+              - ' '
+              - C
+              - B
+              - F
+              - T
+            chargeOffDate:
               maxLength: 10
               type: string
               description: Field that identifies the date of account was charged-off
                 as bad debt.
               example: 00/00/0000
-            delqPymtDays:
+            delinquentPaymentDaysCount:
               maxLength: 3
               type: string
               description: field that identifies the number of days the account is
                 delinquent.
               example: ''
-            delqLstDate:
+            lastDelinquentDate:
               maxLength: 10
               type: string
               description: Field that identifies the date the account was last delinquent.
-              example: ''
+              example: 00/00/0000
             lastPaymentAmount:
               maxLength: 17
               type: string
@@ -612,7 +633,7 @@ components:
               type: string
               description: Field that identifies the last date of returned check.
               example: 00/00/0000
-            returnCheckCount:
+            lastReturnCheckCount:
               maximum: 999
               maxLength: 3
               type: integer
@@ -692,13 +713,27 @@ components:
                 '99' - Account added by collector
               format: int32
               example: '0'
+              enum:
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+              - 6
+              - 7
+              - 8
+              - 9
+              - 99
             collectionDate:
               maxLength: 10
               type: string
               description: Date the account went into collections.
               example: 00/00/0000
-        '5214':
+        delinquentDaysCount:
+          maximum: 9
+          maxLength: 1
           type: integer
+          description: This field identifies the number of days the account is delinquent.
           format: int32
           example: '0'
         maskedPaymentCardNumber:
@@ -707,18 +742,22 @@ components:
           description: Unique identification number that appears on the front of the
             card (PAN) in masked format.
           example: 000484680XXXXXX9405
-        cycleDue:
+        currentCycleDue:
           maximum: 9
           maxLength: 1
           type: integer
-          description: 'Number of billing cycles since the account was last current.
-            <br/>The values are: <br/>&nbsp; ''0''- Nothing due <br/>&nbsp; ''1''
-            - Current due <br/>&nbsp; ''2'' - X days <br/>&nbsp; ''3'' - 30 days <br/>&nbsp;
-            ''4'' - 60 days <br/>&nbsp; ''5'' - 90 days <br/>&nbsp; ''6'' - 120 days
-            <br/>&nbsp; ''7'' - 150 days <br/>&nbsp; ''8'' - 180 days <br/>&nbsp;
-            ''9'' - 210+ days'
+          description: Code that identifies the level of contractual delinquency.
+            The contractual delinquency (also called the cycle due code), indicates
+            the number of cycles for which payments are due. <br/>The values are:<br/>
+            &nbsp; '0' - No amount is due; account is current <br/> &nbsp; '1' - Current
+            amount due; not past due <br/> &nbsp; '2' - Amount past due 1–29 days
+            (or X days) <br/> &nbsp; '3' - Amount past due 30–59 days <br/> &nbsp;
+            '4' - Amount past due 60–89 days <br/> &nbsp; '5' - Amount past due 90–119
+            days <br/> &nbsp; '6' - Amount past due 120–149 days <br/> &nbsp; '7'
+            - Amount past due 150–179 days <br/> &nbsp; '8' - Amount past due 180–209
+            days <br/> &nbsp; '9' - Amount past due 210 or more days
           format: int32
-          example: '0'
+          example: '1'
         totalDueAmount:
           maxLength: 17
           type: string
