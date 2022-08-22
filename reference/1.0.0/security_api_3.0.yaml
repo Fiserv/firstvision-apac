@@ -42,6 +42,12 @@ paths:
           type: string
           example: accounts cards customers users products misc auth
       responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -90,16 +96,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
       x-proxy-name: Get Access Token
       x-group-name: Security
 components:
   schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: 'Unique Bearer token neeed to be passed for all Vision10 API '
+          example: ''
+        token_type:
+          type: string
+          description: Type of token to be authenticated
+          example: Bearer
+        expires_in:
+          type: string
+          description: Time after which token will be expired
+          example: ''
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -126,21 +141,6 @@ components:
           type: array
           items:
             type: string
-    TokenResponse:
-      type: object
-      properties:
-        access_token:
-          type: string
-          description: 'Unique Bearer token neeed to be passed for all Vision10 API '
-          example: ''
-        token_type:
-          type: string
-          description: Type of token to be authenticated
-          example: Bearer
-        expires_in:
-          type: string
-          description: Time after which token will be expired
-          example: ''
   securitySchemes:
     Authorization:
       type: http
