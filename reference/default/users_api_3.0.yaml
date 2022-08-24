@@ -26,7 +26,7 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
-      - name: X-Correl-Id
+      - name: correlationId
         in: header
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
@@ -66,22 +66,8 @@ paths:
               $ref: '#/components/schemas/UpdateUserReqModel'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateUserResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -96,8 +82,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -152,7 +152,7 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
-      - name: X-Correl-Id
+      - name: correlationId
         in: header
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
@@ -186,16 +186,8 @@ paths:
           type: string
           example: NABTEST25
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -210,20 +202,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireUserAccessResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -240,6 +234,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireUserAccessResponseModel'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -271,7 +271,7 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
-      - name: X-Correl-Id
+      - name: correlationId
         in: header
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
@@ -288,16 +288,8 @@ paths:
               $ref: '#/components/schemas/UpdateUserAccessReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -312,8 +304,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -326,6 +318,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateUserAccessResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -373,7 +373,7 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
-      - name: X-Correl-Id
+      - name: correlationId
         in: header
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
@@ -390,8 +390,16 @@ paths:
               $ref: '#/components/schemas/AddUserReqModel'
         required: true
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -412,16 +420,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -475,7 +475,7 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
-      - name: X-Correl-Id
+      - name: correlationId
         in: header
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
@@ -509,16 +509,8 @@ paths:
           type: string
           example: NABTEST25
       responses:
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -533,8 +525,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -547,6 +539,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireUserResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -1070,6 +1070,32 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          format: int32
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
     UpdateUserResponseModel:
       type: object
       properties:
@@ -1580,32 +1606,6 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        status:
-          type: integer
-          format: int32
-          example: '0'
-        invalid-params:
-          type: array
-          items:
-            type: string
     UpdateUserAccessReqModel:
       required:
       - clientId

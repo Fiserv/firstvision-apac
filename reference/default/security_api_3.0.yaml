@@ -17,7 +17,7 @@ paths:
         Api
       operationId: GetAccessToken
       parameters:
-      - name: X-Correl-Id
+      - name: correlationId
         in: header
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
@@ -34,6 +34,13 @@ paths:
         schema:
           type: string
           example: Basic UE9DX05BQl9EZXY6YkhXTVR6Y0VPQ3I3cXU2WWN5M21jUnV1eXdaRzdmT3VobXNiZWNaNGFOYlVRYU5HYWNqeFY0SkM5c0s5WkR6RQ==
+      - name: grant_type
+        in: query
+        description: It refers to the way an application gets an access token
+        required: true
+        schema:
+          type: string
+          example: client_credentials
       - name: scope
         in: query
         description: Limit the amount of access that is granted to an access token
@@ -42,8 +49,8 @@ paths:
           type: string
           example: accounts cards customers users products misc auth
       responses:
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             '*/*':
               schema:
@@ -58,20 +65,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/TokenResponse'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
