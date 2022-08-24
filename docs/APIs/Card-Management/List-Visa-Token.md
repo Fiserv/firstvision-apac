@@ -12,7 +12,7 @@ This service is used to inquire token detail like VTS token number, card wallet 
 
 >Should be empty. 
 >
->***The Payment Instrument Identification should be sent as path variable..***
+>***The Payment Instrument Identification should be sent as path variable.***
 
 
 ### Minimum Requirements
@@ -33,37 +33,44 @@ The below table identifies the required parameters in the request payload.
     {
       "tokenRequestorId": "06110030273",
       "tokenReferenceId": "586b384a-3b46-410b-9773-8c9720d5",
-      "cardhWalletAcctId": " ",
+      "cardWalletAccountId": " ",
+      "status": "0",
       "vtsTokenNumber": "5077400001008622786"    },
     {
       "tokenRequestorId": "06110030273",
       "tokenReferenceId": "a3763961-2bcc-4b02-b9c3-bb4decd6",
-      "cardhWalletAcctId": " ",
+      "cardWalletAccountId": " ",
+      "status": "0",
       "vtsTokenNumber": "5077400001018459526"    },
     {
       "tokenRequestorId": "06110030273",
       "tokenReferenceId": "071d1012-ff96-4aa8-b799-06effa1a",
-      "cardhWalletAcctId": " ",
+      "cardWalletAccountId": " ",
+      "status": "0",
       "vtsTokenNumber": "5077400001030832858"    },
     {
       "tokenRequestorId": "06110030273",
       "tokenReferenceId": "b7375489-7518-4c36-bc8c-11946f89",
-      "cardhWalletAcctId": " ",
+      "cardWalletAccountId": " ",
+      "status": "0",
       "vtsTokenNumber": "5077400001032292283"    },
     {
       "tokenRequestorId": "06110030273",
       "tokenReferenceId": "cc15268336bf469abb98431830075259",
-      "cardhWalletAcctId": " ",
+      "cardWalletAccountId": " ",
+      "status": "0",
       "vtsTokenNumber": "5077400001046883945"    },
     {
       "tokenRequestorId": "06100000005",
       "tokenReferenceId": "ab8fd132ae5f42928d65f3cc5ab08ccb",
-      "cardhWalletAcctId": " ",
+      "cardWalletAccountId": " ",
+      "status": "0",
       "vtsTokenNumber": "5077400005031196858"    },
     {
       "tokenRequestorId": "06100000005",
       "tokenReferenceId": "f16ae3173df94aa08c6fea051304c4e2",
-      "cardhWalletAcctId": " ",
+      "cardWalletAccountId": " ",
+      "status": "0",
       "vtsTokenNumber": "5077400005048482515"    }
   ]
 }

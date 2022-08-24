@@ -157,7 +157,7 @@ The below table identifies the required parameters in the request payload.
   "productId": 1,
   "quarterlyAffiliateCardProduct": "V1",
   "residenceId": "SX1",
-  "typeOfAccountsProcessed": "X"
+  "typeOfAccount": "X"
 }
 ```
 

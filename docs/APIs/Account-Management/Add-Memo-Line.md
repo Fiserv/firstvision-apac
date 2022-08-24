@@ -41,21 +41,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "actionCode": "AINQ",
-  "actionCodeDescription": "ACCOUNT INQ",
-  "actionNotes": {
-    "note1": "",
-    "note2": "",
-    "note3": "",
-    "note4": "",
-    "note5": ""
-  },
-  "actionRepId": "NAB",
-  "historyDate": "29/06/2022",
-  "historyTime": "06:11:00",
-  "notePurgeDate": "24/07/2022",
-  "notesHistoryStatus": "C",
-  "paymentInstrumentId": ""
+  "notePurgeDate": "17/09/2022",
+  "notesHistoryStatus": "C"
 }
 
 ```

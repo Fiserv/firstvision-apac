@@ -76,7 +76,6 @@ The below table identifies the required parameters in the request payload.
   "activationStatus": "0",
   "businessUnit": 600,
   "expiryDate": "18/01/2024",
-  "externalCustomerId": "99000001234501",
   "maskedPaymentCardNumber": "0004440010737034347",
   "nameOnCard": "John Brono",
   "paymentInstrumentId": "0004440010737034347",

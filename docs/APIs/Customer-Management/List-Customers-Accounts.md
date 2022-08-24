@@ -64,7 +64,7 @@ The below table identifies the required parameters in the request payload.
     "isReturnMailEnabled": "N",
     "mobileNumber": "8877665544",
     "nameLine1": "JOHN DSOUZA",
-    "numberOfAccounts": 1,
+    "totalAccountsCount": 1,
     "workPhoneNumber": "67894"
   }
 }
