@@ -37,10 +37,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "DOMESTIC RETAIL PURCHASE",
       "effectiveDate": "16/08/2021",
-	  "merchantCategoryCode": 0,
+      "merchantCategoryCode": 0,
       "merchantCity": " ",
-      "paymentInstrumentId": "0006000011000000137",
+      "maskedPaymentCardNumber": "000444001XXXXXX0137",
       "planId": 10002,
+      "paymentInstrumentId": "0009543161000023783",
       "postingDate": "17/08/2021",
       "referenceNumber": "09999999980816000020016",
       "transactionAmount": "$12.00",
@@ -51,10 +52,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "DOMESTIC RETAIL PURCHASE",
       "effectiveDate": "16/08/2021",
-	  "merchantCategoryCode": 0,
+      "merchantCategoryCode": 0,
       "merchantCity": " ",
-      "paymentInstrumentId": "0006000011000000137",
+      "maskedPaymentCardNumber": "000444001XXXXXX0137",
       "planId": 10002,
+      "paymentInstrumentId": "0009543161000023783",
       "postingDate": "17/08/2021",
       "referenceNumber": "09999999980816000020024",
       "transactionAmount": "$8.00",
@@ -65,10 +67,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMBERSHIP FEE ASSESSED",
       "effectiveDate": "18/08/2021",
-	  "merchantCategoryCode": 0,
+      "merchantCategoryCode": 0,
       "merchantCity": " ",
-      "paymentInstrumentId": "0006000011000000137",
+      "maskedPaymentCardNumber": "000444001XXXXXX0137",
       "planId": 10002,
+      "paymentInstrumentId": "0009543161000023783",
       "postingDate": "18/08/2021",
       "referenceNumber": "19999999980818199970110",
       "transactionAmount": "$50.00",
@@ -107,5 +110,6 @@ Below table provides the list of application's error code and its description.
 | `V5BS4001SC` | Business unit is in purged status |
 | `V5BS4002SA` | Invalid account number |  
 | `V5S34003SA` | No statement history information found on file |
+| `V5S34222EA` | Invalid txn suppresion indicatr valid values are N or Y |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

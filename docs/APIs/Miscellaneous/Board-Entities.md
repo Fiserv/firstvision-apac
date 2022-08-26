@@ -244,8 +244,7 @@ The below table identifies the required parameters in the request payload.
     "nameOnCard": "Trump",
     "expiryDate": "18/01/2024",
     "activationStatus": "0",
-    "maskedPaymentCardNumber": "",
-    "externalCustomerId": "000012672302"
+    "maskedPaymentCardNumber": ""
   }
 }
 ```

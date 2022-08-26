@@ -58,50 +58,17 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
-  "accountBusinessUnit": 600,
+  "businessUnit": 600,
   "accountId": "0006000011000000160",
-  "actionCode": "RLP3",
-  "actionCodeDescription": "REAL-TIME PAYMENT3",
-  "actionNotes": {
-    "note1": "",
-    "note2": "",
-    "note3": "",
-    "note4": "",
-    "note5": ""
-  },
-  "actionRepId": "NAB",
-  "autoReferenceFlag": "1",
-  "balances": {
-    "cashAvailable": "$0.00",
-    "creditLimit": "$0.50",
-    "currentBalance": "$72.00",
-    "openToBuy": "-$166,771.50"
-  },
-  "clerk": "",
-  "departmentCode": "",
-  "effectiveDate": "25/02/2022",
-  "historyDate": "29/06/2022",
-  "historyTime": 75047,
-  "letterDetails": {
-    "letterBusinessUnit": 0,
-    "letterCode": ""
-  },
-  "name": "RACHEL TEST BY SASHI",
   "paymentInstrumentId": "0006000011000000160",
-  "representativeDetails": {
-    "referralRepBusinessUnit": 0,
-    "referralRepId": "",
-    "repBusinessUnit": 600
-  },
-  "skuNumber": 0,
-  "ticketNumber": "0",
-  "transactionAmount": "$100.00",
-  "transactionDescription": "API TRANSMISSION TESTING3",
-  "workExtension": 0,
-  "workPhone": "00000000000000000000"
+  "decision": "A",
+  "declineReason": " ",
+  "notePurgeDate": "00/00/0000",
+  "notesHistoryStatus": "O",
+  "openToBuy": "-$80,072.00"
 }
+
 ```
 
 ### Error Response Payload

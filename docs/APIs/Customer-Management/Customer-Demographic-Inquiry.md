@@ -28,46 +28,45 @@ The below table identifies the required query parameters in the request message.
 
 ```json
 {
-  "addressDetails": {
-    "addressLine1": "FLAT NO:404",
-    "addressLine2": "RAINBOW APTS",
-    "addressLine3": "CHITRAPURI",
-    "addressLine4": "DELHI",
-    "city": "DELHI",
-    "countryCode": "IND",
-    "houseNumber": " ",
-    "postalCode": "110004",
-    "stateProvince": "DL"
-  },
-  "birthDate": "06/04/1986",
   "businessUnit": 200,
   "customerId": "0000020000065439605",
-  "emailAddress": "SAM@FISERV.COM",
-  "employerDetails": {
-    "addressLine1": "Y",
-    "addressLine2": "Y",
-    "jobTitle": "Y",
-    "nameOfEmployer": "Y",
-    "phoneFlag": "0",
-    "phoneNumber": "Y"
-  },
-  "faxNumber": "82364782",
-  "faxPhoneFlag": "0",
-  "homePhoneFlag": "0",
-  "homePhoneNumber": "9241800756",
-  "isReturnMailEnabled": "Y",
-  "languageIndicator": "AUS",
-  "mobileNumber": "112233",
-  "mobilePhoneFlag": "0",
   "namesDetails": {
-    "birthName": " ",
+    "birthName": "",
     "givenName": "ABC",
-    "middleName": " ",
+    "middleName": "",
     "nameLine1": "M S SWAMY",
     "nameLine2": "KK",
     "nameLine3": " "
   },
-  "smsFlag": "0"
+  "languageIndicator": "AUS",
+  "homePhoneNumber": "9241800756",
+  "faxNumber": "82364782",
+  "faxPhoneFlag": "0",
+  "mobileNumber": "112233",
+  "smsFlag": "0",
+  "mobilePhoneFlag": "0",
+  "emailAddress": "SAM@FISERV.COM",
+  "birthDate": "06/04/1986",
+  "isReturnMailEnabled": "Y",
+  "employerDetails": {
+    "nameOfEmployer": "Y",
+    "addressLine1": "Y",
+    "addressLine2": "Y",
+    "phoneNumber": "Y",
+    "phoneFlag": "Y",
+    "jobTitle": "Y"
+  },
+  "addressDetails": {
+    "addressLine3": "CHITRAPURI",
+    "addressLine4": "DELHI",
+    "addressLine1": "FLAT NO:404",
+    "addressLine2": "RAINBOW APTS",
+    "city": "DELHI",
+    "stateProvince": "DL",
+    "countryCode": "IND"
+  },
+  "postalCode": "110004",
+  "houseNumber": ""
 }
 ```
 
@@ -80,7 +79,7 @@ The below table identifies the required query parameters in the request message.
     "errorCode": "440401",
     "instance": "/v1/customers/0000020000065439601/nameAddress",
     "invalid-params": [
-      "V5NA0010SF: Update Request - Record not found"
+      "V5NA0010SF: Get Request - Record not found"
     ],
     "source": "VPL",
     "status": 404,
@@ -93,7 +92,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-|`V5NA0010SF` | Update Request - Record not found|
+|`V5NA0010SF` | Get Request - Record not found|
 |`V5NA4002SA` | Customer account not found|
 |`V5NA4002SB` | Customer account is in add pending|
 |`V5NA4002SC` | Customer account is purged|

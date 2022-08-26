@@ -1,4 +1,4 @@
-# List Transactions
+# List Transactions by Date Range
 
 This service provides the list of various transactions like memo, outstanding, unbilled and billed with in a given a date range. 
 
@@ -36,49 +36,48 @@ The below table identifies the required parameters in the request payload.
     {
       "description": "Australia Bank         Melbaourne    AU",
       "effectiveDate": "20210513",
+      "maskedPaymentCardNumber": "",
+      "merchantCity": "",
+      "merchantCategoryCode": 50367,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
       "postingDate": "20210513",
       "referenceNumber": "VT211330002000010000025",
-      "transactionAmount": 1000,
+      "transactionAmount": "1000",
       "transactionCode": 4000,
       "transactionType": "D"
     },
     {
-      "description": "Australia Bank         Melbaourne    AU",
-      "effectiveDate": "20210513",
-      "paymentInstrumentId": "0009543491000008124",
-      "planId": 10002,
-      "postingDate": "20210513",
-      "referenceNumber": "VT211330002000010000026",
-      "transactionAmount": 100,
-      "transactionCode": 4579,
-      "transactionType": "D"
-    },
-    {
       "description": "DEBIT CARD OFFSET CREDIT",
-      "effectiveDate": "20210513",
+      "effectiveDate": "20210520",
+      "maskedPaymentCardNumber": "",
+      "merchantCity": "",
+      "merchantCategoryCode": 50367,
       "paymentInstrumentId": "0002000010000066752",
       "planId": 10002,
-      "postingDate": "20210513",
-      "referenceNumber": "19999999980513199980010",
-      "transactionAmount": 1000,
+      "postingDate": "20210520",
+      "referenceNumber": "19999999980520199980040",
+      "transactionAmount": "400",
       "transactionCode": 7016,
       "transactionType": "C"
     },
     {
-      "description": "Wall Mart LLC AUS      Sydney        AU",
-      "effectiveDate": "20210518",
-      "paymentInstrumentId": "0009543491000008124",
+      "description": "DEBIT CARD OFFSET CREDIT",
+      "effectiveDate": "20210525",
+      "maskedPaymentCardNumber": "",
+      "merchantCity": "",
+      "merchantCategoryCode": 50367,
+      "paymentInstrumentId": "0002000010000066752",
       "planId": 10002,
-      "postingDate": "20210518",
-      "referenceNumber": "VT211380004000010000001",
-      "transactionAmount": 1501,
-      "transactionCode": 4567,
+      "postingDate": "20210525",
+      "referenceNumber": "19999999980525199980020",
+      "transactionAmount": "500",
+      "transactionCode": 7016,
       "transactionType": "C"
     }
   ]
 }
+
 ```
 ### Error Response Payload
 

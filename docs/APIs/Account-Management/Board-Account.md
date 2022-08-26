@@ -89,8 +89,7 @@ The below table identifies the required parameters in the request payload.
 {
   "accountId": "0006000012000000770",
   "businessUnit": 600,
-  "productId": 1,
-  "externalCustomerId": "000012672302"
+  "productId": 1
 }
 ```
 

@@ -66,71 +66,17 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
-  "accountId": "0006000011000000160",
-  "actionCode": "AINQ",
-  "actionCodeDescription": "ACCOUNT INQ",
-  "actionDate": "00/00/0000",
-  "actionNotes": {
-    "note1": "",
-    "note2": "",
-    "note3": "",
-    "note4": "",
-    "note5": ""
-  },
-  "authorizationNumber": "",
-  "autoReferenceFlag": 1,
   "businessUnit": 600,
-  "cashAvailableAmount": "$0.00",
-  "creditLimit": "$0.50",
-  "currentBalance": "$72.00",
-  "currrencyNod": 2,
+  "accountId": "0006000011000000160",
+  "paymentInstrumentId": "0006000011000000160",
   "decision": "A",
-  "declineReason": "",
-  "departmentCode": "",
-  "effectiveDate": "18/08/2021",
-  "feeAmount": "$0.00",
-  "historyDate": "29/06/2022",
-  "historyTime": "73749",
-  "insurance": "",
-  "letterDetail": {
-    "letterBusinessUnit": 0,
-    "letterCode": ""
-  },
-  "name": "RACHEL TEST BY SASHI",
-  "nextReviewDate": "00/00/0000",
-  "nextReviewTime": 0,
+  "declineReason": " ",
   "notePurgeDate": "00/00/0000",
   "notesHistoryStatus": "O",
-  "openToBuy": "-$166,771.50",
-  "paymentInstrumentId": "0006000011000000160",
-  "planNumber": 10002,
-  "pointsAmount": "$0.00",
-  "pointsProgram": 0,
-  "productId": 1,
-  "purchaseOrderNumber": "0",
-  "referenceNumber": "",
-  "representativeDetail": {
-    "actionRepId": "NAB",
-    "referralRepBusinessUnit": 0,
-    "referralRepId": "",
-    "repBusinessUnit": 600
-  },
-  "resolutionReferenceNumber": "0",
-  "retentionDuration": "",
-  "salesClerk": "",
-  "skuNumber": 0,
-  "storeBusinessUnit": 0,
-  "storeNumber": 999999998,
-  "ticketNumber": "0",
-  "transactionAmount": "$300.00",
-  "transactionCode": 2006,
-  "transactionDescription": "000   000   000   000   000   000   000",
-  "transactionType": "",
-  "workExtension": 0,
-  "workPhone": "00000000000000000000"
+  "openToBuy": "-$80,072.00"
 }
+
 ```
 
 ### Error Response Payload

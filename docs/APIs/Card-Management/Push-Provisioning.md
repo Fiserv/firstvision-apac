@@ -21,6 +21,7 @@ This service is used for push provisioning of Visa Card.
   "algorithm": "TDEA",
   "nonce": "123456"
 }
+
 ```
 
 ### Minimum Requirements
@@ -39,20 +40,8 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "addressFields": {
-    "addressId": "",
-    "addressLine1": "Shinzo abe",
-    "addressLine2": "Main",
-    "city": "JPN",
-    "postalCode": "234226",
-    "stateProvince": "Tok"
-  },
-  "businessUnit": 100,
-  "cardholderType": "1",
-  "isDynamicCVV2Enabled": "",
-  "issueDeliveryOption": "1",
-  "paymentInstrumentId": "0009846801010273610",
-  "reissueDeliveryOption": "5"
+  "provisionActivation": "MBPAC-1-FK-APPLE-  -TDEA-B0FAA81964D13652F1887E6ADCDEB2AB9CC237BA183DBAC47777692592551A3F57DF1C91E57909D5",
+  "provisionAuthantication": "MBPAD-1-FK-APPLE-  -TDEA-59CBFFAE1E77B0DAE976CCABFEDBAD0EB778DC80163E09002DA60AF75FE04BFACD3070EE3FD8C6BCD2DE52D2D69D432B732D73AF95A32002D22C9F6257B7B"
 }
 ```
 
