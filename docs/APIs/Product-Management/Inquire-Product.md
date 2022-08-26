@@ -157,17 +157,26 @@ The below table identifies the required parameters in the request payload.
   "productId": 1,
   "quarterlyAffiliateCardProduct": "V1",
   "residenceId": "SX1",
-  "typeOfAccountsProcessed": "X"
+  "typeOfAccount": "X"
 }
 ```
 
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5CR0004SF",
-  "errorMessage": "Get request - Record not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/products/290/details",
+    "invalid-params": [
+      "V5CR0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -177,4 +186,4 @@ Below table provides the list of application's error code and its description.
 | `V5CR0484EA` | Org not found |         
 | `V5CR0004SF` | Get request - Record not found | 
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

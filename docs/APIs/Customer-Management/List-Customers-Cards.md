@@ -77,7 +77,9 @@ The below table identifies the required parameters in the request payload.
       "productDescription": "VISA CREDIT CONSUMER",
       "savingsAccountId": " ",
       "status": "0",
-      "warningCode1": "0"
+      "warningCode1": "0",
+      "addressId": "C9902",
+      "physicalVirtualIndicator": "V"
     }
   ],
   "customerInformation": {
@@ -96,7 +98,7 @@ The below table identifies the required parameters in the request payload.
     "isReturnMailEnabled": "N",
     "mobileNumber": "8877665544",
     "nameLine1": "JOHN DSOUZA",
-    "numberOfCards": 1,
+    "totalCardsCount": 1,
     "workPhoneNumber": "67894"
   }
 }
@@ -105,10 +107,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5DB4001AS",
-  "errorMessage": "AMNA org not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/customers/0006000011000000701/accountList",
+    "invalid-params": [
+      "V5DB4001AS: CUST NBR NOT FOUND"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -117,5 +128,6 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5NA0004SF` | Customer number can not be spaces |
 | `V5DB4001SF` | AMNA org not found |
+| `V5DB4001AS` | Cust nbr not found |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

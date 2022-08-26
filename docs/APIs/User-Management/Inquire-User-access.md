@@ -31,185 +31,188 @@ The below table identifies the required parameters in the request payload.
 ### Successful Response Payload
 
 ```json
-
 {
-  "clientId": 1,
-  "name": "NABTEST25",
-  "userApplicationAccess": {
-    "ctryCurrencyCatCodes": {
-      "userCode1": " ",
-      "fieldSecurityCode1": " "
-    },
-    "businessMessaging": {
-      "userCode2": " ",
-      "fieldSecurityCode2": " "
-    },
-    "futureUse03": {
-      "userCode3": " ",
-      "fieldSecurityCode3": " "
-    },
-    "exceptionProcessing": {
-      "userCode4": " ",
-      "fieldSecurityCode4": " "
-    },
-    "accountManagement": {
-      "userCode5": " ",
-      "fieldSecurityCode5": " "
-    },
-    "collectionManagement": {
-      "userCode6": " ",
-      "fieldSecurityCode6": " "
-    },
-    "authorizations": {
-      "userCode7": " ",
-      "fieldSecurityCode7": " "
-    },
-    "customerService": {
-      "userCode8": " ",
-      "fieldSecurityCode8": " "
-    },
-    "remoteInterface": {
-      "userCode9": " ",
-      "fieldSecurityCode9": " "
-    },
-    "commercialCard": {
-      "userCode10": " ",
-      "fieldSecurityCode10": " "
-    },
-    "OfferManagement": {
-      "userCode11": " ",
-      "fieldSecurityCode11": " "
-    },
-    "merchantSettlement": {
-      "userCode12": " ",
-      "fieldSecurityCode12": " "
-    },
-    "applicationProcessing": {
-      "userCode13": " ",
-      "fieldSecurityCode13": " "
-    },
-    "embScriptingSystem": {
-      "userCode14": " ",
-      "fieldSecurityCode14": " "
-    },
-    "keyManagementSystem": {
-      "userCode15": " ",
-      "fieldSecurityCode15": " "
-    },
-    "futureUse16": {
-      "userCode16": " ",
-      "fieldSecurityCode16": " "
-    },
-    "letterRequests": {
-      "userCode17": " ",
-      "fieldSecurityCode17": " "
-    },
-    "futureUse18": {
-      "userCode18": " ",
-      "fieldSecurityCode18": " "
-    },
-    "internationalLanguage": {
-      "userCode19": " ",
-      "fieldSecurityCode19": " "
-    },
-    "rewardManagement": {
-      "userCode20": " ",
-      "fieldSecurityCode20": " "
-    },
-    "clientSupport": {
-      "userCode21": " ",
-      "fieldSecurityCode21": " "
-    },
-    "security": {
-      "userCode22": " ",
-      "fieldSecurityCode22": " "
-    },
-    "connectionManager": {
-      "userCode23": " ",
-      "fieldSecurityCode23": " "
-    },
-    "posDeviceManagement": {
-      "userCode24": " ",
-      "fieldSecurityCode24": " "
-    },
-    "customerCommunicationManagement": {
-      "userCode25": " ",
-      "fieldSecurityCode25": " "
-    },
-    "decisionEngineSystem": {
-      "userCode26": " ",
-      "fieldSecurityCode26": " "
-    },
-    "futureUse27": {
-      "userCode27": " ",
-      "fieldSecurityCode27": " "
-    },
-    "futureUse28": {
-      "userCode28": " ",
-      "fieldSecurityCode28": " "
-    },
-    "transactionManagement": {
-      "userCode29": " ",
-      "fieldSecurityCode29": " "
-    },
-    "futureUse30": {
-      "userCode30": " ",
-      "fieldSecurityCode30": " "
-    }
+  "applicationAccountManagement": {
+    "fieldSecurityCode": "4",
+    "userCode": "4"
   },
-  "businessUnitIncludeExcludeFlag": {
-    "businessUnitIncludeExcludeFlag1": {
-      "inclusionExclusionFlag1": " ",
-      "businessUnit1": " "
-    },
-    "businessUnitIncludeExcludeFlag2": {
-      "inclusionExclusionFlag2": " ",
-      "businessUnit2": " "
-    },
-    "businessUnitIncludeExcludeFlag3": {
-      "inclusionExclusionFlag3": " ",
-      "businessUnit3": " "
-    },
-    "businessUnitIncludeExcludeFlag4": {
-      "inclusionExclusionFlag4": " ",
-      "businessUnit4": " "
-    },
-    "businessUnitIncludeExcludeFlag5": {
-      "inclusionExclusionFlag5": " ",
-      "businessUnit5": " "
-    },
-    "businessUnitIncludeExcludeFlag6": {
-      "inclusionExclusionFlag6": " ",
-      "businessUnit6": " "
-    },
-    "businessUnitIncludeExcludeFlag7": {
-      "inclusionExclusionFlag7": " ",
-      "businessUnit7": " "
-    },
-    "businessUnitIncludeExcludeFlag8": {
-      "inclusionExclusionFlag8": " ",
-      "businessUnit8": " "
-    },
-    "businessUnitIncludeExcludeFlag9": {
-      "inclusionExclusionFlag9": " ",
-      "businessUnit9": " "
-    },
-    "businessUnitIncludeExcludeFlag10": {
-      "inclusionExclusionFlag10": " ",
-      "businessUnit10": " "
-    }
-  }
+  "applicationAuthorizations": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationBusinessMessaging": {
+    "fieldSecurityCode": "2",
+    "userCode": "2"
+  },
+  "applicationClientSupport": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationCollectionManagement": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationCommercialCard": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationConnectionManager": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationCtryCurrencyCatCodes": {
+    "fieldSecurityCode": "1",
+    "userCode": "1"
+  },
+  "applicationCustomerCommunicationManagement": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationCustomerService": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationEmvScriptingSystem": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationExceptionProcessing": {
+    "fieldSecurityCode": "3",
+    "userCode": "3"
+  },
+  "applicationFutureUse03": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationFutureUse16": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationFutureUse18": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationFutureUse27": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationFutureUse28": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationFutureUse30": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationInternationalLanguage": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationKeyManagementSystem": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationLetterRequests": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationMerchantSettlement": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationOfferManagement": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationPosDeviceManagement": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationProcessing": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationRemoteInterface": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationRewardManagement": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationSecurity": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationTransactionManagement": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "applicationpDecisionEngineSystem": {
+    "fieldSecurityCode": "",
+    "userCode": ""
+  },
+  "businessUnitIncludeExcludeFlag01": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "businessUnitIncludeExcludeFlag02": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "businessUnitIncludeExcludeFlag03": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "businessUnitIncludeExcludeFlag04": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "businessUnitIncludeExcludeFlag05": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "businessUnitIncludeExcludeFlag06": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "businessUnitIncludeExcludeFlag07": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "businessUnitIncludeExcludeFlag08": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "businessUnitIncludeExcludeFlag09": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "businessUnitIncludeExcludeFlag10": {
+    "businessUnit": "",
+    "inclusionExclusionFlag": ""
+  },
+  "clientId": 1,
+  "name": "NABTEST259"
 }
-
 ```
 
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "VMSF0004SF",
-  "errorMessage": "Get request - Record not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/users/access",
+    "invalid-params": [
+      "VMSF0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -219,4 +222,4 @@ Below table provides the list of application's error code and its description.
 | `VMSF0004SF` | Get request - Record not found | 
 | `VMSF0005SF` | Get Request - Record Add Pending | 
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

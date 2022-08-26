@@ -47,17 +47,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5BS0109SA",
-  "errorMessage": "Invalid Internal Status"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/0006000011000000509/chargeoff",
+    "invalid-params": [
+      "V5BS0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0010SF` | Update Request - Record not found |
+| `V5BS0010SF` | Update request - Record not found |
 | `V5BS0109SA` | Invalid Internal Status |
 | `V5BS0109SB` | PROC Date must be greater than greatest EXP date For purged Acct | 
 | `V5BS0109SC` | Status cannot change to closed when insurance is Active | 
@@ -77,4 +86,4 @@ Below table provides the list of application's error code and its description.
 | `V5BS0127SB` | Block code 2 must be alphabetic |
 | `V5BS0127SC` | Block code cannot be Replaced With One Of A Lower priority |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

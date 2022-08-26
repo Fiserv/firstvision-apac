@@ -41,37 +41,34 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "actionCode": "AINQ",
-  "actionCodeDescription": "ACCOUNT INQ",
-  "actionNotes": {
-    "note1": "",
-    "note2": "",
-    "note3": "",
-    "note4": "",
-    "note5": ""
-  },
-  "actionRepId": "NAB",
-  "historyDate": "29/06/2022",
-  "historyTime": "06:11:00",
-  "notePurgeDate": "24/07/2022",
-  "notesHistoryStatus": "C",
-  "paymentInstrumentId": ""
+  "notePurgeDate": "17/09/2022",
+  "notesHistoryStatus": "C"
 }
 
 ```
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  V8NA4004ED" ,
-   errorMessage" : Review date must be numeric and greater than zeros"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/addMemoLine",
+    "invalid-params": [
+      "V5BS0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5BS0004SF` | Get request - Record not found |
 | `V8NA4004ED` | Review date must be numeric and greater than zeros |
 | `V8NA4003SC` | Action code is required |
 | `V8NA4006EG` | Review time is invalid |
@@ -88,5 +85,5 @@ Below table provides the list of application's error code and its description.
 | `V8NA4029SA` | Manual referral org/rep not found | 
 | `V8NA4030SA` | Manual referral org/rep not eligible for this request |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
 

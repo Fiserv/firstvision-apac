@@ -52,16 +52,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V8MA4005EA",
-  "errorMessage": "Account or card not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/productTransfer",
+    "invalid-params": [
+      "V5XF4001SB: NO ORGANIZATION RECORD ON FILE"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5XF4001SB` | No organization record on file |
 | `V5X24017SA` | Transfer/Copy to account number invalid |
 | `V5X24017SC` | Transfer/Copy to account must not be on file for this |
 | `V5X24018SA` | Transfer/Copy to logo invalid |
@@ -97,4 +107,4 @@ Below table provides the list of application's error code and its description.
 | `V5X24035SD` | Transfer to logo does not allow smart card-acct not transferred |
 | `V5X24035SG` | Please review smart card embosser detail record on embosser record |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -15,10 +15,10 @@ This service is used for Authorization request on payment instrument id.
   "paymentInstrumentOrCardId": "0009846801010274074",
   "merchantBusinessUnit": 100,
   "merchantId": 999999998,
-  "transactionAmount": 1,
+  "authorizationAmount": 1,
   "planId": 10001,
   "expiryDate": 1123,
-  "securityCode": 123
+  "CVV2": 123
 }
 ```
 
@@ -54,10 +54,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V7RQ4001SA",
-  "errorMessage": "Auth system record not initialized"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/auth/authRequest",
+    "invalid-params": [
+      "V7RQ4008EA : Expiration date is invalid"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -79,7 +88,7 @@ Below table provides the list of application's error code and its description.
 |`V7RQ4007EA` | Credit plan nbr is required |
 |`V7RQ4007EB` | Credit plan nbr must be values 00001 thru 99998 | 
 |`V7RQ4008EA` | Expiration date is invalid |
-|`V7RQ4013EC` | Cvv2 presence indicator and cvv2/cvc2/cvn2/cav2 must be entered | 
-|`V7RQ4014EC` | Cvv2/cvc2 is entered the presence ind must be 1 |   
+|`V7RQ4013EC` | CVV2 presence indicator and CVV2/CVC2/CVN2/CAV2 must be entered | 
+|`V7RQ4014EC` | CVV2/CVC2 is entered the presence ind must be 1 |   
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -12,68 +12,9 @@ This service is used to update security sign-on records like user service privil
 
 ```json
 {
-  "clientId": 1,
-  "name": "NABTEST25",
-  "securityType": "5",
-  "servicePrivilegeGroupId": "",
+  "servicePrivilegeGroupId": "CLTUSER",
   "status": "1",
-  "signonExpiryDate": "",
-  "activationDate": "",
-  "businessUnitPrivilegeId": "",
-  "supervisorId": " ",
-  "customerServiceBusinessUnit": 100,
-  "userServicePrivilege": {
-    "userServicePrivilege1": {
-      "serviceInclusionExclusionFlag1": " ",
-      "serviceName1": " ",
-      "serviceVersion1": " "
-    },
-    "userServicePrivilege2": {
-      "serviceInclusionExclusionFlag2": " ",
-      "serviceName2": " ",
-      "serviceVersion2": " "
-    },
-    "userServicePrivilege3": {
-      "serviceInclusionExclusionFlag3": " ",
-      "serviceName3": " ",
-      "serviceVersion3": " "
-    },
-    "userServicePrivilege4": {
-      "serviceInclusionExclusionFlag4": " ",
-      "serviceName4": " ",
-      "serviceVersion4": " "
-    },
-    "userServicePrivilege5": {
-      "serviceInclusionExclusionFlag5": " ",
-      "serviceName5": " ",
-      "serviceVersion5": " "
-    },
-    "userServicePrivilege6": {
-      "serviceInclusionExclusionFlag6": " ",
-      "serviceName6": " ",
-      "serviceVersion6": " "
-    },
-    "userServicePrivilege7": {
-      "serviceInclusionExclusionFlag7": " ",
-      "serviceName7": " ",
-      "serviceVersion7": " "
-    },
-    "userServicePrivilege8": {
-      "serviceInclusionExclusionFlag8": " ",
-      "serviceName8": " ",
-      "serviceVersion8": " "
-    },
-    "userServicePrivilege9": {
-      "serviceInclusionExclusionFlag9": " ",
-      "serviceName9": " ",
-      "serviceVersion9": " "
-    },
-    "userServicePrivilege10": {
-      "serviceInclusionExclusionFlag10": " ",
-      "serviceName10": " ",
-      "serviceVersion10": " "
-    }
-  }
+  "signonExpiryDate": "31/12/2030"
 }
 ```
 
@@ -85,76 +26,74 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `clientId` | Payload | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. | 
-| `name` | Payload | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. | 
+| `clientId` | Query Parameter | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. | 
+| `name` | Query Parameter | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Successful Response Payload
 
 ```json
+
 {
+  "activationDate": "10/10/2025",
+  "businessUnitPrivilegeId": "CLTUSER",
   "clientId": 1,
-  "name": "NABTEST25",
-  "securityType": "5",
-  "servicePrivilegeGroupId": "",
-  "status": "1",
-  "signonExpiryDate": "",
-  "activationDate": "",
-  "businessUnitPrivilegeId": "",
-  "supervisorId": " ",
   "customerServiceBusinessUnit": 100,
-  "userServicePrivilege": {
-    "userServicePrivilege1": {
-      "serviceInclusionExclusionFlag1": " ",
-      "serviceName1": " ",
-      "serviceVersion1": " "
-    },
-    "userServicePrivilege2": {
-      "serviceInclusionExclusionFlag2": " ",
-      "serviceName2": " ",
-      "serviceVersion2": " "
-    },
-    "userServicePrivilege3": {
-      "serviceInclusionExclusionFlag3": " ",
-      "serviceName3": " ",
-      "serviceVersion3": " "
-    },
-    "userServicePrivilege4": {
-      "serviceInclusionExclusionFlag4": " ",
-      "serviceName4": " ",
-      "serviceVersion4": " "
-    },
-    "userServicePrivilege5": {
-      "serviceInclusionExclusionFlag5": " ",
-      "serviceName5": " ",
-      "serviceVersion5": " "
-    },
-    "userServicePrivilege6": {
-      "serviceInclusionExclusionFlag6": " ",
-      "serviceName6": " ",
-      "serviceVersion6": " "
-    },
-    "userServicePrivilege7": {
-      "serviceInclusionExclusionFlag7": " ",
-      "serviceName7": " ",
-      "serviceVersion7": " "
-    },
-    "userServicePrivilege8": {
-      "serviceInclusionExclusionFlag8": " ",
-      "serviceName8": " ",
-      "serviceVersion8": " "
-    },
-    "userServicePrivilege9": {
-      "serviceInclusionExclusionFlag9": " ",
-      "serviceName9": " ",
-      "serviceVersion9": " "
-    },
-    "userServicePrivilege10": {
-      "serviceInclusionExclusionFlag10": " ",
-      "serviceName10": " ",
-      "serviceVersion10": " "
-    }
+  "name": "NABTEST25",
+  "servicePrivilegeGroupId": "CLTUSER",
+  "signonExpiryDate": "31/12/2025",
+  "status": "1",
+  "supervisorId": " ",
+  "userServicePrivilege01": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege02": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege03": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege04": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege05": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege06": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege07": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege08": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege09": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege10": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   }
 }
 ```
@@ -162,16 +101,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5ED0330SV",
-  "errorMessage": "Card - Invalid  Reissue-deliv-option"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/users/updateUser",
+    "invalid-params": [
+      "VMSF0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `VMSF0010SF` | Update request - Record not found | 
 | `VMSF4001SE` | Security record selected cannot be viewed by the signed-on user | 
 | `VMSF4001ED` | Client is invalid | 
 | `VMSF4001SF` | Error in call to subroutine wsorule1 |  
@@ -226,4 +175,4 @@ Below table provides the list of application's error code and its description.
 | `VMSF0301EF` | Service restriction group is not yet defined-see your admin |      
 | `VMSF0301EG` | Clients service restriction grp has severe errors-please correct |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

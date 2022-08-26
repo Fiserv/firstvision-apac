@@ -45,10 +45,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5ED0301EA",
-  "errorMessage": "Priority of new block code cannnot be lower than the existing block code"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/0009846801010273601/blockUnblock",
+    "invalid-params": [
+      "V5ED0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -67,4 +76,4 @@ Below table provides the list of application's error code and its description.
 | `V5ED0301EB` | Block Code not maintainable for card scheme 0 |
 | `V5ED4005ED` | Can't update block code when card status is F |  
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -76,28 +76,38 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   "errorCode" :  "V5SB4003EA" ,
-   "errorMessage" : "Base account number is required"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/customers/boardCustomer",
+    "invalid-params": [
+        "V5S84152EB: ORG DOES NOT ALLOW ACCOUNT NUMBER GENERATION"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5SB4001SA` | Organization not on file |
-| `V5SB4002EA` | Logo record not on file |
-| `V5SB4002EB` | Logo record incomplete | 
-| `V5SB4154SA` | Customer number not on file for this org |
-| `V5SB4154SB` | Customer number already exists for this org | 
-| `V5SB4154SD` | Generic Customer not allowed |
-| `V5SB4155EA` | Customer number not on file for the dual org | 
-| `V5SB4155EB` | Generic Customer not allowed |
-| `V5SB4155EC` | Customer number already exists for the dual org |
-| `V5SB4154EA` | Invalid Customer number | 
-| `V5SB4160EE` | Invalid Customer check digit for this org |                         
-| `V5SB4160EG` | Invalid Customer check digit for dual org |
+| `V5S84152EB` | Org does not allow account number generation |
+| `V5S84001SA` | Organization not on file |
+| `V5S84002EA` | Logo record not on file |
+| `V5S84002EB` | Logo record incomplete | 
+| `V5S84154SA` | Customer number not on file for this org |
+| `V5S84154SB` | Customer number already exists for this org | 
+| `V5S84154SD` | Generic Customer not allowed |
+| `V5S84155EA` | Customer number not on file for the dual org | 
+| `V5S84155EB` | Generic Customer not allowed |
+| `V5S84155EC` | Customer number already exists for the dual org |
+| `V5S84154EA` | Invalid Customer number | 
+| `V5S84160EE` | Invalid Customer check digit for this org |                         
+| `V5S84160EG` | Invalid Customer check digit for dual org |
 | `V5NA4081EA` | First name is required |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

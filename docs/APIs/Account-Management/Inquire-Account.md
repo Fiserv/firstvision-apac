@@ -30,6 +30,7 @@ The below table identifies the required parameters in the request payload.
 ```json
 {
   "accountId": "0002000010000403266",
+  "addressId": "",
   "alternateCustomerIdDetails": {
     "customerId": "0000000000000000000",
     "customerIdEffectiveDate": "00/00/0000",
@@ -62,7 +63,7 @@ The below table identifies the required parameters in the request payload.
     "projectedDdAmount": "$0.00",
     "totalDueAmount": "$0.00"
   },
-  "billingAcctInd": 0,
+  "billingAcctInd": "0",
   "billingCycle": 31,
   "billingLevel": "1",
   "blockCodeDetails": {
@@ -109,6 +110,7 @@ The below table identifies the required parameters in the request payload.
     "totalCashDisputedItemsAmount": "$0.00"
   },
   "employeeCode": "",
+  "externalCustomerId": "",
   "isFraudulentReportEnabled": "N",
   "isRestructureEnabled": "N",
   "isVipEnabled": "0",
@@ -116,6 +118,11 @@ The below table identifies the required parameters in the request payload.
   "letterRequest": "",
   "liabilityIndicator": "0",
   "numberOfUnblockedCards": 2,
+  "pctOverrideDetails": {
+    "pctExpiryDate": "00/00/0000",
+    "pctOverride": "",
+    "pctStartDate": "00/00/0000"
+  },
   "permanentCollector": "",
   "primaryAccountFlag": "",
   "relationshipId": "",
@@ -124,6 +131,7 @@ The below table identifies the required parameters in the request payload.
   "returnMailDate": "00/00/0000",
   "returnMailUser": "",
   "shortName": "TESTING",
+  "sourceCode": "",
   "status": "D",
   "userAccountId": "0000000000000000000"
 }
@@ -132,10 +140,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5BS0004SF",
-  "errorMessage": "Get request - Record not found"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/000200001000040329A/details",
+    "invalid-params": [
+      "V5BS0004SF: Get Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -144,4 +161,4 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5BS0004SF` | Get request - Record not found|
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

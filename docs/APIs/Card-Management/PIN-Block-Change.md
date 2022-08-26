@@ -46,10 +46,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5CP4005SZ",
-  "errorMessage": "Update access not granted for requested PIN Block"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/0009544410000000041/pinBlockChange",
+    "invalid-params": [
+      "V5CP4003SA: INVALID ACCOUNT TYPE, PIN CHANGE NOT ALLOWED"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -67,4 +76,4 @@ Below table provides the list of application's error code and its description.
 |`V5CP4009SA`| Card is not activated, pin change not allowed | 
 |`V5CP4010SA`| PIN suppression is on, pin change not allowed | 
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

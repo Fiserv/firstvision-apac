@@ -47,8 +47,11 @@ Fields that are not provided in the Request object will be initialised to their 
     "addressLine2": "St. Paul Road ",
     "city": " ",
     "stateprovince": "Uth",
-    "postalCode": "1231"
+    "postalCode": "1231",
+    "addressId": "13"    
   }
+  "physicalVirtualIndicator": "P",
+  "isDynamicCVV2Enabled": "0
 }
 ``` 
 
@@ -64,7 +67,7 @@ The below table identifies the required parameters in the request payload.
 | `productId` | Payload | *number* | 03 | Unique identification number of the product associated with the organization. Valid values are 001-998. | 
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
 | `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
-| 'embossedName1` | Payload | *string* | 26 | Name to be embossed on the first embossing line of the card. |
+| `embossedName1` | Payload | *string* | 26 | Name to be embossed on the first embossing line of the card. |
 
 ### Successful Response Payload
 
@@ -83,36 +86,46 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   "errorCode" :  V5SB4003EA" ,
-   "errorMessage" : "Base account number is requsted"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/boardCard",
+    "invalid-params": [
+      "V5S84001EA: ORGANIZATION NOT ON FILE"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5SB4003EA` | Base account number is requsted |
-| `V5SB4003EG` | Base account number must be numeric | 
-| `V5SB4003EH` | Base account number required |
-| `V5SB4005EA` | Customer na account must be blank | 
-| `V5SB4005EB` | Customer na account required |
-| `V5SB4005EG` | Customer na account must be blank | 
-| `V5SB4005EH` | Customer na account must be numeric | 
-| `V5SB4008EA` | Relationship not valid for this org |
-| `V5SB4008EB` | Relationship not valid for the dual org | 
-| `V5SB4001EA` | Organization not on file |
-| `V5SB4001SA` | Organization not on file |
-| `V5SB4002EA` | Logo record not on file |
-| `V5SB4002EB` | Logo record is incomplete | 
-| `V5SB4009EA` | Relationship number required | 
-| `V5SB4011EA` | Insurance not allowed for prepaid accounts | 
-| `V5SB4012EA` | Sweeping not allowed this logo |
-| `V5SB4012EB` | Hcs must be active for account type values 1,2,3 | 
-| `V5SB4150EI` | No embosser record allowed for control account |
-| `V5SB4150EJ` | No embosser record allowed for diversion account | 
-| `V5SB4150EK` | No embosser record allowed for billing account |
+| `V5AK4056SA` | Org/Account number combination not found |
+| `V5S84003EA` | Base account number is requsted |
+| `V5S84003EG` | Base account number must be numeric | 
+| `V5S84003EH` | Base account number required |
+| `V5S84005EA` | Customer na account must be blank | 
+| `V5S84005EB` | Customer na account required |
+| `V5S84005EG` | Customer na account must be blank | 
+| `V5S84005EH` | Customer na account must be numeric | 
+| `V5S84008EA` | Relationship not valid for this org |
+| `V5S84008EB` | Relationship not valid for the dual org | 
+| `V5S84001EA` | Organization not on file |
+| `V5S84001SA` | Organization not on file |
+| `V5S84002EA` | Logo record not on file |
+| `V5S84002EB` | Logo record is incomplete | 
+| `V5S84009EA` | Relationship number required | 
+| `V5S84011EA` | Insurance not allowed for prepaid accounts | 
+| `V5S84012EA` | Sweeping not allowed this logo |
+| `V5S84012EB` | Hcs must be active for account type values 1,2,3 | 
+| `V5S84150EI` | No embosser record allowed for control account |
+| `V5S84150EJ` | No embosser record allowed for diversion account | 
+| `V5S84150EK` | No embosser record allowed for billing account |
 | `V5AP4061EA` | Number cards required must equal 0 or 1 |
 | `V5AP4063EA` | Embossed name type must not equal 3 |
 | `V5AP4088EA` | Card delay days value must be numeric | 
@@ -121,4 +134,4 @@ Below table provides the list of application's error code and its description.
 | `V5AP4105SA` | Card sequence already atmaximum for card number | 
 | `V5AP4106SA` | Card sequence already atmaximum for chip card number |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

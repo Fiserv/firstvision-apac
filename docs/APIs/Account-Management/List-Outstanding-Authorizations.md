@@ -34,8 +34,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED DEBIT",
       "effectiveDate": "18/08/2021",
-      "paymentInstrumentId": " ",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000444001XXXXXX8266",
       "planId": 10002,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$3,000.00",
@@ -46,8 +49,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED DEBIT",
       "effectiveDate": "18/08/2021",
-      "paymentInstrumentId": " ",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000444001XXXXXX8221",
       "planId": 10002,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -58,8 +64,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
-      "paymentInstrumentId": " ",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000444001XXXXXX8211",
       "planId": 10002,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -70,8 +79,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
-      "paymentInstrumentId": " ",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000444001XXXXXX8243",
       "planId": 10002,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -82,8 +94,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
-      "paymentInstrumentId": " ",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000444001XXXXXX8296",
       "planId": 10002,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -94,8 +109,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": " ",
       "description": "MEMO POSTED CREDIT",
       "effectiveDate": "18/08/2021",
-      "paymentInstrumentId": " ",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000444001XXXXXX8211",
       "planId": 10002,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "19/08/2021",
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
@@ -108,10 +126,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  V5T24002SB" ,
-   errorMessage" : No account on File"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/0006000022000000439/transactions/memoPost",
+    "invalid-params": [
+      "V5T24002SB: NO ACCOUNT ON FILE"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -119,5 +146,6 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5T24002SB` | No account on File |
+| `V5T24024EA` | Invalid txn suppresion indicatr valid values are N or Y |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

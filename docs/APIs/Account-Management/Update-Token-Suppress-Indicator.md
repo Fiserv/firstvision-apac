@@ -41,10 +41,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5BS0521SN",
-  "errorMessage": "Suppress token is not numeric"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/0006000011000000131/tokenSupressIndicator",
+    "invalid-params": [
+      "V5BS0010SF: Update Request - Record not found"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -56,4 +65,4 @@ Below table provides the list of application's error code and its description.
 | `V5BS0521SZ` | Update access not granted for Suppress Token | 
 | `V5BS0010SF` | Update request - Record not found | 
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

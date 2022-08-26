@@ -119,10 +119,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   "errorCode" :  "V5XL4001SA" ,
-   "errorMessage" : "Customer search screen is not available"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/customers/searchCustomer",
+    "invalid-params": [
+      "V5XL4002EP: NO RESULT FOUND FOR THIS SEARCH CRITERIA"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -155,4 +164,4 @@ Below table provides the list of application's error code and its description.
 | `V5XL4003SF` | Invalid svc function code |
 | `V5XL4003SB` | Valid value for optional data match is 0 or 1 |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

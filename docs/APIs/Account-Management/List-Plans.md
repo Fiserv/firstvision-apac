@@ -61,13 +61,26 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  V5PS4010SA" ,
-   errorMessage" : Account not present in account file"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/000600001100000013A/planList",
+    "invalid-params": [
+      "V5PS4002SF: INVALID ACCOUNT"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
+
 Below table provides the list of application's error code and its description.
 
+| ErrorCode |  Description/Values |
+| --------  | ------------------ |
+| `V5PS4002SF` | Invalid account | 
 | `V5PS4010SA` | Account not present in account file | 
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

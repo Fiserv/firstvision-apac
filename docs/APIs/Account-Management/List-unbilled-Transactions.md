@@ -29,14 +29,18 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 
+
 {
   "transactionList": [
     {
       "authorizationCode": "052205",
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "17/08/2021",
       "referenceNumber": "FV090921017335430013773",
       "transactionAmount": "$0.00",
@@ -47,8 +51,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": "052206",
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "17/08/2021",
       "referenceNumber": "FV090921019032730013773",
       "transactionAmount": "$0.00",
@@ -59,8 +66,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": "052210",
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091321014345330013773",
       "transactionAmount": "$0.00",
@@ -71,8 +81,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": "052213",
       "description": "VISA Domestic Restaurant Melbourne    AU",
       "effectiveDate": "17/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091321017220871972150",
       "transactionAmount": "$0.00",
@@ -83,8 +96,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": "052219",
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091321023074830013773",
       "transactionAmount": "$0.00",
@@ -95,8 +111,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": "052220",
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091421013262530013773",
       "transactionAmount": "$0.00",
@@ -107,8 +126,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": "052226",
       "description": "Dom POS via VISA         SYDNEY       AU",
       "effectiveDate": "17/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "17/08/2021",
       "referenceNumber": "FV0914210164216L14299",
       "transactionAmount": "$0.00",
@@ -119,8 +141,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": "052227",
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "17/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "17/08/2021",
       "referenceNumber": "FV091421018113030013773",
       "transactionAmount": "$0.00",
@@ -131,8 +156,11 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": "052205",
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "18/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "18/08/2021",
       "referenceNumber": "FV090921017335430013773",
       "transactionAmount": "$0.00",
@@ -143,13 +171,46 @@ The below table identifies the required parameters in the request payload.
       "authorizationCode": "052206",
       "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
       "effectiveDate": "18/08/2021",
-      "paymentInstrumentId": "0009846801010272888",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
+      "paymentInstrumentId": "0009543161012022346",
       "postingDate": "18/08/2021",
       "referenceNumber": "FV090921019032730013773",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M"
+    },
+    {
+      "authorizationCode": " ",
+      "description": " ",
+      "effectiveDate": "00/00/0000",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": " ",
+      "planId": 0,
+      "paymentInstrumentId": "0009543161012022346",
+      "postingDate": "00/00/0000",
+      "referenceNumber": " ",
+      "transactionAmount": "$0.00",
+      "transactionCode": 0,
+      "transactionType": " "
+    },
+    {
+      "authorizationCode": " ",
+      "description": " ",
+      "effectiveDate": "00/00/0000",
+      "merchantCategoryCode": 0,
+      "merchantCity": " ",
+      "maskedPaymentCardNumber": "000404940XXXXXX4057",
+      "planId": 0,
+      "paymentInstrumentId": "0009543161012022346",
+      "postingDate": "00/00/0000",
+      "referenceNumber": " ",
+      "transactionAmount": "$0.00",
+      "transactionCode": 0,
+      "transactionType": " "
     }
   ]
 }
@@ -157,16 +218,27 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-   errorCode" :  V5T24002SB" ,
-   errorMessage" : No account on File"   
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/accounts/0001000010000510001/transactions/cycleToDate",
+    "invalid-params": [
+      "V5T24001EB: NO ORGANIZATION RECORD ON FILE"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
+| `V5T24001EB` | No organization record on file |
 | `V5T24002SB` | No account on File |
+| `V5T24024EA` | Invalid txn suppresion indicatr valid values are N or Y |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -56,10 +56,19 @@ The below table identifies the required parameters in the request payload.
 ### Error Response Payload
 
 ```json
-{
-  "errorCode": "V5E10004EA",
-  "errorMessage": "Invalid card number"  
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/cards/lostStolenCardTransfer",
+    "invalid-params": [
+      "V5E14015EA: EMBOSSER RECORD NOT FOUND"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
 ```
 
 Below table provides the list of application's error code and its description.
@@ -67,6 +76,7 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description |
 | --------  | ------------------ |
 |`V5E10004EA` | Invalid card number |
+|`V5E14015EA` | Embosser record not found |
 |`V5E10006EA` | Requested Business Unit is not found |
 |`V5E11020EA` | Only reversal or transfer can be done |
 |`V5E11021SA` | No reversal account number entered |
@@ -100,4 +110,4 @@ Below table provides the list of application's error code and its description.
 |`V5E10001SA` | System in after hours processing, re-try in few minutes |
 |`V5E10002SA` | System in no-processing status,re-try in few minutes |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](..docs/?path=docs/common-error-codes.md).*
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
