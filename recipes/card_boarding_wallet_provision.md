@@ -5,6 +5,7 @@ With the use of the Fiserv APIs, the issuing banks can improve the end-customer 
 The issuing bank, after their risk assessment, can perform the following steps to allow customer to board a card and at the same time add them to Applepay Wallet.
 
 ---
+
 - [Step 1: Generate OAuth Token](#step-1-generate-oauth-token)
 - [Step 2: Board Entities](#step-2-board-entities)
 - [Step 3: Activate Card](#step-3-activate-card)
@@ -16,7 +17,6 @@ The issuing bank, after their risk assessment, can perform the following steps t
 
 Get the Oauth token to make the subsequent API calls.
   `GET /v1/api/oauth/token?grant_type=client_credentials&scope=cards+misc`
-
 
 ## Step 2: Board Entities
 
@@ -303,7 +303,9 @@ type: tab
 <!-- type: tab-end -->
 
 ---
+
 ## See also
+
 - [Generate OAuth Token](?path=docs/APIs/Security/get-access-token.md)
 - [Board Entities](?path=docs/APIs/Miscellaneous/Board-Entities.md)
 - [Activate Card](?path=docs/APIs/Card-Management/Activate-Card.md)
