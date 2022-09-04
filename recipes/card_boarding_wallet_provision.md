@@ -13,11 +13,13 @@ The issuing bank, after their risk assessment, can perform the following steps t
 ---
 
 ## Step 1: Generate OAuth Token
+
 Get the Oauth token to make the subsequent API calls.
   `GET /v1/api/oauth/token?grant_type=client_credentials&scope=cards+misc`
 
 
 ## Step 2: Board Entities
+
 This API will board all the required entities related to card boarding into the FirstVision applcation.
 
 <!--
@@ -235,6 +237,7 @@ type: tab
 <!-- type: tab-end -->
 
 ## Step 3: Activate Card
+
 Activate the card after successful boarding of entities using above API.
 
 <!--
@@ -265,6 +268,7 @@ type: tab
 <!-- type: tab-end -->
 
 ## Step 4: Add to Wallet
+
 The final step is to get the newly activated card to be added to the ApplePay wallet.  The push provisioning APIs can be used to generate the payload to initiate the green channel provisioning of newly created digital card on the ApplePay mobile-app.
 
 <!--
