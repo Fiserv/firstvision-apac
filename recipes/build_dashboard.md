@@ -1,14 +1,14 @@
 # Build Dashboard
 
-Using the following recipe, the issuing banks' digital application can build a nice widgets providing cards and accounts details linked to customer. 
+Using the following recipe, the issuing banks' digital application can build a nice widgets providing cards and accounts details linked to customer.
 
 ---
 
-- [Step 1: Generate OAuth Token](#step-1-generate-oauth-token)
-- [Step 2: List cards and Accounts](#step-2-list-cards-accounts)
-- [Step 3: Fetch Account Details](#step-3-account-details)
-- [Step 4: Fetch Card Details](#step-4-card-details)
-- [Step 5: Build Dashboard](#step-5-build-dashboard)
+- [Step 1: Generate OAuth Token](#Step 1: Generate OAuth Token)
+- [Step 2: List cards and Accounts](#Step 2: List cards and Accounts using external-id)
+- [Step 3: Fetch Account Details](#Step 3: Fetch Account Details)
+- [Step 4: Fetch Card Details](#Step 4: Fetch Card Details)
+- [Step 5: Build Dashboard](#Step 4: Build Dashboard with Cards and Accounts Details)
 
 ---
 
