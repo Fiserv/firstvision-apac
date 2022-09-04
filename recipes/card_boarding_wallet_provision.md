@@ -1,4 +1,4 @@
-# Card boarding to Wallet Provisioning of Digital Card
+# Digital Card - Boarding to Wallet Provisioning
 
 With the use of the Fiserv APIs, the issuing banks can improve the end-customer experience by digitally board a new card and instantly add the card to the ApplePay wallet.  
 
@@ -16,6 +16,7 @@ The issuing bank, after their risk assessment, can perform the following steps t
 ## Step 1: Generate OAuth Token
 
 Get the Oauth token to make the subsequent API calls.
+
   `GET /v1/api/oauth/token?grant_type=client_credentials&scope=cards+misc`
 
 ## Step 2: Board Entities
