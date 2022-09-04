@@ -15,9 +15,20 @@ The issuing bank, after their risk assessment, can perform the following steps t
 
 ## Step 1: Generate OAuth Token
 
-Get the Oauth token to make the subsequent API calls.
+Get the Oauth token.
 
   `GET /v1/api/oauth/token?grant_type=client_credentials&scope=cards+misc`
+
+```json
+{
+"access_token": "eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.uWiSQfLLzfDYuSmPwmLa1fVx6Vyw8Rtphv49uo_2EbfoJYzppHNscar8NWNEp4sXHdxbrEmftu_JJ3oTLD8AtbNgQh9ej8lUEvfA8vbYM3ucXuOC1NWxZPD7tDiwQ6kLypsYgbOhBMQ_U7Icobbh2I9o1Zit8F9xT7J70e3ZLJqtqTWC1WDd0WmOG672KpU_tc2eMtUvLYqrMKjRr2KuD-e73fc27zdYpeL9GElVlo1WKbrHOvsdolr92mvhHBf_etnQ5Pb_X_x533-DiT1piCkjBTqZqgd6cdV2ItdPVAz8CfwmjS6TJR95B3Ys9Xp3tdI5UwP3NmkaYRqP5_R02Q",
+"expires_in": 1750392000,
+"token_type": "Bearer"
+}
+```
+
+<!-- theme: info -->
+> Use the access token in the subsequent calls. 
 
 ## Step 2: Board Entities
 
