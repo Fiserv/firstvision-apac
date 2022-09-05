@@ -4,11 +4,11 @@ Using the following recipe, the issuing banks' digital application can build a n
 
 ---
 
-- [Step 1: Generate OAuth Token](#Step 1: Generate OAuth Token)
-- [Step 2: List cards and Accounts](#Step 2: List cards and Accounts using external-id)
-- [Step 3: Fetch Account Details](#Step 3: Fetch Account Details)
-- [Step 4: Fetch Card Details](#Step 4: Fetch Card Details)
-- [Step 5: Build Dashboard](#Step 4: Build Dashboard with Cards and Accounts Details)
+- [Step 1: Generate OAuth Token](#step-1-generate-oauth-token)
+- [Step 2: List cards and Accounts](#step-2-list-cards-and-accounts-using-external-id)
+- [Step 3: Fetch Account Details](#step-3-fetch-account-details)
+- [Step 4: Fetch Card Details](#step-4-fetch-card-details)
+- [Step 5: Build Dashboard](#step-5-build-dashboard-with-cards-and-accounts-details)
 
 ---
 
@@ -291,7 +291,7 @@ Using the payment instrument ID fetched in the step 2 above, call the below serv
 } 
 ```
 
-## Step 4: Build Dashboard with Cards and Accounts Details
+## Step 5: Build Dashboard with Cards and Accounts Details
 
 Using the above details, banks' can build a nice mobile application widgets providing the comprehensive view of the customer's accounts and the cards details.
 
