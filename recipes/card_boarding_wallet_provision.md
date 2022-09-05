@@ -28,7 +28,7 @@ Get the Oauth token.
 ```
 
 <!-- theme: info -->
-> Use the access token in the subsequent calls. 
+> Use the access token in the subsequent calls.
 
 ## Step 2: Board Entities
 
