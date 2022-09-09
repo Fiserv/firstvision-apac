@@ -1,0 +1,3388 @@
+openapi: 3.0.1
+info:
+  title: Vision10 API Documentation
+  description: V10 open API document.
+  version: 1.0.0
+servers:
+- url: https://stg34.visionplus.io/sandbox/
+tags:
+- name: Product Management
+paths:
+  /v1/products/{productId}/cardControls:
+    put:
+      tags:
+      - Product Management
+      summary: Update Product Card Controls
+      description: This service is used to update the card controls at product level
+        for the given product.
+      operationId: UpdateProductCardControls
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: correlationId
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productId
+        in: path
+        description: Unique identification number of the product associated with the
+          organization. Valid values are 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '001'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProductCardControlReqModel'
+        required: true
+      responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateProductCardControlResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Update Product Card Controls
+      x-group-name: Product Management
+  /v1/products/{productId}/serviceChargeDetails:
+    get:
+      tags:
+      - Product Management
+      summary: Inquire Service Charge Table
+      description: This service provides various service fee details available in
+        the system for a given Org, Product and table ID combination.
+      operationId: InquireServiceChargeTable
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: correlationId
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productId
+        in: path
+        description: Unique identification number of the product associated with the
+          organization. If the table is defined at organization level, populate this
+          field as zeroes. For tables defined at product level, valid values are 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '0'
+      - name: tableId
+        in: query
+        description: Identification number of the Service Charge/Fee table. The values
+          are 001–998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '3'
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireServiceChargeTableResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Service Charge Table
+      x-group-name: Product Management
+  /v1/products/{productId}/interestTable:
+    get:
+      tags:
+      - Product Management
+      summary: Inquire Interest Table
+      description: This service provides details of Interest Table. An Interest table
+        identifies a set of parameters that system uses to calculate interest.
+      operationId: InquireInterestTable
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: correlationId
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: tableId
+        in: query
+        description: Identification number of the Interest table. The values are 001–998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '001'
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productId
+        in: path
+        description: Unique identification number of the product associated with the
+          organization. If the table is defined at organization level, populate this
+          field as zeroes. For tables defined at product level, valid values are 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '0'
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireInterestTableResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Interest Table
+      x-group-name: Product Management
+  /v1/products/{productId}/details:
+    get:
+      tags:
+      - Product Management
+      summary: Inquire Product
+      description: This service provides the details for a given product.
+      operationId: InquireProduct
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: correlationId
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productId
+        in: path
+        description: Unique identification number of the product associated with the
+          organization. Valid values are 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '001'
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireProductResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Product
+      x-group-name: Product Management
+  /v1/products/{planId}/planDetails:
+    get:
+      tags:
+      - Product Management
+      summary: Inquire Plan Master
+      description: This service provides plan details for a given credit plan.
+      operationId: InquirePlanMaster
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: correlationId
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: planId
+        in: path
+        description: Identification number of the Credit Plan Master entity. The values
+          are 00001–99998. You can establish as many as 99,998 Credit Plan Master
+          entity for each organization.
+        required: true
+        schema:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          example: '10002'
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquirePlanMasterResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Plan Master
+      x-group-name: Product Management
+components:
+  schemas:
+    UpdateProductCardControlReqModel:
+      type: object
+      properties:
+        cardControlFields:
+          type: object
+          properties:
+            maximumAuthorizationLimitFrequency:
+              maxLength: 1
+              type: string
+              description: This is a flag which indicates the frequency for the maximum
+                authorization parameters. This frequency applies to the RETAIL PURCHASE
+                AMOUNT to SINGLE RETAIL TRANSACTION AMOUNT fields. <br/>The values
+                are:<br/> &nbsp; '0' - Not used (default) <br/> &nbsp; '1' - Daily
+                <br/> &nbsp; '2' - Cycle-to-date <br/> &nbsp; '3' - Year-to-date
+              example: '1'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+            maximumAtmCashAuthorizationsAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of ATM cash
+                authorizations allowed for the frequency defined in the MAXIMUM AUTHORIZATION
+                LIMIT FREQUENCY field.
+              example: '2000.0'
+            maximumAtmCashAuthorizationsCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Maximum number of ATM cash authorizations allowed for the
+                frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY field.
+              format: int32
+              example: '5'
+            maximumSingleAtmTransactionAmount:
+              maxLength: 17
+              type: string
+              description: This is the Maximum authorization amount in monetary units
+                and subunits for a single ATM transaction.
+              example: '100.0'
+            maximumOtcCashAuthorizationsAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of over-the
+                counter (OTC) cash authorizations allowed for the frequency defined
+                in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY field.
+              example: '1500.0'
+            maximumOtcAuthorizationsCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Maximum number of OTC authorizations allowed for the frequency
+                defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY field.
+              format: int32
+              example: '6'
+            maximumSingleOtcCashAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: This is the Maximum authorization amount in monetary units
+                and subunits for a single OTC transaction.
+              example: '200.0'
+            maximumRetailAuthorizationsAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of retail
+                authorizations allowed for the freqency defined in the MAXIMUM AUTHORIZATION
+                LIMIT FREQUENCY field.
+              example: '100000.0'
+            maximumRetailAuthorizationsCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Maximum number of retail authorizations allowed for the
+                frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY field.
+              format: int32
+              example: '10'
+            maximumSingleRetailAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: This is the Maximum amount in monetary units and subunits
+                for a single retail authorization.
+              example: '10000.0'
+        cardControlFlags:
+          type: object
+          properties:
+            isAtmEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable a ATM based transactions.
+                <br/>The values are:<br/> &nbsp; 'Y' - ATM transactions Allowed <br/>
+                &nbsp; 'N' - ATM transactions not Allowed
+              example: Y
+              enum:
+              - N
+              - Y
+            isPosEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable a POS based transaction for
+                a cardholder. <br/>The values are:<br/> &nbsp; 'Y' - POS transactions
+                Allowed <br/> &nbsp; 'N' - POS transactions not Allowed
+              example: Y
+              enum:
+              - N
+              - Y
+            isEcomEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable  ECOMM based transaction for
+                a cardholder. <br/>The values are:<br/> &nbsp; '1' - ECOMM transactions
+                Allowed <br/> &nbsp; '0' - ECOMM transactions not Allowed
+              example: '1'
+              enum:
+              - '0'
+              - '1'
+            isMotoEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable a Mobile based transactions.
+                <br/>The values are:<br/> &nbsp; 'Y' - MOTO transactions Allowed <br/>
+                &nbsp; 'N' - MOTO transactions not Allowed
+              example: N
+              enum:
+              - Y
+              - N
+            isInternationalAtmPosEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable an international ATM or POS  based
+                transaction for a cardholder. <br/>The values are:<br/> &nbsp; 'Y'
+                - International ATM or POS transactions Allowed <br/> &nbsp; 'N' -
+                International ATM or POS transactions not Allowed
+              example: N
+              enum:
+              - Y
+              - N
+            isCashBackEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable cashback at POS  transaction
+                for a cardholder. <br/>The values are:<br/> &nbsp; 'Y' - Cash Back
+                transactions Allowed <br/> &nbsp; 'N' - Cash Back transactions not
+                Allowed
+              example: Y
+              enum:
+              - Y
+              - N
+            isPayWaveEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable a Contactless or Paywave based
+                transaction for a cardholder. <br/>The values are:<br/> &nbsp; 'Y'
+                - PayWave transactions Allowed <br/> &nbsp; 'N' - PayWave transactions
+                not Allowed
+              example: N
+              enum:
+              - Y
+              - N
+        yearToDateCountryRiskSpendLimits:
+          type: object
+          properties:
+            isCountryRiskSpendLimitEnabled:
+              maxLength: 1
+              type: string
+              description: This is a flag that indicates whether a year-to-date spending
+                limit for accounts initiating transactions in high-risk and non-high-risk
+                countries is active. <br/>The values are:<br/> &nbsp; '0' - Not Active
+                <br/> &nbsp; '1' - Active
+              example: '1'
+              enum:
+              - '0'
+              - '1'
+            highRiskCountryMaximumAuthAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount of authorizations in monetary units and
+                subunits allowed for the cumulative year-to-date spending by an account
+                in high-risk countries. Maximum amount of authorizations in monetary
+                units and subunits allowed for the cumulative year-to-date spending
+                by an account in high-risk countries.
+              example: '10000.0'
+            otherRiskCountryMaximumAuthAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount of authorizations in monetary units and
+                subunits allowed for the cumulative year-to-date spending by an account
+                in non-high-risk countries. Risk is designated by country code in
+                the Financial Authorization System (FAS).
+              example: '15000.0'
+    UpdateProductCardControlResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 001-998.
+          format: int32
+          example: '600'
+        productId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number of the product associated with
+            the organization. Valid values are 001-998.
+          format: int32
+          example: '1'
+        cardControlFields:
+          type: object
+          properties:
+            maximumAuthorizationLimitFrequency:
+              maxLength: 1
+              type: string
+              description: This is a flag which indicates the frequency for the maximum
+                authorization parameters. This frequency applies to the RETAIL PURCHASE
+                AMOUNT to SINGLE RETAIL TRANSACTION AMOUNT fields. <br/>The values
+                are:<br/> &nbsp; '0' - Not used (default) <br/> &nbsp; '1' - Daily
+                <br/> &nbsp; '2' - Cycle-to-date <br/> &nbsp; '3' - Year-to-date
+              example: '1'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+            maximumAtmCashAuthorizationsAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of ATM cash
+                authorizations allowed for the frequency defined in the MAXIMUM AUTHORIZATION
+                LIMIT FREQUENCY field.
+              example: '2000.0'
+            maximumAtmCashAuthorizationsCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Maximum number of ATM cash authorizations allowed for the
+                frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY field.
+              format: int32
+              example: '5'
+            maximumSingleAtmTransactionAmount:
+              maxLength: 17
+              type: string
+              description: This is the Maximum authorization amount in monetary units
+                and subunits for a single ATM transaction.
+              example: '100.0'
+            maximumOtcCashAuthorizationsAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of over-the
+                counter (OTC) cash authorizations allowed for the frequency defined
+                in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY field.
+              example: '1500.0'
+            maximumOtcAuthorizationsCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Maximum number of OTC authorizations allowed for the frequency
+                defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY field.
+              format: int32
+              example: '6'
+            maximumSingleOtcCashAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: This is the Maximum authorization amount in monetary units
+                and subunits for a single OTC transaction.
+              example: '200.0'
+            maximumRetailAuthorizationsAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount in monetary units and subunits of retail
+                authorizations allowed for the freqency defined in the MAXIMUM AUTHORIZATION
+                LIMIT FREQUENCY field.
+              example: '100000.0'
+            maximumRetailAuthorizationsCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Maximum number of retail authorizations allowed for the
+                frequency defined in the MAXIMUM AUTHORIZATION LIMIT FREQUENCY field.
+              format: int32
+              example: '10'
+            maximumSingleRetailAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: This is the Maximum amount in monetary units and subunits
+                for a single retail authorization.
+              example: '10000.0'
+        cardControlFlags:
+          type: object
+          properties:
+            isAtmEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable a ATM based transactions.
+                <br/>The values are:<br/> &nbsp; 'Y' - ATM transactions Allowed <br/>
+                &nbsp; 'N' - ATM transactions not Allowed
+              example: Y
+              enum:
+              - N
+              - Y
+            isPosEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable a POS based transaction for
+                a cardholder. <br/>The values are:<br/> &nbsp; 'Y' - POS transactions
+                Allowed <br/> &nbsp; 'N' - POS transactions not Allowed
+              example: Y
+              enum:
+              - N
+              - Y
+            isEcomEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable  ECOMM based transaction for
+                a cardholder. <br/>The values are:<br/> &nbsp; '1' - ECOMM transactions
+                Allowed <br/> &nbsp; '0' - ECOMM transactions not Allowed
+              example: '1'
+              enum:
+              - '0'
+              - '1'
+            isMotoEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable a Mobile based transactions.
+                <br/>The values are:<br/> &nbsp; 'Y' - MOTO transactions Allowed <br/>
+                &nbsp; 'N' - MOTO transactions not Allowed
+              example: N
+              enum:
+              - Y
+              - N
+            isInternationalAtmPosEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable an international ATM or POS  based
+                transaction for a cardholder. <br/>The values are:<br/> &nbsp; 'Y'
+                - International ATM or POS transactions Allowed <br/> &nbsp; 'N' -
+                International ATM or POS transactions not Allowed
+              example: N
+              enum:
+              - Y
+              - N
+            isCashBackEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable cashback at POS  transaction
+                for a cardholder. <br/>The values are:<br/> &nbsp; 'Y' - Cash Back
+                transactions Allowed <br/> &nbsp; 'N' - Cash Back transactions not
+                Allowed
+              example: Y
+              enum:
+              - Y
+              - N
+            isPayWaveEnabled:
+              maxLength: 1
+              type: string
+              description: This is to enable or disable a Contactless or Paywave based
+                transaction for a cardholder. <br/>The values are:<br/> &nbsp; 'Y'
+                - PayWave transactions Allowed <br/> &nbsp; 'N' - PayWave transactions
+                not Allowed
+              example: N
+              enum:
+              - Y
+              - N
+        yearToDateCountryRiskSpendLimits:
+          type: object
+          properties:
+            isCountryRiskSpendLimitEnabled:
+              maxLength: 1
+              type: string
+              description: This is a flag that indicates whether a year-to-date spending
+                limit for accounts initiating transactions in high-risk and non-high-risk
+                countries is active. <br/>The values are:<br/> &nbsp; '0' - Not Active
+                <br/> &nbsp; '1' - Active
+              example: '1'
+              enum:
+              - '0'
+              - '1'
+            highRiskCountryMaximumAuthAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount of authorizations in monetary units and
+                subunits allowed for the cumulative year-to-date spending by an account
+                in high-risk countries. Maximum amount of authorizations in monetary
+                units and subunits allowed for the cumulative year-to-date spending
+                by an account in high-risk countries.
+              example: '10000.0'
+            otherRiskCountryMaximumAuthAmount:
+              maxLength: 17
+              type: string
+              description: Maximum amount of authorizations in monetary units and
+                subunits allowed for the cumulative year-to-date spending by an account
+                in non-high-risk countries. Risk is designated by country code in
+                the Financial Authorization System (FAS).
+              example: '15000.0'
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          format: int32
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    InquireServiceChargeTableResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 001-998.
+          format: int32
+          example: '600'
+        productId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number of the product associated with
+            the organization. If the table is defined at organization level, populate
+            this field as zeroes. For tables defined at product level, valid values
+            are 001-998.
+          format: int32
+          example: '0'
+        tableId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Identification number of the Service Charge/Fee table. The
+            values are 001–998.
+          format: int32
+          example: '3'
+        maximumCycleServiceFeeAmount:
+          maxLength: 17
+          type: string
+          description: Maximum amount, in monetary units and subunits, of service
+            charges to assess in one cycle. CMS will not assess a service charge unless
+            this field is greater than zero.
+          example: $99999.00
+        serviceChargeDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceChargeDetails_InquireServiceChargeTableResponseModel'
+    ServiceChargeDetails_InquireServiceChargeTableResponseModel:
+      type: object
+      properties:
+        initiatingTransactionCode:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: Monetary transaction code that will trigger CMS to generate
+            the service charge. The service charge posts to each plan that has activity
+            identified by this transaction code.
+          format: int32
+          example: '1301'
+        transactionLimitFrequency:
+          maxLength: 1
+          type: string
+          description: Code that determines whether the TRANSACTION LIMIT number is
+            a daily limit or cycle limit for the number of transactions assessed service
+            charges by TIER 1 FEE AMOUNT. <br/>The values are:<br/>&nbsp; '0' - Daily
+            limit <br/>&nbsp; '1' - Cycle limit
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        transactionLimit:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Number of transactions to assess the service fee defined by
+            FEE AMOUNT per day or cycle based on the TRANSACTION LIMIT FREQUENCY value.
+            The values are 00–99.
+          format: int32
+          example: '3'
+        tier1Fee:
+          maxLength: 17
+          type: string
+          description: Fixed amount in monetary units and subunits or percentage of
+            the transaction amount to assess for the service charge up to the number
+            of transactions in the TRANSACTION LIMIT field, inclusive. If METHOD is
+            1, enter a fixed amount. If METHOD is 2, enter a percentage. For a percentage,
+            the first two positions must be zero.
+          example: '100'
+        tier2Fee:
+          maxLength: 17
+          type: string
+          description: Fixed amount in monetary units and subunits or percentage of
+            the transaction amount to assess for the service charge for transactions
+            in excess of the number in the TRANSACTION LIMIT field. For a percentage,
+            the first two positions must be zero.
+          example: '500'
+        method:
+          maxLength: 1
+          type: string
+          description: Code that indicates how CMS calculates the service charge (Amount
+            or Percentage). <br/>The values are:<br/>&nbsp; '1' - Amount (Default)
+            <br/>&nbsp; '2' - Percentage
+          example: '1'
+          enum:
+          - '1'
+          - '2'
+        singleFeeMinimumAmount:
+          maximum: 999999999
+          maxLength: 9
+          type: integer
+          description: Minimum amount in monetary units and subunits, of the service
+            charge to assess. This amount must be less than the SINGLE FEE MAXIMUM
+            AMOUNT.
+          format: int32
+          example: '0'
+        singleFeeMaximumAmount:
+          maximum: 999999999
+          maxLength: 9
+          type: integer
+          description: Maximum amount in monetary units and subunits, of the service
+            charge to assess. This amount must be greater than the SINGLE FEE MINIMUM
+            AMOUNT.
+          format: int32
+          example: '999999999'
+        feePostingFrequency:
+          maxLength: 1
+          type: string
+          description: Code that indicates the frequency CMS posts the service charge
+            to the account. <br/>The values are:<br/>&nbsp; '0' - Daily (Default)
+            <br/>&nbsp; '1' - Cycle
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        feeReverseTransactionCode:
+          maximum: 9999
+          maxLength: 4
+          type: integer
+          description: Monetary transaction code that will trigger CMS to generate
+            a service charge fee reversal. If this value is zeroes, CMS does not automatically
+            generate a service charge reversal transaction for a reversal transaction.
+          format: int32
+          example: '7474'
+        feePlan:
+          maxLength: 1
+          type: string
+          description: Code that indicates the plan to which the service fee is posted.
+            <br/>The values are:<br/>&nbsp; '0' - Post fee to the same plan as the
+            transaction triggering the fee (Default) <br/>&nbsp; '1' - Post fee to
+            the default retail plan corresponding to the account <br/>&nbsp; '2' -
+            Post fee to the default cash plan corresponding to the account <br/>&nbsp;
+            '3' - Post fee to the default credit plan determined by the Service Charge/Fee
+            table corresponding to account
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        dailyFeeDescription:
+          maxLength: 40
+          type: string
+          description: Description of the transaction code. If FEE POSTING FREQUENCY
+            is 0 (daily), this field is the description of the service charge that
+            prints on account statements. If FEE POSTING FREQUENCY 1 (cycle), this
+            field must be blank, CMS uses the universal service charge fee transaction
+            code on Monetary Transaction controls and the description defined for
+            the universal service charge fee transaction code on Monetary Transaction
+            controls
+          example: Service Fees
+        maximumIndicator:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether the maximum amount (SINGLE FEE
+            MAXIMUM AMOUNT) is applied as the daily fee maximum that can be assessed
+            for the transaction code or as the maximum fee that any individual transaction
+            can be assessed for the transaction code. <br/>The values are:<br/>&nbsp;
+            '0' - Daily limit (Default) <br/>&nbsp; '1' - Individual fee limit <br/>&nbsp;
+            '2' - Individual fee limit. The fee cannot exceed the amount of the triggering
+            transaction
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+    InquireInterestTableResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 001-998.
+          format: int32
+          example: '600'
+        productId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number of the product associated with
+            the organization. If the table is defined at organization level, populate
+            this field as zeroes. For tables defined at product level, valid values
+            are 001-998.
+          format: int32
+          example: '0'
+        tableId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Identification number of the Interest table. The values are
+            001–998.
+          format: int32
+          example: '1'
+        tableName:
+          maxLength: 40
+          type: string
+          description: This field indicates the Description of the Interest table.
+          example: INTEREST RATE TABLE FOR CASH PLAN
+        interestControls:
+          type: object
+          properties:
+            interestRounding:
+              maxLength: 1
+              type: string
+              description: Code that indicates the rounding method CMS uses to round
+                or truncate interest calculations. <br/>The values are:<br/>&nbsp;
+                '0' - Standard rounding. If the number that follows the last decimal
+                in the currency is 1 to 4, CMS rounds down; if the number is 5 to
+                9, CMS rounds up (Default) <br/>&nbsp; '1' - Always round up. If the
+                number is 1 to 9, CMS rounds up <br/>&nbsp; '2' - Truncate. CMS does
+                not round <br/>&nbsp; '3' - Round, no decimal. CMS rounds to the nearest
+                whole monetary unit
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+            examineCycleInterestVariance:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether CMS examines the cycle interest
+                variance field on the Product entity (EXAMINE CYCLE INTEREST VARIANCE
+                on Products -> 14-Product Processing Additional) during disposition
+                of interest at cycle. <br/>The values are:<br/>&nbsp; '0' - Do not
+                use the cycle interest variance on the Product entity (Default) <br/>&nbsp;
+                '1' - Verify that the payment is within the cycle interest variance
+                defined on the Product entity
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            allowNsfPaymentReversal:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether an NSF payment reversal should
+                be considered in the interest waive decision. <br/>The values are:<br/>&nbsp;
+                '0' - Do not allow NSF payment reversal; interest will not be waived
+                if an NSF payment reversal occurred (Default) <br/>&nbsp; '1' - Allow
+                NSF payment reversals if the net payments received satisfy the account
+                or plan beginning balance
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            ceilingLimits:
+              type: object
+              properties:
+                floorRate1:
+                  maxLength: 7
+                  type: string
+                  description: Minimum allowable interest rate for credit plans using
+                    this Interest table. CMS uses this rate if the plan balance is
+                    less than or equal to the value in the LMT 1 field.
+                  example: 0.00000%
+                ceilingRate1:
+                  maxLength: 7
+                  type: string
+                  description: Maximum allowable interest rate for credit plans using
+                    this Interest table if the plan balance is less than or equal
+                    to the balance limit.
+                  example: 99.99999%
+                floorRate2:
+                  maxLength: 7
+                  type: string
+                  description: Maximum allowable interest rate for credit plans using
+                    this Interest table if the plan balance is greater than the balance
+                    limit (BALANCE LIMIT).
+                  example: 0.00000%
+                ceilingRate2:
+                  maxLength: 7
+                  type: string
+                  description: Minimum allowable interest rate for credit plans using
+                    this Interest table. Regardless of the value of the rate index,
+                    adjusted by the variance, the actual interest rate assessed for
+                    credit plans using this Interest table will not fall below this
+                    percentage.
+                  example: 99.99999%
+                balanceLimit:
+                  maxLength: 17
+                  type: string
+                  description: Balance Limit - Balance limit for FLOOR RATE 1 and
+                    CEILING RATE 1 in whole monetary amounts. If you are using both
+                    FLOOR RATE 1-2 and CEILING RATE 1–2, the value of this field must
+                    be greater than zero.
+                  example: $0.00
+        interestCalculationOptions:
+          type: object
+          properties:
+            accrualMethod:
+              maxLength: 1
+              type: string
+              description: Code that indicates the accrual method CMS uses for interest
+                calculations. <br/>The values are:<br/>&nbsp; 'A' - Monthly accrual
+                <br/>&nbsp; 'B' - Balance at end of cycle <br/>&nbsp; 'D' - Daily
+                accrual (Default) <br/>&nbsp; 'E' - Monthly adjusted ending balance
+              example: D
+              enum:
+              - D
+              - B
+              - A
+              - E
+            yearBase:
+              maxLength: 1
+              type: string
+              description: Code that indicates the year base CMS uses for interest
+                calculations. <br/>The values are:<br/>&nbsp; '0' - Actual 365 or
+                366 days (Default) <br/>&nbsp; '1' - Fixed 365 days <br/>&nbsp; '2'
+                - Fixed 360 days
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            startInterestOnDebitTransaction:
+              maxLength: 1
+              type: string
+              description: Code that indicates when interest calculations begin on
+                debit transactions. <br/>The values are:<br/>&nbsp; 'S' - Cycle date
+                (after billing) <br/>&nbsp; 'T' - Transaction date (effective date
+                of the transaction) <br/>&nbsp; 'P' - Posting date of the transaction
+                (Default) <br/>&nbsp; 'G' - Greater of the transaction date or the
+                cycle date <br/>&nbsp; 'D' - Day after the payment due date
+              example: P
+              enum:
+              - S
+              - P
+              - T
+              - G
+              - D
+            startInterestOnCreditTransaction:
+              maxLength: 1
+              type: string
+              description: Code that indicates when credit transactions affect the
+                calculation of interest. <br/>The values are:<br/>&nbsp; 'T' - Transaction
+                date (from the effective date of the transaction) <br/>&nbsp; 'P'
+                - Posting date (from the posting date of the transaction) (Default)
+              example: T
+              enum:
+              - P
+              - T
+            interestNextStatement:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates how CMS charges interest on new transactions
+                posted in the current billing cycle. <br/>The values are:<br/>&nbsp;
+                ''A'' - Waive all interest based on the account balance <br/>&nbsp;
+                ''B'' - Rebate interest at the account level <br/>&nbsp; ''C'' - Use
+                combined grace and cycle interest parameters on Interest Table ->
+                03- Combined Grace & Cycle Interest Option <br/>&nbsp; ''D'' - Defer
+                interest if a payment is posted prior to the cycle date <br/>&nbsp;
+                ''G'' - Accrue and defer interest on new purchase transactions <br/>&nbsp;
+                ''L'' - Accrue and defer interest on new purchase transactions <br/>&nbsp;
+                ''M'' - Residual interest <br/>&nbsp; ''N'' - Do not charge interest
+                (Default) <br/>&nbsp; ''P'' - Waive all plan interest based on plan
+                balance <br/>&nbsp; ''Q'' - Rebate interest at the plan level <br/>&nbsp;
+                ''R'' - Residual interest <br/>&nbsp; ''S'' - Reserved for future
+                user <br/>&nbsp; ''T'' - Interest on RECAPT transaction <br/>&nbsp;
+                ''U'' - Charge interest unconditionally <br/>&nbsp; ''Y'' - Charge
+                interest <br/>&nbsp; ''Z'' - Interest on RECAPT zero balance '
+              example: C
+              enum:
+              - N
+              - G
+              - R
+              - L
+              - M
+              - Y
+              - D
+              - A
+              - P
+              - S
+              - T
+              - Z
+              - B
+              - Q
+              - U
+              - C
+        interestRates:
+          type: object
+          properties:
+            tierLimitIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates how to handle tier limits. <br/>The
+                values are:<br/>&nbsp; '0' - Charge separate rate for balances within
+                each limit <br/>&nbsp; '1' - Charge rate at highest limit in which
+                balance falls (Default)
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            rateType:
+              maxLength: 1
+              type: string
+              description: Code that indicates the type of interest rate. <br/>The
+                values are:<br/>&nbsp; 'F' - Fixed rate. The interest rate is the
+                base rate <br/>&nbsp; 'T' - Tiered rate. The rate is determined based
+                upon the balance limit <br/>&nbsp; 'U' - Tiered variable rate. The
+                interest rate is determined by tiers with a variance applied <br/>&nbsp;
+                'V' - Variable rate. The interest rate may have a variance applied
+                <br/>&nbsp; 'Z' - Interest free
+              example: F
+              enum:
+              - F
+              - T
+              - V
+              - U
+              - Z
+            rateIndexTable:
+              maxLength: 3
+              type: string
+              description: Code that identifies the rate index within the associated
+                Rate Index Table that determines the base rate. <br/>The values are:<br/>&nbsp;
+                '000' - Do not use a rate index <br/>&nbsp; '001' to '998' - Rate
+                index number to use
+              example: '006'
+              enum:
+              - '000'
+              - 001 to 998
+            rate7:
+              maxLength: 7
+              type: string
+              description: Interest rate that CMS charges on account balances not
+                greater than the amount in the LIMIT7 field. Interest rate must be
+                within the floor rate and the ceiling rate assigned to the Interest
+                table.
+              example: 0.00000%
+            variance7:
+              maxLength: 7
+              type: string
+              description: Variance rate that CMS adds to or subtracts from the base
+                rate to determine the interest rate charged. The corresponding +/–
+                field determines whether the variance rate is added to or subtracted
+                from the base rate. The base rate is determined by the index rate
+                assigned to the Interest table.
+              example: 0.00000%
+            limit7:
+              maxLength: 17
+              type: string
+              description: Account balance limit for interest rates in the RATE 7
+                field or for each of the corresponding variance rates in the VARIANCE
+                fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+                to the Interest table.
+              example: $0.00
+            rate8:
+              maxLength: 7
+              type: string
+              description: Interest rate that CMS charges on account balances not
+                greater than the amount in the LIMIT8 field. Interest rate must be
+                within the floor rate and the ceiling rate assigned to the Interest
+                table.
+              example: 0.00000%
+            variance8:
+              maxLength: 7
+              type: string
+              description: Variance rate that CMS adds to or subtracts from the base
+                rate to determine the interest rate charged. The corresponding +/–
+                field determines whether the variance rate is added to or subtracted
+                from the base rate. The base rate is determined by the index rate
+                assigned to the Interest table.
+              example: 0.00000%
+            limit8:
+              maxLength: 17
+              type: string
+              description: Account balance limit for interest rates in the RATE 8
+                field or for each of the corresponding variance rates in the VARIANCE
+                fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+                to the Interest table.
+              example: $0.00
+            rate9:
+              maxLength: 7
+              type: string
+              description: Interest rate that CMS charges on account balances not
+                greater than the amount in the LIMIT9 field. Interest rate must be
+                within the floor rate and the ceiling rate assigned to the Interest
+                table.
+              example: 0.00000%
+            variance9:
+              maxLength: 7
+              type: string
+              description: Variance rate that CMS adds to or subtracts from the base
+                rate to determine the interest rate charged. The corresponding +/–
+                field determines whether the variance rate is added to or subtracted
+                from the base rate. The base rate is determined by the index rate
+                assigned to the Interest table.
+              example: 0.00000%
+            rate1:
+              maxLength: 7
+              type: string
+              description: Interest rate that CMS charges on account balances not
+                greater than the amount in the LIMIT1 field. Interest rate must be
+                within the floor rate and the ceiling rate assigned to the Interest
+                table.
+              example: 0.00000%
+            variance1:
+              maxLength: 7
+              type: string
+              description: Variance rate that CMS adds to or subtracts from the base
+                rate to determine the interest rate charged. The corresponding +/–
+                field determines whether the variance rate is added to or subtracted
+                from the base rate. The base rate is determined by the index rate
+                assigned to the Interest table.
+              example: 8.99000%
+            limit1:
+              maxLength: 17
+              type: string
+              description: Account balance limit for interest rates in the RATE 1
+                field or for each of the corresponding variance rates in the VARIANCE
+                fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+                to the Interest table.
+              example: $999,999,999,999,999.00
+            rate2:
+              maxLength: 7
+              type: string
+              description: Interest rate that CMS charges on account balances not
+                greater than the amount in the LIMIT2 field. Interest rate must be
+                within the floor rate and the ceiling rate assigned to the Interest
+                table.
+              example: 0.00000%
+            variance2:
+              maxLength: 7
+              type: string
+              description: Variance rate that CMS adds to or subtracts from the base
+                rate to determine the interest rate charged. The corresponding +/–
+                field determines whether the variance rate is added to or subtracted
+                from the base rate. The base rate is determined by the index rate
+                assigned to the Interest table.
+              example: 0.00000%
+            limit2:
+              maxLength: 17
+              type: string
+              description: Account balance limit for interest rates in the RATE 2
+                field or for each of the corresponding variance rates in the VARIANCE
+                fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+                to the Interest table.
+              example: $0.00
+            rate3:
+              maxLength: 7
+              type: string
+              description: Interest rate that CMS charges on account balances not
+                greater than the amount in the LIMIT3 field. Interest rate must be
+                within the floor rate and the ceiling rate assigned to the Interest
+                table.
+              example: 0.00000%
+            variance3:
+              maxLength: 7
+              type: string
+              description: Variance rate that CMS adds to or subtracts from the base
+                rate to determine the interest rate charged. The corresponding +/–
+                field determines whether the variance rate is added to or subtracted
+                from the base rate. The base rate is determined by the index rate
+                assigned to the Interest table.
+              example: 0.00000%
+            limit3:
+              maxLength: 17
+              type: string
+              description: Account balance limit for interest rates in the RATE 3
+                field or for each of the corresponding variance rates in the VARIANCE
+                fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+                to the Interest table.
+              example: $0.00
+            rate4:
+              maxLength: 7
+              type: string
+              description: Interest rate that CMS charges on account balances not
+                greater than the amount in the LIMIT4 field. Interest rate must be
+                within the floor rate and the ceiling rate assigned to the Interest
+                table.
+              example: 0.00000%
+            variance4:
+              maxLength: 7
+              type: string
+              description: Variance rate that CMS adds to or subtracts from the base
+                rate to determine the interest rate charged. The corresponding +/–
+                field determines whether the variance rate is added to or subtracted
+                from the base rate. The base rate is determined by the index rate
+                assigned to the Interest table.
+              example: 0.00000%
+            limit4:
+              maxLength: 17
+              type: string
+              description: Account balance limit for interest rates in the RATE 4
+                field or for each of the corresponding variance rates in the VARIANCE
+                fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+                to the Interest table.
+              example: $0.00
+            rate5:
+              maxLength: 7
+              type: string
+              description: Interest rate that CMS charges on account balances not
+                greater than the amount in the LIMIT5 field. Interest rate must be
+                within the floor rate and the ceiling rate assigned to the Interest
+                table.
+              example: 0.00000%
+            variance5:
+              maxLength: 7
+              type: string
+              description: Variance rate that CMS adds to or subtracts from the base
+                rate to determine the interest rate charged. The corresponding +/–
+                field determines whether the variance rate is added to or subtracted
+                from the base rate. The base rate is determined by the index rate
+                assigned to the Interest table.
+              example: 0.00000%
+            limit5:
+              maxLength: 17
+              type: string
+              description: Account balance limit for interest rates in the RATE 5
+                field or for each of the corresponding variance rates in the VARIANCE
+                fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+                to the Interest table.
+              example: $0.00
+            rate6:
+              maxLength: 7
+              type: string
+              description: Interest rate that CMS charges on account balances not
+                greater than the amount in the LIMIT6 field. Interest rate must be
+                within the floor rate and the ceiling rate assigned to the Interest
+                table.
+              example: 0.00000%
+            variance6:
+              maxLength: 7
+              type: string
+              description: Variance rate that CMS adds to or subtracts from the base
+                rate to determine the interest rate charged. The corresponding +/–
+                field determines whether the variance rate is added to or subtracted
+                from the base rate. The base rate is determined by the index rate
+                assigned to the Interest table.
+              example: 0.00000%
+            limit6:
+              maxLength: 17
+              type: string
+              description: Account balance limit for interest rates in the RATE 6
+                field or for each of the corresponding variance rates in the VARIANCE
+                fields. The valid entries in LIMIT 1–8 depend on the rate type assigned
+                to the Interest table.
+              example: $0.00
+        includeBalanceFlagsForInterestCalculation:
+          type: object
+          properties:
+            isInterestOnMembershipFeeEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on membership
+                fees (also referred to as annual fees). <br/>The values are:<br/>&nbsp;
+                '0' - Do not charge interest (Default) <br/>&nbsp; '1' - Charge interest
+              example: '1'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnInterestEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on interest
+                (finance charge compounding). <br/>The values are:<br/>&nbsp; '0'
+                - Do not charge interest (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnServiceFeeEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on service
+                charges. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '1'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnNsfFeeEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on fees
+                assessed for items returned due to nonsufficient funds. <br/>The values
+                are:<br/>&nbsp; '0' - Do not charge interest (Default) <br/>&nbsp;
+                '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnOverLimitFeeEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on over
+                limit fees. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '1'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnInsuranceEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on insurance
+                premiums. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnLateFeeEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on late
+                fees. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '1'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnCollectionFeesEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on collection
+                fees. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnRecoveryFeeEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on recovery
+                fees. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnUserFee1Enabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on user-defined
+                fees 1. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnUserFee2Enabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on user-defined
+                fees 2. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnUserFee3Enabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on user-defined
+                fees 3. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnUserFee4Enabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on user-defined
+                fees 4. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnUserFee5Enabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on user-defined
+                fees 5. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isInterestOnUserFee6Enabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether to charge interest on user-defined
+                fees 6. <br/>The values are:<br/>&nbsp; '0' - Do not charge interest
+                (Default) <br/>&nbsp; '1' - Charge interest
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+        interestParametersForCombinedGraceAndCycleOptions:
+          type: object
+          properties:
+            transactionQualification:
+              maxLength: 1
+              type: string
+              description: Code that identifies the type of transactions that qualify
+                an account or plan balance as paid in full. <br/>The values are:<br/>&nbsp;
+                '0' - All credit transaction codes (Default) <br/>&nbsp; '1' - Only
+                payment transaction codes <br/>&nbsp; '2' - Net payment transactions
+                within grace days <br/>&nbsp; '3' - Net payment transactions within
+                a cycle <br/>&nbsp; '4' - Net credit transactions within grace days
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+              - '4'
+            isWaivePriorDeferredInterestEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether interest deferred in the prior
+                cycle should be waived if specific account conditions are met. <br/>The
+                values are:<br/>&nbsp; '0' - Always bill deferred interest from prior
+                cycle (Default) <br/>&nbsp; '1' - Waive deferred interest from prior
+                cycle if waive conditions are met
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            isPriorDeferredNsfPaymentReversalEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether an NSF payment reversal should
+                be considered in the interest waive decision for prior deferred interest.
+                <br/>The values are:<br/>&nbsp; '0' - Do not allow NSF payment reversal;
+                interest is not waived if an NSF payment reversal occurs (Default)
+                <br/>&nbsp; '1' - Allow NSF payment reversals
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            priorDeferredInterestBalanceIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether an account or plan beginning
+                balance is used in the interest disposition decisions. <br/>The values
+                are:<br/>&nbsp; '0' - Account balance is considered <br/>&nbsp; '1'
+                - Plan balance is considered
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            isPriorDeferredBeginBalanceEnabled:
+              maxLength: 1
+              type: string
+              description: This field identifies whether the beginning balance is
+                considered in the waive decision. <br/>The values are:<br/>&nbsp;
+                '0' - Do not use the beginning balance in the waive decision process
+                (Default) <br/>&nbsp; '1' - Use the beginning balance in the waive
+                decision process
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            priorDeferredBeginningThresholdAmount:
+              maxLength: 17
+              type: string
+              description: This field indicates the balance threshold that the beginning
+                balance must be less than or equal to before interest is waived.
+              example: $0.00
+            isPriorDeferredEndingBalanceEnabled:
+              maxLength: 1
+              type: string
+              description: This field identifies whether the ending balance is considered
+                in the waive decision. <br/>The values are:<br/>&nbsp; '0' - Do not
+                use the ending balance in the waive decision process (Default) <br/>&nbsp;
+                '1' - Use the ending balance in the waive decision process
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            priorDeferredEndingThresholdAmount:
+              maxLength: 17
+              type: string
+              description: This field identifies the balance threshold that the ending
+                balance must be less than or equal to before interest is waived.
+              example: $0.00
+            priorDeferredPaidDateQualification:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether the date when the account or
+                plan beginning balance is paid is used to qualify the account or plan
+                to waive interest. <br/>The values are:<br/>&nbsp; '0' - Not used
+                (Default) <br/>&nbsp; '1' - Beginning balance must be paid in full,
+                or within variance, by grace day in order to waive interest <br/>&nbsp;
+                '2' - Beginning balance must be paid in full, or within variance,
+                by statement day in order to waive interest
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            isWaiveCurrentCycleInterestEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether current cycle interest should
+                be waived or deferred if specific account conditions are met. <br/>The
+                values are:<br/>&nbsp; '0' - Always bill deferred interest from the
+                current cycle (Default) <br/>&nbsp; '1' - Waive current cycle interest
+                if waive conditions are met <br/>&nbsp; '2' - Defer current cycle
+                interest if defer conditions are met <br/>&nbsp; '3' - Defer current
+                cycle interest unconditionally
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+            isCurrentCycleNsfPaymentReversalEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether an NSF payment reversal should
+                be considered in the decision to waive or defer interest for the current
+                cycle. <br/>The values are:<br/>&nbsp; '0' - Do not allow NSF payment
+                reversal; interest is not waived or deferred if an NSF payment reversal
+                occurs (Default) <br/>&nbsp; '1' - Allow NSF payment reversals
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            currentCycleInterestBalanceIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether an account or plan beginning
+                balance is used in the interest disposition decisions. <br/>The values
+                are:<br/>&nbsp; '0' - Account or plan balance is not considered (Default)
+                <br/>&nbsp; '1' - Account balance is considered
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            isCurrentCycleBeginBalanceEnabled:
+              maxLength: 1
+              type: string
+              description: This field identifies whether the beginning balance is
+                considered in the decision to waive or defer interest. <br/>The values
+                are:<br/>&nbsp; '0' - Do not use the beginning balance in the waive
+                or defer decision process (Default) <br/>&nbsp; '1' - Use the beginning
+                balance in the waive or defer decision process
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            currentCycleBeginningThresholdAmount:
+              maxLength: 17
+              type: string
+              description: This field identifies balance threshold that the beginning
+                balance must be less than or equal to before interest is waived or
+                deferred.
+              example: $0.00
+            isCurrentCycleEndingBalanceEnabled:
+              maxLength: 1
+              type: string
+              description: This field identifies whether the ending balance is considered
+                in the decision to waive or defer interest. <br/>The values are:<br/>&nbsp;
+                '0' - Do not use the ending balance in the waive or defer decision
+                process (Default) <br/>&nbsp; '1' - Use the ending balance in the
+                waive or defer decision process
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            currentCycleEndingThresholdAmount:
+              maxLength: 17
+              type: string
+              description: This field identifies the balance threshold that the ending
+                balance must be less than or equal to before interest is deferred
+                or waived.
+              example: $0.00
+            currentCyclePaidDateQualification:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether the date when the account or
+                plan beginning balance is paid is used to qualify the account or plan
+                to waive or defer current cycle interest. <br/>The values are:<br/>&nbsp;
+                '0' - Not used (Default) <br/>&nbsp; '1' - Beginning balance must
+                be paid in full, or within variance, by grace day in order to waive
+                or defer interest <br/>&nbsp; '2' - Beginning balance must be paid
+                in full, or within variance, by statement day in order to waive or
+                defer interest
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            isWaivePriorCycleInterestEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether prior cycle interest should
+                be waived if specific account conditions are met. <br/>The values
+                are:<br/>&nbsp; '0' - Always bill prior cycle interest (Default) <br/>&nbsp;
+                '1' - Waive prior cycle interest if waive conditions are met
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            isPriorCycleNsfPaymentReversalEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether an NSF payment reversal should
+                be considered in the decision to waive interest for the prior cycle.
+                <br/>The values are:<br/>&nbsp; '0' - Do not allow NSF payment reversal;
+                interest is not waived if an NSF payment reversal occurs (Default)
+                <br/>&nbsp; '1' - Allow NSF payment reversals
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            priorCycleInterestBalanceIndicator:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates whether an account or plan beginning
+                balance is used in the interest disposition decisions. <br/>The values
+                are:<br/>&nbsp; ''0'' - Account or plan balance is not considered
+                (Default) <br/>&nbsp; ''1'' - Account balance is considered '
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            isPriorCycleBeginBalanceEnabled:
+              maxLength: 1
+              type: string
+              description: This field identifies whether the beginning balance is
+                considered in the decision to waive interest. <br/>The values are:<br/>&nbsp;
+                '0' - Do not use the beginning balance in the waive decision process
+                (Default) <br/>&nbsp; '1' - Use the beginning balance in the waive
+                decision process
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            priorCycleBeginningThresholdAmount:
+              maxLength: 17
+              type: string
+              description: This field identifies the balance threshold that the beginning
+                balance must be less than or equal to before interest is waived.
+              example: $0.00
+            isPriorCycleEndingBalanceEnabled:
+              maxLength: 1
+              type: string
+              description: This field identifies whether the ending balance is considered
+                in the decision to waive interest. <br/>The values are:<br/>&nbsp;
+                '0' - Do not use the ending balance in the waive decision process
+                (Default) <br/>&nbsp; '1' - Use the ending balance in the waive decision
+                process
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            priorCycleEndingThresholdAmount:
+              maxLength: 17
+              type: string
+              description: The second part of the field is the balance threshold that
+                the ending balance must be less than or equal to before interest is
+                waived.
+              example: $0.00
+            isWaiveResidualInterestEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether residual interest should be
+                waived if specific account conditions are met. <br/>The values are:<br/>&nbsp;
+                '0' - Always bill residual interest (Default) <br/>&nbsp; '1' - Waive
+                residual interest if waive conditions are met <br/>&nbsp; '2' - Defer
+                residual interest
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            isResidualInterestNsfPaymentReversalEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether an NSF payment reversal should
+                be considered in the decision to waive residual interest. <br/>The
+                values are:<br/>&nbsp; '0' - Do not allow NSF payment reversal; interest
+                is not waived if an NSF payment reversal occurs (Default) <br/>&nbsp;
+                '1' - Allow NSF payment reversals
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            residualInterestBalanceIndicator:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Code that indicates whether an account or plan beginning
+                balance is used in the interest disposition decisions. <br/>The values
+                are:<br/>&nbsp; '0' - Account or plan balance is not considered (Default)
+                <br/>&nbsp; '1' - Account balance is considered <br/>&nbsp; '2' -
+                Plan balance is considered
+              format: int32
+              example: '0'
+              enum:
+              - 0
+              - 1
+              - 2
+            isResidualInterestBeginBalanceEnabled:
+              maxLength: 1
+              type: string
+              description: This field identifies whether the beginning balance is
+                considered in the decision to waive interest. <br/>The values are:<br/>&nbsp;
+                '0' - Do not use the beginning balance in the waive decision process
+                (Default) <br/>&nbsp; '1' - Use the beginning balance in the waive
+                decision process
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            residualInterestBeginningThresholdAmount:
+              maxLength: 17
+              type: string
+              description: This field identifies balance threshold that the beginning
+                balance must be less than or equal to before interest is waived.
+              example: $0.00
+            isResidualInterestEndingBalanceEnabled:
+              maxLength: 1
+              type: string
+              description: This field identifies whether the ending balance is considered
+                in the decision to waive interest. <br/>The values are:<br/>&nbsp;
+                '0' - Do not use the ending balance in the waive decision process
+                (Default) <br/>&nbsp; '1' - Use the ending balance in the waive decision
+                process
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+            residualInterestEndingThresholdAmount:
+              maxLength: 17
+              type: string
+              description: This field identifies balance threshold that the ending
+                balance must be less than or equal to before interest is waived.
+              example: $0.00
+            priorCyclePaidDateQualification:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Code that indicates whether the date when the account or
+                plan beginning balance is paid is used to qualify the account or plan
+                to waive prior cycle interest. <br/>The values are:<br/>&nbsp; '0'
+                - Not used (Default) <br/>&nbsp; '1' - Beginning balance must be paid
+                in full, or within variance, by grace day in order to waive interest
+                <br/>&nbsp; '2' - Beginning balance must be paid in full, or within
+                variance, by statement day in order to waive interest
+              format: int32
+              example: '0'
+              enum:
+              - 0
+              - 1
+              - 2
+            residualInterestPaidDateQualification:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Code that indicates whether the date when the account or
+                plan beginning balance is paid is used to qualify the account or plan
+                to waive residual interest. <br/>The values are:<br/>&nbsp; '0' -
+                Not used (Default) <br/>&nbsp; '1' - Beginning balance must be paid
+                in full, or within variance, by grace day in order to waive interest
+                <br/>&nbsp; '2' - Beginning balance must be paid in full, or within
+                variance, by statement day in order to waive interest
+              format: int32
+              example: '0'
+              enum:
+              - 0
+              - 1
+              - 2
+    InquireProductResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 001-998.
+          format: int32
+          example: '600'
+        productId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number of the product associated with
+            the organization. Valid values are 001-998.
+          format: int32
+          example: '1'
+        productDescription:
+          maxLength: 30
+          type: string
+          description: This filed is the description of the Product entity. This description
+            enables you to identify the kind of accounts processed by this product.
+          example: VISA CREDIT CONSUMER
+        cardProductDisplay:
+          maxLength: 1
+          type: string
+          description: Flag that indicates whether cards in this logo display a logo
+            symbol for PLUS, Cirrus, or Maestro. <br/>The values are:<br/>&nbsp; '0'
+            - No cards in this product display a PLUS, Cirrus, or Maestro product
+            (Default) <br/>&nbsp; '1' - Cards in this product display a Cirrus symbol
+            <br/>&nbsp; '2' - Cards in this product display a PLUS symbol <br/>&nbsp;
+            '3' - Cards in this product display a Maestro symbol <br/>&nbsp; '4' -
+            Cards in this product display both Cirrus and Maestro symbols <br/>&nbsp;
+            '5' - Cards in this product display a Maestro symbol (chip cards only)
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        quarterlyAffiliateCardProduct:
+          maxLength: 3
+          type: string
+          description: Code that indicates the card association card product. This
+            field is required if the Product entity processes bankcard accounts (TYPE
+            OF ACCOUNTS PROCESSED field is D, X, or Y) to identify the quarterly reporting
+            classification or card product.
+          example: V1
+        isLoanFeatureEnabled:
+          maxLength: 1
+          type: string
+          description: Flag that indicates whether the loans feature is active for
+            the product. <br/>The values are:<br/>&nbsp; '0' - No, the loans feature
+            is not active for this product (Default) <br/>&nbsp; '1' - Yes, the loans
+            feature is active for this product
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        isPaymentHolidaysEnabled:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether manual skip payments are allowed
+            for accounts in this product. <br/>The values are:<br/>&nbsp; 'N' - Skip
+            payments are not allowed (Default) <br/>&nbsp; 'Y' - Skip payments are
+            allowed
+          example: Y
+          enum:
+          - N
+          - Y
+        isSameDayEmbossingEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether same-day embossing is allowed for
+            accounts within this product. <br/>The values are:<br/>&nbsp; '0' - Same-day
+            embossing is not allowed (Default) <br/>&nbsp; '1' - Same-day embossing
+            is allowed
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        isChipOrPinCardEnabled:
+          maxLength: 1
+          type: string
+          description: This flag identifies whether smart cards can be issued for
+            cards in this product. <br/>The values are:<br/>&nbsp; '0' - No, smart
+            cards cannot be issued for cards in this product (only magnetic-stripe
+            cards allowed) (Default) <br/>&nbsp; '1' - Yes, smart cards can be issued
+            for cards in this product (smart and magnetic-stripe cards allowed)
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        delinquencyAgeing:
+          maxLength: 1
+          type: string
+          description: Code that specifies whethre delinquency aging occurs on payment
+            due date or cycle date. <br/>The values are:<br/>&nbsp; 'D' - Age delinquency
+            on payment due date (Default) <br/>&nbsp; 'S' - Age delinquency on cycle
+            date
+          example: D
+          enum:
+          - D
+          - S
+        processingControlLevel:
+          maxLength: 1
+          type: string
+          description: This is a flag which indicates the processing control level
+            for accounts in this product. <br/>The values are:<br/>&nbsp; 'L' - Product
+            <br/>&nbsp; 'O' - Business unit <br/>&nbsp; 'S' - System
+          example: O
+          enum:
+          - S
+          - O
+          - L
+        isCollectionsEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether CTA is active. <br/>The values
+            are:<br/>&nbsp; 'N' - CTA is not active <br/>&nbsp; 'Y' - CTA is active
+            (Default)
+          example: Y
+          enum:
+          - N
+          - Y
+        automaticAccountNumberGeneration:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether this product uses automatic account
+            number and card number generation. <br/>The values are:<br/>&nbsp; 'N'
+            - No, this product does not allow automatic number generation (Default)
+            <br/>&nbsp; 'Y' - Yes, this product allows automatic number generation
+            using the number generation table defined on Products  16-Account Generation
+            Tables <br/>&nbsp; 'I' - Yes, this product allows automatic number generation
+            using the Number Generation tables in SSC. When this field is I, CMS uses
+            the ACCOUNT IDENTIFICATION and CARD IDENTIFICATION fields for the Account
+            Base Segment number and card number, respectively
+          example: I
+          enum:
+          - Y
+          - I
+          - N
+        authAlerts:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether transaction authorization-based
+            alerts functionality is active for the product and whether the cardholder
+            is automatically enrolled for the alert. <br/>The values are:<br/>&nbsp;
+            '0' - Transaction-based alerts functionality is not active (Default) <br/>&nbsp;
+            '1' - Transaction-based alerts functionality is active and the cardholder
+            to be manually enrolled <br/>&nbsp; '2' - Transaction-based alerts functionality
+            is active and the cardholder to be automatically enrolled
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        isFalcon6Enabled:
+          maxLength: 1
+          type: string
+          description: This is the flag that indicates whether the Falcon 6 interface
+            is active for this product. <br/>The values are:<br/>&nbsp; '0' - The
+            Falcon 6 interface is not active for this product (Default) <br/>&nbsp;
+            '1' - The Falcon 6 interface is active for this product
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        isVipOverrideEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates if VIP override is active or not. <br/>The
+            values are:<br/>&nbsp; 'Y' - Yes, VIP override active <br/>&nbsp; 'N'
+            - No, VIP override not active
+          example: N
+          enum:
+          - Y
+          - N
+        isSecureCodeEnabled:
+          maxLength: 1
+          type: string
+          description: Flag that indicates whether the Connection Management System
+            (CCM) is active. <br/>The values are:<br/>&nbsp; '0' - Secure Code is
+            not active for this product (Default) <br/>&nbsp; '1' - Secure Code is
+            active for this product
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        isLoyaltyManagementEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates if the Loyalty Management System (LMS)
+            is active for this product. <br/>The values are:<br/>&nbsp; '0' - LMS
+            is not active for this product (Default) <br/>&nbsp; '1' - LMS is active
+            for this product
+          example: '1'
+          enum:
+          - '1'
+          - '0'
+        isDebitCardProcessEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether the online debit card processing
+            feature is active for this product. <br/>The values are:<br/>&nbsp; '0'
+            - No, debit card processing is not active (Default) <br/>&nbsp; '1' -
+            Yes, debit card processing is active
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        isTokenizationServiceEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether the tokenization functionality
+            is active for the product. <br/>The values are:<br/>&nbsp; '0' - No, the
+            tokenization functionality is not active (Default) <br/>&nbsp; '1' - Yes,
+            the tokenization functionality is active
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        isManualPinResetEnabled:
+          maxLength: 1
+          type: string
+          description: Flag that indicates whether the PIN try counter field on the
+            Embosser entity is allowed to be manually reset for accounts in this product.
+            <br/>The values are:<br/>&nbsp; '0' - Manual reset of the PIN CTR RESET
+            field is not allowed (Default) <br/>&nbsp; '1' - Manual reset of the PIN
+            CTR RESET field is allowed
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        isCardActionTableEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether the enhanced PIN and card warehousing
+            functionality provided by the card action table is enabled. <br/>The values
+            are:<br/>&nbsp; '0' - Card action table is disabled. However, if the entries
+            are made in the card action table, CMS checks the values in the table
+            for accuracy (Default) <br/>&nbsp; '1' - Card action table is enabled
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        defaultCardTechnology:
+          maxLength: 1
+          type: string
+          description: Default Card Technology to be used during new account setup.
+            <br/>The values are:<br/>&nbsp; '0' - Issue a magnetic-stripe card <br/>&nbsp;
+            '1' - Issue a smart card <br/>&nbsp; '2' - Issue a magnetic-stripe contactless
+            card <br/>&nbsp; '3' - Issue a smart contactless card <br/>&nbsp; '4'
+            - Provision a magnetic-stripe contactless mobile payment instrument (PI)
+            <br/>&nbsp; '5' - Provision a smart contactless mobile PI
+          example: '3'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+        isScriptingEnabled:
+          maxLength: 1
+          type: string
+          description: This is a flag which indicates whether the smart card scripting
+            functionality provided by CMS, FAS (Financial Authorization System), ESS
+            (EMV Scripting System), and RIS is active for this product. <br/>The values
+            are:<br/>&nbsp; '0' - Scripting functionality is not active <br/>&nbsp;
+            '1' - Scripting functionality is active
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        isSweepOptionEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether sweep processing is allowed for
+            this product. <br/>The values are:<br/>&nbsp; '0' - Sweep is not allowed.
+            Billing accounts cannot be established in this product (Default) <br/>&nbsp;
+            '1' - Sweeping is allowed. Billing accounts can be established in this
+            product
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        isCrossBorderAlertEnabled:
+          maxLength: 1
+          type: string
+          description: This is the flag that indicates the alert setting for cross
+            border transactions at the cardholder level. <br/>The values are:<br/>&nbsp;
+            '0' - No alert to be sent (Default) <br/>&nbsp; '1' - Alert to be sent
+            for cross border transactions
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        creditLimitBypass:
+          maxLength: 1
+          type: string
+          description: This is the field that determines whether accounts belonging
+            to this product will be excluded from an adaptive control system (ACS)
+            credit limit review. <br/>The values are:<br/>&nbsp; '0' - Include (Default)
+            <br/>&nbsp; '1' - Exclude from credit limit increase <br/>&nbsp; '2' -
+            Exclude from credit limit decrease <br/>&nbsp; '3' - Exclude from credit
+            limit decision area
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        isLocalorInternationalUsageEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates if the cards that are assigned to accounts
+            in this product are approved for local use only or international use.
+            <br/>The values are:<br/>&nbsp; '0' - Approved for international use <br/>&nbsp;
+            '1' - Approved for local use only
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        isNewCardDefaultEnabled:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether the value in the ENHANCED PRODUCT
+            field defaults to the Embosser entity for new cards in this product. <br/>The
+            values are:<br/>&nbsp; '0' - No, do not default the value in the ENHANCED
+            PRODUCT field to the Embosser entity for new cards in this product (Default)
+            <br/>&nbsp; '1' - Yes, default the value in the ENHANCED PRODUCT field
+            to the Embosser entity for new cards in this product
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        enhancedProductsEligible:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether accounts in the product are eligible
+            for an enhanced product. <br/>The values are:<br/>&nbsp; '0' - No, accounts
+            in this product are not eligible for an enhanced product (Default) <br/>&nbsp;
+            '1' - Yes, accounts in this product are eligible for an enhanced product
+            <br/>&nbsp; '4' - Small business accounts participate in the MasterCard
+            U.S. Small Business Spend program
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '4'
+        isCardPresenttransactionEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether virtual card accounts are allowed
+            for the product and whether FAS restricts card-present transactions for
+            virtual card accounts. <br/>The values are:<br/>&nbsp; ' ' - Not a virtual
+            card product (Default) <br/>&nbsp; 'X' - Virtual card product; FAS does
+            not restrict card-present transactions for virtual card accounts <br/>&nbsp;
+            'Y' - Virtual card product; FAS restricts card-present transactions for
+            virtual card accounts
+          example: ' '
+          enum:
+          - X
+          - Y
+          - ' '
+        newCardPlastics:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether CMS generates a tape for embossing
+            plastics for new accounts. <br/>The values are:<br/>&nbsp; 'N' - No, do
+            not generate plastic for accounts <br/>&nbsp; 'Y' - Yes, issue plastic
+            for new accounts <br/>&nbsp; 'B' - Yes, issue plastic for new accounts
+            <br/>&nbsp; 'F' - Yes, issue plastic for new accounts
+          example: Y
+          enum:
+          - N
+          - Y
+          - B
+          - F
+        embossingFilesKeyType:
+          maxLength: 1
+          type: string
+          description: Key type for Embosser Files. <br/>The values are:<br/>&nbsp;
+            'B' - Embossing Zone PIN Key (ZPK) <br/>&nbsp; 'E' - Embossing Transport
+            Key (ETK) <br/>&nbsp; 'F' - Fixed Embossing Transport Key (ETK) <br/>&nbsp;
+            'G' - PIN Transport Key (PTK—random key) <br/>&nbsp; 'H' - Zone PIN Key
+            (PTK—fixed key)
+          example: B
+          enum:
+          - B
+          - E
+          - F
+          - G
+          - H
+        keyTypeForPinMailerFiles:
+          maxLength: 1
+          type: string
+          description: Key type for PIN mailer. <br/>The values are:<br/>&nbsp; 'B'
+            - Embossing Zone PIN Key (ZPK) <br/>&nbsp; 'E' - Embossing Transport Key
+            (ETK) <br/>&nbsp; 'F' - Fixed Embossing Transport Key (ETK) <br/>&nbsp;
+            'G' - PIN Transport Key (PTK—random key) <br/>&nbsp; 'H' - Zone PIN Key
+            (PTK—fixed key)
+          example: B
+          enum:
+          - B
+          - E
+          - F
+          - G
+          - H
+        pinMailerNameaddress:
+          maxLength: 1
+          type: string
+          description: Determines the name and address to print on PIN mailer. <br/>The
+            values are:<br/>&nbsp; '0' - Print name and address from the Embosser
+            entity for the cardholder <br/>&nbsp; '1' - Print name and address of
+            the relevant cardholder <br/>&nbsp; '2' - Print name of the relevant cardholder
+            and address of the primary cardholder <br/>&nbsp; '3' - Print name and
+            address of the primary cardholder
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        cardMailerNameaddress:
+          maxLength: 1
+          type: string
+          description: Determines the name and address to print on card mailer. <br/>The
+            values are:<br/>&nbsp; '0' - Print name and address from the Embosser
+            entity for the cardholder <br/>&nbsp; '1' - Print name and address of
+            the relevant cardholder <br/>&nbsp; '2' - Print name of the relevant cardholder
+            and address of the primary cardholder <br/>&nbsp; '3' - Print name and
+            address of the primary cardholder
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        isCardBureauFeedbackEnabled:
+          maxLength: 1
+          type: string
+          description: This flag indicates whether CMS uses the Card Bureau Feedback
+            (ATAD) file to update the MAILER DATE field on the Embosser entity. <br/>The
+            values are:<br/>&nbsp; '0' - Card Bureau Feedback (ATAD) file is not used
+            and CMS updates the MAILER DATE field (Default) <br/>&nbsp; '1' - Card
+            Bureau Feedback (ATAD) file is used and the issuer is responsible for
+            updating the MAILER DATE field. For smart cards, the issuer must provide
+            the ATAD file; for magnetic stripe cards, the issuer must provide nonmonetary
+            maintenance entity to update the field
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        pinMailerForCardAction:
+          type: array
+          items:
+            $ref: '#/components/schemas/PinMailerForCardAction_InquireProductResponseModel'
+        isDirectDebitCreditEnabled:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether direct debit and direct credit
+            processing is active for accounts in this product. <br/>The values are:<br/>&nbsp;
+            'N' - Direct debit and direct credit processing is not active (Default)
+            <br/>&nbsp; 'Y' - Direct debit and direct credit processing is active
+            <br/>&nbsp; 'A' - Direct debit and direct credit processing is active
+            for prepaid accounts (TYPE OF ACCOUNTS PROCESSED on Products  01-Product
+            Specification is Y)
+          example: N
+          enum:
+          - N
+          - Y
+          - A
+        isOverlimitProcessingOptinIndicatorEnabled:
+          maxLength: 1
+          type: string
+          description: This field is a code that indicates whether the product participates
+            in overlimit opt-in processing. <br/>The values are:<br/>&nbsp; '0' -
+            Product does not participate in overlimit opt-in functionality (Default)
+            <br/>&nbsp; '1' - Product participates in overlimit opt-in functionality;
+            allow overlimit approvals for all accounts within the product <br/>&nbsp;
+            '2' - Product participates in overlimit opt-in functionality; only allow
+            overlimit approvals for accounts within the product that have opted in
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          example: ''
+        openToBuyCreditBalance:
+          maxLength: 1
+          type: string
+          description: This field indicates whether CMS includes the credit balance,
+            disputed amounts, and original loan amount when calculating the open-to-buy
+            amount. <br/>The values are:<br/>&nbsp; '0' - Include credit balance exclude
+            memo credit open to buy <br/>&nbsp; '1' - Exclude all open to buy <br/>&nbsp;
+            '2' - Exclude credit balance include memo credit open to buy <br/>&nbsp;
+            '3' - Include all open to buy
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        includeDisputedAmounts:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether CMS includes disputed amounts in
+            the open-to-buy (OTB) calculation of accounts. <br/>The values are:<br/>&nbsp;
+            '0' - Include disputed amounts (Default) <br/>&nbsp; '1' - Exclude disputed
+            amounts
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        residenceId:
+          maxLength: 3
+          type: string
+          description: This flag identifies the state, province or country in which
+            the  account holder resides.
+          example: SX1
+        issuanceId:
+          maxLength: 3
+          type: string
+          description: This is the flag which identifies the state, province or country
+            in which the account was issued.
+          example: SX1
+        isWspTokenEnabled:
+          maxLength: 1
+          type: string
+          description: This field is used to determine if a particular logo allows
+            tokenization. <br/>The values are:<br/>&nbsp; '0' - Logo not eligible
+            (Default) <br/>&nbsp; '1' - Logo eligible for Tokenization
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        typeOfAccount:
+          maxLength: 1
+          type: string
+          description: This flag identifies the type of accounts processed by the
+            product. <br/>The values are:<br/>&nbsp; 'B' - Bad checks/NSF checks <br/>&nbsp;
+            'C' - COD accounts <br/>&nbsp; 'D' - Debit card <br/>&nbsp; 'L' - Layaway
+            <br/>&nbsp; 'P' - Profit and loss <br/>&nbsp; 'R' - Revolving, which is
+            also referred to as retail or private label (Default) <br/>&nbsp; 'X'
+            - Bankcard <br/>&nbsp; 'Y' - Bankcard — prepaid <br/>&nbsp; 'Z' - Chargecard
+          example: X
+          enum:
+          - R
+          - L
+          - P
+          - B
+          - C
+          - D
+          - Y
+          - X
+          - Z
+        markUpFeeEnabled:
+          type: object
+          properties:
+            isReimburseIssuerOrSchemaEnabled:
+              maxLength: 1
+              type: string
+              description: This is a flag which indicates whether the credit fee option
+                is active for this product. When this option is active, the cardholder
+                receives reimbursement for issuer and/or scheme fees on credit transactions.
+                <br/>The values are:<br/>&nbsp; '0' - Do not reimburse issuer and/or
+                scheme fees on credit transactions (Default) <br/>&nbsp; '1' - Reimburse
+                issuer and/or scheme fees on credit transactions
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isIssuerEnabled:
+              maxLength: 1
+              type: string
+              description: This is a flag that indicates whether the issuer-markup
+                fee option is active for this product. <br/>The values are:<br/>&nbsp;
+                '0' - Issuer markup is not active; do not assess this fee to the cardholder
+                (Default) <br/>&nbsp; '1' - Issuer markup is active; assess this fee
+                to the cardholder
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isSchemeEnabled:
+              maxLength: 1
+              type: string
+              description: This is a flag which indicates whether the scheme-markup
+                fee option is active for this product. <br/>The values are:<br/>&nbsp;
+                '0' - Scheme markup is not active; do not assess this fee to the cardholder
+                (Default) <br/>&nbsp; '1' - Scheme markup is active; assess this fee
+                to the cardholder
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+            isUserDefinedEnabled:
+              maxLength: 1
+              type: string
+              description: This is a flag which indicates whether the user-defined
+                markup fee option is active for this product. When this option is
+                active, CMS assesses user-defined markup fees on first presentments
+                and reversals. <br/>The values are:<br/>&nbsp; '0' - User-defined
+                markup fee is not active; do not assess this fee to the cardholder
+                (Default) <br/>&nbsp; '1' - User-defined markup fee is active; assess
+                this fee to the cardholder
+              example: '0'
+              enum:
+              - '1'
+              - '0'
+        cardActivationControls:
+          type: object
+          properties:
+            newCardActivation:
+              maxLength: 1
+              type: string
+              description: This flag indicates whether to use card activation for
+                new cards. <br/>The values are:<br/>&nbsp; 'N' - Do not use card activation
+                (Default) <br/>&nbsp; 'Y' - Use card activation
+              example: Y
+              enum:
+              - N
+              - Y
+            additionalCardActivation:
+              maxLength: 1
+              type: string
+              description: This flag indicates whether to use card activation for
+                additional cards. <br/>The values are:<br/>&nbsp; 'N' - Do not use
+                card activation (Default) <br/>&nbsp; 'Y' - Use card activation
+              example: Y
+              enum:
+              - N
+              - Y
+            reissueCardActivation:
+              maxLength: 1
+              type: string
+              description: This flag indicates whether to use card activation for
+                reissued cards. <br/>The values are:<br/>&nbsp; 'N' - Do not use card
+                activation (Default) <br/>&nbsp; 'Y' - Use card activation
+              example: Y
+              enum:
+              - N
+              - Y
+            replacementCardActivation:
+              maxLength: 1
+              type: string
+              description: This flag indicates whether to use card activation for
+                replacement cards. <br/>The values are:<br/>&nbsp; 'N' - Do not use
+                card activation (Default) <br/>&nbsp; 'Y' - Use card activation
+              example: Y
+              enum:
+              - N
+              - Y
+        paymentProcessingControls:
+          type: object
+          properties:
+            applicationMethodForAccountReceivable:
+              maxLength: 1
+              type: string
+              description: This Field determines the payment application method for
+                accounts-receivable accounts which are non-charged-off accounts. <br/>The
+                values are:<br/>&nbsp; 'B' - Billed-not-paid components, then principal,
+                then current cycle transactions, across all plans <br/>&nbsp; 'C'
+                - Billed-not-paid components, then to principal and current cycle
+                transactions by plan based on plan priority <br/>&nbsp; 'D' - Billed-not-paid
+                components across all plans based on plan priority, then to principal
+                and current transactions <br/>&nbsp; 'H' - Billed-not-paid components,
+                including principal and current cycle transactions, across all plans
+                <br/>&nbsp; 'K' - Loan credit plans with any type of settlement quote
+                if the payment amount is within the settlement variance amount, then
+                all credit plans with a fixed payment amount by plan priority (like
+                application method P), then all credit plans with a non-fixed payment
+                amount by plan priority (like application method B) <br/>&nbsp; 'L'
+                - Loan credit plans with a P or W settlement quote if the payment
+                amount is within the settlement variance amount, then all credit plans
+                with a fixed payment amount by plan priority (like application method
+                P), then all credit plans with a non-fixed payment amount by plan
+                priority (like application method B) <br/>&nbsp; 'M' - Billed-not-paid
+                components by payment hierarchy, then the remaining due amount (any
+                plan minimum amount due remaining after non-principal BNP components
+                are satisfied), then statement principal, then current cycle transactions,
+                across all plans <br/>&nbsp; 'N' - Billed-not-paid components by payment
+                hierarchy, then the remaining due amount (any plan minimum amount
+                due remaining after BNP components are satisfied) across plans, then
+                statement principal and current cycle transactions by plan <br/>&nbsp;
+                'O' - Interest rate of plan, total amount due of plan, plan priority
+                number, and plan sequence number <br/>&nbsp; 'P' - Plan priority,
+                then PAYMENT MATRIX table <br/>&nbsp; 'U' - User-defined application
+                method. A user exit must be provided when using this method
+              example: H
+              enum:
+              - B
+              - C
+              - D
+              - H
+              - P
+              - K
+              - L
+              - U
+              - M
+              - N
+              - O
+            applicationMethodForProfitLoss:
+              maxLength: 1
+              type: string
+              description: This field determines the payment application method for
+                profit-and-loss accounts, which are charged-off accounts. <br/>The
+                values are:<br/>&nbsp; 'B' - Billed-not-paid components, then principal,
+                then current cycle transactions, across all plans <br/>&nbsp; 'C'
+                - Billed-not-paid components, then to principal and current cycle
+                transactions by plan based on plan priority <br/>&nbsp; 'D' - Billed-not-paid
+                components across all plans based on plan priority, then to principal
+                and current transactions <br/>&nbsp; 'H' - Billed-not-paid components,
+                including principal and current cycle transactions, across all plans
+                <br/>&nbsp; 'K' - Loan credit plans with any type of settlement quote
+                if the payment amount is within the settlement variance amount, then
+                all credit plans with a fixed payment amount by plan priority (like
+                application method P), then all credit plans with a non-fixed payment
+                amount by plan priority (like application method B) <br/>&nbsp; 'L'
+                - Loan credit plans with a P or W settlement quote if the payment
+                amount is within the settlement variance amount, then all credit plans
+                with a fixed payment amount by plan priority (like application method
+                P), then all credit plans with a non-fixed payment amount by plan
+                priority (like application method B) <br/>&nbsp; 'M' - Billed-not-paid
+                components by payment hierarchy, then the remaining due amount (any
+                plan minimum amount due remaining after non-principal BNP components
+                are satisfied), then statement principal, then current cycle transactions,
+                across all plans <br/>&nbsp; 'N' - Billed-not-paid components by payment
+                hierarchy, then the remaining due amount (any plan minimum amount
+                due remaining after BNP components are satisfied) across plans, then
+                statement principal and current cycle transactions by plan <br/>&nbsp;
+                'O' - Interest rate of plan, total amount due of plan, plan priority
+                number, and plan sequence number <br/>&nbsp; 'P' - Plan priority,
+                then PAYMENT MATRIX table <br/>&nbsp; 'U' - User-defined application
+                method. A user exit must be provided when using this method
+              example: D
+              enum:
+              - B
+              - C
+              - D
+              - H
+              - P
+              - K
+              - L
+              - U
+              - M
+              - N
+              - O
+            prepaymentsAllowed:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether prepayments are allowed for
+                accounts in this product. <br/>The values are:<br/>&nbsp; '0' - Do
+                not allow prepayments (Default) <br/>&nbsp; '1' - Allow prepayments
+                only for transactions associated with logic module 036 (prepayment)
+                <br/>&nbsp; '2' - Allow prepayments for transactions associated with
+                all payment logic modules (030, 033, 036, and 039). Any overpayment
+                is treated as a prepayment
+              example: '0'
+              enum:
+              - '0'
+              - '2'
+              - '1'
+            paymentApplicationLevel:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether CMS applies payments to accounts
+                with multiple credit plan segments by the plan priority defined on
+                the Credit Plan Master entity or the plan priority defined on the
+                Product entity. <br/>The values are:<br/>&nbsp; 'L' - Product level
+                <br/>&nbsp; 'P' - Credit plan level (Default)
+              example: P
+              enum:
+              - P
+              - L
+    PinMailerForCardAction_InquireProductResponseModel:
+      type: object
+      properties:
+        cardAction:
+          maxLength: 1
+          type: string
+          description: This flag indicate the various card actions that use the enhanced
+            PIN and card warehousing functionality when the card actions are initiated
+            on the Embosser entity. <br/>The values are:<br/>&nbsp; '0' - No action
+            (Default) <br/>&nbsp; '1' - Issue new card(s) <br/>&nbsp; '2' - Issue
+            additional card(s) <br/>&nbsp; '3' - Issue replacement card(s) <br/>&nbsp;
+            '6' - Issue emergency replacement card(s) <br/>&nbsp; '7' - Reissue card(s)
+            <br/>&nbsp; '8' - Reissue card(s) with different card numbering scheme
+            (CNS) <br/>&nbsp; '9' - Card technology reissue
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+        pinOptions:
+          maxLength: 1
+          type: string
+          description: Code that indicates the action to be taken for enhanced PIN
+            and card warehousing when the corresponding card action is processed.
+            <br/>The values are:<br/>&nbsp; '0' - Do not use. Do not generate PIN
+            and do not send PIN mailer (Default) <br/>&nbsp; '1' - Generate new PIN
+            and send PIN mailer <br/>&nbsp; '2' - Send PIN mailer with existing PIN
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+    InquirePlanMasterResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 001-998.
+          format: int32
+          example: '600'
+        planId:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: Identification number of the Credit Plan Master entity. The
+            values are 00001–99998. You can establish as many as 99,998 Credit Plan
+            Master entity for each organization.
+          format: int32
+          example: '10002'
+        description:
+          maxLength: 30
+          type: string
+          description: Description of the Credit Plan Master entity. This description
+            defaults to the Credit Plan Segment entity for credit plans associated
+            with this Credit Plan Master entity.
+          example: RETAIL PLAN
+        planType:
+          maxLength: 1
+          type: string
+          description: Code that identifies the type of credit plan. This value defaults
+            to the Credit Plan Segment entity for credit plans generated by the Credit
+            Plan Master entity. <br/>The values are:<br/>&nbsp; 'A' - Access checks
+            (cash plan) <br/>&nbsp; 'B' - Balance transfers (retail plan) <br/>&nbsp;
+            'C' - Cash plan <br/>&nbsp; 'D' - Deferment plan <br/>&nbsp; 'I' - Installment
+            Plan <br/>&nbsp; 'K' - Access checks (retail plan) <br/>&nbsp; 'L' - Closed-end
+            installment loan (loan plan) <br/>&nbsp; 'R' - Retail plan (Default) <br/>&nbsp;
+            'T' - Balance transfers (cash plan) <br/>&nbsp; 'Y' - Prepaid (retail
+            plan)
+          example: R
+          enum:
+          - A
+          - B
+          - C
+          - K
+          - R
+          - D
+          - I
+          - Y
+          - T
+          - L
+        paymentType:
+          maxLength: 1
+          type: string
+          description: Code that indicates the method to calculate the minimum payment
+            due for credit plans generated by this Credit Plan Master entity. <br/>The
+            values are:<br/>&nbsp; 'A' - Bill the fixed payment amount each month,
+            regardless of the outstanding balance of the account <br/>&nbsp; 'B' -
+            Bill the account balance (Default) <br/>&nbsp; 'C' - Calculate a new minimum
+            payment each cycle based on the repayment table and the current balance
+            <br/>&nbsp; 'D' - Calculate a new minimum payment for any cycle in which
+            a user-generated debit is posted <br/>&nbsp; 'E' - Calculate a fixed payment
+            amount <br/>&nbsp; 'F' - Bill a fixed payment computed from the repayment
+            table during the first statement cycle <br/>&nbsp; 'G' - Bill a fixed
+            principal amount as computed using payment type F plus interest and insurance
+            <br/>&nbsp; 'H' - Bill based on the highest balance <br/>&nbsp; 'I' -
+            Bill the current month’s interest only <br/>&nbsp; 'L' - Calculate the
+            payment using the loan schedule <br/>&nbsp; 'M' - Bill a fixed principal
+            amount calculated by dividing principal balance by LOAN TERM FOR SYSTEM-GENERATED
+            PLAN on Credit Plans–>01–Credit Plan Specification. Add to this any unbilled
+            interest. Amount will be recalculated each cycle after a new debit has
+            posted. This value is valid only if the POSTING INDICATOR on Credit Plans–>01–Credit
+            Plan Specification is 3 <br/>&nbsp; 'P' - Bill a fixed principal amount
+            as computed using payment type F plus interest, fees, and insurance <br/>&nbsp;
+            'Q' - Bill based on the highest principal balance <br/>&nbsp; 'R' - Bill
+            based on the highest revolving balance <br/>&nbsp; 'S' - Bill based on
+            the highest cycle ending balance <br/>&nbsp; 'T' - Term payment. Calculate
+            the payment due using the percentage in the first entry of the repayment
+            table <br/>&nbsp; 'U' - User-defined calculation via a user exit <br/>&nbsp;
+            'W' - Bill based on the previous purchase balance
+          example: T
+          enum:
+          - T
+          - F
+          - H
+          - D
+          - A
+          - P
+          - B
+          - I
+          - S
+          - C
+          - U
+          - L
+          - M
+          - Q
+          - R
+          - E
+          - G
+          - W
+          - K
+        balanceTransferType:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether the Interest Table Override (ITO)
+            that sets a special interest rate for balance transfer credit plans can
+            be extended, not extended, or is in effect until a specific date. <br/>The
+            values are:<br/>&nbsp; 'E' - Extend ITO number of months <br/>&nbsp; 'N'
+            - Do not extend ITO number of months <br/>&nbsp; 'S' - Specify an ITO
+            ending date
+          example: N
+          enum:
+          - E
+          - N
+          - S
+        graceBalanceQualification:
+          maxLength: 1
+          type: string
+          description: Field that determines the plan balances, or portions of plan
+            balances, that CMS considers when qualifying an account for grace processing
+            logic.<br/>The values are:<br/>&nbsp; '0' - Statement balance of the credit
+            plan segment must be paid (Default) <br/>&nbsp; '1' - Total amount due
+            for the credit plan segment on cycle date must be paid <br/>&nbsp; '2'
+            - Balance of the credit plan segment is excluded from grace processing
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+        interestRateTableId:
+          maxLength: 2
+          type: string
+          description: Rate table occurrence indicator (RTOI) that identifies which
+            one of the 12 interest tables on the Processing Control Table to assign
+            to credit plans generated by this Credit Plan Master entity.
+          example: '1'
+          enum:
+          - 01-12
+        interestRateTableOverride:
+          type: object
+          properties:
+            tableId:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Identification number of the Interest table used to calculate
+                interest for credit plans generated by this Credit Plan Master entity.
+              format: int32
+              example: '1'
+            expiryDate:
+              maxLength: 10
+              type: string
+              description: This field identifies a specific expiration date for the
+                ITO, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE
+                FORMAT on System Control.
+              example: 15/08/2023
+        consolidatedDetails:
+          type: object
+          properties:
+            controllingCreditPlanMaster:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Plan number of the Credit Plan Master entity used for consolidated
+                payment calculations.
+              format: int32
+              example: '10003'
+            isConsolidatedStatementEnabled:
+              maxLength: 1
+              type: string
+              description: Code that indicates whether CMS consolidates statements
+                for credit plans assigned the same plan number. <br/>The values are:<br/>&nbsp;
+                'N' - Do not consolidate plan segments <br/>&nbsp; 'Y' - Consolidate
+                plan segments (Default)
+              example: Y
+              enum:
+              - N
+              - Y
+            consolidatedPayment:
+              maxLength: 1
+              type: string
+              description: Field that indicates whether CMS consolidates payments
+                for the Credit Plan Segment entity. Consolidate Payment Indicator
+                is a code that indicates whether CMS calculates a single (consolidated)
+                payment amount for similar Credit Plan Segment entitys on the account..<br/>The
+                values are:<br/>&nbsp; 'B' - Yes, consolidate plans for minimum payment
+                calculation <br/>&nbsp; 'N' - No, do not consolidate for minimum payment
+                calculation (Default) <br/>&nbsp; 'Y' - Yes, consolidate plans for
+                minimum payment calculation <br/>&nbsp; 'R' - Yes, consolidate plans
+                for minimum payment calculation
+              example: Y
+              enum:
+              - N
+              - R
+              - B
+              - Y
+        promotionalPlanDetails:
+          type: object
+          properties:
+            latePaymentCancelRoll:
+              maxLength: 1
+              type: string
+              description: Code that controls whether credit plans generated by this
+                Credit Plan Master entity roll over to another credit plan for contractual
+                or recency delinquency or when a payment is not received by the payment
+                due date or cycle date. <br/>The values are:<br/>&nbsp; '0' - Do not
+                roll over this credit plan (Default) <br/>&nbsp; '1' - Roll over deferred
+                plans for contractual delinquency <br/>&nbsp; '2' - Roll over deferred
+                plans for recency delinquency <br/>&nbsp; '3' - Roll over ITO plans
+                for contractual delinquency <br/>&nbsp; '4' - Roll over ITO plans
+                for recency delinquency <br/>&nbsp; '5' - Cancel and roll over for
+                payment due and not received by the payment due date <br/>&nbsp; '6'
+                - Cancel and roll over for payment due and not received by the cycle
+                date
+              example: '1'
+              enum:
+              - '0'
+              - '2'
+              - '4'
+              - '1'
+              - '3'
+              - '5'
+              - '6'
+            delinquencyLevelToCancel:
+              maxLength: 1
+              type: string
+              description: Contractual or recency delinquency level to cancel a deferred
+                plan or ITO plan. <br/>The values are:<br/>&nbsp; '0' - Do not cancel
+                for delinquency (Default) <br/>&nbsp; '1' to '9' - Level of contractual
+                or recency delinquency at which to cancel
+              example: '6'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+              - '4'
+              - '5'
+              - '6'
+              - '7'
+              - '8'
+              - '9'
+            cancellationLetterId:
+              maxLength: 3
+              type: string
+              description: Code that identifies the letter in the CTA system or LTS
+                system that is sent upon cancellation of a deferment or Interest Table
+                Override (ITO).
+              example: ''
+            cancellationRollOverPlanId:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Number that identifies the Credit Plan Master entity that
+                generates the rollover credit plan upon cancellation of a deferment
+                or Interest Table Override (ITO).
+              format: int32
+              example: '50002'
+            cancellationPlanRollOverMethod:
+              maxLength: 1
+              type: string
+              description: Code that indicates the method for rolling over a deferred
+                or ITO credit plan that was canceled due to delinquency or a payment
+                not received when due. If the LATE PAYMENT CANCEL ROLL field is 5
+                or 6, this field is required.<br/>The values are:<br/>&nbsp; '0' -
+                Change the plan number and generate activity recap transactions for
+                principal and billed-notpaid components (Default) <br/>&nbsp; '1'
+                - Generate individual monetary transactions for each component to
+                transfer the plan balance to the new plan <br/>&nbsp; '2' - Generate
+                a monetary transaction for the principal balance to transfer the plan
+                balance to the new plan
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+            expirationRollover:
+              maxLength: 1
+              type: string
+              description: Code that controls rolling of this plan based on expiration
+                of a deferred credit plan or an interest table override (ITO).<br/>The
+                values are:<br/>&nbsp; '0' - Do not roll over. Upon expiration of
+                a deferred credit plan or an interest table override (ITO), the existing
+                plan will become a regular revolving plan. (Default) <br/>&nbsp; '1'
+                - Upon expiration of a deferred credit plan, the expired deferment
+                plan will roll to the expiration plan <br/>&nbsp; '2' - Upon expiration
+                of an interest table override (ITO), the existing plan will roll to
+                the expiration plan
+              example: '1'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+            expirationLetter:
+              maxLength: 3
+              type: string
+              description: Code that identifies the letter in the CTA system or LTS
+                system that is sent upon expiration of a deferred credit plan.
+              example: EXP
+            expirationRollOverPlanId:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Number that identifies the Credit Plan Master entity that
+                generates the rollover credit plan upon expiration of a deferred credit
+                plan.
+              format: int32
+              example: '50001'
+            expirationPlanRollOverMethod:
+              maxLength: 1
+              type: string
+              description: Code that indicates the method for rolling over a deferred
+                credit plan that has expired. <br/>The values are:<br/>&nbsp; '0'
+                - Change the plan number and generate activity recap transactions
+                for principal and billed-notpaid components (Default) <br/>&nbsp;
+                '1' - Generate individual monetary transactions for each component
+                to transfer the plan balance to the new plan. CMS resets the canceled
+                plan balances to zero and retains the old plan for the number of days
+                defined in the Product entity (PLAN PURGE DAYS on Products->13-Product
+                Processing Controls) <br/>&nbsp; '2' - Generate a monetary transaction
+                for the principal balance to transfer the plan balance to the new
+                plan. CMS resets the canceled plan balances to zero and retains the
+                old plan for the number of days defined in the Product entity (PLAN
+                PURGE DAYS on Products->13-Product Processing Controls)
+              example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+        multipleSales:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether each sales transaction associated
+            with this Credit Plan Segment entity generates a new Credit Plan Segment
+            entity or is added to an existing Credit Plan Segment entity. The value
+            in this field defaults to Credit Plan Segment entity. <br/>The values
+            are:<br/>&nbsp; 'I' - Generate a new Credit Plan Segment entity for each
+            sale that posts on any date <br/>&nbsp; 'N' - No, add-on sales are not
+            allowed. Do not add subsequent sales to the same Credit Plan Segment entity.
+            If multiple sales post on the same effective date, however, generate one
+            Credit Plan Segment entity that includes all sales that post on the same
+            date <br/>&nbsp; 'Y' - Yes, add-on sales are allowed. Add subsequent sales
+            to the same Credit Plan Segment entity (Default)
+          example: Y
+          enum:
+          - Y
+          - N
+          - I
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer
