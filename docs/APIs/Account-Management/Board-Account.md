@@ -89,8 +89,7 @@ The below table identifies the required parameters in the request payload.
 {
   "accountId": "0006000012000000770",
   "businessUnit": 600,
-  "productId": 1,
-  "externalCustomerId": "000012672302"
+  "productId": 1
 }
 ```
 
@@ -100,9 +99,10 @@ The below table identifies the required parameters in the request payload.
 [
   {
     "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
     "instance": "/v1/accounts/boardAccount",
     "invalid-params": [
-      "V5AK4056SA: ORG/ACCOUNT NUMBER COMBINATION NOT FOUND"
+      "V5S84001EA: ORGANIZATION NOT ON FILE"
     ],
     "source": "VPL",
     "status": 404,
@@ -115,38 +115,38 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5SB4003EA` | Base account number is required |
-| `V5SB4003EG` | Base account number must be numeric |
-| `V5SB4003EH` | Base account number required |
-| `V5SB4005EA` | Customer NA account must be blank |
-| `V5SB4005EB` | Customer NA account required |
-| `V5SB4005EG` | Customer NA account must be blank |
-| `V5SB4005EH` | Customer NA account must be numeric |
-| `V5SB4008EA` | Relationship not valid for this Org |
-| `V5SB4008EB` | Relationship not valid for the dual Org |
-| `V5SB4001EA` | Org not on file |
-| `V5SB4001SA` | Org not on file |
-| `V5SB4002EA` | Logo record not on file |
-| `V5SB4002EB` | Logo record is incomplete |
-| `V5SB4009EA` | Relationship number required |
-| `V5SB4011EA` | Insurance not allowed for prepaid account |
-| `V5SB4012EA` | Sweeping not allowed in this logo |
-| `V5SB4012EB` | HCS must be active for account type values 1,2,3 |
-| `V5SB4012EC` | Account type must be zero for prepaid account |
-| `V5SB4157EC` | Account number exist on relationship file for this org |
-| `V5SB4157ED` | Account number exist on relationship file for dual org |
-| `V5SB4158EA` | Account number cannot duplicate existing embosser for this org |
-| `V5SB4158EB` | Account number cannot duplicate existing embosser for dual org |
-| `V5SB4151EA` | Logo does not allow billing account generation |
-| `V5SB4151EB` | Maximum nummber 20 attemptds made on billing account |
-| `V5SB4151EC` | Generated account number IS greater than ending billing number|
-| `V5SB4151ED` | Logo does not allow account number generation |
-| `V5SB4151EE` | Maximum nummber 20 attemptds made on Base account number |
-| `V5SB4151EG` | Generated account number IS greater than Base account number|
-| `V5SB4152EB` | Org does not allow account number generation |
-| `V5SB4160EA` | Invalid Base account number digit for this org |
-| `V5SB4160EB` | Invalid Base account number for this Org |
-| `V5SB4160EC` | Invalid Base account number digit for dual org |
-| `V5SB4160ED` | Invalid Base account number for dual org |
+| `V5S84003EA` | Base account number is required |
+| `V5S84003EG` | Base account number must be numeric |
+| `V5S84003EH` | Base account number required |
+| `V5S84005EA` | Customer NA account must be blank |
+| `V5S84005EB` | Customer NA account required |
+| `V5S84005EG` | Customer NA account must be blank |
+| `V5S84005EH` | Customer NA account must be numeric |
+| `V5S84008EA` | Relationship not valid for this Org |
+| `V5S84008EB` | Relationship not valid for the dual Org |
+| `V5S84001EA` | Org not on file |
+| `V5S84001SA` | Org not on file |
+| `V5S84002EA` | Logo record not on file |
+| `V5S84002EB` | Logo record is incomplete |
+| `V5S84009EA` | Relationship number required |
+| `V5S84011EA` | Insurance not allowed for prepaid account |
+| `V5S84012EA` | Sweeping not allowed in this logo |
+| `V5S84012EB` | HCS must be active for account type values 1,2,3 |
+| `V5S84012EC` | Account type must be zero for prepaid account |
+| `V5S84157EC` | Account number exist on relationship file for this org |
+| `V5S84157ED` | Account number exist on relationship file for dual org |
+| `V5S84158EA` | Account number cannot duplicate existing embosser for this org |
+| `V5S84158EB` | Account number cannot duplicate existing embosser for dual org |
+| `V5S84151EA` | Logo does not allow billing account generation |
+| `V5S84151EB` | Maximum nummber 20 attemptds made on billing account |
+| `V5S84151EC` | Generated account number IS greater than ending billing number|
+| `V5S84151ED` | Logo does not allow account number generation |
+| `V5S84151EE` | Maximum nummber 20 attemptds made on Base account number |
+| `V5S84151EG` | Generated account number IS greater than Base account number|
+| `V5S84152EB` | Org does not allow account number generation |
+| `V5S84160EA` | Invalid Base account number digit for this org |
+| `V5S84160EB` | Invalid Base account number for this Org |
+| `V5S84160EC` | Invalid Base account number digit for dual org |
+| `V5S84160ED` | Invalid Base account number for dual org |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

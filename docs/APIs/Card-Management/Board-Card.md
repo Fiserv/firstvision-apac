@@ -76,7 +76,6 @@ The below table identifies the required parameters in the request payload.
   "activationStatus": "0",
   "businessUnit": 600,
   "expiryDate": "18/01/2024",
-  "externalCustomerId": "99000001234501",
   "maskedPaymentCardNumber": "0004440010737034347",
   "nameOnCard": "John Brono",
   "paymentInstrumentId": "0004440010737034347",
@@ -89,15 +88,15 @@ The below table identifies the required parameters in the request payload.
 ```json
 [
   {
-    "errorCode": "440401",
     "detail": "Please refer to invalid-params for error details",
-    "title": "Not found",
+    "errorCode": "440401",
     "instance": "/v1/cards/boardCard",
+    "invalid-params": [
+      "V5S84001EA: ORGANIZATION NOT ON FILE"
+    ],
     "source": "VPL",
     "status": 404,
-    "invalid-params": [
-        "V5AK4056SA: ORG/ACCOUNT NUMBER COMBINATION NOT FOUND"
-    ]
+    "title": "Not found"
   }
 ]
 ```
@@ -107,26 +106,26 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5AK4056SA` | Org/Account number combination not found |
-| `V5SB4003EA` | Base account number is requsted |
-| `V5SB4003EG` | Base account number must be numeric | 
-| `V5SB4003EH` | Base account number required |
-| `V5SB4005EA` | Customer na account must be blank | 
-| `V5SB4005EB` | Customer na account required |
-| `V5SB4005EG` | Customer na account must be blank | 
-| `V5SB4005EH` | Customer na account must be numeric | 
-| `V5SB4008EA` | Relationship not valid for this org |
-| `V5SB4008EB` | Relationship not valid for the dual org | 
-| `V5SB4001EA` | Organization not on file |
-| `V5SB4001SA` | Organization not on file |
-| `V5SB4002EA` | Logo record not on file |
-| `s4002EB` | Logo record is incomplete | 
-| `V5SB4009EA` | Relationship number required | 
-| `V5SB4011EA` | Insurance not allowed for prepaid accounts | 
-| `V5SB4012EA` | Sweeping not allowed this logo |
-| `V5SB4012EB` | Hcs must be active for account type values 1,2,3 | 
-| `V5SB4150EI` | No embosser record allowed for control account |
-| `V5SB4150EJ` | No embosser record allowed for diversion account | 
-| `V5SB4150EK` | No embosser record allowed for billing account |
+| `V5S84003EA` | Base account number is requsted |
+| `V5S84003EG` | Base account number must be numeric | 
+| `V5S84003EH` | Base account number required |
+| `V5S84005EA` | Customer na account must be blank | 
+| `V5S84005EB` | Customer na account required |
+| `V5S84005EG` | Customer na account must be blank | 
+| `V5S84005EH` | Customer na account must be numeric | 
+| `V5S84008EA` | Relationship not valid for this org |
+| `V5S84008EB` | Relationship not valid for the dual org | 
+| `V5S84001EA` | Organization not on file |
+| `V5S84001SA` | Organization not on file |
+| `V5S84002EA` | Logo record not on file |
+| `V5S84002EB` | Logo record is incomplete | 
+| `V5S84009EA` | Relationship number required | 
+| `V5S84011EA` | Insurance not allowed for prepaid accounts | 
+| `V5S84012EA` | Sweeping not allowed this logo |
+| `V5S84012EB` | Hcs must be active for account type values 1,2,3 | 
+| `V5S84150EI` | No embosser record allowed for control account |
+| `V5S84150EJ` | No embosser record allowed for diversion account | 
+| `V5S84150EK` | No embosser record allowed for billing account |
 | `V5AP4061EA` | Number cards required must equal 0 or 1 |
 | `V5AP4063EA` | Embossed name type must not equal 3 |
 | `V5AP4088EA` | Card delay days value must be numeric | 

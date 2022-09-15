@@ -83,10 +83,10 @@ The below table identifies the required query parameters in the request payload.
   "nameFields": {
     "cardholderName1": "",
     "cardholderName2": "",
-    "embossedName": "R0203 CARDHOLDER#3",
+    "embossedName1": "R0203 CARDHOLDER#3",
     "name1TypeIndicator": "0",
     "name2TypeIndicator": "0",
-    "nameOn2ndLine": "FISERV DEMO FACILITY"
+    "embossedName2": "FISERV DEMO FACILITY"
   },
   "numberOfCardsOutstanding": 0,
   "paymentInstrumentId": "0009544410000000047",

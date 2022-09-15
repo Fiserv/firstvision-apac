@@ -50,7 +50,7 @@ The below table identifies the required parameters in the request payload.
       "addressId": "HOME9902"
     }
   ],
-  "cardtList": [
+  "cardList": [
     {
       "accountId": "0006000012000000121",
       "blockCode": " ",
@@ -120,8 +120,8 @@ The below table identifies the required parameters in the request payload.
     "isReturnMailEnabled": "N",
     "mobileNumber": "8877665544",
     "nameLine1": "JOHN DSOUZA",
-    "numberOfAccounts": 1,
-    "numberOfCards": 1,
+    "totalAccountsCount": 1,
+    "totalCardsCount": 1,
     "workPhoneNumber": "67894"
   }
 }

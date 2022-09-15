@@ -244,8 +244,7 @@ The below table identifies the required parameters in the request payload.
     "nameOnCard": "Trump",
     "expiryDate": "18/01/2024",
     "activationStatus": "0",
-    "maskedPaymentCardNumber": "",
-    "externalCustomerId": "000012672302"
+    "maskedPaymentCardNumber": ""
   }
 }
 ```
@@ -255,15 +254,15 @@ The below table identifies the required parameters in the request payload.
 ```json
 [
   {
-    "errorCode": "440401",
     "detail": "Please refer to invalid-params for error details",
-    "title": "Not found",
+    "errorCode": "440401",
     "instance": "/v1/misc/boardEntities",
+    "invalid-params": [
+        "V5S84154SB: CUSTOMER NUMBER ALREADY EXISTS FOR THIS ORG",
+    ],
     "source": "VPL",
     "status": 404,
-    "invalid-params": [
-        "V5S84154SB: CUSTOMER NUMBER ALREADY EXISTS FOR THIS ORG"
-    ]
+    "title": "Not found"
   }
 ]
 ```
@@ -272,80 +271,80 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5SB4003EA` | Base account number required |
-| `V5SB4003EG` | Base account number must be numeric |
-| `V5SB4003EH` | Base account number required |
-| `V5SB4005EA` | Customer na account must be blank |
-| `V5SB4005EB` | Customer na account required |
-| `V5SB4005EG` | Customer na account must be blank |
-| `V5SB4005EH` | Customer na account must be numeric |
-| `V5SB4008EA` | Relationship not valid for this org |
-| `V5SB4008EB` | Relationship not valid for the dual org |
-| `V5SB4001EA` | Organization not on file |
-| `V5SB4001SA` | Organization not on file |
-| `V5SB4002EA` | Logo record not on file |
-| `V5SB4002EB` | Logo record incomplete |
-| `V5SB4009EA` | Relationship number required |
-| `V5SB4011EA` | Insurance not allowed for prepaid accounts |
-| `V5SB4157EC` | Account nbr exist on relationship file for this org |
-| `V5SB4157ED` | Account nbr exist on relationship file for dual org |
-| `V5SB4158EA` | Account nbr cannot duplicate existing embosser for this org |
-| `V5SB4158EB` | Account nbr cannot duplicate existing embosser for dual org |
+| `V5S84003EA` | Base account number required |
+| `V5S84003EG` | Base account number must be numeric |
+| `V5S84003EH` | Base account number required |
+| `V5S84005EA` | Customer na account must be blank |
+| `V5S84005EB` | Customer na account required |
+| `V5S84005EG` | Customer na account must be blank |
+| `V5S84005EH` | Customer na account must be numeric |
+| `V5S84008EA` | Relationship not valid for this org |
+| `V5S84008EB` | Relationship not valid for the dual org |
+| `V5S84001EA` | Organization not on file |
+| `V5S84001SA` | Organization not on file |
+| `V5S84002EA` | Logo record not on file |
+| `V5S84002EB` | Logo record incomplete |
+| `V5S84009EA` | Relationship number required |
+| `V5S84011EA` | Insurance not allowed for prepaid accounts |
+| `V5S84157EC` | Account nbr exist on relationship file for this org |
+| `V5S84157ED` | Account nbr exist on relationship file for dual org |
+| `V5S84158EA` | Account nbr cannot duplicate existing embosser for this org |
+| `V5S84158EB` | Account nbr cannot duplicate existing embosser for dual org |
 | `V5S84154SB` | Customer number already exist for this ORG  |
-| `V5SB4151EA` | Logo does not allow billing account generation |
-| `V5SB4151EB` | Maximum number of 20 attempts made on billing account |
-| `V5SB4151EC` | Generated account number is greater than ending billing number |
-| `V5SB4151ED` | Logo does not allow account number generation |
-| `V5SB4151EE` | Maximum number of 20 attempts made on base account number |
-| `V5SB4151EG` | Generated account number is greater than base ending number |
-| `V5SB4152EB` | Org does not allow account number generation |
-| `V5SB4160EA` | Invalid base account check digit for this org |
-| `V5SB4160EB` | Invalid base account number for this org |
-| `V5SB4160EC` | Invalid base account check digit for dual org |
-| `V5SB4160ED` | Invalid base account number for dual org |
-| `V5SB4003EA` | Base account number required |
-| `V5SB4003EG` | Base account number must be numeric |
-| `V5SB4003EH` | Base account number required |
-| `V5SB4005EA` | Customer na account must be blank |
-| `V5SB4005EB` | Customer na account required |
-| `V5SB4005EG` | Customer na account must be blank |
-| `V5SB4005EH` | Customer na account must be numeric |
-| `V5SB4008EA` | Relationship not valid for this org |
-| `V5SB4008EB` | Relationship not valid for the dual org |
-| `V5SB4001EA` | Organization not on file |
-| `V5SB4001SA` | Organization not on file |
-| `V5SB4002EA` | Logo record not on file |
-| `V5SB4002EB` | Logo record incomplete |
-| `V5SB4009EA` | Relationship number required |
-| `V5SB4011EA` | Insurance not allowed for prepaid accounts |
-| `V5SB4154SA` | Customer number not on file for this org |
-| `V5SB4154SB` | Customer number already exists for this org |
-| `V5SB4154SC` | Customer nbr must not be generic for personalized prepaid acct |
-| `V5SB4154SD` | Generic customer not allowed |
-| `V5SB4155EA` | Customer number not on file for the dual org |
-| `V5SB4155EB` | Generic customer not allowed |
-| `V5SB4155EC` | Customer number already exists for the dual org |
-| `V5SB4154EA` | Invalid customer number |
-| `V5SB4160EE` | Invalid customer check digit for this org |
-| `V5SB4160EG` | Invalid customer check digit for dual org |
-| `V5SB4003EA` | Base account number required |
-| `V5SB4003EG` | Base account number must be numeric |
-| `V5SB4003EH` | Base account number required |
-| `V5SB4005EA` | Customer na account must be blank |
-| `V5SB4005EB` | Customer na account required |
-| `V5SB4005EG` | Customer na account must be blank |
-| `V5SB4005EH` | Customer na account must be numeric |
-| `V5SB4008EA` | Relationship not valid for this org |
-| `V5SB4008EB` | Relationship not valid for the dual org |
-| `V5SB4001EA` | Organization not on file |
-| `V5SB4001SA` | Organization not on file |
-| `V5SB4002EA` | Logo record not on file |
-| `V5SB4002EB` | Logo record incomplete |
-| `V5SB4009EA` | Relationship number required |
-| `V5SB4011EA` | Insurance not allowed for prepaid accounts |
-| `V5SB4150EI` | No embosser records allowed for control accounts |
-| `V5SB4150EJ` | No embosser records allowed for diversion accounts |
-| `V5SB4150EK` | No embosser records allowed for billing accounts |
+| `V5S84151EA` | Logo does not allow billing account generation |
+| `V5S84151EB` | Maximum number of 20 attempts made on billing account |
+| `V5S84151EC` | Generated account number is greater than ending billing number |
+| `V5S84151ED` | Logo does not allow account number generation |
+| `V5S84151EE` | Maximum number of 20 attempts made on base account number |
+| `V5S84151EG` | Generated account number is greater than base ending number |
+| `V5S84152EB` | Org does not allow account number generation |
+| `V5S84160EA` | Invalid base account check digit for this org |
+| `V5S84160EB` | Invalid base account number for this org |
+| `V5S84160EC` | Invalid base account check digit for dual org |
+| `V5S84160ED` | Invalid base account number for dual org |
+| `V5S84003EA` | Base account number required |
+| `V5S84003EG` | Base account number must be numeric |
+| `V5S84003EH` | Base account number required |
+| `V5S84005EA` | Customer na account must be blank |
+| `V5S84005EB` | Customer na account required |
+| `V5S84005EG` | Customer na account must be blank |
+| `V5S84005EH` | Customer na account must be numeric |
+| `V5S84008EA` | Relationship not valid for this org |
+| `V5S84008EB` | Relationship not valid for the dual org |
+| `V5S84001EA` | Organization not on file |
+| `V5S84001SA` | Organization not on file |
+| `V5S84002EA` | Logo record not on file |
+| `V5S84002EB` | Logo record incomplete |
+| `V5S84009EA` | Relationship number required |
+| `V5S84011EA` | Insurance not allowed for prepaid accounts |
+| `V5S84154SA` | Customer number not on file for this org |
+| `V5S84154SB` | Customer number already exists for this org |
+| `V5S84154SC` | Customer nbr must not be generic for personalized prepaid acct |
+| `V5S84154SD` | Generic customer not allowed |
+| `V5S84155EA` | Customer number not on file for the dual org |
+| `V5S84155EB` | Generic customer not allowed |
+| `V5S84155EC` | Customer number already exists for the dual org |
+| `V5S84154EA` | Invalid customer number |
+| `V5S84160EE` | Invalid customer check digit for this org |
+| `V5S84160EG` | Invalid customer check digit for dual org |
+| `V5S84003EA` | Base account number required |
+| `V5S84003EG` | Base account number must be numeric |
+| `V5S84003EH` | Base account number required |
+| `V5S84005EA` | Customer na account must be blank |
+| `V5S84005EB` | Customer na account required |
+| `V5S84005EG` | Customer na account must be blank |
+| `V5S84005EH` | Customer na account must be numeric |
+| `V5S84008EA` | Relationship not valid for this org |
+| `V5S84008EB` | Relationship not valid for the dual org |
+| `V5S84001EA` | Organization not on file |
+| `V5S84001SA` | Organization not on file |
+| `V5S84002EA` | Logo record not on file |
+| `V5S84002EB` | Logo record incomplete |
+| `V5S84009EA` | Relationship number required |
+| `V5S84011EA` | Insurance not allowed for prepaid accounts |
+| `V5S84150EI` | No embosser records allowed for control accounts |
+| `V5S84150EJ` | No embosser records allowed for diversion accounts |
+| `V5S84150EK` | No embosser records allowed for billing accounts |
 | `V5AP4061EA` | Number cards required must equal zero or 1 |
 | `V5AP4063EA` | Embossed name type must not equal 3 |
 | `V5AP4088EA` | Card delay days value must be numeric |
