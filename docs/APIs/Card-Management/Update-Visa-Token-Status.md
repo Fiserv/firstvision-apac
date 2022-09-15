@@ -12,7 +12,6 @@ This service is used to update the token status(Deactivate/Resume/Suspend) of Ca
 
 ```json
 {
-  "status": 100,
   "vtsTokenNumber": "5077400005048482515",
   "status": "1"
 }
@@ -28,7 +27,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
 | `vtsTokenNumber` | Payload | *string* | 19 | Token number assigned by the Visa Tokenization Service(VTS). | 
-| `status` | Payload | *string* | 19 | This field indicate the status of token. | 
+| `status` | Payload | *string* | 01 | This field indicate the status of token. | 
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
