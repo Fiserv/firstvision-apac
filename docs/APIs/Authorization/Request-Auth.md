@@ -46,8 +46,7 @@ The below table identifies the required parameters in the request payload.
   "finalAction": "A",
   "reason": "APPROVED",
   "internalReferenceNumber": 3239000,
-  "maskedPaymentCardNumber": "000484680XXXXXX9405",
-  "uniqueTransactionId": "APP179777002220113443300011123456789"
+  "maskedPaymentCardNumber": "000484680XXXXXX9405"
 }
 ```
 
