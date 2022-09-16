@@ -4,7 +4,7 @@ This service is used to get Access Token to authenticate and trigger the API's a
 
 ## Endpoint
 
-`GET /v1/getAccessToken`
+`POST /v1/api/oauth/token`
 
 ## Payload Example
 
@@ -17,7 +17,7 @@ This service is used to get Access Token to authenticate and trigger the API's a
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/getAccessToken).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/api/oauth/token).
 
 The below table identifies the required query parameters in the request message.
 
@@ -42,7 +42,7 @@ The below table identifies the required query parameters in the request message.
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "240101",
-    "instance": "/v1/getAccessToken",
+    "instance": "/v1/api/oauth/token",
     "invalid-params": [
       "Invalid client credentials or scope"
     ],

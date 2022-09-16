@@ -33,22 +33,22 @@ The below table identifies the required parameters in the request payload.
 | `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 | `merchantBusinessUnit` | Payload | *string* | 3 | Field that identifies the business unit to which the store is assigned. The values for the business unit are 001–998. |
 | `merchantId` | Payload | *string* | 9 | Field that identifies the store identification number. |
-| `transactionAmount` | Payload | *number* | 17 | Authorized sales amount in the currency accepted by the particular merchant. |
+| `authorizationAmount` | Payload | *number* | 17 | Authorized sales amount in the currency accepted by the particular merchant. |
 | `expiryDate` | Payload | *string* | 4 | Valid card expire date should be provided which is of 4 character with MMYY format. |
-| `securityCode` | Payload | *string* | 3 | Security code(CVV2/CVC2/CAV2/CVN2) assigned to the payment Instrument id. |
+| `CVV2` | Payload | *string* | 3 | Security code(CVV2/CVC2/CAV2/CVN2) assigned to the payment Instrument id. |
 
 ### Successful Response Payload
 
 ```json
-
 {
-  "authReferenceNumber": 3507600,
-  "authorizationCode": "055323",
+  "responseCode": 0,
+  "authorizationCode": "055271",
   "finalAction": "A",
   "reason": "APPROVED",
-  "responseCode": 0
+  "internalReferenceNumber": 3239000,
+  "maskedPaymentCardNumber": "000484680XXXXXX9405",
+  "uniqueTransactionId": "APP179777002220113443300011123456789"
 }
- 
 ```
 
 ### Error Response Payload
