@@ -26,7 +26,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
 | `customerId` | Query Variable | *string* | 19 | Unique identification number assigned to a customer. | 
-| `addressId` | payload | *number* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
+| `addressId` | Payload | *number* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 
 ### Successful Response Payload
