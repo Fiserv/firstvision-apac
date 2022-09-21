@@ -79,7 +79,8 @@ The below table identifies the required parameters in the request payload.
       "status": "0",
       "warningCode1": "0",
       "addressId": "C9902",
-      "physicalVirtualIndicator": "V"
+      "physicalVirtualIndicator": "V",
+      "plasticId": " "
     }
   ],
   "customerInformation": {

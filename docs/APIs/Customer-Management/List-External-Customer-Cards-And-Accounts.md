@@ -4,7 +4,7 @@ This service retrieves the account and cards details associated with an external
 
 ## Endpoint
 
-`GET /v1/customers/{externalCustomerId}/listExternalCustomersCardsAndAccounts`
+`GET /v1/customers/{externalContractId}/listExternalCustomersCardsAndAccounts`
 
 ## Payload Example
 
@@ -17,13 +17,13 @@ This service retrieves the account and cards details associated with an external
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{externalCustomerId}/listExternalCustomersCardsAndAccounts).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{externalContractId}/listExternalCustomersCardsAndAccounts).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `externalCustomerId` | Path Variable | *string* | 14 | Unique identification number assigned to a customer from external system.|
+| `externalContractId` | Path Variable | *string* | 14 | Unique identification number assigned to a customer from external system.|
 
 
 ### Successful Response Payload
@@ -69,7 +69,7 @@ The below table identifies the required parameters in the request payload.
             "expiryDate": "28/10/2025"
         }
     ],
-    "externalCustomerId": "99993499789916"
+    "externalContractId": "99993499789916"
 }
 ```
 

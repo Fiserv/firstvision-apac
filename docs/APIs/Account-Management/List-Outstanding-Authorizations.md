@@ -43,7 +43,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": " ",
       "transactionAmount": "$3,000.00",
       "transactionCode": 0,
-      "transactionType": " "
+      "transactionType": " ",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": " ",
@@ -58,7 +59,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
       "transactionCode": 0,
-      "transactionType": " "
+      "transactionType": " ",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": " ",
@@ -73,7 +75,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
       "transactionCode": 0,
-      "transactionType": " "
+      "transactionType": " ",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": " ",
@@ -88,7 +91,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
       "transactionCode": 0,
-      "transactionType": " "
+      "transactionType": " ",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": " ",
@@ -103,7 +107,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
       "transactionCode": 0,
-      "transactionType": " "
+      "transactionType": " ",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": " ",
@@ -118,7 +123,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": " ",
       "transactionAmount": "$10.00",
       "transactionCode": 0,
-      "transactionType": " "
+      "transactionType": " ",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     }
   ]
 }

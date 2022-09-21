@@ -110,7 +110,7 @@ The below table identifies the required parameters in the request payload.
     "totalCashDisputedItemsAmount": "$0.00"
   },
   "employeeCode": "",
-  "externalCustomerId": "",
+  "externalContractId": "",
   "isFraudulentReportEnabled": "N",
   "isRestructureEnabled": "N",
   "isVipEnabled": "0",
