@@ -45,7 +45,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV090921017335430013773",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": "052206",
@@ -60,7 +61,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV090921019032730013773",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": "052210",
@@ -75,7 +77,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV091321014345330013773",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": "052213",
@@ -90,7 +93,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV091321017220871972150",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": "052219",
@@ -105,7 +109,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV091321023074830013773",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": "052220",
@@ -120,7 +125,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV091421013262530013773",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": "052226",
@@ -135,7 +141,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV0914210164216L14299",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": "052227",
@@ -150,7 +157,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV091421018113030013773",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": "052205",
@@ -165,7 +173,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV090921017335430013773",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": "052206",
@@ -180,7 +189,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "FV090921019032730013773",
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
-      "transactionType": "M"
+      "transactionType": "M",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": " ",
@@ -195,7 +205,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": " ",
       "transactionAmount": "$0.00",
       "transactionCode": 0,
-      "transactionType": " "
+      "transactionType": " ",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": " ",
@@ -210,7 +221,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": " ",
       "transactionAmount": "$0.00",
       "transactionCode": 0,
-      "transactionType": " "
+      "transactionType": " ",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     }
   ]
 }

@@ -57,6 +57,7 @@ The below table identifies the required query parameters in the request payload.
   "currentCardNeedActivation": "N",
   "customerId": "",
   "customersGender": "0",
+  "maskedPaymentCardNumber": "000484680XXXXXX9405",
   "dateFields": {
     "cardActivatedDate": "00/00/0000",
     "cardIssueDate": "00/00/0000",
@@ -71,7 +72,7 @@ The below table identifies the required query parameters in the request payload.
   },
   "digitalId": "",
   "emblemId": 0,
-  "externalCustomerId": "",
+  "externalContractId": "",
   "firstIssueBranch": 0,
   "fraudCardTransferCount": "",
   "isDynamicCVV2Enabled": "",

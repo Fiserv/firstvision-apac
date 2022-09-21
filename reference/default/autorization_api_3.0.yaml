@@ -43,28 +43,6 @@ paths:
               $ref: '#/components/schemas/RequestAuthorizationReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -81,16 +59,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -105,6 +83,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
       security:
       - Authorization: [
           ]
@@ -147,33 +147,10 @@ paths:
           transaction and used to identify transaction details from log file.
         required: true
         schema:
-          maximum: 999999999
           maxLength: 9
-          type: integer
+          type: string
           example: '3839400'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -190,14 +167,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -206,8 +175,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -356,6 +355,12 @@ components:
             authorization details from log file.
           format: int32
           example: '3239000'
+        uniqueTransactionId:
+          maxLength: 36
+          type: string
+          description: This field indicates unique transaction identification for
+            the associated transaction.
+          example: APP179777002220113443300011123456789
         maskedPaymentCardNumber:
           maxLength: 19
           type: string
@@ -701,9 +706,8 @@ components:
           type: object
           properties:
             collectionReason:
-              maximum: 99
               maxLength: 2
-              type: integer
+              type: string
               description: Reason that specifies why the account went into collections.
                 <br/>The values are:<br/>&nbsp; '01' - First payment default<br/>&nbsp;
                 '02' - Overlimit<br/>&nbsp; '03' - Excessive use<br/>&nbsp; '04' -
@@ -711,19 +715,18 @@ components:
                 - Delinquent and recency<br/>&nbsp; '07' - Manual (low priority)<br/>&nbsp;
                 '08' - Charge-off<br/>&nbsp; '09' - Delinquent and overlimit<br/>&nbsp;
                 '99' - Account added by collector
-              format: int32
               example: '0'
               enum:
-              - 1
-              - 2
-              - 3
-              - 4
-              - 5
-              - 6
-              - 7
-              - 8
-              - 9
-              - 99
+              - '01'
+              - '02'
+              - '03'
+              - '04'
+              - '05'
+              - '06'
+              - '07'
+              - '08'
+              - '09'
+              - '99'
             collectionDate:
               maxLength: 10
               type: string
@@ -742,6 +745,12 @@ components:
           description: Unique identification number that appears on the front of the
             card (PAN) in masked format.
           example: 000484680XXXXXX9405
+        uniqueTransactionId:
+          maxLength: 32
+          type: string
+          description: This field indicates unique transaction identification for
+            the associated transaction.
+          example: APP179777002220113443300011123456789
         currentCycleDue:
           maximum: 9
           maxLength: 1

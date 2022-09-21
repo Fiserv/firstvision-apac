@@ -73,6 +73,7 @@ The below table identifies the required parameters in the request payload.
   "disputedItemCount": 0,
   "expiryDate": "30/04/2024",
   "maskedPaymentCardNumber": "000404940XXXXXX5286",
+  "uniqueTransactionId": "APP179777002220113443300011123456111",
   "memoDetails": {
     "memoCreditAmount": "$0.00",
     "memoCreditCount": 0,

@@ -29,8 +29,6 @@ The below table identifies the required parameters in the request payload.
 | `vtsTokenNumber` | Payload | *string* | 19 | Token number assigned by the Visa Tokenization Service(VTS). | 
 | `status` | Payload | *string* | 01 | This field indicate the status of token. | 
 
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
-
 ### Successful Response Payload
 
 ```json
