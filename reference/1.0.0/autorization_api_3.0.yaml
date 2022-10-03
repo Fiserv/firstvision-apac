@@ -43,8 +43,8 @@ paths:
               $ref: '#/components/schemas/RequestAuthorizationReqModel'
         required: true
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -59,24 +59,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -91,6 +75,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -99,12 +105,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
       security:
       - Authorization: [
           ]
@@ -151,8 +151,8 @@ paths:
           type: string
           example: '3839400'
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -167,8 +167,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -189,16 +197,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -517,7 +517,13 @@ components:
         action:
           maxLength: 1
           type: string
-          description: Code that indicates the action the system returned.
+          description: Code that indicates the action the system returned. <br/>The
+            values are:<br/>&nbsp; 'A' - Approve the transaction <br/>&nbsp; 'D' -
+            Decline the transaction <br/>&nbsp; 'S' - Call customer service <br/>&nbsp;
+            'P' - Pending (more research is needed) <br/>&nbsp; 'R' - Referral <br/>&nbsp;
+            'C' - Call the credit department <br/>&nbsp; 'K' - Pick up the card <br/>&nbsp;
+            'X' - Cancelled approval <br/>&nbsp; 'M' - Prior day's approval that was
+            matched off (partially) by posting (this is an internal value only)
           example: A
           enum:
           - A
@@ -540,7 +546,7 @@ components:
         accountDetails:
           type: object
           properties:
-            customerid:
+            customerId:
               maxLength: 19
               type: string
               description: Unique identification number assigned to a customer.
@@ -583,6 +589,15 @@ components:
                 - Automatically completed <br/>&nbsp; '6' - Manually completed <br/>&nbsp;
                 '9' - Account abandoned
               example: '0'
+              enum:
+              - '0'
+              - '1'
+              - '2'
+              - '3'
+              - '4'
+              - '5'
+              - '6'
+              - '9'
             lastStatementDate:
               maxLength: 10
               type: string
@@ -597,7 +612,7 @@ components:
                 <br/> The values are: <br/>&nbsp; '' '' - No reason applied (Default)
                 <br/>&nbsp; ''C'' - Credit loss <br/>&nbsp; ''B'' - Bankruptcy <br/>&nbsp;
                 ''F'' - Fraud loss <br/>&nbsp; ''T'' - Counterfeit'
-              example: ''
+              example: ' '
               enum:
               - ' '
               - C
@@ -615,7 +630,7 @@ components:
               type: string
               description: field that identifies the number of days the account is
                 delinquent.
-              example: ''
+              example: '0'
             lastDelinquentDate:
               maxLength: 10
               type: string
@@ -675,6 +690,34 @@ components:
                 Block codes control specific processing options at the account level.
                 Valid block codes are the letters A to Z and blank (or space).
               example: ' '
+              enum:
+              - A
+              - B
+              - C
+              - D
+              - E
+              - F
+              - G
+              - H
+              - I
+              - J
+              - K
+              - L
+              - M
+              - N
+              - O
+              - P
+              - Q
+              - R
+              - S
+              - T
+              - U
+              - V
+              - W
+              - X
+              - Y
+              - Z
+              - ' '
             blockCode1Date:
               maxLength: 10
               type: string
@@ -689,6 +732,34 @@ components:
                 field is system-generated; you cannot change it. The format is MM/DD/YYYY
                 or DD/MM/YYYY depending on the DATE FORMAT on System Control.
               example: ' '
+              enum:
+              - A
+              - B
+              - C
+              - D
+              - E
+              - F
+              - G
+              - H
+              - I
+              - J
+              - K
+              - L
+              - M
+              - N
+              - O
+              - P
+              - Q
+              - R
+              - S
+              - T
+              - U
+              - V
+              - W
+              - X
+              - Y
+              - Z
+              - ' '
             blockCode2Date:
               maxLength: 10
               type: string
@@ -700,7 +771,7 @@ components:
               maxLength: 7
               type: string
               description: Seven-part field that identifies warning codes 1 to 7 assigned
-                to the account..
+                to the account.
               example: ' '
         collectionDetails:
           type: object
@@ -746,15 +817,14 @@ components:
             card (PAN) in masked format.
           example: 000484680XXXXXX9405
         uniqueTransactionId:
-          maxLength: 32
+          maxLength: 36
           type: string
           description: This field indicates unique transaction identification for
             the associated transaction.
           example: APP179777002220113443300011123456789
         currentCycleDue:
-          maximum: 9
           maxLength: 1
-          type: integer
+          type: string
           description: Code that identifies the level of contractual delinquency.
             The contractual delinquency (also called the cycle due code), indicates
             the number of cycles for which payments are due. <br/>The values are:<br/>
@@ -765,8 +835,12 @@ components:
             days <br/> &nbsp; '6' - Amount past due 120–149 days <br/> &nbsp; '7'
             - Amount past due 150–179 days <br/> &nbsp; '8' - Amount past due 180–209
             days <br/> &nbsp; '9' - Amount past due 210 or more days
-          format: int32
           example: '1'
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - 3-9
         totalDueAmount:
           maxLength: 17
           type: string
