@@ -11,6 +11,7 @@ This new API enables to choose the records you want to add (Customer Name/Addres
 ### Request Payload
 
 ```json
+
 {
   "accountId": "/",
   "isCustomerIdEnabled": "Y",
@@ -42,9 +43,12 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "addressDetails": {
       "addressLine1": "",
       "addressLine2": "",
+      "addressLine3": "",
+      "addressLine4": "",
       "city": "",
-      "stateprovince": "",
-      "postalCode": ""
+      "state": "",
+      "postalCode": "",
+      "countryCode": ""
     },
     "nameDetails": {
       "nameLine1": "",
@@ -63,6 +67,7 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "availableReservePctAmount": "",
     "isStatememtTypeEnabled": "0",
     "accountControlTableOverride": 0,
+    "relationshipLevelBillingCycle": 0,
     "billingLevel": "1",
     "isBillingLevelModificationEnabled": "0",
     "defaultCreditLimit": "",
@@ -112,7 +117,7 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "customerSelectedDueDay": 0,
     "billingCycle": 18,
     "residenceId": "",
-    "issuanceId": "600",
+    "issuanceId": " ",
     "cashPlanId": 0,
     "retailPlanId": 0,
     "cardTechnology": "0",
@@ -125,9 +130,6 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "isWaiveAnnualMembershipFeeEnabled": "0",
     "isSupressTokenEnabled": "0",
     "coreBankingIndicator": " ",
-    "externalContractId": "000012672302",
-    "addressId": "HOME1",
-    "sourceCode": "mbk2",
     "pctOverrideDetails": {
       "pctOverride": " ",
       "pctOverrideStartDate": "0",
@@ -141,9 +143,13 @@ This new API enables to choose the records you want to add (Customer Name/Addres
       "ddaAccountId": "",
       "savingsRoutingId": 0,
       "savingsAccountId": ""
-    }
+    },
+    "externalContractId": "000012672379",
+    "addressId": "HOME",
+    "sourceCode": " ",
+    "statementDeliveryMode": "E"
   },
-  "accountInsuranceProductData": {
+  "accountInsuranceProductDetails": {
     "dualIndicator": " ",
     "productCode": "",
     "statusCode": " ",
@@ -178,23 +184,23 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "mccGroupLimits": "",
     "chequeAccountId": "",
     "savingAccountId": "",
-    "physicalVirtualIndicator": "V",
-    "isDynamicCVV2Enabled": "0",
-    "externalContractId": "000012672302",
-    "namesDetails": {
+    "cardNameDetails": {
       "embossedName1": "Trump",
       "embossedName2": "",
       "name1": "",
       "name2": ""
     },
-    "addressDetails": {
+    "cardAddressDetails": {
       "addressLine1": "",
       "addressLine2": "",
       "city": "",
       "stateprovince": "",
       "postalCode": "",
-      "addressId": "C01"
-    }
+      "addressId": " "
+    },
+    "physicalVirtualIndicator": "P",
+    "isDynamicCVV2Enabled": "0",
+    "externalContractId": "000012672379"
   }
 }
 ``` 

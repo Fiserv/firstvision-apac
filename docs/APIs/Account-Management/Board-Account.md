@@ -13,52 +13,52 @@ Fields that are not provided in the request object will be initialised to their 
 ### Request Payload
 
 ```json
-
 {
-  "isInsuranceProductEnabled": "N",
-  "businessUnit": 600,
-  "productId": 1,
-  "customerId": "0006000012000000256",
-  "corporateId": "0",
-  "shortName": "Charlie",
-  "primaryAccountFlag": " ",
-  "creditLimit": "15000.0",
-  "billingCurrency": 0,
-  "billingLevel": "1",
-  "dualBillingFlag": "0",
-  "customerSelectedDueDay": 0,
-  "billingCycle": 18,
-  "cashPlanId": 0,
-  "retailPlanId": 0,
-  "cardTechnology": "0",
-  "temporaryCreditLimit": "0",
-  "temporaryCreditLimitExpiryDate": "0",
-  "owningBranchNumber": 999999998,
-  "isMobilePiEnabled": "0",
-  "authorizationCriteriaTable": " ",
-  "isSuppressLetterEnabled": "0",
-  "isWaiveAnnualMembershipFeeEnabled": "0",
-  "isSupressTokenEnabled": "0",
-  "coreBankingIndicator": " ",
-  "pctOverrideDetails": {
-    "pctOverride": " ",
-    "pctOverrideStartDate": "0",
-    "pctOverrideExpireDate": "0",
-    "level": " ",
-    "levelStartDate": "0",
-    "levelExpireDate": "0"
-  },
-  "ibsDetails": {
-    "ddaRoutingId": "0",
-    "ddaAccountId": " ",
-    "savingsRoutingId": "12345",
-    "savingsAccountId": "12345"
-  },
-  "residenceId": "600",
-  "issuanceId": "600",
-  "externalContractId": "000012672302",
-  "addressId": "HOME1",
-  "sourceCode": "mbk2"
+    "isInsuranceProductEnabled": "N",
+    "businessUnit": 700,
+    "productId": 1,
+    "customerId": "12345679",
+    "corporateId": "0",
+    "shortName": "Charlie",
+    "primaryAccountFlag": " ",
+    "creditLimit": "15000.0",
+    "billingCurrency": 0,
+    "billingLevel": "1",
+    "dualBillingFlag": "0",
+    "customerSelectedDueDay": 0,
+    "billingCycle": 18,
+    "cashPlanId": 0,
+    "retailPlanId": 0,
+    "cardTechnology": "0",
+    "temporaryCreditLimit": "0",
+    "temporaryCreditLimitExpiryDate": "0",
+    "owningBranchNumber": 999999998,
+    "isMobilePiEnabled": "0",
+    "authorizationCriteriaTable": " ",
+    "isSuppressLetterEnabled": "0",
+    "isWaiveAnnualMembershipFeeEnabled": "0",
+    "isSupressTokenEnabled": "0",
+    "coreBankingIndicator": " ",
+    "pctOverrideDetails": {
+        "pctOverride": " ",
+        "pctOverrideStartDate": "0",
+        "pctOverrideExpireDate": "0",
+        "levelStartDate": "0",
+        "levelExpireDate": "0",
+        "level": " "
+    },
+    "ibsDetails": {
+        "ddaRoutingId": "0",
+        "ddaAccountId": " ",
+        "savingsRoutingId": "12345",
+        "savingsAccountId": "12345"
+    },
+    "residenceId": "600",
+    "issuanceId": " ",
+    "externalContractId": "000012672379",
+    "addressId": "HOME",
+    "sourceCode": " ",
+    "statementDeliveryMode": "E"
 }
 ``` 
 
@@ -87,9 +87,9 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountId": "0006000012000000770",
-  "businessUnit": 600,
-  "productId": 1
+    "businessUnit": 700,
+    "productId": 1,
+    "accountId": "0007000011614703900"
 }
 ```
 
