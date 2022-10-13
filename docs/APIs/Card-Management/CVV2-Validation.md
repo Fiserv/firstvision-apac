@@ -45,7 +45,7 @@ The below table identifies the required parameters in the request payload.
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "440401",
-    "instance": "/v1/cards/0009846801010065787/validateCVV2",
+    "instance": "/v1/cards/validateCVV2",
     "invalid-params": [
       "V5VC4003AE: Invalid CVV2"
     ],
