@@ -45,7 +45,8 @@ The below table identifies the required parameters in the request payload.
   "statementPreferenceDetails": {
     "ownerCoOwnerStatementFlag": "0",
     "statementModeOrStatus": "O",
-    "statementReprintAddressFlag": "C"
+    "statementReprintAddressFlag": "C",
+    "statementDeliveryMode": "E"
   }
 }
 ```

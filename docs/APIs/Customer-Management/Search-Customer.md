@@ -1,4 +1,4 @@
-# Search Customers
+# Search Customer
 
 This service is used to retrieve customer's information based on primary and optional search values like last name, identification number, phone number etc.
 

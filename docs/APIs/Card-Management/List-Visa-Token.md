@@ -4,7 +4,7 @@ This service is used to inquire token detail like VTS token number, card wallet 
 
 ## Endpoint
 
-`GET /v1/cards/{paymentInstrumentId}/listVisaToken`
+`GET /v1/cards/{paymentInstrumentId}/listVisaTokens`
 
 ## Payload Example
 
@@ -17,7 +17,7 @@ This service is used to inquire token detail like VTS token number, card wallet 
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{paymentInstrumentId}/listVisaToken).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{paymentInstrumentId}/listVisaTokens).
 
 The below table identifies the required parameters in the request payload.
 

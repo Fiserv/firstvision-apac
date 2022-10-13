@@ -128,6 +128,7 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "externalContractId": "000012672302",
     "addressId": "HOME1",
     "sourceCode": "mbk2",
+    "statementDeliveryMode": "E",
     "pctOverrideDetails": {
       "pctOverride": " ",
       "pctOverrideStartDate": "0",
@@ -143,7 +144,7 @@ This new API enables to choose the records you want to add (Customer Name/Addres
       "savingsAccountId": ""
     }
   },
-  "accountInsuranceProductData": {
+  "accountInsuranceProductDetails": {
     "dualIndicator": " ",
     "productCode": "",
     "statusCode": " ",

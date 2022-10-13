@@ -4,7 +4,7 @@ The Card Secure Code Validation service is used to validate the CVV2  and option
 
 ## Endpoint
 
-`POST /v1/cards/{paymentInstrumentId}/validateCVV2`
+`POST /v1/cards/validateCVV2`
 
 ## Payload Example
 
@@ -12,28 +12,29 @@ The Card Secure Code Validation service is used to validate the CVV2  and option
 
 ```json
 {
-  "cvv2": "855",
-  "expiryDate": "1123"
+  "businessUnit": 700,
+  "paymentInstrumentId": "0009543161000011002",
+  "CVV2": "643",
+  "expiryDate": "0825"
 }
 ```
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/{paymentInstrumentId}/validateCVV2).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/validateCVV2).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
-| `cvv2` | Payload | *string* | 3 | CVV2 value of the card |
+| `CVV2` | Payload | *string* | 3 | CVV2 value of the card |
 | `expiryDate` | Payload | *date* | 4 | Field that indicates the card expiry date in MMYY format | 
 
 ### Successful Response Payload
 
 ```json
 {
-  "paymentInstrumentId": "0009846801010065787"
 }
 ```
 

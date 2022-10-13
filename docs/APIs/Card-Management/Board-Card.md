@@ -13,12 +13,13 @@ Fields that are not provided in the Request object will be initialised to their 
 ### Request Payload
 
 ```json
+
 {
   "accountId": "0006000012000000263",
   "businessUnit": 600,
   "productId": 1,
   "customerId": "0006000012000000256",
-  "cardAction": "0",
+  "cardAction": "1",
   "numberOfCardsRequested": 0,
   "cardType": 0,
   "requestedCardType": 0,
@@ -36,23 +37,23 @@ Fields that are not provided in the Request object will be initialised to their 
   "mccGroupLimits": " ",
   "chequeAccountId": " ",
   "savingsAccountId": " ",
-  "namesData": {
+  "nameDetails": {
     "embossedName1": "John Brono ",
     "embossedName2": "Samuel Baro",
     "name1": "ABCD",
     "name2": "QWER"
   },
-  "addressData": {
+  "addressDetails": {
     "addressLine1": "House no. 12 ",
     "addressLine2": "St. Paul Road ",
     "city": " ",
     "stateprovince": "Uth",
     "postalCode": "1231",
-    "addressId": "13"    
-  }
+    "addressId": " "
+  },
   "physicalVirtualIndicator": "P",
   "isDynamicCVV2Enabled": "0",
-  "externalContractId": "000012672302"
+  "externalContractId": "000012672379"
 }
 ``` 
 
@@ -74,13 +75,13 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "activationStatus": "0",
   "businessUnit": 600,
-  "expiryDate": "18/01/2024",
-  "maskedPaymentCardNumber": "0004440010737034347",
-  "nameOnCard": "John Brono",
-  "paymentInstrumentId": "0004440010737034347",
-  "productId": 1
+  "productId": 1,
+  "paymentInstrumentId": "0004440010057325150",
+  "maskedPaymentCardNumber": "",
+  "nameOnCard": "JOHN",
+  "expiryDate": "01/10/2025",
+  "activationStatus": "0"
 }
 ```
 
