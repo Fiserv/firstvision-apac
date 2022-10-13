@@ -45,7 +45,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "VT211330002000010000025",
       "transactionAmount": "1000",
       "transactionCode": 4000,
-      "transactionType": "D"
+      "transactionType": "D",
+      "transactionIndicator": "P"
     },
     {
       "description": "DEBIT CARD OFFSET CREDIT",
@@ -59,7 +60,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "19999999980520199980040",
       "transactionAmount": "400",
       "transactionCode": 7016,
-      "transactionType": "C"
+      "transactionType": "C",
+      "transactionIndicator": "P"
     },
     {
       "description": "DEBIT CARD OFFSET CREDIT",
@@ -73,7 +75,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "19999999980525199980020",
       "transactionAmount": "500",
       "transactionCode": 7016,
-      "transactionType": "C"
+      "transactionType": "C",
+      "transactionIndicator": "P"
     }
   ]
 }

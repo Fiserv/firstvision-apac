@@ -28,45 +28,46 @@ The below table identifies the required query parameters in the request message.
 
 ```json
 {
-  "businessUnit": 200,
-  "customerId": "0000020000065439605",
-  "namesDetails": {
-    "birthName": "",
-    "givenName": "ABC",
-    "middleName": "",
-    "nameLine1": "M S SWAMY",
-    "nameLine2": "KK",
-    "nameLine3": " "
-  },
-  "languageIndicator": "AUS",
-  "homePhoneNumber": "9241800756",
-  "faxNumber": "82364782",
-  "faxPhoneFlag": "0",
-  "mobileNumber": "112233",
-  "smsFlag": "0",
-  "mobilePhoneFlag": "0",
-  "emailAddress": "SAM@FISERV.COM",
-  "birthDate": "06/04/1986",
-  "isReturnMailEnabled": "Y",
-  "employerDetails": {
-    "nameOfEmployer": "Y",
-    "addressLine1": "Y",
-    "addressLine2": "Y",
-    "phoneNumber": "Y",
-    "phoneFlag": "Y",
-    "jobTitle": "Y"
-  },
-  "addressDetails": {
-    "addressLine3": "CHITRAPURI",
-    "addressLine4": "DELHI",
-    "addressLine1": "FLAT NO:404",
-    "addressLine2": "RAINBOW APTS",
-    "city": "DELHI",
-    "stateProvince": "DL",
-    "countryCode": "IND"
-  },
-  "postalCode": "110004",
-  "houseNumber": ""
+    "namesDetails": {
+        "birthName": " ",
+        "givenName": "ABC",
+        "middleName": " ",
+        "nameLine1": "M S SWAMY",
+        "nameLine2": "KK",
+        "nameLine3": " "
+    },
+    "employerDetails": {
+        "addressLine2": "Y",
+        "phoneNumber": "Y",
+        "phoneFlag": "0",
+        "jobTitle": "Y",
+        "nameOfEmployer": "Y",
+        "addressLine1": "Y"
+    },
+    "addressDetails": {
+        "addressLine3": "CHITRAPURI",
+        "addressLine4": "DELHI",
+        "addressLine1": "FLAT NO:404",
+        "addressLine2": "RAINBOW APTS",
+        "city": "DELHI",
+        "stateProvince": "DL",
+        "countryCode": "IND",
+        "postalCode": "110004",
+        "houseNumber": " "
+    },
+    "isReturnMailEnabled": "Y",
+    "languageIndicator": "AUS",
+    "homePhoneNumber": "9241800756",
+    "homePhoneFlag": "0",
+    "faxNumber": "82364782",
+    "faxPhoneFlag": "0",
+    "smsFlag": "0",
+    "emailAddress": "SAM@FISERV.COM",
+    "birthDate": "06/04/1986",
+    "mobileNumber": "112233",
+    "mobilePhoneFlag": "0",
+    "businessUnit": 200,
+    "customerId": "0000020000065439605"
 }
 ```
 
