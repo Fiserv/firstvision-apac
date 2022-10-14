@@ -95,19 +95,62 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5S84152EB` | Org does not allow account number generation |
-| `V5S84001SA` | Organization not on file |
-| `V5S84002EA` | Logo record not on file |
-| `V5S84002EB` | Logo record incomplete | 
-| `V5S84154SA` | Customer number not on file for this org |
+| `V5S84005EA` | Customer NA account must be blank |                                
+| `V5S84003EA/V5S84003EE` | Base account number required |                                     
+| `V5S84150EE` | Customer NA account and base account are equal |                   
+| `V5S84005EB` | Customer NA account required |                                     
+| `V5S84005EG` | Customer NA account must be blank |                                
+| `V5S84003EG` | Base account number must be numeric |                              
+| `V5S84150EG` | Customer NA account and base account are equal |                  
+| `V5S84005EH` | Customer NA account must be numeric |                              
+| `V5S84003EH` | Base account number required | 
+| `V5S84154SA` | Customer number not on file for this org |                         
 | `V5S84154SB` | Customer number already exists for this org | 
-| `V5S84154SD` | Generic Customer not allowed |
-| `V5S84155EA` | Customer number not on file for the dual org | 
-| `V5S84155EB` | Generic Customer not allowed |
-| `V5S84155EC` | Customer number already exists for the dual org |
-| `V5S84154EA` | Invalid Customer number | 
-| `V5S84160EE` | Invalid Customer check digit for this org |                         
-| `V5S84160EG` | Invalid Customer check digit for dual org |
-| `V5NA4081EA` | First name is required |
+| `V5S84157EA` | Base account number already exists for this org |                  
+| `V5S84157EC` | Account nbr exist on relationship file for this org |              
+| `V5S84158EA` | Account nbr cannot duplicate existing embosser for this org |      
+| `V5S84151EE` | Maximum number of 20 attempts made on base account number |        
+| `V5S84152EC` | Maximum number of 20 attempts made on customer number |            
+| `V5S84152EE` | Generated relationship number is less than beginning range |       
+| `V5S84162SB` | DDA/savings routing information is required |                      
+| `V5S89909SA` | CCID should not be spaces or zeroes |                              
+| `V5S89910SA` | Address id should not be spaces or zeroes |                        
+| `V5S89516SB` | ACCT CCID should contain only alphanumeric |                
+| `V5S89517SB` | ACCT addrid should contain only alphanumeric chars and '-' |
+| `V5S89519SA` | Card CCID should contain only alphanumeric |                
+| `V5S89518SB` | Card addrid should contain only alphanumeric chars and '-' |
+| `V5S84004SK` | CGID/customer number should be numeric |        
+| `V5NA0419ED` | Email cont ind not active |                                        
+| `V5NA0333EE/V5NA0419EE` | SMS ind not active |
+| `V5NA0419EF` | Email cont ind not active |                                        
+| `V5NA4002EB` | Nbr already exists on relationship file |                          
+| `V5NA0332EA` | Mobile number is required when SMS ind flag is 1 |                 
+| `V5NA0333EA/V5NA0333EB/V5NA0333EC` | Mobile number not found |
+| `V5NA0333ED` | Mobile number required |                                           
+| `V5NA0419EA/V5NA0419EB/V5NA0419EC` | Email address not found |       
+| `V5NA4001SI` | Org does not allow cust nbr generation |                           
+| `V5NA4001SJ` | Max nbr of 20 attempts made on cust nbr |                          
+| `V5NA4001SK` | Customer number generation error |                                 
+| `V5NA4001SL` | Generated cust nbr is greater than ending cust nbr |               
+| `V5NA4002SA` | AMNA - account not found |                                         
+| `V5NA4002SB` | AMNA - account is in add pending |                                 
+| `V5NA0519EB` | End date must be greater than start date |                         
+| `V5NA9901EX` | Field not maintaiNAble when name type ind > 0 |                    
+| `V5NA0202EA` | Either of first/middle/last name is required for maker |           
+| `V5NA0327EA` | Home phone is required when call ind flag is 1 |                  
+| `V5NA0330EA` | Fax phone is required when fax ind flag is 1 |                    
+| `V5NA0333EH` | Mobile number is required when call ind flag is 1 |               
+| `V5NA0414EA` | Employer phone required when work phone flag is 1 |               
+| `V5NA0419EG` | Email id is required when mail ind flag is 1 |                    
+| `V5NA4081EA` | First name is required |                                          
+| `V5A34058SB` | Customer number not found |                                       
+| `V5DB4001SD` | Customer number can not be spaces |                                
+| `V5DB4001AS` | Cust nbr not found |                                               
+| `V5DB4001SC` | AMBX rec not found |                                               
+| `V5DB4001SE` | AMBS rec not found |                                               
+| `V5DB4001SF` | Account not found amax |                                           
+| `V5DB4001SH` | AMED record not found |                                            
+| `V5DB4001SJ` | ZAMDX rec not found |                                              
+
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

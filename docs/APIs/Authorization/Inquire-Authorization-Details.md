@@ -25,7 +25,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `internalReferenceNumber` | Query Parameter | *string* | 9 | This field indicate the internal reference number of the authorizatoin transaction.| 
+| `internalReferenceNumber` | Path Variable | *string* | 9 | This field indicate the internal reference number of the authorizatoin transaction.| 
 
 ### Successful Response Payload
 
@@ -73,6 +73,7 @@ The below table identifies the required parameters in the request payload.
   "disputedItemCount": 0,
   "expiryDate": "30/04/2024",
   "maskedPaymentCardNumber": "000404940XXXXXX5286",
+  "uniqueTransactionId": "APP179777002220113443300011123456111",
   "memoDetails": {
     "memoCreditAmount": "$0.00",
     "memoCreditCount": 0,
@@ -120,18 +121,6 @@ Below table provides the list of application's error code and its description.
 | `V7RQ4001SB` | End-of-day cutoff being processed | 
 | `V7RQ4001SC` | After hours update in progress |
 | `V7RQ4001EE` | Country code not valid in cms org rec for merch |
-| `V7RQ4002EA` | Merch org is required |                                             
-| `V7RQ4002EC` | Merch org must be values 001 thru 998 | 
-| `V7RQ4003EA` | Merch status invalid for authorizations |
-| `V7RQ4003EB` | Merch record blocked for authorizations | 
-| `V7RQ4004EB` | Invalid bankcard not found in bin table |                          
-| `V7RQ4004EA` | Check digit issue |                                                 
-| `V7RQ4006EA` | Amount must be numeric and greater than zero |
-| `V7RQ4006EC` | Amount may not contain any decimals | 
-| `V7RQ4007EA` | Credit plan nbr is required |
-| `V7RQ4007EB` | Credit plan nbr must be values 00001 thru 99998 | 
-| `V7RQ4008EA` | Expiration date is invalid |
-| `V7RQ4013EC` | CVV2 presence indicator and CVV2/CVC2/CVN2/CAV2 must be entered | 
-| `V7RQ4014EC` | CVV2/CVC2 is entered the presence ind must be 1 |  
+
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -4,7 +4,7 @@ This service retrieves the account and card details associated with a Customer n
 
 ## Endpoint
 
-`GET /v1/customers/{customerId}/listCustomersCardsAndAccounts`
+`GET /v1/customers/{customerId}/listCustomersCardfsAndAccounts`
 
 ## Payload Example
 
@@ -46,7 +46,7 @@ The below table identifies the required parameters in the request payload.
       "productId": 1,
       "reissueControlMethod": "0",
       "status": "N",
-      "externalCustomerId": "990012679902",
+      "externalContractId": "990012679902",
       "addressId": "HOME9902"
     }
   ],
@@ -101,7 +101,8 @@ The below table identifies the required parameters in the request payload.
       "statusOfCard": "0",
       "warningCode1": "0",
       "addressId": "C9902",
-      "physicalVirtualIndicator": "V"
+      "physicalVirtualIndicator": "V",
+      "plasticId": " "
     }
   ],
   "customerInformation": {

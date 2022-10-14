@@ -46,7 +46,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "09999999980816000020016",
       "transactionAmount": "$12.00",
       "transactionCode": 4000,
-      "transactionType": "D"
+      "transactionType": "D",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": " ",
@@ -61,7 +62,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "09999999980816000020024",
       "transactionAmount": "$8.00",
       "transactionCode": 4000,
-      "transactionType": "D"
+      "transactionType": "D",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     },
     {
       "authorizationCode": " ",
@@ -76,7 +78,8 @@ The below table identifies the required parameters in the request payload.
       "referenceNumber": "19999999980818199970110",
       "transactionAmount": "$50.00",
       "transactionCode": 7001,
-      "transactionType": "D"
+      "transactionType": "D",
+      "uniqueTransactionId": "APP179777002220113443300011123456789"
     }
   ]
 }

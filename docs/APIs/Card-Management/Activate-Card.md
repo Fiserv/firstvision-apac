@@ -14,7 +14,7 @@ This service is used to activate the card after successful verification of the c
 ```json
 {
   "currentCardNeedActivation": "N",
-  "lastCardActivation": "Y"
+  "deactivateOldCard": "Y"
 }
 ```
 
@@ -37,7 +37,7 @@ The below table identifies the required parameters in the request payload.
   "businessUnit": 100,
   "cardActivatedDate": "19/08/2021",
   "currentCardNeedActivation": "N",
-  "lastCardActivation": "Y",
+  "deactivateOldCard": "Y",
   "paymentInstrumentId": "0009846801010273613"
 }
 ```
