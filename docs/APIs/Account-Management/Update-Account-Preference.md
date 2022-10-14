@@ -13,21 +13,21 @@ The service updates the statement preference, various customer IDs, address ID, 
 ```json
 {
   "statementPreferenceDetails": {
-    "statementModeOrStatus": "O",
+    "statementModeOrStatus": "H",
     "statementReprintAddressFlag": "C",
-    "ownerCoOwnerStatementFlag": "0"
+    "ownerCoOwnerStatementFlag": "1",
+    "statementDeliveryMode": "E"
   },
-  "customerId": "0000000001000000032",
-  "correspondenceCustomerId": "0000000001000000065",
+  "correspondenceCustomerId": "0004316830510010641",
   "alternateCustomerIdDetails": {
     "customerIdFlag": "A",
-    "customerId": "0000000001000000065",
-    "customerIdExpiryDate": "15/05/2022",
-    "customerIdEffectiveDate": "14/02/2021"
+    "customerId": "0000000000000000000",
+    "customerIdExpiryDate": "15/04/2022",
+    "customerIdEffectiveDate": "14/01/2021"
   },
-  "addressId": "HOME",
-  "sourceCode": " ",
-  "isSupressTokenEnabled": "0"
+  "addressId": "RESIDENTIAL",
+  "sourceCode": "MOBBANKIN1",
+  "isSupressTokenEnabled": "1"
 }
 ```
 
@@ -47,24 +47,25 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "accountId": "0004440010000000017",
-  "addressId": "",
-  "alternateCustomerIdDetails": {
-    "customerId": "0000000001000000065",
-    "customerIdEffectiveDate": "14/02/2021",
-    "customerIdExpiryDate": "15/05/2022",
-    "customerIdFlag": "A"
-  },
-  "businessUnit": 600,
-  "correspondenceCustomerId": "0000000001000000065",
-  "customerId": "0000000001000000032",
-  "isSupressTokenEnabled": "0",
-  "sourceCode": " ",
-  "statementPreferenceDetails": {
-    "ownerCoOwnerStatementFlag": "0",
-    "statementModeOrStatus": "O",
-    "statementReprintAddressFlag": "C"
-  }
+    "statementPreferenceDetails": {
+        "ownerCoOwnerStatementFlag": "1",
+        "statementModeOrStatus": "H",
+        "statementDeliveryMode": "E",
+        "statementReprintAddressFlag": "C"
+    },
+    "alternateCustomerIdDetails": {
+        "customerId": "0000000000000000000",
+        "customerIdEffectiveDate": "14/01/2021",
+        "customerIdFlag": "A",
+        "customerIdExpiryDate": "15/04/2022"
+    },
+    "accountId": "0004316830510010641",
+    "businessUnit": 700,
+    "customerId": "0004316830510010641",
+    "sourceCode": "MOBBANKIN1",
+    "addressId": "RESIDENTIAL",
+    "isSupressTokenEnabled": "1",
+    "correspondenceCustomerId": "0004316830510010641"
 }
 ```
 

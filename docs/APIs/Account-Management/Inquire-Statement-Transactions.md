@@ -114,7 +114,8 @@ The below table identifies the required parameters in the request payload.
       "skuNumber": 0,
       "transactionCode": 4000,
       "transactionStatus": " ",
-      "transactionType": "D"
+      "transactionType": "D",
+      "uniqueTransactionId": "APP179777002220113443300011123456749"
     },
     {
       "amount": "$1.00",
@@ -137,7 +138,8 @@ The below table identifies the required parameters in the request payload.
       "skuNumber": 0,
       "transactionCode": 4579,
       "transactionStatus": " ",
-      "transactionType": "D"
+      "transactionType": "D",
+      "uniqueTransactionId": "APP179777002220113443300011123456739"
     },
     {
       "amount": "$10.00",
@@ -160,7 +162,8 @@ The below table identifies the required parameters in the request payload.
       "skuNumber": 0,
       "transactionCode": 7016,
       "transactionStatus": " ",
-      "transactionType": "C"
+      "transactionType": "C",
+      "uniqueTransactionId": "APP179777002220113443300011123456729"
     },
     {
       "amount": "$5.00",
@@ -183,7 +186,8 @@ The below table identifies the required parameters in the request payload.
       "skuNumber": 0,
       "transactionCode": 6701,
       "transactionStatus": " ",
-      "transactionType": "D"
+      "transactionType": "D",
+      "uniqueTransactionId": "APP179777002220113443300011123456719"
     }
   ],
   "ytdAccumulatorDetails": {

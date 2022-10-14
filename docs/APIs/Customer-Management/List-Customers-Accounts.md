@@ -44,7 +44,7 @@ The below table identifies the required parameters in the request payload.
       "productId": 1,
       "reissueControlMethod": "0",
       "status": "N",
-      "externalCustomerId": "990012679902",
+      "externalContractId": "990012679902",
       "addressId": "HOME9902"
     }
   ],
