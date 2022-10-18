@@ -43,16 +43,8 @@ paths:
               $ref: '#/components/schemas/RequestAuthorizationReqModel'
         required: true
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -65,8 +57,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RequestAuthorizationResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -81,6 +81,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -89,16 +97,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -151,6 +151,14 @@ paths:
           type: string
           example: '3839400'
       responses:
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -159,16 +167,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -183,6 +183,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -191,22 +205,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -355,18 +355,18 @@ components:
             authorization details from log file.
           format: int32
           example: '3239000'
-        uniqueTransactionId:
-          maxLength: 36
-          type: string
-          description: This field indicates unique transaction identification for
-            the associated transaction.
-          example: APP179777002220113443300011123456789
         maskedPaymentCardNumber:
           maxLength: 19
           type: string
           description: Unique identification number that appears on the front of the
             card (PAN) in masked format.
           example: 000484680XXXXXX9405
+        uniqueTransactionId:
+          maxLength: 35
+          type: string
+          description: This field indicates unique transaction identification for
+            the associated transaction.
+          example: APP17977700222011344330001112345678
     InquireAuthorizationDetailResponseModel:
       type: object
       properties:
@@ -816,12 +816,6 @@ components:
           description: Unique identification number that appears on the front of the
             card (PAN) in masked format.
           example: 000484680XXXXXX9405
-        uniqueTransactionId:
-          maxLength: 36
-          type: string
-          description: This field indicates unique transaction identification for
-            the associated transaction.
-          example: APP179777002220113443300011123456789
         currentCycleDue:
           maxLength: 1
           type: string
@@ -846,6 +840,12 @@ components:
           type: string
           description: Total amount due for the account.
           example: $0.00
+        uniqueTransactionId:
+          maxLength: 35
+          type: string
+          description: This field indicates unique transaction identification for
+            the associated transaction.
+          example: APP17977700222011344330001112345678
   securitySchemes:
     Authorization:
       type: http
