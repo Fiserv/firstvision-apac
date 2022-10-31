@@ -46,7 +46,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": "052206",
@@ -62,7 +63,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": "052210",
@@ -78,7 +80,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": "052213",
@@ -94,7 +97,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": "052219",
@@ -110,7 +114,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": "052220",
@@ -126,7 +131,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": "052226",
@@ -142,7 +148,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": "052227",
@@ -158,7 +165,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": "052205",
@@ -174,7 +182,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": "052206",
@@ -190,7 +199,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 9000,
       "transactionType": "M",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": " ",
@@ -206,7 +216,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": " ",
@@ -222,7 +233,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$0.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "remainingAuthorizationAmount": "$0.00"
     }
   ]
 }

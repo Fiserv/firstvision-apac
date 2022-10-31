@@ -226,10 +226,8 @@ The below table identifies the required parameters in the request payload.
 | `creditLimit` | Payload | *number* | 17 | Credit limit of this account. |
 | `billingCycle` | Payload | *number* | 02 | Billing cycle of the relationship associated with the customer. |
 | `owningBranchNumber` | Payload | *number* | 9 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
-| `isSuppressLetterEnabled` | Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
 | `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
 | `isSupressTokenEnabled` | Payload | *string* | 01 | Token suppression at account level indicator. |
-| `coreBankingIndicator` | Payload | *string* | 01 | This is the code indicates type of banking. |
 | `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment card number. |
 | `embossedName1` | Payload | *string* | 26 | This field that specifies the default generic name line 1. |
 | `cardholderFlag` | Payload | *string* | 01 | This is the code that indicates whether the card is issued as primary or secondary card. |
