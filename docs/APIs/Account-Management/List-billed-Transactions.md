@@ -30,7 +30,6 @@ The below table identifies the required parameters in the request payload.
 
 {
   "accountId": "0006000011000000137",
-  "continuationToken": "99999999999999999999999999999999999999999999999999999999999999999999999999999999",
   "statementDate": "18/08/2021",
   "transactionList": [
     {

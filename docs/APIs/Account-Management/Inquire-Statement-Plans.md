@@ -30,7 +30,6 @@ The below table identifies the required parameters in the request payload.
 
 ```json
 {
-  "continuationToken": " ",
   "shortName": "EPHTIARRAUHROE",
   "billingCycle": 18,
   "residenceId": "600",
@@ -71,7 +70,9 @@ The below table identifies the required parameters in the request payload.
     "calculatedInstallmentAmount": "$0.00",
     "unResolvedCreditBalance": "$0.00",
     "unbilledDebitBalance": "$0.00",
-    "currentBalanceCrossCheck": "$1,000.00"
+    "currentBalanceCrossCheck": "$1,000.00",
+    "addOnAmount": "$0.00",
+    "overLimitAmount": "$0.00"
   },
   "correspondingCustomerId": " ",
   "debitCount": 2,

@@ -8,6 +8,96 @@ servers:
 tags:
 - name: Security Management
 paths:
+  /v1/api/oauth/validateToken:
+    post:
+      tags:
+      - Security Management
+      summary: Validate Oauth Token
+      description: This service is used to validate if the given oauth token is valid/
+        invalid
+      operationId: validateOauthToken
+      parameters:
+      - name: correlationId
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
+        required: true
+        schema:
+          type: string
+          example: Basic UE9DX05BQl9EZXY6YkhXTVR6Y0VPQ3I3cXU2WWN5M21jUnV1eXdaRzdmT3VobXNiZWNaNGFOYlVRYU5HYWNqeFY0SkM5c0s5WkR6RQ==
+      - name: token
+        in: query
+        description: JWT Authorization Token specific to the environment
+        required: true
+        schema:
+          type: string
+          example: eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      responses:
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ValidateTokenResponse'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      x-proxy-name: Check Token Validation
+      x-group-name: Security
   /v1/api/oauth/token:
     post:
       tags:
@@ -49,6 +139,20 @@ paths:
           type: string
           example: accounts cards customers users products misc auth
       responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -65,14 +169,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
-        '404':
-          description: " \nThe request resource does not exist"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             '*/*':
               schema:
@@ -87,16 +185,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             '*/*':
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             '*/*':
               schema:
@@ -127,12 +225,18 @@ components:
           example: ''
         status:
           type: integer
-          format: int32
           example: '0'
         invalid-params:
           type: array
           items:
             type: string
+    ValidateTokenResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Tells whether token is valid or invalid
+          example: 'false'
     TokenResponse:
       type: object
       properties:
@@ -145,9 +249,9 @@ components:
           description: Type of token to be authenticated
           example: Bearer
         expires_in:
-          type: string
+          type: integer
           description: Time after which token will be expired
-          example: ''
+          example: '0'
   securitySchemes:
     Authorization:
       type: http
