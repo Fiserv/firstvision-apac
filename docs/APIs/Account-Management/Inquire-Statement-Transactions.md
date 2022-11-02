@@ -53,7 +53,9 @@ The below table identifies the required parameters in the request payload.
     "scheduledPaymentAmount": "$0.00",
     "thisStatementInterestAmount": "$0.00",
     "unResolvedCreditBalance": "$0.00",
-    "unbilledDebitBalance": "$0.00"
+    "unbilledDebitBalance": "$0.00",
+    "addOnAmount": "$0.00",
+    "overLimitAmount": "$0.00"
   },
   "billingCurrency": "",
   "billingCycle": 8,
@@ -61,7 +63,6 @@ The below table identifies the required parameters in the request payload.
   "blockCode1": "",
   "blockCode2": "",
   "businessUnit": 200,
-  "continuationToken": "2000002000010000066752202118q50052",
   "correspondingCustomerId": "",
   "creditClass": "N1",
   "creditCount": 78,
