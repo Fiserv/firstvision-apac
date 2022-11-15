@@ -8,23 +8,18 @@ This service retrieves the card details associated with a Customer id along with
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty.  
 >
 >***Customer Identification should be sent as Path Variable.***  
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/cardList).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -79,8 +74,7 @@ The below table identifies the required parameters in the request payload.
       "status": "0",
       "warningCode1": "0",
       "addressId": "C9902",
-      "physicalVirtualIndicator": "V",
-      "plasticId": " "
+      "physicalVirtualIndicator": "V"
     }
   ],
   "customerInformation": {
@@ -105,7 +99,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -122,6 +118,20 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/cardList).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

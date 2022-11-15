@@ -8,7 +8,10 @@ This API is used to perform card control updates at product level. This API can 
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 
@@ -42,20 +45,9 @@ This API is used to perform card control updates at product level. This API can 
 }
 ``` 
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/products/{productId}/cardControls).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 03 | Unique identification number associated with the organization. Valid values from 001-998.|
-| `productId` | Path Variable | *number* | 03 | Unique identification number of the product associated with the organization. Valid values are 001-998..|
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -90,7 +82,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -107,6 +101,23 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/products/{productId}/cardControls).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `businessUnit` | Query Parameter | *number* | 03 | Unique identification number associated with the organization. Valid values from 001-998.|
+| `productId` | Path Variable | *number* | 03 | Unique identification number of the product associated with the organization. Valid values are 001-998..|
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

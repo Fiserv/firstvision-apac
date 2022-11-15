@@ -10,24 +10,18 @@ This service called immediately after Auth Request service and it will provide a
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***Internal Reference Number should be sent as query parameter.***
 
-
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/auth/{internalReferenceNumber}/authDetails).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `internalReferenceNumber` | Path Variable | *string* | 9 | This field indicate the internal reference number of the authorizatoin transaction.| 
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -94,7 +88,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -112,6 +108,20 @@ The below table identifies the required parameters in the request payload.
 ]
 ```
 
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/auth/{internalReferenceNumber}/authDetails).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `internalReferenceNumber` | Path Variable | *string* | 9 | This field indicate the internal reference number of the authorizatoin transaction.| 
+
+### Error Codes
+
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
@@ -121,6 +131,5 @@ Below table provides the list of application's error code and its description.
 | `V7RQ4001SB` | End-of-day cutoff being processed | 
 | `V7RQ4001SC` | After hours update in progress |
 | `V7RQ4001EE` | Country code not valid in cms org rec for merch |
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -8,7 +8,10 @@ This service is used to update the credit limit of the cardholder’s account in
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -16,18 +19,9 @@ This service is used to update the credit limit of the cardholder’s account in
 }
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/creditLimit).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `creditLimit` | Payload | *string* | 17 | Credit limit of the account. |
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -38,7 +32,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -55,6 +51,21 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/creditLimit).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `creditLimit` | Payload | *string* | 17 | Credit limit of the account. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

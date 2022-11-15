@@ -8,26 +8,18 @@ This service provides details of Interest Table. An Interest table identifies a 
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***The Business Unit/Table id and Product id should be sent as query and path variable.***
 
-
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{productId}/interestTable).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. | 
-| `tableId` | Query parameter | *number* | 3 | Identification number of the product associated with this Interest table. | 
-| `productId` | Path Variable | *number* | 3 | Unique identification number of the product associated with the organization. If the table is defined at organization level, populate this field as zeroes. For tables defined at product level, valid values are 001-998. | 
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -140,7 +132,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -157,6 +151,21 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{productId}/interestTable).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. | 
+| `tableId` | Query parameter | *number* | 3 | Identification number of the product associated with this Interest table. | 
+| `productId` | Path Variable | *number* | 3 | Unique identification number of the product associated with the organization. If the table is defined at organization level, populate this field as zeroes. For tables defined at product level, valid values are 001-998. | 
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

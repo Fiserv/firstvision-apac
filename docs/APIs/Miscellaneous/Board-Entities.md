@@ -111,7 +111,6 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "primaryAccountFlag": " ",
     "shortName": "",
     "creditLimit": "1000",
-    "billingCurrency": 0,
     "billingLevel": "1",
     "dualBillingFlag": "0",
     "customerSelectedDueDay": 0,
@@ -623,7 +622,8 @@ Below table provides the list of application's error code and its description.
 | `V5RM4002SD` | Pending add use add function |                                     
 | `V5RM4002SH` | Dup number on name & addr file |                                   
 | `V5RM4002SI` | Dup number on account file |                                       
-| `V5RM0106EC` | AMRM - credit limit cannot be zeroes |                            
+| `V5RM0106EC` | AMRM - credit limit cannot be zeroes | 
+| `V5S80821SV` | Invalid Statement Delivery Mode |                            
 
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

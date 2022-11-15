@@ -8,29 +8,20 @@ This service provides the list of various transactions like memo, outstanding, u
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***Account id, start/end date should be sent as path variable and query parameter.***
 
-
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/listTransactions).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `startDate` | Query Parameter | *date* | 10 | Start date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. | 
-| `endDate` | Query Parameter | *date* | 10 | End date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
-
 
 {
   "transactionList": [
@@ -866,7 +857,10 @@ The below table identifies the required parameters in the request payload.
 }
 
 ```
-### Error Response Payload
+
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -883,6 +877,22 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/listTransactions).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `startDate` | Query Parameter | *date* | 10 | Start date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. | 
+| `endDate` | Query Parameter | *date* | 10 | End date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -901,7 +911,5 @@ Below table provides the list of application's error code and its description.
 | `V5TD4007EB` | Transaction detail end date/date to format is invalid |
 | `V5TD4007EC` | Transaction detail end date/date to is not numeric/zeroes/9999999 |
 | `V5TD4003SD` | Organization number not found on file |
-
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
