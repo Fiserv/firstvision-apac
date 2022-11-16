@@ -8,24 +8,18 @@ This service is used to get Access Token to authenticate and trigger the API's a
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***Scope detail for token sent as Query Parameter.***
 
-
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/api/oauth/token).
-
-The below table identifies the required query parameters in the request message.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `scope` | Query Parameter | *string* | 50 | Scope for which the token has been requested. |
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -35,7 +29,9 @@ The below table identifies the required query parameters in the request message.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -52,6 +48,20 @@ The below table identifies the required query parameters in the request message.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/api/oauth/token).
+
+The below table identifies the required query parameters in the request message.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `scope` | Query Parameter | *string* | 50 | Scope for which the token has been requested. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
