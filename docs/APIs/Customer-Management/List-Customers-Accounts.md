@@ -35,7 +35,7 @@ type: tab
       "mailingIndicator": " ",
       "memoCreditAmount": "$0.00",
       "memoDebitAmount": "$0.00",
-      "noOfTokenizedCards": 0,
+      "totalTokenizedCardCount": 0,
       "productId": 1,
       "reissueControlMethod": "0",
       "status": "N",

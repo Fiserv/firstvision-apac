@@ -52,7 +52,7 @@ type: tab
     "errorCode": "442201",
     "instance": "/v1/auth/reverse",
     "invalid-params": [
-      "V7RS4002ES: AMOA RECORD INVALID"
+      "V7RS4002ES: AUTHORIZATION RECORD NOT FOUND"
     ],
     "source": "VPL",
     "status": 422,
@@ -81,7 +81,10 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-| `V7RS4002ES` | Auth system record not initialized |        
-| `V7RS4002ES` | End-of-day cutoff being processed. |        
+| `V7RS4002EP` | Invalid card number |        
+| `V7RS4003EQ` | Input effective date not matching with log record effective date |   
+| `V7RS4005ER` | Input auth amount not matching with log record auth amount |   
+| `V7RS4002ES` | Authorization record not found |   
+| `V7RS4002EK` | Transaction is already reversed |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

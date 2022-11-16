@@ -4,7 +4,7 @@ The Card Secure Code Validation service is used to validate the CVV2  and option
 
 ## Endpoint
 
-`POST /v1/cards/{paymentInstrumentId}/validateCVV2`
+`POST /v1/cards/validateCVV2`
 
 ## Payload Example
 
@@ -15,9 +15,12 @@ titles: Request, Response, Error
 
 ```json
 {
-  "cvv2": "855",
+  "businessUnit": 100,
+  "paymentInstrumentId": "0009846801010065787",
+  "CVV2": "855",
   "expiryDate": "1123"
 }
+
 ```
 
 <!--
@@ -26,7 +29,6 @@ type: tab
 
 ```json
 {
-  "paymentInstrumentId": "0009846801010065787"
 }
 ```
 
@@ -39,7 +41,7 @@ type: tab
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "440401",
-    "instance": "/v1/cards/0009846801010065787/validateCVV2",
+    "instance": "/v1/cards/validateCVV2",
     "invalid-params": [
       "V5VC4003AE: Invalid CVV2"
     ],
@@ -54,7 +56,7 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/{paymentInstrumentId}/validateCVV2).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/validateCVV2).
 
 The below table identifies the required parameters in the request payload.
 

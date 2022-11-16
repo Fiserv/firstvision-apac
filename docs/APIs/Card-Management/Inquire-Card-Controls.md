@@ -16,7 +16,6 @@ titles: Request, Response, Error
 >Should be empty.  
 >
 >***The Payment Instrument Identification should be sent as path variable.***
-```
 
 <!--
 type: tab

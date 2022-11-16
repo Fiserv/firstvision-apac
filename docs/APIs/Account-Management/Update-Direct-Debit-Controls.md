@@ -47,7 +47,7 @@ type: tab
     "paymentExpiryDate": "04/11/2022",
     "paymentRemittanceMethod": "0",
     "paymentStartDate": "04/10/2021",
-    "paymentType": "1"
+    "paymentType": "1",
     "routingBankID": "123456"
   }
 }

@@ -95,8 +95,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
-| `productId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 001-998. |
+| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
+| `productId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
 | `firstName` | Payload | *string* | 40 | First name of customer. |
 
 ### Error Codes

@@ -83,8 +83,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number associated with this Account Base Segment entity, the values are 001–998. |
-| `planId` | Path Variable | *number* | 5 | Identification number of the Credit Plan Master entity. The values are 00001–99998. You can establish as many as 99,998 Credit Plan Master entities for each organization. | 
+| `businessUnit` | Query Parameter | *number* | 3 | Identification number associated with this Account Base Segment entity, the values are 1–998. |
+| `planId` | Path Variable | *number* | 5 | Identification number of the Credit Plan Master entity. The values are 1–99998. You can establish as many as 99,998 Credit Plan Master entities for each organization. | 
 
 ### Error Codes
 

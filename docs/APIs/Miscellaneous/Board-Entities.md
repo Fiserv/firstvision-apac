@@ -8,7 +8,10 @@ This new API enables to choose the records you want to add (Customer Name/Addres
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 
@@ -204,6 +207,49 @@ This new API enables to choose the records you want to add (Customer Name/Addres
 }
 ``` 
 
+<!--
+type: tab
+-->
+
+```json
+{
+  "businessUnit": 600,
+  "productId": 1,
+  "customerId": "0006000012000000191",
+  "relationshipId": "",
+  "accountId": "0006000012000000191",
+  "cardDetails": {
+    "paymentInstrumentId": "0004440010910990851",
+    "nameOnCard": "Trump",
+    "expiryDate": "18/01/2024",
+    "activationStatus": "0",
+    "maskedPaymentCardNumber": ""
+  }
+}
+```
+
+<!--
+type: tab
+-->
+
+```json
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/misc/boardEntities",
+    "invalid-params": [
+        "V5S84154SB: CUSTOMER NUMBER ALREADY EXISTS FOR THIS ORG",
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
+```
+
+<!-- type: tab-end -->
+
 ### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/misc/boardEntities).
@@ -234,42 +280,7 @@ The below table identifies the required parameters in the request payload.
 | `externalContractId` | Payload | *string* | 14 | Unique identification number assigned to a customer from external system. |
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
-### Successful Response Payload
-
-```json
-{
-  "businessUnit": 600,
-  "productId": 1,
-  "customerId": "0006000012000000191",
-  "relationshipId": "",
-  "accountId": "0006000012000000191",
-  "cardDetails": {
-    "paymentInstrumentId": "0004440010910990851",
-    "nameOnCard": "Trump",
-    "expiryDate": "18/01/2024",
-    "activationStatus": "0",
-    "maskedPaymentCardNumber": ""
-  }
-}
-```
-
-### Error Response Payload
-
-```json
-[
-  {
-    "detail": "Please refer to invalid-params for error details",
-    "errorCode": "440401",
-    "instance": "/v1/misc/boardEntities",
-    "invalid-params": [
-        "V5S84154SB: CUSTOMER NUMBER ALREADY EXISTS FOR THIS ORG",
-    ],
-    "source": "VPL",
-    "status": 404,
-    "title": "Not found"
-  }
-]
-```
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

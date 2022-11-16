@@ -112,8 +112,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 03 | Unique identification number associated with the organization. Valid values from 001-998.|
-| `productId` | Path Variable | *number* | 03 | Unique identification number of the product associated with the organization. Valid values are 001-998..|
+| `businessUnit` | Query Parameter | *number* | 03 | Unique identification number associated with the organization. Valid values from 1-998.|
+| `productId` | Path Variable | *number* | 03 | Unique identification number of the product associated with the organization. Valid values are 1-998.|
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 

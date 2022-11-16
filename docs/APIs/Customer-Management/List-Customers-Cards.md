@@ -4,7 +4,7 @@ This service retrieves the card details associated with a Customer id along with
 
 ## Endpoint
 
-`GET /v1/customers/{customerId}/cardList/`
+`GET /v1/customers/{customerId}/cardList`
 
 ## Payload Example
 
@@ -65,7 +65,7 @@ type: tab
       "mccLimit09": "$0.00",
       "mccLimit10": "$0.00",
       "nameOnCard": "JOHN1",
-      "numberOfTokens": 0,
+      "tokenCount": 0,
       "paymentInstrumentId": "0004440010880488266",
       "pinOffset": 0,
       "plasticSuppressStatus": "N",
@@ -108,7 +108,7 @@ type: tab
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "440401",
-    "instance": "/v1/customers/0006000011000000701/accountList",
+    "instance": "/v1/customers/0006000011000000701/cardList",
     "invalid-params": [
       "V5DB4001AS: CUST NBR NOT FOUND"
     ],
