@@ -124,6 +124,8 @@ The below table identifies the required parameters in the request payload.
 
 Below table provides the list of application's error code and its description.
 
+| ErrorCode |  Description/Values |
+| --------  | ------------------ |
 | `V5PH0004SF` | Get request - Record Not Found |  
 | `V5PS4009SA` | Org not present on file |  
 | `V5PS4010SA` | Account is not present not on file | 

@@ -90,7 +90,7 @@ type: tab
     "disputedDetails": {
         "disputedItemsCount": 0,
         "totalCashDisputedItemsAmount": "0.00",
-        "cashDisputedAmout": "0.00",
+        "cashDisputedAmount": "0.00",
         "cashDisputedItemsCount": 0
     },
     "pctOverrideDetails": {
@@ -126,6 +126,7 @@ type: tab
     "issuanceId": "B01",
     "currencyCode": "36",
     "primaryAccountFlag": "",
+	"productId": 1,
     "externalContractId": "",
     "addressId": "RESIDENTIAL",
     "billingAcctInd": "0"
