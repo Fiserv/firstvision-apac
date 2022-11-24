@@ -4,27 +4,22 @@ This service retrieves the card details associated with a Customer id along with
 
 ## Endpoint
 
-`GET /v1/customers/{customerId}/cardList/`
+`GET /v1/customers/{customerId}/cardList`
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty.  
 >
 >***Customer Identification should be sent as Path Variable.***  
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/cardList).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -70,7 +65,7 @@ The below table identifies the required parameters in the request payload.
       "mccLimit09": "$0.00",
       "mccLimit10": "$0.00",
       "nameOnCard": "JOHN1",
-      "numberOfTokens": 0,
+      "tokenCount": 0,
       "paymentInstrumentId": "0004440010880488266",
       "pinOffset": 0,
       "plasticSuppressStatus": "N",
@@ -79,8 +74,7 @@ The below table identifies the required parameters in the request payload.
       "status": "0",
       "warningCode1": "0",
       "addressId": "C9902",
-      "physicalVirtualIndicator": "V",
-      "plasticId": " "
+      "physicalVirtualIndicator": "V"
     }
   ],
   "customerInformation": {
@@ -105,14 +99,16 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "440401",
-    "instance": "/v1/customers/0006000011000000701/accountList",
+    "instance": "/v1/customers/0006000011000000701/cardList",
     "invalid-params": [
       "V5DB4001AS: CUST NBR NOT FOUND"
     ],
@@ -122,6 +118,20 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/cardList).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

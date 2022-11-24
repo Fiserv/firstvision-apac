@@ -9,40 +9,35 @@ This service is used to activate the card after successful verification of the c
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
   "currentCardNeedActivation": "N",
-  "deactivateOldCard": "Y"
+  "lastCardActivation": "Y"
 }
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/activate).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
   "businessUnit": 100,
   "cardActivatedDate": "19/08/2021",
   "currentCardNeedActivation": "N",
-  "deactivateOldCard": "Y",
+  "lastCardActivation": "Y",
   "paymentInstrumentId": "0009846801010273613"
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -59,6 +54,21 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/activate).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
+
+### Error Codes 
 
 Below table provides the list of application's error code and its description. 
 

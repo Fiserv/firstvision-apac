@@ -8,24 +8,18 @@ This service provides plan details for a given credit plan. Credit plans are con
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty.
 >
 >***The Business Unit and Plan id should be sent as query parameters and path variable.*** 
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{planId}/planDetails).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 3 | Identification number associated with this Account Base Segment entity, the values are 001–998. |
-| `planId` | Path Variable | *number* | 5 | Identification number of the Credit Plan Master entity. The values are 00001–99998. You can establish as many as 99,998 Credit Plan Master entities for each organization. | 
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -61,7 +55,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -78,6 +74,19 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+<!-- type: tab-end -->
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{planId}/planDetails).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `businessUnit` | Query Parameter | *number* | 3 | Identification number associated with this Account Base Segment entity, the values are 1–998. |
+| `planId` | Path Variable | *number* | 5 | Identification number of the Credit Plan Master entity. The values are 1–99998. You can establish as many as 99,998 Credit Plan Master entities for each organization. | 
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

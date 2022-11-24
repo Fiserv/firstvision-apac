@@ -50,8 +50,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             '*/*':
               schema:
@@ -64,8 +64,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ValidateTokenResponse'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             '*/*':
               schema:
@@ -88,8 +88,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             '*/*':
               schema:
@@ -117,34 +117,13 @@ paths:
           maxLength: 40
           type: string
           example: ABC123
-      - name: Authorization
-        in: header
-        description: Authorization Token once authenticated to the First Vision application
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRequest'
         required: true
-        schema:
-          type: string
-          example: Basic UE9DX05BQl9EZXY6YkhXTVR6Y0VPQ3I3cXU2WWN5M21jUnV1eXdaRzdmT3VobXNiZWNaNGFOYlVRYU5HYWNqeFY0SkM5c0s5WkR6RQ==
-      - name: grant_type
-        in: query
-        description: It refers to the way an application gets an access token
-        required: true
-        schema:
-          type: string
-          example: client_credentials
-      - name: scope
-        in: query
-        description: Limit the amount of access that is granted to an access token
-        required: true
-        schema:
-          type: string
-          example: accounts cards customers users products misc auth
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -153,24 +132,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
           content:
             '*/*':
               schema:
@@ -193,14 +164,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             '*/*':
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
       x-proxy-name: Get Access Token
       x-group-name: Security
 components:
@@ -237,6 +222,32 @@ components:
           type: boolean
           description: Tells whether token is valid or invalid
           example: 'false'
+    OAuthTokenRequest:
+      required:
+      - client_id
+      - client_secret
+      - grant_type
+      - scope
+      type: object
+      properties:
+        grant_type:
+          type: string
+          description: It refers to the way an application gets an access token
+          example: client_credentials
+        scope:
+          type: string
+          description: Limit the amount of access that is granted to an access token
+          example: all
+        client_id:
+          type: string
+          description: 'An identifier associated with an application that assists
+            with client  '
+          example: vision-api-user
+        client_secret:
+          type: string
+          description: a secret known only to your Vision10 API application and the
+            authorization server
+          example: abcdefghizklmnopponommnshfghzxxs
     TokenResponse:
       type: object
       properties:

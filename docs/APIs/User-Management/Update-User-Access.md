@@ -8,7 +8,10 @@ This service is used to update security sign-on data like business unit include/
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -176,20 +179,10 @@ This service is used to update security sign-on data like business unit include/
   }
 }
 ```
-### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/users/access).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `clientId` | Payload | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. | 
-| `name` | Payload | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. | 
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 
@@ -359,7 +352,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -376,6 +371,23 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/users/access).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `clientId` | Payload | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. | 
+| `name` | Payload | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. | 
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

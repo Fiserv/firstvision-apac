@@ -8,37 +8,33 @@ The Card Secure Code Validation service is used to validate the CVV2  and option
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
-  "businessUnit": 700,
-  "paymentInstrumentId": "0009543161000011002",
-  "CVV2": "643",
-  "expiryDate": "0825"
+  "businessUnit": 100,
+  "paymentInstrumentId": "0009846801010065787",
+  "CVV2": "855",
+  "expiryDate": "1123"
 }
+
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/validateCVV2).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
-| `CVV2` | Payload | *string* | 3 | CVV2 value of the card |
-| `expiryDate` | Payload | *date* | 4 | Field that indicates the card expiry date in MMYY format | 
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -55,6 +51,22 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/validateCVV2).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
+| `cvv2` | Payload | *string* | 3 | CVV2 value of the card |
+| `expiryDate` | Payload | *date* | 4 | Field that indicates the card expiry date in MMYY format | 
+
+### Error Codes 
 
 Below table provides the list of application's error code and its description.
 

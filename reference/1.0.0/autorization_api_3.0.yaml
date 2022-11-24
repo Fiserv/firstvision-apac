@@ -8,7 +8,7 @@ servers:
 tags:
 - name: Authorization
 paths:
-  /v1/auth/authRequest:
+  /v1/auth/request:
     post:
       tags:
       - Authorization
@@ -43,12 +43,36 @@ paths:
               $ref: '#/components/schemas/RequestAuthorizationReqModel'
         required: true
       responses:
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '201':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RequestAuthorizationResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -73,32 +97,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '422':
           description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -159,6 +159,36 @@ paths:
           type: string
           example: '3839400'
       responses:
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -183,38 +213,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '422':
           description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -258,7 +258,7 @@ components:
           maxLength: 3
           type: integer
           description: Field that identifies the business unit to which the store
-            is assigned. The values for the business unit are 001–998.
+            is assigned. The values for the business unit are 1–998.
           example: '100'
         merchantId:
           maximum: 999999999
@@ -293,6 +293,31 @@ components:
           description: Security code(CVV2/CVC2/CAV2/CVN2) assigned to the payment
             Instrument id.
           example: '123'
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
     RequestAuthorizationResponseModel:
       type: object
       properties:
@@ -326,43 +351,23 @@ components:
           description: This field indicate the internal reference number used to identify
             authorization details from log file.
           example: '3239000'
-        maskedPaymentCardNumber:
-          maxLength: 19
-          type: string
-          description: Unique identification number that appears on the front of the
-            card (PAN) in masked format.
-          example: 000484680XXXXXX9405
         uniqueTransactionId:
           maxLength: 35
           type: string
           description: This field indicates unique transaction identification for
             the associated transaction.
           example: APP17977700222011344330001112345678
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
+        maskedPaymentCardNumber:
+          maxLength: 19
           type: string
-          example: ''
-        detail:
+          description: Unique identification number that appears on the front of the
+            card (PAN) in masked format.
+          example: 000484680XXXXXX9405
+        openToBuy:
+          maxLength: 17
           type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        status:
-          type: integer
-          example: '0'
-        invalid-params:
-          type: array
-          items:
-            type: string
+          description: Current open-to-buy amount of the account.
+          example: $10000.00
     InquireAuthorizationDetailResponseModel:
       type: object
       properties:
@@ -389,7 +394,7 @@ components:
               maxLength: 3
               type: string
               description: Field that identifies the business unit to which the store
-                is assigned. The values for the business unit are 001–998.
+                is assigned. The values for the business unit are 1–998.
               example: '100'
             merchantId:
               maxLength: 9

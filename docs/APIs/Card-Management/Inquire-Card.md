@@ -8,26 +8,20 @@ This service is used to retrive detailed information of card. This API response 
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty.  
 >
 >***The Payment Instrument Identification should be sent as path variable.***
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{paymentInstrumentId}/details).
-
-The below table identifies the required query parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
-
 {
   "accountId": "0006000022000000050",
   "addressFields": {
@@ -57,7 +51,6 @@ The below table identifies the required query parameters in the request payload.
   "currentCardNeedActivation": "N",
   "customerId": "",
   "customersGender": "0",
-  "maskedPaymentCardNumber": "000484680XXXXXX9405",
   "dateFields": {
     "cardActivatedDate": "00/00/0000",
     "cardIssueDate": "00/00/0000",
@@ -72,7 +65,7 @@ The below table identifies the required query parameters in the request payload.
   },
   "digitalId": "",
   "emblemId": 0,
-  "externalContractId": "",
+  "externalCustomerId": "",
   "firstIssueBranch": 0,
   "fraudCardTransferCount": "",
   "isDynamicCVV2Enabled": "",
@@ -117,7 +110,9 @@ The below table identifies the required query parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -134,6 +129,22 @@ The below table identifies the required query parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{paymentInstrumentId}/details).
+
+The below table identifies the required query parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+
+
+
+### Error Codes 
 
 Below table provides the list of application's error code and its description.
 

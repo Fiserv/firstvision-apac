@@ -10,7 +10,10 @@ This API is used to update the billing cycle for an account. Values between 1 to
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -18,18 +21,9 @@ This API is used to update the billing cycle for an account. Values between 1 to
 }
 ``` 
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/billingCycle).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
-| `billingCycle` | payload | *number* | 02 | Cycle code that indicates the day of the month that CMS performs cycle processing for the account. The values are 01–31.|
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -39,7 +33,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -56,6 +52,21 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/billingCycle).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
+| `billingCycle` | payload | *number* | 02 | Cycle code that indicates the day of the month that CMS performs cycle processing for the account. The values are 1–31.|
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

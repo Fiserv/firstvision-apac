@@ -11,7 +11,10 @@ Sign-on entity must be setup and active for each person authorized to access the
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 
@@ -219,6 +222,37 @@ Sign-on entity must be setup and active for each person authorized to access the
 }
 ``` 
 
+<!--
+type: tab
+-->
+
+```json
+{}
+
+```
+
+<!--
+type: tab
+-->
+
+```json
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/users/boardUser",
+    "invalid-params": [
+      "VMSF0028SF: Record ADDED, SAVE not allowed."
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
+```
+
+<!-- type: tab-end -->
+
 ### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/users/boardUser).
@@ -236,30 +270,7 @@ The below table identifies the required parameters in the request payload.
 | `servicePrivilegeGroup` | Payload | *number* | 03 |  Name that identifies an existing service privilege group assigned to this User Security Sign-on entity. |
 | `signonExpiryDate` | Payload | *date* | 10 |  Expiration date of the User Security Sign-on entity. The default value is zeros. |
 
-### Successful Response Payload
-
-```json
-{}
-
-```
-
-### Error Response Payload
-
-```json
-[
-  {
-    "detail": "Please refer to invalid-params for error details",
-    "errorCode": "440401",
-    "instance": "/v1/users/boardUser",
-    "invalid-params": [
-      "VMSF0028SF: Record ADDED, SAVE not allowed."
-    ],
-    "source": "VPL",
-    "status": 404,
-    "title": "Not found"
-  }
-]
-```
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
