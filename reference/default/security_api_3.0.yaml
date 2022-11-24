@@ -27,66 +27,13 @@ paths:
           maxLength: 40
           type: string
           example: ABC123
-      - name: Authorization
-        in: header
-        description: Authorization Token once authenticated to the First Vision application
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRequest'
         required: true
-        schema:
-          type: string
-          example: Basic UE9DX05BQl9EZXY6YkhXTVR6Y0VPQ3I3cXU2WWN5M21jUnV1eXdaRzdmT3VobXNiZWNaNGFOYlVRYU5HYWNqeFY0SkM5c0s5WkR6RQ==
-      - name: grant_type
-        in: query
-        description: It refers to the way an application gets an access token
-        required: true
-        schema:
-          type: string
-          example: client_credentials
-      - name: scope
-        in: query
-        description: Limit the amount of access that is granted to an access token
-        required: true
-        schema:
-          type: string
-          example: accounts cards customers users products misc auth
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -103,10 +50,74 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Get Access Token
       x-group-name: Security
 components:
   schemas:
+    OAuthTokenRequest:
+      required:
+      - client_id
+      - client_secret
+      - grant_type
+      - scope
+      type: object
+      properties:
+        grant_type:
+          type: string
+          description: It refers to the way an application gets an access token
+          example: client_credentials
+        scope:
+          type: string
+          description: Limit the amount of access that is granted to an access token
+          example: all
+        client_id:
+          type: string
+          description: 'An identifier associated with an application that assists
+            with client  '
+          example: username
+        client_secret:
+          type: string
+          description: a secret known only to your Vision10 API application and the
+            authorization server
+          example: passphrase
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -127,7 +138,6 @@ components:
           example: ''
         status:
           type: integer
-          format: int32
           example: '0'
         invalid-params:
           type: array
@@ -145,9 +155,9 @@ components:
           description: Type of token to be authenticated
           example: Bearer
         expires_in:
-          type: string
+          type: integer
           description: Time after which token will be expired
-          example: ''
+          example: '0'
   securitySchemes:
     Authorization:
       type: http
