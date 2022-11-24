@@ -8,7 +8,10 @@ This service generates encrypted dynamic CVV2 and other required details for a g
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -16,17 +19,9 @@ This service generates encrypted dynamic CVV2 and other required details for a g
 }
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/{paymentInstrumentId}/generateDynamicCVV2).
-
-The below table identifies the required query parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -39,7 +34,9 @@ The below table identifies the required query parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -56,6 +53,22 @@ The below table identifies the required query parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/{paymentInstrumentId}/generateDynamicCVV2).
+
+The below table identifies the required query parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+
+
+### Error Codes 
 
 Below table provides the list of application's error code and its description.
 

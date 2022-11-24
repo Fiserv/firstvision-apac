@@ -4,29 +4,22 @@ This service retrieves the account and card details associated with a Customer n
 
 ## Endpoint
 
-`GET /v1/customers/{customerId}/listCustomersCardfsAndAccounts`
+`GET /v1/customers/{customerId}/listCustomersCardsAndAccounts`
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty.
 >
 >***The Customer Identifiaction should be sent as path variable.***
 
-
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/listCustomersCardsAndAccounts).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer.|
-
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -42,11 +35,11 @@ The below table identifies the required parameters in the request payload.
       "mailingIndicator": " ",
       "memoCreditAmount": "$0.00",
       "memoDebitAmount": "$0.00",
-      "noOfTokenizedCards": 0,
+      "totalTokenizedCardCount": 0,
       "productId": 1,
       "reissueControlMethod": "0",
       "status": "N",
-      "externalContractId": "990012679902",
+      "externalCustomerId": "990012679902",
       "addressId": "HOME9902"
     }
   ],
@@ -92,7 +85,7 @@ The below table identifies the required parameters in the request payload.
       "mccLimit09": "$0.00",
       "mccLimit10": "$0.00",
       "nameOnCard": "JOHN1",
-      "numberOfTokens": 0,
+      "tokenCount": 0,
       "paymentInstrumentId": "0004440010880488266",
       "pinOffset": 0,
       "plasticSuppressStatus": "N",
@@ -101,8 +94,7 @@ The below table identifies the required parameters in the request payload.
       "statusOfCard": "0",
       "warningCode1": "0",
       "addressId": "C9902",
-      "physicalVirtualIndicator": "V",
-      "plasticId": " "
+      "physicalVirtualIndicator": "V"
     }
   ],
   "customerInformation": {
@@ -128,7 +120,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -145,6 +139,19 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/listCustomersCardsAndAccounts).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer.|
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

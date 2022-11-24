@@ -4,11 +4,14 @@ This service is used for Authorization request on payment instrument id.
 
 ## Endpoint
 
-`POST /v1/auth/authRequest`
+`POST /v1/auth/request`
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -22,22 +25,9 @@ This service is used for Authorization request on payment instrument id.
 }
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/auth/authRequest).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-| `merchantBusinessUnit` | Payload | *string* | 3 | Field that identifies the business unit to which the store is assigned. The values for the business unit are 001–998. |
-| `merchantId` | Payload | *string* | 9 | Field that identifies the store identification number. |
-| `authorizationAmount` | Payload | *number* | 17 | Authorized sales amount in the currency accepted by the particular merchant. |
-| `expiryDate` | Payload | *string* | 4 | Valid card expire date should be provided which is of 4 character with MMYY format. |
-| `CVV2` | Payload | *string* | 3 | Security code(CVV2/CVC2/CAV2/CVN2) assigned to the payment Instrument id. |
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -51,14 +41,16 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "440401",
-    "instance": "/v1/auth/authRequest",
+    "instance": "/v1/auth/request",
     "invalid-params": [
       "V7RQ4008EA : Expiration date is invalid"
     ],
@@ -68,6 +60,25 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/auth/request).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentOrCardId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+| `merchantBusinessUnit` | Payload | *string* | 3 | Field that identifies the business unit to which the store is assigned. The values for the business unit are 1–998. |
+| `merchantId` | Payload | *string* | 9 | Field that identifies the store identification number. |
+| `authorizationAmount` | Payload | *number* | 17 | Authorized sales amount in the currency accepted by the particular merchant. |
+| `expiryDate` | Payload | *string* | 4 | Valid card expire date should be provided which is of 4 character with MMYY format. |
+| `CVV2` | Payload | *string* | 3 | Security code(CVV2/CVC2/CAV2/CVN2) assigned to the payment Instrument id. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
