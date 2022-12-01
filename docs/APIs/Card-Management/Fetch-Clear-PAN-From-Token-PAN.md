@@ -23,11 +23,11 @@ type: tab
 
 ```json
 {
-  "paymentCardNumber": "0009846801010273605"
+  "encryptedPaymentCardNumber": "217E8A00536C7A101B055563FBF49C9A"
 }
 ```
 
-<!--
+<!--s
 type: tab
 --> 
 
