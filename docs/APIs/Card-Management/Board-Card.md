@@ -21,7 +21,7 @@ titles: Request, Response, Error
   "businessUnit": 600,
   "productId": 1,
   "customerId": "0006000012000000256",
-  "cardAction": "0",
+  "cardAction": "1",
   "numberOfCardsRequested": 0,
   "cardType": 0,
   "requestedCardType": 0,
@@ -39,22 +39,23 @@ titles: Request, Response, Error
   "mccGroupLimits": " ",
   "chequeAccountId": " ",
   "savingsAccountId": " ",
-  "namesData": {
+  "nameDetails": {
     "embossedName1": "John Brono ",
     "embossedName2": "Samuel Baro",
     "name1": "ABCD",
     "name2": "QWER"
   },
-  "addressData": {
-    "addressLine1": "House no. 12 ",
-    "addressLine2": "St. Paul Road ",
+  "addressDetails": {
+    "addressLine1": "House no
+    "addressLine2": "St
     "city": " ",
     "stateprovince": "Uth",
     "postalCode": "1231",
-    "addressId": "13"    
-  }
+    "addressId": " "
+  },
   "physicalVirtualIndicator": "P",
-  "isDynamicCVV2Enabled": "0
+  "isDynamicCVV2Enabled": "0",
+  "externalContractId": "000012672379"
 }
 ``` 
 

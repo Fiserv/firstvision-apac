@@ -22,91 +22,93 @@ type: tab
 --> 
 
 ```json
+
 {
-  "accountId": "0006000022000000050",
-  "addressFields": {
-    "addressId": "",
-    "addressLine1": "FISERV",
-    "addressLine2": "NAB",
-    "city": "CHENNAI",
-    "postalCode": "",
-    "stateProvince": ""
-  },
-  "authorizationCriteriaTableId": "800",
-  "blockCodeDetails": {
-    "blockCode": "X",
-    "blockDate": "19/08/2021",
-    "blockSecurityId": "NAB"
-  },
   "businessUnit": 600,
-  "cardAction": "1",
-  "cardDelayDaysCount": 0,
-  "cardReissueDeliveryLocation": 0,
-  "cardReissueDeliveryOption": "5",
-  "cardRequestedCount": 1,
+  "paymentInstrumentId": "0009544410000000047",
+  "accountId": "0006000022000000076",
+  "productId": 1,
+  "status": "0",
+  "numberOfCardsOutstanding": 1,
   "cardReturnedCount": 0,
+  "cardAction": "1",
+  "cardRequestedCount": 1,
   "cardType": 0,
   "cardTypeRequested": 0,
-  "cardholderType": "1",
-  "currentCardNeedActivation": "N",
-  "customerId": "",
-  "customersGender": "0",
-  "dateFields": {
-    "cardActivatedDate": "00/00/0000",
-    "cardIssueDate": "00/00/0000",
-    "currentCardValidDate": "00/00/0000",
-    "expiryDate": "17/08/2024",
-    "firstCardVerifyDate": "00/00/0000",
-    "lastCardExpiryDate": "00/00/0000",
-    "mailerDate": "00/00/0000",
-    "nextCardExpiryDate": "00/00/0000",
-    "statusChangeDate": "00/00/0000",
-    "transferEffectiveDate": "00/00/0000"
-  },
-  "digitalId": "",
-  "emblemId": 0,
-  "externalCustomerId": "",
-  "firstIssueBranch": 0,
-  "fraudCardTransferCount": "",
-  "isDynamicCVV2Enabled": "",
-  "isPinSuppressionEnabled": "0",
   "isSecureCodeEnabled": "0",
+  "visaPlusIndicator": "0",
+  "customerId": " ",
+  "posServiceCode": " ",
+  "cardholderType": "0",
+  "pinDelayDaysCount": 0,
+  "visaMiniCardVersion": "0",
+  "isPinSuppressionEnabled": "0",
+  "reissueAttemptCount": 0,
+  "currentCardNeedActivation": "N",
   "lastCardActivation": "N",
+  "fraudCardTransferCount": " ",
+  "cardReissueDeliveryLocation": 0,
+  "cardReissueDeliveryOption": "0",
+  "firstIssueBranch": 0,
+  "authorizationCriteriaTableId": " ",
+  "emblemId": 0,
+  "cardDelayDaysCount": 0,
+  "customersGender": "0",
+  "reasonCode": "",
+  "pinOverride": "0",
   "mobileDeviceID": "",
   "mobileProvisionStatus": "0",
-  "nameFields": {
-    "cardholderName1": "",
-    "cardholderName2": "",
-    "embossedName1": "R0203 CARDHOLDER#3",
-    "name1TypeIndicator": "0",
-    "name2TypeIndicator": "0",
-    "embossedName2": "FISERV DEMO FACILITY"
+  "digitalId": "0",
+  "addressFields": {
+    "addressLine1": " ",
+    "addressLine2": " ",
+    "city": " ",
+    "stateProvince": " ",
+    "postalCode": " ",
+    "addressId": "HOME"
   },
-  "numberOfCardsOutstanding": 0,
-  "paymentInstrumentId": "0009544410000000047",
-  "physicalVirtualIndicator": "",
-  "pinDelayDaysCount": 0,
-  "pinOverride": "1",
-  "plasticId": "VISA001",
-  "posServiceCode": "",
-  "productId": 2,
-  "reasonCode": "",
-  "reissueAttemptCount": 0,
-  "status": "0",
   "userDefinedFields": {
-    "field1": "",
-    "field2": "",
-    "field3": "",
+    "field1": " ",
+    "field2": " ",
+    "field3": " ",
     "field4": 0,
-    "field5": ""
+    "field5": " "
   },
-  "visaMiniCardVersion": "0",
-  "visaPlusIndicator": "0",
+  "nameFields": {
+    "cardholderName1": " ",
+    "cardholderName2": " ",
+    "embossedName1": "DAVID TEST 2",
+    "embossedName2": " ",
+    "name1TypeIndicator": "0",
+    "name2TypeIndicator": "0"
+  },
+  "dateFields": {
+    "expiryDate": "16/08/2024",
+    "statusChangeDate": "01/02/2020",
+    "transferEffectiveDate": "01/02/2020",
+    "lastCardExpiryDate": "01/02/2020",
+    "cardActivatedDate": "19/08/2021",
+    "cardIssueDate": "01/02/2020",
+    "currentCardValidDate": "01/02/2022",
+    "mailerDate": "01/02/2020",
+    "nextCardExpiryDate": "01/02/2020",
+    "firstCardVerifyDate": "01/02/2020"
+  },
   "warningCodeDetails": {
-    "warningCode1": "1",
-    "warningCode1SetDate": "18/08/2021",
-    "warningCode7": "0"
-  }
+    "warningCode7": "0",
+    "warningCode1": "0",
+    "warningCode1SetDate": "00/00/0000"
+  },
+  "blockCodeDetails": {
+    "blockSecurityId": " ",
+    "blockCode": " ",
+    "blockDate": "25/01/202"
+  },
+  "externalContractId": "000012672379",
+  "physicalVirtualIndicator": "V",
+  "isDynamicCVV2Enabled": "0",
+  "plasticId": " ",
+  "maskedPaymentCardNumber": "000484680XXXXXX9405"
 }
 ```
 

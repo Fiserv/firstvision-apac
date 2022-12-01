@@ -28,10 +28,10 @@ type: tab
 ```json
 {
   "businessUnit": 100,
-  "cardActivatedDate": "19/08/2021",
+  "paymentInstrumentId": "0009846801010273613",
   "currentCardNeedActivation": "N",
-  "lastCardActivation": "Y",
-  "paymentInstrumentId": "0009846801010273613"
+  "deactivateOldCard": "Y",
+  "cardActivatedDate": "03/01/2020"
 }
 ```
 
