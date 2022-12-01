@@ -17,6 +17,7 @@ titles: Request, Response, Error
 
 ```json
 {
+  "customerId": "0000000993456711108",
   "businessUnit": 600,
   "productId": 2,
   "dualFlag": "0",

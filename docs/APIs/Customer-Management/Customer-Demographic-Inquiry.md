@@ -56,12 +56,13 @@ type: tab
     "addressLine4": "DELHI",
     "addressLine1": "FLAT NO:404",
     "addressLine2": "RAINBOW APTS",
+    "houseNumber": "",
+    "postalCode": "110004",
     "city": "DELHI",
     "stateProvince": "DL",
     "countryCode": "IND"
   },
-  "postalCode": "110004",
-  "houseNumber": ""
+  "homePhoneFlag": "0"
 }
 ```
 
