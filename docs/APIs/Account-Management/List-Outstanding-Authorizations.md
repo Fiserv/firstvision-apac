@@ -38,7 +38,7 @@ type: tab
       "transactionAmount": "$3,000.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00"
     },
     {
@@ -55,7 +55,7 @@ type: tab
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00"
     },
     {
@@ -72,7 +72,7 @@ type: tab
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00"
     },
     {
@@ -89,7 +89,7 @@ type: tab
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00"
     },
     {
@@ -106,7 +106,7 @@ type: tab
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00"
     },
     {
@@ -123,7 +123,7 @@ type: tab
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789",
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00"
     }
   ]

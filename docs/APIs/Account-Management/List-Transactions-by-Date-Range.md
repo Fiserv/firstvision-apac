@@ -900,7 +900,7 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5TD4001IA` | No transactions found for request |
 | `V5TD4004EA` | Account number not numeric or euqal to spaces |
-| `V5TD4003EA` | Org must be numeric and valid values are 001-998 |
+| `V5TD4003EA` | Org must be numeric and valid values are 1-998 |
 | `V5TD4008EA` | Number of transactions not numeric or greater than 50 |
 | `V5TD4005EA` | Invalid local/foreign indicator valid values are space 'l' or 'F' |
 | `V5TD4006EA` | Transaction detail begin date/date from is not numeric/zeroes |

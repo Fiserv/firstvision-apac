@@ -37,7 +37,8 @@ type: tab
   "reason": "APPROVED",
   "internalReferenceNumber": 3239000,
   "maskedPaymentCardNumber": "000484680XXXXXX9405",
-  "uniqueTransactionId": "APP179777002220113443300011123456789"
+  "uniqueTransactionId": "APP17977700222011344330001112345678",
+  "openToBuy": "$10000.00"
 }
 ```
 

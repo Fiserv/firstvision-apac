@@ -67,7 +67,7 @@ type: tab
   "disputedItemCount": 0,
   "expiryDate": "30/04/2024",
   "maskedPaymentCardNumber": "000404940XXXXXX5286",
-  "uniqueTransactionId": "APP179777002220113443300011123456111",
+  "uniqueTransactionId": "APP17977700222011344330001112345678",
   "memoDetails": {
     "memoCreditAmount": "$0.00",
     "memoCreditCount": 0,
