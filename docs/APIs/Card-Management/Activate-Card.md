@@ -17,7 +17,7 @@ titles: Request, Response, Error
 ```json
 {
   "currentCardNeedActivation": "N",
-  "lastCardActivation": "Y"
+  "deactivateOldCard": "Y"
 }
 ```
 
