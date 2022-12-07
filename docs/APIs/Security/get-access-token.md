@@ -10,10 +10,14 @@ This service is used to get Access Token to authenticate and trigger the API's a
 
 ### Request Payload
 
->Should be empty. 
->
->***Scope detail for token sent as Query Parameter.***
-
+```json
+{
+  "grant_type": "client_credentials",
+  "scope": "all",
+  "client_id": "vision-api-user",
+  "client_secret": "abcdefghizklmnopponommnshfghzxxs"
+}
+```
 
 ### Minimum Requirements
 
@@ -23,15 +27,18 @@ The below table identifies the required query parameters in the request message.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `scope` | Query Parameter | *string* | 50 | Scope for which the token has been requested. |
+| `scope` | Payload | *string* | 50 | Limit the amount of access that is granted to an access token. |
+| `grant_type` | Payload | *string* | 50 | It refers to the way an application gets an access token. |
+| `client_id` | Payload | *string* | 50 | An identifier associated with an application that assists with client. |
+| `client_secret` | Payload | *string* | 100 | a secret known only to your Vision10 API application an
 
 ### Successful Response Payload
 
 ```json
 {
 "access_token": "eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImVkaXQiLCJjbGllbnRfaWQiOiJQT0NfTkFCX0RldiIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.uWiSQfLLzfDYuSmPwmLa1fVx6Vyw8Rtphv49uo_2EbfoJYzppHNscar8NWNEp4sXHdxbrEmftu_JJ3oTLD8AtbNgQh9ej8lUEvfA8vbYM3ucXuOC1NWxZPD7tDiwQ6kLypsYgbOhBMQ_U7Icobbh2I9o1Zit8F9xT7J70e3ZLJqtqTWC1WDd0WmOG672KpU_tc2eMtUvLYqrMKjRr2KuD-e73fc27zdYpeL9GElVlo1WKbrHOvsdolr92mvhHBf_etnQ5Pb_X_x533-DiT1piCkjBTqZqgd6cdV2ItdPVAz8CfwmjS6TJR95B3Ys9Xp3tdI5UwP3NmkaYRqP5_R02Q",
-"expires_in": 1750392000,
-"token_type": "Bearer"
+"token_type": "Bearer",
+"expires_in": 7199
 }
 ```
 
