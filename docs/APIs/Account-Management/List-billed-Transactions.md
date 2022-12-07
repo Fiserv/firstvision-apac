@@ -41,7 +41,7 @@ type: tab
       "transactionAmount": "$12.00",
       "transactionCode": 4000,
       "transactionType": "D",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678"
     },
     {
       "authorizationCode": " ",
@@ -57,7 +57,7 @@ type: tab
       "transactionAmount": "$8.00",
       "transactionCode": 4000,
       "transactionType": "D",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678"
     },
     {
       "authorizationCode": " ",
@@ -73,7 +73,7 @@ type: tab
       "transactionAmount": "$50.00",
       "transactionCode": 7001,
       "transactionType": "D",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678"
     }
   ]
 }
