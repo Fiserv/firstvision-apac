@@ -42,7 +42,7 @@ type: tab
       "overlimitFeeBilledNotPaidAmount": "$0.00",
       "paymentBeginningDate": "",
       "planId": 10002,
-      "principalBalance": "$20.00",
+      "principalAmount": "$20.00",
       "rateType": "F",
       "recordCount": 1,
       "recoveryFeeBilledNotPaidAmount": "$0.00",
