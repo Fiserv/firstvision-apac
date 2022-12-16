@@ -4,7 +4,7 @@ This Loan Calculator Service is used to calculate the loan repayment options for
 
 ## Endpoint
 
-`GET /v1/loans/calculator`
+`POST /v1/loans/calculator`
 
 ## Payload Example
 
@@ -143,7 +143,7 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/loans/calculator).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/loans/calculator).
 
 The below table identifies the required parameters in the request payload.
 
