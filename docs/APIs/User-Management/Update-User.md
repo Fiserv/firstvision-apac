@@ -14,11 +14,67 @@ titles: Request, Response, Error
 -->
 
 ```json
+
 {
-  "servicePrivilegeGroupId": "CLTUSER",
+  "servicePrivilegeGroupId": "",
   "status": "1",
-  "signonExpiryDate": "31/12/2030"
+  "signonExpiryDate": "",
+  "activationDate": "",
+  "businessUnitPrivilegeId": "",
+  "supervisorId": " ",
+  "customerServiceBusinessUnit": 100,
+  "userServicePrivilege01": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege02": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege03": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege04": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege05": {
+    "inclusionexclusionFlag5": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege06": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege07": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege08": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege09": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege10": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  }
 }
+
 ```
 
 <!--
