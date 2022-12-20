@@ -46,8 +46,8 @@ titles: Request, Response, Error
     "name2": "QWER"
   },
   "addressDetails": {
-    "addressLine1": "House no
-    "addressLine2": "St
+    "addressLine1": "House no 404",
+    "addressLine2": "Strt",
     "city": " ",
     "stateprovince": "Uth",
     "postalCode": "1231",

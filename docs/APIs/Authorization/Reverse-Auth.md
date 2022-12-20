@@ -35,7 +35,7 @@ type: tab
   "finalAction": "R",
   "reason": "REVESAL",
   "internalReferenceNumber": 3239000,
-  "uniqueTransactionId": "APP179777002220113443300011123456789",
+  "uniqueTransactionId": "APP17977700222011344330001112345678",
   "maskedPaymentCardNumber": "000484680XXXXXX9405",
   "openToBuy": "$10000.00"
 }
@@ -82,9 +82,10 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description |
 | --------  | ------------------ |
 | `V7RS4002EP` | Invalid card number |        
+| `V7RS4002ES` | Authorization record not found |   
 | `V7RS4003EQ` | Input effective date not matching with log record effective date |   
 | `V7RS4005ER` | Input auth amount not matching with log record auth amount |   
-| `V7RS4002ES` | Authorization record not found |   
-| `V7RS4002EK` | Transaction is already reversed |
+| `V7RS4002EK` | Authorization record is already reversed |   
+| `V7RS4002EL` | Authorization record is already reversed |   
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
