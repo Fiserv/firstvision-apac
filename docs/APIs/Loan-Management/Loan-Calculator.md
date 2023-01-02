@@ -18,7 +18,7 @@ titles: Request, Response, Error
   "principalAmount": "60000",
   "insuranceAmount": "50000",
   "currencyCode": "036",
-  "userFees": "30000",
+  "userFeeAmount": "30000",
   "interestRate": 1400,
   "tenure": 10,
   "fixedPaymentAmount": "0",
@@ -41,12 +41,12 @@ type: tab
     "fixedPaymentAmount": "$140.09",
     "insuranceAmount": "$500.00",
     "interestRate": "1400",
-    "loanTerm": 10,
+    "tenure": 10,
     "principalAmount": "$600.00",
     "totalFinancedAmount": "$1,400.00",
     "totalInterestAmount": "$0.90",
     "totalLoanAmount": "$1,400.90",
-    "userFees": "$300.00"
+    "userFeeAmount": "$300.00"
   },
   "loanScheduleAndMonthdetails": {
     "loanMethod": 0,
@@ -54,61 +54,61 @@ type: tab
   },
   "monthlyLoanPaymentDetails": [
     {
-      "currentTerm": 1,
+      "currentTenure": 1,
       "endingBalance": "$1,260.07",
       "finalAmount": "$139.93",
       "intrestAmount": "$0.16"
     },
     {
-      "currentTerm": 2,
+      "currentTenure": 2,
       "endingBalance": "$1,120.13",
       "finalAmount": "$139.94",
       "intrestAmount": "$0.15"
     },
     {
-      "currentTerm": 3,
+      "currentTenure": 3,
       "endingBalance": "$980.17",
       "finalAmount": "$139.96",
       "intrestAmount": "$0.13"
     },
     {
-      "currentTerm": 4,
+      "currentTenure": 4,
       "endingBalance": "$840.19",
       "finalAmount": "$139.98",
       "intrestAmount": "$0.11"
     },
     {
-      "currentTerm": 5,
+      "currentTenure": 5,
       "endingBalance": "$700.20",
       "finalAmount": "$139.99",
       "intrestAmount": "$0.10"
     },
     {
-      "currentTerm": 6,
+      "currentTenure": 6,
       "endingBalance": "$560.19",
       "finalAmount": "$140.01",
       "intrestAmount": "$0.08"
     },
     {
-      "currentTerm": 7,
+      "currentTenure": 7,
       "endingBalance": "$420.17",
       "finalAmount": "$140.02",
       "intrestAmount": "$0.07"
     },
     {
-      "currentTerm": 8,
+      "currentTenure": 8,
       "endingBalance": "$280.13",
       "finalAmount": "$140.04",
       "intrestAmount": "$0.05"
     },
     {
-      "currentTerm": 9,
+      "currentTenure": 9,
       "endingBalance": "$140.07",
       "finalAmount": "$140.06",
       "intrestAmount": "$0.03"
     },
     {
-      "currentTerm": 10,
+      "currentTenure": 10,
       "endingBalance": "$0.00",
       "finalAmount": "$140.07",
       "intrestAmount": "$0.02"
@@ -149,8 +149,11 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
-| `recordNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment record assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
+| `principalAmount` | Payload  | *number* | 17 | Principal balance of the loan in monetary units and subunits.|
+| `currencyCode` | Payload  | *string* | 3 | ISO Standard Currency Code or ISO Country Code that identifies the unit of currency for this loan.|
+| `fixedPaymentAmount` | Payload  | *number* | 17 | Amount of the fixed payment. This field is required if LOAN TERM is not supplied.|
+| `tenure` | Payload  | *integer*| 3 | Term for the loan. This field is required if FIXED PAYMENT AMOUNT is not supplied.|
+
 
 
 ### Error Codes
