@@ -1,4 +1,4 @@
-# Inquire Schedule Loan
+# Inquire Loan Schedule 
 
 This service fetches loan schedule details for the current loan data.
 
