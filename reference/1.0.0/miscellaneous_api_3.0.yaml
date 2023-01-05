@@ -13,8 +13,9 @@ paths:
       tags:
       - Miscellaneous
       summary: Board Entities
-      description: This service is used to board the new account,embosser,customer
-        and relationship entity.
+      description: This API is used to add Customer Name/Address record, Account Base
+        Segment record, Embosser record, and Relationship record and Insurance record
+        based on the input criteria.
       operationId: BoardEntities
       parameters:
       - name: Authorization
@@ -82,12 +83,6 @@ paths:
               $ref: '#/components/schemas/BoardEntityReqModel'
         required: true
       responses:
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardEntityResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -96,16 +91,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -120,16 +107,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -152,6 +131,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardEntityResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
       - Authorization: [
           ]
@@ -162,8 +163,11 @@ paths:
       tags:
       - Miscellaneous
       summary: Inquire Business Unit
-      description: This service is used to view important paramter available at Business
-        unit level.
+      description: This API is used to fetch parameters defined at business unit.
+        Business unit are primary control records that gives client option to enable
+        or disable various functionalities like MCC limits, Loan active, general ledger
+        etc. Business units establishes operating parameters for companies that process
+        accounts in a similar fashion.
       operationId: InquireBusinessUnit
       parameters:
       - name: Authorization
@@ -243,22 +247,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -273,16 +263,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -305,6 +293,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
       - Authorization: [
           ]
@@ -315,7 +319,8 @@ paths:
       tags:
       - Miscellaneous
       summary: Inquire Billing Cycle Assignment
-      description: This service is used to retrieve billing cycle assignment details.
+      description: This API is used to fetch billing cycle assignment details and
+        billing method for a given business unit.
       operationId: InquireBillingCycleAssignment
       parameters:
       - name: Authorization
@@ -395,24 +400,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -425,16 +414,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireBillingCycleAssignmentResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -457,6 +446,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
       - Authorization: [
           ]
@@ -467,7 +472,9 @@ paths:
       tags:
       - Miscellaneous
       summary: System Status
-      description: This service is used to verify CMS and FAS processing status.
+      description: This API is used to verify health of credit management system and
+        authorization system. This service gives the detail whether the system is
+        active to respond on authorization requests, service requests etc.
       operationId: CheckHealth
       parameters:
       - name: Authorization
@@ -537,16 +544,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -561,22 +560,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CheckHealthResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -593,6 +578,28 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckHealthResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -1109,7 +1116,7 @@ components:
               type: string
               description: Current expiry date of relationship. The format is MM/DD/YYYY
                 or DD/MM/YYYY depending on the DATE FORMAT on System Control.
-              example: ''
+              example: 00/00/0000
             sourceCode:
               maxLength: 10
               type: string
@@ -1277,14 +1284,14 @@ components:
                   description: User-defined date 1 field for the relationship. The
                     format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
                     on System Control.
-                  example: ''
+                  example: 00/00/0000
                 userDate2:
                   maxLength: 10
                   type: string
                   description: User-defined date 2 field for the relationship. The
                     format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
                     on System Control.
-                  example: ''
+                  example: 00/00/0000
                 userAmount1:
                   maxLength: 17
                   type: string
@@ -1311,7 +1318,6 @@ components:
           required:
           - addressId
           - creditLimit
-          - externalContractId
           - owningBranchNumber
           type: object
           properties:
@@ -1528,14 +1534,14 @@ components:
                   description: This is the date on which the special pricing controls
                     start for the account. The format is MM/DD/YYYY or DD/MM/YYYY
                     depending on the DATE FORMAT on System Control.
-                  example: '0'
+                  example: 00/00/0000
                 pctOverrideExpiryDate:
                   maxLength: 10
                   type: string
                   description: This is the date on which the special pricing controls
                     expire for the account. The format is MM/DD/YYYY or DD/MM/YYYY
                     depending on the DATE FORMAT on System Control.
-                  example: '0'
+                  example: 00/00/0000
                 level:
                   maxLength: 1
                   type: string
@@ -1556,14 +1562,14 @@ components:
                   description: This is the date on which the processing control level
                     override starts for the account. The format is MM/DD/YYYY or DD/MM/YYYY
                     depending on the DATE FORMAT on System Control.
-                  example: '0'
+                  example: 00/00/0000
                 levelExpiryDate:
                   maxLength: 10
                   type: string
                   description: This is the date on which the processing control level
                     override expires for the account. The format is MM/DD/YYYY or
                     DD/MM/YYYY depending on the DATE FORMAT on System Control.
-                  example: '0'
+                  example: 00/00/0000
             ibsDetails:
               type: object
               properties:
@@ -1655,7 +1661,7 @@ components:
               description: Effective Date of Account Insurance/Product Data. The format
                 is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
                 Control.
-              example: ''
+              example: 00/00/0000
             enrollId:
               maxLength: 3
               type: string
@@ -2052,6 +2058,31 @@ components:
               description: Unique identification number assigned to a customer from
                 external system.
               example: '000012672379'
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
     BoardEntityResponseModel:
       type: object
       properties:
@@ -2120,31 +2151,6 @@ components:
               type: string
               description: Masked payment card number.
               example: ''
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        status:
-          type: integer
-          example: '0'
-        invalid-params:
-          type: array
-          items:
-            type: string
     InquireBusinessUnitResponseModel:
       type: object
       properties:

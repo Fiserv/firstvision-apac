@@ -97,16 +97,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReverseAuthorizationResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -121,16 +113,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -147,6 +131,22 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -241,22 +241,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -271,16 +257,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -297,6 +275,28 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -421,12 +421,6 @@ paths:
           type: string
           example: $100.00
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -435,16 +429,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -459,16 +451,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -491,6 +475,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
       - Authorization: [
           ]
@@ -501,7 +501,6 @@ components:
     ReverseAuthorizationReqModel:
       required:
       - authorizationCode
-      - businessUnit
       - effectiveDate
       - paymentInstrumentOrCardId
       type: object
@@ -523,7 +522,7 @@ components:
         effectiveDate:
           maxLength: 10
           type: string
-          description: Effective Date of the transaction. The format is MM/DD/YYYY
+          description: Effective date of the transaction. The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 10/01/2022
         authorizationCode:
@@ -611,6 +610,12 @@ components:
           type: string
           description: Current open-to-buy amount of the account.
           example: $10000.00
+        effDateStamp:
+          maxLength: 10
+          type: string
+          description: Effective date of the transaction. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 10/01/2022
     RequestAuthorizationReqModel:
       required:
       - CVV2
@@ -671,18 +676,17 @@ components:
     RequestAuthorizationResponseModel:
       type: object
       properties:
-        responseCode:
-          maximum: 99
-          maxLength: 2
-          type: integer
-          description: Code that indicates the numeric ISO response code for this
-            request.
-          example: '0'
         authorizationCode:
           maxLength: 6
           type: string
           description: Authorization code associated with the transaction.
           example: '055271'
+        responseCode:
+          maxLength: 2
+          type: string
+          description: Code that indicates the numeric ISO response code for this
+            request.
+          example: '00'
         finalAction:
           maxLength: 1
           type: string
@@ -718,6 +722,12 @@ components:
           type: string
           description: Current open-to-buy amount of the account.
           example: $10000.00
+        effDateStamp:
+          maxLength: 10
+          type: string
+          description: Effective date of the transaction. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 10/01/2022
     InquireAuthorizationDetailResponseModel:
       type: object
       properties:
@@ -741,8 +751,9 @@ components:
           type: object
           properties:
             merchantBusinessUnit:
+              maximum: 999
               maxLength: 3
-              type: string
+              type: integer
               description: Field that identifies the business unit to which the store
                 is assigned. The values for the business unit are 1–998.
               example: '100'
@@ -1072,6 +1083,12 @@ components:
           type: string
           description: Total amount due for the account.
           example: $0.00
+        effDateStamp:
+          maxLength: 10
+          type: string
+          description: Effective date of the transaction. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 10/01/2022
   securitySchemes:
     Authorization:
       type: http
