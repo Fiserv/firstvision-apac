@@ -1,6 +1,6 @@
 # Request Authorization 
 
-This service is used for Authorization request on payment instrument id.
+This API is used to make an authorization request for payment instrument Id or payment card number.
 
 ## Endpoint
 
@@ -39,6 +39,7 @@ type: tab
   "maskedPaymentCardNumber": "000484680XXXXXX9405",
   "uniqueTransactionId": "APP17977700222011344330001112345678",
   "openToBuy": "$10000.00"
+  "effectiveDate": "10/01/2022"
 }
 ```
 

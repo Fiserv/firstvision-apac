@@ -1,6 +1,6 @@
 # Inquire Billing Cycle Assignment
 
-This service is used to retrieve billing cycle assignment details.
+This API is used to fetch billing cycle assignment details and billing method for a given business unit.
 
 ## Endpoint
 

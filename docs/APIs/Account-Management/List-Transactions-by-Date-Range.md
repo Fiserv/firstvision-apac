@@ -1,6 +1,6 @@
 # List Transactions by Date Range
 
-This service provides the list of various transactions like memo, outstanding, unbilled and billed with in a given a date range. 
+This API is used to fetch the list of various transactions like authorizations, memos, outstanding authorizations, unbilled and billed transactions for a given date range and account Id. 
 
 ## Endpoint
 

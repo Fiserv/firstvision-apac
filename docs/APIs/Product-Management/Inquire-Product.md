@@ -1,6 +1,6 @@
 # Inquire Product
 
-This service provides product details for a given product number. Products are primary control records that gives client option to enable or disable various functionalities like Card activation, PIN mailer, Loan feature, Collections, Loyalty, Falcon, Alerts etc. 
+This API is used to fetch details for a given product Id. Products are primary control records that gives client option to enable or disable various functionalities like Card activation, PIN mailer, Loan feature, Collections, Loyalty, Falcon, Alerts etc. 
   
 ## Endpoint
 

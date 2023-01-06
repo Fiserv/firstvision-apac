@@ -1,6 +1,6 @@
 # Loan Calculator
 
-This Loan Calculator Service is used to calculate the loan repayment options for prospective borrowers. This function requires that you enter either the loan term or fixed payment amount. You can also enter other loan components, such as the interest rate, insurance, and user fees. When you press submit, CMS calculates and displays the loan term, fixed payment, final payment, total financed amount, total interest amount, and total loan amount.
+This API is used to calculate the loan repayment options for prospective borrowers based on the details given input request. 
 
 ## Endpoint
 
@@ -57,61 +57,61 @@ type: tab
       "currentTenure": 1,
       "endingBalance": "$1,260.07",
       "finalAmount": "$139.93",
-      "intrestAmount": "$0.16"
+      "interestAmount": "$0.16"
     },
     {
       "currentTenure": 2,
       "endingBalance": "$1,120.13",
       "finalAmount": "$139.94",
-      "intrestAmount": "$0.15"
+      "interestAmount": "$0.15"
     },
     {
       "currentTenure": 3,
       "endingBalance": "$980.17",
       "finalAmount": "$139.96",
-      "intrestAmount": "$0.13"
+      "interestAmount": "$0.13"
     },
     {
       "currentTenure": 4,
       "endingBalance": "$840.19",
       "finalAmount": "$139.98",
-      "intrestAmount": "$0.11"
+      "interestAmount": "$0.11"
     },
     {
       "currentTenure": 5,
       "endingBalance": "$700.20",
       "finalAmount": "$139.99",
-      "intrestAmount": "$0.10"
+      "interestAmount": "$0.10"
     },
     {
       "currentTenure": 6,
       "endingBalance": "$560.19",
       "finalAmount": "$140.01",
-      "intrestAmount": "$0.08"
+      "interestAmount": "$0.08"
     },
     {
       "currentTenure": 7,
       "endingBalance": "$420.17",
       "finalAmount": "$140.02",
-      "intrestAmount": "$0.07"
+      "interestAmount": "$0.07"
     },
     {
       "currentTenure": 8,
       "endingBalance": "$280.13",
       "finalAmount": "$140.04",
-      "intrestAmount": "$0.05"
+      "interestAmount": "$0.05"
     },
     {
       "currentTenure": 9,
       "endingBalance": "$140.07",
       "finalAmount": "$140.06",
-      "intrestAmount": "$0.03"
+      "interestAmount": "$0.03"
     },
     {
       "currentTenure": 10,
       "endingBalance": "$0.00",
       "finalAmount": "$140.07",
-      "intrestAmount": "$0.02"
+      "interestAmount": "$0.02"
     }
   ]
 }

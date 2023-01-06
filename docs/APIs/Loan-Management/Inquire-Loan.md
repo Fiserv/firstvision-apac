@@ -1,6 +1,6 @@
 # Inquire Loan
 
-This service provides Loan detail of customer like Loan disclosed and initial amount of loan, loan disbrusement details, loan topup redraw can restructure detail, fixed interest and skip payment details.
+This API is used to fetch Loan details like Loan disclosed and initial amount of loan, loan disbursement details, loan top-up redraw can restructure detail, fixed interest and skip payment details for a given account Id.
 
 ## Endpoint
 
@@ -25,7 +25,7 @@ type: tab
 ```json
 
 {
-  "FixedIntrestDetails": {
+  "FixedInterestDetails": {
     "interestIndicator": 0,
     "interestRate": "0.00000%",
     "nextInterestEffectiveDate": "00/00/0000",

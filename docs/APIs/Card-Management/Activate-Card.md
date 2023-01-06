@@ -1,7 +1,6 @@
 # Activate Card
 
-This service is used to activate the card after successful verification of the cardholder.
->Cardholder verification is the separate API that must be called in the card activation workflow.  Please [click here](./?path=docs/APIs/Card-Management/CVV2-Validation.md) to explore the cardholder verfication APIs.
+This API is used to activate the card after successful verification of the cardholder for a given payment instrument Id.
 
 ## Endpoint
 

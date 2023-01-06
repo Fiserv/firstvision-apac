@@ -1,6 +1,6 @@
 # Inquire Card
 
-This service is used to retrive detailed information of card. This API response provides information about card demogrpahic and processing parameters. 
+This API is used to fetch detailed information for a given payment instrument Id. This API response provides information about card demographic and processing parameters. 
 
 ## Endpoint
 

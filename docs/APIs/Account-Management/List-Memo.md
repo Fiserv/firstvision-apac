@@ -1,6 +1,6 @@
 # List Memos
 
-This service will retrieve all ASM memos for the associated Account number requested. 
+This API is used to fetch all memo details available for a given account Id. 
 
 ## Endpoint
 

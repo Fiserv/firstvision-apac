@@ -1,6 +1,6 @@
 # Update Customer
 
-This service will be used to update the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer.  The customer ID will be passed in the input request to retrieve the demographic information. 
+This API is used to update the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer Id.
 
 ## Endpoint
 
@@ -51,7 +51,8 @@ titles: Request, Response, Error
     "stateProvince": "DL",
     "countryCode": "IND",
     "postalCode": "110004",
-    "houseNumber": ""
+    "houseNumber": "",
+    "county": "ABC"
   }
 }
 ```

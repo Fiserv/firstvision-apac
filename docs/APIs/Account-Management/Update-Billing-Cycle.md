@@ -1,8 +1,6 @@
 # Update Billing Cycle
 
-This API is used to update the billing cycle for an account. Values between 1 to 31 are valid values.
-
-*If user select a nonprocessing day, the cycle’s statement is produced on the processing day that precedes the selected day. This day must be at least 25 calendar days from the **DATE LAST BILLING CYCLE** date. It must also be equal to or greater than the **CURRENT CYCLE** value.*
+This API is used to update the billing cycle for a given account Id. 
 
 ## Endpoint
 

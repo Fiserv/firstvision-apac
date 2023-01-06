@@ -1,7 +1,6 @@
 # Add User
 
-This service is used to add new security sign-on entity. This newly created entity determine the person’s access rights on the system.
-Sign-on entity must be setup and active for each person authorized to access the system. 
+This API is used to add new security sign-on entity. This newly created entity determine the person’s access rights on the system. Sign-on entity must be setup and active for each person authorized to access the system. 
 
 *More than one person cannot sign on to the system using the same sign-on entity. A single person cannot sign on using the same sign-on entity at multiple terminals at the same time.*
 

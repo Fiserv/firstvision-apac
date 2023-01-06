@@ -1,6 +1,6 @@
 # Update Issue Reissue Delivery Option
 
-This service is used to update the issue and re-issue delivery options on Payment Card Number.
+This API is used to update the issue and re-issue delivery options for a given Payment instrument Id.
 
 ## Endpoint
 

@@ -1,6 +1,6 @@
 # Inquire Account Preference
 
-The service provides the statement preference, various customer IDs, address ID, source code, suppress token indicator for a given account ID. 
+This API is used to fetch the details like statement preferences, various customer IDs, address ID, source code, suppress token indicator for a given account Id. 
 
 ## Endpoint
 
