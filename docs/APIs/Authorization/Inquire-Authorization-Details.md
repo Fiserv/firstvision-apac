@@ -1,6 +1,6 @@
 # Inquire Authorization Details
 
-This API is used to fetch Authorization details for a given payment instrument Id or payment card number, authorization code, effective date and transaction amount, if given. This API fetches data for any authorization which is waiting for settlement. 
+This API is used to fetch Authorization details for a given payment instrument Id or payment card number, authorization code, effective date, and transaction amount, if given. This API fetches data for any authorization which is waiting for settlement. 
 
 ## Endpoint
 
@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 >Should be empty. 
 >
->***Payment Instrument Or Card Id, effective date/authorization code should be sent as path variable and query parameter.***
+>***Payment Instrument Or Card Id and effective date, authorization code should be sent as path variable and query parameter.***
 
 <!--
 type: tab
@@ -82,7 +82,7 @@ type: tab
   "responseCode": "00",
   "temporaryCreditLimit": "$0.00",
   "totalDueAmount": "$0.00",
-  "transactionAmount": "2.00"
+  "transactionAmount": "2.00",
   "effectiveDate": "10/01/2022"
 }
 ```

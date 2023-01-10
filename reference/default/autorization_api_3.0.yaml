@@ -14,8 +14,10 @@ paths:
       - Authorization
       summary: This service is used to reverse the Authorization request for a given
         payment instrument id.
-      description: This service is used to reverse the Authorization request for a
-        given payment instrument id.
+      description: This API is used to reverse the authorization for a given payment
+        instrument Id or payment card number, authorization code, effective date,
+        and transaction amount, if given. Reverse is possible for any authorization
+        which is waiting for settlement.
       operationId: ReverseAuthorization
       parameters:
       - name: Authorization
@@ -83,28 +85,6 @@ paths:
               $ref: '#/components/schemas/ReverseAuthorizationReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReverseAuthorizationResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -121,8 +101,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -137,8 +125,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -147,6 +135,20 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReverseAuthorizationResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -162,10 +164,9 @@ paths:
     post:
       tags:
       - Authorization
-      summary: This service is used for Authorization request on payment instrument
-        id.
-      description: This service is used for Authorization request on payment instrument
-        id.
+      summary: Request Authorization
+      description: This API is used to make an authorization request for payment instrument
+        Id or payment card number.
       operationId: RequestAuthorization
       parameters:
       - name: Authorization
@@ -233,22 +234,6 @@ paths:
               $ref: '#/components/schemas/RequestAuthorizationReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -265,8 +250,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -281,22 +280,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -313,8 +314,10 @@ paths:
       tags:
       - Authorization
       summary: Inquire Authorizatoin detail
-      description: This service is used to fetch authorization details for a matching
-        transaction with input details, before settlement comes.
+      description: This API is used to fetch Authorization details for a given payment
+        instrument Id or payment card number, authorization code, effective date,
+        and transaction amount, if given. This API fetches data for any authorization
+        which is waiting for settlement
       operationId: InquireAuthorizationDetails
       parameters:
       - name: Authorization
@@ -421,28 +424,6 @@ paths:
           type: string
           example: $100.00
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -459,8 +440,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -475,8 +464,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -485,6 +474,20 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -751,9 +754,8 @@ components:
           type: object
           properties:
             merchantBusinessUnit:
-              maximum: 999
               maxLength: 3
-              type: integer
+              type: string
               description: Field that identifies the business unit to which the store
                 is assigned. The values for the business unit are 1–998.
               example: '100'

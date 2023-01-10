@@ -75,7 +75,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "1" for replacement of card or "0" to avoid initiation of card Replacement . |
 | `blockCode` | Payload | *string* | 1 | Pass value as "L" to block the old card. |

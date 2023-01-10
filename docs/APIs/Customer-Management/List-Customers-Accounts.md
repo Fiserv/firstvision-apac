@@ -1,6 +1,6 @@
 # List Customers' Accounts
 
-The API is used to fetch list of accounts and its details associated with a customer Id along with customer demographic information.
+This API is used to fetch list of accounts and its details associated with a customer Id along with customer demographic information.
 
 ## Endpoint
 

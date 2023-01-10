@@ -1,6 +1,6 @@
 # Update Temporary Credit Limit
 
-This API is used to update temporary credit limit and it's expiry date for a given account Id.
+This API is used to update temporary credit limit and its expiry date for a given account Id.
 
 ## Endpoint
 

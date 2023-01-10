@@ -47,7 +47,7 @@ type: tab
     "insuranceIndicator": "3",
     "interestIndicator": "3",
     "userFee1Indicator": "3",
-    "userFee2FlagIndicator": "3",
+    "userFee2Indicator": "3",
     "userFee3Indicator": "3",
     "userFee4Indicator": "3",
     "userFee5Indicator": "3",

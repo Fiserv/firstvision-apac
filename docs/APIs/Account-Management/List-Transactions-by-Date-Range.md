@@ -941,7 +941,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/accounts/0006000011000000131/listTransactions",
     "invalid-params": [
-      "V5TD4001IA: No transactions found for request"
+      "V5TD4004EB: ACCOUNT NUMBER NOT FOUND/ADD PENDING/CLOSED/PURGED"
     ],
     "source": "VPL",
     "status": 404,
@@ -972,6 +972,7 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5TD4001IA` | No transactions found for request |
 | `V5TD4004EA` | Account number not numeric or euqal to spaces |
+| `V5TD4004EB` | Account number not found/add pending/closed/purged |
 | `V5TD4003EA` | Org must be numeric and valid values are 1-998 |
 | `V5TD4008EA` | Number of transactions not numeric or greater than 50 |
 | `V5TD4005EA` | Invalid local/foreign indicator valid values are space 'l' or 'F' |

@@ -1,6 +1,6 @@
 # Search Customers
 
-The API is used to fetch customer's information based on primary and optional search values like last name, identification number, phone number etc.
+This API is used to fetch customer's information based on primary and optional search values like last name, identification number, phone number etc.
 
 ## Endpoint
 

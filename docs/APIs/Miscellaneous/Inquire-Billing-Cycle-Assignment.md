@@ -186,7 +186,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Path Variable | *string* | 3 | Unique identification number associated with the organization. Valid values from 001-998. | 
+| `businessUnit` | Path Variable | *string* | 3 | Unique identification number associated with the organization. Valid values from 1-998.| 
 
 
 ### Error Codes

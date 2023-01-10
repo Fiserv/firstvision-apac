@@ -20,7 +20,7 @@ titles: Request, Response, Error
   "currencyCode": "036",
   "userFeeAmount": "30000",
   "interestRate": 1400,
-  "tenure": 10,
+  "term": 10,
   "fixedPaymentAmount": "0",
   "isPaymentScheduledEnabled": "1",
   "interestMethod": "0",
@@ -41,7 +41,7 @@ type: tab
     "fixedPaymentAmount": "$140.09",
     "insuranceAmount": "$500.00",
     "interestRate": "1400",
-    "tenure": 10,
+    "term": 10,
     "principalAmount": "$600.00",
     "totalFinancedAmount": "$1,400.00",
     "totalInterestAmount": "$0.90",
@@ -50,65 +50,65 @@ type: tab
   },
   "loanScheduleAndMonthdetails": {
     "loanMethod": 0,
-    "tenure": 10
+    "term": 10
   },
   "monthlyLoanPaymentDetails": [
     {
-      "currentTenure": 1,
+      "currentTerm": 1,
       "endingBalance": "$1,260.07",
       "finalAmount": "$139.93",
       "interestAmount": "$0.16"
     },
     {
-      "currentTenure": 2,
+      "currentTerm": 2,
       "endingBalance": "$1,120.13",
       "finalAmount": "$139.94",
       "interestAmount": "$0.15"
     },
     {
-      "currentTenure": 3,
+      "currentTerm": 3,
       "endingBalance": "$980.17",
       "finalAmount": "$139.96",
       "interestAmount": "$0.13"
     },
     {
-      "currentTenure": 4,
+      "currentTerm": 4,
       "endingBalance": "$840.19",
       "finalAmount": "$139.98",
       "interestAmount": "$0.11"
     },
     {
-      "currentTenure": 5,
+      "currentTerm": 5,
       "endingBalance": "$700.20",
       "finalAmount": "$139.99",
       "interestAmount": "$0.10"
     },
     {
-      "currentTenure": 6,
+      "currentTerm": 6,
       "endingBalance": "$560.19",
       "finalAmount": "$140.01",
       "interestAmount": "$0.08"
     },
     {
-      "currentTenure": 7,
+      "currentTerm": 7,
       "endingBalance": "$420.17",
       "finalAmount": "$140.02",
       "interestAmount": "$0.07"
     },
     {
-      "currentTenure": 8,
+      "currentTerm": 8,
       "endingBalance": "$280.13",
       "finalAmount": "$140.04",
       "interestAmount": "$0.05"
     },
     {
-      "currentTenure": 9,
+      "currentTerm": 9,
       "endingBalance": "$140.07",
       "finalAmount": "$140.06",
       "interestAmount": "$0.03"
     },
     {
-      "currentTenure": 10,
+      "currentTerm": 10,
       "endingBalance": "$0.00",
       "finalAmount": "$140.07",
       "interestAmount": "$0.02"

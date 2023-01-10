@@ -1,6 +1,6 @@
 # Product Transfer
 
-This API is used to transfer the account and all the cards associated to it to new product given in input. 
+This API is used to transfer the account and all the cards associated to it, to a new product given in input. 
 
 Fields that are not provided in the request object will be initialized to their default values. All numeric fields are initialized to zero and alphanumeric fields initialized to spaces.
 
@@ -24,7 +24,7 @@ titles: Request, Response, Error
   "transferToProductId": 2,
   "customerId": " ",
   "billingCycle": 0,
-  "effectiveDate": "0",
+  "effectiveDate": "00/00/0000",
   "transferReplcementIndicator": "0",
   "newCardTechnology": "1",
   "continueWithReissue": "0",
