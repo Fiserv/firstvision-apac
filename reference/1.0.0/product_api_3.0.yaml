@@ -4,7 +4,7 @@ info:
   description: V10 open API document.
   version: 1.0.0
 servers:
-- url: http://localhost:8080/
+- url: https://stg34.visionplus.io/sandbox/
 tags:
 - name: Product Management
 paths:
@@ -100,35 +100,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateProductCardControlv1ReqModel'
+              $ref: '#/components/schemas/UpdateProductCardControlReqModel'
         required: true
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -151,12 +135,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateProductCardControlv1ResponseModel'
+                $ref: '#/components/schemas/UpdateProductCardControlResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -165,8 +165,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -177,171 +177,6 @@ paths:
       - Authorization: [
           ]
       x-proxy-name: Update Product Card Controls
-      x-group-name: Product Management
-  /v2/products/{productId}/details:
-    get:
-      tags:
-      - Product Management
-      summary: Inquire Product
-      description: This API is used to fetch details for a given product Id. Products
-        are primary control records that gives client option to enable or disable
-        various functionalities like Card activation, PIN mailer, Loan feature, Collections,
-        Loyalty, Falcon, Alerts etc.
-      operationId: InquireProduct
-      parameters:
-      - name: Authorization
-        in: header
-        description: Token is used in token-based authentication to allow an application
-          to access an API.
-        required: true
-        schema:
-          type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
-      - name: x-client-correlation-id
-        in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-trace-id
-        in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-source-channel
-        in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-user-id
-        in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: businessUnit
-        in: query
-        description: Unique identification number associated with the organization.
-          Valid values from 1-998.
-        required: true
-        schema:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          example: '600'
-      - name: productId
-        in: path
-        description: Unique identification number of the product associated with the
-          organization. Valid values are 1-998.
-        required: true
-        schema:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          example: '1'
-      responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireProductv2ResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      security:
-      - Authorization: [
-          ]
-      x-proxy-name: Inquire Product
       x-group-name: Product Management
   /v1/products/{productId}/serviceChargeDetails:
     get:
@@ -444,38 +279,16 @@ paths:
           type: integer
           example: '3'
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireServiceChargeTablev1ResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -498,14 +311,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -514,6 +319,36 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireServiceChargeTableResponseModel'
       security:
       - Authorization: [
           ]
@@ -620,32 +455,16 @@ paths:
           type: integer
           example: '0'
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -668,6 +487,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -676,8 +511,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -689,7 +524,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireInterestTablev1ResponseModel'
+                $ref: '#/components/schemas/InquireInterestTableResponseModel'
       security:
       - Authorization: [
           ]
@@ -704,7 +539,7 @@ paths:
         are primary control records that gives client option to enable or disable
         various functionalities like Card activation, PIN mailer, Loan feature, Collections,
         Loyalty, Falcon, Alerts etc.
-      operationId: InquireProduct_1
+      operationId: InquireProduct
       parameters:
       - name: Authorization
         in: header
@@ -785,38 +620,22 @@ paths:
           type: integer
           example: '1'
       responses:
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireProductv1ResponseModel'
+                $ref: '#/components/schemas/InquireProductResponseModel'
         '404':
           description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -839,6 +658,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -847,8 +682,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -953,32 +788,16 @@ paths:
           type: integer
           example: '10002'
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1001,14 +820,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -1022,7 +833,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquirePlanMasterv1ResponseModel'
+                $ref: '#/components/schemas/InquirePlanMasterResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
       - Authorization: [
           ]
@@ -1030,7 +865,7 @@ paths:
       x-group-name: Product Management
 components:
   schemas:
-    UpdateProductCardControlv1ReqModel:
+    UpdateProductCardControlReqModel:
       type: object
       properties:
         cardControlFields:
@@ -1242,7 +1077,7 @@ components:
           type: array
           items:
             type: string
-    UpdateProductCardControlv1ResponseModel:
+    UpdateProductCardControlResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1414,599 +1249,7 @@ components:
                 in non-high-risk countries. Risk is designated by country code in
                 the Financial Authorization System (FAS).
               example: '15000.0'
-    InquireProductv2ResponseModel:
-      type: object
-      properties:
-        businessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number associated with the organization.
-            Valid values from 1-998.
-          example: '600'
-        productId:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number of the product associated with
-            the organization. Valid values are 1-998.
-          example: '1'
-        productDescription:
-          maxLength: 30
-          type: string
-          description: This filed is the description of the Product entity. This description
-            enables you to identify the kind of accounts processed by this product.
-          example: VISA CREDIT CONSUMER
-        cardProductDisplay:
-          maxLength: 1
-          type: string
-          description: Flag that indicates whether cards in this logo display a logo
-            symbol for PLUS, Cirrus, or Maestro. <br/>The values are:<br/>&nbsp; '0'
-            - No cards in this product display a PLUS, Cirrus, or Maestro product
-            (Default) <br/>&nbsp; '1' - Cards in this product display a Cirrus symbol
-            <br/>&nbsp; '2' - Cards in this product display a PLUS symbol <br/>&nbsp;
-            '3' - Cards in this product display a Maestro symbol <br/>&nbsp; '4' -
-            Cards in this product display both Cirrus and Maestro symbols <br/>&nbsp;
-            '5' - Cards in this product display a Maestro symbol (chip cards only)
-          example: '0'
-        quarterlyAffiliateCardProduct:
-          maxLength: 3
-          type: string
-          description: Code that indicates the card association card product. This
-            field is required if the Product entity processes bankcard accounts (TYPE
-            OF ACCOUNTS PROCESSED field is D, X, or Y) to identify the quarterly reporting
-            classification or card product.
-          example: V1
-        isLoanFeatureEnabled:
-          maxLength: 1
-          type: string
-          description: Flag that indicates whether the loans feature is active for
-            the product. <br/>The values are:<br/>&nbsp; '0' - No, the loans feature
-            is not active for this product (Default) <br/>&nbsp; '1' - Yes, the loans
-            feature is active for this product
-          example: '1'
-        isPaymentHolidaysEnabled:
-          maxLength: 1
-          type: string
-          description: Code that indicates whether manual skip payments are allowed
-            for accounts in this product. <br/>The values are:<br/>&nbsp; 'N' - Skip
-            payments are not allowed (Default) <br/>&nbsp; 'Y' - Skip payments are
-            allowed
-          example: Y
-        isSameDayEmbossingEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether same-day embossing is allowed for
-            accounts within this product. <br/>The values are:<br/>&nbsp; '0' - Same-day
-            embossing is not allowed (Default) <br/>&nbsp; '1' - Same-day embossing
-            is allowed
-          example: '1'
-        isChipOrPinCardEnabled:
-          maxLength: 1
-          type: string
-          description: This flag identifies whether smart cards can be issued for
-            cards in this product. <br/>The values are:<br/>&nbsp; '0' - No, smart
-            cards cannot be issued for cards in this product (only magnetic-stripe
-            cards allowed) (Default) <br/>&nbsp; '1' - Yes, smart cards can be issued
-            for cards in this product (smart and magnetic-stripe cards allowed)
-          example: '1'
-        delinquencyAgeing:
-          maxLength: 1
-          type: string
-          description: Code that specifies whethre delinquency aging occurs on payment
-            due date or cycle date. <br/>The values are:<br/>&nbsp; 'D' - Age delinquency
-            on payment due date (Default) <br/>&nbsp; 'S' - Age delinquency on cycle
-            date
-          example: D
-        processingControlLevel:
-          maxLength: 1
-          type: string
-          description: This is a flag which indicates the processing control level
-            for accounts in this product. <br/>The values are:<br/>&nbsp; 'L' - Product
-            <br/>&nbsp; 'O' - Business unit <br/>&nbsp; 'S' - System
-          example: O
-        isCollectionsEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether CTA is active. <br/>The values
-            are:<br/>&nbsp; 'N' - CTA is not active <br/>&nbsp; 'Y' - CTA is active
-            (Default)
-          example: Y
-        automaticAccountNumberGeneration:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether this product uses automatic account
-            number and card number generation. <br/>The values are:<br/>&nbsp; 'N'
-            - No, this product does not allow automatic number generation (Default)
-            <br/>&nbsp; 'Y' - Yes, this product allows automatic number generation
-            using the number generation table defined on Products  16-Account Generation
-            Tables <br/>&nbsp; 'I' - Yes, this product allows automatic number generation
-            using the Number Generation tables in SSC. When this field is I, CMS uses
-            the ACCOUNT IDENTIFICATION and CARD IDENTIFICATION fields for the Account
-            Base Segment number and card number, respectively
-          example: I
-        authAlerts:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether transaction authorization-based
-            alerts functionality is active for the product and whether the cardholder
-            is automatically enrolled for the alert. <br/>The values are:<br/>&nbsp;
-            '0' - Transaction-based alerts functionality is not active (Default) <br/>&nbsp;
-            '1' - Transaction-based alerts functionality is active and the cardholder
-            to be manually enrolled <br/>&nbsp; '2' - Transaction-based alerts functionality
-            is active and the cardholder to be automatically enrolled
-          example: '0'
-        isFalcon6Enabled:
-          maxLength: 1
-          type: string
-          description: This is the flag that indicates whether the Falcon 6 interface
-            is active for this product. <br/>The values are:<br/>&nbsp; '0' - The
-            Falcon 6 interface is not active for this product (Default) <br/>&nbsp;
-            '1' - The Falcon 6 interface is active for this product
-          example: '0'
-        isVipOverrideEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates if VIP override is active or not. <br/>The
-            values are:<br/>&nbsp; 'Y' - Yes, VIP override active <br/>&nbsp; 'N'
-            - No, VIP override not active
-          example: N
-        isSecureCodeEnabled:
-          maxLength: 1
-          type: string
-          description: Flag that indicates whether the Connection Management System
-            (CCM) is active. <br/>The values are:<br/>&nbsp; '0' - Secure Code is
-            not active for this product (Default) <br/>&nbsp; '1' - Secure Code is
-            active for this product
-          example: '0'
-        isLoyaltyManagementEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates if the Loyalty Management System (LMS)
-            is active for this product. <br/>The values are:<br/>&nbsp; '0' - LMS
-            is not active for this product (Default) <br/>&nbsp; '1' - LMS is active
-            for this product
-          example: '1'
-        isDebitCardProcessEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether the online debit card processing
-            feature is active for this product. <br/>The values are:<br/>&nbsp; '0'
-            - No, debit card processing is not active (Default) <br/>&nbsp; '1' -
-            Yes, debit card processing is active
-          example: '0'
-        isTokenizationServiceEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether the tokenization functionality
-            is active for the product. <br/>The values are:<br/>&nbsp; '0' - No, the
-            tokenization functionality is not active (Default) <br/>&nbsp; '1' - Yes,
-            the tokenization functionality is active
-          example: '1'
-        isManualPinResetEnabled:
-          maxLength: 1
-          type: string
-          description: Flag that indicates whether the PIN try counter field on the
-            Embosser entity is allowed to be manually reset for accounts in this product.
-            <br/>The values are:<br/>&nbsp; '0' - Manual reset of the PIN CTR RESET
-            field is not allowed (Default) <br/>&nbsp; '1' - Manual reset of the PIN
-            CTR RESET field is allowed
-          example: '1'
-        isCardActionTableEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether the enhanced PIN and card warehousing
-            functionality provided by the card action table is enabled. <br/>The values
-            are:<br/>&nbsp; '0' - Card action table is disabled. However, if the entries
-            are made in the card action table, CMS checks the values in the table
-            for accuracy (Default) <br/>&nbsp; '1' - Card action table is enabled
-          example: '0'
-        defaultCardTechnology:
-          maxLength: 1
-          type: string
-          description: Default Card Technology to be used during new account setup.
-            <br/>The values are:<br/>&nbsp; '0' - Issue a magnetic-stripe card <br/>&nbsp;
-            '1' - Issue a smart card <br/>&nbsp; '2' - Issue a magnetic-stripe contactless
-            card <br/>&nbsp; '3' - Issue a smart contactless card <br/>&nbsp; '4'
-            - Provision a magnetic-stripe contactless mobile payment instrument (PI)
-            <br/>&nbsp; '5' - Provision a smart contactless mobile PI
-          example: '3'
-        isScriptingEnabled:
-          maxLength: 1
-          type: string
-          description: This is a flag which indicates whether the smart card scripting
-            functionality provided by CMS, FAS (Financial Authorization System), ESS
-            (EMV Scripting System), and RIS is active for this product. <br/>The values
-            are:<br/>&nbsp; '0' - Scripting functionality is not active <br/>&nbsp;
-            '1' - Scripting functionality is active
-          example: '0'
-        isSweepOptionEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether sweep processing is allowed for
-            this product. <br/>The values are:<br/>&nbsp; '0' - Sweep is not allowed.
-            Billing accounts cannot be established in this product (Default) <br/>&nbsp;
-            '1' - Sweeping is allowed. Billing accounts can be established in this
-            product
-          example: '0'
-        isCrossBorderAlertEnabled:
-          maxLength: 1
-          type: string
-          description: This is the flag that indicates the alert setting for cross
-            border transactions at the cardholder level. <br/>The values are:<br/>&nbsp;
-            '0' - No alert to be sent (Default) <br/>&nbsp; '1' - Alert to be sent
-            for cross border transactions
-          example: '0'
-        creditLimitBypass:
-          maxLength: 1
-          type: string
-          description: This is the field that determines whether accounts belonging
-            to this product will be excluded from an adaptive control system (ACS)
-            credit limit review. <br/>The values are:<br/>&nbsp; '0' - Include (Default)
-            <br/>&nbsp; '1' - Exclude from credit limit increase <br/>&nbsp; '2' -
-            Exclude from credit limit decrease <br/>&nbsp; '3' - Exclude from credit
-            limit decision area
-          example: '0'
-        isLocalorInternationalUsageEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates if the cards that are assigned to accounts
-            in this product are approved for local use only or international use.
-            <br/>The values are:<br/>&nbsp; '0' - Approved for international use <br/>&nbsp;
-            '1' - Approved for local use only
-          example: '0'
-        isNewCardDefaultEnabled:
-          maxLength: 1
-          type: string
-          description: Code that indicates whether the value in the ENHANCED PRODUCT
-            field defaults to the Embosser entity for new cards in this product. <br/>The
-            values are:<br/>&nbsp; '0' - No, do not default the value in the ENHANCED
-            PRODUCT field to the Embosser entity for new cards in this product (Default)
-            <br/>&nbsp; '1' - Yes, default the value in the ENHANCED PRODUCT field
-            to the Embosser entity for new cards in this product
-          example: '0'
-        enhancedProductsEligible:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether accounts in the product are eligible
-            for an enhanced product. <br/>The values are:<br/>&nbsp; '0' - No, accounts
-            in this product are not eligible for an enhanced product (Default) <br/>&nbsp;
-            '1' - Yes, accounts in this product are eligible for an enhanced product
-            <br/>&nbsp; '4' - Small business accounts participate in the MasterCard
-            U.S. Small Business Spend program
-          example: '0'
-        isCardPresenttransactionEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether virtual card accounts are allowed
-            for the product and whether FAS restricts card-present transactions for
-            virtual card accounts. <br/>The values are:<br/>&nbsp; ' ' - Not a virtual
-            card product (Default) <br/>&nbsp; 'X' - Virtual card product; FAS does
-            not restrict card-present transactions for virtual card accounts <br/>&nbsp;
-            'Y' - Virtual card product; FAS restricts card-present transactions for
-            virtual card accounts
-          example: ' '
-        newCardPlastics:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether CMS generates a tape for embossing
-            plastics for new accounts. <br/>The values are:<br/>&nbsp; 'N' - No, do
-            not generate plastic for accounts <br/>&nbsp; 'Y' - Yes, issue plastic
-            for new accounts <br/>&nbsp; 'B' - Yes, issue plastic for new accounts
-            <br/>&nbsp; 'F' - Yes, issue plastic for new accounts
-          example: Y
-        embossingFilesKeyType:
-          maxLength: 1
-          type: string
-          description: Key type for Embosser Files. <br/>The values are:<br/>&nbsp;
-            'B' - Embossing Zone PIN Key (ZPK) <br/>&nbsp; 'E' - Embossing Transport
-            Key (ETK) <br/>&nbsp; 'F' - Fixed Embossing Transport Key (ETK) <br/>&nbsp;
-            'G' - PIN Transport Key (PTK—random key) <br/>&nbsp; 'H' - Zone PIN Key
-            (PTK—fixed key)
-          example: B
-        keyTypeForPinMailerFiles:
-          maxLength: 1
-          type: string
-          description: Key type for PIN mailer. <br/>The values are:<br/>&nbsp; 'B'
-            - Embossing Zone PIN Key (ZPK) <br/>&nbsp; 'E' - Embossing Transport Key
-            (ETK) <br/>&nbsp; 'F' - Fixed Embossing Transport Key (ETK) <br/>&nbsp;
-            'G' - PIN Transport Key (PTK—random key) <br/>&nbsp; 'H' - Zone PIN Key
-            (PTK—fixed key)
-          example: B
-        pinMailerNameaddress:
-          maxLength: 1
-          type: string
-          description: Determines the name and address to print on PIN mailer. <br/>The
-            values are:<br/>&nbsp; '0' - Print name and address from the Embosser
-            entity for the cardholder <br/>&nbsp; '1' - Print name and address of
-            the relevant cardholder <br/>&nbsp; '2' - Print name of the relevant cardholder
-            and address of the primary cardholder <br/>&nbsp; '3' - Print name and
-            address of the primary cardholder
-          example: '0'
-        cardMailerNameaddress:
-          maxLength: 1
-          type: string
-          description: Determines the name and address to print on card mailer. <br/>The
-            values are:<br/>&nbsp; '0' - Print name and address from the Embosser
-            entity for the cardholder <br/>&nbsp; '1' - Print name and address of
-            the relevant cardholder <br/>&nbsp; '2' - Print name of the relevant cardholder
-            and address of the primary cardholder <br/>&nbsp; '3' - Print name and
-            address of the primary cardholder
-          example: '0'
-        isCardBureauFeedbackEnabled:
-          maxLength: 1
-          type: string
-          description: This flag indicates whether CMS uses the Card Bureau Feedback
-            (ATAD) file to update the MAILER DATE field on the Embosser entity. <br/>The
-            values are:<br/>&nbsp; '0' - Card Bureau Feedback (ATAD) file is not used
-            and CMS updates the MAILER DATE field (Default) <br/>&nbsp; '1' - Card
-            Bureau Feedback (ATAD) file is used and the issuer is responsible for
-            updating the MAILER DATE field. For smart cards, the issuer must provide
-            the ATAD file; for magnetic stripe cards, the issuer must provide nonmonetary
-            maintenance entity to update the field
-          example: '0'
-        pinMailerForCardAction:
-          type: array
-          items:
-            $ref: '#/components/schemas/PinMailerForCardAction_InquireProductv2ResponseModel'
-        isDirectDebitCreditEnabled:
-          maxLength: 1
-          type: string
-          description: Code that indicates whether direct debit and direct credit
-            processing is active for accounts in this product. <br/>The values are:<br/>&nbsp;
-            'N' - Direct debit and direct credit processing is not active (Default)
-            <br/>&nbsp; 'Y' - Direct debit and direct credit processing is active
-            <br/>&nbsp; 'A' - Direct debit and direct credit processing is active
-            for prepaid accounts (TYPE OF ACCOUNTS PROCESSED on Products  01-Product
-            Specification is Y)
-          example: N
-        isOverlimitProcessingOptinIndicatorEnabled:
-          maxLength: 1
-          type: string
-          description: This field is a code that indicates whether the product participates
-            in overlimit opt-in processing. <br/>The values are:<br/>&nbsp; '0' -
-            Product does not participate in overlimit opt-in functionality (Default)
-            <br/>&nbsp; '1' - Product participates in overlimit opt-in functionality;
-            allow overlimit approvals for all accounts within the product <br/>&nbsp;
-            '2' - Product participates in overlimit opt-in functionality; only allow
-            overlimit approvals for accounts within the product that have opted in
-          example: ''
-        openToBuyCreditBalance:
-          maxLength: 1
-          type: string
-          description: This field indicates whether CMS includes the credit balance,
-            disputed amounts, and original loan amount when calculating the open-to-buy
-            amount. <br/>The values are:<br/>&nbsp; '0' - Include credit balance exclude
-            memo credit open to buy <br/>&nbsp; '1' - Exclude all open to buy <br/>&nbsp;
-            '2' - Exclude credit balance include memo credit open to buy <br/>&nbsp;
-            '3' - Include all open to buy
-          example: '1'
-        includeDisputedAmounts:
-          maxLength: 1
-          type: string
-          description: Code that indicates whether CMS includes disputed amounts in
-            the open-to-buy (OTB) calculation of accounts. <br/>The values are:<br/>&nbsp;
-            '0' - Include disputed amounts (Default) <br/>&nbsp; '1' - Exclude disputed
-            amounts
-          example: '0'
-        residenceId:
-          maxLength: 3
-          type: string
-          description: This flag identifies the state, province or country in which
-            the  account holder resides.
-          example: SX1
-        issuanceId:
-          maxLength: 3
-          type: string
-          description: This is the flag which identifies the state, province or country
-            in which the account was issued.
-          example: SX1
-        isWspTokenEnabled:
-          maxLength: 1
-          type: string
-          description: This field is used to determine if a particular logo allows
-            tokenization. <br/>The values are:<br/>&nbsp; '0' - Logo not eligible
-            (Default) <br/>&nbsp; '1' - Logo eligible for Tokenization
-          example: '1'
-        typeOfAccount:
-          maxLength: 1
-          type: string
-          description: This flag identifies the type of accounts processed by the
-            product. <br/>The values are:<br/>&nbsp; 'B' - Bad checks/NSF checks <br/>&nbsp;
-            'C' - COD accounts <br/>&nbsp; 'D' - Debit card <br/>&nbsp; 'L' - Layaway
-            <br/>&nbsp; 'P' - Profit and loss <br/>&nbsp; 'R' - Revolving, which is
-            also referred to as retail or private label (Default) <br/>&nbsp; 'X'
-            - Bankcard <br/>&nbsp; 'Y' - Bankcard — prepaid <br/>&nbsp; 'Z' - Chargecard
-          example: X
-        markUpFeeEnabled:
-          type: object
-          properties:
-            isReimburseIssuerOrSchemaEnabled:
-              maxLength: 1
-              type: string
-              description: This is a flag which indicates whether the credit fee option
-                is active for this product. When this option is active, the cardholder
-                receives reimbursement for issuer and/or scheme fees on credit transactions.
-                <br/>The values are:<br/>&nbsp; '0' - Do not reimburse issuer and/or
-                scheme fees on credit transactions (Default) <br/>&nbsp; '1' - Reimburse
-                issuer and/or scheme fees on credit transactions
-              example: '0'
-            isIssuerEnabled:
-              maxLength: 1
-              type: string
-              description: This is a flag that indicates whether the issuer-markup
-                fee option is active for this product. <br/>The values are:<br/>&nbsp;
-                '0' - Issuer markup is not active; do not assess this fee to the cardholder
-                (Default) <br/>&nbsp; '1' - Issuer markup is active; assess this fee
-                to the cardholder
-              example: '0'
-            isSchemeEnabled:
-              maxLength: 1
-              type: string
-              description: This is a flag which indicates whether the scheme-markup
-                fee option is active for this product. <br/>The values are:<br/>&nbsp;
-                '0' - Scheme markup is not active; do not assess this fee to the cardholder
-                (Default) <br/>&nbsp; '1' - Scheme markup is active; assess this fee
-                to the cardholder
-              example: '0'
-            isUserDefinedEnabled:
-              maxLength: 1
-              type: string
-              description: This is a flag which indicates whether the user-defined
-                markup fee option is active for this product. When this option is
-                active, CMS assesses user-defined markup fees on first presentments
-                and reversals. <br/>The values are:<br/>&nbsp; '0' - User-defined
-                markup fee is not active; do not assess this fee to the cardholder
-                (Default) <br/>&nbsp; '1' - User-defined markup fee is active; assess
-                this fee to the cardholder
-              example: '0'
-        cardActivationControls:
-          type: object
-          properties:
-            newCardActivation:
-              maxLength: 1
-              type: string
-              description: This flag indicates whether to use card activation for
-                new cards. <br/>The values are:<br/>&nbsp; 'N' - Do not use card activation
-                (Default) <br/>&nbsp; 'Y' - Use card activation
-              example: Y
-            additionalCardActivation:
-              maxLength: 1
-              type: string
-              description: This flag indicates whether to use card activation for
-                additional cards. <br/>The values are:<br/>&nbsp; 'N' - Do not use
-                card activation (Default) <br/>&nbsp; 'Y' - Use card activation
-              example: Y
-            reissueCardActivation:
-              maxLength: 1
-              type: string
-              description: This flag indicates whether to use card activation for
-                reissued cards. <br/>The values are:<br/>&nbsp; 'N' - Do not use card
-                activation (Default) <br/>&nbsp; 'Y' - Use card activation
-              example: Y
-            replacementCardActivation:
-              maxLength: 1
-              type: string
-              description: This flag indicates whether to use card activation for
-                replacement cards. <br/>The values are:<br/>&nbsp; 'N' - Do not use
-                card activation (Default) <br/>&nbsp; 'Y' - Use card activation
-              example: Y
-        paymentProcessingControls:
-          type: object
-          properties:
-            applicationMethodForAccountReceivable:
-              maxLength: 1
-              type: string
-              description: This Field determines the payment application method for
-                accounts-receivable accounts which are non-charged-off accounts. <br/>The
-                values are:<br/>&nbsp; 'B' - Billed-not-paid components, then principal,
-                then current cycle transactions, across all plans <br/>&nbsp; 'C'
-                - Billed-not-paid components, then to principal and current cycle
-                transactions by plan based on plan priority <br/>&nbsp; 'D' - Billed-not-paid
-                components across all plans based on plan priority, then to principal
-                and current transactions <br/>&nbsp; 'H' - Billed-not-paid components,
-                including principal and current cycle transactions, across all plans
-                <br/>&nbsp; 'K' - Loan credit plans with any type of settlement quote
-                if the payment amount is within the settlement variance amount, then
-                all credit plans with a fixed payment amount by plan priority (like
-                application method P), then all credit plans with a non-fixed payment
-                amount by plan priority (like application method B) <br/>&nbsp; 'L'
-                - Loan credit plans with a P or W settlement quote if the payment
-                amount is within the settlement variance amount, then all credit plans
-                with a fixed payment amount by plan priority (like application method
-                P), then all credit plans with a non-fixed payment amount by plan
-                priority (like application method B) <br/>&nbsp; 'M' - Billed-not-paid
-                components by payment hierarchy, then the remaining due amount (any
-                plan minimum amount due remaining after non-principal BNP components
-                are satisfied), then statement principal, then current cycle transactions,
-                across all plans <br/>&nbsp; 'N' - Billed-not-paid components by payment
-                hierarchy, then the remaining due amount (any plan minimum amount
-                due remaining after BNP components are satisfied) across plans, then
-                statement principal and current cycle transactions by plan <br/>&nbsp;
-                'O' - Interest rate of plan, total amount due of plan, plan priority
-                number, and plan sequence number <br/>&nbsp; 'P' - Plan priority,
-                then PAYMENT MATRIX table <br/>&nbsp; 'U' - User-defined application
-                method. A user exit must be provided when using this method
-              example: H
-            applicationMethodForProfitLoss:
-              maxLength: 1
-              type: string
-              description: This field determines the payment application method for
-                profit-and-loss accounts, which are charged-off accounts. <br/>The
-                values are:<br/>&nbsp; 'B' - Billed-not-paid components, then principal,
-                then current cycle transactions, across all plans <br/>&nbsp; 'C'
-                - Billed-not-paid components, then to principal and current cycle
-                transactions by plan based on plan priority <br/>&nbsp; 'D' - Billed-not-paid
-                components across all plans based on plan priority, then to principal
-                and current transactions <br/>&nbsp; 'H' - Billed-not-paid components,
-                including principal and current cycle transactions, across all plans
-                <br/>&nbsp; 'K' - Loan credit plans with any type of settlement quote
-                if the payment amount is within the settlement variance amount, then
-                all credit plans with a fixed payment amount by plan priority (like
-                application method P), then all credit plans with a non-fixed payment
-                amount by plan priority (like application method B) <br/>&nbsp; 'L'
-                - Loan credit plans with a P or W settlement quote if the payment
-                amount is within the settlement variance amount, then all credit plans
-                with a fixed payment amount by plan priority (like application method
-                P), then all credit plans with a non-fixed payment amount by plan
-                priority (like application method B) <br/>&nbsp; 'M' - Billed-not-paid
-                components by payment hierarchy, then the remaining due amount (any
-                plan minimum amount due remaining after non-principal BNP components
-                are satisfied), then statement principal, then current cycle transactions,
-                across all plans <br/>&nbsp; 'N' - Billed-not-paid components by payment
-                hierarchy, then the remaining due amount (any plan minimum amount
-                due remaining after BNP components are satisfied) across plans, then
-                statement principal and current cycle transactions by plan <br/>&nbsp;
-                'O' - Interest rate of plan, total amount due of plan, plan priority
-                number, and plan sequence number <br/>&nbsp; 'P' - Plan priority,
-                then PAYMENT MATRIX table <br/>&nbsp; 'U' - User-defined application
-                method. A user exit must be provided when using this method
-              example: D
-            prepaymentsAllowed:
-              maxLength: 1
-              type: string
-              description: Code that indicates whether prepayments are allowed for
-                accounts in this product. <br/>The values are:<br/>&nbsp; '0' - Do
-                not allow prepayments (Default) <br/>&nbsp; '1' - Allow prepayments
-                only for transactions associated with logic module 036 (prepayment)
-                <br/>&nbsp; '2' - Allow prepayments for transactions associated with
-                all payment logic modules (030, 033, 036, and 039). Any overpayment
-                is treated as a prepayment
-              example: '0'
-            paymentApplicationLevel:
-              maxLength: 1
-              type: string
-              description: Code that indicates whether CMS applies payments to accounts
-                with multiple credit plan segments by the plan priority defined on
-                the Credit Plan Master entity or the plan priority defined on the
-                Product entity. <br/>The values are:<br/>&nbsp; 'L' - Product level
-                <br/>&nbsp; 'P' - Credit plan level (Default)
-              example: P
-    PinMailerForCardAction_InquireProductv2ResponseModel:
-      type: object
-      properties:
-        cardAction:
-          maxLength: 1
-          type: string
-          description: This flag indicate the various card actions that use the enhanced
-            PIN and card warehousing functionality when the card actions are initiated
-            on the Embosser entity. <br/>The values are:<br/>&nbsp; '0' - No action
-            (Default) <br/>&nbsp; '1' - Issue new card(s) <br/>&nbsp; '2' - Issue
-            additional card(s) <br/>&nbsp; '3' - Issue replacement card(s) <br/>&nbsp;
-            '6' - Issue emergency replacement card(s) <br/>&nbsp; '7' - Reissue card(s)
-            <br/>&nbsp; '8' - Reissue card(s) with different card numbering scheme
-            (CNS) <br/>&nbsp; '9' - Card technology reissue
-          example: '0'
-        pinOptions:
-          maxLength: 1
-          type: string
-          description: Code that indicates the action to be taken for enhanced PIN
-            and card warehousing when the corresponding card action is processed.
-            <br/>The values are:<br/>&nbsp; '0' - Do not use. Do not generate PIN
-            and do not send PIN mailer (Default) <br/>&nbsp; '1' - Generate new PIN
-            and send PIN mailer <br/>&nbsp; '2' - Send PIN mailer with existing PIN
-          example: '0'
-    InquireServiceChargeTablev1ResponseModel:
+    InquireServiceChargeTableResponseModel:
       type: object
       properties:
         businessUnit:
@@ -2042,8 +1285,8 @@ components:
         serviceChargeDetails:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceChargeDetails_InquireServiceChargeTablev1ResponseModel'
-    ServiceChargeDetails_InquireServiceChargeTablev1ResponseModel:
+            $ref: '#/components/schemas/ServiceChargeDetails_InquireServiceChargeTableResponseModel'
+    ServiceChargeDetails_InquireServiceChargeTableResponseModel:
       type: object
       properties:
         initiatingTransactionCode:
@@ -2158,7 +1401,7 @@ components:
             '2' - Individual fee limit. The fee cannot exceed the amount of the triggering
             transaction
           example: '1'
-    InquireInterestTablev1ResponseModel:
+    InquireInterestTableResponseModel:
       type: object
       properties:
         businessUnit:
@@ -2965,7 +2208,7 @@ components:
                 <br/>&nbsp; '2' - Beginning balance must be paid in full, or within
                 variance, by statement day in order to waive interest
               example: '0'
-    InquireProductv1ResponseModel:
+    InquireProductResponseModel:
       type: object
       properties:
         businessUnit:
@@ -3299,7 +2542,7 @@ components:
         pinMailerForCardAction:
           type: array
           items:
-            $ref: '#/components/schemas/PinMailerForCardAction_InquireProductv1ResponseModel'
+            $ref: '#/components/schemas/PinMailerForCardAction_InquireProductResponseModel'
         isDirectDebitCreditEnabled:
           maxLength: 1
           type: string
@@ -3533,7 +2776,7 @@ components:
                 Product entity. <br/>The values are:<br/>&nbsp; 'L' - Product level
                 <br/>&nbsp; 'P' - Credit plan level (Default)
               example: P
-    PinMailerForCardAction_InquireProductv1ResponseModel:
+    PinMailerForCardAction_InquireProductResponseModel:
       type: object
       properties:
         cardAction:
@@ -3557,7 +2800,7 @@ components:
             and do not send PIN mailer (Default) <br/>&nbsp; '1' - Generate new PIN
             and send PIN mailer <br/>&nbsp; '2' - Send PIN mailer with existing PIN
           example: '0'
-    InquirePlanMasterv1ResponseModel:
+    InquirePlanMasterResponseModel:
       type: object
       properties:
         businessUnit:
