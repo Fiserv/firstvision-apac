@@ -8,15 +8,15 @@ servers:
 tags:
 - name: Authorization
 paths:
-  /v1/auth/authRequest:
+  /v1/auth/reverse:
     post:
       tags:
       - Authorization
-      summary: This service is used for Authorization request on payment instrument
-        id.
-      description: This service is used for Authorization request on payment instrument
-        id.
-      operationId: RequestAuthorization
+      summary: This service is used to reverse the Authorization request for a given
+        payment instrument id.
+      description: This service is used to reverse the Authorization request for a
+        given payment instrument id.
+      operationId: ReverseAuthorization
       parameters:
       - name: Authorization
         in: header
@@ -26,9 +26,49 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
-      - name: correlationId
+      - name: x-client-correlation-id
         in: header
         description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-fiserv-unique-message-id
+        in: header
+        description: Any unique message text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Any client trace text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Any client source channel text client's may want to send in the
+          request for mapping the response on their side. Any value passed in the
+          request message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Any client user text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
         required: false
@@ -40,19 +80,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RequestAuthorizationReqModel'
+              $ref: '#/components/schemas/ReverseAuthorizationReqModel'
         required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -67,16 +115,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -96,9 +144,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+                $ref: '#/components/schemas/ReverseAuthorizationResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -108,20 +156,17 @@ paths:
       security:
       - Authorization: [
           ]
-      x-proxy-name: Request Authorization
+      x-proxy-name: Reverse Authorization
       x-group-name: Authorization
-  /v1/auth/{internalReferenceNumber}/authDetails:
-    get:
+  /v1/auth/request:
+    post:
       tags:
       - Authorization
-      summary: Inquire Authorizatoin detail
-      description: This service is used to provide Authorization detail of transaction
-        when internal reference number provided in input request. This service called
-        immediately after Auth Request service and it will provide authorization details
-        of the transaction. Kindly use List Outstanding Authorization API to fetch
-        detail of transaction when daily batch is completed or next day when transaction
-        is not available in FAS log file.
-      operationId: InquireAuthorizationDetails
+      summary: This service is used for Authorization request on payment instrument
+        id.
+      description: This service is used for Authorization request on payment instrument
+        id.
+      operationId: RequestAuthorization
       parameters:
       - name: Authorization
         in: header
@@ -131,7 +176,7 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
-      - name: correlationId
+      - name: x-client-correlation-id
         in: header
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
@@ -141,26 +186,77 @@ paths:
           maxLength: 40
           type: string
           example: ABC123
-      - name: internalReferenceNumber
-        in: path
-        description: This field indicate the internal reference number of the authorizatoin
-          transaction and used to identify transaction details from log file.
-        required: true
+      - name: x-fiserv-unique-message-id
+        in: header
+        description: Any unique message text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
         schema:
-          maxLength: 9
+          maxLength: 40
           type: string
-          example: '3839400'
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Any client trace text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Any client source channel text client's may want to send in the
+          request for mapping the response on their side. Any value passed in the
+          request message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Any client user text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestAuthorizationReqModel'
+        required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -175,22 +271,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -205,8 +295,196 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Request Authorization
+      x-group-name: Authorization
+  /v1/auth/{paymentInstrumentOrCardId}/details:
+    get:
+      tags:
+      - Authorization
+      summary: Inquire Authorizatoin detail
+      description: This service is used to fetch authorization details for a matching
+        transaction with input details, before settlement comes.
+      operationId: InquireAuthorizationDetails
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: x-client-correlation-id
+        in: header
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-fiserv-unique-message-id
+        in: header
+        description: Any unique message text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Any client trace text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Any client source channel text client's may want to send in the
+          request for mapping the response on their side. Any value passed in the
+          request message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Any client user text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '100'
+      - name: paymentInstrumentOrCardId
+        in: path
+        description: Unique alternate identification number associated with Payment
+          Card Number or Unique identification number that appears on the front of
+          the card (PAN).
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0009846801010274074'
+      - name: effectiveDate
+        in: query
+        description: Effective Date of the transaction. The format is MM/DD/YYYY or
+          DD/MM/YYYY depending on the DATE FORMAT on System Control.
+        required: true
+        schema:
+          maxLength: 10
+          type: string
+          example: 10/01/2022
+      - name: authorizationCode
+        in: query
+        description: Authorization code associated with the transaction.
+        required: true
+        schema:
+          maxLength: 6
+          type: string
+          example: '055271'
+      - name: authorizationAmount
+        in: query
+        description: Authorized sales amount in the account currency.
+        required: false
+        schema:
+          maxLength: 17
+          type: string
+          example: $100.00
+      responses:
         '500':
           description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -220,6 +498,118 @@ paths:
       x-group-name: Authorization
 components:
   schemas:
+    ReverseAuthorizationReqModel:
+      required:
+      - authorizationCode
+      - effectiveDate
+      - paymentInstrumentOrCardId
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '100'
+        paymentInstrumentOrCardId:
+          maxLength: 19
+          type: string
+          description: Unique alternate identification number associated with Payment
+            Card Number or Unique identification number that appears on the front
+            of the card (PAN).
+          example: '0009846801010274074'
+        effectiveDate:
+          maxLength: 10
+          type: string
+          description: Effective Date of the transaction. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 10/01/2022
+        authorizationCode:
+          maxLength: 6
+          type: string
+          description: Authorization code associated with the transaction.
+          example: '055271'
+        authorizationAmount:
+          maxLength: 17
+          type: string
+          description: Authorized sales amount in the account currency.
+          example: $100.00
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    ReverseAuthorizationResponseModel:
+      type: object
+      properties:
+        responseCode:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Code that indicates the numeric ISO response code for this
+            request.
+          example: '0'
+        authorizationCode:
+          maxLength: 6
+          type: string
+          description: Authorization code associated with the transaction.
+          example: '055271'
+        finalAction:
+          maxLength: 1
+          type: string
+          description: Code that indicates the action the system returned.
+          example: R
+        reason:
+          maxLength: 20
+          type: string
+          description: FAS approval or decline code and description for this authorization
+            request.
+          example: REVESAL
+        internalReferenceNumber:
+          maximum: 999999999
+          maxLength: 9
+          type: integer
+          description: This field indicate the internal reference number used to identify
+            authorization details from log file.
+          example: '3239000'
+        uniqueTransactionId:
+          maxLength: 35
+          type: string
+          description: This field indicates unique transaction identification for
+            the associated transaction.
+          example: APP17977700222011344330001112345678
+        maskedPaymentCardNumber:
+          maxLength: 19
+          type: string
+          description: Unique identification number that appears on the front of the
+            card (PAN) in masked format.
+          example: 000484680XXXXXX9405
+        openToBuy:
+          maxLength: 24
+          type: string
+          description: Current open-to-buy amount of the account.
+          example: $10000.00
     RequestAuthorizationReqModel:
       required:
       - CVV2
@@ -242,7 +632,7 @@ components:
           maxLength: 3
           type: integer
           description: Field that identifies the business unit to which the store
-            is assigned. The values for the business unit are 001–998.
+            is assigned. The values for the business unit are 1–998.
           example: '100'
         merchantId:
           maximum: 999999999
@@ -277,46 +667,20 @@ components:
           description: Security code(CVV2/CVC2/CAV2/CVN2) assigned to the payment
             Instrument id.
           example: '123'
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        status:
-          type: integer
-          example: '0'
-        invalid-params:
-          type: array
-          items:
-            type: string
     RequestAuthorizationResponseModel:
       type: object
       properties:
-        responseCode:
-          maximum: 99
-          maxLength: 2
-          type: integer
-          description: Code that indicates the numeric ISO response code for this
-            request.
-          example: '0'
         authorizationCode:
           maxLength: 6
           type: string
           description: Authorization code associated with the transaction.
           example: '055271'
+        responseCode:
+          maxLength: 2
+          type: string
+          description: Code that indicates the numeric ISO response code for this
+            request.
+          example: '00'
         finalAction:
           maxLength: 1
           type: string
@@ -336,33 +700,38 @@ components:
             authorization details from log file.
           example: '3239000'
         uniqueTransactionId:
-          maxLength: 36
+          maxLength: 35
           type: string
           description: This field indicates unique transaction identification for
             the associated transaction.
-          example: APP179777002220113443300011123456789
+          example: APP17977700222011344330001112345678
         maskedPaymentCardNumber:
           maxLength: 19
           type: string
           description: Unique identification number that appears on the front of the
             card (PAN) in masked format.
           example: 000484680XXXXXX9405
+        openToBuy:
+          maxLength: 24
+          type: string
+          description: Current open-to-buy amount of the account.
+          example: $10000.00
     InquireAuthorizationDetailResponseModel:
       type: object
       properties:
         temporaryCreditLimit:
-          maxLength: 17
+          maxLength: 24
           type: string
           description: Temporary line of credit for the account in whole monetary
             units. This amount overrides the credit limit assigned to the account
           example: $0.00
         creditLimit:
-          maxLength: 17
+          maxLength: 24
           type: string
           description: Credit limit of the account.
           example: $0.00
         currentBalance:
-          maxLength: 17
+          maxLength: 24
           type: string
           description: Current monetary balance outstanding on the cardholder’s account.
           example: $0.00
@@ -373,7 +742,7 @@ components:
               maxLength: 3
               type: string
               description: Field that identifies the business unit to which the store
-                is assigned. The values for the business unit are 001–998.
+                is assigned. The values for the business unit are 1–998.
               example: '100'
             merchantId:
               maxLength: 9
@@ -406,7 +775,7 @@ components:
             '8' - Closed<br/>&nbsp; '9' - To be purged after reload
           example: A
         availableCredit:
-          maxLength: 17
+          maxLength: 24
           type: string
           description: Available monetary credit for this account.
           example: $9,072.00
@@ -426,7 +795,7 @@ components:
               description: Number of memo debits for this account
               example: '40'
             memoDebitAmount:
-              maxLength: 20
+              maxLength: 24
               type: string
               description: Amount of outstanding memo debits for the account.
               example: $470.00
@@ -437,12 +806,12 @@ components:
               description: Number of memo credit for this account.
               example: '0'
             memoCreditAmount:
-              maxLength: 20
+              maxLength: 24
               type: string
               description: Amount of outstanding memo credit for the account.
               example: $0.00
         transactionAmount:
-          maxLength: 20
+          maxLength: 24
           type: string
           description: Monetary amount of the current transaction for this account.
           example: '1.0'
@@ -454,7 +823,7 @@ components:
             account.
           example: '0'
         disputedAmount:
-          maxLength: 20
+          maxLength: 24
           type: string
           description: Field that identifies the monetary amount of disputed items
             for this account.
@@ -496,10 +865,10 @@ components:
               description: Unique identification number assigned to a customer.
               example: '0001000000000150191'
             creditLimitOverlimitPercentage:
-              maxLength: 4
+              maxLength: 7
               type: string
-              description: 'Percentage that can be authorized in excess of the customer’s
-                credit limit on the CMS product entity entity. '
+              description: Percentage that can be authorized in excess of the customer’s
+                credit limit on the CMS product entity.
               example: $1.00
             accountOpenDate:
               maxLength: 10
@@ -566,7 +935,7 @@ components:
               description: Field that identifies the date the account was last delinquent.
               example: 00/00/0000
             lastPaymentAmount:
-              maxLength: 20
+              maxLength: 24
               type: string
               description: Amount of the last payment made on the account.
               example: $0.00
@@ -589,7 +958,7 @@ components:
               description: Field that identifies the number of returned checks.
               example: '0'
             lastPurchaseAmount:
-              maxLength: 4
+              maxLength: 24
               type: string
               description: Amount of the last purchase made on the account. This amount
                 is the total of all transactions that were made on the same day.
@@ -697,7 +1066,7 @@ components:
             days <br/> &nbsp; '9' - Amount past due 210 or more days
           example: '1'
         totalDueAmount:
-          maxLength: 20
+          maxLength: 24
           type: string
           description: Total amount due for the account.
           example: $0.00

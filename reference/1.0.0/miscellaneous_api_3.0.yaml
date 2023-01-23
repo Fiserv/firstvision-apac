@@ -25,9 +25,49 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
-      - name: correlationId
+      - name: x-client-correlation-id
         in: header
         description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-fiserv-unique-message-id
+        in: header
+        description: Any unique message text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Any client trace text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Any client source channel text client's may want to send in the
+          request for mapping the response on their side. Any value passed in the
+          request message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Any client user text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
         required: false
@@ -42,38 +82,8 @@ paths:
               $ref: '#/components/schemas/BoardEntityReqModel'
         required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardEntityResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -88,6 +98,44 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardEntityResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -96,8 +144,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -126,9 +174,49 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
-      - name: correlationId
+      - name: x-client-correlation-id
         in: header
         description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-fiserv-unique-message-id
+        in: header
+        description: Any unique message text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Any client trace text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Any client source channel text client's may want to send in the
+          request for mapping the response on their side. Any value passed in the
+          request message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Any client user text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
         required: false
@@ -139,7 +227,7 @@ paths:
       - name: businessUnit
         in: path
         description: Unique identification number associated with the organization.
-          Valid values from 001-998.
+          Valid values from 1-998.
         required: true
         schema:
           maximum: 999
@@ -147,16 +235,24 @@ paths:
           type: integer
           example: '600'
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -171,22 +267,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -201,8 +291,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -230,9 +326,49 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
-      - name: correlationId
+      - name: x-client-correlation-id
         in: header
         description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-fiserv-unique-message-id
+        in: header
+        description: Any unique message text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Any client trace text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Any client source channel text client's may want to send in the
+          request for mapping the response on their side. Any value passed in the
+          request message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Any client user text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
           message will be return back as-is in the API response message
         required: false
@@ -243,7 +379,7 @@ paths:
       - name: businessUnit
         in: path
         description: Unique identification number associated with the organization.
-          Valid values from 001-998.
+          Valid values from 1-998.
         required: true
         schema:
           maximum: 999
@@ -251,38 +387,8 @@ paths:
           type: integer
           example: '600'
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireBillingCycleAssignmentResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -297,6 +403,44 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBillingCycleAssignmentResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -305,8 +449,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -334,7 +478,7 @@ paths:
         schema:
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
-      - name: correlationId
+      - name: x-client-correlation-id
         in: header
         description: Any correlational text client's may want to send in the request
           for mapping the response on their side. Any value passed in the request
@@ -344,33 +488,49 @@ paths:
           maxLength: 40
           type: string
           example: ABC123
+      - name: x-fiserv-unique-message-id
+        in: header
+        description: Any unique message text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Any client trace text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Any client source channel text client's may want to send in the
+          request for mapping the response on their side. Any value passed in the
+          request message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Any client user text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -385,6 +545,44 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckHealthResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -393,14 +591,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CheckHealthResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -493,7 +685,7 @@ components:
           maxLength: 3
           type: integer
           description: Unique identification number associated with the organization.
-            Valid values from 001-998.
+            Valid values from 1-998.
           example: '600'
         productId:
           maximum: 999
@@ -969,8 +1161,8 @@ components:
                   type: integer
                   description: ISO currency code used to generate converted memo-billing
                     information on statements for this relationship. <br/>The values
-                    are:<br/>&nbsp; '000' - Memo billing is not active(Default) <br/>&nbsp;
-                    '001' to '999' - Memo billing is active
+                    are:<br/>&nbsp; '0' - Memo billing is not active(Default) <br/>&nbsp;
+                    '1' to '999' - Memo billing is active
                   example: '0'
                 paymentTransactionCode:
                   maximum: 9999
@@ -1151,13 +1343,6 @@ components:
               description: Credit limit of the account. This is mandatory field during
                 account addition.
               example: '1000'
-            billingCurrency:
-              maximum: 999
-              maxLength: 3
-              type: integer
-              description: This is ISO currency code that identifies the currency
-                of this account.
-              example: '0'
             billingLevel:
               maxLength: 1
               type: string
@@ -1900,14 +2085,14 @@ components:
           maxLength: 3
           type: integer
           description: Unique identification number associated with the organization.
-            Valid values from 001-998.
+            Valid values from 1-998.
           example: '600'
         productId:
           maximum: 999
           maxLength: 3
           type: integer
           description: Unique identification number of the product associated with
-            the organization. Valid values are 001-998.
+            the organization. Valid values are 1-998.
           example: '1'
         customerId:
           maxLength: 19
@@ -1968,13 +2153,12 @@ components:
           maxLength: 3
           type: integer
           description: Unique identification number associated with the organization.
-            Valid values from 001-998.
+            Valid values from 1-998.
           example: '600'
         businessUnitName:
           maxLength: 40
           type: string
-          description: Unique identification number associated with the organization.
-            Valid values from 001-998.
+          description: Name and address of unique identification number.
           example: NAB
         countryCode:
           maxLength: 3
@@ -2004,20 +2188,20 @@ components:
           description: Date when CMS last processed the business unit.The format is
             MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 18/08/2021
-        dateNextProcess:
+        nextProcessingDate:
           maxLength: 10
           type: string
           description: Next processing date for the business unit.The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 19/08/2021
-        dateInterestAccruedThrough:
+        interestAccruedThroughDate:
           maxLength: 10
           type: string
           description: Date through which interest accrued for all accounts within
             this business unit.The format is MM/DD/YYYY or DD/MM/YYYY depending on
             the DATE FORMAT on System Control.
           example: 18/08/2021
-        dateLastMaintenance:
+        lastMaintenanceDate:
           maxLength: 10
           type: string
           description: Date of the last maintenance on this business unit entity.
@@ -2249,7 +2433,7 @@ components:
             of the relationship credit limit
           example: A
         cashCreditLimit:
-          maxLength: 17
+          maxLength: 24
           type: string
           description: This field that indicates the default cash limit value for
             a relationship in this business unit.
@@ -2263,7 +2447,7 @@ components:
             the relationship credit limit
           example: A
         loanCreditLimit:
-          maxLength: 17
+          maxLength: 24
           type: string
           description: This field indicates the default loan limit value for a relationship
             in this business unit.
@@ -2279,52 +2463,52 @@ components:
           type: object
           properties:
             mccLimitAmount1:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
             mccLimitAmount2:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
             mccLimitAmount3:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
             mccLimitAmount4:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
             mccLimitAmount5:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
             mccLimitAmount6:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
             mccLimitAmount7:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
             mccLimitAmount8:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
             mccLimitAmount9:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
             mccLimitAmount10:
-              maxLength: 11
+              maxLength: 18
               type: string
               description: MCC limit amounts.
               example: $0.00
@@ -2373,7 +2557,7 @@ components:
           maxLength: 3
           type: integer
           description: Unique identification number associated with the organization.
-            Valid values from 001-998.
+            Valid values from 1-998.
           example: '600'
         billingMethod:
           maxLength: 1
