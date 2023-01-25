@@ -1,6 +1,6 @@
 # Inquire Account
 
-The service provides the basic details of the account associated with the customer. Some basic details include short name, credit limit, billing cycle etc.
+The API provides the basic details of an account associated with the customer. Some basic details include short name, credit limit, billing cycle, balances, statement dates etc.
 
 ## Endpoint
 

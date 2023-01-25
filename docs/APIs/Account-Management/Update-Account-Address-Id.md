@@ -1,6 +1,6 @@
 # Update Accounts' Address ID
 
-The service updates the address ID at account level upon successful validation of customer ID given in the request for a given Account ID.
+This API is used to update the address ID at account level for a given Account Id upon successful validation of customer ID, if given in the request.
 
 ## Endpoint
 

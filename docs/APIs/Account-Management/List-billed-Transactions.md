@@ -1,6 +1,6 @@
 # List Billed Transactions
 
-The service provides list of transactions along with detail information of transactions posted in the last statement cycle.
+This API is used to fetch transaction details a given account Id. Statement date to be provided in input, in order to fetch any specific statement period. If statement date is not given, latest statement details will be fetched.
 
 ## Endpoint
 
@@ -88,9 +88,9 @@ type: tab
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "440401",
-    "instance": "/v1/accounts/0006000011000000130/transactions/lastStatement",
+    "instance": "/v1/accounts/0006000011000000131/transactions/lastStatement",
     "invalid-params": [
-      "V5S34003SD: NO ACCOUNT ON FILE"
+      "V5S34003SD: ACCOUNT NUMBER NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -117,7 +117,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5S34003SD` | No account on file |
+| `V5S34003SD` | Account number not found |
 | `V5BS0011SF` | Update Request - Record add pending |
 | `V5BS4001EA` | Invalid business unit |
 | `V5BS4001SC` | Business unit is in purged status |

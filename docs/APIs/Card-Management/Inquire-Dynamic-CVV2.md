@@ -1,6 +1,6 @@
 # Inquire Dynamic CVV2
 
-This service fetches encrypted dynamic CVV2 and other required details for a given payment instrument ID.
+This API is used to fetch encrypted dynamic CVV2 provide other additional details like encrypted payment card number, encrypted expiry date, embossed name 1, embossed name 2, dynamic CVV2 expire date and time for a given payment instrument Id.
 
 ## Endpoint
 
@@ -43,7 +43,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/cards/0009846801010065781/dynamicCVV2",
     "invalid-params": [
-      "V5DI4002SB: ACCT IS PURGED/FRAUD/CLOSED/CGOFF OR ADD PENDING/NOTFND"
+      "V5DI4002SB: ACCT IS PURGED/FRAUD/CLOSED/CGOFF OR ADD PENDING/NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -71,7 +71,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-| `V5DI4002SB` | Acct is purged/fraud/closed/cgoff or add pending/notfnd |
+| `V5DI4002SB` | Acct is purged/fraud/closed/cgoff or add pending/not found |
 | `V5DI4002SV/V5DI4002SA` | Card number should be numeric and not zeroes |  
 | `V5DI4004SV` | Valid values are Y and N for disable DCCV2 method flag |    
 | `V5DI4001SA` | Invalid card/org |                                               

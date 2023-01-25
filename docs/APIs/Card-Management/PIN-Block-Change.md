@@ -1,6 +1,6 @@
 # Change PIN
 
-The PIN Block change service is used to update the PIN Block with the prerequisite that the existing PIN block must be supplied and validated.
+This API is used to update the PIN Block with the prerequisite that the existing PIN block must be supplied and validated before the new PIN block is replaced. This API could be triggered from the ATM or other digital channels such as online (WEB) or mobile banking.
 
 ## Endpoint
 
@@ -44,7 +44,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/cards/0009544410000000041/pinBlockChange",
     "invalid-params": [
-      "V5CP4003SA: INVALID ACCOUNT TYPE, PIN CHANGE NOT ALLOWED"
+      "V5CP4003SA: ACCOUNT NUMBER NOT FOUND, PIN CHANGE NOT ALLOWED"
     ],
     "source": "VPL",
     "status": 404,
@@ -77,7 +77,7 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 |`V5CP4001SA`| Organization record not found | 
 |`V5CP4002SA`| Invalid account status, pin change not allowed | 
-|`V5CP4003SA`| Invalid account type, pin change not allowed | 
+|`V5CP4003SA`| Account number not found, pin change not allowed | 
 |`V5CP4004SA`| Account blocked, pin change not allowed | 
 |`V5CP4005SA`| Account does not have active cards |
 |`V5CP4006SA`| Invalid card status, pin change not allowed | 

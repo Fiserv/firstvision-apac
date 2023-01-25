@@ -1,6 +1,6 @@
 # Inquire Statement Transaction Details
 
-This service is used to fetch statement details for a given account number.
+This API is used to fetch transaction details and other generic details for a given account Id. Statement date to be provided in input, in order to fetch any specific statement period. If statement date is not given, latest statement details will be fetched.
 
 ## Endpoint
 
@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 >Should be empty. 
 >
->***Account id and statement date should be sent as path and query parameter.***
+>***Account id should be sent as path variable.***
 
 <!--
 type: tab
@@ -204,7 +204,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/accounts/0002000010000066759/statementTransactions",
     "invalid-params": [
-      "V5S34003SD: NO ACCOUNT ON FILE"
+      "V5S34003SD: ACCOUNT NUMBER NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -224,7 +224,6 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `statementDate` | Query Parameter | *date* | 10 | Period for which the user want to view the statement transaction details of an Account, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.| 
 
 ### Error Codes
 
@@ -232,7 +231,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5S34003SD` | No account on file |
+| `V5S34003SD` | Account number not found |
 | `V5S34003SA/V5S34003SB/V5S34003EB/V5S34003EF/V5S34003EG` | No statement history information found on file |
 | `V5S34222EA` | Invalid txn suppresion indicatr valid values are N or Y |
 

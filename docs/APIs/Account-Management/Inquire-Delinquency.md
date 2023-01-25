@@ -1,6 +1,6 @@
 # Inquire Delinquency
 
-This service provides delinquency details for a given account number like 30 to 210 day delinquent amount, last deliquent date, current cycle due etc.
+This API is used to fetch delinquency details for a given account Id like 30 to 210 day delinquent amount, last deliquent date, current cycle due etc.
 
 ## Endpoint
 

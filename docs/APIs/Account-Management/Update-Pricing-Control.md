@@ -1,6 +1,6 @@
 # Update Pricing Control
 
-This service is used update pricing control structure over an accounts. This service will update PCT Override, PCT Start Date, State Of Residency, State Of Issuance and PCT Expiry Date.
+This API is used update pricing control structure for a given account Id. This service will update PCT override, PCT start date, state of residency, state of issuance and PCT expiry date.
 
 ## Endpoint
 

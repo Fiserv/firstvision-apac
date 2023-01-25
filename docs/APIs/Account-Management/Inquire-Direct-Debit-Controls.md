@@ -1,6 +1,6 @@
 # Inquire Direct Debit Controls
 
-This service is used to get detail for direct debit for given account. It shows current parameter setup enabled on current account.
+This API is used to fetch direct debit details for given account Id. It shows current parameter setup enabled for a given account Id used for direct debit processing.
 
 ## Endpoint
 

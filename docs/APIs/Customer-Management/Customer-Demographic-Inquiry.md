@@ -1,6 +1,6 @@
 # Inquire Customer
 
-This service will be used to enquire the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer.  The customer ID will be passed in the input request to retrieve the demographic information. 
+This API used to fetch the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer Id. 
 
 ## Endpoint
 
@@ -60,7 +60,8 @@ type: tab
     "postalCode": "110004",
     "city": "DELHI",
     "stateProvince": "DL",
-    "countryCode": "IND"
+    "countryCode": "IND",
+    "county": "ABC"
   },
   "homePhoneFlag": "0"
 }

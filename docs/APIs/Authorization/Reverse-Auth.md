@@ -1,6 +1,7 @@
 # Reverse Authorization 
 
-This service is used for Authorization reversal on payment instrument id.
+This API is used to reverse the authorization for a given payment instrument Id or payment card number, authorization code, effective date, and transaction amount, if given. 
+Reverse is possible for any authorization which is waiting for settlement. 
 
 ## Endpoint
 
@@ -37,7 +38,8 @@ type: tab
   "internalReferenceNumber": 3239000,
   "uniqueTransactionId": "APP17977700222011344330001112345678",
   "maskedPaymentCardNumber": "000484680XXXXXX9405",
-  "openToBuy": "$10000.00"
+  "openToBuy": "$10000.00",
+  "effectiveDate": "10/01/2022"
 }
 ```
 

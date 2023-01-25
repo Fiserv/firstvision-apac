@@ -1,6 +1,6 @@
 # List Outstanding Authorizations
 
-This service provides details of the memo-posted authorizations on a given account.
+This API is used to fetch outstanding authorization details for a given account Id.
 
 ## Endpoint
 
@@ -141,7 +141,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/accounts/0006000022000000439/transactions/memoPost",
     "invalid-params": [
-      "V5T24002SB: NO ACCOUNT ON FILE"
+      "V5T24002SB: ACCOUNT NUMBER NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -168,7 +168,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5T24002SB` | No account on File |
+| `V5T24002SB` | Account number not found |
 | `V5T24024EA` | Invalid txn suppresion indicatr valid values are N or Y |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

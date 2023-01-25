@@ -1,6 +1,6 @@
 # Update Card Type
 
-This service is used to update the type of cardholder between primary and supplementary (Joint Cardholder). 
+This API is used to update type of card for a given payment instrument Id. 
 
 ## Endpoint
 

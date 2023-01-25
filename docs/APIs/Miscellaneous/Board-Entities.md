@@ -1,6 +1,8 @@
 # Board Entities
 
-This new API enables to choose the records you want to add (Customer Name/Address record, Account Base Segment record, Embosser record, and Relationship record), then prompts you to provide a valid values for required field that correspond to the records you selected.
+This API is used to add Customer Name/Address record, Account Base Segment record, Embosser record, and Relationship record and Insurance record based on the input criteria.
+
+Fields that are not provided in the Request object will be initialized to their default values. All numeric fields are initialized to zero and alphanumeric fields initialized to spaces.
 
 ## Endpoint
 
@@ -79,7 +81,7 @@ titles: Request, Response, Error
     "customerGroupCode": "",
     "costCenterReportingNumber": "",
     "fiscalYearEnd": 0,
-    "currentExpiryDate": "",
+    "currentExpiryDate": "00/00/0000"",
     "sourceCode": "",
     "contactName": "",
     "contactPhone": "",
@@ -101,8 +103,8 @@ titles: Request, Response, Error
       "isNsfFeeModificationEnabled": "0"
     },
     "userDetails": {
-      "userDate1": "",
-      "userDate2": "",
+      "userDate1": "00/00/0000",
+      "userDate2": "00/00/0000",
       "userAmount1": "",
       "userAmount2": "",
       "userField5": "",
@@ -134,11 +136,11 @@ titles: Request, Response, Error
     "coreBankingIndicator": " ",
     "pctOverrideDetails": {
       "pctOverride": " ",
-      "pctOverrideStartDate": "0",
-      "pctOverrideExpiryDate": "0",
+      "pctOverrideStartDate": "00/00/0000",
+      "pctOverrideExpiryDate": "00/00/0000",
       "level": " ",
-      "levelStartDate": "0",
-      "levelExpiryDate": "0"
+      "levelStartDate": "00/00/0000",
+      "levelExpiryDate": "00/00/0000"
     },
     "ibsDetails": {
       "ddaRoutingId": 0,
@@ -155,7 +157,7 @@ titles: Request, Response, Error
     "dualIndicator": " ",
     "productCode": "",
     "statusCode": " ",
-    "effectiveDate": "",
+    "effectiveDate": "00/00/0000",
     "enrollId": "",
     "insuredPartyIndicator": "0",
     "premiumRate": 0,
@@ -277,7 +279,6 @@ The below table identifies the required parameters in the request payload.
 | `embossedName1` | Payload | *string* | 26 | This field that specifies the default generic name line 1. |
 | `cardholderFlag` | Payload | *string* | 01 | This is the code that indicates whether the card is issued as primary or secondary card. |
 | `deviceIndicator` | Payload | *string* | 01 | Code that indicates the type of device (form factor) written to the track data on the card. |
-| `externalContractId` | Payload | *string* | 14 | Unique identification number assigned to a customer from external system. |
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Error Codes

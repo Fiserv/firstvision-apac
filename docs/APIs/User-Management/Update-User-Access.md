@@ -1,6 +1,6 @@
 # Update User Access
 
-This service is used to update security sign-on data like business unit include/exclude flags and user application access options.
+This API is used to update sign-on data like business unit include/exclude flags and user application access options for a given security sign-on details.
 
 ## Endpoint
 

@@ -1,8 +1,6 @@
 # Search Customers
 
-This service is used to retrieve customer's information based on primary and optional search values like last name, identification number, phone number etc.
-
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
+This API is used to fetch customer's information based on primary and optional search values like last name, identification number, phone number etc.
 
 ## Endpoint
 
@@ -30,7 +28,7 @@ titles: Request, Response, Error
     "phoneNumber": "",
     "postalcode": "",
     "mobileDeviceID": "",
-    "birthDate": "0",
+    "birthDate": "00/00/0000",
     "title": "",
     "suffixName": "",
     "countryCode": "",
@@ -49,7 +47,7 @@ type: tab
 {
   "customerlist": [
     {
-      "birthDate": "09011985",
+      "birthDate": "09/01/1985",
       "businessUnit": 200,
       "country": " ",
       "cust/Store/Merchant": "0002000000050623496",
@@ -68,7 +66,7 @@ type: tab
       "user15": " "
     },
     {
-      "birthDate": "00000000",
+      "birthDate": "00/00/0000",
       "businessUnit": 200,
       "country": " ",
       "cust/Store/Merchant": "0002000000050623502",
@@ -87,7 +85,7 @@ type: tab
       "user15": " "
     },
     {
-      "birthDate": "19081967",
+      "birthDate": "19/08/1967",
       "businessUnit": 200,
       "country": " ",
       "cust/Store/Merchant": "0002000000050625775",

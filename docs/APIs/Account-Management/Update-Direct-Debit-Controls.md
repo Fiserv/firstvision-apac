@@ -1,8 +1,6 @@
 # Update Direct Debit Controls
 
-The Direct Debit Update message enables the user to update the Direct Debit information on an account. The information that can be updated includes: bank account and routing data and various other associated fields. This service does not initiate the Direct Debit, it just provides a mechanism to update the Direct Debit related fields.
-
-*It is necessary to perform an inquiry using the Direct Debit/Credit inquiry message first, as this service requires all fields to be sent in the request, whether they have been changed or not. If a tag is sent in empty, it is presumed that the field is to be deleted.*
+This API is used to update direct debit details for given account Id. This API does not initiate the direct debit, it just provides a mechanism to update the direct debit processing fields.
 
 ## Endpoint
 

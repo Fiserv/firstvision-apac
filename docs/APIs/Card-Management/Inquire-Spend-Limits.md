@@ -1,6 +1,6 @@
 # Inquire Spend Limits 
 
-This service is used to inquire	 the spending limits to control the card usage. These limits are set to individual card level like maximum ATM, OTC, Retail etc authorizatoin amount and count.
+This API is used to fetch the spending limits to control the card usage. These limits are set to individual card level like maximum ATM, OTC, Retail etc authorization amount and count.
 
 ## Endpoint
 

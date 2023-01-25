@@ -1,6 +1,6 @@
 # Board Customer
 
-This API is used to create a new customer record. This record will have demographic information of customer.
+This API is used to create a new customer Id with customer's demographic details. 
 
 Fields that are not provided in the Request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
 

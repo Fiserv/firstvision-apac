@@ -1,6 +1,6 @@
 # Update Token Supress Indicator
 
-This service is used to update the token supress Indicator for given account.
+This API is used to update the token supress Indicator for given account Id.
 
 ## Endpoint
 

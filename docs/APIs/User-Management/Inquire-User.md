@@ -1,6 +1,6 @@
 # Inquire User
 
-This service is used to inquire security sign-on deta like business unit include/exclude flags, User application access record, user service privileged record etc.
+This API is used to fetch generic details like status, expiry date etc. and service privileged details for a given security sign-on details.
 
 ## Endpoint
 
