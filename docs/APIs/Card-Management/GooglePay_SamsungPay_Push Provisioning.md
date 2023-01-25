@@ -1,11 +1,10 @@
-# ApplePay Push Provisioning
+# Push Provisioning
 
-This API is used for push provisioning of Visa Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The "copy" is then added to a Apple Pay wallet.
-
+This service is used for push provisioning of Visa Card when Gpay or Samsung Pay wallet is used. Card push provisioning refers to the creation of a secure digital "copy" of a preexisting card (either physical or virtual). The "copy" is then added to a Gpay or Samsung Pay wallet.
 
 ## Endpoint
 
-`POST /v1/cards/applePayPushProvisioning`
+`POST /v1/cards/googlePaySamsungPayPushProvisioning`
 
 ## Payload Example
 
@@ -49,7 +48,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/cards/pushProvisioning",
     "invalid-params": [
-      "V5OS4005EB: EMBOSSER RECORD NOT FOUND"
+      "V5OS4006EB: RECORD NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -62,7 +61,7 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/applePayPushProvisioning).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/googlePaySamsungPayPushProvisioning).
 
 The below table identifies the required parameters in the request payload.
 
@@ -78,8 +77,9 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5OS0916SC` | Invalid card number | 
-| `V5OS4006EA` | Invalid org | 
-| `V5OS4005EB` | Embosser record not found |        
+| `V5SG4001SA` | RECORD NOT FOUND | 
+| `V5SG4001SF` | INVALID ORG | 
+| `V5SG4001SA` | CARD NOT FOUND | 
+| `V5SG4002SA` | ACCT SHOULD BE NUMRIC AND GREATER THAN ZERO |       
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
