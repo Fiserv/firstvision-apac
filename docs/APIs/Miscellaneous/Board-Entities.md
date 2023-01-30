@@ -81,7 +81,7 @@ titles: Request, Response, Error
     "customerGroupCode": "",
     "costCenterReportingNumber": "",
     "fiscalYearEnd": 0,
-    "currentExpiryDate": "00/00/0000"",
+    "currentExpiryDate": "00/00/0000",
     "sourceCode": "",
     "contactName": "",
     "contactPhone": "",

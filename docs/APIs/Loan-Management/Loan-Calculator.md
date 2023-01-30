@@ -152,7 +152,7 @@ The below table identifies the required parameters in the request payload.
 | `principalAmount` | Payload  | *number* | 17 | Principal balance of the loan in monetary units and subunits.|
 | `currencyCode` | Payload  | *string* | 3 | ISO Standard Currency Code or ISO Country Code that identifies the unit of currency for this loan.|
 | `fixedPaymentAmount` | Payload  | *number* | 17 | Amount of the fixed payment. This field is required if LOAN TERM is not supplied.|
-| `tenure` | Payload  | *integer*| 3 | Term for the loan. This field is required if FIXED PAYMENT AMOUNT is not supplied.|
+| `term` | Payload  | *integer*| 3 | Term for the loan. This field is required if FIXED PAYMENT AMOUNT is not supplied.|
 
 
 
