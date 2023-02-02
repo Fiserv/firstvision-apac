@@ -28,19 +28,9 @@ paths:
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -48,19 +38,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -68,9 +58,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -95,8 +86,16 @@ paths:
           type: string
           example: '0000020000065439605'
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -111,22 +110,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireCustomerResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -141,16 +126,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCustomerResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -189,19 +180,9 @@ paths:
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -209,19 +190,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -229,9 +210,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -262,54 +244,8 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerReqModel'
         required: true
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -324,6 +260,46 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -332,6 +308,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerResponseModel'
       security:
       - Authorization: [
           ]
@@ -357,19 +339,9 @@ paths:
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -377,19 +349,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -397,9 +369,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -418,8 +391,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchCustomerResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -434,16 +415,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -458,16 +431,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -506,19 +479,9 @@ paths:
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -526,19 +489,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -546,9 +509,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -561,28 +525,6 @@ paths:
               $ref: '#/components/schemas/BoardCustomerReqModel'
         required: true
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardCustomerResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -591,8 +533,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -607,16 +565,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardCustomerResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -655,19 +619,9 @@ paths:
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -675,19 +629,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -695,9 +649,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -713,6 +668,30 @@ paths:
           type: string
           example: '000012672379'
       responses:
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -727,16 +706,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListExternalCustomersCardsAndAccountResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -751,24 +722,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -807,19 +762,9 @@ paths:
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -827,19 +772,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -847,9 +792,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -874,8 +820,16 @@ paths:
           type: integer
           example: '600'
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -896,16 +850,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -920,16 +866,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -968,19 +914,9 @@ paths:
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -988,19 +924,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -1008,9 +944,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -1035,28 +972,6 @@ paths:
           type: integer
           example: '600'
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListCustomersCardResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -1065,8 +980,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -1081,16 +1012,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersCardResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -1129,19 +1066,9 @@ paths:
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -1149,19 +1076,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -1169,9 +1096,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -1196,14 +1124,28 @@ paths:
           type: integer
           example: '600'
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersAccountResponseModel'
         '422':
           description: " \nThe request could not be processed"
           content:
@@ -1212,8 +1154,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1228,30 +1178,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListCustomersAccountResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
