@@ -8,70 +8,67 @@ This service will be used to enquire the customer demographic details such as Na
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty.  
 >
 >***Customer Identification should be sent as Path Variable.***
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/nameAddress).
-
-The below table identifies the required query parameters in the request message.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
-    "namesDetails": {
-        "birthName": " ",
-        "givenName": "ABC",
-        "middleName": " ",
-        "nameLine1": "M S SWAMY",
-        "nameLine2": "KK",
-        "nameLine3": " "
-    },
-    "employerDetails": {
-        "addressLine2": "Y",
-        "phoneNumber": "Y",
-        "phoneFlag": "0",
-        "jobTitle": "Y",
-        "nameOfEmployer": "Y",
-        "addressLine1": "Y"
-    },
-    "addressDetails": {
-        "addressLine3": "CHITRAPURI",
-        "addressLine4": "DELHI",
-        "addressLine1": "FLAT NO:404",
-        "addressLine2": "RAINBOW APTS",
-        "city": "DELHI",
-        "stateProvince": "DL",
-        "countryCode": "IND",
-        "postalCode": "110004",
-        "houseNumber": " "
-    },
-    "isReturnMailEnabled": "Y",
-    "languageIndicator": "AUS",
-    "homePhoneNumber": "9241800756",
-    "homePhoneFlag": "0",
-    "faxNumber": "82364782",
-    "faxPhoneFlag": "0",
-    "smsFlag": "0",
-    "emailAddress": "SAM@FISERV.COM",
-    "birthDate": "06/04/1986",
-    "mobileNumber": "112233",
-    "mobilePhoneFlag": "0",
-    "businessUnit": 200,
-    "customerId": "0000020000065439605"
+  "businessUnit": 200,
+  "customerId": "0000020000065439605",
+  "namesDetails": {
+    "birthName": "",
+    "givenName": "ABC",
+    "middleName": "",
+    "nameLine1": "M S SWAMY",
+    "nameLine2": "KK",
+    "nameLine3": " "
+  },
+  "languageIndicator": "AUS",
+  "homePhoneNumber": "9241800756",
+  "faxNumber": "82364782",
+  "faxPhoneFlag": "0",
+  "mobileNumber": "112233",
+  "smsFlag": "0",
+  "mobilePhoneFlag": "0",
+  "emailAddress": "SAM@FISERV.COM",
+  "birthDate": "06/04/1986",
+  "isReturnMailEnabled": "Y",
+  "employerDetails": {
+    "nameOfEmployer": "Y",
+    "addressLine1": "Y",
+    "addressLine2": "Y",
+    "phoneNumber": "Y",
+    "phoneFlag": "Y",
+    "jobTitle": "Y"
+  },
+  "addressDetails": {
+    "addressLine3": "CHITRAPURI",
+    "addressLine4": "DELHI",
+    "addressLine1": "FLAT NO:404",
+    "addressLine2": "RAINBOW APTS",
+    "houseNumber": "",
+    "postalCode": "110004",
+    "city": "DELHI",
+    "stateProvince": "DL",
+    "countryCode": "IND"
+  },
+  "homePhoneFlag": "0"
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -88,6 +85,19 @@ The below table identifies the required query parameters in the request message.
   }
 ]
 ```
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/nameAddress).
+
+The below table identifies the required query parameters in the request message.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

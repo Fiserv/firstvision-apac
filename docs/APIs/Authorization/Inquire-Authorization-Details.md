@@ -6,28 +6,22 @@ This service called immediately after Auth Request service and it will provide a
 
 ## Endpoint
 
-`GET /v1/auth/{internalReferenceNumber}/authDetails`
+`GET /v1/auth/{paymentInstrumentOrCardId}/details`
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
->***Internal Reference Number should be sent as query parameter.***
+>***Payment Instrument Or Card Id, effective date/authorization code should be sent as path variable and query parameter.***
 
-
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/auth/{internalReferenceNumber}/authDetails).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `internalReferenceNumber` | Path Variable | *string* | 9 | This field indicate the internal reference number of the authorizatoin transaction.| 
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -73,7 +67,7 @@ The below table identifies the required parameters in the request payload.
   "disputedItemCount": 0,
   "expiryDate": "30/04/2024",
   "maskedPaymentCardNumber": "000404940XXXXXX5286",
-  "uniqueTransactionId": "APP179777002220113443300011123456111",
+  "uniqueTransactionId": "APP17977700222011344330001112345678",
   "memoDetails": {
     "memoCreditAmount": "$0.00",
     "memoCreditCount": 0,
@@ -94,33 +88,51 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
+
 [
   {
     "detail": "Please refer to invalid-params for error details",
-    "errorCode": "440401",
-    "instance": "/v1/auth/3839405/authDetails",
+    "errorCode": "442201",
+    "instance": "/v1/auth/0009846801010274074/details",
     "invalid-params": [
-      "V7RS0004SF: FMLG - RECORD NOT FOUND"
+      "V7RS4003EQ : Input effective date not matching with log record effective date "
     ],
     "source": "VPL",
-    "status": 404,
-    "title": "Not found"
+    "status": 422,
+    "title": "Unprocessable Entity"
   }
 ]
+
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/auth/{paymentInstrumentOrCardId}/details).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentOrCardId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+| `effectiveDate` | Query vari | *string* | 10 | Effective Date of the transaction. The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
+| `authorizationCode` | Payload | *string* | 6 | Authorization code associated with the transaction. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V7RS0004SF` | FMLG - record not found |
-| `V7RQ4001SA` | Auth system record not initialized |
-| `V7RQ4001SB` | End-of-day cutoff being processed | 
-| `V7RQ4001SC` | After hours update in progress |
-| `V7RQ4001EE` | Country code not valid in cms org rec for merch |
-
+| `V7RS4002EP` | Invalid card number |        
+| `V7RS4002ES` | Authorization record not found |   
+| `V7RS4003EQ` | Input effective date not matching with log record effective date |   
+| `V7RS4005ER` | Input auth amount not matching with log record auth amount |   
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

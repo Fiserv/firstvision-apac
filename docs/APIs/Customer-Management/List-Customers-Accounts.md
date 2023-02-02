@@ -8,69 +8,67 @@ The service provides list of accounts associated with the customer. This API als
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty.  
 >
 >***Customer Identification should be sent as Path Variable.***  
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/accountList).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
-  "accountList": [
-    {
-      "accountId": "0006000012000000121",
-      "blockCode1": " ",
-      "blockCode1Date": "00/00/0000",
-      "blockCode2": " ",
-      "blockCode2Date": "00/00/0000",
-      "ddaAccountId": "0",
-      "isSuppressTokenEnabled": "0",
-      "mailingIndicator": " ",
-      "memoCreditAmount": "$0.00",
-      "memoDebitAmount": "$0.00",
-      "noOfTokenizedCards": 0,
-      "productId": 1,
-      "reissueControlMethod": "0",
-      "status": "N",
-      "externalContractId": "990012679902",
-      "addressId": "HOME9902"
-    }
-  ],
   "customerInformation": {
-    "addressLine1": "HOUSE NO.102",
-    "addressLine2": "",
-    "addressLine3": "",
-    "addressLine4": "",
-    "birthDate": "01/02/2010",
     "businessUnit": 600,
     "customerId": "0006000011000000707",
-    "emailAddress": "123@FISERV.COM",
-    "externalId": "",
-    "gender": "1",
-    "givenName": "JOHN",
-    "homePhoneNumber": "12345",
-    "isReturnMailEnabled": "N",
-    "mobileNumber": "8877665544",
-    "nameLine1": "JOHN DSOUZA",
+    "givenName": "Andre",
+    "externalId": "113902",
+    "gender": "0",
+    "birthDate": "14/11/1940",
+    "nameLine1": "Andre Reichel",
+    "addressLine1": "10 4601 Denesik Overpass",
+    "addressLine2": "Lake Ofelia,QLD",
+    "addressLine3": "Clayfield QLD",
+    "addressLine4": "",
+    "emailAddress": "Andre.Reichel@company1.com",
+    "homePhoneNumber": "++61430010348",
+    "workPhoneNumber": "++61430010348",
+    "mobileNumber": "++61430010348",
     "totalAccountsCount": 1,
-    "workPhoneNumber": "67894"
-  }
+    "isReturnMailEnabled": "N"
+  },
+  "accountList": [
+    {
+      "accountId": "0001000011000052268",
+      "productId": 1,
+      "status": "D",
+      "memoCreditAmount": "$0.00",
+      "memoDebitAmount": "$0.00",
+      "mailingIndicator": " ",
+      "ddaAccountId": "890005226",
+      "isSuppressTokenEnabled": "0",
+      "reissueControlMethod": "0",
+      "totalTokenizedCardCount": 0,
+      "blockCode1": "A",
+      "blockCode2": "",
+      "blockCode1Date": "19/08/2021",
+      "blockCode2Date": "00/00/0000",
+      "externalContractId": "000012672379",
+      "addressId": "HOME"
+    }
+  ]
 }
 ```
 
-### Error Response Payload
+
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -87,6 +85,20 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/customers/{customerId}/accountList).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

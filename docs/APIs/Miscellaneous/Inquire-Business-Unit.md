@@ -8,23 +8,19 @@ This API is used to view functionality control switches available at organizatio
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty.
 >
 >***Business Unit should be sent as query parameter.***
 
-### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/misc/{businessUnit}/details).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Query Parameter | *number* | 03 | Unique identification number associated with the organization. Valid values from 001-998.|
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -38,9 +34,9 @@ The below table identifies the required parameters in the request payload.
   "commercialCardsAllowed": "2",
   "countryCode": "AUS",
   "currencyCode": 36,
-  "dateInterestAccruedThrough": "18/08/2021",
-  "dateLastMaintenance": "08/10/2021",
-  "dateNextProcess": "19/08/2021",
+  "interestAccruedThroughDate": "18/08/2021",
+  "lastMaintenanceDate": "08/10/2021",
+  "nextProcessingDate": "19/08/2021",
   "earlySettlementQuotesProcess": "1",
   "excludeDefaultDisputedAmounts": "1",
   "generalLedgerDetails": {
@@ -91,7 +87,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -108,8 +106,26 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/misc/{businessUnit}/details).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `businessUnit` | Query Parameter | *number* | 03 | Unique identification number associated with the organization. Valid values from 1-998.|
+
+
+### Error Codes
+
 Below table provides the list of application's error code and its description.
 
+| ErrorCode |  Description/Values |
+| --------  | ------------------ |
 | `V5PH0004SF` | Get request - Record Not Found |  
 | `V5PS4009SA` | Org not present on file |  
 | `V5PS4010SA` | Account is not present not on file | 

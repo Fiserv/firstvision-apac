@@ -8,29 +8,23 @@ The service provides list of transactions along with detail information of trans
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***Account id should be sent as path variable.***
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/transactions/lastStatement).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 
 {
   "accountId": "0006000011000000137",
-  "continuationToken": "99999999999999999999999999999999999999999999999999999999999999999999999999999999",
   "statementDate": "18/08/2021",
   "transactionList": [
     {
@@ -47,7 +41,7 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$12.00",
       "transactionCode": 4000,
       "transactionType": "D",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678"
     },
     {
       "authorizationCode": " ",
@@ -63,7 +57,7 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$8.00",
       "transactionCode": 4000,
       "transactionType": "D",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678"
     },
     {
       "authorizationCode": " ",
@@ -79,13 +73,15 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$50.00",
       "transactionCode": 7001,
       "transactionType": "D",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678"
     }
   ]
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -102,6 +98,20 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/transactions/lastStatement).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

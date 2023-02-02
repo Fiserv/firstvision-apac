@@ -8,7 +8,10 @@ This service is used to update the spending limits to control the card usage. Th
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -27,19 +30,9 @@ This service is used to update the spending limits to control the card usage. Th
 }
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/spendLimits).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -60,7 +53,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -78,14 +73,28 @@ The below table identifies the required parameters in the request payload.
 ]
 ```
 
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/spendLimits).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
+
+### Error Codes 
+
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
 |`V5ED0010SF` | Update request - Record not found |
 |`V5ED0011SF` | Update request - Record add pending |
-|`V5ED4003ED` | Card seq number must be greater than zero |
-|`V5ED4004SF` | Invalid card sequence |
 |`V5ED0319ED` | ATM cash amt field update is not allowed |
 |`V5ED0328EA` | Maximum freq input not allowed when no auth limit overrd |
 |`V5ED0320EE` | ATM cash nbr field update is not allowed |

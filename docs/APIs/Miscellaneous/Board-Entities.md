@@ -8,7 +8,10 @@ This new API enables to choose the records you want to add (Customer Name/Addres
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 
@@ -111,7 +114,6 @@ This new API enables to choose the records you want to add (Customer Name/Addres
     "primaryAccountFlag": " ",
     "shortName": "",
     "creditLimit": "1000",
-    "billingCurrency": 0,
     "billingLevel": "1",
     "dualBillingFlag": "0",
     "customerSelectedDueDay": 0,
@@ -205,6 +207,49 @@ This new API enables to choose the records you want to add (Customer Name/Addres
 }
 ``` 
 
+<!--
+type: tab
+-->
+
+```json
+{
+  "businessUnit": 600,
+  "productId": 1,
+  "customerId": "0006000012000000191",
+  "relationshipId": "",
+  "accountId": "0006000012000000191",
+  "cardDetails": {
+    "paymentInstrumentId": "0004440010910990851",
+    "nameOnCard": "Trump",
+    "expiryDate": "18/01/2024",
+    "activationStatus": "0",
+    "maskedPaymentCardNumber": ""
+  }
+}
+```
+
+<!--
+type: tab
+-->
+
+```json
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/misc/boardEntities",
+    "invalid-params": [
+        "V5S84154SB: CUSTOMER NUMBER ALREADY EXISTS FOR THIS ORG",
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
+```
+
+<!-- type: tab-end -->
+
 ### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/misc/boardEntities).
@@ -226,10 +271,8 @@ The below table identifies the required parameters in the request payload.
 | `creditLimit` | Payload | *number* | 17 | Credit limit of this account. |
 | `billingCycle` | Payload | *number* | 02 | Billing cycle of the relationship associated with the customer. |
 | `owningBranchNumber` | Payload | *number* | 9 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
-| `isSuppressLetterEnabled` | Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
 | `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
 | `isSupressTokenEnabled` | Payload | *string* | 01 | Token suppression at account level indicator. |
-| `coreBankingIndicator` | Payload | *string* | 01 | This is the code indicates type of banking. |
 | `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment card number. |
 | `embossedName1` | Payload | *string* | 26 | This field that specifies the default generic name line 1. |
 | `cardholderFlag` | Payload | *string* | 01 | This is the code that indicates whether the card is issued as primary or secondary card. |
@@ -237,42 +280,7 @@ The below table identifies the required parameters in the request payload.
 | `externalContractId` | Payload | *string* | 14 | Unique identification number assigned to a customer from external system. |
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
-### Successful Response Payload
-
-```json
-{
-  "businessUnit": 600,
-  "productId": 1,
-  "customerId": "0006000012000000191",
-  "relationshipId": "",
-  "accountId": "0006000012000000191",
-  "cardDetails": {
-    "paymentInstrumentId": "0004440010910990851",
-    "nameOnCard": "Trump",
-    "expiryDate": "18/01/2024",
-    "activationStatus": "0",
-    "maskedPaymentCardNumber": ""
-  }
-}
-```
-
-### Error Response Payload
-
-```json
-[
-  {
-    "detail": "Please refer to invalid-params for error details",
-    "errorCode": "440401",
-    "instance": "/v1/misc/boardEntities",
-    "invalid-params": [
-        "V5S84154SB: CUSTOMER NUMBER ALREADY EXISTS FOR THIS ORG",
-    ],
-    "source": "VPL",
-    "status": 404,
-    "title": "Not found"
-  }
-]
-```
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -625,7 +633,8 @@ Below table provides the list of application's error code and its description.
 | `V5RM4002SD` | Pending add use add function |                                     
 | `V5RM4002SH` | Dup number on name & addr file |                                   
 | `V5RM4002SI` | Dup number on account file |                                       
-| `V5RM0106EC` | AMRM - credit limit cannot be zeroes |                            
+| `V5RM0106EC` | AMRM - credit limit cannot be zeroes | 
+| `V5S80821SV` | Invalid Statement Delivery Mode |                            
 
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

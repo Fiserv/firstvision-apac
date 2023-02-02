@@ -8,30 +8,78 @@ This service is used to update security sign-on records like user service privil
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
+
 {
-  "servicePrivilegeGroupId": "CLTUSER",
+  "servicePrivilegeGroupId": "",
   "status": "1",
-  "signonExpiryDate": "31/12/2030"
+  "signonExpiryDate": "",
+  "activationDate": "",
+  "businessUnitPrivilegeId": "",
+  "supervisorId": " ",
+  "customerServiceBusinessUnit": 100,
+  "userServicePrivilege01": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege02": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege03": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege04": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege05": {
+    "inclusionexclusionFlag5": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege06": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege07": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege08": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege09": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  },
+  "userServicePrivilege10": {
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
+  }
 }
+
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/users/updateUser).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `clientId` | Query Parameter | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. | 
-| `name` | Query Parameter | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. | 
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 
@@ -98,7 +146,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -115,6 +165,23 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/users/updateUser).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `clientId` | Query Parameter | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. | 
+| `name` | Query Parameter | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. | 
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
