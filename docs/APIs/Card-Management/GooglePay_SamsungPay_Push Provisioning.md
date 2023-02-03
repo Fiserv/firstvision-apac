@@ -1,6 +1,6 @@
 # GooglePay - SamsungPay VTS Push Provisioning
 
-This service is used for push provisioning of Visa Card when Gpay or Samsung Pay wallet is used. Card push provisioning refers to the creation of a secure digital "copy" of a preexisting card (either physical or virtual). The "copy" is then added to a Gpay or Samsung Pay wallet.
+This service is used to generate the Visa Tokenization Service push provisioning token of Visa Card when Gpay or Samsung Pay wallet is used. The token received in the response can be passed to Visa to initiate the card provisioning to wallet.
 
 ## Endpoint
 
@@ -70,23 +70,22 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
-| `clientAppID` | Payload | *string* | 32 | Unique identifier for the client application. | 
-| `clientDeviceID` | Payload | *string* | 32 | Stable device identification set by Wallet Provider. | 
+| `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+| `clientAppID` | Payload | *string* | 32 | Unique identifier for the client application. |
+| `clientDeviceID` | Payload | *string* | 32 | Stable device identification set by Wallet Provider. |
 | `clientWalletProvider` | Payload | *string* | 32 | Client wallet provider is the token requestor’s ID(TRID). |
-| `clientWalletAccountID` | Payload | *string* | 32 | Client provided consumer ID that identifies the Wallet account holder entity. | 
+| `clientWalletAccountID` | Payload | *string* | 32 | Client provided consumer ID that identifies the Wallet account holder entity. |
 | `walletProvider` | Payload | *string* | 32 | Identifies the wallet (Google Pay / Samsung Pay), the payment card is going to be provisioned. |
 
-
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5SG4001SA` | RECORD NOT FOUND | 
-| `V5SG4001SF` | INVALID ORG | 
-| `V5SG4001SA` | CARD NOT FOUND | 
-| `V5SG4002SA` | ACCT SHOULD BE NUMRIC AND GREATER THAN ZERO |       
+| `V5SG4001SA` | RECORD NOT FOUND |
+| `V5SG4001SF` | INVALID ORG |
+| `V5SG4001SA` | CARD NOT FOUND |
+| `V5SG4002SA` | ACCT SHOULD BE NUMRIC AND GREATER THAN ZERO |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
