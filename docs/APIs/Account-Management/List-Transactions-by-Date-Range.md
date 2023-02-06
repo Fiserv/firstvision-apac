@@ -41,7 +41,8 @@ type: tab
       "transactionCode": 4000,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "021447",
@@ -59,7 +60,8 @@ type: tab
       "transactionCode": 4579,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -77,7 +79,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "022709",
@@ -95,7 +98,8 @@ type: tab
       "transactionCode": 4567,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -113,7 +117,8 @@ type: tab
       "transactionCode": 7015,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023754",
@@ -131,7 +136,8 @@ type: tab
       "transactionCode": 4000,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023911",
@@ -149,7 +155,8 @@ type: tab
       "transactionCode": 6800,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023912",
@@ -167,7 +174,8 @@ type: tab
       "transactionCode": 6804,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023912",
@@ -185,7 +193,8 @@ type: tab
       "transactionCode": 6806,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023913",
@@ -203,7 +212,8 @@ type: tab
       "transactionCode": 6804,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023913",
@@ -221,7 +231,8 @@ type: tab
       "transactionCode": 6806,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "283763",
@@ -239,7 +250,8 @@ type: tab
       "transactionCode": 4004,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "283781",
@@ -257,7 +269,8 @@ type: tab
       "transactionCode": 4545,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "283785",
@@ -275,7 +288,8 @@ type: tab
       "transactionCode": 4561,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023902",
@@ -293,7 +307,8 @@ type: tab
       "transactionCode": 6816,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023904",
@@ -311,7 +326,8 @@ type: tab
       "transactionCode": 6816,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023905",
@@ -329,7 +345,8 @@ type: tab
       "transactionCode": 6818,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023913",
@@ -347,7 +364,8 @@ type: tab
       "transactionCode": 6805,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023913",
@@ -365,7 +383,8 @@ type: tab
       "transactionCode": 6807,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "283765",
@@ -383,7 +402,8 @@ type: tab
       "transactionCode": 4106,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "283784",
@@ -401,7 +421,8 @@ type: tab
       "transactionCode": 4560,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023905",
@@ -419,7 +440,8 @@ type: tab
       "transactionCode": 6819,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -437,7 +459,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -455,7 +478,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -473,7 +497,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -491,7 +516,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -509,7 +535,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -527,7 +554,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -544,8 +572,9 @@ type: tab
       "transactionAmount": "1003",
       "transactionCode": 7016,
       "transactionIndicator": "S",
-      "transactionType": "C",
-      "uniqueTransactionId": ""
+      "transactionType": "C",/
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -563,7 +592,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -581,7 +611,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -599,7 +630,8 @@ type: tab
       "transactionCode": 7015,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -617,7 +649,8 @@ type: tab
       "transactionCode": 2701,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -635,7 +668,8 @@ type: tab
       "transactionCode": 1701,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -653,7 +687,8 @@ type: tab
       "transactionCode": 7015,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -671,7 +706,8 @@ type: tab
       "transactionCode": 2701,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -689,7 +725,8 @@ type: tab
       "transactionCode": 1701,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -707,7 +744,8 @@ type: tab
       "transactionCode": 7015,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -725,7 +763,8 @@ type: tab
       "transactionCode": 7015,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -743,7 +782,8 @@ type: tab
       "transactionCode": 7015,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -761,7 +801,8 @@ type: tab
       "transactionCode": 7015,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -779,7 +820,8 @@ type: tab
       "transactionCode": 7015,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023862",
@@ -797,7 +839,8 @@ type: tab
       "transactionCode": 4006,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "023916",
@@ -815,7 +858,8 @@ type: tab
       "transactionCode": 4511,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -833,7 +877,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -851,7 +896,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "025052",
@@ -869,7 +915,8 @@ type: tab
       "transactionCode": 4000,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "027182",
@@ -887,7 +934,8 @@ type: tab
       "transactionCode": 6701,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -905,7 +953,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -923,7 +972,8 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": ""
+      "uniqueTransactionId": "",
+      "debitCreditIndicator": "D"
     }
   ]
 }

@@ -108,7 +108,8 @@ type: tab
       "transactionCode": 4000,
       "transactionStatus": " ",
       "transactionType": "D",
-      "uniqueTransactionId": "APP17977700222011344330001112345674"
+      "uniqueTransactionId": "APP17977700222011344330001112345674",
+      "debitCreditIndicator": "D"
     },
     {
       "amount": "$1.00",
@@ -132,7 +133,8 @@ type: tab
       "transactionCode": 4579,
       "transactionStatus": " ",
       "transactionType": "D",
-      "uniqueTransactionId": "APP17977700222011344330001112345673"
+      "uniqueTransactionId": "APP17977700222011344330001112345673",
+      "debitCreditIndicator": "D"
     },
     {
       "amount": "$10.00",
@@ -156,7 +158,8 @@ type: tab
       "transactionCode": 7016,
       "transactionStatus": " ",
       "transactionType": "C",
-      "uniqueTransactionId": "APP17977700222011344330001112345672"
+      "uniqueTransactionId": "APP17977700222011344330001112345672",
+      "debitCreditIndicator": "D"
     },
     {
       "amount": "$5.00",
@@ -180,7 +183,8 @@ type: tab
       "transactionCode": 6701,
       "transactionStatus": " ",
       "transactionType": "D",
-      "uniqueTransactionId": "APP17977700222011344330001112345671"
+      "uniqueTransactionId": "APP17977700222011344330001112345671",
+      "debitCreditIndicator": "D"
     }
   ],
   "ytdAccumulatorDetails": {

@@ -40,7 +40,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "052206",
@@ -57,7 +58,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "052210",
@@ -74,7 +76,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "052213",
@@ -91,7 +94,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "052219",
@@ -108,7 +112,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "052220",
@@ -125,7 +130,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "052226",
@@ -142,7 +148,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "052227",
@@ -159,7 +166,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "052205",
@@ -176,7 +184,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": "052206",
@@ -193,7 +202,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -210,7 +220,8 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -227,7 +238,8 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "debitCreditIndicator": "D"
     }
   ]
 }

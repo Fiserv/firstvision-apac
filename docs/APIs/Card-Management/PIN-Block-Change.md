@@ -19,7 +19,11 @@ titles: Request, Response, Error
   "currentPinBlock": "2673217",
   "pinOffset": 0,
   "pinChannel": "A",
-  "keyAssociation": " "
+  "keyAssociation": " ",
+  "pinSetOrResetActionCode": "PNRS",
+  "pinSetOrResetMemo": "PIN reset memo",
+  "pinTryCounterResetActionCode": "PNRT",
+  "pinTryCounterResetMemo": "PIN try counter reset memo"
 }
 ```
 
@@ -85,5 +89,8 @@ Below table provides the list of application's error code and its description.
 |`V5CP4008SA`| PIN change not allowed for smart cards through web or IVR | 
 |`V5CP4009SA`| Card is not activated, pin change not allowed | 
 |`V5CP4010SA`| PIN suppression is on, pin change not allowed | 
+|`V5CP4009EB`| Invalid PIN set/reset action code | 
+|`V5CP4011EB`| Invalid PIN try counter reset action code | 
+
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
