@@ -24,7 +24,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -94,8 +94,16 @@ paths:
           type: string
           example: '10101'
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -107,7 +115,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquirePointsStatisticResponseModel'
+                $ref: '#/components/schemas/InquirePointsStatisticV1ResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -124,6 +132,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -134,30 +158,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -187,7 +187,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -257,14 +257,16 @@ paths:
           type: string
           example: '10101'
       responses:
-        '200':
-          description: " \nSuccess"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListWarehousedTransactionResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -287,6 +289,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWarehousedTransactionV1ResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -297,30 +321,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -349,7 +349,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -437,8 +437,16 @@ paths:
           type: string
           example: 17/01/2022
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -461,6 +469,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListHistoryTransactionV1ResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -471,36 +501,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListHistoryTransactionResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -530,7 +530,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -618,14 +618,16 @@ paths:
           type: string
           example: 17/01/2022
       responses:
-        '200':
-          description: " \nSuccess"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListActiveTransactionResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -648,6 +650,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListActiveTransactionV1ResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -658,30 +682,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -709,7 +709,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -779,8 +779,16 @@ paths:
           type: string
           example: '10101'
       responses:
-        '404':
-          description: " \nThe request resource does not exist"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -795,14 +803,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquirePointsAccountResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+                $ref: '#/components/schemas/InquirePointsAccountV1ResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -819,30 +843,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -881,7 +881,7 @@ components:
           type: array
           items:
             type: string
-    InquirePointsStatisticResponseModel:
+    InquirePointsStatisticV1ResponseModel:
       type: object
       properties:
         cycleToDateSpendAmount:
@@ -1018,7 +1018,7 @@ components:
                 bonus, adjust in, redeemed, closed, grace, expired, and adjust out
                 points for life-to-date points.
               example: '120'
-    ListWarehousedTransactionResponseModel:
+    ListWarehousedTransactionV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1048,8 +1048,8 @@ components:
         transactionList:
           type: array
           items:
-            $ref: '#/components/schemas/TransactionList_ListWarehousedTransactionResponseModel'
-    TransactionList_ListWarehousedTransactionResponseModel:
+            $ref: '#/components/schemas/TransactionList_ListWarehousedTransactionV1ResponseModel'
+    TransactionList_ListWarehousedTransactionV1ResponseModel:
       type: object
       properties:
         storeName:
@@ -1114,7 +1114,7 @@ components:
             The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on
             System Control.
           example: 17/01/2021
-    ListHistoryTransactionResponseModel:
+    ListHistoryTransactionV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1144,8 +1144,8 @@ components:
         transactionList:
           type: array
           items:
-            $ref: '#/components/schemas/TransactionList_ListHistoryTransactionResponseModel'
-    TransactionList_ListHistoryTransactionResponseModel:
+            $ref: '#/components/schemas/TransactionList_ListHistoryTransactionV1ResponseModel'
+    TransactionList_ListHistoryTransactionV1ResponseModel:
       type: object
       properties:
         storeName:
@@ -1210,7 +1210,7 @@ components:
             The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on
             System Control.
           example: 17/01/2021
-    ListActiveTransactionResponseModel:
+    ListActiveTransactionV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1240,8 +1240,8 @@ components:
         transactionList:
           type: array
           items:
-            $ref: '#/components/schemas/TransactionList_ListActiveTransactionResponseModel'
-    TransactionList_ListActiveTransactionResponseModel:
+            $ref: '#/components/schemas/TransactionList_ListActiveTransactionV1ResponseModel'
+    TransactionList_ListActiveTransactionV1ResponseModel:
       type: object
       properties:
         storeName:
@@ -1306,7 +1306,7 @@ components:
             The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on
             System Control.
           example: 17/01/2021
-    InquirePointsAccountResponseModel:
+    InquirePointsAccountV1ResponseModel:
       type: object
       properties:
         schemeName:
