@@ -109,7 +109,7 @@ type: tab
       "transactionStatus": " ",
       "transactionType": "D",
       "uniqueTransactionId": "APP17977700222011344330001112345674",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "amount": "$1.00",
@@ -134,7 +134,7 @@ type: tab
       "transactionStatus": " ",
       "transactionType": "D",
       "uniqueTransactionId": "APP17977700222011344330001112345673",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "amount": "$10.00",
@@ -159,7 +159,7 @@ type: tab
       "transactionStatus": " ",
       "transactionType": "C",
       "uniqueTransactionId": "APP17977700222011344330001112345672",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "amount": "$5.00",
@@ -184,7 +184,7 @@ type: tab
       "transactionStatus": " ",
       "transactionType": "D",
       "uniqueTransactionId": "APP17977700222011344330001112345671",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     }
   ],
   "ytdAccumulatorDetails": {

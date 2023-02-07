@@ -83,9 +83,9 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5SG4001SA` | RECORD NOT FOUND |
-| `V5SG4001SF` | INVALID ORG |
-| `V5SG4001SA` | CARD NOT FOUND |
-| `V5SG4002SA` | ACCT SHOULD BE NUMRIC AND GREATER THAN ZERO |
+| `V5SG4001SA` | Record not found |
+| `V5SG4001SF` | Invalid org |
+| `V5SG4001SA` | Card not found |
+| `V5SG4002SA` | Acct should be numric and greater than zero |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

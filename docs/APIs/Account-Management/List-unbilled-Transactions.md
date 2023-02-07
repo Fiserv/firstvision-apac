@@ -41,7 +41,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052206",
@@ -59,7 +59,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052210",
@@ -77,7 +77,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052213",
@@ -95,7 +95,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052219",
@@ -113,7 +113,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052220",
@@ -131,7 +131,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052226",
@@ -149,7 +149,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052227",
@@ -167,7 +167,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052205",
@@ -185,7 +185,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052206",
@@ -203,7 +203,7 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -221,7 +221,7 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -239,7 +239,7 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     }
   ]
 }

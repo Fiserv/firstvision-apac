@@ -42,7 +42,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "021447",
@@ -61,7 +61,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -80,7 +80,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "022709",
@@ -99,7 +99,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -118,7 +118,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023754",
@@ -137,7 +137,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023911",
@@ -156,7 +156,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023912",
@@ -175,7 +175,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023912",
@@ -194,7 +194,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023913",
@@ -213,7 +213,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023913",
@@ -232,7 +232,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "283763",
@@ -251,7 +251,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "283781",
@@ -270,7 +270,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "283785",
@@ -289,7 +289,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023902",
@@ -308,7 +308,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023904",
@@ -327,7 +327,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023905",
@@ -346,7 +346,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023913",
@@ -365,7 +365,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023913",
@@ -384,7 +384,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "283765",
@@ -403,7 +403,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "283784",
@@ -422,7 +422,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023905",
@@ -441,7 +441,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -460,7 +460,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -479,7 +479,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -498,7 +498,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -517,7 +517,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -536,7 +536,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -555,7 +555,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -574,7 +574,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",/
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -593,7 +593,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -612,7 +612,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -631,7 +631,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -650,7 +650,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -669,7 +669,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -688,7 +688,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -707,7 +707,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -726,7 +726,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -745,7 +745,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -764,7 +764,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -783,7 +783,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -802,7 +802,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -821,7 +821,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023862",
@@ -840,7 +840,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "023916",
@@ -859,7 +859,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -878,7 +878,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -897,7 +897,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "025052",
@@ -916,7 +916,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "027182",
@@ -935,7 +935,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -954,7 +954,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -973,7 +973,7 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "debitCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D"
     }
   ]
 }
