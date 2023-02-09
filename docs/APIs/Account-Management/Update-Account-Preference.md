@@ -8,68 +8,67 @@ The service updates the statement preference, various customer IDs, address ID, 
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
+
 {
   "statementPreferenceDetails": {
-    "statementModeOrStatus": "H",
+    "statementModeOrStatus": "O",
     "statementReprintAddressFlag": "C",
-    "ownerCoOwnerStatementFlag": "1",
+    "ownerCoOwnerStatementFlag": "0",
     "statementDeliveryMode": "E"
   },
-  "correspondenceCustomerId": "0004316830510010641",
+  "customerId": "0000000001000000032",
+  "correspondenceCustomerId": "0000000001000000065",
   "alternateCustomerIdDetails": {
     "customerIdFlag": "A",
-    "customerId": "0000000000000000000",
+    "customerId": "0000000001000000065",
     "customerIdExpiryDate": "15/04/2022",
     "customerIdEffectiveDate": "14/01/2021"
   },
-  "addressId": "RESIDENTIAL",
-  "sourceCode": "MOBBANKIN1",
-  "isSupressTokenEnabled": "1"
+  "addressId": "HOME",
+  "sourceCode": " ",
+  "isSupressTokenEnabled": "0"
 }
 ```
 
-### Minimum	Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/preference).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountid` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
+
 {
-    "statementPreferenceDetails": {
-        "ownerCoOwnerStatementFlag": "1",
-        "statementModeOrStatus": "H",
-        "statementDeliveryMode": "E",
-        "statementReprintAddressFlag": "C"
-    },
-    "alternateCustomerIdDetails": {
-        "customerId": "0000000000000000000",
-        "customerIdEffectiveDate": "14/01/2021",
-        "customerIdFlag": "A",
-        "customerIdExpiryDate": "15/04/2022"
-    },
-    "accountId": "0004316830510010641",
-    "businessUnit": 700,
-    "customerId": "0004316830510010641",
-    "sourceCode": "MOBBANKIN1",
-    "addressId": "RESIDENTIAL",
-    "isSupressTokenEnabled": "1",
-    "correspondenceCustomerId": "0004316830510010641"
+  "accountId": "0004440010000000017",
+  "addressId": "",
+  "alternateCustomerIdDetails": {
+    "customerId": "0000000001000000065",
+    "customerIdEffectiveDate": "14/01/2021",
+    "customerIdExpiryDate": "15/04/2022",
+    "customerIdFlag": "A"
+  },
+  "businessUnit": 600,
+  "correspondenceCustomerId": "0000000001000000065",
+  "customerId": "0000000001000000032",
+  "isSupressTokenEnabled": "0",
+  "sourceCode": " ",
+  "statementPreferenceDetails": {
+    "ownerCoOwnerStatementFlag": "0",
+    "statementDeliveryMode": "E",
+    "statementModeOrStatus": "O",
+    "statementReprintAddressFlag": "C"
+  }
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -86,6 +85,22 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum	Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/preference).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountid` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -105,7 +120,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS0521SV` | Invalid suppress token |
 | `V5BS0521SZ` | Update access not granted for suppress token |
 | `V5BS0122SA` | Valid entries are 0 Thru 9, H, O, R, S, U, Or Z |
-
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

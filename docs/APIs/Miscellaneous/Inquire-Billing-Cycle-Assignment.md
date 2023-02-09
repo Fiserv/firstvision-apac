@@ -8,23 +8,19 @@ This service is used to retrieve billing cycle assignment details.
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***Business Unit should be sent as path variable.***
 
-### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/misc/{businessUnit}/billingCycleAssignment).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Path Variable | *string* | 3 | Unique identification number associated with the organization. Valid values from 001-998. | 
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 
@@ -161,7 +157,9 @@ The below table identifies the required parameters in the request payload.
 
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -178,6 +176,20 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/misc/{businessUnit}/billingCycleAssignment).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `businessUnit` | Path Variable | *string* | 3 | Unique identification number associated with the organization. Valid values from 001-998. | 
+
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

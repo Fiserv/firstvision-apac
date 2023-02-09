@@ -8,23 +8,18 @@ This API is used to retrive latest six payment details for given account number 
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***Account id should be sent as path variable.***
- 
-### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/paymentHistory).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Leuith | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 
@@ -144,7 +139,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -161,6 +158,20 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/paymentHistory).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Leuith | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

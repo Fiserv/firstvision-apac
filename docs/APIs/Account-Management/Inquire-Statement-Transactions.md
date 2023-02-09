@@ -8,25 +8,18 @@ This service is used to fetch statement details for a given account number.
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***Account id and statement date should be sent as path and query parameter.***
 
-
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/statementTransactions).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `statementDate` | Query Parameter | *date* | 10 | Period for which the user want to view the statement transaction details of an Account, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.| 
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -53,15 +46,15 @@ The below table identifies the required parameters in the request payload.
     "scheduledPaymentAmount": "$0.00",
     "thisStatementInterestAmount": "$0.00",
     "unResolvedCreditBalance": "$0.00",
-    "unbilledDebitBalance": "$0.00"
+    "unbilledDebitBalance": "$0.00",
+    "addOnAmount": "$0.00",
+    "overLimitAmount": "$0.00"
   },
-  "billingCurrency": "",
   "billingCycle": 8,
   "billingIndicator": 0,
   "blockCode1": "",
   "blockCode2": "",
   "businessUnit": 200,
-  "continuationToken": "2000002000010000066752202118q50052",
   "correspondingCustomerId": "",
   "creditClass": "N1",
   "creditCount": 78,
@@ -115,7 +108,7 @@ The below table identifies the required parameters in the request payload.
       "transactionCode": 4000,
       "transactionStatus": " ",
       "transactionType": "D",
-      "uniqueTransactionId": "APP179777002220113443300011123456749"
+      "uniqueTransactionId": "APP17977700222011344330001112345674"
     },
     {
       "amount": "$1.00",
@@ -139,7 +132,7 @@ The below table identifies the required parameters in the request payload.
       "transactionCode": 4579,
       "transactionStatus": " ",
       "transactionType": "D",
-      "uniqueTransactionId": "APP179777002220113443300011123456739"
+      "uniqueTransactionId": "APP17977700222011344330001112345673"
     },
     {
       "amount": "$10.00",
@@ -163,7 +156,7 @@ The below table identifies the required parameters in the request payload.
       "transactionCode": 7016,
       "transactionStatus": " ",
       "transactionType": "C",
-      "uniqueTransactionId": "APP179777002220113443300011123456729"
+      "uniqueTransactionId": "APP17977700222011344330001112345672"
     },
     {
       "amount": "$5.00",
@@ -187,7 +180,7 @@ The below table identifies the required parameters in the request payload.
       "transactionCode": 6701,
       "transactionStatus": " ",
       "transactionType": "D",
-      "uniqueTransactionId": "APP179777002220113443300011123456719"
+      "uniqueTransactionId": "APP17977700222011344330001112345671"
     }
   ],
   "ytdAccumulatorDetails": {
@@ -200,7 +193,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -217,6 +212,21 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/statementTransactions).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `statementDate` | Query Parameter | *date* | 10 | Period for which the user want to view the statement transaction details of an Account, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.| 
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

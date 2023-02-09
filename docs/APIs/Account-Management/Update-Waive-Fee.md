@@ -8,7 +8,10 @@ The account fee waive flags update service is used to update flag for waive intr
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 
@@ -68,19 +71,9 @@ The account fee waive flags update service is used to update flag for waive intr
 }
 ```
 
-### Minimum	Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/waiveFee).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountid` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 
@@ -142,7 +135,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -159,6 +154,22 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum	Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/waiveFee).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

@@ -8,7 +8,10 @@ This service is used to update the token status(Deactivate/Resume/Suspend) of Ca
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -17,19 +20,9 @@ This service is used to update the token status(Deactivate/Resume/Suspend) of Ca
 }
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/tokenStatus).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
-| `vtsTokenNumber` | Payload | *string* | 19 | Token number assigned by the Visa Tokenization Service(VTS). | 
-| `status` | Payload | *string* | 01 | This field indicate the status of token. | 
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -39,7 +32,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -56,6 +51,23 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/tokenStatus).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
+| `vtsTokenNumber` | Payload | *string* | 19 | Token number assigned by the Visa Tokenization Service(VTS). | 
+| `status` | Payload | *string* | 01 | This field indicate the status of token. | 
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
+
+### Error Codes 
 
 Below table provides the list of application's error code and its description.
 

@@ -8,7 +8,10 @@ This Lost or Stolen service is used to block the lost card and request for the r
 
 ## Payload Example
 	
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -27,20 +30,9 @@ This Lost or Stolen service is used to block the lost card and request for the r
 
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/lostStolenCardTransfer).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
-| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
-| `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "1" for replacement of card or "0" to avoid initiation of card Replacement . |
-| `blockCode` | Payload | *string* | 1 | Pass value as "L" to block the old card. |
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -53,7 +45,9 @@ The below table identifies the required parameters in the request payload.
 
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -70,6 +64,22 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/lostStolenCardTransfer).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
+| `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "1" for replacement of card or "0" to avoid initiation of card Replacement . |
+| `blockCode` | Payload | *string* | 1 | Pass value as "L" to block the old card. |
+
+### Error Codes 
 
 Below table provides the list of application's error code and its description.
 

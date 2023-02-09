@@ -8,7 +8,10 @@ This service updates the card controls for a given payment instrument Id like EC
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -22,19 +25,9 @@ This service updates the card controls for a given payment instrument Id like EC
 }
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/controls).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -50,7 +43,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -68,17 +63,34 @@ The below table identifies the required parameters in the request payload.
 ]
 ```
 
+<!-- type: tab-end -->
+
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/controls).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
+
+### Error Codes 
+
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5ED0010SF` | Update request - record not found | 
-| `V5ED9555SV` | Invalid pos flag | 
-| `V5ED9556SV` | Invalid atm flag |  
-| `V5ED8118SV` | Invalid pay wave flag |  
-| `V5ED8119SV` | Invalid int atm pos flag |  
-| `V5ED8120SV` | Invalid cash back tran flag |  
-| `V5ED8117SV` | Invalid ecom act sw |  
-| `V5ED9557SV` | Invalid moto flag |  
+| `V5ED9555SV` | Invalid POS flag | 
+| `V5ED9556SV` | Invalid ATM flag |  
+| `V5ED8118SV` | Invalid PAY wave flag |  
+| `V5ED8119SV` | Invalid int ATM POS flag |  
+| `V5ED8120SV` | Invalid CASH BACK tran flag |  
+| `V5ED8117SV` | Invalid ECOM act sw |  
+| `V5ED9557SV` | Invalid MOTO flag |  
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
