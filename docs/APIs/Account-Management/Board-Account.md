@@ -10,7 +10,10 @@ Fields that are not provided in the request object will be initialised to their 
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -22,7 +25,6 @@ Fields that are not provided in the request object will be initialised to their 
     "shortName": "Charlie",
     "primaryAccountFlag": " ",
     "creditLimit": "15000.0",
-    "billingCurrency": 0,
     "billingLevel": "1",
     "dualBillingFlag": "0",
     "customerSelectedDueDay": 0,
@@ -62,28 +64,9 @@ Fields that are not provided in the request object will be initialised to their 
 }
 ``` 
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/boardAccount).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `isInsuranceProductEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add an Insurance Product record. |
-| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
-| `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
-| `creditLimit` | Payload | *string* | 17 | This is the credit limit of the account. |
-| `isSuppressLetterEnabled`| Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
-| `isSupressTokenEnabled` | Payload | *number* | 01 | Code that indicates whether the account is eligible for tokenization. |
-| `coreBankingIndicator` | Payload | *string* | 01 | Code that indicates type of account. |
-| `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
-| `owningBranchNumber` | Payload | *number* | 09 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
-| `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 001-998. |
-| `externalContractId` | Payload | *string* | 14 | Unique identification number assigned to a customer from external system. |
-| `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -93,7 +76,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -110,6 +95,31 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/boardAccount).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `isInsuranceProductEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add an Insurance Product record. |
+| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
+| `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
+| `creditLimit` | Payload | *string* | 17 | This is the credit limit of the account. |
+| `isSuppressLetterEnabled`| Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
+| `isSupressTokenEnabled` | Payload | *number* | 01 | Code that indicates whether the account is eligible for tokenization. |
+| `coreBankingIndicator` | Payload | *string* | 01 | Code that indicates type of account. |
+| `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
+| `owningBranchNumber` | Payload | *number* | 09 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
+| `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
+| `externalContractId` | Payload | *string* | 14 | Unique identification number assigned to a customer from external system. |
+| `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

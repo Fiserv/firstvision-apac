@@ -8,7 +8,10 @@ This service will validate input message and upgrades customer's account product
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -28,19 +31,9 @@ This service will validate input message and upgrades customer's account product
 }
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/productTransfer).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
-| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
-| `transferToAccountId` | Payload | *string* | 19 | New transferred to account id of the cardholder billing account. |  
- 
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -49,7 +42,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -66,6 +61,22 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/productTransfer).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
+| `transferToAccountId` | Payload | *string* | 19 | New transferred to account id of the cardholder billing account. |  
+ 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

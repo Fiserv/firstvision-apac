@@ -8,7 +8,10 @@ This service transfers the balance of a credit plan segment to a different credi
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 
@@ -20,25 +23,11 @@ This service transfers the balance of a credit plan segment to a different credi
   "transferToPlanId": 10001,
   "transferToRecordNumber": 0
 }
-
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/transferPlanBalance).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 001-998. |
-| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
-| `transferToAccountId` | Payload | *number* | 5 | Plan number associated with the credit plan segment from which to transfer funds. |  
-| `transferFromRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account from which to transfer funds. |  
-| `transferToPlanId` | Payload | *number* | 5 | Plan number to which you want to transfer the funds. |  
-| `transferToRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account to which to transfer funds. |  
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 
@@ -50,7 +39,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -67,6 +58,25 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/transferPlanBalance).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
+| `transferToAccountId` | Payload | *number* | 5 | Plan number associated with the credit plan segment from which to transfer funds. |  
+| `transferFromRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account from which to transfer funds. |  
+| `transferToPlanId` | Payload | *number* | 5 | Plan number to which you want to transfer the funds. |  
+| `transferToRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account to which to transfer funds. |  
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

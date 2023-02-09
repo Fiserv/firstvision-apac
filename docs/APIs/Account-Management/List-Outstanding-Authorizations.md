@@ -8,24 +8,18 @@ This service provides details of the memo-posted authorizations on a given accou
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***Account id should be sent as path variable.***
 
-
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/transactions/memoPost).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -44,7 +38,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$3,000.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": " ",
@@ -60,7 +55,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": " ",
@@ -76,7 +72,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": " ",
@@ -92,7 +89,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": " ",
@@ -108,7 +106,8 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
+      "remainingAuthorizationAmount": "$0.00"
     },
     {
       "authorizationCode": " ",
@@ -124,12 +123,16 @@ The below table identifies the required parameters in the request payload.
       "transactionAmount": "$10.00",
       "transactionCode": 0,
       "transactionType": " ",
-      "uniqueTransactionId": "APP179777002220113443300011123456789"
+      "uniqueTransactionId": "APP17977700222011344330001112345678",
+      "remainingAuthorizationAmount": "$0.00"
     }
   ]
 }
 ```
-### Error Response Payload
+
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -146,6 +149,20 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/transactions/memoPost).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

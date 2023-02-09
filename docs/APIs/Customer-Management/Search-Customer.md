@@ -1,4 +1,4 @@
-# Search Customer
+# Search Customers
 
 This service is used to retrieve customer's information based on primary and optional search values like last name, identification number, phone number etc.
 
@@ -10,7 +10,10 @@ Fields that are not provided in the request object will be initialised to their 
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -38,19 +41,9 @@ Fields that are not provided in the request object will be initialised to their 
 }
 ``` 
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/customers/searchCustomer).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `primaryDataSwitch` | Payload | *string* | 01 | A primary search value must be supplied, and can be based on one of four fields - last/business/generic/store name, identification number, phone number, postal code or mobile device id. |
-| `primaryData` | Payload | *string* | 40 | Search field as per Primary data switch. |
-| `optionalDataMatch` | Payload | *string* | 1 | This is the code that indicates whether to add a new account record. |
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
@@ -116,7 +109,9 @@ The below table identifies the required parameters in the request payload.
 }
 ```
 
-### Error Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -133,6 +128,21 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/customers/searchCustomer).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `primaryDataSwitch` | Payload | *string* | 01 | A primary search value must be supplied, and can be based on one of four fields - last/business/generic/store name, identification number, phone number, postal code or mobile device id. |
+| `primaryData` | Payload | *string* | 40 | Search field as per Primary data switch. |
+| `optionalDataMatch` | Payload | *string* | 1 | This is the code that indicates whether to add a new account record. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

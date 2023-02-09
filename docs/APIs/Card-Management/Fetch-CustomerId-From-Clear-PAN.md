@@ -8,30 +8,28 @@ This service is used to fetch customer identification for the requested First Vi
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty. 
 >
 >***The Encrypted Payment Card Number should be sent as path variable.***
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{encryptedPaymentCardNumber}/customerId).
-
-The below table identifies the required query parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `encryptedPaymentCardNumber` | Path Variable | *string* | 32 | Unique identification number that appears on the front of the card (PAN) in encrypted format. |
-
-### Successful Response Payload
+<!--
+type: tab
+--> 
 
 ```json
 {
   "customerId": "0006000011000000707"
 }
 ```
-### Error Response Payload
+
+<!--
+type: tab
+--> 
 
 ```json
 [
@@ -48,6 +46,20 @@ The below table identifies the required query parameters in the request payload.
     }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/cards/{encryptedPaymentCardNumber}/customerId).
+
+The below table identifies the required query parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `encryptedPaymentCardNumber` | Path Variable | *string* | 32 | Unique identification number that appears on the front of the card (PAN) in encrypted format. |
+
+### Error Codes 
 
 Below table provides the list of application's error code and its description.
 

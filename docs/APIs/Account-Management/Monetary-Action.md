@@ -8,7 +8,10 @@ This service will update the Open-to-Buy, memo debit and credit fields for the g
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 
@@ -51,19 +54,9 @@ This service will update the Open-to-Buy, memo debit and credit fields for the g
 }
 ```
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/monetaryAction).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `actionCode` | Payload | *string* | 4 | Action code placed on the account. | 
-| `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. |
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
@@ -76,10 +69,11 @@ The below table identifies the required parameters in the request payload.
   "notesHistoryStatus": "O",
   "openToBuy": "-$80,072.00"
 }
-
 ```
 
-### Error Response Payload
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -96,6 +90,22 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/monetaryAction).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `actionCode` | Payload | *string* | 4 | Action code placed on the account. | 
+| `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. |
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

@@ -4,15 +4,122 @@ This service retrieves the card details associated with a Customer id along with
 
 ## Endpoint
 
-`GET /v1/customers/{customerId}/cardList/`
+`GET /v1/customers/{customerId}/cardList`
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 >Should be empty.  
 >
 >***Customer Identification should be sent as Path Variable.***  
+
+<!--
+type: tab
+--> 
+
+```json
+{
+  "customerInformation": {
+    "businessUnit": 600,
+    "customerId": "0006000011000000707",
+    "givenName": "Andre",
+    "externalId": "113902",
+    "gender": "0",
+    "birthDate": "14/11/1940",
+    "nameLine1": "Andre Reichel",
+    "addressLine1": "10 4601 Denesik Overpass",
+    "addressLine2": "Lake Ofelia,QLD",
+    "addressLine3": "Clayfield QLD",
+    "addressLine4": "",
+    "emailAddress": "Andre.Reichel@company1.com",
+    "homePhoneNumber": "++61430010348",
+    "workPhoneNumber": "++61430010348",
+    "mobileNumber": "++61430010348",
+    "totalCardsCount": 1,
+    "isReturnMailEnabled": "N"
+  },
+  "cardList": [
+    {
+      "lastWalletUsedDate": "0",
+      "lastPlasticSuppressedDate": "0",
+      "cardIssueDate": "28/09/2020",
+      "lastCardExpirationDate": "00/00/0000",
+      "lastCardNeedActivation": "Y",
+      "embosserName2": " ",
+      "dateLastPlasticUsed": "10/02/2021",
+      "blockCodeDate": "00/00/0000",
+      "chequeAccountId": " ",
+      "savingsAccountId": " ",
+      "currentCardAction": "0",
+      "lastCardAction": "1",
+      "expirationDate": "16/09/2023",
+      "cardActivatedDate": "00/00/0000",
+      "mccLimit04": "$0.00",
+      "mccLimit05": "$0.00",
+      "mccLimit06": "$0.00",
+      "mccLimit07": "$0.00",
+      "mccLimit08": "$0.00",
+      "mccLimit09": "$0.00",
+      "mccLimit10": "$0.00",
+      "mccLimit02": "$0.00",
+      "mccLimit03": "$0.00",
+      "lastPlasticIssueDate": 131201,
+      "mccLimit01": "$0.01",
+      "nameOnCard": "U T UATMLNCUST448",
+      "paymentInstrumentId": "0009846801010009405",
+      "tokenCount": 0,
+      "digitalID": " ",
+      "cardOpenedDate": "17/09/2020",
+      "accountId": "0001000011000052268",
+      "maskedPaymentCardNumber": "000984680XXXXXX9405",
+      "productDescription": "VISA PLATINUM DEBIT",
+      "isPosEnabled": "Y",
+      "isEcomEnabled": "1",
+      "isAtmEnabled": "Y",
+      "isCashBackEnabled": "Y",
+      "isPayWaveEnabled": "Y",
+      "isInternationalAtmPosEnabled": "Y",
+      "isMotoEnabled": "N",
+      "cardHolderType": "1",
+      "status": "0",
+      "blockCode": " ",
+      "currentCardNeedActivation": "Y",
+      "cardTechnology": "3",
+      "warningCode1": "0",
+      "plasticSuppressStatus": "N",
+      "physicalVirtualIndicator": "V",
+      "addressId": "HOME",
+      "plasticId": " "
+    }
+  ]
+}
+```
+
+<!--
+type: tab
+--> 
+
+```json
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "440401",
+    "instance": "/v1/customers/0006000011000000701/cardList",
+    "invalid-params": [
+      "V5DB4001AS: CUST NBR NOT FOUND"
+    ],
+    "source": "VPL",
+    "status": 404,
+    "title": "Not found"
+  }
+]
+```
+
+<!-- type: tab-end -->
 
 ### Minimum Requirements
 
@@ -24,104 +131,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `customerId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer. |
 
-### Successful Response Payload
-
-```json
-{
-  "cardList": [
-    {
-      "accountId": "0006000012000000121",
-      "blockCode": " ",
-      "blockCodeDate": "00/00/0000",
-      "cardActivatedDate": "00/00/0000",
-      "cardHolderType": 1,
-      "cardIssueDate": "00/00/0000",
-      "cardOpenedDate": "19/08/2021",
-      "cardTechnology": "3",
-      "chequeAccountId": " ",
-      "currentCardAction": "1",
-      "currentCardNeedActivation": "Y",
-      "dateLastPlasticUsed": "0",
-      "digitalID": " ",
-      "embosserName2": " ",
-      "expirationDate": "18/01/2024",
-      "isAtmEnabled": "Y",
-      "isCashBackEnabled": "N",
-      "isEcomEnabled": 1,
-      "isInternationalAtmPosEnabled": "N",
-      "isMotoEnabled": "N",
-      "isPayWaveEnabled": "N",
-      "isPosEnabled": "Y",
-      "lastCardAction": "0",
-      "lastCardExpirationDate": "00/00/0000",
-      "lastCardNeedActivation": "N",
-      "lastPlasticIssueDate": 0,
-      "lastPlasticSuppressedDate": "0",
-      "lastWalletUsedDate": "0",
-      "maskedPaymentCardNumber": "000444001XXXXXX8266",
-      "mccLimit01": "$999,999,999.99",
-      "mccLimit02": "$999,999,999.99",
-      "mccLimit03": "$999,999,999.99",
-      "mccLimit04": "$999,999,999.99",
-      "mccLimit05": "$999,999,999.99",
-      "mccLimit06": "$999,999,999.99",
-      "mccLimit07": "$999,999,999.99",
-      "mccLimit08": "$0.00",
-      "mccLimit09": "$0.00",
-      "mccLimit10": "$0.00",
-      "nameOnCard": "JOHN1",
-      "numberOfTokens": 0,
-      "paymentInstrumentId": "0004440010880488266",
-      "pinOffset": 0,
-      "plasticSuppressStatus": "N",
-      "productDescription": "VISA CREDIT CONSUMER",
-      "savingsAccountId": " ",
-      "status": "0",
-      "warningCode1": "0",
-      "addressId": "C9902",
-      "physicalVirtualIndicator": "V",
-      "plasticId": " "
-    }
-  ],
-  "customerInformation": {
-    "addressLine1": "HOUSE NO.102",
-    "addressLine2": "",
-    "addressLine3": "",
-    "addressLine4": "",
-    "birthDate": "01/02/2010",
-    "businessUnit": 600,
-    "customerId": "0006000011000000707",
-    "emailAddress": "123@FISERV.COM",
-    "externalId": "",
-    "gender": "1",
-    "givenName": "JOHN",
-    "homePhoneNumber": "12345",
-    "isReturnMailEnabled": "N",
-    "mobileNumber": "8877665544",
-    "nameLine1": "JOHN DSOUZA",
-    "totalCardsCount": 1,
-    "workPhoneNumber": "67894"
-  }
-}
-```
-
-### Error Response Payload
-
-```json
-[
-  {
-    "detail": "Please refer to invalid-params for error details",
-    "errorCode": "440401",
-    "instance": "/v1/customers/0006000011000000701/accountList",
-    "invalid-params": [
-      "V5DB4001AS: CUST NBR NOT FOUND"
-    ],
-    "source": "VPL",
-    "status": 404,
-    "title": "Not found"
-  }
-]
-```
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

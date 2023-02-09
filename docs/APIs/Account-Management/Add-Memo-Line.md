@@ -8,7 +8,10 @@ The service will validate input message details and add memo line for monetary a
 
 ## Payload Example
 
-### Request Payload
+<!--
+type: tab
+titles: Request, Response, Error
+-->
 
 ```json
 {
@@ -23,30 +26,22 @@ The service will validate input message details and add memo line for monetary a
     "note4": " ",
     "note5": " "
   }
-
 ``` 
 
-### Minimum Requirements
-
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/addMemoLine).
-
-The below table identifies the required parameters in the request payload.
-
-| Variable | Passed as | Type | Length | Description/Values |
-| -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
-| `actionCode` | Payload | *string* | 04 | Four character user assigned code for the action.|
-
-### Successful Response Payload
+<!--
+type: tab
+-->
 
 ```json
 {
   "notePurgeDate": "17/09/2022",
   "notesHistoryStatus": "C"
 }
-
 ```
-### Error Response Payload
+
+<!--
+type: tab
+-->
 
 ```json
 [
@@ -63,6 +58,21 @@ The below table identifies the required parameters in the request payload.
   }
 ]
 ```
+
+<!-- type: tab-end -->
+
+### Minimum Requirements
+
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/addMemoLine).
+
+The below table identifies the required parameters in the request payload.
+
+| Variable | Passed as | Type | Length | Description/Values |
+| -------- | :-------: | :--: | :------------: | ------------------ |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
+| `actionCode` | Payload | *string* | 04 | Four character user assigned code for the action.|
+
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -109,7 +119,6 @@ Below table provides the list of application's error code and its description.
 | `V8NA4029SA` | Manual referral org/rep not found |                                
 | `V8NA4030SA` | Manual referral org/rep not eligible for this request |            
 | `V8NA4071SA` | Embosser record not found |
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
 
