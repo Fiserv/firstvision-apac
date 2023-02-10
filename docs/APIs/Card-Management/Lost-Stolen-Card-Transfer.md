@@ -26,7 +26,11 @@ titles: Request, Response, Error
   "transferToCustomerId": " ",
   "effectiveDate": "00/00/000",
   "processType": "0",
-  "pinTransferIndicator": "N"
+  "pinTransferIndicator": "N",
+  "cardTransferActionCode": "CRTR",
+  "cardTransferMemo": "Card transfer memo",
+  "pinTransferActionCode": "PNTR",
+  "pinTransferMemo": "PIN transfer memo"
 }
 
 ```
@@ -120,5 +124,7 @@ Below table provides the list of application's error code and its description.
 |`V5E14032EA` | Business unit does not allow customer number generation |
 |`V5E10001SA` | System in after hours processing, re-try in few minutes |
 |`V5E10002SA` | System in no-processing status,re-try in few minutes |
+|`V5E14018EB` | Invalid card transfer action code |
+|`V5E14020EB` | Invalid PIN transfer action code |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

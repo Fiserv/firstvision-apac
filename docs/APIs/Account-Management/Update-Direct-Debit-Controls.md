@@ -23,7 +23,7 @@ titles: Request, Response, Error
     "accountType": "D",
     "externalAccountId": "1000000057",
     "nominatedType": "1",
-    "nominatedPaymentAmountPercentage": "10",
+    "nominatedPaymentAmountOrPercentage": "10",
     "paymentType": "1"
   }
 }
@@ -40,7 +40,7 @@ type: tab
   "directDebitDetails": {
     "accountType": "D",
     "externalAccountId": "1000000057",
-    "nominatedPaymentAmountPercentage": "10",
+    "nominatedPaymentAmountOrPercentage": "10",
     "nominatedType": "1",
     "paymentExpiryDate": "04/11/2022",
     "paymentRemittanceMethod": "0",

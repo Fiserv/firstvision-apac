@@ -272,7 +272,6 @@ The below table identifies the required parameters in the request payload.
 | `givenName` | Payload | *string* | 40 | First name of the customer. |
 | `creditLimit` | Payload | *number* | 17 | Credit limit of this account. |
 | `billingCycle` | Payload | *number* | 02 | Billing cycle of the relationship associated with the customer. |
-| `owningBranchNumber` | Payload | *number* | 9 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
 | `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
 | `isSupressTokenEnabled` | Payload | *string* | 01 | Token suppression at account level indicator. |
 | `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment card number. |
