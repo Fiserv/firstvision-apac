@@ -1,6 +1,6 @@
 # Inquire Loan Schedule 
 
-This service fetches loan schedule details for the current loan data.
+This API is used to fetch loan schedule details for the current loan data.
 
 ## Endpoint
 

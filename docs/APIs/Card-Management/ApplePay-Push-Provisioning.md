@@ -1,10 +1,11 @@
-# Push Provisioning
+# ApplePay Push Provisioning
 
-This service is used for push provisioning of Visa Card.
+This API is used for push provisioning of Visa Card. Card push provisioning refers to the creation of a secure digital copy of a pre-existing card (either physical or virtual). The "copy" is then added to a Apple Pay wallet.
+
 
 ## Endpoint
 
-`POST /v1/cards/pushProvisioning`
+`POST /v1/cards/applePayPushProvisioning`
 
 ## Payload Example
 
@@ -48,7 +49,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/cards/pushProvisioning",
     "invalid-params": [
-      "V5OS4006EB: RECORD NOT FOUND"
+      "V5OS4005EB: EMBOSSER RECORD NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -61,7 +62,7 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/pushProvisioning).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/cards/applePayPushProvisioning).
 
 The below table identifies the required parameters in the request payload.
 
@@ -79,6 +80,6 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5OS0916SC` | Invalid card number | 
 | `V5OS4006EA` | Invalid org | 
-| `V5OS4006EB` | Record not found |        
+| `V5OS4005EB` | Embosser record not found |        
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

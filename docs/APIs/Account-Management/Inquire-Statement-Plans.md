@@ -1,6 +1,6 @@
 # Inquire Statement Plan Details
 
-This service is used to fetch statement credit plan details for a given statement date of cardholder account.
+This API is used to fetch plan details and other generic details for a given account Id. Statement date to be provided in input, in order to fetch any specific statement period. If statement date is not given, latest statement details will be fetched.
 
 ## Endpoint
 
@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 >Should be empty. 
 >
->***Account id and statement date should be sent as path and query parameter.***
+>***Account id should be sent as path variable.***
 
 <!--
 type: tab
@@ -122,7 +122,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/accounts/0002000010000066750/statementPlanDetails",
     "invalid-params": [
-      "V5S34003SD: NO ACCOUNT ON FILE"
+      "V5S34003SD: ACCOUNT NUMBER NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -142,7 +142,6 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `statementDate` | Query Parameter | *date* | 10 | Period for which the user want to view the statement transaction details of an Account, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.| 
 
 ### Error Codes
 
@@ -151,6 +150,6 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5S34003SA` | No statement history information found on file |
-| `V5S34003SD` | No Account on file |
+| `V5S34003SD` | Account number not found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

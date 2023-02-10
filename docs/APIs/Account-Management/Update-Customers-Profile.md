@@ -1,6 +1,6 @@
 # Update Customers' Profile
 
-This service is used to update the various customer profiles like customer id, corresponding customer id and alternate customer details for a given account id.
+This API is used to update the various customer profiles like customer Id, corresponding customer Id and alternate customer details for a given account Id.
   
 ## Endpoint
 

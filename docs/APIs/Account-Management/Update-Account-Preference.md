@@ -1,6 +1,6 @@
 # Update Account Preference
 
-The service updates the statement preference, various customer IDs, address ID, source code, suppress token indicator for a given account ID. 
+The API is used to update the statement preferences, various customer IDs, address ID, source code, suppress token indicator for a given account Id. 
 
 ## Endpoint
 

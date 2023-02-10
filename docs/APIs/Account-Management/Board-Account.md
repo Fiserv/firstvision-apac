@@ -1,8 +1,8 @@
 # Board Account
 
-This API is used to board the new account. API internally generate a new account id that identify record you are adding.
+This API is used to board a new account. API internally generate a new account Id that identify the record being added. 
 
-Fields that are not provided in the request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces
+Fields that are not provided in the request object will be initialized to their default values. All numeric fields are initialized to zero and alphanumeric fields initialized to spaces.
 
 ## Endpoint
 
@@ -33,7 +33,7 @@ titles: Request, Response, Error
     "retailPlanId": 0,
     "cardTechnology": "0",
     "temporaryCreditLimit": "0",
-    "temporaryCreditLimitExpiryDate": "0",
+    "temporaryCreditLimitExpiryDate": "00/00/0000",
     "owningBranchNumber": 999999998,
     "isMobilePiEnabled": "0",
     "authorizationCriteriaTable": " ",
@@ -43,10 +43,10 @@ titles: Request, Response, Error
     "coreBankingIndicator": " ",
     "pctOverrideDetails": {
         "pctOverride": " ",
-        "pctOverrideStartDate": "0",
-        "pctOverrideExpireDate": "0",
-        "levelStartDate": "0",
-        "levelExpireDate": "0",
+        "pctOverrideStartDate": "00/00/0000",
+        "pctOverrideExpireDate": "00/00/0000",
+        "levelStartDate": "00/00/0000",
+        "levelExpireDate": "00/00/0000",
         "level": " "
     },
     "ibsDetails": {
@@ -114,9 +114,7 @@ The below table identifies the required parameters in the request payload.
 | `isSupressTokenEnabled` | Payload | *number* | 01 | Code that indicates whether the account is eligible for tokenization. |
 | `coreBankingIndicator` | Payload | *string* | 01 | Code that indicates type of account. |
 | `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
-| `owningBranchNumber` | Payload | *number* | 09 | This field is the number of the branch that owns this account and location of financial reporting for this account. |
 | `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
-| `externalContractId` | Payload | *string* | 14 | Unique identification number assigned to a customer from external system. |
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Error Codes

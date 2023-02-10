@@ -1,7 +1,8 @@
 # Block Unblock Card
 
-The Service will then determine the type of request, block or unblock a card. The block code passed on the input message will be subject to a priority check against the block code priority definition on the Block Code Matrix. No block code priority check will occur when an unblock request is processed. 
-The Service will update the block code field on the payment instrument id with the associated block code date using the next processing date from the account’s business unit.
+This API is used to block or unblock the given payment instrument Id. 
+
+*While applying block code, system checks the block code priorities defined at the product to decide to either apply the new block code value or retain the existing block code value. No block code priority check will occur when an unblock request is processed through this API.*
 
 ## Endpoint
 

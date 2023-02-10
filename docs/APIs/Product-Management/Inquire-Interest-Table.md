@@ -1,6 +1,6 @@
 # Inquire Interest Table
 
-This service provides details of Interest Table. An Interest table identifies a set of parameters which include interest controls, interest rounding detail, interest calculation options, interest rates detail, balances for interest calculation and interest parameters for combined grace and cycle options.
+This API is used to fetch details of Interest Table. An Interest table identifies a set of parameters which include interest controls, interest rounding detail, interest calculation options, interest rates detail, balances for interest calculation and interest parameters for combined grace and cycle options.
 
 ## Endpoint
 

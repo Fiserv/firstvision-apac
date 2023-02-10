@@ -1,6 +1,6 @@
 # Inquire Plan Master
 
-This service provides plan details for a given credit plan. Credit plans are control entities that will be defined at the Business Unit level. Credit plans are defined to specify the various methods that are being offered to the customer. It will contain information like description, interest table override options, cancellation or expiry parameters based on account's performace etc.
+This API is used to fetch plan details for a given plan Id. Plan Ids are control entities that will be defined at the business unit level. Plans are defined to specify the various methods that are being offered to the customer. It will contain information like description, interest table override options, cancellation or expiry parameters based on account's performance etc.
   
 ## Endpoint
 

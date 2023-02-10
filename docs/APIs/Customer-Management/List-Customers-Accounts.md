@@ -1,6 +1,6 @@
 # List Customers' Accounts
 
-The service provides list of accounts associated with the customer. This API also retrive the other information like memo credit/debit balance, block codes and so on.
+This API is used to fetch list of accounts and its details associated with a customer Id along with customer demographic information.
 
 ## Endpoint
 

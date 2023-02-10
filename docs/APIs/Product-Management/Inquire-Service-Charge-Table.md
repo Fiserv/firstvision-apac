@@ -1,6 +1,6 @@
 # Inquire Service Charge Table
 
-This API retrives various service fee details available in the system for a given Org, Product and table ID combination. The parameters for a Service Charge/Fee table fall into five general categories: penalty fees, periodic fees, service fees, user fees, and prepaid fees etc.
+This API is used to fetch various service fee details available in the system for a given business unit, product Id and table ID combination. The parameters for a Service Charge/Fee table fall into five general categories: penalty fees, periodic fees, service fees, user fees, and prepaid fees etc.
 
 ## Endpoint
 

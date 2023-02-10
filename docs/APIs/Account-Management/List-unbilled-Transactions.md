@@ -1,6 +1,6 @@
 # List Unbilled Transactions
 
-This service provides details of the unbilled transactions posted on a given account.
+This API is used to fetch unbilled transaction details for a given account Id.
 
 ## Endpoint
 
@@ -40,7 +40,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052206",
@@ -57,7 +58,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052210",
@@ -74,7 +76,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052213",
@@ -91,7 +94,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052219",
@@ -108,7 +112,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052220",
@@ -125,7 +130,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052226",
@@ -142,7 +148,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052227",
@@ -159,7 +166,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052205",
@@ -176,7 +184,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": "052206",
@@ -193,7 +202,8 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -210,7 +220,8 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     },
     {
       "authorizationCode": " ",
@@ -227,7 +238,8 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D"
     }
   ]
 }
@@ -272,7 +284,7 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5T24001EB` | No organization record on file |
-| `V5T24002SB` | No account on File |
+| `V5T24002SB` | Account number not found |
 | `V5T24024EA` | Invalid txn suppresion indicatr valid values are N or Y |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

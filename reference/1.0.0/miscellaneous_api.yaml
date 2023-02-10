@@ -13,8 +13,9 @@ paths:
       tags:
       - Miscellaneous
       summary: Board Entities
-      description: This service is used to board the new account,embosser,customer
-        and relationship entity.
+      description: This API is used to add Customer Name/Address record, Account Base
+        Segment record, Embosser record, and Relationship record and Insurance record
+        based on the input criteria.
       operationId: BoardEntities
       parameters:
       - name: Authorization
@@ -24,22 +25,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -47,19 +38,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -67,9 +58,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -79,17 +71,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BoardEntityReqModel'
+              $ref: '#/components/schemas/BoardEntityV1ReqModel'
         required: true
       responses:
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardEntityResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -104,6 +90,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardEntityV1ResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -112,8 +104,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -136,8 +128,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -162,8 +154,11 @@ paths:
       tags:
       - Miscellaneous
       summary: Inquire Business Unit
-      description: This service is used to view important paramter available at Business
-        unit level.
+      description: This API is used to fetch parameters defined at business unit.
+        Business unit are primary control records that gives client option to enable
+        or disable various functionalities like MCC limits, Loan active, general ledger
+        etc. Business units establishes operating parameters for companies that process
+        accounts in a similar fashion.
       operationId: InquireBusinessUnit
       parameters:
       - name: Authorization
@@ -173,22 +168,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -196,19 +181,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -216,9 +201,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -235,20 +221,14 @@ paths:
           type: integer
           example: '600'
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireBusinessUnitResponseModel'
         '422':
           description: " \nThe request could not be processed"
           content:
@@ -265,8 +245,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -289,8 +269,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -305,6 +285,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBusinessUnitV1ResponseModel'
       security:
       - Authorization: [
           ]
@@ -315,7 +301,8 @@ paths:
       tags:
       - Miscellaneous
       summary: Inquire Billing Cycle Assignment
-      description: This service is used to retrieve billing cycle assignment details.
+      description: This API is used to fetch billing cycle assignment details and
+        billing method for a given business unit.
       operationId: InquireBillingCycleAssignment
       parameters:
       - name: Authorization
@@ -325,22 +312,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -348,19 +325,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -368,9 +345,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -387,8 +365,8 @@ paths:
           type: integer
           example: '600'
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -411,20 +389,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireBillingCycleAssignmentResponseModel'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -441,8 +413,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -457,6 +429,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBillingCycleAssignmentV1ResponseModel'
       security:
       - Authorization: [
           ]
@@ -467,7 +445,9 @@ paths:
       tags:
       - Miscellaneous
       summary: System Status
-      description: This service is used to verify CMS and FAS processing status.
+      description: This API is used to verify health of credit management system and
+        authorization system. This service gives the detail whether the system is
+        active to respond on authorization requests, service requests etc.
       operationId: CheckHealth
       parameters:
       - name: Authorization
@@ -477,22 +457,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -500,19 +470,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -520,17 +490,24 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
           type: string
           example: ABC123
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckHealthV1ResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -553,8 +530,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -569,12 +546,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CheckHealthResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -583,8 +554,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -606,7 +577,7 @@ paths:
       x-group-name: Miscellaneous
 components:
   schemas:
-    BoardEntityReqModel:
+    BoardEntityV1ReqModel:
       required:
       - accountId
       - businessUnit
@@ -1109,7 +1080,7 @@ components:
               type: string
               description: Current expiry date of relationship. The format is MM/DD/YYYY
                 or DD/MM/YYYY depending on the DATE FORMAT on System Control.
-              example: ''
+              example: 00/00/0000
             sourceCode:
               maxLength: 10
               type: string
@@ -1277,14 +1248,14 @@ components:
                   description: User-defined date 1 field for the relationship. The
                     format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
                     on System Control.
-                  example: ''
+                  example: 00/00/0000
                 userDate2:
                   maxLength: 10
                   type: string
                   description: User-defined date 2 field for the relationship. The
                     format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
                     on System Control.
-                  example: ''
+                  example: 00/00/0000
                 userAmount1:
                   maxLength: 17
                   type: string
@@ -1311,8 +1282,6 @@ components:
           required:
           - addressId
           - creditLimit
-          - externalContractId
-          - owningBranchNumber
           type: object
           properties:
             corporateId:
@@ -1528,14 +1497,14 @@ components:
                   description: This is the date on which the special pricing controls
                     start for the account. The format is MM/DD/YYYY or DD/MM/YYYY
                     depending on the DATE FORMAT on System Control.
-                  example: '0'
+                  example: 00/00/0000
                 pctOverrideExpiryDate:
                   maxLength: 10
                   type: string
                   description: This is the date on which the special pricing controls
                     expire for the account. The format is MM/DD/YYYY or DD/MM/YYYY
                     depending on the DATE FORMAT on System Control.
-                  example: '0'
+                  example: 00/00/0000
                 level:
                   maxLength: 1
                   type: string
@@ -1556,14 +1525,14 @@ components:
                   description: This is the date on which the processing control level
                     override starts for the account. The format is MM/DD/YYYY or DD/MM/YYYY
                     depending on the DATE FORMAT on System Control.
-                  example: '0'
+                  example: 00/00/0000
                 levelExpiryDate:
                   maxLength: 10
                   type: string
                   description: This is the date on which the processing control level
                     override expires for the account. The format is MM/DD/YYYY or
                     DD/MM/YYYY depending on the DATE FORMAT on System Control.
-                  example: '0'
+                  example: 00/00/0000
             ibsDetails:
               type: object
               properties:
@@ -1655,7 +1624,7 @@ components:
               description: Effective Date of Account Insurance/Product Data. The format
                 is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
                 Control.
-              example: ''
+              example: 00/00/0000
             enrollId:
               maxLength: 3
               type: string
@@ -2052,7 +2021,32 @@ components:
               description: Unique identification number assigned to a customer from
                 external system.
               example: '000012672379'
-    BoardEntityResponseModel:
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    BoardEntityV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -2120,32 +2114,7 @@ components:
               type: string
               description: Masked payment card number.
               example: ''
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        status:
-          type: integer
-          example: '0'
-        invalid-params:
-          type: array
-          items:
-            type: string
-    InquireBusinessUnitResponseModel:
+    InquireBusinessUnitV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -2528,7 +2497,7 @@ components:
             this business unit. <br/>The values are:<br/> &nbsp; '0' - Do not allow
             installment loans (Default) <br/> &nbsp; '1' - Allow installment loans
           example: '0'
-    BillingCycleAssignmentDetails_InquireBillingCycleAssignmentResponseModel:
+    BillingCycleAssignmentDetails_InquireBillingCycleAssignmentV1ResponseModel:
       type: object
       properties:
         lastStatementProducedDate:
@@ -2549,7 +2518,7 @@ components:
             PRODUCED date. It must also be equal to or greater than the NO. (CYCLE)
             value.
           example: '30'
-    InquireBillingCycleAssignmentResponseModel:
+    InquireBillingCycleAssignmentV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -2568,8 +2537,8 @@ components:
         billingCycleAssignmentDetails:
           type: array
           items:
-            $ref: '#/components/schemas/BillingCycleAssignmentDetails_InquireBillingCycleAssignmentResponseModel'
-    CheckHealthResponseModel:
+            $ref: '#/components/schemas/BillingCycleAssignmentDetails_InquireBillingCycleAssignmentV1ResponseModel'
+    CheckHealthV1ResponseModel:
       type: object
       properties:
         creditManagementHealthStatus:

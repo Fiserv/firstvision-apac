@@ -1,6 +1,7 @@
 # Inquire Payment History
 
-This API is used to retrive latest six payment details for given account number from FirstVision. Payment history feature in FirstVision is controlled by parameter, if feature is on, payment history will be retained otherwise no histrory will be retained. Although payment history is not retained, FirstVision retains delinquency paid fields in the Account Base Segment file.
+This API is used to fetch latest six payment details for a given account Id. Payment history feature is controlled by a parameter, if feature is on, 
+payment history will be retained otherwise no history will be retained. Although payment history is not retained, system retains delinquency paid fields at account level. 
 
 ## Endpoint
 

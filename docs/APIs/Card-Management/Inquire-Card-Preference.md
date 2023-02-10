@@ -1,6 +1,6 @@
 # Inquire Card Preference
 
-This service fetches various preferences like cardholder type, issue/reissue delivery options, address, Dynamic CVV2 method and address Id etc for a given payment instrument Id.
+This API is used to fetch various details like cardholder type, issue/reissue delivery options, address, Dynamic CVV2 method and address Id etc for a given payment instrument Id.
 
 ## Endpoint
 

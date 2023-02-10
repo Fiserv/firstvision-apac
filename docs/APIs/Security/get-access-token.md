@@ -1,6 +1,6 @@
 # Get Access Token
 
-This service is used to get Access Token to authenticate and trigger the API's available. If token is expired then user have to regenerate access token again using this service.
+This API is used to get access token to authenticate and trigger other API's available. If token is expired then user have to regenerate access token again.
 
 ## Endpoint
 

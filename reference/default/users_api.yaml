@@ -15,7 +15,8 @@ paths:
       summary: This service is used to update security Sign-on entity. A User Security
         Sign-on entity, also referred to as a Sign-on entity, holds the details that
         determine a person’s access rights on the system.
-      description: This service is used to update security Sign-on entity.
+      description: This API is used to update generic details like status, expiry
+        date etc. and service privileged details for a given security sign-on details.
       operationId: UpdateUser
       parameters:
       - name: Authorization
@@ -25,22 +26,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -48,19 +39,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -68,9 +59,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -103,11 +95,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserReqModel'
+              $ref: '#/components/schemas/UpdateUserV1ReqModel'
         required: true
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserV1ResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -122,12 +120,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateUserResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -136,8 +128,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -160,8 +152,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -188,8 +180,8 @@ paths:
       summary: This service is used to inquire additional field for security Sign-on
         entity. A User Security Sign-on entity, also referred to as a Sign-on entity,
         holds the details that determine a person’s access rights on the system
-      description: This service is used to inquire business unit and user application
-        fields of security Sign-on entity.
+      description: This API is used to fetch sign-on data like business unit include/exclude
+        flags and user application access options for a given security sign-on details.
       operationId: InquireUserAccess
       parameters:
       - name: Authorization
@@ -199,22 +191,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -222,19 +204,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -242,9 +224,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -274,8 +257,8 @@ paths:
           type: string
           example: NABTEST25
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -295,7 +278,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireUserAccessResponseModel'
+                $ref: '#/components/schemas/InquireUserAccessV1ResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -304,8 +287,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -328,8 +311,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -355,8 +338,8 @@ paths:
       summary: This service is used to update additional field for security Sign-on
         entity. A User Security Sign-on entity, also referred to as a Sign-on entity,
         holds the details that determine a person’s access rights on the system
-      description: This service is used to update business unit and user application
-        fields of security Sign-on entity.
+      description: This API is used to update sign-on data like business unit include/exclude
+        flags and user application access options for a given security sign-on details.
       operationId: UpdateUserAccess
       parameters:
       - name: Authorization
@@ -366,12 +349,43 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
-      - name: correlationId
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
+      - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -381,11 +395,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserAccessReqModel'
+              $ref: '#/components/schemas/UpdateUserAccessV1ReqModel'
         required: true
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -400,6 +414,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserAccessV1ResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -408,20 +428,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateUserAccessResponseModel'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -438,8 +452,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -466,7 +480,9 @@ paths:
       summary: This service is used to add new security Sign-on entity. A User Security
         Sign-on entity, also referred to as a Sign-on entity, holds the details that
         determine a person’s access rights on the system
-      description: This service is used to add new security Sign-on entity.
+      description: This API is used to add new security sign-on entity. This newly
+        created entity determine the person’s access rights on the system. Sign-on
+        entity must be setup and active for each person authorized to access the system.
       operationId: AddUser
       parameters:
       - name: Authorization
@@ -476,22 +492,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -499,19 +505,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -519,9 +525,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -531,11 +538,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddUserReqModel'
+              $ref: '#/components/schemas/AddUserV1ReqModel'
         required: true
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -550,6 +557,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddUserV1ResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -558,20 +571,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddUserResponseModel'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -588,8 +595,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -616,7 +623,8 @@ paths:
       summary: This service is used to inquire security Sign-on entity. A User Security
         Sign-on entity, also referred to as a Sign-on entity, holds the details that
         determine a person’s access rights on the system.
-      description: This service is used to inquire security Sign-on entity.
+      description: This API is used to fetch generic details like status, expiry date
+        etc. and service privileged details for a given security sign-on details.
       operationId: InquireUser
       parameters:
       - name: Authorization
@@ -626,22 +634,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAxQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.hrOMnImaiTZW3WUCHMxtNXVlGUwRDuRXZ43sXDD7EvOaFP90Tw1xUnniJ8CGO8ioPuFHrLn4O52T_AaMVxdty32OveDNFoY7nVUqnAE_WjHwV2VJ7p1FkrLSwauKQLjsXh-VWMe7slzRHKjeY5nGhTnWnkyFEJrCVojAyIkfSU5GicOWHGc7EkRqL2Yxlm_5IRHwpEkbpbiguZHS71Sk6dXhwkMgLW4CxTCONsOAao35p5BoUPHEl9OK3vlZiaXFEUlSOf2rmr8C-O_dm-rrmsWw4nYrc6ZzO4wqhUYG77UPPYxkrV1dYbbHIUcyI_HsuS7kyRhzhXe4nsQTd-j8Uw
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -649,19 +647,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -669,9 +667,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -701,8 +700,8 @@ paths:
           type: string
           example: NABTEST25
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -725,8 +724,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -746,7 +745,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireUserResponseModel'
+                $ref: '#/components/schemas/InquireUserV1ResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -755,8 +754,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -778,7 +777,7 @@ paths:
       x-group-name: User Management
 components:
   schemas:
-    UpdateUserReqModel:
+    UpdateUserV1ReqModel:
       type: object
       properties:
         servicePrivilegeGroupId:
@@ -1269,32 +1268,7 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        status:
-          type: integer
-          example: '0'
-        invalid-params:
-          type: array
-          items:
-            type: string
-    UpdateUserResponseModel:
+    UpdateUserV1ResponseModel:
       type: object
       properties:
         clientId:
@@ -1749,7 +1723,32 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-    UpdateUserAccessReqModel:
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    UpdateUserAccessV1ReqModel:
       required:
       - clientId
       - name
@@ -2331,8 +2330,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag03:
           type: object
@@ -2360,8 +2359,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag04:
           type: object
@@ -2389,8 +2388,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag05:
           type: object
@@ -2418,8 +2417,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag06:
           type: object
@@ -2447,8 +2446,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization
-                assigned to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag07:
           type: object
@@ -2476,8 +2475,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag08:
           type: object
@@ -2505,8 +2504,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag09:
           type: object
@@ -2534,8 +2533,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag10:
           type: object
@@ -2563,8 +2562,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         applicationCustomerService:
           type: object
@@ -2602,7 +2601,7 @@ components:
                 Credit Management System (CMS) and/or Merchant Bankcard System (MBS)
                 applications. The values are a letter (A–Z), a number (0–9), or space.
               example: ' '
-    UpdateUserAccessResponseModel:
+    UpdateUserAccessV1ResponseModel:
       type: object
       properties:
         clientId:
@@ -3171,8 +3170,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag03:
           type: object
@@ -3195,8 +3194,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag04:
           type: object
@@ -3219,8 +3218,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag05:
           type: object
@@ -3243,8 +3242,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag06:
           type: object
@@ -3267,8 +3266,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization
-                assigned to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag07:
           type: object
@@ -3291,8 +3290,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag08:
           type: object
@@ -3315,8 +3314,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag09:
           type: object
@@ -3339,8 +3338,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         businessUnitIncludeExcludeFlag10:
           type: object
@@ -3363,8 +3362,8 @@ components:
             businessUnit:
               maxLength: 3
               type: string
-              description: 'Unique identification number associated with the organization  assigned
-                to this User Security Sign-on entity. '
+              description: Unique identification number associated with the organization  assigned
+                to this User Security Sign-on entity.
               example: ' '
         applicationCustomerService:
           type: object
@@ -3402,7 +3401,7 @@ components:
                 Credit Management System (CMS) and/or Merchant Bankcard System (MBS)
                 applications. The values are a letter (A–Z), a number (0–9), or space.
               example: ' '
-    AddUserReqModel:
+    AddUserV1ReqModel:
       required:
       - activationDate
       - businessUnitPrivilegeId
@@ -4663,9 +4662,9 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-    AddUserResponseModel:
+    AddUserV1ResponseModel:
       type: object
-    InquireUserResponseModel:
+    InquireUserV1ResponseModel:
       type: object
       properties:
         clientId:
@@ -5120,7 +5119,7 @@ components:
                 the corresponding SERVICE NAME field must identify an existing service
                 that was previously added by the processor.
               example: ' '
-    InquireUserAccessResponseModel:
+    InquireUserAccessV1ResponseModel:
       type: object
       properties:
         clientId:

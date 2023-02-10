@@ -1,6 +1,6 @@
 # Validate CVV2
 
-The Card Secure Code Validation service is used to validate the CVV2  and optionally the expiry date of a given payment card number. This service is typically called before the card activation or PIN reset service to validate the cardholder.
+This API is used to validate the CVV2 for a given payment instrument Id along with expiry date.
 
 ## Endpoint
 

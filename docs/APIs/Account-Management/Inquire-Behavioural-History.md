@@ -1,6 +1,6 @@
 # Inquire Behavioural History
 
-This service provides 12 months behavioral history for a given account which include cycle date/balance, cash balance, cash credit limit, payment amount/number, cycle to date late fee/amount, returned number/amount, total amount due, total past due etc.
+This API is used to fetch the details of 12 months behavioral history for a given account Id which includes cycle date/balance, cash balance, cash credit limit, payment amount/number, cycle to date late fee/amount, returned number/amount, total amount due, total past due etc.
 
 ## Endpoint
 

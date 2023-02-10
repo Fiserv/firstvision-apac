@@ -1,7 +1,9 @@
 # Monetary Action
 
-This service will update the Open-to-Buy, memo debit and credit fields for the given account and generate an outstanding authorization record and log records.
-  
+This API is used to add or reverse finance input to an account based on action code and account Id given. This API updates the open-to-buy, memo debit and credit in real time on customer's account and generates an outstanding authorization record.
+
+Fields that are not provided in the request object will be initialized to their default values. All numeric fields are initialized to zero and alphanumeric fields initialized to spaces.
+
 ## Endpoint
 
 `POST /v1/accounts/monetaryAction`

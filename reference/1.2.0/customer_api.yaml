@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Vision10 API Documentation
   description: V10 open API document.
-  version: 1.0.0
+  version: 1.2.0
 servers:
 - url: https://stg34.visionplus.io/sandbox/
 tags:
@@ -13,7 +13,9 @@ paths:
       tags:
       - Customer Management
       summary: Inquire Customer
-      description: This service is used to inquire customer's details.
+      description: This API used to fetch the customer demographic details such as
+        Name / Address / Phone Number / Email ID/ Date of Birth of the given customer
+        Id.
       operationId: InquireCustomer
       parameters:
       - name: Authorization
@@ -23,22 +25,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -46,19 +38,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -66,9 +58,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -77,7 +70,8 @@ paths:
       - name: businessUnit
         in: query
         description: Unique identification number associated with the organization.
-          Valid values are 1-998.
+          Valid values are 1-998. Business Unit is mandatory when customer Id is built
+          outside First Vision.
         required: false
         schema:
           maximum: 999
@@ -106,17 +100,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireCustomerResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
+                $ref: '#/components/schemas/InquireCustomerV1ResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -131,8 +125,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -147,16 +141,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -172,10 +166,9 @@ paths:
       tags:
       - Customer Management
       summary: Update Customer
-      description: This service will be used to update the customer demographic details
-        such as Name / Address / Phone Number / Email ID/ Date of Birth /Employer
-        details of the given customer. The customer ID will be passed in the input
-        request to retrieve the demographic information.
+      description: This API is used to update the customer demographic details such
+        as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer
+        Id.
       operationId: UpdateCustomer
       parameters:
       - name: Authorization
@@ -185,22 +178,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -208,19 +191,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -228,9 +211,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -239,7 +223,8 @@ paths:
       - name: businessUnit
         in: query
         description: Unique identification number associated with the organization.
-          Valid values are 1-998.
+          Valid values are 1-998. Business Unit is mandatory when customer Id is built
+          outside First Vision.
         required: false
         schema:
           maximum: 999
@@ -258,7 +243,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCustomerReqModel'
+              $ref: '#/components/schemas/UpdateCustomerV1ReqModel'
         required: true
       responses:
         '403':
@@ -269,22 +254,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -299,8 +278,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerV1ResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -315,16 +300,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -341,9 +326,9 @@ paths:
       tags:
       - Customer Management
       summary: Search Customer
-      description: This service is used to retrieve customer's information based on
-        primary and optional search values like Last name, Indentification number,
-        Phone number etc.
+      description: This API is used to fetch customer's information based on primary
+        and optional search values like last name, identification number, phone number
+        etc.
       operationId: SearchCustomer
       parameters:
       - name: Authorization
@@ -353,22 +338,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -376,19 +351,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -396,9 +371,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -408,7 +384,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SearchCustomerReqModel'
+              $ref: '#/components/schemas/SearchCustomerV1ReqModel'
         required: true
       responses:
         '403':
@@ -419,22 +395,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SearchCustomerResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -449,8 +419,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -465,16 +435,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCustomerV1ResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -491,7 +467,8 @@ paths:
       tags:
       - Customer Management
       summary: Board Customer
-      description: This service is used to board the new customer.
+      description: This API is used to create a new customer Id with customer's demographic
+        details.
       operationId: BoardCustomer
       parameters:
       - name: Authorization
@@ -501,22 +478,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -524,19 +491,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -544,9 +511,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -556,11 +524,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BoardCustomerReqModel'
+              $ref: '#/components/schemas/BoardCustomerV1ReqModel'
         required: true
       responses:
         '403':
           description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -575,20 +551,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BoardCustomerResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -597,8 +559,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardCustomerV1ResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -613,16 +581,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -639,8 +607,8 @@ paths:
       tags:
       - Customer Management
       summary: List External Customers' Cards and Accounts
-      description: The service provides account and card details for a given external
-        customer identification.
+      description: This API is used to fetch the list of accounts, list of cards and
+        it's details associated with an external contract Id.
       operationId: ListExternalCustomersCardsAndAccounts
       parameters:
       - name: Authorization
@@ -650,22 +618,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -673,19 +631,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -693,9 +651,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -711,12 +670,6 @@ paths:
           type: string
           example: '000012672379'
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListExternalCustomersCardsAndAccountResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -725,16 +678,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListExternalCustomersCardsAndAccountV1ResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -749,8 +708,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -765,16 +724,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -791,8 +750,8 @@ paths:
       tags:
       - Customer Management
       summary: List Customers' Cards And Accounts
-      description: This service retrieves the account and card details associated
-        with a Customer number along with demographic details.
+      description: This API is used to fetch the list of accounts, list of cards and
+        its details associated with a customer Id along with demographic details.
       operationId: ListCustomersCardsAndAccounts
       parameters:
       - name: Authorization
@@ -802,22 +761,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -825,19 +774,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -845,9 +794,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -864,7 +814,8 @@ paths:
       - name: businessUnit
         in: query
         description: Unique identification number associated with the organization.
-          Valid values from 1-998.
+          Valid values are 1-998. Business Unit is mandatory when customer Id is built
+          outside First Vision.
         required: false
         schema:
           maximum: 999
@@ -880,22 +831,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListCustomersCardsAndAccountResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -910,8 +855,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersCardsAndAccountV1ResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -926,16 +877,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -952,8 +903,8 @@ paths:
       tags:
       - Customer Management
       summary: List Customer's Cards
-      description: This service retrieves the card details associated with a Customer
-        number along with demographic details.
+      description: This API is used to fetch the list of cards and its details associated
+        with a customer Id along with customer demographic information.
       operationId: ListCustomersCards
       parameters:
       - name: Authorization
@@ -963,22 +914,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -986,19 +927,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -1006,9 +947,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -1025,7 +967,8 @@ paths:
       - name: businessUnit
         in: query
         description: Unique identification number associated with the organization.
-          Valid values from 1-998.
+          Valid values are 1-998. Business Unit is mandatory when customer Id is built
+          outside First Vision.
         required: false
         schema:
           maximum: 999
@@ -1041,22 +984,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListCustomersCardResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomersCardV1ResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -1071,8 +1014,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1087,16 +1030,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -1113,8 +1056,8 @@ paths:
       tags:
       - Customer Management
       summary: List Customer's Accounts
-      description: This service provides account's details associated with a Customer
-        number along with demographic details.
+      description: This API is used to fetch list of accounts and its details associated
+        with a customer Id along with customer demographic information.
       operationId: ListCustomersAccounts
       parameters:
       - name: Authorization
@@ -1124,22 +1067,12 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
-        description: Any correlational text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-fiserv-unique-message-id
-        in: header
-        description: Any unique message text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -1147,19 +1080,19 @@ paths:
           example: ABC123
       - name: x-client-trace-id
         in: header
-        description: Any client trace text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
         required: false
         schema:
-          maxLength: 40
+          maxLength: 256
           type: string
           example: ABC123
       - name: x-client-source-channel
         in: header
-        description: Any client source channel text client's may want to send in the
-          request for mapping the response on their side. Any value passed in the
-          request message will be return back as-is in the API response message
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
         required: false
         schema:
           maxLength: 40
@@ -1167,9 +1100,10 @@ paths:
           example: ABC123
       - name: x-client-user-id
         in: header
-        description: Any client user text client's may want to send in the request
-          for mapping the response on their side. Any value passed in the request
-          message will be return back as-is in the API response message
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
         required: false
         schema:
           maxLength: 40
@@ -1186,7 +1120,8 @@ paths:
       - name: businessUnit
         in: query
         description: Unique identification number associated with the organization.
-          Valid values from 1-998.
+          Valid values are 1-998. Business Unit is mandatory when customer Id is built
+          outside First Vision.
         required: false
         schema:
           maximum: 999
@@ -1199,57 +1134,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListCustomersAccountResponseModel'
+                $ref: '#/components/schemas/ListCustomersAccountV1ResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1264,6 +1151,54 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
       - Authorization: [
           ]
@@ -1271,7 +1206,7 @@ paths:
       x-group-name: Customer Management
 components:
   schemas:
-    UpdateCustomerReqModel:
+    UpdateCustomerV1ReqModel:
       type: object
       properties:
         namesData:
@@ -1437,6 +1372,11 @@ components:
               description: This is User-defined code to indicate the position or job
                 title of the owner.
               example: Y
+            phoneExtension:
+              maxLength: 6
+              type: string
+              description: This field indicates the extension number of the Work phone.
+              example: '801'
         addressData:
           type: object
           properties:
@@ -1491,6 +1431,57 @@ components:
               type: string
               description: This field indicates the House number of the owner.
               example: ''
+            county:
+              maxLength: 30
+              type: string
+              description: This field indicates the County portion of the mailing
+                address of the owner.
+              example: EMEA
+        externalId:
+          maxLength: 25
+          type: string
+          description: This field identifies the Social Security number or tax identification
+            number.
+          example: ANKCC2330F
+        typeOfExternalId:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field indicates if the IDENTIFICATION NUMBER given is
+            a Social Security number or other tax identification number. When Social
+            Security number masking is activated on the Field Security record and
+            the first part of this field is 0 (Social Security number). <br/>The values
+            are:<br/> &nbsp; '0' - Social Security number (Default) <br/> &nbsp; '1'
+            - Tax identification number <br/> &nbsp; '2' - Other identification number
+          example: '1'
+          enum:
+          - 0
+          - 1
+          - 2
+        vacationData:
+          type: object
+          properties:
+            startDate:
+              maxLength: 10
+              type: string
+              description: Date on which vacation starts for the customer.
+              example: 01/01/2019
+            endDate:
+              maxLength: 10
+              type: string
+              description: Date on which vacation ends for the customer.
+              example: 01/01/2023
+            countryCode:
+              maxLength: 3
+              type: string
+              description: Country where the customer is on vacation.
+              example: AUS
+            phoneNumber:
+              maxLength: 20
+              type: string
+              description: Phone number on which the customer can be contacted during
+                vacation.
+              example: '8946274878'
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -1516,7 +1507,7 @@ components:
           type: array
           items:
             type: string
-    UpdateCustomerResponseModel:
+    UpdateCustomerV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1524,7 +1515,8 @@ components:
           maxLength: 3
           type: integer
           description: Unique identification number associated with the organization.
-            Valid values are 1-998.
+            Valid values are 1-998. Business Unit is mandatory when customer Id is
+            built outside First Vision.
           example: '200'
         customerId:
           maxLength: 19
@@ -1672,6 +1664,11 @@ components:
               description: This is User-defined code to indicate the position or job
                 title of the owner.
               example: Y
+            phoneExtension:
+              maxLength: 6
+              type: string
+              description: This field indicates the extension number of the Work phone.
+              example: '801'
         addressData:
           type: object
           properties:
@@ -1726,7 +1723,54 @@ components:
               type: string
               description: This field indicates the House number of the owner.
               example: ''
-    SearchCustomerReqModel:
+            county:
+              maxLength: 30
+              type: string
+              description: This field indicates the County portion of the mailing
+                address of the owner.
+              example: EMEA
+        externalId:
+          maxLength: 25
+          type: string
+          description: This field identifies the Social Security number or tax identification
+            number.
+          example: ANKCC2330F
+        typeOfExternalId:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field indicates if the IDENTIFICATION NUMBER given is
+            a Social Security number or other tax identification number. When Social
+            Security number masking is activated on the Field Security record and
+            the first part of this field is 0 (Social Security number). <br/>The values
+            are:<br/> &nbsp; '0' - Social Security number (Default) <br/> &nbsp; '1'
+            - Tax identification number <br/> &nbsp; '2' - Other identification number
+          example: '1'
+        vacationData:
+          type: object
+          properties:
+            startDate:
+              maxLength: 10
+              type: string
+              description: Date on which vacation starts for the customer.
+              example: 01/01/2019
+            endDate:
+              maxLength: 10
+              type: string
+              description: Date on which vacation ends for the customer.
+              example: 01/01/2023
+            countryCode:
+              maxLength: 3
+              type: string
+              description: Country where the customer is on vacation.
+              example: AUS
+            phoneNumber:
+              maxLength: 20
+              type: string
+              description: Phone number on which the customer can be contacted during
+                vacation.
+              example: '8946274878'
+    SearchCustomerV1ReqModel:
       type: object
       properties:
         customerSearch:
@@ -1815,7 +1859,7 @@ components:
               type: string
               description: Date Of Birth of the owner, The format is MM/DD/YYYY or
                 DD/MM/YYYY depending on the DATE FORMAT on System Control.
-              example: '0'
+              example: 00/00/0000
             title:
               maxLength: 20
               type: string
@@ -1851,7 +1895,7 @@ components:
               description: Unique identification number associated with the organization.
                 Valid values from 1-998.
               example: '0'
-    Customerlist_SearchCustomerResponseModel:
+    Customerlist_SearchCustomerV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1915,7 +1959,7 @@ components:
           type: string
           description: The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE
             FORMAT on System Control.
-          example: '09011985'
+          example: 09/01/1985
         suffix:
           maxLength: 20
           type: string
@@ -1947,14 +1991,14 @@ components:
           type: string
           description: Name and Other Details
           example: Test/CMS//0050623496/             /9011985 ////6430///
-    SearchCustomerResponseModel:
+    SearchCustomerV1ResponseModel:
       type: object
       properties:
         customerlist:
           type: array
           items:
-            $ref: '#/components/schemas/Customerlist_SearchCustomerResponseModel'
-    BoardCustomerReqModel:
+            $ref: '#/components/schemas/Customerlist_SearchCustomerV1ResponseModel'
+    BoardCustomerV1ReqModel:
       required:
       - businessUnit
       - customerId
@@ -2191,7 +2235,7 @@ components:
               type: string
               description: This field indicates the first name of the owner.
               example: Samuel
-    BoardCustomerResponseModel:
+    BoardCustomerV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -2206,7 +2250,79 @@ components:
           type: string
           description: Unique identification number assigned to a customer.
           example: '0000000001000000007'
-    CardList_ListExternalCustomersCardsAndAccountResponseModel:
+    AccountList_ListExternalCustomersCardsAndAccountV1ResponseModel:
+      type: object
+      properties:
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000012000000256'
+        productId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number of the product associated with
+            the organization. Valid values from 1-998.
+          example: '1'
+        status:
+          maxLength: 1
+          type: string
+          description: Code that identifies the status of the account. This field
+            is not editable during add mode; it displays during maintenance mode and
+            inquiry mode only.<br/>The values are:<br/>&nbsp; 'A' - Active <br/>&nbsp;
+            'B' - Conversion fraud <br/>&nbsp; 'C' - Conversion transfer <br/>&nbsp;
+            'D' - Dormant <br/>&nbsp; 'F' - Fraud transfer <br/>&nbsp; 'H' - Closed/conversion
+            <br/>&nbsp; 'I' - Inactive <br/>&nbsp; 'J' - Transfer in, migrated from
+            inactive <br/>&nbsp; 'K' - Transfer out, migrated from inactive <br/>&nbsp;
+            'M' - Migrated <br/>&nbsp; 'N' - New <br/>&nbsp; 'P' - To be purged in
+            next reload <br/>&nbsp; 'Q' - Transfer in today <br/>&nbsp; 'R' - Transfer
+            out today <br/>&nbsp; 'T' - Transfer <br/>&nbsp; 'V' - Conversion <br/>&nbsp;
+            'X' - Charge-off/conversion <br/>&nbsp; 'Z' - Charge-off <br/>&nbsp; '8'
+            - Closed <br/>&nbsp; '9' - To be purged after reload
+          example: A
+        transferFromOrTransferToAccountId:
+          maxLength: 19
+          type: string
+          description: Associated transfer from or transfer to account.
+          example: '0006000012000000123'
+        addressId:
+          maxLength: 15
+          type: string
+          description: 'Address identifier to determine the type of address. Ex: Home,
+            Office, etc.'
+          example: RESIDENTIAL
+        blockCode1:
+          maxLength: 1
+          type: string
+          description: This field identifies the block code assigned to this account.
+            Block codes control specific processing options at the account level.
+            Valid block codes are the letters A to Z and blank (or space).
+          example: A
+        blockCode2:
+          maxLength: 1
+          type: string
+          description: This field identifies the block code assigned to this account.
+            Block codes control specific processing options at the account level.
+            Valid block codes are the letters A to Z and blank (or space).
+          example: ' '
+        shortName:
+          maxLength: 20
+          type: string
+          description: This is the short name of the account holder.
+          example: Dhruv
+        residenceId:
+          maxLength: 3
+          type: string
+          description: This flag identifies the state, province or country in which
+            the  account holder resides.
+          example: SX1
+        customerId:
+          maxLength: 19
+          type: string
+          description: Unique identification number assigned to a customer.
+          example: '0000020000065439605'
+    CardList_ListExternalCustomersCardsAndAccountV1ResponseModel:
       type: object
       properties:
         paymentInstrumentId:
@@ -2215,7 +2331,7 @@ components:
           description: Unique alternate identification number associated with Payment
             Card Number.
           example: '0009544410000000047'
-        blockCode1:
+        blockCode:
           maxLength: 1
           type: string
           description: Block Code assigned to the cardholder.
@@ -2232,12 +2348,6 @@ components:
           description: 'Address identifier to determine the type of address. Ex: Home,
             Office, etc.'
           example: RESIDENTIAL
-        expiryDate:
-          maxLength: 10
-          type: string
-          description: Date on which the most recently issued card expires, The format
-            is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
-          example: 16/08/2024
         plasticId:
           maxLength: 10
           type: string
@@ -2245,7 +2355,18 @@ components:
             create a card for this Embosser record. For HCS-associated accounts, this
             value defaults from the Company Product record '
           example: ' '
-    ListExternalCustomersCardsAndAccountResponseModel:
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000012000000256'
+        expiryDate:
+          maxLength: 10
+          type: string
+          description: Date on which the most recently issued card expires, The format
+            is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 16/08/2024
+    ListExternalCustomersCardsAndAccountV1ResponseModel:
       type: object
       properties:
         externalContractId:
@@ -2254,92 +2375,34 @@ components:
           description: Unique identification number assigned to a customer from external
             system.
           example: '000012672379'
+        totalAccountsCount:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Total number of accounts for a given external customer ID.
+          example: '2'
+        totalCardsCount:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Total number of cards for a given external customer ID.
+          example: '2'
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
         accountList:
-          type: object
-          properties:
-            businessUnit:
-              maximum: 999
-              maxLength: 3
-              type: integer
-              description: Unique identification number associated with the organization.
-                Valid values from 1-998.
-              example: '600'
-            productId:
-              maximum: 999
-              maxLength: 3
-              type: integer
-              description: Unique identification number of the product associated
-                with the organization. Valid values from 1-998.
-              example: '1'
-            accountId:
-              maxLength: 19
-              type: string
-              description: Unique identification number for cardholder billing account.
-              example: '0006000012000000256'
-            status:
-              maxLength: 1
-              type: string
-              description: Code that identifies the status of the account. This field
-                is not editable during add mode; it displays during maintenance mode
-                and inquiry mode only.<br/>The values are:<br/>&nbsp; 'A' - Active
-                <br/>&nbsp; 'B' - Conversion fraud <br/>&nbsp; 'C' - Conversion transfer
-                <br/>&nbsp; 'D' - Dormant <br/>&nbsp; 'F' - Fraud transfer <br/>&nbsp;
-                'H' - Closed/conversion <br/>&nbsp; 'I' - Inactive <br/>&nbsp; 'J'
-                - Transfer in, migrated from inactive <br/>&nbsp; 'K' - Transfer out,
-                migrated from inactive <br/>&nbsp; 'M' - Migrated <br/>&nbsp; 'N'
-                - New <br/>&nbsp; 'P' - To be purged in next reload <br/>&nbsp; 'Q'
-                - Transfer in today <br/>&nbsp; 'R' - Transfer out today <br/>&nbsp;
-                'T' - Transfer <br/>&nbsp; 'V' - Conversion <br/>&nbsp; 'X' - Charge-off/conversion
-                <br/>&nbsp; 'Z' - Charge-off <br/>&nbsp; '8' - Closed <br/>&nbsp;
-                '9' - To be purged after reload
-              example: A
-            memoDebitAmount:
-              maxLength: 24
-              type: string
-              description: Amount of outstanding memo debits for the account.
-              example: A
-            blockCode1:
-              maxLength: 1
-              type: string
-              description: This field identifies the block code assigned to this account.
-                Block codes control specific processing options at the account level.
-                Valid block codes are the letters A to Z and blank (or space).
-              example: A
-            blockCode2:
-              maxLength: 1
-              type: string
-              description: This field identifies the block code assigned to this account.
-                Block codes control specific processing options at the account level.
-                Valid block codes are the letters A to Z and blank (or space).
-              example: ' '
-            shortName:
-              maxLength: 20
-              type: string
-              description: This is the short name of the account holder.
-              example: Dhruv
-            residenceId:
-              maxLength: 3
-              type: string
-              description: This flag identifies the state, province or country in
-                which the  account holder resides.
-              example: SX1
-            addressId:
-              maxLength: 15
-              type: string
-              description: 'Address identifier to determine the type of address. Ex:
-                Home, Office, etc.'
-              example: RESIDENTIAL
-            totalCardsCount:
-              maximum: 99
-              maxLength: 2
-              type: integer
-              description: Total number of cards for a given external customer ID.
-              example: '2'
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountList_ListExternalCustomersCardsAndAccountV1ResponseModel'
         cardList:
           type: array
           items:
-            $ref: '#/components/schemas/CardList_ListExternalCustomersCardsAndAccountResponseModel'
-    InquireCustomerResponseModel:
+            $ref: '#/components/schemas/CardList_ListExternalCustomersCardsAndAccountV1ResponseModel'
+    InquireCustomerV1ResponseModel:
       type: object
       properties:
         businessUnit:
@@ -2347,7 +2410,8 @@ components:
           maxLength: 3
           type: integer
           description: Unique identification number associated with the organization.
-            Valid values are 1-998.
+            Valid values are 1-998. Business Unit is mandatory when customer Id is
+            built outside First Vision.
           example: '200'
         customerId:
           maxLength: 19
@@ -2488,6 +2552,11 @@ components:
               description: This is User-defined code to indicate the position or job
                 title of the owner.
               example: Y
+            phoneExtension:
+              maxLength: 6
+              type: string
+              description: This field indicates the extension number of the Work phone.
+              example: '801'
         addressDetails:
           type: object
           properties:
@@ -2542,6 +2611,12 @@ components:
                 and Common Routines (SSC) system via the Country Code Definitions
                 service.
               example: IND
+            county:
+              maxLength: 30
+              type: string
+              description: This field indicates the County portion of the mailing
+                address of the owner.
+              example: ABC
         homePhoneFlag:
           maxLength: 1
           type: string
@@ -2549,7 +2624,48 @@ components:
             to use this number. <br/>The values are:<br/> &nbsp; '0' - Do not call
             <br/> &nbsp; '1' - May be called <br/> &nbsp; '2' - Prefer to be called
           example: '0'
-    AccountList_ListCustomersCardsAndAccountResponseModel:
+        externalId:
+          maxLength: 25
+          type: string
+          description: This field identifies the Social Security number or tax identification
+            number.
+          example: ANKCC2330F
+        typeOfExternalId:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field indicates if the IDENTIFICATION NUMBER given is
+            a Social Security number or other tax identification number. When Social
+            Security number masking is activated on the Field Security record and
+            the first part of this field is 0 (Social Security number). <br/>The values
+            are:<br/> &nbsp; '0' - Social Security number (Default) <br/> &nbsp; '1'
+            - Tax identification number <br/> &nbsp; '2' - Other identification number
+          example: '0'
+        vacationDetails:
+          type: object
+          properties:
+            startDate:
+              maxLength: 10
+              type: string
+              description: Date on which vacation starts for the customer.
+              example: 01/01/2019
+            endDate:
+              maxLength: 10
+              type: string
+              description: Date on which vacation ends for the customer.
+              example: 01/01/2023
+            countryCode:
+              maxLength: 3
+              type: string
+              description: Country where the customer is on vacation.
+              example: AUS
+            phoneNumber:
+              maxLength: 20
+              type: string
+              description: Phone number on which the customer can be contacted during
+                vacation.
+              example: '8946274878'
+    AccountList_ListCustomersCardsAndAccountV1ResponseModel:
       type: object
       properties:
         accountId:
@@ -2662,7 +2778,7 @@ components:
           description: 'Address identifier to determine the type of address. Ex: Home,
             Office, etc.'
           example: HOME
-    CardList_ListCustomersCardsAndAccountResponseModel:
+    CardList_ListCustomersCardsAndAccountV1ResponseModel:
       type: object
       properties:
         paymentInstrumentId:
@@ -2994,7 +3110,7 @@ components:
             create a card for this Embosser record. For HCS-associated accounts, this
             value defaults from the Company Product record '
           example: ' '
-    ListCustomersCardsAndAccountResponseModel:
+    ListCustomersCardsAndAccountV1ResponseModel:
       type: object
       properties:
         customerInformation:
@@ -3104,12 +3220,12 @@ components:
         accountList:
           type: array
           items:
-            $ref: '#/components/schemas/AccountList_ListCustomersCardsAndAccountResponseModel'
+            $ref: '#/components/schemas/AccountList_ListCustomersCardsAndAccountV1ResponseModel'
         cardList:
           type: array
           items:
-            $ref: '#/components/schemas/CardList_ListCustomersCardsAndAccountResponseModel'
-    CardList_ListCustomersCardResponseModel:
+            $ref: '#/components/schemas/CardList_ListCustomersCardsAndAccountV1ResponseModel'
+    CardList_ListCustomersCardV1ResponseModel:
       type: object
       properties:
         lastWalletUsedDate:
@@ -3441,7 +3557,7 @@ components:
             create a card for this Embosser record. For HCS-associated accounts, this
             value defaults from the Company Product record '
           example: ' '
-    ListCustomersCardResponseModel:
+    ListCustomersCardV1ResponseModel:
       type: object
       properties:
         customerInformation:
@@ -3545,8 +3661,8 @@ components:
         cardList:
           type: array
           items:
-            $ref: '#/components/schemas/CardList_ListCustomersCardResponseModel'
-    AccountList_ListCustomersAccountResponseModel:
+            $ref: '#/components/schemas/CardList_ListCustomersCardV1ResponseModel'
+    AccountList_ListCustomersAccountV1ResponseModel:
       type: object
       properties:
         accountId:
@@ -3659,7 +3775,7 @@ components:
           description: 'Address identifier to determine the type of address. Ex: Home,
             Office, etc.'
           example: HOME
-    ListCustomersAccountResponseModel:
+    ListCustomersAccountV1ResponseModel:
       type: object
       properties:
         customerInformation:
@@ -3763,7 +3879,7 @@ components:
         accountList:
           type: array
           items:
-            $ref: '#/components/schemas/AccountList_ListCustomersAccountResponseModel'
+            $ref: '#/components/schemas/AccountList_ListCustomersAccountV1ResponseModel'
   securitySchemes:
     Authorization:
       type: http

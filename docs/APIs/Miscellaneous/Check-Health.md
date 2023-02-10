@@ -1,6 +1,6 @@
 # Check Health
 
-This service is used to verify health of credit management system and authorizaton system. 
+This API is used to verify health of credit management system and authorization system. This service gives the detail whether the system is active to respond on authorization requests, service requests etc.
 
 ## Endpoint
 

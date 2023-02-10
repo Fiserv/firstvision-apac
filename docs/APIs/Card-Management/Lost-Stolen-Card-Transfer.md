@@ -1,6 +1,6 @@
 # Transfer Lost Stolen Card 
 
-This Lost or Stolen service is used to block the lost card and request for the replacement card. 
+This API is used to block the lost or stolen card and request for the replacement card. Based on the input field values the corresponding actions will be taken like creating new card number and updating the existing card with block codes etc.
 
 ## Endpoint
 
@@ -15,17 +15,22 @@ titles: Request, Response, Error
 
 ```json
 {
+  "businessUnit": 600,
   "paymentInstrumentId": "0009544401000009195",
   "accountId": "0006000011000000178",
   "productId": 1,
-  "startDate": "0",
-  "transferToAccountId": " ",
-  "transferToCustomerId": " ",
-  "effectiveDate": "0",
   "cardReplacementIndicator": "0",
   "blockCode": "L",
-  "businessUnit": 600,
-  "processType": "0"
+  "startDate": "00/00/000",
+  "transferToAccountId": " ",
+  "transferToCustomerId": " ",
+  "effectiveDate": "00/00/000",
+  "processType": "0",
+  "pinTransferIndicator": "N",
+  "cardTransferActionCode": "CRTR",
+  "cardTransferMemo": "Card transfer memo",
+  "pinTransferActionCode": "PNTR",
+  "pinTransferMemo": "PIN transfer memo"
 }
 
 ```
@@ -74,7 +79,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Token Number associated with the clear PAN. |
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "1" for replacement of card or "0" to avoid initiation of card Replacement . |
 | `blockCode` | Payload | *string* | 1 | Pass value as "L" to block the old card. |
@@ -119,5 +124,7 @@ Below table provides the list of application's error code and its description.
 |`V5E14032EA` | Business unit does not allow customer number generation |
 |`V5E10001SA` | System in after hours processing, re-try in few minutes |
 |`V5E10002SA` | System in no-processing status,re-try in few minutes |
+|`V5E14018EB` | Invalid card transfer action code |
+|`V5E14020EB` | Invalid PIN transfer action code |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
