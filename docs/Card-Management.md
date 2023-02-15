@@ -1,6 +1,4 @@
----
-# Card Management
----
+# Card Management #
 
 The Customer Management group of APIs provides comprehensive function to update / enquire the cardholder payment instrument information.
 
