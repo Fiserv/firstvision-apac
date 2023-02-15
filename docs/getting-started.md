@@ -1,7 +1,7 @@
 # Welcome to FirstVision™ RESTful Web Services
 
 
-The FirstVision-APAC APIs are built on the foundation of REST. The APIs accept standard JSON requests and return JSON encoded responses while leveraging industry standard [HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for a seamless integration. Interaction through our APIs provides the developer community the ability to retrieve/update the customer demographic information, account's financial information,and, the payment instrument details in a simple and intuitive manner. It also provides APIs to retrieve transactions, statements details, loyalty points, offers, and, multiple EMIs conversion details.  
+The FirstVision-APAC APIs are built on the foundation of REST. The APIs accept standard JSON requests and return JSON encoded responses while leveraging industry standard [HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for a seamless integration. Interaction through our APIs provides the developer community the ability to retrieve/update the customer demographic information, account's financial information,and, the payment instrument details in a simple and intuitive manner. It also provides APIs to retrieve transactions, statements details, loyalty points, offers, and, multiple EMIs conversion details.
 
 Our APIs are broadly grouped into following sub-catagories.  Please click to specific category of interest to get more details
 
@@ -37,6 +37,6 @@ Using the API key recieved, make a [getToken API](./?path=/docs/APIs/Security/ge
 
 ### 3. Constructing the API call
 
-Use the bearer token for any subsequent API calls.  The bearer token must be passed in the authorization header.  
+Use the bearer token for any subsequent API calls.  The bearer token must be passed in the authorization header.
 
 ---

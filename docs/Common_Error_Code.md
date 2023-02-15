@@ -24,4 +24,4 @@ Below table provides the list of common error codes and its description.
 |`241502` | Content type is not provided |
 |`241503` | Allowed content type for this client is application/json |
 |`241504` | Allowed content type for this client is octet-stream |
-|`340001` | Bad Request | 
+|`340001` | Bad Request |
