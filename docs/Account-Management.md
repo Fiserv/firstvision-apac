@@ -1,4 +1,4 @@
-### Account Management ###
+### Account Management
 
 The Account Management group of APIs provides comprehensive function to update/enquire the account's financial details.
 
