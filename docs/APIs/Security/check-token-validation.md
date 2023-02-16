@@ -58,7 +58,7 @@ The below table identifies the required query parameters in the request message.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `token` | Payload | *string* | 160 | JWT authorization token specific to the environment. |
+| `token` | Payload | *string* | 600 | JWT authorization token specific to the environment. |
 
 ### Error Codes
 
