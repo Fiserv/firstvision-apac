@@ -1,6 +1,6 @@
-# Validate Token
+# Check Token Validation
 
-This API is used to validate if the given oauth token is valid or not.
+This API is used to validate if the given oauth token is valid/invalid.
 
 ## Endpoint
 
@@ -13,13 +13,10 @@ type: tab
 titles: Request, Response, Error
 -->
 
-XXXXXXXXXXXXXXXXXXXXXXX
-```json
-{
-  "token": "eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w"
-}
 
-```
+>Should be empty. 
+>
+>***Token should be sent as query parameter.***
 
 <!--
 type: tab
@@ -27,7 +24,7 @@ type: tab
 
 ```json
 {
-  "valid": false
+  "valid": true
 }
 ```
 
@@ -36,9 +33,19 @@ type: tab
 -->
 
 ```json
-{
-xxxxxxxxxxxxxxxxxxxxxx
-}
+[
+  {
+    "detail": "Please refer to invalid-params for error details",
+    "errorCode": "140106",
+    "instance": "/v1/api/oauth/validateToken",
+    "invalid-params": [
+      "Invalid client credentials"
+    ],
+    "source": "AGT",
+    "status": 401,
+    "title": "Unauthorized"
+  }
+]
 ```
 
 <!-- type: tab-end -->
@@ -59,7 +66,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-|`xxxxxx` | xxxxxxxxxxxxxxxxxxxxxxxxxxxx |  
+|`140106` | Invalid client credentials |  
 
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
