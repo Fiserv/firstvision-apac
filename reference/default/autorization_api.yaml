@@ -27,7 +27,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -73,17 +73,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ReverseAuthorizationReqModel'
+              $ref: '#/components/schemas/ReverseAuthorizationV1ReqModel'
         required: true
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
+        '201':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/ReverseAuthorizationV1ResponseModel'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -94,6 +92,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '422':
           description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -116,22 +122,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReverseAuthorizationResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -167,7 +167,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -213,17 +213,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RequestAuthorizationReqModel'
+              $ref: '#/components/schemas/RequestAuthorizationV1ReqModel'
         required: true
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
+        '201':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/RequestAuthorizationV1ResponseModel'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -240,12 +238,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -262,16 +262,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -309,7 +309,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -397,14 +397,12 @@ paths:
           type: string
           example: $100.00
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/InquireAuthorizationDetailV1ResponseModel'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -415,6 +413,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '422':
           description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -437,22 +443,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -474,7 +474,7 @@ paths:
       x-group-name: Authorization
 components:
   schemas:
-    ReverseAuthorizationReqModel:
+    ReverseAuthorizationV1ReqModel:
       required:
       - authorizationCode
       - effectiveDate
@@ -511,32 +511,7 @@ components:
           type: string
           description: Authorized sales amount in the account currency.
           example: $100.00
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        status:
-          type: integer
-          example: '0'
-        invalid-params:
-          type: array
-          items:
-            type: string
-    ReverseAuthorizationResponseModel:
+    ReverseAuthorizationV1ResponseModel:
       type: object
       properties:
         responseCode:
@@ -592,7 +567,32 @@ components:
           description: Effective date of the transaction. The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 10/01/2022
-    RequestAuthorizationReqModel:
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    RequestAuthorizationV1ReqModel:
       required:
       - CVV2
       - expiryDate
@@ -649,7 +649,7 @@ components:
           description: Security code(CVV2/CVC2/CAV2/CVN2) assigned to the payment
             Instrument id.
           example: '123'
-    RequestAuthorizationResponseModel:
+    RequestAuthorizationV1ResponseModel:
       type: object
       properties:
         authorizationCode:
@@ -704,7 +704,7 @@ components:
           description: Effective date of the transaction. The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 10/01/2022
-    InquireAuthorizationDetailResponseModel:
+    InquireAuthorizationDetailV1ResponseModel:
       type: object
       properties:
         temporaryCreditLimit:
@@ -1006,8 +1006,9 @@ components:
           type: object
           properties:
             collectionReason:
+              maximum: 99
               maxLength: 2
-              type: string
+              type: integer
               description: Reason that specifies why the account went into collections.
                 <br/>The values are:<br/>&nbsp; '01' - First payment default<br/>&nbsp;
                 '02' - Overlimit<br/>&nbsp; '03' - Excessive use<br/>&nbsp; '04' -
@@ -1040,8 +1041,9 @@ components:
             the associated transaction.
           example: APP17977700222011344330001112345678
         currentCycleDue:
+          maximum: 9
           maxLength: 1
-          type: string
+          type: integer
           description: Code that identifies the level of contractual delinquency.
             The contractual delinquency (also called the cycle due code), indicates
             the number of cycles for which payments are due. <br/>The values are:<br/>

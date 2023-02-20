@@ -14,6 +14,7 @@ titles: Request, Response, Error
 -->
 
 ```json
+
 {
   "namesData": {
     "birthName": "",
@@ -40,7 +41,8 @@ titles: Request, Response, Error
     "addressLine2": "Y",
     "phoneNumber": "Y",
     "phoneFlag": "0",
-    "jobTitle": "Y"
+    "jobTitle": "Y",
+    "phoneExtension": "801"
   },
   "addressData": {
     "addressLine3": "CHITRAPURI",
@@ -52,9 +54,18 @@ titles: Request, Response, Error
     "countryCode": "IND",
     "postalCode": "110004",
     "houseNumber": "",
-    "county": "ABC"
+    "county": "EMEA"
+  },
+  "externalId": "ANKCC2330F",
+  "typeOfExternalId": "1",
+  "vacationData": {
+    "startDate": "01/01/2019",
+    "endDate": "01/01/2023",
+    "countryCode": "AUS",
+    "phoneNumber": "8946274878"
   }
 }
+
 ```
 
 <!--
@@ -62,6 +73,7 @@ type: tab
 --> 
 
 ```json
+
 {
   "addressData": {
     "addressLine1": "FLAT NO:404",
@@ -70,7 +82,7 @@ type: tab
     "addressLine4": "DELHI",
     "city": "DELHI",
     "countryCode": "IND",
-    "county": "ABC",
+    "county": "EMEA",
     "houseNumber": " ",
     "postalCode": "110004",
     "stateProvince": "DL"
@@ -84,9 +96,11 @@ type: tab
     "addressLine2": "Y",
     "jobTitle": "Y",
     "nameOfEmployer": "Y",
+    "phoneExtension": "801",
     "phoneFlag": "0",
     "phoneNumber": "Y"
   },
+  "externalId": "ANKCC2330F",
   "faxNumber": "82364782",
   "faxPhoneFlag": "0",
   "homePhoneFlag": "0",
@@ -103,8 +117,16 @@ type: tab
     "nameLine2": "KK",
     "nameLine3": " "
   },
-  "smsFlag": "0"
+  "smsFlag": "0",
+  "typeOfExternalId": "1",
+  "vacationData": {
+    "countryCode": "AUS",
+    "endDate": "01/01/2023",
+    "phoneNumber": "8946274878",
+    "startDate": "01/01/2019"
+  }
 }
+
 ```
 
 <!--
@@ -170,5 +192,9 @@ Below table provides the list of application's error code and its description.
 |`V5NA0333SZ` | Update access not granted for Mobile Number |
 |`V5NA0504SZ` | Update access not granted for User Defined Field 4 |
 |`V5NA0419SZ` | Update access not granted for Email Address |
+|`V5NA0519EA` | Invalid start and end dates |
+|`V5NA0519EB` | End date must be greater than start date |
+|`V5NA0406EA` | When SSAN flag is 0 - chars 1 to 9 should be numeric |
+
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

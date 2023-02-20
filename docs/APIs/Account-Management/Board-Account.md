@@ -110,6 +110,14 @@ The below table identifies the required parameters in the request payload.
 | `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
 | `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
 | `creditLimit` | Payload | *string* | 17 | This is the credit limit of the account. |
+<<<<<<< HEAD
+=======
+| `isSuppressLetterEnabled`| Payload | *number* | 01 | Code that indicates whether to suppress all letters for the account. |
+| `isSupressTokenEnabled` | Payload | *number* | 01 | Code that indicates whether the account is eligible for tokenization. |
+| `coreBankingIndicator` | Payload | *string* | 01 | Code that indicates type of account. |
+| `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
+| `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
+>>>>>>> 3723f268160018811c1becec240148d7f01a70de
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Error Codes

@@ -272,7 +272,17 @@ The below table identifies the required parameters in the request payload.
 | `isInsuranceProductEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add an Insurance Product record. |
 | `givenName` | Payload | *string* | 40 | First name of the customer. |
 | `creditLimit` | Payload | *number* | 17 | Credit limit of this account. |
+<<<<<<< HEAD
 | `cardAction` | Payload | *string* | 1 | This field is the card issue action code that determines the action CMS performs during the next run. |
+=======
+| `billingCycle` | Payload | *number* | 02 | Billing cycle of the relationship associated with the customer. |
+| `isAnnualMembershipFeeEnabled` | Payload | *number* | 01 | Flag that indicates whether to waive the annual membership fee for the account. |
+| `isSupressTokenEnabled` | Payload | *string* | 01 | Token suppression at account level indicator. |
+| `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment card number. |
+| `embossedName1` | Payload | *string* | 26 | This field that specifies the default generic name line 1. |
+| `cardholderFlag` | Payload | *string* | 01 | This is the code that indicates whether the card is issued as primary or secondary card. |
+| `deviceIndicator` | Payload | *string* | 01 | Code that indicates the type of device (form factor) written to the track data on the card. |
+>>>>>>> 3723f268160018811c1becec240148d7f01a70de
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Error Codes

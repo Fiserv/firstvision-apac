@@ -27,7 +27,7 @@ type: tab
   "accountType": "D",
   "businessUnit": 600,
   "externalAccountId": "",
-  "nominatedPaymentAmountPercentage": "10",
+  "nominatedPaymentAmountOrPercentage": "10",
   "nominatedType": "1",
   "paymentExpiryDate": "04/12/2022",
   "paymentRemittanceMethod": "0",
