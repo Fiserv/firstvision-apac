@@ -1,4 +1,4 @@
-# Transfer Lost Stolen Card 
+# Transfer Lost Stolen Card
 
 This API is used to block the lost or stolen card and request for the replacement card. Based on the input field values the corresponding actions will be taken like creating new card number and updating the existing card with block codes etc.
 
@@ -7,7 +7,7 @@ This API is used to block the lost or stolen card and request for the replacemen
 `POST /v1/cards/lostStolenCardTransfer`
 
 ## Payload Example
-	
+
 <!--
 type: tab
 titles: Request, Response, Error
@@ -26,14 +26,18 @@ titles: Request, Response, Error
   "transferToCustomerId": " ",
   "effectiveDate": "00/00/000",
   "processType": "0",
-  "pinTransferIndicator": "N"
+  "pinTransferIndicator": "N",
+  "cardTransferActionCode": "CRTR",
+  "cardTransferMemo": "Card transfer memo",
+  "pinTransferActionCode": "PNTR",
+  "pinTransferMemo": "PIN transfer memo"
 }
 
 ```
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -48,7 +52,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -79,8 +83,9 @@ The below table identifies the required parameters in the request payload.
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "1" for replacement of card or "0" to avoid initiation of card Replacement . |
 | `blockCode` | Payload | *string* | 1 | Pass value as "L" to block the old card. |
+| `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -120,5 +125,7 @@ Below table provides the list of application's error code and its description.
 |`V5E14032EA` | Business unit does not allow customer number generation |
 |`V5E10001SA` | System in after hours processing, re-try in few minutes |
 |`V5E10002SA` | System in no-processing status,re-try in few minutes |
+|`V5E14018EB` | Invalid card transfer action code |
+|`V5E14020EB` | Invalid PIN transfer action code |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
