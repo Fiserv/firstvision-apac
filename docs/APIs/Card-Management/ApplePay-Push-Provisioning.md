@@ -1,6 +1,6 @@
 # ApplePay Push Provisioning
 
-This API is used for push provisioning of Visa Card. Card push provisioning refers to the creation of a secure digital copy of a pre-existing card (either physical or virtual). The "copy" is then added to a Apple Pay wallet.
+This API is used for push provisioning of Visa Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a Apple Pay wallet.
 
 ## Endpoint
 
