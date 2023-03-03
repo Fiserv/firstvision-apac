@@ -17,7 +17,6 @@ titles: Request, Response, Error
 >
 >***Business Unit should be sent as query parameter.***
 
-
 <!--
 type: tab
 -->
@@ -119,7 +118,6 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `businessUnit` | Query Parameter | *number* | 03 | Unique identification number associated with the organization. Valid values from 1-998.|
 
-
 ### Error Codes
 
 Below table provides the list of application's error code and its description.
@@ -128,6 +126,6 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5PH0004SF` | Get request - Record Not Found |  
 | `V5PS4009SA` | Org not present on file |  
-| `V5PS4010SA` | Account is not present not on file | 
+| `V5PS4010SA` | Account is not present not on file |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

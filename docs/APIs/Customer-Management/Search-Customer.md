@@ -37,11 +37,11 @@ titles: Request, Response, Error
     "businessUnit": 0
   }
 }
-``` 
+```
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -109,7 +109,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -151,24 +151,24 @@ Below table provides the list of application's error code and its description.
 | `V5XL4001SF` | Primary search option  field must equal to 0,1,2,3,4 |
 | `V5XL4001SC` | Primary search option  for postal code is inactive on system record |
 | `V5XL4001SD` | Primary search option  for phone number inactive on system record |
-| `V5XL4001SE` | Primary search option  for id number inactive on system record |                               
-| `V5XL4002EA` | First character cannot be  a space |          
+| `V5XL4001SE` | Primary search option  for id number inactive on system record |
+| `V5XL4002EA` | First character cannot be  a space |
 | `V5XL4002EB` | First character cannot be  asterick |
-| `V5XL4002EP` | No result found for this search criteria | 
-| `V5XL4002SL` | Mob dev id primary option search invalid |                    
-| `V5XL4002SK` | Postal code primary option search invalid |                        
-| `V5XL4002SJ` | Phone number primary option search invalid |                       
-| `V5XL4002SI` | Identification number primary option search invalid |              
-| `V5XL4002SH` | Last name primary option search invalid |              
-| `V5XL4002SG` | Cannot have asterix only as search criteria |                       
-| `V5XL4002SM` | Primary data switch is on, valid primary data should be entered |       
-| `V5XL4002SE` | Minimum number of character required for lbsg name |      
+| `V5XL4002EP` | No result found for this search criteria |
+| `V5XL4002SL` | Mob dev id primary option search invalid |
+| `V5XL4002SK` | Postal code primary option search invalid |
+| `V5XL4002SJ` | Phone number primary option search invalid |
+| `V5XL4002SI` | Identification number primary option search invalid |
+| `V5XL4002SH` | Last name primary option search invalid |
+| `V5XL4002SG` | Cannot have asterix only as search criteria |
+| `V5XL4002SM` | Primary data switch is on, valid primary data should be entered |
+| `V5XL4002SE` | Minimum number of character required for lbsg name |
 | `V5XL4002SD` | Minimum number of character required for id number |
-| `V5XL4002SC` | Minimum number of character required for phone number |            
-| `V5XL4002SB` | Minimum number of character required for postal code |           
-| `V5XL4002SN` | Minimum number of character required for mobile device id |       
+| `V5XL4002SC` | Minimum number of character required for phone number |
+| `V5XL4002SB` | Minimum number of character required for postal code |
+| `V5XL4002SN` | Minimum number of character required for mobile device id |
 | `V5XL4002EO` | Invalid primary search data |
-| `V5XL4003SA` | Service function code invalid |                                    
+| `V5XL4003SA` | Service function code invalid |
 | `V5XL4003SF` | Invalid svc function code |
 | `V5XL4003SB` | Valid value for optional data match is 0 or 1 |
 

@@ -1,4 +1,4 @@
-# Transfer Lost Stolen Card 
+# Transfer Lost Stolen Card
 
 This API is used to block the lost or stolen card and request for the replacement card. Based on the input field values the corresponding actions will be taken like creating new card number and updating the existing card with block codes etc.
 
@@ -7,7 +7,7 @@ This API is used to block the lost or stolen card and request for the replacemen
 `POST /v1/cards/lostStolenCardTransfer`
 
 ## Payload Example
-	
+
 <!--
 type: tab
 titles: Request, Response, Error
@@ -21,10 +21,10 @@ titles: Request, Response, Error
   "productId": 1,
   "cardReplacementIndicator": "0",
   "blockCode": "L",
-  "startDate": "00/00/000",
+  "startDate": "00/00/0000",
   "transferToAccountId": " ",
   "transferToCustomerId": " ",
-  "effectiveDate": "00/00/000",
+  "effectiveDate": "00/00/0000",
   "processType": "0",
   "pinTransferIndicator": "N",
   "cardTransferActionCode": "CRTR",
@@ -37,7 +37,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -52,7 +52,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -83,8 +83,9 @@ The below table identifies the required parameters in the request payload.
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "1" for replacement of card or "0" to avoid initiation of card Replacement . |
 | `blockCode` | Payload | *string* | 1 | Pass value as "L" to block the old card. |
+| `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

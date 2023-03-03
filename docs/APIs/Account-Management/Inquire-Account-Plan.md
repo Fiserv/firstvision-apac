@@ -1,6 +1,6 @@
 # Inquire Account Plan
 
-This API is used to fetch the plan details for a given account Id like status, interest table override details, plan level balances, dues and dates etc. 
+This API is used to fetch the plan details for a given account Id like status, interest table override details, plan level balances, dues and dates etc.
 
 ## Endpoint
 

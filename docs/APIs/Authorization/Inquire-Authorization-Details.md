@@ -1,6 +1,6 @@
 # Inquire Authorization Details
 
-This API is used to fetch Authorization details for a given payment instrument Id or payment card number, authorization code, effective date, and transaction amount, if given. This API fetches data for any authorization which is waiting for settlement. 
+This API is used to fetch Authorization details for a given payment instrument Id or payment card number, authorization code, effective date, and transaction amount, if given. This API fetches data for any authorization which is waiting for settlement.
 
 ## Endpoint
 
@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Payment Instrument Or Card Id and effective date, authorization code should be sent as path variable and query parameter.***
 
@@ -73,7 +73,7 @@ type: tab
     "memoDebitCount": 134
   },
   "merchantDetails": {
-    "merchantBusinessUnit": "100",
+    "merchantBusinessUnit": 100,
     "merchantCategoryCode": "05999",
     "merchantId": "999999998"
   },
@@ -129,9 +129,9 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V7RS4002EP` | Invalid card number |        
-| `V7RS4002ES` | Authorization record not found |   
-| `V7RS4003EQ` | Input effective date not matching with log record effective date |   
-| `V7RS4005ER` | Input auth amount not matching with log record auth amount |   
+| `V7RS4002EP` | Invalid card number |
+| `V7RS4002ES` | Authorization record not found |
+| `V7RS4003EQ` | Input effective date not matching with log record effective date |
+| `V7RS4005ER` | Input auth amount not matching with log record auth amount |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

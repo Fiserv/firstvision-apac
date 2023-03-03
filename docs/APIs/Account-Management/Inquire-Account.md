@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 
@@ -75,7 +75,7 @@ type: tab
     "resetChargeoffDaysSwitch": "0"
   },
   "correspondenceCustomerId": "",
-  "currencyCode": "36",
+  "currencyCode": "036",
   "customerId": "0002000002000007799",
   "dateFieldDetails": {
     "accountClosedDate": "00/00/0000",

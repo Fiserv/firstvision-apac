@@ -1,6 +1,6 @@
 # Inquire Customer
 
-This API used to fetch the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer Id. 
+This API used to fetch the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer Id.
 
 ## Endpoint
 
@@ -19,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -78,7 +78,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

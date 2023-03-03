@@ -19,7 +19,6 @@ titles: Request, Response, Error
 }
 ```
 
-
 <!--
 type: tab
 -->
@@ -55,7 +54,7 @@ type: tab
 
 <!-- type: tab-end -->
 
-### Minimum	Requirements
+### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/addressId).
 
@@ -63,8 +62,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `customerId` | Query Variable | *string* | 19 | Unique identification number assigned to a customer. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
+| `customerId` | Query Variable | *string* | 19 | Unique identification number assigned to a customer. |
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Error Codes

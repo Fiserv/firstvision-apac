@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 
@@ -71,7 +71,7 @@ type: tab
   "debitCount": 2,
   "creditCount": 0,
   "cycleDue": 0,
-  "table3": [
+  "planDetails": [
     {
       "planId": 70002,
       "beginningBalance": "$0.00",
@@ -101,10 +101,8 @@ type: tab
     "totalDueBalance": "$0.00"
   },
   "daysInCycle": 13,
-  "minimumPaymentAmount": 0,
-  "noOfQualifiedTxns": 0,
+  "qualifiedTransactionsCount": 0,
   "personalId": "",
-  "currencyConversionRate": 0,
   "billingIndicator": 0,
   "revolvingStatus": "",
   "businessUnit": 200
@@ -141,7 +139,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 ### Error Codes
 

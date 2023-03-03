@@ -1,6 +1,6 @@
 # GooglePay - SamsungPay VTS Push Provisioning
 
-This service is used to generate the Visa Tokenization Service push provisioning token of Visa Card when Gpay or Samsung Pay wallet is used. The token received in the response can be passed to Visa to initiate the card provisioning to wallet.
+This API is used for push provisioning of Visa Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a Google Pay or Samsung Pay wallet.
 
 ## Endpoint
 
@@ -32,7 +32,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -42,7 +42,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

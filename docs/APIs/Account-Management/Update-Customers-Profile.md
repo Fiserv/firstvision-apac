@@ -75,7 +75,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -87,8 +87,8 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5BS0010SF` | Update request - Record not found |  
 | `V5BS4001SG` | Org record not found |  
-| `V5BS0102SA` | Customer number cannot be zeroes |   
-| `V5BS0102SC/V5BS0172SB` | No active customer on file |    
+| `V5BS0102SA` | Customer number cannot be zeroes |
+| `V5BS0102SC/V5BS0172SB` | No active customer on file |
 | `V5BS0172SA/V5BS0102SB` | Generic customer not allowed |  
 | `V5BS0172SC` | Cust number not in add complete status |  
 | `V5BS0111SA` | Valid entries are space, A, or B |  

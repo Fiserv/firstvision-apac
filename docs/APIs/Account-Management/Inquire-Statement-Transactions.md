@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.  
 >
 >***Account id should be sent as path variable.***
 
@@ -58,7 +58,6 @@ type: tab
   "correspondingCustomerId": "",
   "creditClass": "N1",
   "creditCount": 78,
-  "currencyConversionRate": 0,
   "customerId": "0002000000050256486",
   "cycleDue": 0,
   "dateFieldsDetails": {
@@ -77,8 +76,7 @@ type: tab
   },
   "employeeCode": "",
   "lifeToDateCount": 3,
-  "minimumPaymentAmount": 0,
-  "noOfQualifiedTxns": 0,
+  "qualifiedTransactionsCount": 0,
   "personalId": "",
   "relationshipId": "",
   "residenceId": "SX1",
@@ -227,7 +225,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |  
 
 ### Error Codes
 
@@ -238,6 +236,5 @@ Below table provides the list of application's error code and its description.
 | `V5S34003SD` | Account number not found |
 | `V5S34003SA/V5S34003SB/V5S34003EB/V5S34003EF/V5S34003EG` | No statement history information found on file |
 | `V5S34222EA` | Invalid txn suppresion indicatr valid values are N or Y |
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
