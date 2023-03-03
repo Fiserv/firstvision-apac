@@ -1,7 +1,7 @@
 # Update Card Action
 
-Card Action on Embosser record enables client to update actions like replacement, reissue, PIN mailer etc. This field (Card Action) determines the action that system performs on that embosser record during the next batch run. 
-  
+This API is used to update the card action for a given payment instrument Id. 
+
 ## Endpoint
 
 `PUT /v1/cards/{paymentInstrumentId}/action`

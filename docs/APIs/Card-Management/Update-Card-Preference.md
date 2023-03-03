@@ -1,6 +1,6 @@
 # Update Card Preference
 
-This service update fields like cardholder type, issue/reissue delivery options, card address detail and Dynamic CVV2 method for a given payment instrument Id.
+This API is used to update cardholder type, issue/reissue delivery options, card address detail and Dynamic CVV2 method, address Id etc. for a given payment instrument Id.
 
 ## Endpoint
 

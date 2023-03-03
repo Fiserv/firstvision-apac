@@ -1,6 +1,6 @@
 # Inquire Card Controls
 
-This service fetches the card controls for a given card like maximum number of transaction count and amount of Retail/OTC/Single ATM authorization, as well as single otc Cash/Retail authorization are allowed on card.
+This API is used to fetch the card control restriction flags for a given payment instrument Id and provide details whether the ATM, POS, ECOM etc transitions are enabled or disabled.
 
 ## Endpoint
 

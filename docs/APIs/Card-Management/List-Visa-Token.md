@@ -1,6 +1,6 @@
 # List Visa Token
 
-This service is used to inquire token detail like VTS token number, card wallet account id and token requestor/reference id associated with given payment instrument identification.
+This API is used to fetch token details like VTS token number, card wallet account id and token requestor/reference id associated with given payment instrument Id.
 
 ## Endpoint
 

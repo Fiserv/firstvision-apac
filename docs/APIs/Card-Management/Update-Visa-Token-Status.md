@@ -1,6 +1,6 @@
 # Update Visa Token Status
 
-This service is used to update the token status(Deactivate/Resume/Suspend) of Card.
+This API is used to update the token status (Deactivate/Resume/Suspend) for a given payment instrument Id.
 
 ## Endpoint
 

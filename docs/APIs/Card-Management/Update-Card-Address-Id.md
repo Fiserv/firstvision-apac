@@ -1,6 +1,6 @@
 # Update Cards' Address ID
 
-The service updates the address ID at card level upon successful validation of customer ID given in the request for a given payment instrument ID.
+This API is used to update address ID field at card level for given payment instrument Id upon successful validation of customer ID, if given in the request.
 
 ## Endpoint
 
@@ -63,7 +63,6 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
-| `customerId` | Query Variable | *string* | 19 | Unique identification number assigned to a customer. | 
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Error Codes

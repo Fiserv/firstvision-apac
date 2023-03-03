@@ -1,6 +1,6 @@
 # Fetch Token PAN from Clear PAN
 
-This service is used to fetch the token pan for the First Vision's clear PAN provided in encrypted format.
+This API is used to fetch the payment instrument Id for a given payment card number in encrypted format.
 
 ## Endpoint
 

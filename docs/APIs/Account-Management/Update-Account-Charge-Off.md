@@ -1,8 +1,8 @@
 # Update Account Charge-Off
 
-This service is used to update account charge-off status. 
->
-*User cannot charge off an account with zero balance or credit balance. When performing a manual charge off, the value you enter in the RSN field must already exist in the REASON column on the Logo record. When the charge-off status of the account is 5 (automatically completed), the value in this field defaults from the Logo record.*
+This API is used to update account charge-off status. 
+
+*User cannot charge off an account with zero balance or credit balance. When performing a manual charge off, the value you enter in the reason field must be defined at the REASON parameter at product level. When the charge-off status of the account is 5 (automatically completed), the value in this field defaults from product level.*
 
 ## Endpoint
 

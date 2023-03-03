@@ -1,6 +1,6 @@
 # Inquire Original Loan
 
-This service fetchs existing loan credit plan segment records. It contains the original precomputed amounts and other original information received for a loan credit plan for a single credit plan on an account.
+This API is used to fetch existing loan plan records. It contains the original precomputed amounts and other original information received for a loan plan for a given account Id.
 
 ## Endpoint
 

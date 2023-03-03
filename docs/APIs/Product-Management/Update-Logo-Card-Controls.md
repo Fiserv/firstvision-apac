@@ -1,6 +1,6 @@
 # Update Product Card Controls
 
-This API is used to perform card control updates at product level. This API can be be invoked with a business unit and product number.
+This API is used to update card control restriction flags and spend limits for a given product Id. This API can be invoked with a business unit and product Id.
 
 ## Endpoint
 

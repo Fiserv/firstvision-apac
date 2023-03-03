@@ -1,6 +1,6 @@
 # Inquire User Access
 
-This service is used to inquire security sign-on data like business unit include/exclude flags and user application access options.
+This API is used to fetch sign-on data like business unit include/exclude flags and user application access options for a given security sign-on details.
 
 ## Endpoint
 
@@ -228,6 +228,6 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `VMSF0004SF` | Get request - Record not found | 
-| `VMSF0005SF` | Get Request - Record Add Pending | 
+| `VMSF0005SF` | Get Request - Record add pending | 
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

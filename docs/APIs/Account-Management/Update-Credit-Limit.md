@@ -1,6 +1,6 @@
 # Update Credit Limit
 
-This service is used to update the credit limit of the cardholder’s account in real time. Newly updated credit limit will be available to use Immediately to the cardholder.
+This API is used to update the credit limit of the cardholder’s account in real time. Newly updated credit limit will be immediately available to use by the cardholder.
 
 ## Endpoint
 

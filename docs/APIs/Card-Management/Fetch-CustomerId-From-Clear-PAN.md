@@ -1,6 +1,6 @@
 # Fetch Customer ID from Clear PAN
 
-This service is used to fetch customer identification for the requested First Vision's clear PAN given in encrypted format.
+This API is used to fetch customer Id for a given payment card number in encrypted format.
 
 ## Endpoint
 
