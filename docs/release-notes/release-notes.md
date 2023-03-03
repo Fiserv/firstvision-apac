@@ -2,4 +2,4 @@
 
 Please click on respective release links to view details about the release.
 
-[2023 Release](?path=docs/Release-Notes-2023.md)
+[2023 Release](?path=docs/release-notes/Release-Notes-2023.md)

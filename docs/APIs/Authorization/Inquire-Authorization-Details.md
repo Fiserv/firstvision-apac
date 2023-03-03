@@ -120,8 +120,8 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentOrCardId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-| `effectiveDate` | Query vari | *string* | 10 | Effective Date of the transaction. The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
-| `authorizationCode` | Payload | *string* | 6 | Authorization code associated with the transaction. |
+| `effectiveDate` | Query variable | *string* | 10 | Effective Date of the transaction. The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
+| `authorizationCode` | Query variable | *string* | 6 | Authorization code associated with the transaction. |
 
 ### Error Codes
 
