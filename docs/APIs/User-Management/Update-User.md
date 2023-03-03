@@ -1,6 +1,6 @@
 # Update User
 
-This service is used to update security sign-on records like user service privileged record etc.
+This API is used to update generic details like status, expiry date etc. and service privileged details for a given security sign-on details.
 
 ## Endpoint
 

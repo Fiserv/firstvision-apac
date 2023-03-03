@@ -1,6 +1,6 @@
 # List Customers' Cards
 
-This service retrieves the card details associated with a Customer id along with customer demographic information.
+This API is used to fetch the list of cards and its details associated with a customer Id along with customer demographic information. 
 
 ## Endpoint
 

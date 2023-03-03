@@ -1,6 +1,6 @@
 # Add Memo Line
 
-The service will validate input message details and add memo line for monetary and non-monetary action applied on account.
+This API adds a memo note on customer's account for a non-monetary action code, which can then be viewed by agents servicing the account in the future. 
 
 ## Endpoint
 

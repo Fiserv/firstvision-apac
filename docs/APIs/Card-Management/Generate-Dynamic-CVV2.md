@@ -1,6 +1,6 @@
 # Generate Dynamic CVV2
 
-This service generates encrypted dynamic CVV2 and other required details for a given payment instrument ID.
+This API is used to generate encrypted dynamic CVV2 and provide other additional details like encrypted payment card number, encrypted expiry date, embossed name 1, embossed name 2, dynamic CVV2 expire date and time for a given payment instrument Id.
 
 ## Endpoint
 
@@ -45,7 +45,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/cards/0009846801010065781/generateDynamicCVV2",
     "invalid-params": [
-      "V5DC4002SB: ACCT IS PURGED/FRAUD/CLOSED/CGOFF OR ADD PENDING/NOTFND"
+      "V5DC4002SB: ACCT IS PURGED/FRAUD/CLOSED/CGOFF OR ADD PENDING/NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -79,7 +79,7 @@ Below table provides the list of application's error code and its description.
 | `V5DC4003SA` | Key association should be greater than spaces |                  
 | `V5DC4001SA` | Invalid card/org |                                               
 | `V5DC4001SB` | Org security failed |  
-| `V5DC4002SB` | Acct is purged/fraud/closed/cgoff or add pending/notfnd |        
+| `V5DC4002SB` | Acct is purged/fraud/closed/cgoff or add pending/not found |        
 | `V5DC4002SC` | Acct is billing/control/diversion acct |                         
 | `V5DC4002SD` | Acct warning code is 1/2/3/4/8 |                                 
 | `V5DC4002SE` | Card is add pending/purged/fraud/notfnd |                        

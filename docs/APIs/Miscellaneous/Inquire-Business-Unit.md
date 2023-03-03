@@ -1,6 +1,6 @@
 # Inquire Business Unit
 
-This API is used to view functionality control switches available at organization level. Using this API, control switches can be managed effectively.
+This API is used to fetch parameters defined at business unit. Business unit are primary control records that gives client option to enable or disable various functionalities like MCC limits, Loan active, general ledger etc. Business units establishes operating parameters for companies that process accounts in a similar fashion.s
 
 ## Endpoint
 

@@ -1,6 +1,6 @@
 # Inquire Card Spend Statistics
 
-This service is used to fetch spend limit statistics for a given payment instrument identification.
+This API is used to fetch the spending limit statistics to control the card usage. These limits are set at individual card level.
 
 ## Endpoint
 

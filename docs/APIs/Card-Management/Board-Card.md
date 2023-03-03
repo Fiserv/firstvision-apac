@@ -1,8 +1,9 @@
 # Board Card
 
-Board Card API allows to create a new card for an existing account. This API can be invoked with required fields and new card can be generated in real time mode.
+This API allows to create a new card for an existing account. This API can be invoked with required fields and new card can be generated in real time mode.
 
-Fields that are not provided in the Request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
+Fields that are not provided in the Request object will be initialized to their default values. All numeric fields are initialized to zero and alphanumeric fields initialized to spaces.
+
 
 ## Endpoint
 

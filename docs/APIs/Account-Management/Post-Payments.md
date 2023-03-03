@@ -1,6 +1,8 @@
 # Post Payments
 
-This service is used post the real-time payments which increases open to buy immediately for a given account number without waiting for nightly processing takes place.
+This API is used to add payments to an account based on action code and account Id given. This API updates the open-to-buy, memo debit and credit in real time on customer's account and and generate an outstanding authorization record.
+
+Fields that are not provided in the request object will be initialized to their default values. All numeric fields are initialized to zero and alphanumeric fields initialized to spaces.
 
 ## Endpoint
 

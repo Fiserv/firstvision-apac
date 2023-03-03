@@ -1,6 +1,6 @@
 # Update Card Controls
 
-This service updates the card controls for a given payment instrument Id like ECOM Active switch, ATM Flag, International ATM POS Flag, MOTO Flag and max Amount ATM/OTC/Retail etc.
+This API is used to update the card control restriction flags for a given payment instrument Id and provide details whether the ATM, POS, ECOM etc transitions are enabled or disabled.
 
 ## Endpoint
 

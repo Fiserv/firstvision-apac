@@ -1,6 +1,6 @@
 # List Plans
 
-This service is used to retrieve list of plans on account. Along with list of plans it shows the summary of plan level activities.
+This API is used to fetch list of plans and its details for a given account Id.
 
 ## Endpoint
 
