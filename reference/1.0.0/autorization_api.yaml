@@ -14,10 +14,8 @@ paths:
       - Authorization
       summary: This service is used to reverse the Authorization request for a given
         payment instrument id.
-      description: This API is used to reverse the authorization for a given payment
-        instrument Id or payment card number, authorization code, effective date,
-        and transaction amount, if given. Reverse is possible for any authorization
-        which is waiting for settlement.
+      description: This service is used to reverse the Authorization request for a
+        given payment instrument id.
       operationId: ReverseAuthorization
       parameters:
       - name: Authorization
@@ -27,7 +25,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -73,17 +71,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ReverseAuthorizationV1ReqModel'
+              $ref: '#/components/schemas/ReverseAuthorizationReqModel'
         required: true
       responses:
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReverseAuthorizationV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -98,16 +90,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReverseAuthorizationResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -122,24 +128,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -155,9 +153,10 @@ paths:
     post:
       tags:
       - Authorization
-      summary: Request Authorization
-      description: This API is used to make an authorization request for payment instrument
-        Id or payment card number.
+      summary: This service is used for Authorization request on payment instrument
+        id.
+      description: This service is used for Authorization request on payment instrument
+        id.
       operationId: RequestAuthorization
       parameters:
       - name: Authorization
@@ -167,7 +166,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -213,17 +212,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RequestAuthorizationV1ReqModel'
+              $ref: '#/components/schemas/RequestAuthorizationReqModel'
         required: true
       responses:
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RequestAuthorizationV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -238,24 +231,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -270,16 +255,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthorizationResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -296,10 +295,8 @@ paths:
       tags:
       - Authorization
       summary: Inquire Authorizatoin detail
-      description: This API is used to fetch Authorization details for a given payment
-        instrument Id or payment card number, authorization code, effective date,
-        and transaction amount, if given. This API fetches data for any authorization
-        which is waiting for settlement
+      description: This service is used to fetch authorization details for a matching
+        transaction with input details, before settlement comes.
       operationId: InquireAuthorizationDetails
       parameters:
       - name: Authorization
@@ -309,7 +306,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -397,14 +394,8 @@ paths:
           type: string
           example: $100.00
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -419,16 +410,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAuthorizationDetailResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -443,24 +448,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -474,7 +471,7 @@ paths:
       x-group-name: Authorization
 components:
   schemas:
-    ReverseAuthorizationV1ReqModel:
+    ReverseAuthorizationReqModel:
       required:
       - authorizationCode
       - effectiveDate
@@ -498,7 +495,7 @@ components:
         effectiveDate:
           maxLength: 10
           type: string
-          description: Effective date of the transaction. The format is MM/DD/YYYY
+          description: Effective Date of the transaction. The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 10/01/2022
         authorizationCode:
@@ -511,7 +508,32 @@ components:
           type: string
           description: Authorized sales amount in the account currency.
           example: $100.00
-    ReverseAuthorizationV1ResponseModel:
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    ReverseAuthorizationResponseModel:
       type: object
       properties:
         responseCode:
@@ -561,38 +583,7 @@ components:
           type: string
           description: Current open-to-buy amount of the account.
           example: $10000.00
-        effectiveDate:
-          maxLength: 10
-          type: string
-          description: Effective date of the transaction. The format is MM/DD/YYYY
-            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
-          example: 10/01/2022
-    ResponseErrorMessageInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: ''
-        detail:
-          type: string
-          example: ''
-        title:
-          type: string
-          example: ''
-        instance:
-          type: string
-          example: ''
-        source:
-          type: string
-          example: ''
-        status:
-          type: integer
-          example: '0'
-        invalid-params:
-          type: array
-          items:
-            type: string
-    RequestAuthorizationV1ReqModel:
+    RequestAuthorizationReqModel:
       required:
       - CVV2
       - expiryDate
@@ -649,7 +640,7 @@ components:
           description: Security code(CVV2/CVC2/CAV2/CVN2) assigned to the payment
             Instrument id.
           example: '123'
-    RequestAuthorizationV1ResponseModel:
+    RequestAuthorizationResponseModel:
       type: object
       properties:
         authorizationCode:
@@ -698,13 +689,7 @@ components:
           type: string
           description: Current open-to-buy amount of the account.
           example: $10000.00
-        effectiveDate:
-          maxLength: 10
-          type: string
-          description: Effective date of the transaction. The format is MM/DD/YYYY
-            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
-          example: 10/01/2022
-    InquireAuthorizationDetailV1ResponseModel:
+    InquireAuthorizationDetailResponseModel:
       type: object
       properties:
         temporaryCreditLimit:
@@ -1006,9 +991,8 @@ components:
           type: object
           properties:
             collectionReason:
-              maximum: 99
               maxLength: 2
-              type: integer
+              type: string
               description: Reason that specifies why the account went into collections.
                 <br/>The values are:<br/>&nbsp; '01' - First payment default<br/>&nbsp;
                 '02' - Overlimit<br/>&nbsp; '03' - Excessive use<br/>&nbsp; '04' -
@@ -1041,9 +1025,8 @@ components:
             the associated transaction.
           example: APP17977700222011344330001112345678
         currentCycleDue:
-          maximum: 9
           maxLength: 1
-          type: integer
+          type: string
           description: Code that identifies the level of contractual delinquency.
             The contractual delinquency (also called the cycle due code), indicates
             the number of cycles for which payments are due. <br/>The values are:<br/>
@@ -1060,12 +1043,6 @@ components:
           type: string
           description: Total amount due for the account.
           example: $0.00
-        effectiveDate:
-          maxLength: 10
-          type: string
-          description: Effective date of the transaction. The format is MM/DD/YYYY
-            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
-          example: 10/01/2022
   securitySchemes:
     Authorization:
       type: http

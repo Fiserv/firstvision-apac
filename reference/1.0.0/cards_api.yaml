@@ -13,8 +13,8 @@ paths:
       tags:
       - Card Management
       summary: Update Token Status
-      description: This API is used to update the token status (Deactivate/Resume/Suspend)
-        for a given payment instrument Id.
+      description: This service is used to update the token status(Deactivate/Resume/Suspend)
+        of Card.
       operationId: UpdateVisaTokenStatus
       parameters:
       - name: Authorization
@@ -24,7 +24,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -89,11 +89,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateVisaTokenstatusV1ReqModel'
+              $ref: '#/components/schemas/UpdateVisaTokenstatusReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -105,15 +105,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateVisaTokenstatusV1ResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/UpdateVisaTokenstatusResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -122,8 +114,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -132,6 +124,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -154,8 +154,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -172,9 +172,8 @@ paths:
       tags:
       - Card Management
       summary: Inquire Spend Limits
-      description: This API is used to fetch the spending limits to control the card
-        usage. These limits are set to individual card level like maximum ATM, OTC,
-        Retail etc authorization amount and count.
+      description: This service is used to inquire the spending limits to control
+        the card usage. These limits are set at individual card level.
       operationId: InquireSpendLimit
       parameters:
       - name: Authorization
@@ -184,7 +183,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -246,16 +245,8 @@ paths:
           type: string
           example: '0009846801010434272'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -270,8 +261,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -286,12 +277,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireSpendLimitV1ResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -308,14 +301,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireSpendLimitResponseModel'
       security:
       - Authorization: [
           ]
@@ -325,8 +324,8 @@ paths:
       tags:
       - Card Management
       summary: Update Spend Limits
-      description: This API is used to update the spending limits to control the card
-        usage. These limits are updated at individual card level.
+      description: This service is used to update the spending limits to control the
+        card usage. These limits are set at individual card level.
       operationId: UpdateSpendLimit
       parameters:
       - name: Authorization
@@ -336,7 +335,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -401,19 +400,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateSpendLimitV1ReqModel'
+              $ref: '#/components/schemas/UpdateSpendLimitReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -428,22 +419,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateSpendLimitV1ResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -466,14 +459,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateSpendLimitResponseModel'
       security:
       - Authorization: [
           ]
@@ -484,8 +483,8 @@ paths:
       tags:
       - Card Management
       summary: Update Card Type
-      description: This API is used to update type of card for a given payment instrument
-        Id.
+      description: This service is used to update the type of cardholder between primary
+        and supplementary (Joint Cardholder).
       operationId: UpdateCardType
       parameters:
       - name: Authorization
@@ -495,7 +494,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -560,19 +559,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCardTypeV1ReqModel'
+              $ref: '#/components/schemas/UpdateCardTypeReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -587,8 +578,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -603,8 +594,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -616,23 +631,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateCardTypeV1ResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/UpdateCardTypeResponseModel'
       security:
       - Authorization: [
           ]
@@ -643,9 +642,8 @@ paths:
       tags:
       - Card Management
       summary: Inquire Card Preference
-      description: This API is used to fetch various details like cardholder type,
-        issue/reissue delivery options, address, Dynamic CVV2 method and address Id
-        etc for a given payment instrument Id.
+      description: This service is used to inquire the type of cardholder, issue/reissue
+        flag, DCVV2 flag method, address id and address detail of customer.
       operationId: InquireCardPreference
       parameters:
       - name: Authorization
@@ -655,7 +653,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -717,30 +715,6 @@ paths:
           type: string
           example: '0009846801010273613'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -749,8 +723,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCardPreferenceResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -773,20 +777,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireCardPreferenceV1ResponseModel'
       security:
       - Authorization: [
           ]
@@ -796,9 +794,8 @@ paths:
       tags:
       - Card Management
       summary: Update Card Preference
-      description: This API is used to update cardholder type, issue/reissue delivery
-        options, card address detail and Dynamic CVV2 method, address Id etc. for
-        a given payment instrument Id.
+      description: This service is used to update the type of cardholder, issue/reissue
+        flag, DCVV2 flag method and address detail of cardholder.
       operationId: UpdateCardPreference
       parameters:
       - name: Authorization
@@ -808,7 +805,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -873,25 +870,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCardPreferenceV1ReqModel'
+              $ref: '#/components/schemas/UpdateCardPreferenceReqModel'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCardPreferenceV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -906,8 +889,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -916,6 +899,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -938,14 +929,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCardPreferenceResponseModel'
       security:
       - Authorization: [
           ]
@@ -956,10 +953,8 @@ paths:
       tags:
       - Card Management
       summary: Change PIN
-      description: This API is used to update the PIN Block with the prerequisite
-        that the existing PIN block must be supplied and validated before the new
-        PIN block is replaced. This API could be triggered from the ATM or other digital
-        channels such as online (WEB) or mobile banking.
+      description: The PIN Block Change Service is used to update the PIN Block with
+        the prerequisite that the existing PIN block must be supplied and validated.
       operationId: ChangePIN
       parameters:
       - name: Authorization
@@ -969,7 +964,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -1034,19 +1029,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ChangePINV1ReqModel'
+              $ref: '#/components/schemas/ChangePINReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -1061,8 +1048,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1077,12 +1064,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ChangePINV1ResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -1099,14 +1088,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePINResponseModel'
       security:
       - Authorization: [
           ]
@@ -1117,8 +1112,8 @@ paths:
       tags:
       - Card Management
       summary: Issue Reissue Delivery Option
-      description: This API is used to update the issue and re-issue delivery options
-        for a given Payment instrument Id.
+      description: This service is used to update the issue and re-issue delivery
+        options.
       operationId: UpdateIssueReissueDeliveryOption
       parameters:
       - name: Authorization
@@ -1128,7 +1123,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -1193,39 +1188,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionV1ReqModel'
+              $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionV1ResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -1234,8 +1199,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -1258,14 +1247,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateIssueReissueDeliveryOptionResponseModel'
       security:
       - Authorization: [
           ]
@@ -1276,9 +1271,8 @@ paths:
       tags:
       - Card Management
       summary: Update Card Controls
-      description: This API is used to update the card control restriction flags for
-        a given payment instrument Id and provide details whether the ATM, POS, ECOM
-        etc transitions are enabled or disabled.
+      description: This service updates the card controls for a given Payment instrument
+        identification.
       operationId: UpdateCardControls
       parameters:
       - name: Authorization
@@ -1288,7 +1282,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -1353,25 +1347,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCardControlV1ReqModel'
+              $ref: '#/components/schemas/UpdateCardControlReqModel'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCardControlV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -1386,8 +1366,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1396,6 +1376,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -1418,8 +1406,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCardControlResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -1436,8 +1430,9 @@ paths:
       tags:
       - Card Management
       summary: Block Unblock Card
-      description: This API is used to block or unblock the given payment instrument
-        Id.
+      description: This service is used to update the block codes and the reason codes
+        for the block codes for cards and accounts. Same service can be used to unblock
+        the card by passing spaces in the block-code field of the request body.
       operationId: BlockUnblockCard
       parameters:
       - name: Authorization
@@ -1447,7 +1442,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -1512,11 +1507,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BlockUnblockCardV1ReqModel'
+              $ref: '#/components/schemas/BlockUnblockCardReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -1528,15 +1523,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BlockUnblockCardV1ResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/BlockUnblockCardResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -1545,8 +1532,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1555,6 +1542,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -1577,8 +1572,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -1595,9 +1590,8 @@ paths:
       tags:
       - Card Management
       summary: Update Cards' Address ID
-      description: This API is used to update address ID field at card level for given
-        payment instrument Id upon successful validation of customer ID, if given
-        in the request.
+      description: This service is used to update address ID field at card level upon
+        verifying the customer ID field given in request.
       operationId: UpdateCardAddressId
       parameters:
       - name: Authorization
@@ -1607,7 +1601,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -1680,19 +1674,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCardAddressIdV1ReqModel'
+              $ref: '#/components/schemas/UpdateCardAddressIdReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -1704,7 +1690,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateCardAddressIdV1ResponseModel'
+                $ref: '#/components/schemas/UpdateCardAddressIdResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -1713,8 +1699,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1723,6 +1709,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -1745,8 +1739,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -1763,8 +1757,8 @@ paths:
       tags:
       - Card Management
       summary: Activate Card
-      description: This API is used to activate the card after successful verification
-        of the cardholder for a given payment instrument Id.
+      description: This service is used to activate the card after successful verification
+        of the cardholder.
       operationId: ActivateCard
       parameters:
       - name: Authorization
@@ -1774,7 +1768,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -1839,19 +1833,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ActivateCardV1ReqModel'
+              $ref: '#/components/schemas/ActivateCardReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+                $ref: '#/components/schemas/ActivateCardResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -1866,14 +1858,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ActivateCardV1ResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -1882,6 +1868,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -1904,8 +1898,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -1922,8 +1916,8 @@ paths:
       tags:
       - Card Management
       summary: Update Card Action
-      description: This API is used to update the card action for a given payment
-        instrument Id.
+      description: The Card Action Update service enables a user to update the card
+        action field on the embosser entity.
       operationId: UpdateCardAction
       parameters:
       - name: Authorization
@@ -1933,7 +1927,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -1998,19 +1992,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCardActionV1ReqModel'
+              $ref: '#/components/schemas/UpdateCardActionReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -2025,8 +2011,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -2038,15 +2040,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateCardActionV1ResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/UpdateCardActionResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -2063,8 +2057,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -2081,10 +2075,7 @@ paths:
       tags:
       - Card Management
       summary: Generate dynamic CVV2
-      description: This API is used to generate encrypted dynamic CVV2 and provide
-        other additional details like encrypted payment card number, encrypted expiry
-        date, embossed name 1, embossed name 2, dynamic CVV2 expire date and time
-        for a given payment instrument Id.
+      description: This service is to generate the dynamic CVV2.
       operationId: GenerateDynamicCVV2
       parameters:
       - name: Authorization
@@ -2094,7 +2085,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -2159,33 +2150,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GenerateDynamicCVV2V1ReqModel'
+              $ref: '#/components/schemas/GenerateDynamicCVV2ReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -2199,9 +2166,33 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenerateDynamicCVV2V1ResponseModel'
+                $ref: '#/components/schemas/GenerateDynamicCVV2ResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -2224,8 +2215,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -2242,8 +2233,9 @@ paths:
       tags:
       - Card Management
       summary: Validate CVV2
-      description: This API is used to validate the CVV2 for a given payment instrument
-        Id along with expiry date.
+      description: The Card Secure Code Validation service is used to validate the
+        CVV2 and optionally the expiry date of a given card. This service is typically
+        called before the card activation or PIN reset service to validate the cardholder.
       operationId: CardSecureCode
       parameters:
       - name: Authorization
@@ -2253,7 +2245,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -2299,39 +2291,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CardSecureCodeV1ReqModel'
+              $ref: '#/components/schemas/CardSecureCodeReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardSecureCodeV1ResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -2340,8 +2302,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -2364,6 +2350,121 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardSecureCodeResponseModel'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Validate CVV2
+      x-group-name: Card Management
+  /v1/cards/pushProvisioning:
+    post:
+      tags:
+      - Card Management
+      summary: Push Provisioning
+      description: This service is used for push provisioning of Visa Card.
+      operationId: PushProvisioning
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PushProvisioningReqModel'
+        required: true
+      responses:
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
           content:
@@ -2372,20 +2473,48 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushProvisioningResponseModel'
       security:
       - Authorization: [
           ]
-      x-proxy-name: Validate CVV2
+      x-proxy-name: Push Provisioning
       x-group-name: Card Management
   /v1/cards/lostStolenCardTransfer:
     post:
       tags:
       - Card Management
       summary: Transfer Lost Stolen Card
-      description: This API is used to block the lost or stolen card and request for
-        the replacement card. Based on the input field values the corresponding actions
-        will be taken like creating new card number and updating the existing card
-        with block codes etc.
+      description: This Lost or Stolen service is used to block the lost card and
+        request for the replacement card.
       operationId: TransferLostStolenCard
       parameters:
       - name: Authorization
@@ -2395,7 +2524,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -2441,19 +2570,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TransferLostStolenCardV1ReqModel'
+              $ref: '#/components/schemas/TransferLostStolenCardReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -2468,22 +2589,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TransferLostStolenCardV1ResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '201':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferLostStolenCardResponseModel'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -2506,8 +2635,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -2525,7 +2654,7 @@ paths:
       - Card Management
       summary: GooglePay – SamsungPay VTS Push Provisioning
       description: This service is used for push provisioning of Visa Card when Gpay
-        or Samsung Pay wallet is used.
+        or Sumsang Pay wallet is used.
       operationId: GooglePaySamsungPayPushProvisioning
       parameters:
       - name: Authorization
@@ -2535,7 +2664,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -2581,19 +2710,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GooglePaySamsungPayPushProvisioningV1ReqModel'
+              $ref: '#/components/schemas/GooglePaySamsungPayPushProvisioningReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -2608,8 +2729,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -2630,6 +2751,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GooglePayEncResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -2646,8 +2775,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -2664,9 +2793,7 @@ paths:
       tags:
       - Card Management
       summary: Board Card
-      description: This API allows to create a new card for an existing account. This
-        API can be invoked with required fields and new card can be generated in real
-        time mode.
+      description: This service is used to board the new card.
       operationId: BoardCard
       parameters:
       - name: Authorization
@@ -2676,7 +2803,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -2722,39 +2849,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BoardCardV1ReqModel'
+              $ref: '#/components/schemas/BoardCardReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '201':
           description: " \nSuccess"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BoardCardV1ResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/BoardCardResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -2763,8 +2866,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -2787,8 +2914,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -2800,154 +2927,13 @@ paths:
           ]
       x-proxy-name: Board Card
       x-group-name: Card Management
-  /v1/cards/applePayPushProvisioning:
-    post:
-      tags:
-      - Card Management
-      summary: ApplePay Push Provisioning
-      description: This API is used for push provisioning of Visa Card. Card push
-        provisioning refers to the creation of a secure digital copy of a preexisting
-        card (either physical or virtual). The copy is then added to a Apple Pay wallet.
-      operationId: ApplePayPushProvisioning
-      parameters:
-      - name: Authorization
-        in: header
-        description: Token is used in token-based authentication to allow an application
-          to access an API.
-        required: true
-        schema:
-          type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
-      - name: x-client-correlation-id
-        in: header
-        description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-trace-id
-        in: header
-        description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - name: x-client-source-channel
-        in: header
-        description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-user-id
-        in: header
-        description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ApplePayPushProvisioningV1ReqModel'
-        required: true
-      responses:
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplePayPushProvisioningV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      security:
-      - Authorization: [
-          ]
-      x-proxy-name: ApplePay Push Provisioning
-      x-group-name: Card Management
   /v1/cards/{paymentInstrumentId}/spendStatistics:
     get:
       tags:
       - Card Management
       summary: Inquire Card Spend Statistics
-      description: This API is used to fetch the spending limit statistics to control
-        the card usage. These limits are set at individual card level.
+      description: This service is used to fetch spend limit statistics for a given
+        payment instrument identification.
       operationId: InquireCardSpendStatistics
       parameters:
       - name: Authorization
@@ -2957,7 +2943,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -3019,22 +3005,8 @@ paths:
           type: string
           example: '0009544410000000047'
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireCardSpendStatisticV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -3049,8 +3021,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -3059,6 +3031,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -3081,14 +3061,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCardSpendStatisticResponseModel'
       security:
       - Authorization: [
           ]
@@ -3099,9 +3085,7 @@ paths:
       tags:
       - Card Management
       summary: List Visa Token
-      description: This API is used to fetch token details like VTS token number,
-        card wallet account id and token requestor/reference id associated with given
-        payment instrument Id.
+      description: This service is used to inquire token detail.
       operationId: ListVisaToken
       parameters:
       - name: Authorization
@@ -3111,7 +3095,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -3173,16 +3157,8 @@ paths:
           type: string
           example: '0009545880002462305'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -3197,14 +3173,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListVisaTokenV1ResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -3213,6 +3183,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -3235,14 +3213,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVisaTokenResponseModel'
       security:
       - Authorization: [
           ]
@@ -3253,10 +3237,7 @@ paths:
       tags:
       - Card Management
       summary: Inquire dynamic CVV2
-      description: This API is used to fetch encrypted dynamic CVV2 provide other
-        additional details like encrypted payment card number, encrypted expiry date,
-        embossed name 1, embossed name 2, dynamic CVV2 expire date and time for a
-        given payment instrument Id.
+      description: This service is to inquire the dynamic CVV2.
       operationId: InquireDynamicCvv2
       parameters:
       - name: Authorization
@@ -3266,7 +3247,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -3328,22 +3309,20 @@ paths:
           type: string
           example: '0009846801010065787'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/InquireDynamicCvv2ResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -3352,8 +3331,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -3368,12 +3347,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireDynamicCvv2V1ResponseModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -3390,8 +3371,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -3408,9 +3389,8 @@ paths:
       tags:
       - Card Management
       summary: Inquire Card
-      description: This API is used to fetch detailed information for a given payment
-        instrument Id. This API response provides information about card demographic
-        and processing parameters.
+      description: This service is used to fetch card details for a given payment
+        instrument identification.
       operationId: InquireCard
       parameters:
       - name: Authorization
@@ -3420,7 +3400,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -3482,16 +3462,8 @@ paths:
           type: string
           example: '0009544410000000047'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -3503,7 +3475,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireCardV1ResponseModel'
+                $ref: '#/components/schemas/InquireCardResponseModel'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -3512,8 +3484,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -3522,6 +3494,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -3544,8 +3524,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -3562,9 +3542,8 @@ paths:
       tags:
       - Card Management
       summary: Inquire Card Controls
-      description: This API is used to fetch the card control restriction flags for
-        a given payment instrument Id and provide details whether the ATM, POS, ECOM
-        etc transitions are enabled or disabled.
+      description: This service fetches the card controls for a given payment instrument
+        identification.
       operationId: InquireCardControls
       parameters:
       - name: Authorization
@@ -3574,7 +3553,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -3636,16 +3615,8 @@ paths:
           type: string
           example: '0009846801010434751'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -3660,22 +3631,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireCardControlV1ResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -3698,14 +3671,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireCardControlResponseModel'
       security:
       - Authorization: [
           ]
@@ -3716,8 +3695,8 @@ paths:
       tags:
       - Card Management
       summary: Fetch Clear PAN from Token PAN
-      description: This API is used to fetch the encrypted payment card number for
-        a given payment instrument Id.
+      description: This service is used to fetch the encrypted clear pan for the requested
+        First Vision's Token PAN.
       operationId: FetchClearPANFromTokenPAN
       parameters:
       - name: Authorization
@@ -3727,7 +3706,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -3789,16 +3768,14 @@ paths:
           type: string
           example: '0009846801010273605'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '200':
+          description: " \nSuccess"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+                $ref: '#/components/schemas/FetchClearPANFromTokenPANResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -3813,8 +3790,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -3823,6 +3800,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -3845,20 +3830,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FetchClearPANFromTokenPANV1ResponseModel'
       security:
       - Authorization: [
           ]
@@ -3869,8 +3848,8 @@ paths:
       tags:
       - Card Management
       summary: Fetch Token PAN from Clear PAN
-      description: This API is used to fetch the payment instrument Id for a given
-        payment card number in encrypted format.
+      description: This service is used to fetch the token PAN for the requested First
+        Vision's clear PAN given in encrypted format.
       operationId: FetchTokenPANFromClearPAN
       parameters:
       - name: Authorization
@@ -3880,7 +3859,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -3942,16 +3921,8 @@ paths:
           type: string
           example: 217E8A00536C7A101B055563FBF49C9A
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -3966,8 +3937,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -3976,6 +3947,14 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -3998,8 +3977,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -4011,7 +3990,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FetchTokenPANFromClearPANV1ResponseModel'
+                $ref: '#/components/schemas/FetchTokenPANFromClearPANResponseModel'
       security:
       - Authorization: [
           ]
@@ -4022,8 +4001,8 @@ paths:
       tags:
       - Card Management
       summary: Fetch customer identification from Clear PAN
-      description: This API is used to fetch customer Id for a given payment card
-        number in encrypted format.
+      description: This service is used to fetch customer identification for the requested
+        First Vision's clear PAN given in encrypted format.
       operationId: FetchCustomerIDFromClearPAN
       parameters:
       - name: Authorization
@@ -4033,7 +4012,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -4095,36 +4074,12 @@ paths:
           type: string
           example: 217E8A00536C7A101B055563FBF49C9A
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FetchCustomerIDFromClearPANV1ResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+                $ref: '#/components/schemas/FetchCustomerIDFromClearPANResponseModel'
         '403':
           description: " \nThe request resource is forbidden for user"
           content:
@@ -4133,8 +4088,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -4157,8 +4136,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -4172,7 +4151,7 @@ paths:
       x-group-name: Card Management
 components:
   schemas:
-    UpdateVisaTokenstatusV1ReqModel:
+    UpdateVisaTokenstatusReqModel:
       required:
       - status
       - vtsTokenNumber
@@ -4219,7 +4198,7 @@ components:
           type: array
           items:
             type: string
-    UpdateVisaTokenstatusV1ResponseModel:
+    UpdateVisaTokenstatusResponseModel:
       type: object
       properties:
         businessUnit:
@@ -4242,7 +4221,7 @@ components:
             <br/>&nbsp; ''1'' - Deactivate<br/>&nbsp; ''2'' - Suspend<br/>&nbsp; ''3''
             - Resume'
           example: '1'
-    UpdateSpendLimitV1ReqModel:
+    UpdateSpendLimitReqModel:
       type: object
       properties:
         spendLimitControls:
@@ -4324,7 +4303,7 @@ components:
                 allowed for this Embosser entity for the frequency defined in the
                 FREQ field.
               example: '0000'
-    UpdateSpendLimitV1ResponseModel:
+    UpdateSpendLimitResponseModel:
       type: object
       properties:
         businessUnit:
@@ -4414,7 +4393,7 @@ components:
                 allowed for this Embosser entity for the frequency defined in the
                 FREQ field.
               example: '0000'
-    UpdateCardTypeV1ReqModel:
+    UpdateCardTypeReqModel:
       type: object
       properties:
         cardholderType:
@@ -4427,7 +4406,7 @@ components:
           enum:
           - '0'
           - '1'
-    UpdateCardTypeV1ResponseModel:
+    UpdateCardTypeResponseModel:
       type: object
       properties:
         businessUnit:
@@ -4450,7 +4429,7 @@ components:
             or an additional cardholder associated with the account. <br/>The values
             are:<br/>&nbsp; '0' - Additional cardholder<br/>&nbsp; '1' - Primary cardholder
           example: '1'
-    UpdateCardPreferenceV1ReqModel:
+    UpdateCardPreferenceReqModel:
       type: object
       properties:
         cardholderType:
@@ -4530,7 +4509,7 @@ components:
               description: 'Address identifier to determine the type of address. Ex:
                 Home, Office, etc.'
               example: Home
-    UpdateCardPreferenceV1ResponseModel:
+    UpdateCardPreferenceResponseModel:
       type: object
       properties:
         businessUnit:
@@ -4613,9 +4592,9 @@ components:
               description: 'Address identifier to determine the type of address. Ex:
                 Home, Office, etc.'
               example: Home
-    ChangePINV1ReqModel:
+    ChangePINReqModel:
       required:
-      - requestedPinBlock
+      - pinOffset
       type: object
       properties:
         requestedPinBlock:
@@ -4640,7 +4619,7 @@ components:
         pinChannel:
           maxLength: 1
           type: string
-          description: Code that indicates the source for reporting purposes. <br/>The
+          description: Code that indicates the source for reporting purposes.<br/>The
             values are:<br/>&nbsp; 'A' = ATM (Automated Teller Machine) <br/>&nbsp;
             'I' = IVR (Interactive Voice Response) <br/>&nbsp; 'W' = WEB
           example: A
@@ -4648,60 +4627,38 @@ components:
           - A
           - I
           - W
-          - N
         keyAssociation:
           maxLength: 3
           type: string
           description: The value will be used to read the keys stored in KMS files,from
             input we always receive spaces.
           example: ' '
-        pinSetOrResetActionCode:
-          maxLength: 4
-          type: string
-          description: This field is used to provide action code for PIN set or reset.
-          example: PNRS
-        pinSetOrResetMemo:
-          maxLength: 60
-          type: string
-          description: This field is used to provide memo description for PIN set
-            or reset.
-          example: Set PIN
-        pinTryCounterResetActionCode:
-          maxLength: 4
-          type: string
-          description: This field is used to provide action code for PIN try counter
-            reset.
-          example: PNRT
-        pinTryCounterResetMemo:
-          maxLength: 60
-          type: string
-          description: This field is used to provide memo description for PIN try
-            counter reset action code.
-          example: PIN try counter reset
-    ChangePINV1ResponseModel:
+    ChangePINResponseModel:
       type: object
-    UpdateIssueReissueDeliveryOptionV1ReqModel:
+    UpdateIssueReissueDeliveryOptionReqModel:
       type: object
       properties:
         issueDeliveryOption:
-          maximum: 999
           maxLength: 3
-          type: integer
+          type: string
           description: Delivery option for new cards. <br/>The values are:<br/>&nbsp;
-            '0' - Regular mail (Default)<br/>&nbsp; '1' - First-class mail<br/>&nbsp;
-            '2' - Registered mail<br/>&nbsp; '3' - Internal delivery mail<br/>&nbsp;
-            '4–999' - User defined
+            '000' - Regular mail (Default)<br/>&nbsp; '001' - First-class mail<br/>&nbsp;
+            '002' - Registered mail<br/>&nbsp; '003' - Internal delivery mail<br/>&nbsp;
+            '004–999' - User defined
           example: '1'
+          enum:
+          - 0-999
         reissueDeliveryOption:
-          maximum: 999
           maxLength: 3
-          type: integer
+          type: string
           description: Delivery option for reissued cards (all card actions except
-            1). <br/>The values are:<br/>&nbsp; '0' - Regular mail (Default)<br/>&nbsp;
-            '1' - First-class mail<br/>&nbsp; '2' - Registered mail<br/>&nbsp; '3'
-            - Internal delivery mail<br/>&nbsp; '4–999' - User defined
+            1). <br/>The values are:<br/>&nbsp; '000' - Regular mail (Default)<br/>&nbsp;
+            '001' - First-class mail<br/>&nbsp; '002' - Registered mail<br/>&nbsp;
+            '003' - Internal delivery mail<br/>&nbsp; '004–999' - User defined
           example: '5'
-    UpdateIssueReissueDeliveryOptionV1ResponseModel:
+          enum:
+          - 0-999
+    UpdateIssueReissueDeliveryOptionResponseModel:
       type: object
       properties:
         businessUnit:
@@ -4718,24 +4675,22 @@ components:
             Card Number.
           example: '0009544410000000047'
         issueDeliveryOption:
-          maximum: 999
           maxLength: 3
-          type: integer
+          type: string
           description: Delivery option for new cards. <br/>The values are:<br/>&nbsp;
-            '0' - Regular mail (Default)<br/>&nbsp; '1' - First-class mail<br/>&nbsp;
-            '2' - Registered mail<br/>&nbsp; '3' - Internal delivery mail<br/>&nbsp;
-            '4–999' - User defined
+            '000' - Regular mail (Default)<br/>&nbsp; '001' - First-class mail<br/>&nbsp;
+            '002' - Registered mail<br/>&nbsp; '003' - Internal delivery mail<br/>&nbsp;
+            '004–999' - User defined
           example: '1'
         reissueDeliveryOption:
-          maximum: 999
           maxLength: 3
-          type: integer
+          type: string
           description: Delivery option for reissued cards (all card actions except
-            1). <br/>The values are:<br/>&nbsp; '0' - Regular mail (Default)<br/>&nbsp;
-            '1' - First-class mail<br/>&nbsp; '2' - Registered mail<br/>&nbsp; '3'
-            - Internal delivery mail<br/>&nbsp; '4–999' - User defined
+            1). <br/>The values are:<br/>&nbsp; '000' - Regular mail (Default)<br/>&nbsp;
+            '001' - First-class mail<br/>&nbsp; '002' - Registered mail<br/>&nbsp;
+            '003' - Internal delivery mail<br/>&nbsp; '004–999' - User defined
           example: '5'
-    UpdateCardControlV1ReqModel:
+    UpdateCardControlReqModel:
       type: object
       properties:
         isPosEnabled:
@@ -4809,7 +4764,7 @@ components:
           enum:
           - Y
           - N
-    UpdateCardControlV1ResponseModel:
+    UpdateCardControlResponseModel:
       type: object
       properties:
         businessUnit:
@@ -4875,7 +4830,7 @@ components:
             a cardholder. <br/>The values are:<br/> &nbsp; 'Y' - MOTO transactions
             Allowed <br/> &nbsp; 'N' - MOTO transactions not Allowed
           example: Y
-    BlockUnblockCardV1ReqModel:
+    BlockUnblockCardReqModel:
       type: object
       properties:
         blockCode:
@@ -4933,7 +4888,7 @@ components:
           - '6'
           - '8'
           - '9'
-    BlockUnblockCardV1ResponseModel:
+    BlockUnblockCardResponseModel:
       type: object
       properties:
         businessUnit:
@@ -4972,7 +4927,7 @@ components:
           description: The date on which card is blocked. The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 01/03/2020
-    UpdateCardAddressIdV1ReqModel:
+    UpdateCardAddressIdReqModel:
       type: object
       properties:
         addressId:
@@ -4981,13 +4936,12 @@ components:
           description: 'Address identifier to determine the type of address. Ex: Home,
             Office, etc.'
           example: HOME
-    UpdateCardAddressIdV1ResponseModel:
+    UpdateCardAddressIdResponseModel:
       type: object
       properties:
         businessUnit:
-          maximum: 999
           maxLength: 3
-          type: integer
+          type: string
           description: Unique identification number associated with the organization.
             Valid values from 1-998.
           example: '600'
@@ -5008,7 +4962,7 @@ components:
           type: string
           description: Unique identification number assigned to a customer.
           example: '0000000001000000032'
-    ActivateCardV1ReqModel:
+    ActivateCardReqModel:
       type: object
       properties:
         currentCardNeedActivation:
@@ -5031,7 +4985,7 @@ components:
           example: Y
           enum:
           - Y
-    ActivateCardV1ResponseModel:
+    ActivateCardResponseModel:
       type: object
       properties:
         businessUnit:
@@ -5069,7 +5023,7 @@ components:
             The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on
             System Control.
           example: 03/01/2020
-    UpdateCardActionV1ReqModel:
+    UpdateCardActionReqModel:
       type: object
       properties:
         cardAction:
@@ -5098,7 +5052,7 @@ components:
           - '7'
           - '8'
           - '9'
-    UpdateCardActionV1ResponseModel:
+    UpdateCardActionResponseModel:
       type: object
       properties:
         businessUnit:
@@ -5145,7 +5099,7 @@ components:
           description: Date on which the Credit Plan was added.The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: ' '
-    GenerateDynamicCVV2V1ReqModel:
+    GenerateDynamicCVV2ReqModel:
       type: object
       properties:
         keyAssociation:
@@ -5154,7 +5108,7 @@ components:
           description: Association used to reference keys that are shared with an
             external association such as a card bureau, Visa, or MasterCard.
           example: NUI
-    GenerateDynamicCVV2V1ResponseModel:
+    GenerateDynamicCVV2ResponseModel:
       type: object
       properties:
         encryptedPaymentCardNumber:
@@ -5189,9 +5143,10 @@ components:
           type: string
           description: Dynamic CVV2 expiry date and time.
           example: 27/07/2022 16:00:23
-    CardSecureCodeV1ReqModel:
+    CardSecureCodeReqModel:
       required:
       - CVV2
+      - businessUnit
       - expiryDate
       - paymentInstrumentId
       type: object
@@ -5220,24 +5175,86 @@ components:
           description: Valid card expire date should be provided which is of 4 character
             with MMYY format.
           example: '1123'
-    CardSecureCodeV1ResponseModel:
+    CardSecureCodeResponseModel:
       type: object
-    TransferLostStolenCardV1ReqModel:
+    PushProvisioningReqModel:
+      required:
+      - algorithm
+      - identifier
+      - keysScheme
+      - paymentInstrumentId
+      type: object
+      properties:
+        identifier:
+          maxLength: 5
+          type: string
+          description: This field identifies the type of authentication code that
+            is present. For the purposes of the mobile banking provisioning authentication
+            data.
+          example: MBPAD
+        version:
+          maxLength: 1
+          type: string
+          description: This field identify the which version used.
+          example: '1'
+        keysScheme:
+          maxLength: 2
+          type: string
+          description: This field identify the key management scheme used to protect
+            the encrypted information component.
+          example: FK
+        ephemeralKey:
+          maxLength: 2
+          type: string
+          description: A cryptographic key that is generated for each execution of
+            a key-establishment process.
+          example: ''
+        paymentInstrumentId:
+          maxLength: 19
+          type: string
+          description: Unique alternate identification number associated with Payment
+            Card Number.
+          example: '0009644806050000069'
+        businessUnit:
+          maxLength: 3
+          type: string
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '100'
+        algorithm:
+          maxLength: 4
+          type: string
+          description: This field identify the encryption algorithm and key strength
+            used to encipher the encryptedinformation component."
+          example: TDEA
+        nonce:
+          maxLength: 32
+          type: string
+          description: A one-time-use nonce provided by Apple.
+          example: '123456'
+    PushProvisioningResponseModel:
+      type: object
+      properties:
+        provisionAuthantication:
+          maxLength: 200
+          type: string
+          description: Provision authantication
+          example: MBPAD-1-FK-APPLE-  -TDEA-59CBFFAE1E77B0DAE976CCABFEDBAD0EB778DC80163E09002DA60AF75FE04BFACD3070EE3FD8C6BCD2DE52D2D69D432B732D73AF95A32002D22C9F6257B7B
+        provisionActivation:
+          maxLength: 200
+          type: string
+          description: Provision activation
+          example: MBPAC-1-FK-APPLE-  -TDEA-B0FAA81964D13652F1887E6ADCDEB2AB9CC237BA183DBAC47777692592551A3F57DF1C91E57909D5
+    TransferLostStolenCardReqModel:
       required:
       - accountId
       - blockCode
+      - businessUnit
       - cardReplacementIndicator
       - paymentInstrumentId
       - productId
       type: object
       properties:
-        businessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number associated with the organization.
-            Valid values from 1-998.
-          example: '600'
         paymentInstrumentId:
           maxLength: 19
           type: string
@@ -5256,6 +5273,35 @@ components:
           description: Unique identification number of the product associated with
             the organization. Valid values from 1-998.
           example: '1'
+        startDate:
+          maxLength: 10
+          type: string
+          description: The date when the service was called. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending DATE FORMAT on System Control.
+          example: '0'
+        transferToAccountId:
+          maxLength: 19
+          type: string
+          description: Number of the account to which you want to transfer the card.
+            You can enter a specific account identification or enter a slash (/) if
+            the auto-generation functionality is active for account.
+          example: ' '
+        transferToCustomerId:
+          maxLength: 19
+          type: string
+          description: Number that identifies the Customer Name/Address entity associated
+            with the transfer-to account If you are transferring the card to an existing
+            account do not make an entry in the CUSTOMER field CMS uses the customer
+            id associated with the existing account.
+          example: ' '
+        effectiveDate:
+          maxLength: 10
+          type: string
+          description: Date that the fraud card transfer is effective The value must
+            be a date less than or equal to today’s dateThe default value is today’s
+            date. If you enter a future date The system will abend. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: '0'
         cardReplacementIndicator:
           maxLength: 1
           type: string
@@ -5299,35 +5345,13 @@ components:
           - X
           - Y
           - Z
-        startDate:
-          maxLength: 10
-          type: string
-          description: The date when the service was called. The format is MM/DD/YYYY
-            or DD/MM/YYYY depending DATE FORMAT on System Control.
-          example: 00/00/0000
-        transferToAccountId:
-          maxLength: 19
-          type: string
-          description: Number of the account to which you want to transfer the card.
-            You can enter a specific account identification or enter a slash (/) if
-            the auto-generation functionality is active for account.
-          example: ' '
-        transferToCustomerId:
-          maxLength: 19
-          type: string
-          description: Number that identifies the Customer Name/Address entity associated
-            with the transfer-to account If you are transferring the card to an existing
-            account do not make an entry in the CUSTOMER field CMS uses the customer
-            id associated with the existing account.
-          example: ' '
-        effectiveDate:
-          maxLength: 10
-          type: string
-          description: Date that the fraud card transfer is effective The value must
-            be a date less than or equal to today’s dateThe default value is today’s
-            date. If you enter a future date The system will abend. The format is
-            MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
-          example: 00/00/0000
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
         processType:
           maxLength: 1
           type: string
@@ -5340,16 +5364,7 @@ components:
           enum:
           - '0'
           - '1'
-        pinTransferIndicator:
-          maxLength: 1
-          type: string
-          description: This flag drives PIN transfer functionality. <br/>The values
-            are:<br/>&nbsp; 'N' - Do not transfer PIN <br/>&nbsp; 'Y' - Transfer PIN
-          example: N
-          enum:
-          - N
-          - Y
-    TransferLostStolenCardV1ResponseModel:
+    TransferLostStolenCardResponseModel:
       type: object
       properties:
         maskedPaymentCardNumber:
@@ -5380,7 +5395,7 @@ components:
           description: Date that the fraud card transfer is effective. The format
             is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 19/08/2021
-    GooglePaySamsungPayPushProvisioningV1ReqModel:
+    GooglePaySamsungPayPushProvisioningReqModel:
       required:
       - clientAppID
       - clientDeviceID
@@ -5481,7 +5496,7 @@ components:
             of card issued to customer.<br/>&nbsp; • year: Expiry Year of card issued
             to customer.'
           example: eyJraWQiOiJBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWkFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXIiwiYWxnIjoiQTI1NkdDTUtXIiwiZW5jIjoiQTI1NkdDTSIsInR5cCI6IkpPU0UiLCJjaGFubmVsU2VjdXJpdHlDb250ZXh0IjoiU0hBUkVEX1NFQ1JFVCIsImlhdCI6IjE2NzUxNDk0MDAiLCJpdiI6IndrdnctekVXMUFvLXc1X0ciLCJ0YWciOiJpVUxLNlR4LUdhWTJ5ekUwa2Z2cHRRIn0.OnviL_n18aFKDdW-X8cdZNLBdtsRvx2cz0A3mDVrHrg.YW1GMllYZ3VZM0o1Y0hSdkxuTndaV011U1haUVlYSmhiV1YwWlhKVGNHVmpRREZrTkRjMU5tRXo.uEqMOL_53OTA8KSbyXTZ1s7Cy8I76OVQvk1zxGS3HHDMOuq41CrQyuigW0NLEJPviNALFwCPj55nA8tEja66yf1m3Y9XFLmSsZ40P47aQJ5qxfYC88Y29cOWcdplBMRI4DcodneKCsbyhaWKIifbQpt2nct9qW6RUDFnQ9GVWO-sXmSrWzEhO7y7tcAJ4gWnbhbEG62yZEp_rzjN7lxvQoHOZU3_YpHpqLKfJrBQBp2_rO6Q4ceTrngi8Q0U5WmT5Gn1ddwWEzwGrCdy31w5jwpAVPJBzquHmSSnQlyRvFmpkpQxt5tRo7a5DwZc7WWMvyjWA4-1x-TevCI4A4qAyj9art4d1ktj3CWG-mmWm9wK8qTtLg5qqRfewiiJVJvNrmdkNonPEBqCg8RLxjz1dl-JrA88PH1chsw.rKf95hITqMpUOyvYEC-kIw
-    BoardCardV1ReqModel:
+    BoardCardReqModel:
       required:
       - accountId
       - businessUnit
@@ -5801,7 +5816,7 @@ components:
           description: Unique identification number assigned to a customer from external
             system.
           example: '000012672379'
-    BoardCardV1ResponseModel:
+    BoardCardResponseModel:
       type: object
       properties:
         businessUnit:
@@ -5849,75 +5864,7 @@ components:
             card restriction<br/>&nbsp; ''T'' - Permanent transfer out<br/>&nbsp;
             ''P'' - Purged'
           example: '0'
-    ApplePayPushProvisioningV1ReqModel:
-      required:
-      - algorithm
-      - identifier
-      - keysScheme
-      - paymentInstrumentId
-      type: object
-      properties:
-        identifier:
-          maxLength: 5
-          type: string
-          description: This field identifies the type of authentication code that
-            is present. For the purposes of the mobile banking provisioning authentication
-            data.
-          example: MBPAD
-        version:
-          maxLength: 1
-          type: string
-          description: This field identify the which version used.
-          example: '1'
-        keysScheme:
-          maxLength: 2
-          type: string
-          description: This field identify the key management scheme used to protect
-            the encrypted information component.
-          example: FK
-        ephemeralKey:
-          maxLength: 2
-          type: string
-          description: A cryptographic key that is generated for each execution of
-            a key-establishment process.
-          example: ''
-        paymentInstrumentId:
-          maxLength: 19
-          type: string
-          description: Unique alternate identification number associated with Payment
-            Card Number.
-          example: '0009644806050000069'
-        businessUnit:
-          maxLength: 3
-          type: string
-          description: Unique identification number associated with the organization.
-            Valid values from 1-998.
-          example: '100'
-        algorithm:
-          maxLength: 4
-          type: string
-          description: This field identify the encryption algorithm and key strength
-            used to encipher the encryptedinformation component."
-          example: TDEA
-        nonce:
-          maxLength: 32
-          type: string
-          description: A one-time-use nonce provided by Apple.
-          example: '123456'
-    ApplePayPushProvisioningV1ResponseModel:
-      type: object
-      properties:
-        provisionAuthantication:
-          maxLength: 200
-          type: string
-          description: Provision authentication
-          example: MBPAD-1-FK-APPLE-  -TDEA-59CBFFAE1E77B0DAE976CCABFEDBAD0EB778DC80163E09002DA60AF75FE04BFACD3070EE3FD8C6BCD2DE52D2D69D432B732D73AF95A32002D22C9F6257B7B
-        provisionActivation:
-          maxLength: 200
-          type: string
-          description: Provision activation
-          example: MBPAC-1-FK-APPLE-  -TDEA-B0FAA81964D13652F1887E6ADCDEB2AB9CC237BA183DBAC47777692592551A3F57DF1C91E57909D5
-    InquireCardSpendStatisticV1ResponseModel:
+    InquireCardSpendStatisticResponseModel:
       type: object
       properties:
         businessUnit:
@@ -6082,7 +6029,7 @@ components:
               description: Total number of Retail cash authorizations for this card
                 life-to-date.
               example: '12'
-    InquireSpendLimitV1ResponseModel:
+    InquireSpendLimitResponseModel:
       type: object
       properties:
         businessUnit:
@@ -6172,7 +6119,7 @@ components:
                 allowed for this Embosser entity for the frequency defined in the
                 FREQ field.
               example: '0000'
-    InquireCardPreferenceV1ResponseModel:
+    InquireCardPreferenceResponseModel:
       type: object
       properties:
         businessUnit:
@@ -6255,14 +6202,14 @@ components:
               description: 'Address identifier to determine the type of address. Ex:
                 Home, Office, etc.'
               example: Home
-    ListVisaTokenV1ResponseModel:
+    ListVisaTokenResponseModel:
       type: object
       properties:
         tokenList:
           type: array
           items:
-            $ref: '#/components/schemas/TokenList_ListVisaTokenV1ResponseModel'
-    TokenList_ListVisaTokenV1ResponseModel:
+            $ref: '#/components/schemas/TokenList_ListVisaTokenResponseModel'
+    TokenList_ListVisaTokenResponseModel:
       type: object
       properties:
         vtsTokenNumber:
@@ -6292,7 +6239,7 @@ components:
             <br/>&nbsp; ''0'' - Active<br/>&nbsp; ''1'' - Suspended<br/>&nbsp; ''2''
             - Deactivated<br/>&nbsp; ''3'' - Inactive'
           example: '0'
-    InquireDynamicCvv2V1ResponseModel:
+    InquireDynamicCvv2ResponseModel:
       type: object
       properties:
         encryptedPaymentCardNumber:
@@ -6327,7 +6274,7 @@ components:
           type: string
           description: Dynamic CVV2 expiry date and time.
           example: 27/07/2022 16:00:23
-    InquireCardV1ResponseModel:
+    InquireCardResponseModel:
       type: object
       properties:
         businessUnit:
@@ -6857,7 +6804,7 @@ components:
           description: Unique identification number that appears on the front of the
             card (PAN) in masked format.
           example: 000484680XXXXXX9405
-    InquireCardControlV1ResponseModel:
+    InquireCardControlResponseModel:
       type: object
       properties:
         businessUnit:
@@ -6923,7 +6870,7 @@ components:
             a cardholder. <br/>The values are:<br/> &nbsp; 'Y' - Cash Back transactions
             allowed <br/> &nbsp; 'N' - Cash Back transactions not allowed
           example: Y
-    FetchClearPANFromTokenPANV1ResponseModel:
+    FetchClearPANFromTokenPANResponseModel:
       type: object
       properties:
         encryptedPaymentCardNumber:
@@ -6932,7 +6879,7 @@ components:
           description: Unique identification number that appears on the front of the
             card (PAN) in encrypted format.
           example: 217E8A00536C7A101B055563FBF49C9A
-    FetchTokenPANFromClearPANV1ResponseModel:
+    FetchTokenPANFromClearPANResponseModel:
       type: object
       properties:
         paymentInstrumentId:
@@ -6941,7 +6888,7 @@ components:
           description: Unique alternate identification number associated with Payment
             Card Number.
           example: '0009846801010273605'
-    FetchCustomerIDFromClearPANV1ResponseModel:
+    FetchCustomerIDFromClearPANResponseModel:
       type: object
       properties:
         customerId:

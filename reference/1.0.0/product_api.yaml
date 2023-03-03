@@ -13,9 +13,8 @@ paths:
       tags:
       - Product Management
       summary: Update Product Card Controls
-      description: This API is used to update card control restriction flags and spend
-        limits for a given product Id. This API can be invoked with a business unit
-        and product Id.
+      description: This service is used to update the card controls at product level
+        for the given product.
       operationId: UpdateProductCardControls
       parameters:
       - name: Authorization
@@ -25,7 +24,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -91,11 +90,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateProductCardControlV1ReqModel'
+              $ref: '#/components/schemas/UpdateProductCardControlReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -110,22 +109,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateProductCardControlV1ResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateProductCardControlResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -140,24 +147,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -174,10 +173,8 @@ paths:
       tags:
       - Product Management
       summary: Inquire Service Charge Table
-      description: 'This API is used to fetch various service fee details available
-        in the system for a given business unit, product Id and table ID combination.
-        The parameters for a Service Charge/Fee table fall into five general categories:
-        penalty fees, periodic fees, service fees, user fees, and prepaid fees etc.'
+      description: This service provides various service fee details available in
+        the system for a given Org, Product and table ID combination.
       operationId: InquireServiceChargeTable
       parameters:
       - name: Authorization
@@ -187,7 +184,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -261,14 +258,8 @@ paths:
           type: integer
           example: '3'
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireServiceChargeTableV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -283,16 +274,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireServiceChargeTableResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -307,24 +312,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -341,11 +338,8 @@ paths:
       tags:
       - Product Management
       summary: Inquire Interest Table
-      description: This API is used to fetch details of Interest Table. An Interest
-        table identifies a set of parameters which include interest controls, interest
-        rounding detail, interest calculation options, interest rates detail, balances
-        for interest calculation and interest parameters for combined grace and cycle
-        options.
+      description: This service provides details of Interest Table. An Interest table
+        identifies a set of parameters that system uses to calculate interest.
       operationId: InquireInterestTable
       parameters:
       - name: Authorization
@@ -355,7 +349,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -428,8 +422,8 @@ paths:
           type: integer
           example: '0'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -444,8 +438,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireInterestTableResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -460,38 +484,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireInterestTableV1ResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -508,10 +502,7 @@ paths:
       tags:
       - Product Management
       summary: Inquire Product
-      description: This API is used to fetch details for a given product Id. Products
-        are primary control records that gives client option to enable or disable
-        various functionalities like Card activation, PIN mailer, Loan feature, Collections,
-        Loyalty, Falcon, Alerts etc.
+      description: This service provides the details for a given product.
       operationId: InquireProduct
       parameters:
       - name: Authorization
@@ -521,7 +512,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -584,8 +575,8 @@ paths:
           type: integer
           example: '1'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -600,8 +591,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireProductResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
@@ -616,38 +637,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireProductV1ResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -664,12 +655,7 @@ paths:
       tags:
       - Product Management
       summary: Inquire Plan Master
-      description: This API is used to fetch plan details for a given plan Id. Plan
-        Ids are control entities that will be defined at the business unit level.
-        Plans are defined to specify the various methods that are being offered to
-        the customer. It will contain information like description, interest table
-        override options, cancellation or expiry parameters based on account's performance
-        etc.
+      description: This service provides plan details for a given credit plan.
       operationId: InquirePlanMaster
       parameters:
       - name: Authorization
@@ -679,7 +665,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -743,8 +729,8 @@ paths:
           type: integer
           example: '10002'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -759,22 +745,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquirePlanMasterV1ResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquirePlanMasterResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -789,24 +783,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -820,7 +806,7 @@ paths:
       x-group-name: Product Management
 components:
   schemas:
-    UpdateProductCardControlV1ReqModel:
+    UpdateProductCardControlReqModel:
       type: object
       properties:
         cardControlFields:
@@ -1032,7 +1018,7 @@ components:
           type: array
           items:
             type: string
-    UpdateProductCardControlV1ResponseModel:
+    UpdateProductCardControlResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1204,7 +1190,7 @@ components:
                 in non-high-risk countries. Risk is designated by country code in
                 the Financial Authorization System (FAS).
               example: '15000.0'
-    InquireServiceChargeTableV1ResponseModel:
+    InquireServiceChargeTableResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1240,8 +1226,8 @@ components:
         serviceChargeDetails:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceChargeDetails_InquireServiceChargeTableV1ResponseModel'
-    ServiceChargeDetails_InquireServiceChargeTableV1ResponseModel:
+            $ref: '#/components/schemas/ServiceChargeDetails_InquireServiceChargeTableResponseModel'
+    ServiceChargeDetails_InquireServiceChargeTableResponseModel:
       type: object
       properties:
         initiatingTransactionCode:
@@ -1298,14 +1284,14 @@ components:
           description: Minimum amount in monetary units and subunits, of the service
             charge to assess. This amount must be less than the SINGLE FEE MAXIMUM
             AMOUNT.
-          example: $10.00
+          example: '0'
         singleFeeMaximumAmount:
           maxLength: 16
           type: string
           description: Maximum amount in monetary units and subunits, of the service
             charge to assess. This amount must be greater than the SINGLE FEE MINIMUM
             AMOUNT.
-          example: $99.00
+          example: '999999999'
         feePostingFrequency:
           maxLength: 1
           type: string
@@ -1354,7 +1340,7 @@ components:
             '2' - Individual fee limit. The fee cannot exceed the amount of the triggering
             transaction
           example: '1'
-    InquireInterestTableV1ResponseModel:
+    InquireInterestTableResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1558,7 +1544,7 @@ components:
                 table.
               example: 0.00000%
             variance7:
-              maxLength: 10
+              maxLength: 7
               type: string
               description: Variance rate that CMS adds to or subtracts from the base
                 rate to determine the interest rate charged. The corresponding +/–
@@ -1583,7 +1569,7 @@ components:
                 table.
               example: 0.00000%
             variance8:
-              maxLength: 10
+              maxLength: 7
               type: string
               description: Variance rate that CMS adds to or subtracts from the base
                 rate to determine the interest rate charged. The corresponding +/–
@@ -1608,7 +1594,7 @@ components:
                 table.
               example: 0.00000%
             variance9:
-              maxLength: 10
+              maxLength: 7
               type: string
               description: Variance rate that CMS adds to or subtracts from the base
                 rate to determine the interest rate charged. The corresponding +/–
@@ -1625,7 +1611,7 @@ components:
                 table.
               example: 0.00000%
             variance1:
-              maxLength: 10
+              maxLength: 7
               type: string
               description: Variance rate that CMS adds to or subtracts from the base
                 rate to determine the interest rate charged. The corresponding +/–
@@ -1650,7 +1636,7 @@ components:
                 table.
               example: 0.00000%
             variance2:
-              maxLength: 10
+              maxLength: 7
               type: string
               description: Variance rate that CMS adds to or subtracts from the base
                 rate to determine the interest rate charged. The corresponding +/–
@@ -1675,7 +1661,7 @@ components:
                 table.
               example: 0.00000%
             variance3:
-              maxLength: 10
+              maxLength: 7
               type: string
               description: Variance rate that CMS adds to or subtracts from the base
                 rate to determine the interest rate charged. The corresponding +/–
@@ -1700,7 +1686,7 @@ components:
                 table.
               example: 0.00000%
             variance4:
-              maxLength: 10
+              maxLength: 7
               type: string
               description: Variance rate that CMS adds to or subtracts from the base
                 rate to determine the interest rate charged. The corresponding +/–
@@ -1725,7 +1711,7 @@ components:
                 table.
               example: 0.00000%
             variance5:
-              maxLength: 10
+              maxLength: 7
               type: string
               description: Variance rate that CMS adds to or subtracts from the base
                 rate to determine the interest rate charged. The corresponding +/–
@@ -1750,7 +1736,7 @@ components:
                 table.
               example: 0.00000%
             variance6:
-              maxLength: 10
+              maxLength: 7
               type: string
               description: Variance rate that CMS adds to or subtracts from the base
                 rate to determine the interest rate charged. The corresponding +/–
@@ -2101,9 +2087,8 @@ components:
                 '1' - Allow NSF payment reversals
               example: '0'
             residualInterestBalanceIndicator:
-              maximum: 9
               maxLength: 1
-              type: integer
+              type: string
               description: Code that indicates whether an account or plan beginning
                 balance is used in the interest disposition decisions. <br/>The values
                 are:<br/>&nbsp; '0' - Account or plan balance is not considered (Default)
@@ -2141,9 +2126,8 @@ components:
                 balance must be less than or equal to before interest is waived.
               example: $0.00
             priorCyclePaidDateQualification:
-              maximum: 9
               maxLength: 1
-              type: integer
+              type: string
               description: Code that indicates whether the date when the account or
                 plan beginning balance is paid is used to qualify the account or plan
                 to waive prior cycle interest. <br/>The values are:<br/>&nbsp; '0'
@@ -2153,9 +2137,8 @@ components:
                 variance, by statement day in order to waive interest
               example: '0'
             residualInterestPaidDateQualification:
-              maximum: 9
               maxLength: 1
-              type: integer
+              type: string
               description: Code that indicates whether the date when the account or
                 plan beginning balance is paid is used to qualify the account or plan
                 to waive residual interest. <br/>The values are:<br/>&nbsp; '0' -
@@ -2164,7 +2147,7 @@ components:
                 <br/>&nbsp; '2' - Beginning balance must be paid in full, or within
                 variance, by statement day in order to waive interest
               example: '0'
-    InquireProductV1ResponseModel:
+    InquireProductResponseModel:
       type: object
       properties:
         businessUnit:
@@ -2498,7 +2481,7 @@ components:
         pinMailerForCardAction:
           type: array
           items:
-            $ref: '#/components/schemas/PinMailerForCardAction_InquireProductV1ResponseModel'
+            $ref: '#/components/schemas/PinMailerForCardAction_InquireProductResponseModel'
         isDirectDebitCreditEnabled:
           maxLength: 1
           type: string
@@ -2732,7 +2715,7 @@ components:
                 Product entity. <br/>The values are:<br/>&nbsp; 'L' - Product level
                 <br/>&nbsp; 'P' - Credit plan level (Default)
               example: P
-    PinMailerForCardAction_InquireProductV1ResponseModel:
+    PinMailerForCardAction_InquireProductResponseModel:
       type: object
       properties:
         cardAction:
@@ -2756,7 +2739,7 @@ components:
             and do not send PIN mailer (Default) <br/>&nbsp; '1' - Generate new PIN
             and send PIN mailer <br/>&nbsp; '2' - Send PIN mailer with existing PIN
           example: '0'
-    InquirePlanMasterV1ResponseModel:
+    InquirePlanMasterResponseModel:
       type: object
       properties:
         businessUnit:

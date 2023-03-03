@@ -13,8 +13,12 @@ paths:
       tags:
       - Loan Management
       summary: Loan Calculator
-      description: This API is used to calculate the loan repayment options for prospective
-        borrowers based on the details given input request.
+      description: This Loan Calculator Service is used to calculate the loan repayment
+        options for prospective borrowers. This function requires that you enter either
+        the loan term or fixed payment amount. You can also enter other loan components,
+        such as the interest rate, insurance, and user fees. When you press submit,
+        CMS calculates and displays the loan term, fixed payment, final payment, total
+        financed amount, total interest amount, and total loan amount.
       operationId: LoanCalculator
       parameters:
       - name: Authorization
@@ -24,7 +28,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -70,11 +74,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoanCalculatorV1ReqModel'
+              $ref: '#/components/schemas/LoanCalculatorReqModel'
         required: true
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -89,8 +93,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -102,9 +114,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoanCalculatorV1ResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+                $ref: '#/components/schemas/LoanCalculatorResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -119,24 +131,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -153,8 +157,8 @@ paths:
       tags:
       - Loan Management
       summary: Inquire Loan Schedule
-      description: This API is used to fetch loan schedule details for the current
-        loan data.
+      description: This service fetches loan schedule details for the current loan
+        data.
       operationId: InquireLoanSchedule
       parameters:
       - name: Authorization
@@ -164,7 +168,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -237,8 +241,8 @@ paths:
           type: integer
           example: '1'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -253,30 +257,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InquireLoanScheduleV1ResponseModel'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+                $ref: '#/components/schemas/InquireLoanScheduleResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -291,16 +287,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -317,9 +321,9 @@ paths:
       tags:
       - Loan Management
       summary: Inquire Original Loan
-      description: This API is used to fetch existing loan plan records. It contains
-        the original precomputed amounts and other original information received for
-        a loan plan for a given account Id.
+      description: This service fetchs existing loan credit plan segment records.
+        It contains the original precomputed amounts and other original information
+        received for a loan credit plan for a single credit plan on an account.
       operationId: InquireOriginalLoan
       parameters:
       - name: Authorization
@@ -329,7 +333,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -402,8 +406,8 @@ paths:
           type: integer
           example: '1'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -418,24 +422,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireOriginalLoanResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -450,22 +452,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireOriginalLoanV1ResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -482,10 +486,9 @@ paths:
       tags:
       - Loan Management
       summary: Inquire Loan
-      description: This API is used to fetch Loan details like Loan disclosed and
-        initial amount of loan, loan disbursement details, loan top-up redraw can
-        restructure detail, fixed interest and skip payment details for a given account
-        Id.
+      description: This service provides Loan detail of customer like Loan disclosed
+        and initial amount of loan, loan disbrusement details, loan topup redraw can
+        restructure detail, fixed interest and skip payment details.
       operationId: InquireLoan
       parameters:
       - name: Authorization
@@ -495,7 +498,7 @@ paths:
         required: true
         schema:
           type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -568,8 +571,8 @@ paths:
           type: integer
           example: '1'
       responses:
-        '401':
-          description: " \nThe request was unauthorized"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -584,16 +587,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireLoanResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -608,30 +625,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireLoanV1ResponseModel'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
@@ -645,12 +648,12 @@ paths:
       x-group-name: Loan Management
 components:
   schemas:
-    LoanCalculatorV1ReqModel:
+    LoanCalculatorReqModel:
       required:
       - currencyCode
       - fixedPaymentAmount
       - principalAmount
-      - term
+      - tenure
       type: object
       properties:
         principalAmount:
@@ -682,7 +685,7 @@ components:
           description: 'Interest rate for the loan. The default is 0. Example 1: Enter
             18.5% as 0185000, Example 2: Enter 6% as 0060000.'
           example: '1400'
-        term:
+        tenure:
           maximum: 999
           maxLength: 3
           type: integer
@@ -751,7 +754,7 @@ components:
           type: array
           items:
             type: string
-    LoanCalculatorV1ResponseModel:
+    LoanCalculatorResponseModel:
       type: object
       properties:
         loanCalculatorDetails:
@@ -778,7 +781,7 @@ components:
               type: string
               description: 'Interest rate for the loan. The default is 0. '
               example: '1400'
-            term:
+            tenure:
               maximum: 999
               maxLength: 3
               type: integer
@@ -822,7 +825,7 @@ components:
                 values are:<br/> &nbsp; '0' = Simple interest method <br/> &nbsp;
                 '1' = Rule of 78ths interest method
               example: '10'
-            term:
+            tenure:
               maximum: 999
               maxLength: 3
               type: integer
@@ -831,11 +834,11 @@ components:
         monthlyLoanPaymentDetails:
           type: array
           items:
-            $ref: '#/components/schemas/MonthlyLoanPaymentDetails_LoanCalculatorV1ResponseModel'
-    MonthlyLoanPaymentDetails_LoanCalculatorV1ResponseModel:
+            $ref: '#/components/schemas/MonthlyLoanPaymentDetails_LoanCalculatorResponseModel'
+    MonthlyLoanPaymentDetails_LoanCalculatorResponseModel:
       type: object
       properties:
-        currentTerm:
+        currentTenure:
           maximum: 999
           maxLength: 3
           type: integer
@@ -849,19 +852,19 @@ components:
           description: Portion of the payment (fixed payment amount or final payment
             amount) applied to the total financed amount for the payment number.
           example: $139.93
-        interestAmount:
+        intrestAmount:
           maxLength: 24
           type: string
           description: Portion of the payment (fixed payment amount or final payment
             amount) applied to the total interest amount for the payment number.
           example: $0.16
         endingBalance:
-          maxLength: 24
+          maxLength: 17
           type: string
           description: Balance on the loan at the end of the term for the payment
             number.
           example: $1,260.07
-    InquireLoanScheduleV1ResponseModel:
+    InquireLoanScheduleResponseModel:
       type: object
       properties:
         businessUnit:
@@ -907,8 +910,8 @@ components:
         loanScheduleDetails:
           type: array
           items:
-            $ref: '#/components/schemas/LoanScheduleDetails_InquireLoanScheduleV1ResponseModel'
-    LoanScheduleDetails_InquireLoanScheduleV1ResponseModel:
+            $ref: '#/components/schemas/LoanScheduleDetails_InquireLoanScheduleResponseModel'
+    LoanScheduleDetails_InquireLoanScheduleResponseModel:
       type: object
       properties:
         paymentAmount:
@@ -981,7 +984,7 @@ components:
           description: Total interest amount of this payment in monetary units and
             subunits.
           example: $100.00
-    InquireOriginalLoanV1ResponseModel:
+    InquireOriginalLoanResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1440,7 +1443,7 @@ components:
               description: Original final payment date for this loan, The format is
                 MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
               example: 07/06/2023
-    InquireLoanV1ResponseModel:
+    InquireLoanResponseModel:
       type: object
       properties:
         businessUnit:
@@ -1580,8 +1583,8 @@ components:
             celEppUser:
               maxLength: 3
               type: string
-              description: Cel Epp user.
-              example: ' '
+              description: Cel Epp user
+              example: ''
             celEppManualClose:
               maxLength: 1
               type: string
@@ -1590,10 +1593,10 @@ components:
                 '4' = Mannual closed Mistake <br/> &nbsp; '5' = Mannual closed by
                 customer and no fee charged
               example: '0'
-            isCelEppCloseFeeEnabled:
+            celEppCloseFee:
               maxLength: 1
               type: string
-              description: Cel EPP Close Fee.
+              description: Cel EPP Close Fee
               example: '0'
         originalDisclosedAmountDetails:
           type: object
@@ -2041,7 +2044,7 @@ components:
               type: string
               description: This field displays the identification of the restructure
                 notification letter generated for the customer, if applicable.
-              example: ' '
+              example: ''
             restructureReason:
               maxLength: 1
               type: string
@@ -2058,7 +2061,7 @@ components:
               type: string
               description: Date through which the loan plan is eligible for cancellation.
               example: 00/00/0000
-        FixedInterestDetails:
+        FixedIntrestDetails:
           type: object
           properties:
             interestIndicator:
