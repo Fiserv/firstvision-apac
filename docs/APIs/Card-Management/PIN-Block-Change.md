@@ -15,8 +15,8 @@ titles: Request, Response, Error
 
 ```json
 {
-  "requestedPinBlock": "123456",
-  "currentPinBlock": "2673217",
+  "requestedPinBlock": "B2AFACDD4874EC07",
+  "currentPinBlock": "0B84D9726EF0F480",
   "pinOffset": 0,
   "pinChannel": "A",
   "keyAssociation": " ",
@@ -29,7 +29,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -39,7 +39,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -68,29 +68,26 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-| `currentPinBlock` | Payload | *string* | 16 | Code that indicates the original PIN encrypted under a zone PIN key. |
 | `requestedPinBlock` | Payload | *string* | 16 | Code that indicates the requested PIN encrypted under a zone PIN key. |
-| `pinOffset` | Payload | *number* | 04 | Code that CMS uses to calculate the Personal Identification Number (PIN) for this card. |
 | `pinChannel` | Payload | *string* | 01 | Code that indicates the source for reporting purposes. |
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-|`V5CP4001SA`| Organization record not found | 
-|`V5CP4002SA`| Invalid account status, pin change not allowed | 
-|`V5CP4003SA`| Account number not found, pin change not allowed | 
-|`V5CP4004SA`| Account blocked, pin change not allowed | 
+|`V5CP4001SA`| Organization record not found |
+|`V5CP4002SA`| Invalid account status, pin change not allowed |
+|`V5CP4003SA`| Account number not found, pin change not allowed |
+|`V5CP4004SA`| Account blocked, pin change not allowed |
 |`V5CP4005SA`| Account does not have active cards |
-|`V5CP4006SA`| Invalid card status, pin change not allowed | 
-|`V5CP4007SA`| Card blocked, pin change not allowed | 
-|`V5CP4008SA`| PIN change not allowed for smart cards through web or IVR | 
-|`V5CP4009SA`| Card is not activated, pin change not allowed | 
-|`V5CP4010SA`| PIN suppression is on, pin change not allowed | 
-|`V5CP4009EB`| Invalid PIN set/reset action code | 
-|`V5CP4011EB`| Invalid PIN try counter reset action code | 
-
+|`V5CP4006SA`| Invalid card status, pin change not allowed |
+|`V5CP4007SA`| Card blocked, pin change not allowed |
+|`V5CP4008SA`| PIN change not allowed for smart cards through web or IVR |
+|`V5CP4009SA`| Card is not activated, pin change not allowed |
+|`V5CP4010SA`| PIN suppression is on, pin change not allowed |
+|`V5CP4009EB`| Invalid PIN set/reset action code |
+|`V5CP4011EB`| Invalid PIN try counter reset action code |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

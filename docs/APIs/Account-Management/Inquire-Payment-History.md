@@ -1,7 +1,7 @@
 # Inquire Payment History
 
-This API is used to fetch latest six payment details for a given account Id. Payment history feature is controlled by a parameter, if feature is on, 
-payment history will be retained otherwise no history will be retained. Although payment history is not retained, system retains delinquency paid fields at account level. 
+This API is used to fetch latest six payment details for a given account Id. Payment history feature is controlled by a parameter, if feature is on,
+payment history will be retained otherwise no history will be retained. Although payment history is not retained, system retains delinquency paid fields at account level.
 
 ## Endpoint
 
@@ -14,7 +14,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 

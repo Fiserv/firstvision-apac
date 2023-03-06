@@ -1,4 +1,4 @@
-# Update Spend Limits 
+# Update Spend Limits
 
 This API is used to update the spending limits to control the card usage. These limits are updated at individual card level.
 
@@ -32,7 +32,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -55,7 +55,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -87,7 +87,7 @@ The below table identifies the required parameters in the request payload.
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -104,6 +104,6 @@ Below table provides the list of application's error code and its description.
 |`V5ED0324EI` | Txn limit otc field update is not allowed |
 |`V5ED0325EB` | Retail amt field update is not allowed |
 |`V5ED0326EC` | Retail nbr field update is not allowed |
-|`V5ED0327EJ` | Txn limit retail field update is not allowed | 
+|`V5ED0327EJ` | Txn limit retail field update is not allowed |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

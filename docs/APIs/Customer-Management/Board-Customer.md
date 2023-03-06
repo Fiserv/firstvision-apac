@@ -1,6 +1,6 @@
 # Board Customer
 
-This API is used to create a new customer Id with customer's demographic details. 
+This API is used to create a new customer Id with customer's demographic details.
 
 Fields that are not provided in the Request object will be initialised to their default values. All numeric fields are initialised to zero and alphanumeric fields initialised to spaces.
 
@@ -9,7 +9,7 @@ Fields that are not provided in the Request object will be initialised to their 
 `POST /v1/customers/boardCustomer`
 
 ## Payload Example
- 
+
 <!--
 type: tab
 titles: Request, Response, Error
@@ -58,7 +58,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -69,7 +69,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -109,15 +109,15 @@ Below table provides the list of application's error code and its description.
 | `V5S84152EB` | Org does not allow account number generation |
 | `V5S84001SA` | Organization not on file |
 | `V5S84002EA` | Logo record not on file |
-| `V5S84002EB` | Logo record incomplete | 
+| `V5S84002EB` | Logo record incomplete |
 | `V5S84154SA` | Customer number not on file for this org |
-| `V5S84154SB` | Customer number already exists for this org | 
+| `V5S84154SB` | Customer number already exists for this org |
 | `V5S84154SD` | Generic Customer not allowed |
-| `V5S84155EA` | Customer number not on file for the dual org | 
+| `V5S84155EA` | Customer number not on file for the dual org |
 | `V5S84155EB` | Generic Customer not allowed |
 | `V5S84155EC` | Customer number already exists for the dual org |
-| `V5S84154EA` | Invalid Customer number | 
-| `V5S84160EE` | Invalid Customer check digit for this org |                         
+| `V5S84154EA` | Invalid Customer number |
+| `V5S84160EE` | Invalid Customer check digit for this org |
 | `V5S84160EG` | Invalid Customer check digit for dual org |
 | `V5NA4081EA` | First name is required |
 

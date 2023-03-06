@@ -19,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -34,7 +34,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -64,8 +64,7 @@ The below table identifies the required query parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
-
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -73,29 +72,28 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5DI4002SB` | Acct is purged/fraud/closed/cgoff or add pending/not found |
 | `V5DI4002SV/V5DI4002SA` | Card number should be numeric and not zeroes |  
-| `V5DI4004SV` | Valid values are Y and N for disable DCCV2 method flag |    
-| `V5DI4001SA` | Invalid card/org |                                               
+| `V5DI4004SV` | Valid values are Y and N for disable DCCV2 method flag |
+| `V5DI4001SA` | Invalid card/org |
 | `V5DI4001SB` | Org security failed |  
-| `V5DI4002SC` | Acct is billing/control/diversion acct |                          
-| `V5DI4002SD` | Acct warning code is 1/2/3/4/8 |                                 
-| `V5DI4002SE` | Card is add pending/purged/fraud/notfnd |                       
-| `V5DI4002SF` | Card warning code is 1/2/3/4/8 |                                 
-| `V5DI4002SG` | Card not active |                                                
-| `V5DI4002SH` | Card got expired |                              
-| `V5DI4002SJ` | Not valid visa affiliation |                                     
-| `V5DI4002SK` | DCVV2 method is static at logo level |                           
-| `V5DI4002SL` | HSM call failed |                                                 
-| `V5DI4002SM` | DCVV2 method is static at global parm level |                    
-| `V5DI4002SN` | DCVV2 not generated yet |                          
-| `V5DI4001SE` | ZEK PAN encryption failed |                                       
-| `V5DI4001SF` | ZEK DCVV2 encryption failed |                                    
-| `V5DI4001SG` | ZEK MM/YY encryption failed |                                    
-| `V5DI4001IA` | Static CVV2 is set for this card successfully |                  
-| `V5DI4001IB` | Dynamic CVV2 activated and DCVV2 generated successfully |        
-| `V5DI4003SB` | Key system file not found |                                      
-| `V5DI4003SC` | Key system record read fail |                                   
-| `V5DI4003SD` | Key file record not found |                                      
+| `V5DI4002SC` | Acct is billing/control/diversion acct |
+| `V5DI4002SD` | Acct warning code is 1/2/3/4/8 |
+| `V5DI4002SE` | Card is add pending/purged/fraud/notfnd |
+| `V5DI4002SF` | Card warning code is 1/2/3/4/8 |
+| `V5DI4002SG` | Card not active |
+| `V5DI4002SH` | Card got expired |
+| `V5DI4002SJ` | Not valid visa affiliation |
+| `V5DI4002SK` | DCVV2 method is static at logo level |
+| `V5DI4002SL` | HSM call failed |
+| `V5DI4002SM` | DCVV2 method is static at global parm level |
+| `V5DI4002SN` | DCVV2 not generated yet |
+| `V5DI4001SE` | ZEK PAN encryption failed |
+| `V5DI4001SF` | ZEK DCVV2 encryption failed |
+| `V5DI4001SG` | ZEK MM/YY encryption failed |
+| `V5DI4001IA` | Static CVV2 is set for this card successfully |
+| `V5DI4001IB` | Dynamic CVV2 activated and DCVV2 generated successfully |
+| `V5DI4003SB` | Key system file not found |
+| `V5DI4003SC` | Key system record read fail |
+| `V5DI4003SD` | Key file record not found |
 | `V5DI4003SE` | Key file record read fail |
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

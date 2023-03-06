@@ -1,6 +1,6 @@
 # Update Card Type
 
-This API is used to update type of card for a given payment instrument Id. 
+This API is used to update type of card for a given payment instrument Id.
 
 ## Endpoint
 
@@ -21,7 +21,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -33,7 +33,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -61,10 +61,10 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 | `cardholderType` | Payload | *numeric* | 1 | Pass value 1 for single primary cardholder. Pass value 0 for Joint cardholder. |
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

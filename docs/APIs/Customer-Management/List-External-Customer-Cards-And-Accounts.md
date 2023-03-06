@@ -6,7 +6,6 @@ This API is used to fetch the list of accounts, list of cards and it's details a
 
 `GET /v1/customers/{externalContractId}/listExternalCustomersCardsAndAccounts`
 
-
 ## Payload Example
 
 <!--
@@ -20,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -58,7 +57,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

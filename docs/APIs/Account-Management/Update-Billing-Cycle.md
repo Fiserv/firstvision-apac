@@ -1,6 +1,6 @@
 # Update Billing Cycle
 
-This API is used to update the billing cycle for a given account Id. 
+This API is used to update the billing cycle for a given account Id.
 
 ## Endpoint
 
@@ -17,7 +17,7 @@ titles: Request, Response, Error
 {
    "billingCycle": 15
 }
-``` 
+```
 
 <!--
 type: tab

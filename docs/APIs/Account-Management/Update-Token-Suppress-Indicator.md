@@ -61,8 +61,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `isSupressTokenEnabled` | Payload | *number* | 1 | Token suppression at account level indicator. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
+| `isSupressTokenEnabled` | Payload | *number* | 1 | Token suppression at account level indicator. |
 
 ### Error Codes
 
@@ -70,9 +70,9 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0521SN` | Suppress token is not numeric |        
-| `V5BS0521SV` | Invalid suppress token | 
-| `V5BS0521SZ` | Update access not granted for Suppress Token | 
-| `V5BS0010SF` | Update request - Record not found | 
+| `V5BS0521SN` | Suppress token is not numeric |
+| `V5BS0521SV` | Invalid suppress token |
+| `V5BS0521SZ` | Update access not granted for Suppress Token |
+| `V5BS0010SF` | Update request - Record not found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

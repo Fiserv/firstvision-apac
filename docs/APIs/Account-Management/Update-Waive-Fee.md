@@ -157,7 +157,7 @@ type: tab
 
 <!-- type: tab-end -->
 
-### Minimum	Requirements
+### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/waiveFee).
 
@@ -165,7 +165,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -176,7 +176,7 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5BS0010SF` | Update Request - Record not found |
-| `V5BS0302SA` | Issuance ID must be equal to PERM issuance ID on logo |         
+| `V5BS0302SA` | Issuance ID must be equal to PERM issuance ID on logo |
 | `V5BS1002SA` | Relationship does not allow ACCT level change for late charge |
 | `V5BS1002SV` | Invalid  Waive Late Change |
 | `V5BS1001SV` | Invalid  Waive Interest Change |

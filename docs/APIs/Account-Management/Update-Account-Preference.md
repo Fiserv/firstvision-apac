@@ -1,6 +1,6 @@
 # Update Account Preference
 
-The API is used to update the statement preferences, various customer IDs, address ID, source code, suppress token indicator for a given account Id. 
+The API is used to update the statement preferences, various customer IDs, address ID, source code, suppress token indicator for a given account Id.
 
 ## Endpoint
 
@@ -35,7 +35,6 @@ titles: Request, Response, Error
   "isSupressTokenEnabled": "0"
 }
 ```
-
 
 <!--
 type: tab
@@ -88,7 +87,7 @@ type: tab
 
 <!-- type: tab-end -->
 
-### Minimum	Requirements
+### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/preference).
 
@@ -96,7 +95,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountid` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountid` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 

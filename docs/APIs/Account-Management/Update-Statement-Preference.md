@@ -19,7 +19,7 @@ titles: Request, Response, Error
   "statementReprintAddressFlag": "C",
   "ownerCoOwnerStatementFlag": "0"
 }
-``` 
+```
 
 <!--
 type: tab
