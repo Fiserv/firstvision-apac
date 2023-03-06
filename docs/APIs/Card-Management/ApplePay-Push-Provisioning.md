@@ -70,7 +70,7 @@ The below table identifies the required parameters in the request payload.
 | `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 | `identifier` | Payload | *string* | 5 | This field identifies the type of authentication code that is present. |
 | `keysScheme` | Payload | *string* | 2 | This field identify the key management scheme used to protect the encrypted information component. |
-| `algorithm` | Payload | *string* | 4 | This field identify the encryption algorithm and key strength used to encipher the encryptedinformation component. |
+| `algorithm` | Payload | *string* | 4 | This field identify the encryption algorithm and key strength used to enc
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 

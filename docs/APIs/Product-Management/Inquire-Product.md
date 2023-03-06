@@ -1,6 +1,6 @@
 # Inquire Product
 
-This API is used to fetch details for a given product Id. Products are primary control records that gives client option to enable or disable various functionalities like Card activation, PIN mailer, Loan feature, Collections, Loyalty, Falcon, Alerts etc. 
+This API is used to fetch details for a given product Id. Products are primary control records that gives client option to enable or disable various functionalities like Card activation, PIN mailer, Loan feature, Collections, Loyalty, Falcon, Alerts etc.
   
 ## Endpoint
 
@@ -15,11 +15,11 @@ titles: Request, Response, Error
 
 >Should be empty.
 >
->***The Business Unit and Plan id should be sent as query parameters and path variable.*** 
+>***The Business Unit and Plan id should be sent as query parameters and path variable.***
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -157,7 +157,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -186,7 +186,7 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
-| `productId` | Path Variable | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. | 
+| `productId` | Path Variable | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
 
 ### Error Codes
 
@@ -194,7 +194,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5CR0484EA` | Org not found |         
-| `V5CR0004SF` | Get request - Record not found | 
+| `V5CR0484EA` | Org not found |
+| `V5CR0004SF` | Get request - Record not found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

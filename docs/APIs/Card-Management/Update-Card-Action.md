@@ -1,6 +1,6 @@
 # Update Card Action
 
-This API is used to update the card action for a given payment instrument Id. 
+This API is used to update the card action for a given payment instrument Id.
 
 ## Endpoint
 
@@ -21,7 +21,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -35,7 +35,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -64,19 +64,19 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-| `cardAction` | Payload | *number* | 1 | The card issue action code that determines the action CMS performs during the next run of the Card Issue program. | 
+| `cardAction` | Payload | *number* | 1 | The card issue action code that determines the action CMS performs during the next run of the Card Issue program. |
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5ED0010SF` | Update Request - Record not found |         
-| `V5ED0204EC` | Card cannot be reissued |    
-| `V5ED0204EE` | Additional card not allowed for smart card |               
-| `V5ED0204EM` | Valid actions are 0 and 1 when a card has never been issued |                
-| `V5ED0204SV` | Invalid  card action |         
-| `V5ED0222EB` | Value is required and cannot equal spaces | 
+| `V5ED0010SF` | Update Request - Record not found |
+| `V5ED0204EC` | Card cannot be reissued |
+| `V5ED0204EE` | Additional card not allowed for smart card |
+| `V5ED0204EM` | Valid actions are 0 and 1 when a card has never been issued |
+| `V5ED0204SV` | Invalid  card action |
+| `V5ED0222EB` | Value is required and cannot equal spaces |
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*      
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

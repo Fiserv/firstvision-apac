@@ -1,4 +1,4 @@
-# Inquire Spend Limits 
+# Inquire Spend Limits
 
 This API is used to fetch the spending limits to control the card usage. These limits are set to individual card level like maximum ATM, OTC, Retail etc authorization amount and count.
 
@@ -13,13 +13,13 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***The Payment Instrument Identification should be sent as path variable..***
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -42,7 +42,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -72,8 +72,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
-
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -82,4 +81,3 @@ Below table provides the list of application's error code and its description.
 |`V5ED0004SF` | Update request - Record not found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
-

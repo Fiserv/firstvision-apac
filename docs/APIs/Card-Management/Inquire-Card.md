@@ -1,6 +1,6 @@
 # Inquire Card
 
-This API is used to fetch detailed information for a given payment instrument Id. This API response provides information about card demographic and processing parameters. 
+This API is used to fetch detailed information for a given payment instrument Id. This API response provides information about card demographic and processing parameters.
 
 ## Endpoint
 
@@ -19,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 
@@ -114,7 +114,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -144,9 +144,7 @@ The below table identifies the required query parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
-
-
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

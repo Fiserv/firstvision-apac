@@ -43,11 +43,11 @@ titles: Request, Response, Error
     "otherRiskCountryMaximumAuthAmount": "15000.0"
   }
 }
-``` 
+```
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -84,7 +84,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

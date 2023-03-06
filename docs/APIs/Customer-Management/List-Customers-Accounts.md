@@ -19,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -65,10 +65,9 @@ type: tab
 }
 ```
 
-
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

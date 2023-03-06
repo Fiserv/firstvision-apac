@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***No input required.***
 
@@ -59,4 +59,3 @@ The below table contains the mandatory fields required for a successful request.
 ### Error Codes
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
-

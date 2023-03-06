@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable and schemeId, businessUnit should be sent as query parameters.***
 
@@ -69,9 +69,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number that identifies the points account. | 
-| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. | 
-| `schemeId` | Query Parameter | *number* | 5 | Unique identification number of the points scheme associated with the organization. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number that identifies the points account. |
+| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
+| `schemeId` | Query Parameter | *number* | 5 | Unique identification number of the points scheme associated with the organization. |
 
 ### Error Codes
 

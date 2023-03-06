@@ -1,6 +1,6 @@
 # Product Transfer
 
-This API is used to transfer the account and all the cards associated to it, to a new product given in input. 
+This API is used to transfer the account and all the cards associated to it, to a new product given in input.
 
 Fields that are not provided in the request object will be initialized to their default values. All numeric fields are initialized to zero and alphanumeric fields initialized to spaces.
 
@@ -77,7 +77,7 @@ The below table identifies the required parameters in the request payload.
 | `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `transferToAccountId` | Payload | *string* | 19 | New transferred to account id of the cardholder billing account. |  
- 
+
 ### Error Codes
 
 Below table provides the list of application's error code and its description.

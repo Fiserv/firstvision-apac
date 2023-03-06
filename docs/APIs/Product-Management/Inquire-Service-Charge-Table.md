@@ -19,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -35,10 +35,10 @@ type: tab
       "initiatingTransactionCode": 3001,
       "maximumIndicator": "0",
       "method": "1",
-      "singleFeeMaximumAmount": 999999999,
-      "singleFeeMinimumAmount": 0,
-      "tier1Fee": "100",
-      "tier2Fee": "1000",
+      "singleFeeMaximumAmount": "$9,999,999.99",
+      "singleFeeMinimumAmount": "$0.00",
+      "tier1FeeAmountOrPercentage": "$100.00",
+      "tier2FeeAmountOrPercentage": "$1000.00",
       "transactionLimit": 1,
       "transactionLimitFrequency": "0"
     },
@@ -50,10 +50,10 @@ type: tab
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "singleFeeMaximumAmount": 999999999,
-      "singleFeeMinimumAmount": 0,
-      "tier1Fee": "0",
-      "tier2Fee": "0",
+      "singleFeeMaximumAmount": "$9,999,999.99",
+      "singleFeeMinimumAmount": "$0.00",
+      "tier1FeeAmountOrPercentage": "$0.00",
+      "tier2FeeAmountOrPercentage": "$0.00",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -65,10 +65,10 @@ type: tab
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "singleFeeMaximumAmount": 999999999,
-      "singleFeeMinimumAmount": 0,
-      "tier1Fee": "0",
-      "tier2Fee": "0",
+      "singleFeeMaximumAmount": "$9,999,999.99",
+      "singleFeeMinimumAmount": "$0.00",
+      "tier1FeeAmountOrPercentage": "$0.00",
+      "tier2FeeAmountOrPercentage": "$0.00",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -80,10 +80,10 @@ type: tab
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "singleFeeMaximumAmount": 999999999,
-      "singleFeeMinimumAmount": 0,
-      "tier1Fee": "0",
-      "tier2Fee": "0",
+      "singleFeeMaximumAmount": "$9,999,999.99",
+      "singleFeeMinimumAmount": "$0.00",
+      "tier1FeeAmountOrPercentage": "$0.00",
+      "tier2FeeAmountOrPercentage": "$0.00",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -95,10 +95,10 @@ type: tab
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "singleFeeMaximumAmount": 999999999,
-      "singleFeeMinimumAmount": 0,
-      "tier1Fee": "0",
-      "tier2Fee": "0",
+      "singleFeeMaximumAmount": "$9,999,999.99",
+      "singleFeeMinimumAmount": "$0.00",
+      "tier1FeeAmountOrPercentage": "$0.00",
+      "tier2FeeAmountOrPercentage": "$0.00",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     },
@@ -110,10 +110,10 @@ type: tab
       "initiatingTransactionCode": 0,
       "maximumIndicator": "0",
       "method": "1",
-      "singleFeeMaximumAmount": 999999999,
-      "singleFeeMinimumAmount": 0,
-      "tier1Fee": "0",
-      "tier2Fee": "0",
+      "singleFeeMaximumAmount": "$9,999,999.99",
+      "singleFeeMinimumAmount": "$0.00",
+      "tier1FeeAmountOrPercentage": "$0.00",
+      "tier2FeeAmountOrPercentage": "$0.00",
       "transactionLimit": 0,
       "transactionLimitFrequency": "0"
     }
@@ -124,7 +124,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 
@@ -145,7 +145,6 @@ type: tab
 
 <!-- type: tab-end -->
 
- 
 ### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/products/{productId}/serviceChargeDetails).
@@ -162,6 +161,6 @@ The below table identifies the required parameters in the request payload.
 
 Below table provides the list of application's error code and its description.
 
-| `V5PH0004SF` | Get request - Record Not Found | 
+| `V5PH0004SF` | Get request - Record Not Found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
