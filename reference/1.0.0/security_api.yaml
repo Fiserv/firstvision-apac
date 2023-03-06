@@ -17,42 +17,11 @@ paths:
         invalid
       operationId: validateOauthToken
       parameters:
-      - name: x-client-correlation-id
+      - name: correlationId
         in: header
-        description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-trace-id
-        in: header
-        description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - name: x-client-source-channel
-        in: header
-        description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-user-id
-        in: header
-        description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
         required: false
         schema:
           maxLength: 40
@@ -64,17 +33,47 @@ paths:
         required: true
         schema:
           type: string
-          example: Basic dmlzaW9uLWFwaS11c2VyOmFiY2RlZmdoaXprbG1ub3Bwb25vbW1uc2hmZ2h6eHhz
+          example: Basic UE9DX05BQl9EZXY6YkhXTVR6Y0VPQ3I3cXU2WWN5M21jUnV1eXdaRzdmT3VobXNiZWNaNGFOYlVRYU5HYWNqeFY0SkM5c0s5WkR6RQ==
       - name: token
         in: query
         description: JWT Authorization Token specific to the environment
         required: true
         schema:
           type: string
-          example: eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+          example: eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6IlBPQ19OQUJfRGV2IiwiZmlyc3RWaXNpb25JZCI6IjAwMDAwQVVOQUIiLCJleHAiOjE3NTAzNTc4MDB9.qYzJ5krS5F1shsACN3qcVmpF7zOB8uhE28TvjI37aDAP3ZDMONm0947eRxnWo0AkBdmY6JMDtRH-hYpgEiTg_VrjlkimjeSjdJDEzjLoDgNqVV3bCqY-SuAczan2bJs58L3iXgUWKhj7f9ax9-SUfkFRwX4ELWHrnUA926c4Il-ISoH-g-t-yljLxAzg2Yb9n_8LgYGgvC-1g5ntmzLtpxq6JHCsJM7LCOwhE7tSfeqq9ie5FknUuQuCqFd9wTemDe_-BAzYCVzDLLbq_Ath3HTYoKP-hDRuJAVybizYRQ-YIclAz6OGg9JKrDmZHe3HEOb5U-gKLMf_Mpt4UprW4w
       responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ValidateTokenResponse'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             '*/*':
               schema:
@@ -89,38 +88,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ValidateTokenResponse'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
           content:
             '*/*':
               schema:
@@ -138,42 +107,11 @@ paths:
         Api
       operationId: GetAccessToken
       parameters:
-      - name: x-client-correlation-id
+      - name: correlationId
         in: header
-        description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-trace-id
-        in: header
-        description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - name: x-client-source-channel
-        in: header
-        description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-user-id
-        in: header
-        description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
+        description: Any correlational text client's may want to send in the request
+          for mapping the response on their side. Any value passed in the request
+          message will be return back as-is in the API response message
         required: false
         schema:
           maxLength: 40
@@ -186,8 +124,8 @@ paths:
               $ref: '#/components/schemas/OAuthTokenRequest'
         required: true
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             '*/*':
               schema:
@@ -202,8 +140,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
           content:
             '*/*':
               schema:
@@ -216,8 +162,16 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/TokenResponse'
-        '503':
-          description: " \nThe service was unavailable"
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             '*/*':
               schema:
@@ -226,22 +180,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
           content:
             '*/*':
               schema:
