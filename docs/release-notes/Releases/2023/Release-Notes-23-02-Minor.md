@@ -1,4 +1,4 @@
-# Release 23.02-Major - Version 1.1.0
+# Release 23.02-Minor - Version 1.1.0
 
 ## Date: 16/02/2023
 
