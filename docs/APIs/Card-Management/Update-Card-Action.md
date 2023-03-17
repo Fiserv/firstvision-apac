@@ -64,7 +64,8 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-| `cardAction` | Payload | *number* | 1 | The card issue action code that determines the action CMS performs during the next run of the Card Issue program. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Error Codes
 

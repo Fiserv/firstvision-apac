@@ -63,8 +63,8 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
-| `customerId` | Query Variable | *string* | 19 | Unique identification number assigned to a customer. |
-| `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Error Codes
 
