@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 >Should be empty.
 >
->***The Encrypted Payment Card Number should be sent as path variable.***
+>***The Encrypted Payment Card Number should be sent as path variable and Business unit should be sent as query parameter.***
 
 <!--
 type: tab
