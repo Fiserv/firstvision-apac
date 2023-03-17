@@ -57,6 +57,7 @@ The below table identifies the required query parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
+| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
 | `encryptedPaymentCardNumber` | Path Variable | *string* | 32 | Unique identification number that appears on the front of the card (PAN) in encrypted format. |
 
 ### Error Codes

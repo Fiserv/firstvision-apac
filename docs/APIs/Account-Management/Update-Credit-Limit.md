@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 ```json
 {
-  "creditLimit": 50   
+  "creditLimit": 50
 }
 ```
 
@@ -63,7 +63,8 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
-| `creditLimit` | Payload | *string* | 17 | Credit limit of the account. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Error Codes
 
