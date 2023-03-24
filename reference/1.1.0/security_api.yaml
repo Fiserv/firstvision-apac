@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Vision10 API Documentation
   description: V10 open API document.
-  version: 1.3.0
+  version: 1.1.0
 servers:
 - url: https://stg34.visionplus.io/sandbox/
 tags:
@@ -58,53 +58,23 @@ paths:
           maxLength: 40
           type: string
           example: ABC123
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ValidateTokenRequest'
+      - name: Authorization
+        in: header
+        description: Authorization Token once authenticated to the First Vision application
         required: true
+        schema:
+          type: string
+          example: Basic dmlzaW9uLWFwaS11c2VyOmFiY2RlZmdoaXprbG1ub3Bwb25vbW1uc2hmZ2h6eHhz
+      - name: token
+        in: query
+        description: JWT Authorization Token specific to the environment
+        required: true
+        schema:
+          type: string
+          example: eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ValidateTokenResponse'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
           content:
             '*/*':
               schema:
@@ -119,9 +89,44 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      security:
-      - Authorization: [
-          ]
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ValidateTokenResponse'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Check Token Validation
       x-group-name: Security
   /v1/api/oauth/token:
@@ -181,30 +186,6 @@ paths:
               $ref: '#/components/schemas/OAuthTokenRequest'
         required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -213,20 +194,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
         '422':
           description: " \nThe request could not be processed"
           content:
@@ -243,37 +210,48 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      security:
-      - Authorization: [
-          ]
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       x-proxy-name: Get Access Token
       x-group-name: Security
 components:
   schemas:
-    ValidateTokenRequest:
-      required:
-      - client_id
-      - client_secret
-      - token
-      type: object
-      properties:
-        token:
-          maxLength: 1200
-          type: string
-          description: JWT Authorization Token specific to the environment
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
-        client_id:
-          maxLength: 60
-          type: string
-          description: 'An identifier associated with an application that assists
-            with client  '
-          example: vision-api-user
-        client_secret:
-          maxLength: 100
-          type: string
-          description: a secret known only to your Vision10 API application and the
-            authorization server
-          example: abcdefghizklmnopponommnshfghzxxs
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -303,7 +281,6 @@ components:
       type: object
       properties:
         valid:
-          maxLength: 5
           type: boolean
           description: Tells whether token is valid or invalid
           example: 'false'
@@ -316,25 +293,19 @@ components:
       type: object
       properties:
         grant_type:
-          maxLength: 20
           type: string
           description: It refers to the way an application gets an access token
           example: client_credentials
         scope:
-          maxLength: 20
           type: string
           description: Limit the amount of access that is granted to an access token
-            (accounts, auth, cards, customers, loans, loyalty, misc, products, users,
-            all)
           example: all
         client_id:
-          maxLength: 60
           type: string
           description: 'An identifier associated with an application that assists
             with client  '
           example: vision-api-user
         client_secret:
-          maxLength: 100
           type: string
           description: a secret known only to your Vision10 API application and the
             authorization server
@@ -343,17 +314,14 @@ components:
       type: object
       properties:
         access_token:
-          maxLength: 1200
           type: string
-          description: Unique Bearer token neeed to be passed for all Vision10 API
+          description: 'Unique Bearer token neeed to be passed for all Vision10 API '
           example: ''
         token_type:
-          maxLength: 7
           type: string
           description: Type of token to be authenticated
           example: Bearer
         expires_in:
-          maxLength: 9
           type: integer
           description: Time after which token will be expired
           example: '0'
