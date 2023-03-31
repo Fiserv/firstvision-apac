@@ -3,11 +3,12 @@
 These are pre-settle view of the transactions. Authorizations can be approved or declined. Approved transactions are generally settled a few days later. Look through the following examples on how authorizations can be queried either on a detail level or on a summary level to suit your integration, reporting, reconciliation & product needs.
 
 ---
-#### List Authorizations for a day
+
+## List Authorizations for a day
 <!-- theme: success -->
 >**POST** `/v1/authorization/search`
 
-##### Payload
+### Payload
 
 <!--
 type: tab
@@ -27,13 +28,12 @@ curl -X 'POST' \
 }'
 ```
 
-
 <!--
 type: tab
 title: Response
 -->
 
-##### Successful response (200)
+#### Successful response (200)
 
 ```json
 [
@@ -65,6 +65,7 @@ title: Response
    }
 ]
 ```
+
 ---
 
 #### List Authorizations with specific fields for a day
@@ -94,13 +95,12 @@ curl -X 'POST' \
 }'
 ```
 
-
 <!--
 type: tab
 title: Response
 -->
 
-##### Successful response (200)
+####### Successful response (200)
 
 ```json
 [
@@ -127,6 +127,7 @@ title: Response
    }
 ]
 ```
+
 ---
 
 #### Search Authorizations for an Auth Code, first 6 and last 4
@@ -190,6 +191,7 @@ title: Response
   }
 ]
 ```
+
 ---
 
 #### List declined Authorizations for a day
@@ -407,6 +409,7 @@ title: Response
   }
 ]
 ```
+
 #### Get summary of authorizations broken down by Payment Method for a store for a Month
 <!-- theme: success -->
 >**POST** `/v1/authorization/summary`
@@ -434,7 +437,6 @@ curl -X 'POST' \
     ]}
 }'
 ```
-
 
 <!--
 type: tab
@@ -490,6 +492,7 @@ title: Response
   }
 ]
 ```
+
 ---
 
 #### Get trend of authorizations for a single store
@@ -519,7 +522,6 @@ curl -X 'POST' \
     ]}
 }'
 ```
-
 
 <!--
 type: tab
@@ -567,4 +569,5 @@ title: Response
   }
 ]
 ```
+
 ---

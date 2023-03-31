@@ -74,7 +74,6 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `transferToAccountId` | Payload | *string* | 19 | New transferred to account id of the cardholder billing account. |  
 
