@@ -25,7 +25,6 @@ paths:
           to access an API.
         required: true
         schema:
-          maxLength: 1200
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
       - name: x-client-correlation-id
@@ -99,16 +98,32 @@ paths:
               $ref: '#/components/schemas/UpdateUserV1ReqModel'
         required: true
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             application/json:
               schema:
@@ -129,14 +144,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateUserV1ResponseModel'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -145,8 +152,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -155,14 +162,6 @@ paths:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '422':
           description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -191,7 +190,6 @@ paths:
           to access an API.
         required: true
         schema:
-          maxLength: 1200
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
       - name: x-client-correlation-id
@@ -259,24 +257,8 @@ paths:
           type: string
           example: NABTEST25
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -291,8 +273,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -313,16 +295,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -350,7 +348,6 @@ paths:
           to access an API.
         required: true
         schema:
-          maxLength: 1200
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
       - name: x-client-correlation-id
@@ -401,24 +398,8 @@ paths:
               $ref: '#/components/schemas/UpdateUserAccessV1ReqModel'
         required: true
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -433,8 +414,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserAccessV1ResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -449,22 +436,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateUserAccessV1ResponseModel'
-        '422':
-          description: " \nThe request could not be processed"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -494,7 +491,6 @@ paths:
           to access an API.
         required: true
         schema:
-          maxLength: 1200
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
       - name: x-client-correlation-id
@@ -545,24 +541,8 @@ paths:
               $ref: '#/components/schemas/AddUserV1ReqModel'
         required: true
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -577,20 +557,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '201':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddUserV1ResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '401':
           description: " \nThe request was unauthorized"
           content:
@@ -599,16 +579,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
           content:
             application/json:
               schema:
@@ -637,7 +633,6 @@ paths:
           to access an API.
         required: true
         schema:
-          maxLength: 1200
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMUFVTkFCIiwiZXhwIjoxNzUwMzU3ODAwfQ.PE6pl2aXjwvBZMXN-iJuktDRAzzZWsQgfNdJNeNXxDocG-0npHbACrl17h7wpnYxiXv1jBHa6XT19Vo_UXItel2pYIBXR8IC5LiNgnVus5BxgZNaOtUtP6zLmoc8ohUUUkim5UE663AJDzO6yCpdwDkHxrmPhiWzNXTZcLxErZDXlUqz6isSUxGREwQkZ5EqF4DbZD4SKuqj-mo7g_QExlae9zjilZGeECTGIxeG8AYsmv7EugATOB6ROBGmFR3STViEUAWFBZqd6M48yt_FLYNxWCT6-SdXSlpUk2q-AWv2_CNxHq3NSjPQrxet71I4Uzu9DZEKoPyZOMMTPvkx1g
       - name: x-client-correlation-id
@@ -705,24 +700,8 @@ paths:
           type: string
           example: NABTEST25
       responses:
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '504':
           description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
           content:
             application/json:
               schema:
@@ -737,8 +716,40 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -751,24 +762,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireUserV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '422':
           description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
