@@ -1,0 +1,4556 @@
+openapi: 3.0.1
+info:
+  title: Vision10 API Documentation
+  description: V10 open API document.
+  version: 1.3.0
+servers:
+- url: https://stg34.visionplus.io/sandbox/
+tags:
+- name: BNPL
+paths:
+  /v1/bnpl/{accountId}/snoozeIPlan:
+    put:
+      tags:
+      - BNPL
+      summary: Snooze iPlan
+      description: This API is used to snooze the iPlan.
+      operationId: SnoozeIPlan
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      - name: sequenceNumber
+        in: query
+        description: This is the iPlan sequence number, each time a new iPlan is created,
+          system will refer to this new account level field to increment for the next
+          iPlan record number.
+        required: true
+        schema:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          example: '2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnoozeIPlanV1ReqModel'
+        required: true
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnoozeIPlanV1ResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Snooze iPlan
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/snoozeCount:
+    put:
+      tags:
+      - BNPL
+      summary: Update Snooze Count
+      description: This API is used to update the snooze count for a given iPlan.
+      operationId: UpdateSnoozeCount
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      - name: sequenceNumber
+        in: query
+        description: This is the iPlan sequence number, each time a new iPlan is created,
+          system will refer to this new account level field to increment for the next
+          iPlan record number.
+        required: true
+        schema:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          example: '2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSnoozeCountV1ReqModel'
+        required: true
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateSnoozeCountV1ResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Update Snooze Count
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/resetSnoozeCount:
+    put:
+      tags:
+      - BNPL
+      summary: Reset Snooze Count
+      description: This API is used to reset the snooze count for a given iPlan.
+      operationId: ResetSnoozeCount
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      - name: sequenceNumber
+        in: query
+        description: This is the iPlan sequence number, each time a new iPlan is created,
+          system will refer to this new account level field to increment for the next
+          iPlan record number.
+        required: true
+        schema:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          example: '2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetSnoozeCountV1ReqModel'
+        required: true
+      responses:
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResetSnoozeCountV1ResponseModel'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Reset Snooze Count
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/paymentOccurrence:
+    put:
+      tags:
+      - BNPL
+      summary: Update Payment Occurrence
+      description: This API is used to update the payment occurrence.
+      operationId: UpdatePaymentOccurrence
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      - name: sequenceNumber
+        in: query
+        description: This is the iPlan sequence number, each time a new iPlan is created,
+          system will refer to this new account level field to increment for the next
+          iPlan record number.
+        required: true
+        schema:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          example: '2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentOccurrenceV1ReqModel'
+        required: true
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePaymentOccurrenceV1ResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Update Payment Occurrence
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/directDebitControls:
+    get:
+      tags:
+      - BNPL
+      summary: Inquire BNPL Direct Debit Controls
+      description: This API is used to inquire BNPL direct debit controls at account
+        level for a given account id.
+      operationId: InquireBNPLDirectDebitControls
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBNPLDirectDebitControlV1ResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Direct Debit Controls
+      x-group-name: BNPL
+    put:
+      tags:
+      - BNPL
+      summary: Update BNPL Direct Debit Controls
+      description: This API is used to update BNPL direct debit controls at account
+        level for a given account id.
+      operationId: UpdateBNPLDirectDebitControls
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBNPLDirectDebitControlV1ReqModel'
+        required: true
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBNPLDirectDebitControlV1ResponseModel'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Update Direct Debit Controls
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/configurationTemplate:
+    put:
+      tags:
+      - BNPL
+      summary: Update Configuration Template
+      description: This API is used to update the configuration template.
+      operationId: UpdateConfigurationTemplate
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      - name: sequenceNumber
+        in: query
+        description: This is the iPlan sequence number, each time a new iPlan is created,
+          system will refer to this new account level field to increment for the next
+          iPlan record number.
+        required: true
+        schema:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          example: '2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConfigurationTemplateV1ReqModel'
+        required: true
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateConfigurationTemplateV1ResponseModel'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Update Configuration Template
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/bnplControls:
+    get:
+      tags:
+      - BNPL
+      summary: Inquire BNPL Controls
+      description: This API is used to inquire BNPL controls at account level for
+        a given account id.
+      operationId: InquireBNPLControls
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireBNPLControlV1ResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire BNPL Controls
+      x-group-name: BNPL
+    put:
+      tags:
+      - BNPL
+      summary: Update BNPL Controls
+      description: This API is used to update BNPL controls at account level for a
+        given account id.
+      operationId: UpdateBNPLControls
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBNPLControlV1ReqModel'
+        required: true
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBNPLControlV1ResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Update BNPL Controls
+      x-group-name: BNPL
+  /v1/bnpl/addIplan:
+    post:
+      tags:
+      - BNPL
+      summary: Add iPlan
+      description: This API is used to create iPlan record for a given details in
+        request.
+      operationId: AddIplan
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddIplanV1ReqModel'
+        required: true
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddIplanV1ResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Add iPlan
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/offerCodeDetails:
+    get:
+      tags:
+      - BNPL
+      summary: Inquire Offer Code
+      description: This API is used to fetch offer code details for a given business
+        unit, product Id and offer code.
+      operationId: InquireOfferCode
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: offerType
+        in: query
+        description: Offer Type.
+        required: true
+        schema:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          example: '10'
+      - name: configurationTemplate
+        in: query
+        description: BNPL configuration template, set of controls that govern how
+          each unique iPlan (BNPL Instalment Plan) is billed, what the payment frequency
+          is, what fees are supplied etc.
+        required: true
+        schema:
+          maxLength: 10
+          type: string
+          example: TMPL
+      - name: confTemplateFiller
+        in: query
+        description: Conf Template Filler.
+        required: true
+        schema:
+          maxLength: 9
+          type: string
+          example: ''
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productId
+        in: path
+        description: Unique identification number of the product associated with the
+          organization. Valid values are 1-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '1'
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireOfferCodeV1ResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Offer Code
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/listOfferCodes:
+    get:
+      tags:
+      - BNPL
+      summary: List Offer Codes
+      description: This API is used to fetch the list of offer codes associated for
+        a given business unit and product Id.
+      operationId: ListOfferCodes
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productId
+        in: path
+        description: Unique identification number of the product associated with the
+          organization. Valid values are 1-998.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '1'
+      - name: continuationToken
+        in: query
+        description: Field which is used to get next set of cards. This field will
+          be passed as spaces for the first set of cards. For next set of cards, continuationToken
+          received in previous response must be provided.
+        required: false
+        schema:
+          maxLength: 160
+          type: string
+          example: ' '
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOfferCodeV1ResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: List Offer Codes
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/listIplans:
+    get:
+      tags:
+      - BNPL
+      summary: List iPlans
+      description: This API is used to fetch list of iPlans associated with an account
+        Id.
+      operationId: listIPlans
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListIPlanV1ResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: List iPlans
+      x-group-name: BNPL
+  /v1/bnpl/{accountId}/iplanDetails:
+    get:
+      tags:
+      - BNPL
+      summary: Inquire iPlans Details
+      description: This API is used to fetch iPlan details for a given account Id.
+      operationId: InquireIplanDetails
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: product
+        in: query
+        description: Unique identification number of the product associated with the
+          organization. Valid values are 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '0'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000103'
+      - name: confTemplate
+        in: query
+        description: Field indicates the BNPL configuration template which will be
+          defaulted from offer code parameter screen. Field will be used for bundled
+          BNPL offer.
+        required: false
+        schema:
+          maxLength: 10
+          type: string
+          example: TMPL1
+      - name: sequenceNumber
+        in: query
+        description: This is the iPlan sequence number, each time a new iPlan is created,
+          system will refer to this new account level field to increment for the next
+          iPlan record number.
+        required: true
+        schema:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          example: '2'
+      - name: iplanType
+        in: query
+        description: iPlan Type.
+        required: false
+        schema:
+          maxLength: 3
+          type: string
+          example: TXN
+      responses:
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire iPlan Details
+      x-group-name: BNPL
+components:
+  schemas:
+    SnoozeIPlanV1ReqModel:
+      type: object
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    SnoozeIPlanV1ResponseModel:
+      type: object
+    UpdateSnoozeCountV1ReqModel:
+      type: object
+      properties:
+        snoozeCount:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Field indicates count of payment Snooze requested for a given
+            iPlan. <br/>The values are:<br/>&nbsp; '0' - No Payment Snooze requested
+            on account (default) <br/>&nbsp; '1-99' - Holds the maximum BNPL plan
+            payment missed count value
+          example: '1'
+    UpdateSnoozeCountV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        sequenceNumber:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: This is the iPlan sequence number, each time a new iPlan is
+            created, system will refer to this new account level field to increment
+            for the next iPlan record number.
+          example: '2'
+        changeMessage:
+          maxLength: 50
+          type: string
+          description: This field indicates the message for change request.
+          example: SNOOZE FUNCTION IS COMPLETED
+    ResetSnoozeCountV1ReqModel:
+      type: object
+      properties:
+        snoozeCount:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Field indicates count of payment Snooze requested for a given
+            iPlan. <br/>The values are:<br/>&nbsp; '0' - No Payment Snooze requested
+            on account (default) <br/>&nbsp; '1-99' - Holds the maximum BNPL plan
+            payment missed count value
+          example: '1'
+    ResetSnoozeCountV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        sequenceNumber:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: This is the iPlan sequence number, each time a new iPlan is
+            created, system will refer to this new account level field to increment
+            for the next iPlan record number.
+          example: '2'
+        changeMessage:
+          maxLength: 50
+          type: string
+          description: This field indicates the message for change request.
+          example: SNOOZE FUNCTION IS COMPLETED
+    UpdatePaymentOccurrenceV1ReqModel:
+      type: object
+      properties:
+        paymentOccurance:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Repayment Reference Occurrence. Valid values from 0 to 5.
+          example: '4'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+    UpdatePaymentOccurrenceV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        sequenceNumber:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: This is the iPlan sequence number, each time a new iPlan is
+            created, system will refer to this new account level field to increment
+            for the next iPlan record number.
+          example: '2'
+        changeMessage:
+          maxLength: 50
+          type: string
+          description: This field indicates the message for change request.
+          example: PMT OCC UPDATE IS COMPLETED
+    UpdateBNPLDirectDebitControlV1ReqModel:
+      type: object
+      properties:
+        directDebitControls1:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+              enum:
+              - 0
+              - 1
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+              enum:
+              - D
+              - S
+              - ' '
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls2:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+              enum:
+              - 0
+              - 1
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+              enum:
+              - D
+              - S
+              - ' '
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls3:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+              enum:
+              - 0
+              - 1
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+              enum:
+              - D
+              - S
+              - ' '
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls4:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+              enum:
+              - 0
+              - 1
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+              enum:
+              - D
+              - S
+              - ' '
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls5:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+              enum:
+              - 0
+              - 1
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+              enum:
+              - D
+              - S
+              - ' '
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+    UpdateBNPLDirectDebitControlV1ResponseModel:
+      type: object
+      properties:
+        directDebitControls1:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls2:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls3:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls4:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls5:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+    UpdateConfigurationTemplateV1ReqModel:
+      type: object
+      properties:
+        configurationTemplate:
+          maxLength: 10
+          type: string
+          description: BNPL configuration template, set of controls that govern how
+            each unique iPlan (BNPL Instalment Plan) is billed, what the payment frequency
+            is, what fees are supplied etc.
+          example: TMPL20
+    UpdateConfigurationTemplateV1ResponseModel:
+      type: object
+      properties:
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        sequenceNumber:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: This is the iPlan sequence number, each time a new iPlan is
+            created, system will refer to this new account level field to increment
+            for the next iPlan record number.
+          example: '2'
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        changeMessage:
+          maxLength: 50
+          type: string
+          description: This field indicates the message for change request.
+          example: UPDATE FUNCTION IS COMPLETED
+    UpdateBNPLControlV1ReqModel:
+      type: object
+      properties:
+        configurationTemplate:
+          maxLength: 10
+          type: string
+          description: BNPL configuration template. Set of controls that govern how
+            each unique iPlan ( BNPL Instalment Plan) is billed, what is the payment
+            frequency and what fees are supplied etc.
+          example: BNPLTMPL10
+        preferredDayOfWeek:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Preferred day of week to calculate the paydate for different
+            repayment frequencies. <br/>The values are:<br/>&nbsp; '0' - Preferred
+            day not provided (Default) <br/>&nbsp; '1' - Sunday <br/>&nbsp; '2' -
+            Monday <br/>&nbsp; '3' - Tuesday <br/>&nbsp; '4' - Wednesday <br/>&nbsp;
+            '5' - Thursday <br/>&nbsp; '6' - Friday <br/>&nbsp; '7' - Saturday
+          example: '0'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+        bookingAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL booking alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Booking
+            Alert <br/>&nbsp; '1' - SMS Booking Alert <br/>&nbsp; '2' - Email Booking
+            Alert <br/>&nbsp; '3' - SMS & Email Booking Alert <br/>&nbsp; '9' - Logo
+            Level Booking Alert
+          example: '0'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 9
+        iPlanActivationAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the Iplan activation alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Iplan
+            Active Alert <br/>&nbsp; '1' - SMS Iplan Active Alert <br/>&nbsp; '2'
+            - Email Iplan Active Alert <br/>&nbsp; '3' - SMS & Email Iplan Active
+            Alert <br/>&nbsp; '9' - Logo Level Iplan Active Alert
+          example: '0'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 9
+        paymentDueAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the payment due alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Payment
+            Due Alert <br/>&nbsp; '1' - SMS Payment Due Alert <br/>&nbsp; '2' - Email
+            Payment Due Alert <br/>&nbsp; '3' - SMS & Email Payment Due Alert <br/>&nbsp;
+            '9' - Logo Level Payment Due Alert
+          example: '0'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 9
+        missedPaymentAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL missed payment
+            alerts are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0'
+            - No Missed Payment Alert <br/>&nbsp; '1' - SMS Missed Payment Alert <br/>&nbsp;
+            '2' - Email Missed Payment Alert <br/>&nbsp; '3' - SMS & Email Missed
+            Payment Alert <br/>&nbsp; '9' - Logo Level Missed Payment Alert
+          example: '0'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 9
+        switchAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL switch alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Switch
+            Alert <br/>&nbsp; '1' - SMS Switch Alert <br/>&nbsp; '2' - Email Switch
+            Alert <br/>&nbsp; '3' - SMS & Email Switch Alert <br/>&nbsp; '9' - Logo
+            Level Switch Alert
+          example: '0'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 9
+        snoozeAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL snooze alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Snooze
+            Alert <br/>&nbsp; '1' - SMS Snooze Alert <br/>&nbsp; '2' - Email Snooze
+            Alert <br/>&nbsp; '3' - SMS & Email Snooze Alert <br/>&nbsp; '9' - Logo
+            Level Snooze Alert
+          example: '0'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 9
+        defaultRepaymentReferenceIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Field indicates the default repayment reference occurrence
+            which will be used as a default repayment instrument for a new iPlan.
+            <br/>The values are:<br/>&nbsp; '0' - Default repayment reference not
+            provided (default) <br/>&nbsp; '1-5' - Valid repayment reference occurrence
+            which should be setup on account
+          example: '0'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+    UpdateBNPLControlV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        configurationTemplate:
+          maxLength: 10
+          type: string
+          description: BNPL configuration template. Set of controls that govern how
+            each unique iPlan ( BNPL Instalment Plan) is billed, what is the payment
+            frequency and what fees are supplied etc.
+          example: BNPLTMPL10
+        preferredDayOfWeek:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Preferred day of week to calculate the paydate for different
+            repayment frequencies. <br/>The values are:<br/>&nbsp; '0' - Preferred
+            day not provided (Default) <br/>&nbsp; '1' - Sunday <br/>&nbsp; '2' -
+            Monday <br/>&nbsp; '3' - Tuesday <br/>&nbsp; '4' - Wednesday <br/>&nbsp;
+            '5' - Thursday <br/>&nbsp; '6' - Friday <br/>&nbsp; '7' - Saturday
+          example: '0'
+        bookingAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL booking alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Booking
+            Alert <br/>&nbsp; '1' - SMS Booking Alert <br/>&nbsp; '2' - Email Booking
+            Alert <br/>&nbsp; '3' - SMS & Email Booking Alert <br/>&nbsp; '9' - Logo
+            Level Booking Alert
+          example: '0'
+        iPlanActivationAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the Iplan activation alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Iplan
+            Active Alert <br/>&nbsp; '1' - SMS Iplan Active Alert <br/>&nbsp; '2'
+            - Email Iplan Active Alert <br/>&nbsp; '3' - SMS & Email Iplan Active
+            Alert <br/>&nbsp; '9' - Logo Level Iplan Active Alert
+          example: '0'
+        paymentDueAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the payment due alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Payment
+            Due Alert <br/>&nbsp; '1' - SMS Payment Due Alert <br/>&nbsp; '2' - Email
+            Payment Due Alert <br/>&nbsp; '3' - SMS & Email Payment Due Alert <br/>&nbsp;
+            '9' - Logo Level Payment Due Alert
+          example: '0'
+        missedPaymentAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL missed payment
+            alerts are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0'
+            - No Missed Payment Alert <br/>&nbsp; '1' - SMS Missed Payment Alert <br/>&nbsp;
+            '2' - Email Missed Payment Alert <br/>&nbsp; '3' - SMS & Email Missed
+            Payment Alert <br/>&nbsp; '9' - Logo Level Missed Payment Alert
+          example: '0'
+        switchAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL switch alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Switch
+            Alert <br/>&nbsp; '1' - SMS Switch Alert <br/>&nbsp; '2' - Email Switch
+            Alert <br/>&nbsp; '3' - SMS & Email Switch Alert <br/>&nbsp; '9' - Logo
+            Level Switch Alert
+          example: '0'
+        snoozeAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL snooze alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Snooze
+            Alert <br/>&nbsp; '1' - SMS Snooze Alert <br/>&nbsp; '2' - Email Snooze
+            Alert <br/>&nbsp; '3' - SMS & Email Snooze Alert <br/>&nbsp; '9' - Logo
+            Level Snooze Alert
+          example: '0'
+        defaultRepaymentReferenceIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Field indicates the default repayment reference occurrence
+            which will be used as a default repayment instrument for a new iPlan.
+            <br/>The values are:<br/>&nbsp; '0' - Default repayment reference not
+            provided (default) <br/>&nbsp; '1-5' - Valid repayment reference occurrence
+            which should be setup on account
+          example: '0'
+    AddIplanV1ReqModel:
+      required:
+      - accountId
+      - authorizationCode
+      - conversionRequiredIndicator
+      - isAutoActivationEbalbled
+      - isBlockOpenToBuyEnabled
+      - transactionAmount
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        transactionAmount:
+          maxLength: 17
+          type: string
+          description: Transaction amount to be converted into instalment.
+          example: $1000.00
+        authorizationCode:
+          maxLength: 6
+          type: string
+          description: Field indicates the authorization code for transaction variant
+            posting.
+          example: '998271'
+        configurationTemplate:
+          maxLength: 10
+          type: string
+          description: BNPL configuration template, set of controls that govern how
+            each unique iPlan (BNPL Instalment Plan) is billed, what the payment frequency
+            is, what fees are supplied etc.
+          example: TMPL10
+        isAutoActivationEbalbled:
+          maxLength: 1
+          type: string
+          description: This field indicates the function requested to update iPlan
+            details.<br/>The values are:<br/>&nbsp; 'N' - Do Not Auto Activate <br/>&nbsp;
+            'Y' - Auto Activate
+          example: N
+          enum:
+          - N
+          - Y
+        isBlockOpenToBuyEnabled:
+          maxLength: 1
+          type: string
+          description: Field that indicates OTB to be blocked in real-time or not.
+            <br/>The values are:<br/>&nbsp; 'N' - Do not block OTB <br/>&nbsp; 'Y'
+            - Block OTB
+          example: N
+          enum:
+          - N
+          - Y
+        conversionRequiredIndicator:
+          maxLength: 1
+          type: string
+          description: Field that indicates conversion is required or not. <br/>The
+            values are:<br/>&nbsp; 'Y' - Conversion Required <br/>&nbsp; 'N' - Conversion
+            Not Required
+          example: N
+          enum:
+          - N
+          - Y
+    AddIplanV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        sequenceNumber:
+          maxLength: 5
+          type: string
+          description: This is the iPlan sequence number, each time a new iPlan is
+            created, system will refer to this new account level field to increment
+            for the next iPlan record number.
+          example: '2'
+    InquireOfferCodeV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        productId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number of the product associated with
+            the organization. Valid values are 1-998.
+          example: '1'
+        offerType:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Offer Type.
+          example: '10'
+        configurationTemplate:
+          maxLength: 10
+          type: string
+          description: BNPL configuration template, set of controls that govern how
+            each unique iPlan (BNPL Instalment Plan) is billed, what the payment frequency
+            is, what fees are supplied etc.
+          example: TMPL
+        type:
+          maxLength: 1
+          type: string
+          description: Field Indicates whether BNPL configuration template is Transaction
+            variant or Bundled variant. <br/>The values are:<br/>&nbsp; '0' - Transaction
+            Variant  <br/>&nbsp; '1' - Bundle Variant
+          example: '0'
+        description:
+          maxLength: 40
+          type: string
+          description: BNPL configuration template description which will be populated
+            on iPlan when plan is created real-time.
+          example: ''
+        configurationTemplateExpiryDate:
+          maxLength: 10
+          type: string
+          description: Field indicates the date on which BNPL configuration template
+            expires. The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE
+            FORMAT on System Control.
+          example: 30/01/2025
+        bundleAccumulationDays:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Field indicates the number of accumulation days added to first
+            authorization date or posting date to calculate bundle close date for
+            the bundle BNPL plan. Valid values are 1 to 99.
+          example: '15'
+        repaymentFrequency:
+          maxLength: 1
+          type: string
+          description: Indicates the gap in between is in term of days, weeks, or
+            months. <br/>The values are:<br/>&nbsp; '0' - Gap is in day’s frequency
+            (default) <br/>&nbsp; '1' - Gap is in week frequency <br/>&nbsp; '2' -
+            Gap is in month frequency
+          example: '0'
+        repaymentFrequencyCount:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Indicates the count for the repayment frequency. Valid values
+            are 1 to 99.
+          example: '10'
+        repaymentTerms:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Field indicates the number of repayments for the BNPL plan.
+            Valid values are 1 to 99.
+          example: '10'
+        firstPaymentIndicator:
+          maxLength: 1
+          type: string
+          description: Field indicates how the system should determine Pay date for
+            first term. <br/>The values are:<br/>&nbsp; '0' - Compute First instalment
+            pay date using authorization date plus repayment frequency <br/>&nbsp;
+            '1' - Compute First instalment Pay date using authorization date & number
+            of days defined in the 2nd part of this field (DAYS)
+          example: '0'
+        firstPaymentDaysCount:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: 'Field indicates the number of days since Authorization Date
+            that should be used for First Pay Date calculation. Valid Values are:
+            0 – 99.'
+          example: '25'
+        firstInstalmentBiilingIndicator:
+          maxLength: 1
+          type: string
+          description: Field indicates if system should charge the interest as part
+            of First instalment. <br/>The values are:<br/>&nbsp; '0' - No interest
+            to be charged for first instalment <br/>&nbsp; '1' - Interest to be charged
+            for first instalment
+          example: '0'
+        bookingFeeType:
+          maxLength: 1
+          type: string
+          description: Field indicates whether conversion fee is fixed amount or percentage
+            of transaction amount. <br/>The values are:<br/>&nbsp; 'A' - Conversion
+            fee is fixed amount (default) <br/>&nbsp; 'P' - Conversion fee is percentage
+            of transaction amount
+          example: A
+        bookingFeeAmountOrPercentage:
+          maxLength: 20
+          type: string
+          description: Value of amount or percentage of BNPL Transaction/s amount
+            calculated as fee and prorated by number of repayment terms equally.
+          example: $10.00
+        bookingFeeMinimumAmount:
+          maxLength: 20
+          type: string
+          description: Field indicates the minimum amount of a single fee charge.
+            This amount cannot be greater than FEE MAX.
+          example: $10.00
+        bookingFeeMiximumAmount:
+          maxLength: 20
+          type: string
+          description: Field indicates the maximum amount of single fee charge. This
+            amount cannot be less than FEE MIN.
+          example: $1000.00
+        snoozeType:
+          maxLength: 1
+          type: string
+          description: First part indicates whether to snooze only one future repayment
+            installment or snooze all future instalments. <br/>The values are:<br/>&nbsp;
+            '0' - BNPL Snooze is not active for BNPL template (default) <br/>&nbsp;
+            '1' - BNPL snooze is active and snooze is applicable only for one future
+            instalment paydate <br/>&nbsp; '2' - BNPL snooze is active and snooze
+            is applicable for all future installment paydate
+          example: '0'
+        snoozeDayCount:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Field indicates the number of days snooze will be placed. Valid
+            values are 1 to 99.
+          example: '2'
+        snoozeFeeOccurance:
+          maxLength: 1
+          type: string
+          description: Field indicates the corresponding occurrence on fee table to
+            be used for charging the Snooze Fee. <br/>The values are:<br/>&nbsp; '0'
+            - No Snooze Fee to be charged <br/>&nbsp; '1 - 5' - Snooze Fee to be charged
+            as per the value present in corresponding occurrence of field BNPL SNOOZE
+            FEE on BNPL Fees
+          example: '1'
+        missedPaymentFeeOccurance:
+          maxLength: 1
+          type: string
+          description: Field indicates the corresponding occurrence on fee table to
+            be used for charging the Missed Payment Fee. <br/>The values are:<br/>&nbsp;
+            '0' - No Missed Payment Fee to be charged <br/>&nbsp; '1 - 5' - Missed
+            Payment Fee to be charged as per the value present in corresponding occurrence
+            of field BNPL MISSED PMT FEE on BNPL Fees
+          example: ''
+        interestRate:
+          maxLength: 10
+          type: string
+          description: Field indicates the simple annual interest rate setup for the
+            offer. The instalment schedule will be calculated by using the daily interest
+            rate calculated using this rate. <br/>The values are:<br/>&nbsp; '0' -
+            No rate provided (default) <br/>&nbsp; '1 - 100' - Valid interest rate
+            for BNPL template
+          example: 0.00001%
+        isRestructureEnabled:
+          maxLength: 1
+          type: string
+          description: Field indicates whether BNPL plan instalment schedule will
+            be recalculated by keeping the same repayment amount or repayment term.
+            <br/>The values are:<br/>&nbsp; '0' - Restructure the remainder of the
+            schedule using the same instalment amount resulting in reduced term <br/>&nbsp;
+            '1' - Restructure the remainder of the schedule using the same offer term
+            resulting in reduced instalment amount
+          example: '0'
+    ListOfferCodeV1ResponseModel:
+      type: object
+      properties:
+        listOfOfferCodes:
+          type: object
+          properties:
+            businessUnit:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Unique identification number associated with the organization.
+                Valid values from 1-998.
+              example: '600'
+            productId:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Unique identification number of the product associated
+                with the organization. Valid values are 1-998.
+              example: '1'
+            offerType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Offer Type.
+              example: '10'
+            configurationTemplate:
+              maxLength: 10
+              type: string
+              description: Offer code.
+              example: '0'
+            type:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Offer Type. <br/>The values are:<br/>&nbsp; '1' - Bundle
+                Variant <br/>&nbsp; '0' - Transaction Variant
+              example: '0'
+            description:
+              maxLength: 20
+              type: string
+              description: Offer Code Description.
+              example: BNPL TRANSACTION VARIANT
+            configurationTemplateExpiryDate:
+              maxLength: 10
+              type: string
+              description: Offer code expiry date. The format is MM/DD/YYYY or DD/MM/YYYY
+                depending on the DATE FORMAT on System Control.
+              example: 12/05/2025
+    ListIPlanV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        productId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number of the product associated with
+            the organization. Valid values are 1-998.
+          example: '0'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        currentBalance:
+          maxLength: 24
+          type: string
+          description: Current balance of the account.
+          example: $1000.00
+        memoBalance:
+          maxLength: 24
+          type: string
+          description: Current balance of the account in real-time.
+          example: $101.00
+        missedPaymentCount:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Field indicates count of missed payment fee posted on iPlan.
+          example: '0'
+        snoozeCount:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Field indicates count of SNOOZE fee posted on iPlan.
+          example: '0'
+        object1:
+          type: object
+          properties:
+            table1:
+              type: array
+              items:
+                $ref: '#/components/schemas/Table1'
+    Table1:
+      type: object
+      properties:
+        configurationTemplate:
+          maxLength: 10
+          type: string
+          description: Field indicates the BNPL configuration template which will
+            be defaulted from offer code parameter screen. Field will be used for
+            bundled BNPL offer.
+          example: TMPL1
+        sequenceNumber:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: This is the iPlan sequence number, each time a new iPlan is
+            created, system will refer to this new account level field to increment
+            for the next iPlan record number.
+          example: '2'
+        type:
+          maxLength: 3
+          type: string
+          description: Type of iPlan. This is derived from field TYPE on offer code
+            details. Value 0 in type stands for Transaction variant and 1 stands for
+            Bundle variant. <br/>The values are:<br/>&nbsp; 'TXN' - Transaction Variant<br/>&nbsp;
+            'BDL' - Bundle Variant
+          example: TXN
+        status:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Field indicates the iPlan status. <br/>The values are:<br/>&nbsp;
+            '1' - iPlan is in active status <br/>&nbsp; '10' - iPlan is in pending
+            status <br/>&nbsp; '11' - iPlan is in auto activation pending status
+          example: '1'
+        openDate:
+          maxLength: 10
+          type: string
+          description: Date on which the iPlan was created. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 01/14/2021
+        currentBalance:
+          maxLength: 24
+          type: string
+          description: Field indicates the BNPL balance value.
+          example: $101.00
+        totalDueAmount:
+          maxLength: 24
+          type: string
+          description: Field indicates the BNPL due amount.
+          example: $200.00
+        configurationTemplateDescription:
+          maxLength: 40
+          type: string
+          description: BNPL configuration template description which will be populated
+            on iPlan when iPlan is created.
+          example: Config template10
+    InquireBNPLDirectDebitControlV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        directDebitControls1:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls2:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls3:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls4:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+        directDebitControls5:
+          type: object
+          properties:
+            repaymentType:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Payment instrument repayment type. <br/>The values are:<br/>&nbsp;
+                '0' - No payment instrument repayment type provided (default) <br/>&nbsp;
+                '1' - Direct Debit <br/>&nbsp; '2' - Debit Card <br/>&nbsp; '3' -
+                Credit Card <br/>&nbsp; '4-99' - Reserved for Future use
+              example: '0'
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag to idicate whether direct debit processing is active
+                for the payment instrument in effect. <br/>The values are:<br/>&nbsp;
+                '0' - Does not participate in direct debit processing. (Default) <br/>&nbsp;
+                '1' - Direct debit processing is active
+              example: '1'
+            externalAccountsBankId:
+              maxLength: 4
+              type: string
+              description: Field indicates the direct debit bank ID.
+              example: SBIC
+            routingBankId:
+              maxLength: 10
+              type: string
+              description: Field indicates the bank routing number.
+              example: '9378109234'
+            externalAccountType:
+              maxLength: 1
+              type: string
+              description: Indicates the type of account to which the direct debit
+                is sent. <br/>The values are:<br/>&nbsp; 'D' - Demand deposit account
+                (checking) <br/>&nbsp; 'S' - Savings account
+              example: S
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Direct debit Account number.
+              example: '3827487284797'
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 01/01/2023
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 31/12/2025
+            internationalBankingAccountId:
+              maxLength: 34
+              type: string
+              description: International Banking Account Number (IBAN) associated
+                with the direct debit account.
+              example: '21898183018800031809830913'
+            bankIdentifierCode:
+              maxLength: 11
+              type: string
+              description: Bank identifier code associated with the Direct Debit account.
+              example: '18293911'
+            paymentCardNumber:
+              maxLength: 16
+              type: string
+              description: Card number to setup the debit card or credit card payment
+                instrument.
+              example: '9123900123789012'
+            paymentCardNumberExpiryDate:
+              maximum: 9999
+              maxLength: 4
+              type: integer
+              description: Expiry Date of the Debit Card provided as payment instrument.
+                The format is MMYY.
+              example: '126'
+    InquireBNPLControlV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        configurationTemplate:
+          maxLength: 10
+          type: string
+          description: BNPL configuration template. Set of controls that govern how
+            each unique iPlan ( BNPL Instalment Plan) is billed, what is the payment
+            frequency and what fees are supplied etc.
+          example: BNPLTMPL10
+        preferredDayOfWeek:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Preferred day of week to calculate the paydate for different
+            repayment frequencies. <br/>The values are:<br/>&nbsp; '0' - Preferred
+            day not provided (Default) <br/>&nbsp; '1' - Sunday <br/>&nbsp; '2' -
+            Monday <br/>&nbsp; '3' - Tuesday <br/>&nbsp; '4' - Wednesday <br/>&nbsp;
+            '5' - Thursday <br/>&nbsp; '6' - Friday <br/>&nbsp; '7' - Saturday
+          example: '0'
+        bookingAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL booking alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Booking
+            Alert <br/>&nbsp; '1' - SMS Booking Alert <br/>&nbsp; '2' - Email Booking
+            Alert <br/>&nbsp; '3' - SMS & Email Booking Alert <br/>&nbsp; '9' - Logo
+            Level Booking Alert
+          example: '0'
+        iPlanActivationAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the Iplan activation alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Iplan
+            Active Alert <br/>&nbsp; '1' - SMS Iplan Active Alert <br/>&nbsp; '2'
+            - Email Iplan Active Alert <br/>&nbsp; '3' - SMS & Email Iplan Active
+            Alert <br/>&nbsp; '9' - Logo Level Iplan Active Alert
+          example: '0'
+        paymentDueAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the payment due alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Payment
+            Due Alert <br/>&nbsp; '1' - SMS Payment Due Alert <br/>&nbsp; '2' - Email
+            Payment Due Alert <br/>&nbsp; '3' - SMS & Email Payment Due Alert <br/>&nbsp;
+            '9' - Logo Level Payment Due Alert
+          example: '0'
+        missedPaymentAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL missed payment
+            alerts are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0'
+            - No Missed Payment Alert <br/>&nbsp; '1' - SMS Missed Payment Alert <br/>&nbsp;
+            '2' - Email Missed Payment Alert <br/>&nbsp; '3' - SMS & Email Missed
+            Payment Alert <br/>&nbsp; '9' - Logo Level Missed Payment Alert
+          example: '0'
+        switchAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL switch alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Switch
+            Alert <br/>&nbsp; '1' - SMS Switch Alert <br/>&nbsp; '2' - Email Switch
+            Alert <br/>&nbsp; '3' - SMS & Email Switch Alert <br/>&nbsp; '9' - Logo
+            Level Switch Alert
+          example: '0'
+        snoozeAlertChannelIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Communication channel through which the BNPL snooze alerts
+            are sent to the cardholder. <br/>The values are:<br/>&nbsp; '0' - No Snooze
+            Alert <br/>&nbsp; '1' - SMS Snooze Alert <br/>&nbsp; '2' - Email Snooze
+            Alert <br/>&nbsp; '3' - SMS & Email Snooze Alert <br/>&nbsp; '9' - Logo
+            Level Snooze Alert
+          example: '0'
+        defaultRepaymentReferenceIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Field indicates the default repayment reference occurrence
+            which will be used as a default repayment instrument for a new iPlan.
+            <br/>The values are:<br/>&nbsp; '0' - Default repayment reference not
+            provided (default) <br/>&nbsp; '1-5' - Valid repayment reference occurrence
+            which should be setup on account
+          example: '0'
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer
