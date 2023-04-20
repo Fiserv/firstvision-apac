@@ -65,30 +65,8 @@ paths:
               $ref: '#/components/schemas/ValidateTokenRequest'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ValidateTokenResponse'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             '*/*':
               schema:
@@ -103,16 +81,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ValidateTokenResponse'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             '*/*':
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             '*/*':
               schema:
@@ -181,46 +181,6 @@ paths:
               $ref: '#/components/schemas/OAuthTokenRequest'
         required: true
       responses:
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
@@ -235,8 +195,48 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '422':
           description: " \nThe request could not be processed"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
           content:
             '*/*':
               schema:
@@ -274,14 +274,6 @@ components:
           description: a secret known only to your Vision10 API application and the
             authorization server
           example: abcdefghizklmnopponommnshfghzxxs
-    ValidateTokenResponse:
-      type: object
-      properties:
-        valid:
-          maxLength: 5
-          type: boolean
-          description: Tells whether token is valid or invalid
-          example: 'false'
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -307,6 +299,14 @@ components:
           type: array
           items:
             type: string
+    ValidateTokenResponse:
+      type: object
+      properties:
+        valid:
+          maxLength: 5
+          type: boolean
+          description: Tells whether token is valid or invalid
+          example: 'false'
     OAuthTokenRequest:
       required:
       - client_id
@@ -324,6 +324,8 @@ components:
           maxLength: 20
           type: string
           description: Limit the amount of access that is granted to an access token
+            (accounts, auth, cards, customers, loans, loyalty, misc, products, users,
+            all)
           example: all
         client_id:
           maxLength: 60
