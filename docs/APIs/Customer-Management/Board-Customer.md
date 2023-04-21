@@ -98,7 +98,9 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
 | `productId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
-| `firstName` | Payload | *string* | 40 | First name of customer. |
+| `givenName` | Payload | *string* | 40 | First name of customer. |
+| `customerId` | Payload | *string* | 19 | This is the identification number to assign to the new Customer Name/Address entity. |
+
 
 ### Error Codes
 

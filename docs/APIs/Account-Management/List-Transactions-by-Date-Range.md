@@ -42,7 +42,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "021447",
@@ -61,7 +62,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -80,7 +82,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "022709",
@@ -99,7 +102,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -118,7 +122,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023754",
@@ -137,7 +142,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023911",
@@ -156,7 +162,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023912",
@@ -175,7 +182,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023912",
@@ -194,7 +202,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023913",
@@ -213,7 +222,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023913",
@@ -232,7 +242,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "283763",
@@ -251,7 +262,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "283781",
@@ -270,7 +282,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "283785",
@@ -289,7 +302,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023902",
@@ -308,7 +322,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023904",
@@ -327,7 +342,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023905",
@@ -346,7 +362,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023913",
@@ -365,7 +382,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023913",
@@ -384,7 +402,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "283765",
@@ -403,7 +422,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "283784",
@@ -422,7 +442,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023905",
@@ -441,7 +462,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -460,7 +482,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -479,7 +502,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -498,7 +522,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -517,7 +542,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -536,7 +562,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -555,7 +582,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -574,7 +602,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",/
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -593,7 +622,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -612,7 +642,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -631,7 +662,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -650,7 +682,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -669,7 +702,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -688,7 +722,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -707,7 +742,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -726,7 +762,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -745,7 +782,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -764,7 +802,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -783,7 +822,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -802,7 +842,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -821,7 +862,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023862",
@@ -840,7 +882,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "023916",
@@ -859,7 +902,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -878,7 +922,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -897,7 +942,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "025052",
@@ -916,7 +962,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": "027182",
@@ -935,7 +982,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "D",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -954,7 +1002,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -973,7 +1022,8 @@ type: tab
       "transactionIndicator": "S",
       "transactionType": "C",
       "uniqueTransactionId": "",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "merchantCountry": "AUS"
     }
   ]
 }

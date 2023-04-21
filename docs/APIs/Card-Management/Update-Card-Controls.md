@@ -20,7 +20,7 @@ titles: Request, Response, Error
   "isPayWaveEnabled": "N",
   "isInternationalAtmPosEnabled": "Y",
   "isCashBackEnabled": "Y",
-  "isEcomEnabled": "0",
+  "isEcomEnabled": 0,
   "isMotoEnabled": "Y"
 }
 ```
@@ -34,7 +34,7 @@ type: tab
   "businessUnit": 100,
   "isAtmEnabled": "Y",
   "isCashBackEnabled": "Y",
-  "isEcomEnabled": "0",
+  "isEcomEnabled": 0,
   "isInternationalAtmPosEnabled": "Y",
   "isMotoEnabled": "Y",
   "isPayWaveEnabled": "N",

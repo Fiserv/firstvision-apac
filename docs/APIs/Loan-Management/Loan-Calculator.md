@@ -40,7 +40,7 @@ type: tab
     "finalPaymentAmount": "$140.09",
     "fixedPaymentAmount": "$140.09",
     "insuranceAmount": "$500.00",
-    "interestRate": "1400",
+    "interestRate": "00014.00%",
     "term": 10,
     "principalAmount": "$600.00",
     "totalFinancedAmount": "$1,400.00",
