@@ -40,7 +40,7 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D",,
+      "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1
     },
     {
@@ -59,7 +59,7 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D",,
+      "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 2
     },
     {
@@ -78,7 +78,7 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D",,
+      "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 3
     },
     {
