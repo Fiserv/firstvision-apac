@@ -10,9 +10,10 @@ This service is used to fetch statement credit plan details for a given statemen
 
 ### Request Payload
 
->Should be empty.
+>Should be empty. 
 >
 >***Account id and statement date should be sent as path and query parameter.***
+
 
 ### Minimum Requirements
 
@@ -22,8 +23,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
-| `statementDate` | Query Parameter | *date* | 10 | Period for which the user want to view the statement transaction details of an Account, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.|
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `statementDate` | Query Parameter | *date* | 10 | Period for which the user want to view the statement transaction details of an Account, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.| 
 
 ### Successful Response Payload
 

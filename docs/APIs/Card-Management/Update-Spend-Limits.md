@@ -17,15 +17,15 @@ titles: Request, Response, Error
 {
   "spendLimitControls": {
     "maximumAuthorizationsFrequency": "1",
-    "maximumAtmCashAuthorizationsAmount": "10000",
+    "maximumAtmCashAuthorizationsAmount": "$10000.00",
     "maximumAtmCashAuthorizationsCount": 1,
-    "maximumSingleAtmTransactionAmount": "10000",
-    "maximumOtcCashAuthorizationsAmount": "20000",
+    "maximumSingleAtmTransactionAmount": "$10000.00",
+    "maximumOtcCashAuthorizationsAmount": "$20000.00",
     "maximumOtcAuthorizationsCount": 1,
-    "maximumSingleOtcCashAuthorizationAmount": "10000",
-    "maximumRetailAuthorizationsAmount": "10000",
+    "maximumSingleOtcCashAuthorizationAmount": "$10000.00",
+    "maximumRetailAuthorizationsAmount": "$10000.00",
     "maximumRetailAuthorizationsCount": 1,
-    "maximumSingleRetailAuthorizationAmount": "0000"
+    "maximumSingleRetailAuthorizationAmount": "$10000.00"
   }
 }
 ```
@@ -39,16 +39,16 @@ type: tab
   "businessUnit": 100,
   "paymentInstrumentId": "0009846801010434272",
   "spendLimitControls": {
-    "maximumAtmCashAuthorizationsAmount": "$100.00",
-    "maximumAtmCashAuthorizationsCount": 1,
     "maximumAuthorizationsFrequency": "1",
+    "maximumAtmCashAuthorizationsAmount": "$10000.00",
+    "maximumAtmCashAuthorizationsCount": 1,
+    "maximumSingleAtmTransactionAmount": "$10000.00",
+    "maximumOtcCashAuthorizationsAmount": "$20000.00",
     "maximumOtcAuthorizationsCount": 1,
-    "maximumOtcCashAuthorizationsAmount": "$200.00",
-    "maximumRetailAuthorizationsAmount": "$100.00",
+    "maximumSingleOtcCashAuthorizationAmount": "$10000.00",
+    "maximumRetailAuthorizationsAmount": "$10000.00",
     "maximumRetailAuthorizationsCount": 1,
-    "maximumSingleAtmTransactionAmount": "$100.00",
-    "maximumSingleOtcCashAuthorizationAmount": "$100.00",
-    "maximumSingleRetailAuthorizationAmount": "$0.00"
+    "maximumSingleRetailAuthorizationAmount": "$10000.00"
   }
 }
 ```

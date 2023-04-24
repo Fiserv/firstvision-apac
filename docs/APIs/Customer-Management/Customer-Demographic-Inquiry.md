@@ -45,18 +45,18 @@ type: tab
     "jobTitle": "Y",
     "nameOfEmployer": "Y",
     "phoneExtension": "801",
-    "phoneFlag": "0",
+    "phoneFlag": 0,
     "phoneNumber": "Y"
   },
   "externalId": "1234",
   "faxNumber": "82364782",
-  "faxPhoneFlag": "0",
-  "homePhoneFlag": "0",
+  "faxPhoneFlag": 0,
+  "homePhoneFlag": 0,
   "homePhoneNumber": "9241800756",
   "isReturnMailEnabled": "Y",
   "languageIndicator": "AUS",
   "mobileNumber": "112233",
-  "mobilePhoneFlag": "0",
+  "mobilePhoneFlag": 0,
   "namesDetails": {
     "birthName": "",
     "givenName": "ABC",
@@ -65,7 +65,7 @@ type: tab
     "nameLine2": "KK",
     "nameLine3": ""
   },
-  "smsFlag": "0",
+  "smsFlag": 0,
   "typeOfExternalId": "1",
   "vacationDetails": {
     "countryCode": "AUS",

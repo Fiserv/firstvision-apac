@@ -31,7 +31,7 @@ type: tab
 
 ```json
 {
-  "responseCode": 0,
+  "responseCode": "00",
   "authorizationCode": "055271",
   "finalAction": "A",
   "reason": "APPROVED",

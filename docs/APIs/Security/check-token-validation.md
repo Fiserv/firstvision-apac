@@ -13,7 +13,8 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty.
+
+>Should be empty. 
 >
 >***Token should be sent as query parameter.***
 
@@ -66,5 +67,6 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 |`140106` | Invalid client credentials |  
+
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
