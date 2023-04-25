@@ -24,7 +24,7 @@ titles: Request, Response, Error
   "corporateId": "0",
   "shortName": "Charlie",
   "primaryAccountFlag": " ",
-  "creditLimit": "15000.0",
+  "creditLimit": "15000.00",
   "billingLevel": "1",
   "dualBillingFlag": "0",
   "customerSelectedDueDay": 0,
@@ -32,7 +32,7 @@ titles: Request, Response, Error
   "cashPlanId": 0,
   "retailPlanId": 0,
   "cardTechnology": "0",
-  "temporaryCreditLimit": "0.0",
+  "temporaryCreditLimit": "0.00",
   "temporaryCreditLimitExpiryDate": "00/00/0000",
   "owningBranchNumber": 999999998,
   "isMobilePiEnabled": "0",
@@ -63,29 +63,29 @@ titles: Request, Response, Error
   "statementDeliveryMode": "E",
   "bnplDetails": {
     "configurationTemplate": "BNPLTMPL10",
-    "preferredDayOfWeek": 1,
+    "preferredDayOfWeek": 0,
     "defaultRepaymentReferenceIndicator": 0,
     "alerts": {
       "bookingAlertChannelIndicator": 0,
-      "iPlanActivationAlertChannelIndicator": 0,
+      "iplanActivationAlertChannelIndicator": 0,
       "paymentDueAlertChannelIndicator": 0,
       "missedPaymentAlertChannelIndicator": 0,
       "switchAlertChannelIndicator": 0,
       "snoozeAlertChannelIndicator": 0
     },
     "directDebitDetails": {
-      "routingBankId": "9378109234",
-      "externalAccountType": " ",
-      "externalAccountId": "3827487284797",
-      "paymentStartDate": "01/01/2023",
-      "paymentExpiryDate": "31/12/2025",
-      "internationalBankingAccountId": "21898183018800031809830913",
-      "bankIdentifierCode": "18293911",
-      "externalAccountsBankId": "SBIC",
-      "repaymentType ": 0,
+      "routingBankId": "01",
+      "externalAccountType": "D",
+      "externalAccountId": "14725836978945613",
+      "paymentStartDate": "01/01/2031",
+      "paymentExpiryDate": "01/01/2032",
+      "internationalBankingAccountId": "12345",
+      "bankIdentifierCode": "12345678912",
+      "externalAccountsBankId": "1234",
       "paymentType": 1,
+      "repaymentType ": 0,
       "paymentCardNumber": "9123900123789012",
-      "paymentCardNumberExpiryDate": 126
+      "paymentCardNumberExpiryDate": 1036
     }
   }
 }

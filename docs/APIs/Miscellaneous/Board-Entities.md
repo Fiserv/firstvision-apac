@@ -65,17 +65,17 @@ titles: Request, Response, Error
     }
   },
   "relationshipDetails": {
-    "relationshipCreditLimit": "0.0",
+    "relationshipCreditLimit": "0.00",
     "relationshipBlockCode": " ",
     "mailCode": "0",
     "reserveAmountpctFlag": "0",
-    "availableReservePctAmount": "0.0",
+    "availableReservePctAmount": "0.00",
     "isStatememtTypeEnabled": "0",
     "accountControlTableOverride": 0,
     "relationshipLevelBillingCycle": 0,
     "billingLevel": "1",
     "isBillingLevelModificationEnabled": "0",
-    "defaultCreditLimit": "0.0",
+    "defaultCreditLimit": "0.00",
     "isCreditLimitModificationEnabled": "0",
     "corporateCustomerId": "",
     "customerGroupCode": "",
@@ -105,8 +105,8 @@ titles: Request, Response, Error
     "userDetails": {
       "userDate1": "00/00/0000",
       "userDate2": "00/00/0000",
-      "userAmount1": "0.0",
-      "userAmount2": "0.0",
+      "userAmount1": "0.00",
+      "userAmount2": "0.00",
       "userField5": "",
       "userField6": ""
     }
@@ -115,7 +115,7 @@ titles: Request, Response, Error
     "corporateId": "",
     "primaryAccountFlag": " ",
     "shortName": "",
-    "creditLimit": "10.0",
+    "creditLimit": "10.00",
     "billingLevel": "1",
     "dualBillingFlag": "0",
     "customerSelectedDueDay": 0,
@@ -125,7 +125,7 @@ titles: Request, Response, Error
     "cashPlanId": 0,
     "retailPlanId": 0,
     "cardTechnology": "0",
-    "temporaryCreditLimit": "0.0",
+    "temporaryCreditLimit": "0.00",
     "temporaryCreditLimitExpiryDate": "00/00/0000",
     "owningBranchNumber": 999999998,
     "isMobilePiEnabled": "0",
@@ -153,30 +153,30 @@ titles: Request, Response, Error
     "sourceCode": " ",
     "statementDeliveryMode": "E",
     "bnplDetails": {
-      "configurationTemplate": "BNPLTMPL10",
+      "configurationTemplate": "BNPL01TRAN",
       "preferredDayOfWeek": 1,
       "defaultRepaymentReferenceIndicator": 0,
       "alerts": {
         "bookingAlertChannelIndicator": 0,
-        "iPlanActivationAlertChannelIndicator": 0,
+        "iplanActivationAlertChannelIndicator": 0,
         "paymentDueAlertChannelIndicator": 0,
         "missedPaymentAlertChannelIndicator": 0,
         "switchAlertChannelIndicator": 0,
         "snoozeAlertChannelIndicator": 0
       },
       "directDebitDetails": {
-        "externalAccountsBankId": "SBIC",
-        "routingBankId": "9378109234",
-        "externalAccountType": " ",
-        "externalAccountId": "3827487284797",
-        "paymentStartDate": "01/01/2023",
-        "paymentExpiryDate": "31/12/2025",
-        "internationalBankingAccountId": "21898183018800031809830913",
-        "bankIdentifierCode": "18293911",
-        "repaymentType ": 0,
-        "paymentType": 1,
+        "externalAccountsBankId": "1234",
+        "routingBankId": "01",
+        "externalAccountType": "D",
+        "externalAccountId": "14725836978945612",
+        "paymentStartDate": "01/01/2031",
+        "paymentExpiryDate": "01/01/2032",
+        "internationalBankingAccountId": "12345",
+        "bankIdentifierCode": "12345678912",
+        "paymentCardNumberExpiryDate": 1036,
         "paymentCardNumber": "9123900123789012",
-        "paymentCardNumberExpiryDate": 126
+        "paymentType": 1,
+        "repaymentType ": 0
       }
     }
   },
