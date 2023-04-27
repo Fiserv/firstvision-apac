@@ -22,6 +22,7 @@ type: tab
 -->
 
 ```json
+
 {
   "listIplans": [
     {
@@ -52,7 +53,7 @@ type: tab
         "source": "APT",
         "status": 400,
         "invalid-params": [
-            "V5IP4002EA: ACCOUNT NUMBER NOT FOUND OR IN IN INVALID STATUS"
+            "V5IP4002EA: ACCOUNT NUMBER NOT FOUND OR IN INVALID STATUS"
         ]
     }
 ]

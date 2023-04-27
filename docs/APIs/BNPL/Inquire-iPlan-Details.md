@@ -4,7 +4,7 @@ This API is used to fetch iPlan details for a given account Id.
 
 ## Endpoint
 
-`GET /v1/accounts/{accountId}/iplanDetails`
+`GET /v1/bnpl/{accountId}/iplanDetails`
 
 ## Payload Example
 
@@ -22,10 +22,11 @@ type: tab
 -->
 
 ```json
+
 {
-  "businessUnit": 700,
+  "businessUnit": 600,
   "productId": 0,
-  "accountId": "0007000011000000103",
+  "accountId": "0006000011000000103",
   "configurationTemplate": "TMPL1",
   "sequenceNumber": 2,
   "status": 1,
@@ -50,17 +51,17 @@ type: tab
     "missedPaymentFeeAmount": "$100.00"
   },
   "billedAmountDetails": {
-    "billedPrincipalAmount": "$123.00",
-    "billedInterestAmount": "#5.00",
-    "billedBookingFeeAmount": "$80.00",
-    "billedSnoozeFeeAmount": "$50.00",
-    "billedMissedPaymentFeeAmount": "$190.00",
-    "billedTotalAmount": "$1000.00",
-    "billedSnoozeFeeCount": 3,
-    "billedMissedPaymentFeeCount": 4
+    "principalAmount": "$123.00",
+    "interestAmount": "$5.00",
+    "bookingFeeAmount": "$80.00",
+    "snoozeFeeAmount": "$50.00",
+    "missedPaymentFeeAmount": "$190.00",
+    "totalAmount": "$1000.00",
+    "snoozeFeeCount": 3,
+    "missedPaymentFeeCount": 4
   },
-  "interestRate": "000020.00%",
-  "nextInstalmentPayDate": "01/7/2023",
+  "interestRate": "0.00100%",
+  "nextInstalmentPayDate": "01/07/2023",
   "switchHistoryDetails": [
     {
       "configurationTemplateBeforeSwitch": "TMPL20",
@@ -74,7 +75,7 @@ type: tab
       "bookingFeeAmount": "$200.00",
       "snoozeFeeAmount": "$300.00",
       "missedPaymentAmount": "$120.00",
-      "TotalAmount": "$1230.00",
+      "totalAmount": "$1230.00",
       "payDate": "12/04/2023",
       "graceExpiryDate": "16/04/2023",
       "status": 1,
@@ -83,44 +84,45 @@ type: tab
     }
   ],
   "lastInstalmentDetails": {
-    "lastSnoozeFeeDate": "10/01/2022",
-    "lastInstalmentPaymentAmount": "$10.00"
+    "instalmentPaymentDate": "10/05/2022",
+    "instalmentPaymentAmount": "$10.00"
   },
   "lastSnoozeFeeDetails": {
-    "lastSnoozeFeeAmount": "$10.00"
+    "snoozeFeeDate": "10/01/2022",
+    "snoozeFeeAmount": "$10.00"
   },
   "lastMissedPaymentFeeDetails": {
-    "lastMissedPaymentFeeDate": "10/02/2022",
-    "lastMissedPaymentFeeAmount": "$10.00"
+    "missedPaymentFeeDate": "10/02/2022",
+    "missedPaymentFeeAmount": "$10.00"
   },
-  "24MonthMissedPaymentProfileDetails": {
-    "missedPaymentCount01": 2,
-    "missedPaymentCount07": 2,
-    "missedPaymentCount13": 2,
-    "missedPaymentCount19": 2,
-    "missedPaymentCount02": 0,
-    "missedPaymentCount08": 0,
-    "missedPaymentCount14": 0,
-    "missedPaymentCount20": 0,
-    "missedPaymentCount03": 0,
-    "missedPaymentCount09": 0,
-    "missedPaymentCount15": 0,
-    "missedPaymentCount21": 0,
-    "missedPaymentCount04": 0,
-    "missedPaymentCount10": 0,
-    "missedPaymentCount16": 0,
-    "missedPaymentCount22": 0,
-    "missedPaymentCount05": 0,
-    "missedPaymentCount11": 0,
-    "missedPaymentCount17": 0,
-    "missedPaymentCount23": 0,
-    "missedPaymentCount06": 0,
-    "missedPaymentCount12": 0,
-    "missedPaymentCount18": 0,
-    "missedPaymentCount24": 0
+  "24MonthsMissedPaymentProfileDetails": {
+    "count01": 2,
+    "count07": 2,
+    "count13": 2,
+    "count19": 2,
+    "count02": 0,
+    "count08": 0,
+    "count14": 0,
+    "count20": 0,
+    "count03": 0,
+    "count09": 0,
+    "count15": 0,
+    "count21": 0,
+    "count04": 0,
+    "count10": 0,
+    "count16": 0,
+    "count22": 0,
+    "count05": 0,
+    "count11": 0,
+    "count17": 0,
+    "count23": 0,
+    "count06": 0,
+    "count12": 0,
+    "count18": 0,
+    "count24": 0
   },
   "countDetails": {
-    "missedPmtCount": 1,
+    "missedPaymentCount": 1,
     "snoozeCount": 2,
     "switchCount": 2
   },
@@ -130,10 +132,10 @@ type: tab
     "remainingTerm": 0
   },
   "disclosedAmountDetails": {
-    "disclosedPrincipalAmount": "$200.00",
-    "disclosedInterestAmount": "$10.00",
-    "disclosedBookingFeeAmount": "$12.00",
-    "disclosedTotalAmount": "#123.00"
+    "principalAmount": "$200.00",
+    "interestAmount": "$10.00",
+    "bookingFeeAmount": "$12.00",
+    "totalAmount": "$123.00"
   }
 }
 ```
@@ -162,7 +164,7 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/iplanDetails).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/bnpl/{accountId}/iplanDetails).
 
 The below table identifies the required parameters in the request payload.
 

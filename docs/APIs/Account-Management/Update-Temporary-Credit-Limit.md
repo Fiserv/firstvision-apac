@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 ```json
 {
-  "temporaryCreditLimit": "$1000.00",
+  "temporaryCreditLimit": "1000.00",
   "temporaryCreditLimitExpiryDate": "31/10/2022"
 }
 ```
