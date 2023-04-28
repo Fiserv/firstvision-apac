@@ -26,7 +26,7 @@ type: tab
   "externalContractId": "000012672379",
   "totalAccountsCount": 2,
   "totalCardsCount": 2,
-  "businessUnit1": 600,
+  "businessUnit": 600,
   "accountList": [
     {
       "accountId": "0006000012000000256",
@@ -49,7 +49,10 @@ type: tab
       "addressId": "RESIDENTIAL",
       "plasticId": " ",
       "accountId": "0006000012000000256",
-      "expiryDate": "16/08/2024"
+      "expiryDate": "16/08/2024",
+      "transferFromPaymentInstrumentId": "0009543161000134358",
+      "transferToPaymentInstrumentId": "0009543160010000062",
+      "maskedPaymentCardNumber": "000431683XXXXXX0959"
     }
   ]
 }

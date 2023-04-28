@@ -81,11 +81,11 @@ type: tab
       "transferRollOutAmount": "$0.00",
       "interestAmount": "$0.00",
       "serviceFeeAmount": "$0.00",
-      "annualPercentageRate": 0,
+      "annualPercentageRate": "0.0000000%",
       "deferInterestAmount": "$0.00",
       "minimumPaymentAmount": "$0.00",
       "deferInsuranceAmount": "$0.00",
-      "currentBalance1": "$1,500.00"
+      "currentBalance": "$1,500.00"
     }
   ],
   "dateFieldsDetails": {
@@ -97,8 +97,7 @@ type: tab
     "dueDate": "18/09/2021",
     "currentDueAmount": "$0.00",
     "totalPastDueAmount": "$0.00",
-    "totalDueAmount": "$0.00",
-    "totalDueBalance": "$0.00"
+    "totalDueAmount": "$0.00"
   },
   "daysInCycle": 13,
   "qualifiedTransactionsCount": 0,

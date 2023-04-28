@@ -35,7 +35,7 @@ type: tab
     "maximumRetailAuthorizationsCount": 1,
     "maximumSingleAtmTransactionAmount": "$100.00",
     "maximumSingleOtcCashAuthorizationAmount": "$100.00",
-    "maximumSingleRetailAuthorizationAmount": "$0.00"
+    "maximumSingleRetailAuthorizationAmount": "$10.00"
   }
 }
 ```

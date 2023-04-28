@@ -23,135 +23,110 @@ type: tab
 
 ```json
 {
-  "authAlerts": "0",
-  "automaticAccountNumberGeneration": "I",
   "businessUnit": 600,
-  "cardActivationControls": {
-    "additionalCardActivation": "Y",
-    "newCardActivation": "Y",
-    "reissueCardActivation": "Y",
-    "replacementCardActivation": "Y"
-  },
-  "cardMailerNameaddress": "0",
+  "productId": 1,
+  "productDescription": "VISA CREDIT CONSUMER",
   "cardProductDisplay": "0",
-  "creditLimitBypass": "0",
-  "defaultCardTechnology": "3",
-  "delinquencyAgeing": "D",
-  "embossingFilesKeyType": "B",
-  "enhancedProductsEligible": "0",
-  "includeDisputedAmounts": "1",
-  "isCardActionTableEnabled": "0",
-  "isCardBureauFeedbackEnabled": "0",
-  "isCardPresenttransactionEnabled": "",
-  "isChipOrPinCardEnabled": "1",
-  "isCollectionsEnabled": "Y",
-  "isCrossBorderAlertEnabled": "0",
-  "isDebitCardProcessEnabled": "0",
-  "isDirectDebitCreditEnabled": "Y",
-  "isFalcon6Enabled": "0",
+  "quarterlyAffiliateCardProduct": "V1",
   "isLoanFeatureEnabled": "1",
-  "isLocalorInternationalUsageEnabled": "0",
-  "isLoyaltyManagementEnabled": "1",
-  "isManualPinResetEnabled": "1",
-  "isNewCardDefaultEnabled": "0",
-  "isOverlimitProcessingOptinIndicatorEnabled": "0",
   "isPaymentHolidaysEnabled": "Y",
-  "isSameDayEmbossingEnabled": "0",
-  "isScriptingEnabled": "0",
-  "isSecureCodeEnabled": "0",
-  "isSweepOptionEnabled": "0",
-  "isTokenizationServiceEnabled": "1",
+  "isSameDayEmbossingEnabled": "1",
+  "isChipOrPinCardEnabled": "1",
+  "delinquencyAgeing": "D",
+  "processingControlLevel": "O",
+  "isCollectionsEnabled": "Y",
+  "automaticAccountNumberGeneration": "I",
+  "authAlerts": "0",
+  "isFalcon6Enabled": "0",
   "isVipOverrideEnabled": "N",
-  "isWspTokenEnabled": "-16",
-  "issuanceId": "SX1",
-  "keyTypeForPinMailerFiles": "B",
-  "markUpFeeEnabled": {
-    "isIssuerEnabled": "0",
-    "isReimburseIssuerOrSchemaEnabled": "0",
-    "isSchemeEnabled": "0",
-    "isUserDefinedEnabled": "0"
-  },
+  "isSecureCodeEnabled": "0",
+  "isLoyaltyManagementEnabled": "1",
+  "isDebitCardProcessEnabled": "0",
+  "isTokenizationServiceEnabled": "1",
+  "isManualPinResetEnabled": "1",
+  "isCardActionTableEnabled": "0",
+  "defaultCardTechnology": "3",
+  "isScriptingEnabled": "0",
+  "isSweepOptionEnabled": "0",
+  "isCrossBorderAlertEnabled": "0",
+  "creditLimitBypass": "0",
+  "isLocalorInternationalUsageEnabled": "0",
+  "isNewCardDefaultEnabled": "0",
+  "enhancedProductsEligible": "0",
+  "isCardPresenttransactionEnabled": " ",
   "newCardPlastics": "Y",
-  "openToBuyCreditBalance": "3",
-  "paymentProcessingControls": {
-    "applicationMethodForAccountReceivable": "H",
-    "applicationMethodForProfitLoss": "D",
-    "paymentApplicationLevel": "P",
-    "prepaymentsAllowed": "0"
-  },
+  "embossingFilesKeyType": "B",
+  "keyTypeForPinMailerFiles": "B",
+  "pinMailerNameaddress": "0",
+  "cardMailerNameaddress": "0",
+  "isCardBureauFeedbackEnabled": "0",
   "pinMailerForCardAction": [
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    },
     {
       "cardAction": "0",
       "pinOptions": "0"
     }
   ],
-  "pinMailerNameaddress": "0",
-  "processingControlLevel": "O",
-  "productDescription": "VISA CREDIT CONSUMER",
-  "productId": 1,
-  "quarterlyAffiliateCardProduct": "V1",
+  "isDirectDebitCreditEnabled": "N",
+  "isOverlimitProcessingOptinIndicatorEnabled": "0",
+  "openToBuyCreditBalance": "1",
+  "includeDisputedAmounts": "0",
   "residenceId": "SX1",
-  "typeOfAccount": "X"
+  "issuanceId": "SX1",
+  "isWspTokenEnabled": "1",
+  "typeOfAccount": "X",
+  "markUpFeeEnabled": {
+    "isReimburseIssuerOrSchemaEnabled": "0",
+    "isIssuerEnabled": "0",
+    "isSchemeEnabled": "0",
+    "isUserDefinedEnabled": "0"
+  },
+  "cardActivationControls": {
+    "newCardActivation": "Y",
+    "additionalCardActivation": "Y",
+    "reissueCardActivation": "Y",
+    "replacementCardActivation": "Y"
+  },
+  "paymentProcessingControls": {
+    "applicationMethodForAccountReceivable": "H",
+    "applicationMethodForProfitLoss": "D",
+    "prepaymentsAllowed": "0",
+    "paymentApplicationLevel": "P"
+  },
+  "bnplAlerts": {
+    "isbookingAlertEnabled": 0,
+    "bookingAlertChannelIndicator": 0,
+    "isIplanActivationAlertEnabled": 0,
+    "iplanActivateAlertChannelIndicator": 0,
+    "isPaymentDueAlertEnabled": 0,
+    "paymentDueAlertChannelIndicator": 0,
+    "isMissPamyemtAlertEnabled": 0,
+    "missPaymentAlertChannelIndicator": 0,
+    "isSwitchAlertEnabled": 0,
+    "switchAlertChannelIndicator": 1,
+    "isSnoozeAlertEnabled": 0,
+    "snoozeAlertChannelIndicator": 0
+  },
+  "bnplDetails": {
+    "isBnplEnabled": 0,
+    "configurationTemplate": "BNPLTMPL10",
+    "isRecalculatePayDateEnabled": 1,
+    "repaymentIndicator": 0,
+    "repaymentDays": 1,
+    "paymentGraceDays": 1,
+    "missedPaymentCount": 2,
+    "missedPaymentBlockCode": " ",
+    "isSnoozeEnabled": 0,
+    "snoozeCount": 0,
+    "offerSwitchMethod": 0,
+    "offerSwitchCount": 0
+  },
+  "bnlplTierRangeOfTemplateId": [
+    {
+      "configurationTemplate": "TEMPLATE 1",
+      "tierMinimumAmount": "0000000001000",
+      "tierMaximumAmount": "0000000010000"
+    }
+  ]
 }
 ```
 

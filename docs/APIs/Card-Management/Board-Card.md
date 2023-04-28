@@ -110,6 +110,7 @@ The below table identifies the required parameters in the request payload.
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
 | `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
 | `embossedName1` | Payload | *string* | 26 | Name to be embossed on the first embossing line of the card. |
+| `cardAction` | Payload | *string* | 1 | This field is the card issue action code that determines the action CMS performs during the next run. |
 
 ### Error Codes
 
