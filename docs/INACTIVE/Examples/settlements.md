@@ -3,11 +3,13 @@
 TBD
 
 ---
-#### List settled Transactions [TBD]
+
+## List settled Transactions [TBD]
+
 <!-- theme: success -->
 >**POST** `/v1/settlement/search`
 
-##### Payload
+### Payload
 
 <!--
 type: tab
@@ -27,13 +29,12 @@ curl -X 'POST' \
       }'
 ```
 
-
 <!--
 type: tab
 title: Response
 -->
 
-##### Successful response (200)
+#### Successful response (200)
 
 ```json
 
@@ -207,6 +208,7 @@ title: Response
   }
 ]
 ```
+
 ---
 
 #### List settled Transactions with specific fields
@@ -239,7 +241,6 @@ curl -X 'POST' \
         ]
       }'
 ```
-
 
 <!--
 type: tab
@@ -274,6 +275,7 @@ title: Response
   }
 ]
 ```
+
 ---
 
 #### Search settled transactions Auth Code, Last 4
@@ -337,6 +339,7 @@ title: Response
   }
 ]
 ```
+
 ---
 
 #### List settled transactions for a specific store
@@ -434,7 +437,6 @@ curl -X 'POST' \
       }'
 ```
 
-
 <!--
 type: tab
 title: Response
@@ -465,6 +467,7 @@ title: Response
   }
 ]
 ```
+
 ---
 
 #### Settled Transactions Summary by Network
@@ -490,7 +493,6 @@ curl -X 'POST' \
         "summaryBy": "Network"
       }'
 ```
-
 
 <!--
 type: tab
@@ -581,6 +583,7 @@ title: Response
   }
 ]
 ```
+
 ---
 
 #### Settled transactions summary for a store by Payment Method
@@ -701,6 +704,7 @@ title: Response
   }
 ]
 ```
+
 ---
 
 #### Settled transactions trend for a store
@@ -861,4 +865,3 @@ title: Response
 ```
 
 ---
-
