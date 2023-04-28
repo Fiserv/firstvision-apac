@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 ```json
 {
-  "creditLimit": 50
+  "creditLimit": "50.00"
 }
 ```
 
@@ -27,7 +27,7 @@ type: tab
 {
   "accountId": "0006000011000000152",
   "businessUnit": 600,
-  "creditLimit": "$5.00",
+  "creditLimit": "$50.00",
   "creditLimitDate": "19/08/2021"
 }
 ```

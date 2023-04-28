@@ -4,7 +4,7 @@ This API is used to inquire BNPL controls at account level for a given account i
 
 ## Endpoint
 
-`GET /v1/accounts/{accountId}/bnplControls`
+`GET /v1/bnpl/{accountId}/bnplControls`
 
 ## Payload Example
 
@@ -25,7 +25,7 @@ type: tab
 {
     "businessUnit": 700,
     "accountId": "0007000011253747002",
-    "configurationTemplate": "",
+    "configurationTemplate": "BNPLT1",
     "preferredDayOfWeek": 0,
     "bookingAlertChannelIndicator": 9,
     "iplanActivationAlertChannelIndicator": 9,
@@ -47,7 +47,7 @@ type: tab
         "errorCode": "440401",
         "detail": "Please refer to invalid-params for error details",
         "title": "Not found",
-        "instance": "/v1/bnpl/0007000011253747001/bnplControls",
+        "instance": "/v1/bnpl/0007000022427898801/bnplControls",
         "source": "VPL",
         "status": 404,
         "invalid-params": [
@@ -61,7 +61,7 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/bnplControls).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/bnpl/{accountId}/bnplControls).
 
 The below table identifies the required parameters in the request payload.
 

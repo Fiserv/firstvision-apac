@@ -4,7 +4,7 @@ This API is used to fetch offer code details for a given business unit, product 
 
 ## Endpoint
 
-`GET /v1/accounts/{accountId}/offerCodeDetails`
+`GET /v1/bnpl/{productId}/offerCodeDetails`
 
 ## Payload Example
 
@@ -23,38 +23,38 @@ type: tab
 
 ```json
 {
-  "businessUnit": 600,
-  "productId": 1,
-  "offerType": 10,
-  "configurationTemplate": "TMPL",
-  "bnplType": "0",
-  "description": "BAJAJ FINANCE INSTL",
-  "configurationTemplateExpiryDate": "12/05/2025",
-  "bundleAccumulationDaysCount": 15,
-  "missedPaymentFeeOccurance": 0,
-  "interestRate": "0.00001%",
-  "isRestructureEnabled": 0,
-  "repaymentDetails": {
-    "frequency": 0,
-    "frequencyCount": 10,
-    "terms": 10
-  },
-  "firstPaymentDetails": {
-    "indicator": 0,
-    "daysCount": 25,
-    "instalmentBiilingIndicator": 0
-  },
-  "bookingFeeDetails": {
-    "type": "A",
-    "amountOrPercentage": "$10.00",
-    "minimumAmount": "$10.00",
-    "maximumAmount": "$1000.00"
-  },
-  "snoozeDetails": {
-    "type": 0,
-    "daysCount": 2,
-    "occurance": 1
-  }
+    "repaymentDetails": {
+        "frequency": 0,
+        "frequencyCount": 7,
+        "terms": 3
+    },
+    "firstPaymentDetails": {
+        "indicator": 1,
+        "daysCount": 5,
+        "instalmentBiilingIndicator": 1
+    },
+    "bookingFeeDetails": {
+        "amountOrPercentage": "0",
+        "minimumAmount": "$0.00",
+        "maximumAmount": "$0.00",
+        "type": ""
+    },
+    "snoozeDetails": {
+        "type": 0,
+        "daysCount": 0,
+        "occurance": 0
+    },
+    "productId": 0,
+    "configurationTemplate": "BNPLVR15",
+    "offerType": 10,
+    "description": "BNPL-SINGLE",
+    "configurationTemplateExpiryDate": "01/01/2030",
+    "businessUnit": 700,
+    "bundleAccumulationDaysCount": 0,
+    "missedPaymentFeeOccurance": 0,
+    "interestRate": "150000",
+    "isRestructureEnabled": 0,
+    "bnplType": "0"
 }
 ```
 
@@ -65,14 +65,14 @@ type: tab
 ```json
 [
     {
-        "errorCode": "442201",
+        "errorCode": "440401",
         "detail": "Please refer to invalid-params for error details",
-        "title": "Unprocessable Entity",
-        "instance": "/v1/bnpl/0007000011000000103/iplanDetails",
+        "title": "Not found",
+        "instance": "/v1/bnpl/0/offerCodeDetails",
         "source": "VPL",
-        "status": 422,
+        "status": 404,
         "invalid-params": [
-            "V5QT0103SD: VALID OFFER TYPE IS 10"
+            "V5QT0004SF: Get Request - Record not found"
         ]
     }
 ]
@@ -82,7 +82,7 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/offerCodeDetails).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/bnpl/{productId}/offerCodeDetails).
 
 The below table identifies the required parameters in the request payload.
 
@@ -115,5 +115,6 @@ Below table provides the list of application's error code and its description.
 | `V5QT0416EA` | BNPL snooze type is required to setup BNPL snooze days |
 | `V5QT0419EA` | BNPL int rate is required for BNPL conf template |
 | `V5QT0101EA` | No organization record on file |
+| `V5QT0004SF` | Get Request - Record not found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

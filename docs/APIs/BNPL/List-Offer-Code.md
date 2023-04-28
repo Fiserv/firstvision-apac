@@ -23,17 +23,62 @@ type: tab
 
 ```json
 {
-  "listOfOfferCodes": [
-    {
-      "businessUnit": 600,
-      "productId": 1,
-      "offerType": 10,
-      "configurationTemplate": "TMPL",
-      "bnplType": 0,
-      "description": "",
-      "configurationTemplateExpiryDate": "12/05/2025"
-    }
-  ]
+    "listOfOfferCodes": [
+        {
+            "businessUnit": 700,
+            "productId": 0,
+            "configurationTemplate": "BNPL01TRAN",
+            "offerType": 10,
+            "bnplType": 0,
+            "description": "BNPL TRANSACTION VARIANT",
+            "configurationTemplateExpiryDate": "03/12/2030"
+        },
+        {
+            "businessUnit": 700,
+            "productId": 0,
+            "configurationTemplate": "BNPLSNG1",
+            "offerType": 10,
+            "bnplType": 0,
+            "description": "BNPL TRAN VARIANT - SINGLE -MONTH 1",
+            "configurationTemplateExpiryDate": "30/11/2030"
+        },
+        {
+            "businessUnit": 700,
+            "productId": 0,
+            "configurationTemplate": "BNPLSNG2",
+            "offerType": 10,
+            "bnplType": 0,
+            "description": "BNPL TEMP",
+            "configurationTemplateExpiryDate": "01/01/2030"
+        },
+        {
+            "businessUnit": 700,
+            "productId": 0,
+            "configurationTemplate": "BNPLSNG25",
+            "offerType": 10,
+            "bnplType": 0,
+            "description": "BNPLSNG25",
+            "configurationTemplateExpiryDate": "01/01/2030"
+        },
+        {
+            "businessUnit": 700,
+            "productId": 0,
+            "configurationTemplate": "BNPLSNGM2",
+            "offerType": 10,
+            "bnplType": 0,
+            "description": "BNPL TRAN VARIANT - SINGLE -MONTH 2",
+            "configurationTemplateExpiryDate": "31/12/2030"
+        },
+        {
+            "businessUnit": 700,
+            "productId": 0,
+            "configurationTemplate": "BNPLSNGM3",
+            "offerType": 10,
+            "bnplType": 0,
+            "description": "BNPL TRAN VARIANT - SINGLE -MONTH 3",
+            "configurationTemplateExpiryDate": "31/12/2030"
+        }
+    ]
 }
 ```
 
@@ -47,7 +92,7 @@ type: tab
         "errorCode": "240009",
         "detail": "Please refer to invalid-params for error details",
         "title": "Required fields missing",
-        "instance": "/v1/bnpl/1/listOfferCodes",
+        "instance": "/v1/bnpl/0/listOfferCodes",
         "source": "APT",
         "status": 400,
         "invalid-params": [
@@ -73,9 +118,5 @@ The below table identifies the required parameters in the request payload.
 ### Error Codes
 
 Below table provides the list of application's error code and its description.
-
-| ErrorCode |  Description/Values |
-| --------  | ------------------ |
-| `V5QT0101EA` | No organization record on file |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
