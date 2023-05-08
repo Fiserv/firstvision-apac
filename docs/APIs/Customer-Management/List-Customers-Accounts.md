@@ -19,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -28,7 +28,7 @@ type: tab
     "customerId": "0006000011000000707",
     "givenName": "Andre",
     "externalId": "113902",
-    "gender": "0",
+    "gender": 0,
     "birthDate": "14/11/1940",
     "nameLine1": "Andre Reichel",
     "addressLine1": "10 4601 Denesik Overpass",
@@ -51,8 +51,8 @@ type: tab
       "memoDebitAmount": "$0.00",
       "mailingIndicator": " ",
       "ddaAccountId": "890005226",
-      "isSuppressTokenEnabled": "0",
-      "reissueControlMethod": "0",
+      "isSuppressTokenEnabled": 0,
+      "reissueControlMethod": 0,
       "totalTokenizedCardCount": 0,
       "blockCode1": "A",
       "blockCode2": "",
@@ -65,10 +65,9 @@ type: tab
 }
 ```
 
-
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

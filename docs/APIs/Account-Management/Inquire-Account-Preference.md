@@ -1,6 +1,6 @@
 # Inquire Account Preference
 
-This API is used to fetch the details like statement preferences, various customer IDs, address ID, source code, suppress token indicator for a given account Id. 
+This API is used to fetch the details like statement preferences, various customer IDs, address ID, source code, suppress token indicator for a given account Id.
 
 ## Endpoint
 
@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 

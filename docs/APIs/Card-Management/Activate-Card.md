@@ -22,7 +22,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -36,7 +36,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -67,9 +67,9 @@ The below table identifies the required parameters in the request payload.
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
-### Error Codes 
+### Error Codes
 
-Below table provides the list of application's error code and its description. 
+Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |

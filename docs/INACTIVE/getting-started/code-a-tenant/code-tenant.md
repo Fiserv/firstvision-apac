@@ -12,10 +12,9 @@ This section explains how you can code your own tenant in the language of your c
 
 ___
 
-## Next steps 
+## Next steps
 
 [Setup Tenant]
-
 
 Need Help ?
 [FAQ]

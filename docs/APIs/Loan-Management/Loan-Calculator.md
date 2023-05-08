@@ -1,6 +1,6 @@
 # Loan Calculator
 
-This API is used to calculate the loan repayment options for prospective borrowers based on the details given input request. 
+This API is used to calculate the loan repayment options for prospective borrowers based on the details given input request.
 
 ## Endpoint
 
@@ -40,7 +40,7 @@ type: tab
     "finalPaymentAmount": "$140.09",
     "fixedPaymentAmount": "$140.09",
     "insuranceAmount": "$500.00",
-    "interestRate": "1400",
+    "interestRate": "00014.00%",
     "term": 10,
     "principalAmount": "$600.00",
     "totalFinancedAmount": "$1,400.00",
@@ -154,8 +154,6 @@ The below table identifies the required parameters in the request payload.
 | `fixedPaymentAmount` | Payload  | *number* | 17 | Amount of the fixed payment. This field is required if LOAN TERM is not supplied.|
 | `term` | Payload  | *integer*| 3 | Term for the loan. This field is required if FIXED PAYMENT AMOUNT is not supplied.|
 
-
-
 ### Error Codes
 
 Below table provides the list of application's error code and its description.
@@ -175,6 +173,5 @@ Below table provides the list of application's error code and its description.
 | `V5LC4001SK` | Currency code is required when rounding ind is 3 |  
 | `V5LC4001SL` | Invalid currency code |  
 | `V5LC4001SM` | Can not process verify input values |  
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -13,13 +13,13 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***The Payment Instrument Identification should be sent as path variable.***
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -60,7 +60,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -90,7 +90,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
-## Error Codes 
+## Error Codes
 
 Below table provides the list of application's error code and its description.
 

@@ -23,7 +23,7 @@ titles: Request, Response, Error
     "accountType": "D",
     "externalAccountId": "1000000057",
     "nominatedType": "1",
-    "nominatedPaymentAmountOrPercentage": "10",
+    "nominatedPaymentAmountOrPercentage": "$10.00",
     "paymentType": "1"
   }
 }
@@ -81,7 +81,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -126,6 +126,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS0624EF` | DD expre DT mst b 0 or > next process DT to reinstate direct debit |
 | `V5BS0624EG` | PMT REV CNTR mst be < X, PMT REV LMT on logo to reinstate dir dbt |
 | `V5BS0624EH` | ACH R/T nbr required |
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

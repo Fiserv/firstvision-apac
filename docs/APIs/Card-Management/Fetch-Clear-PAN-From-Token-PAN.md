@@ -1,6 +1,6 @@
 # Fetch Clear PAN from Token PAN
 
-This API is used to fetch the encrypted payment card number for a given payment instrument Id. 
+This API is used to fetch the encrypted payment card number for a given payment instrument Id.
 
 ## Endpoint
 
@@ -13,13 +13,13 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***The Payment Instrument Identification should be sent as path variable.***
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -29,7 +29,7 @@ type: tab
 
 <!--s
 type: tab
---> 
+-->
 
 ```json
 [
@@ -59,7 +59,7 @@ The below table identifies the required query parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

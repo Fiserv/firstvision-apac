@@ -1,7 +1,7 @@
-# Reverse Authorization 
+# Reverse Authorization
 
-This API is used to reverse the authorization for a given payment instrument Id or payment card number, authorization code, effective date, and transaction amount, if given. 
-Reverse is possible for any authorization which is waiting for settlement. 
+This API is used to reverse the authorization for a given payment instrument Id or payment card number, authorization code, effective date, and transaction amount, if given.
+Reverse is possible for any authorization which is waiting for settlement.
 
 ## Endpoint
 
@@ -31,7 +31,7 @@ type: tab
 
 ```json
 {
-  "responseCode": 0,
+  "responseCode": "00",
   "authorizationCode": "055271",
   "finalAction": "R",
   "reason": "REVESAL",
@@ -83,11 +83,11 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-| `V7RS4002EP` | Invalid card number |        
-| `V7RS4002ES` | Authorization record not found |   
-| `V7RS4003EQ` | Input effective date not matching with log record effective date |   
-| `V7RS4005ER` | Input auth amount not matching with log record auth amount |   
-| `V7RS4002EK` | Authorization record is already reversed |   
-| `V7RS4002EL` | Authorization record is already reversed |   
+| `V7RS4002EP` | Invalid card number |
+| `V7RS4002ES` | Authorization record not found |
+| `V7RS4003EQ` | Input effective date not matching with log record effective date |
+| `V7RS4005ER` | Input auth amount not matching with log record auth amount |
+| `V7RS4002EK` | Authorization record is already reversed |
+| `V7RS4002EL` | Authorization record is already reversed |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

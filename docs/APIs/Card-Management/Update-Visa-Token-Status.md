@@ -22,7 +22,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -34,7 +34,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -61,13 +61,13 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
-| `vtsTokenNumber` | Payload | *string* | 19 | Token number assigned by the Visa Tokenization Service(VTS). | 
-| `status` | Payload | *string* | 01 | This field indicate the status of token. | 
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+| `vtsTokenNumber` | Payload | *string* | 19 | Token number assigned by the Visa Tokenization Service(VTS). |
+| `status` | Payload | *string* | 01 | This field indicate the status of token. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -78,12 +78,11 @@ Below table provides the list of application's error code and its description.
 | `V5Z74052EA` | Selected token number is spaces or invalid |
 | `V5Z74052EB` | Token nbr must be 13 to 19 digits |
 | `V5Z74099SE` | Not signed on to visanet, outgoing requests not possible |
-| `V5Z74051EA` | Token not received from OFSA |                                   
+| `V5Z74051EA` | Token not received from OFSA |
 | `V5Z74051EB` | Please select action code |
 | `V5Z74051EC` | Token not found on token master file |
 | `V5Z74001IB` | Request accepted successfully |
 | `V5Z74013SB` | Account number is invalid |
 | `V5Z74099SD` | Not signed on to visanet, outgoing requests not possible |
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

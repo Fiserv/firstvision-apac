@@ -25,7 +25,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -34,7 +34,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -62,11 +62,11 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 | `cvv2` | Payload | *string* | 3 | CVV2 value of the card |
-| `expiryDate` | Payload | *date* | 4 | Field that indicates the card expiry date in MMYY format | 
+| `expiryDate` | Payload | *date* | 4 | Field that indicates the card expiry date in MMYY format |
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
@@ -77,6 +77,6 @@ Below table provides the list of application's error code and its description.
 |`V5VC4002EA` | Invalid card number |
 |`V5VC4002EA` | Card number not found |
 |`V5VC4004AE` | Invalid expiry date |
-|`V5VC4003AE` | Invalid CVV2 | 
+|`V5VC4003AE` | Invalid CVV2 |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

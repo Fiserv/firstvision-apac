@@ -19,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -54,8 +54,8 @@ type: tab
       "blockCode2": "",
       "blockCode1Date": "19/08/2021",
       "blockCode2Date": "00/00/0000",
-      "isSuppressTokenEnabled": "0",
-      "reissueControlMethod": "0",
+      "isSuppressTokenEnabled": 0,
+      "reissueControlMethod": 0,
       "totalTokenizedCardCount": 0,
       "ddaAccountId": "890005226",
       "mailingIndicator": " ",
@@ -70,12 +70,12 @@ type: tab
       "lastWalletUsedDate": "0",
       "lastPlasticSuppressedDate": "0",
       "plasticSuppressStatus": "N",
-      "cardTechnology": "3",
+      "cardTechnology": 3,
       "isAtmEnabled": "Y",
       "cardIssueDate": "28/09/2020",
       "isPosEnabled": "Y",
       "warningCode1": "0",
-      "isEcomEnabled": "1",
+      "isEcomEnabled": 1,
       "lastCardExpirationDate": "00/00/0000",
       "lastCardNeedActivation": "Y",
       "embosserName2": " ",
@@ -84,8 +84,8 @@ type: tab
       "chequeAccountId": " ",
       "currentCardNeedActivation": "Y",
       "savingsAccountId": " ",
-      "currentCardAction": "0",
-      "lastCardAction": "1",
+      "currentCardAction": 0,
+      "lastCardAction": 1,
       "expirationDate": "16/09/2023",
       "cardActivatedDate": "00/00/0000",
       "mccLimit04": "$0.00",
@@ -111,7 +111,7 @@ type: tab
       "accountId": "0001000011000052268",
       "maskedPaymentCardNumber": "000984680XXXXXX9405",
       "productDescription": "VISA PLATINUM DEBIT",
-      "cardHolderType": "1",
+      "cardHolderType": 1,
       "physicalVirtualIndicator": "V",
       "addressId": "HOME",
       "plasticId": " "
@@ -122,7 +122,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

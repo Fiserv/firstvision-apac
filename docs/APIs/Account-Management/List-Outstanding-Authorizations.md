@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 
@@ -30,24 +30,6 @@ type: tab
       "effectiveDate": "18/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
-      "maskedPaymentCardNumber": "000444001XXXXXX8266",
-      "planId": 10002,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "19/08/2021",
-      "referenceNumber": " ",
-      "transactionAmount": "$3,000.00",
-      "transactionCode": 0,
-      "transactionType": " ",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
-    },
-    {
-      "authorizationCode": " ",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "18/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
       "maskedPaymentCardNumber": "000444001XXXXXX8221",
       "planId": 10002,
       "paymentInstrumentId": "0009543161012022346",
@@ -58,7 +40,8 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 1
     },
     {
       "authorizationCode": " ",
@@ -76,7 +59,8 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 2
     },
     {
       "authorizationCode": " ",
@@ -94,7 +78,8 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 3
     },
     {
       "authorizationCode": " ",
@@ -112,7 +97,8 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 4
     },
     {
       "authorizationCode": " ",
@@ -130,7 +116,8 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 5
     }
   ]
 }
@@ -166,7 +153,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 ### Error Codes
 

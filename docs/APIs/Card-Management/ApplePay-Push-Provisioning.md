@@ -15,7 +15,6 @@ titles: Request, Response, Error
 
 ```json
 {
-  "identifier": "APPLE",
   "version": "1",
   "keysScheme": "FK",
   "ephemeralKey": "",
@@ -68,9 +67,6 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-| `identifier` | Payload | *string* | 5 | This field identifies the type of authentication code that is present. |
-| `keysScheme` | Payload | *string* | 2 | This field identify the key management scheme used to protect the encrypted information component. |
-| `algorithm` | Payload | *string* | 4 | This field identify the encryption algorithm and key strength used to encipher the encryptedinformation component. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
