@@ -25,7 +25,7 @@ titles: Request, Response, Error
   "transferToAccountId": " ",
   "transferToCustomerId": " ",
   "effectiveDate": "00/00/0000",
-  "processType": "0",
+  "processType": 0,
   "pinTransferIndicator": "N",
   "cardTransferActionCode": "CRTR",
   "cardTransferMemo": "Card transfer memo",
@@ -41,13 +41,12 @@ type: tab
 
 ```json
 {
-  "maskedPaymentInstrumentId": "0009544401XXXXX9208",
+  "maskedPaymentCardNumber": "0009544401XXXXX9208",
   "newPaymentInstrumentId": "0009544401000009208",
   "transferToAccountId": " ",
   "transferToCustomerId": " ",
   "effectiveDate": "19/08/2021"
 }
-
 ```
 
 <!--

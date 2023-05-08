@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 
@@ -23,113 +23,119 @@ type: tab
 
 ```json
 {
+  "businessUnit": 200,
   "accountId": "0002000010000403266",
-  "addressId": "",
+  "productId": 1,
+  "billingAcctInd": 0,
+  "shortName": "Dhruv",
+  "customerId": "0002000002000007799",
   "alternateCustomerIdDetails": {
-    "customerId": "0000000000000000000",
-    "customerIdEffectiveDate": "00/00/0000",
-    "customerIdExpiryDate": "00/00/0000",
-    "customerIdFlag": ""
+    "customerIdFlag": "A",
+    "customerIdExpiryDate": "15/04/2022",
+    "customerId": "0000000001000000065",
+    "customerIdEffectiveDate": "14/01/2021"
   },
-  "amountDetails": {
-    "actualDirectDebitPaymentAmount": "$0.00",
-    "cashAvailable": "$0.00",
-    "cashBalance": "$0.00",
-    "cashCreditLimit": "$0.00",
-    "creditLimit": "$0.00",
-    "currentBalance": "$0.00",
-    "currentDueAmount": "$0.00",
-    "cycleToDatePaymentAmount": "$0.00",
-    "firstPurchaseAmount": "$0.00",
-    "highBalanceAmount": "$0.00",
-    "immediateDueAmount": "$0.00",
-    "incomeAmount": "$0.00",
-    "lastCashAdvancedAmount": "$0.00",
-    "lastPaymentAmount": "$0.00",
-    "lastPurchaseAmount": "$0.00",
-    "loanAvailable": "$0.00",
-    "loanBalance": "$0.00",
-    "loanCreditLimit": "$0.00",
-    "memoCreditAmount": "$0.00",
-    "memoDebitAmount": "$0.00",
-    "openToBuy": "$0.00",
-    "pastDueAmount": "$0.00",
-    "projectedDdAmount": "$0.00",
-    "totalDueAmount": "$0.00"
-  },
-  "billingAcctInd": "0",
-  "billingCycle": 31,
-  "billingLevel": "1",
   "blockCodeDetails": {
-    "blockCode1": "",
-    "blockCode1Date": "00/00/0000",
-    "blockCode2": "",
+    "blockCode1": "A",
+    "blockCode2": " ",
+    "blockCode1Date": "10/01/2021",
     "blockCode2Date": "00/00/0000"
   },
-  "businessUnit": 200,
-  "chargeOffDetails": {
-    "additionalChargeOffReason": "",
-    "chargeOffDaysCount": 0,
-    "chargeOffReason": "",
-    "chargeOffStatus": "0",
-    "resetChargeoffDaysSwitch": "0"
-  },
-  "correspondenceCustomerId": "",
-  "currencyCode": "36",
-  "customerId": "0002000002000007799",
-  "dateFieldDetails": {
+  "dateFieldsDetails": {
+    "accountOpenDate": "10/06/2006",
     "accountClosedDate": "00/00/0000",
-    "accountOpenDate": "17/08/2021",
-    "cardFeeDate": "00/00/0000",
-    "creditLimitChangeDate": "17/08/2021",
-    "firstPurchaseDate": "00/00/0000",
-    "graceDayExpireDate": "00/00/0000",
-    "greatestExpiryDate": "16/08/2024",
-    "lastCashAdvancedDate": "00/00/0000",
-    "lastCreditDate": "00/00/0000",
-    "lastDayToAuthorizeDate": "00/00/0000",
-    "lastDebitDate": "00/00/0000",
-    "lastPaymentDate": "00/00/0000",
-    "lastPurchaseDate": "00/00/0000",
-    "lastStatementDate": "31/07/2021",
-    "nextCreditIntPaymentDate": "00/00/0000",
-    "nextStatementDate": "31/08/2021",
+    "nextStatementDate": "26/05/2022",
+    "cardFeeDate": "26/05/2021",
     "notificationReceivedDate": "00/00/0000",
-    "paymentDueDate": "00/00/0000"
+    "lastDayToAuthorizeDate": "00/00/0000",
+    "paymentDueDate": "06/06/2022",
+    "lastPaymentDate": "00/00/0000",
+    "lastDebitDate": "10/04/2022",
+    "lastCreditDate": "00/00/0000",
+    "firstPurchaseDate": "20/02/2007",
+    "greatestExpiryDate": "31/12/2030",
+    "nextCreditIntPaymentDate": "00/00/0000",
+    "lastStatementDate": "26/04/2022",
+    "lastPurchaseDate": "10/05/2022",
+    "graceDayExpireDate": "00/00/0000",
+    "lastCashAdvancedDate": "00/00/0000",
+    "creditLimitChangeDate": "19/08/2021"
+  },
+  "amountDetails": {
+    "creditLimit": "$10000.00",
+    "openToBuy": "$10000.00",
+    "currentBalance": "$0.00",
+    "currentDueAmount": "$120.00",
+    "totalDueAmount": "$0.00",
+    "immediateDueAmount": "$0.00",
+    "memoCreditAmount": "$0.00",
+    "memoDebitAmount": "$0.00",
+    "cashCreditLimit": "$0.00",
+    "cashBalance": "$0.00",
+    "cashAvailable": "$0.00",
+    "firstPurchaseAmount": "$0.00",
+    "lastPaymentAmount": "$0.00",
+    "cycleToDatePaymentAmount": "$2000.00",
+    "loanCreditLimit": "$0.00",
+    "loanBalance": "$0.00",
+    "loanAvailable": "$0.00",
+    "projectedDdAmount": "$0.00",
+    "actualDirectDebitPaymentAmount": "$0.00",
+    "highBalanceAmount": "$1450.00",
+    "incomeAmount": "$5000.00",
+    "pastDueAmount": "$0.00",
+    "lastPurchaseAmount": "$100.00",
+    "lastCashAdvancedAmount": "$0.00"
+  },
+  "userAccountId": " ",
+  "status": "A",
+  "billingCycle": 26,
+  "isRestructureEnabled": "Y",
+  "numberOfUnblockedCards": 2,
+  "relationshipId": " ",
+  "billingLevel": 1,
+  "isVipEnabled": 0,
+  "liabilityIndicator": 0,
+  "employeeCode": " ",
+  "returnMailCount": 0,
+  "returnMailUser": " ",
+  "returnMailDate": "00/00/0000",
+  "permanentCollector": " ",
+  "correspondenceCustomerId": " ",
+  "letterRequest": " ",
+  "isFraudulentReportEnabled": "N",
+  "chargeOffDetails": {
+    "chargeOffStatus": 0,
+    "chargeOffReason": " ",
+    "resetChargeoffDaysSwitch": 0,
+    "additionalChargeOffReason": " ",
+    "chargeOffDaysCount": 0
+  },
+  "disputedDetails": {
+    "disputedItemsCount": 0,
+    "totalCashDisputedItemsAmount": "$0.00",
+    "cashDisputedAmount": "$0.00",
+    "cashDisputedItemsCount": 0
   },
   "deferMembershipFeeDate": "00/00/0000",
-  "disputedDetails": {
-    "cashDisputedAmout": "$0.00",
-    "cashDisputedItemsCount": 0,
-    "disputedItemsCount": 0,
-    "totalCashDisputedItemsAmount": "$0.00"
-  },
-  "employeeCode": "",
-  "externalContractId": "",
-  "isFraudulentReportEnabled": "N",
-  "isRestructureEnabled": "N",
-  "isVipEnabled": "0",
-  "issuanceId": "SX1",
-  "letterRequest": "",
-  "liabilityIndicator": "0",
-  "numberOfUnblockedCards": 2,
-  "pctOverrideDetails": {
-    "pctExpiryDate": "00/00/0000",
-    "pctOverride": "",
-    "pctStartDate": "00/00/0000"
-  },
-  "permanentCollector": "",
-  "primaryAccountFlag": "",
-  "relationshipId": "",
   "residenceId": "SX1",
-  "returnMailCount": 0,
-  "returnMailDate": "00/00/0000",
-  "returnMailUser": "",
-  "shortName": "TESTING",
-  "sourceCode": "",
-  "statementDeliveryMode": "",
-  "status": "D",
-  "userAccountId": "0000000000000000000"
+  "issuanceId": "SX1",
+  "primaryAccountFlag": "P",
+  "externalContractId": "000012672379",
+  "addressId": "HOME",
+  "sourceCode": " ",
+  "pctOverrideDetails": {
+    "pctExpiryDate": "31/12/2025",
+    "pctStartDate": "29/01/2022",
+    "pctOverride": "HCS"
+  },
+  "statementDeliveryMode": "E",
+  "bnplDetails": {
+    "ConfigurationTemplate": "TMPL1",
+    "missedPaymentCount": 2,
+    "snoozeCount": 0,
+    "switchCount": 0
+  }
 }
 ```
 

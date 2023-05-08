@@ -3,7 +3,7 @@
 This API is used to update the Account Block Code. This service can be called with an account Id. When either block code 1 or block code 2 has a value other than spaces, the new block code can be applied to the unused entry on the account. This service is also used to remove block code from the account when space provided on existing block code field.
 
 *If block code 1 or block code 2 is already applied on an account, system checks the block code priorities defined at the product to decide to either apply the new block code value or retain the existing block code value.
-System will check if the new block code 1 or 2 priority is greater than the existing block code priority then system will update the new block code value in block code 1 or block code 2 fields Other wise it will retain the existing value itself. No block code priority check will occur when an unblock request is processed through this API.* 
+System will check if the new block code 1 or 2 priority is greater than the existing block code priority then system will update the new block code value in block code 1 or block code 2 fields Other wise it will retain the existing value itself. No block code priority check will occur when an unblock request is processed through this API.*
   
 ## Endpoint
 
@@ -69,7 +69,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 | `blockCode1/blockCode2` | Payload | *string* | 1 | Block Code to assign to the account. |
 
 ### Error Codes

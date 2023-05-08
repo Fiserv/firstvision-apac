@@ -1,6 +1,6 @@
 # Add User
 
-This API is used to add new security sign-on entity. This newly created entity determine the person’s access rights on the system. Sign-on entity must be setup and active for each person authorized to access the system. 
+This API is used to add new security sign-on entity. This newly created entity determine the person’s access rights on the system. Sign-on entity must be setup and active for each person authorized to access the system.
 
 *More than one person cannot sign on to the system using the same sign-on entity. A single person cannot sign on using the same sign-on entity at multiple terminals at the same time.*
 
@@ -219,7 +219,7 @@ titles: Request, Response, Error
     "serviceVersion": " "
   }
 }
-``` 
+```
 
 <!--
 type: tab
@@ -276,25 +276,25 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `VMSF0028SF`  |  Record added, save not allowed |
-| `VMSF4001EB`  |  Client is invalid | 
+| `VMSF4001EB`  |  Client is invalid |
 | `VMSF4002SA`  |  Client name should not be spaces |
 | `VMSF0107EA`  |  Security expiration date is invalid |
-| `VMSF0106EA`  |  Date-To-Activate cannot be zeros | 
+| `VMSF0106EA`  |  Date-To-Activate cannot be zeros |
 | `VMSF0112EA`  |  Org privilege group is invalid |
-| `VMSF0112EB`  |  Org privilege group does not exist | 
+| `VMSF0112EB`  |  Org privilege group does not exist |
 | `VMSF0112EC`  |  Privilege record is not active |
 | `VMSF0112ED`  |  Org privilege type does not confirm to this user type |
 | `VMSF0150EA`  |  Source group occurrence is not active |
-| `VMSF0108EC`  |  Oper ID in use by another user - Please enter another oper ID | 
+| `VMSF0108EC`  |  Oper ID in use by another user - Please enter another oper ID |
 | `VMSF0109EA`  |  CS Rep Org number is invalid |
 | `VMSF0116EA`  |  Invalid org include/exclude selection |
-| `VMSF0116EB`  |  Invalid include/exclude and org selection | 
+| `VMSF0116EB`  |  Invalid include/exclude and org selection |
 | `VMSF0116EC`  |  Duplicate org selection |
-| `VMSF4024EC`  |  Invalid field security code | 
+| `VMSF4024EC`  |  Invalid field security code |
 | `VMSF0302EB`  |  Invalid selection - Use I=Include E=Exclude Or D=Delete |
 | `VMSF0303EB`  |  Valid entry requires entry in Incl/Excl name and version fields |
 | `VMSF0303EC`  |  No service/version selection to include exclude or delete |
-| `VMSF0304EA`  |  Service/version does not exist- Please correct or remove it | 
+| `VMSF0304EA`  |  Service/version does not exist- Please correct or remove it |
 | `VMSF0304EB`  |  Service/version is universal & cannot be defined as an override |
 | `VMSF0304EC`  |  Service/version entered is not allowed |
 | `VMSF0304EE`  |  Valid entry requires entry in Incl/Excl name and version fields |

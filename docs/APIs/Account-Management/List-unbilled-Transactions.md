@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.  
 >
 >***Account id should be sent as path variable.***
 
@@ -41,7 +41,8 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 1
     },
     {
       "authorizationCode": "052206",
@@ -59,7 +60,8 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 2
     },
     {
       "authorizationCode": "052210",
@@ -77,7 +79,8 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 3
     },
     {
       "authorizationCode": "052213",
@@ -95,7 +98,8 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 4
     },
     {
       "authorizationCode": "052219",
@@ -113,7 +117,8 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 5
     },
     {
       "authorizationCode": "052220",
@@ -131,97 +136,8 @@ type: tab
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
-    },
-    {
-      "authorizationCode": "052226",
-      "description": "Dom POS via VISA         SYDNEY       AU",
-      "effectiveDate": "17/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": "000404940XXXXXX4057",
-      "planId": 10001,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "17/08/2021",
-      "referenceNumber": "FV0914210164216L14299",
-      "transactionAmount": "$0.00",
-      "transactionCode": 9000,
-      "transactionType": "M",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
-    },
-    {
-      "authorizationCode": "052227",
-      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate": "17/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": "000404940XXXXXX4057",
-      "planId": 10001,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "17/08/2021",
-      "referenceNumber": "FV091421018113030013773",
-      "transactionAmount": "$0.00",
-      "transactionCode": 9000,
-      "transactionType": "M",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
-    },
-    {
-      "authorizationCode": "052205",
-      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate": "18/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": "000404940XXXXXX4057",
-      "planId": 10001,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "18/08/2021",
-      "referenceNumber": "FV090921017335430013773",
-      "transactionAmount": "$0.00",
-      "transactionCode": 9000,
-      "transactionType": "M",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
-    },
-    {
-      "authorizationCode": "052206",
-      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate": "18/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": "000404940XXXXXX4057",
-      "planId": 10001,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "18/08/2021",
-      "referenceNumber": "FV090921019032730013773",
-      "transactionAmount": "$0.00",
-      "transactionCode": 9000,
-      "transactionType": "M",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
-    },
-    {
-      "authorizationCode": " ",
-      "description": " ",
-      "effectiveDate": "00/00/0000",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": " ",
-      "planId": 0,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "00/00/0000",
-      "referenceNumber": " ",
-      "transactionAmount": "$0.00",
-      "transactionCode": 0,
-      "transactionType": " ",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 6
     },
     {
       "authorizationCode": " ",
@@ -239,7 +155,8 @@ type: tab
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
-      "memoDebitOrCreditIndicator": "D"
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 7
     }
   ]
 }

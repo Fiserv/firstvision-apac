@@ -13,13 +13,13 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
->***The Encrypted Payment Card Number should be sent as path variable.***
+>***The Encrypted Payment Card Number should be sent as path variable and Business unit should be sent as query parameter.***
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -29,7 +29,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -57,10 +57,10 @@ The below table identifies the required query parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
+| `businessUnit` | Query Parameter | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
 | `encryptedPaymentCardNumber` | Path Variable | *string* | 32 | Unique identification number that appears on the front of the card (PAN) in encrypted format. |
 
-
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

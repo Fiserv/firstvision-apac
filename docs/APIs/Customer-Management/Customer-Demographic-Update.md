@@ -70,7 +70,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 
@@ -131,7 +131,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -195,6 +195,5 @@ Below table provides the list of application's error code and its description.
 |`V5NA0519EA` | Invalid start and end dates |
 |`V5NA0519EB` | End date must be greater than start date |
 |`V5NA0406EA` | When SSAN flag is 0 - chars 1 to 9 should be numeric |
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
