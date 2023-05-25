@@ -22,7 +22,6 @@ type: tab
 -->
 
 ```json
-
 {
   "FixedInterestDetails": {
     "interestIndicator": 0,
@@ -33,24 +32,24 @@ type: tab
   "accountId": "0006000011000000509",
   "businessUnit": 600,
   "capIndicatorDetails": {
-    "isInsuranceCapIndicatorEnabled": "0",
-    "isInterestCapIndicatorEnabled": "0",
-    "isUserFee1CapIndicatorEnabled": "0",
-    "isUserFee2CapIndicatorEnabled": "0",
-    "isUserFee3CapIndicatorEnabled": "0",
-    "isUserFee4CapIndicatorEnabled": "0",
-    "isUserFee5CapIndicatorEnabled": "0",
-    "isUserFee6CapIndicatorEnabled": "0"
+    "isInsuranceCapIndicatorEnabled": 0,
+    "isInterestCapIndicatorEnabled": 0,
+    "isUserFee1CapIndicatorEnabled": 0,
+    "isUserFee2CapIndicatorEnabled": 0,
+    "isUserFee3CapIndicatorEnabled": 0,
+    "isUserFee4CapIndicatorEnabled": 0,
+    "isUserFee5CapIndicatorEnabled": 0,
+    "isUserFee6CapIndicatorEnabled": 0
   },
   "componentCalculationIndicatorDetails": {
-    "insuranceIndicator": "3",
-    "interestIndicator": "3",
-    "userFee1Indicator": "3",
-    "userFee2Indicator": "3",
-    "userFee3Indicator": "3",
-    "userFee4Indicator": "3",
-    "userFee5Indicator": "3",
-    "userFee6Indicator": "3"
+    "insuranceIndicator": 3,
+    "interestIndicator": 3,
+    "userFee1Indicator": 3,
+    "userFee2Indicator": 3,
+    "userFee3Indicator": 3,
+    "userFee4Indicator": 3,
+    "userFee5Indicator": 3,
+    "userFee6Indicator": 3
   },
   "disbrusementCreditDetails": {
     "accountIndicator": 0,
@@ -72,7 +71,6 @@ type: tab
   },
   "loanDisclosedAndInitialAmountDetails": {
     "billingTerm": 1,
-    "celEppCloseFee": "0",
     "celEppManualClose": "0",
     "celEppUser": "",
     "closeReason": "0",
@@ -85,6 +83,7 @@ type: tab
     "firstPaymentDate": "20/09/2021",
     "fixedInterestAmount": "$0.00",
     "initialTerm": 3,
+    "isCelEppCloseFeeEnabled": "0",
     "lifeToDateNetSalesAmount": "$1,400.00",
     "loanAgreementDate": "17/08/2021",
     "paymentDateChangeCount": 0,
@@ -107,7 +106,7 @@ type: tab
   "skipPaymentDetails": {
     "lastSkipPaymentDate": "00/00/0000",
     "lifeToDateSkipPaymentCount": 0,
-    "skipPaymentIndicator": "0",
+    "skipPaymentIndicator": 0,
     "yearToDateSkipPaymentCount": 0
   },
   "topUpRedrawCanRestructureDetails": {
@@ -123,11 +122,10 @@ type: tab
     "lastTopUpRequestDate": "00/00/0000",
     "redrawExpiryDate": "00/00/0000",
     "restructureLetterId": "",
-    "restructureReason": "0",
+    "restructureReason": 0,
     "topUpExpiryDate": "30/11/2000"
   }
 }
-
 ```
 
 <!--

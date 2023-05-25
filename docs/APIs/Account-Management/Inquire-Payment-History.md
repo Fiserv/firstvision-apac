@@ -44,7 +44,7 @@ type: tab
       "paymentAmount": "$10.00",
       "paymentDate": "18/08/2021",
       "prepaymentAmount": "$20.00",
-      "reversalIndicator": "0"
+      "reversalIndicator": 0
     },
     {
       "beforePaymentTotalDueAmount": "$30.00",
@@ -62,7 +62,7 @@ type: tab
       "paymentAmount": "$10.00",
       "paymentDate": "19/08/2021",
       "prepaymentAmount": "$20.00",
-      "reversalIndicator": "0"
+      "reversalIndicator": 0
     },
     {
       "beforePaymentTotalDueAmount": "$0.00",
@@ -80,7 +80,7 @@ type: tab
       "paymentAmount": "$0.00",
       "paymentDate": "00/00/0000",
       "prepaymentAmount": "$0.00",
-      "reversalIndicator": "0"
+      "reversalIndicator": 0
     },
     {
       "beforePaymentTotalDueAmount": "$0.00",
@@ -98,7 +98,7 @@ type: tab
       "paymentAmount": "$0.00",
       "paymentDate": "00/00/0000",
       "prepaymentAmount": "$0.00",
-      "reversalIndicator": "0"
+      "reversalIndicator": 0
     },
     {
       "beforePaymentTotalDueAmount": "$0.00",
@@ -116,7 +116,7 @@ type: tab
       "paymentAmount": "$0.00",
       "paymentDate": "00/00/0000",
       "prepaymentAmount": "$0.00",
-      "reversalIndicator": "0"
+      "reversalIndicator": 0
     },
     {
       "beforePaymentTotalDueAmount": "$0.00",
@@ -134,7 +134,7 @@ type: tab
       "paymentAmount": "$0.00",
       "paymentDate": "00/00/0000",
       "prepaymentAmount": "$0.00",
-      "reversalIndicator": "0"
+      "reversalIndicator": 0
     }
   ]
 }

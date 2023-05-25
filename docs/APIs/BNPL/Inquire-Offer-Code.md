@@ -54,7 +54,7 @@ type: tab
     "missedPaymentFeeOccurance": 0,
     "interestRate": "150000",
     "isRestructureEnabled": 0,
-    "bnplType": "0"
+    "bnplType": 0
 }
 ```
 

@@ -39,16 +39,16 @@ type: tab
   "businessUnit": 100,
   "paymentInstrumentId": "0009846801010434272",
   "spendLimitControls": {
-    "maximumAuthorizationsFrequency": "1",
-    "maximumAtmCashAuthorizationsAmount": "$10000.00",
+    "maximumAtmCashAuthorizationsAmount": "$10,000.00",
     "maximumAtmCashAuthorizationsCount": 1,
-    "maximumSingleAtmTransactionAmount": "$10000.00",
-    "maximumOtcCashAuthorizationsAmount": "$20000.00",
+    "maximumAuthorizationsFrequency": "1",
     "maximumOtcAuthorizationsCount": 1,
-    "maximumSingleOtcCashAuthorizationAmount": "$10000.00",
-    "maximumRetailAuthorizationsAmount": "$10000.00",
+    "maximumOtcCashAuthorizationsAmount": "$20,000.00",
+    "maximumRetailAuthorizationsAmount": "$10,000.00",
     "maximumRetailAuthorizationsCount": 1,
-    "maximumSingleRetailAuthorizationAmount": "$10000.00"
+    "maximumSingleAtmTransactionAmount": "$10,000.00",
+    "maximumSingleOtcCashAuthorizationAmount": "$10,000.00",
+    "maximumSingleRetailAuthorizationAmount": "$10,000.00"
   }
 }
 ```

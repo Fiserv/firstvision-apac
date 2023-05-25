@@ -67,6 +67,7 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
+| `nonce` | Payload | *string* | 32 | A one-time-use nonce provided by Apple. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
