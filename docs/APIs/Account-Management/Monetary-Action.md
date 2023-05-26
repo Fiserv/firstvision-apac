@@ -21,7 +21,7 @@ titles: Request, Response, Error
   "businessUnit": 600,
   "accountId": "0006000011000000160",
   "actionCode": "AINQ",
-  "transactionAmount": "3000.0",
+  "transactionAmount": "3000.00",
   "effectiveDate": "18/08/2021",
   "departmentCode": " ",
   "skuNumber": 0,
@@ -34,7 +34,7 @@ titles: Request, Response, Error
   "storeNumber": 999999998,
   "authorizationCode": " ",
   "referenceNumber": "0",
-  "actionCodePriority": "0",
+  "actionCodePriority": 0,
   "insuranceCode": " ",
   "actionNotes": {
     "note1": " ",

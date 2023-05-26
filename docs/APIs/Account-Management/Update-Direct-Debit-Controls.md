@@ -16,15 +16,15 @@ titles: Request, Response, Error
 ```json
 {
   "directDebitDetails": {
-    "paymentRemittanceMethod": "0",
+    "paymentRemittanceMethod": 0,
     "paymentStartDate": "04/10/2021",
     "paymentExpiryDate": "04/11/2022",
     "routingBankID": "123456",
     "accountType": "D",
     "externalAccountId": "1000000057",
-    "nominatedType": "1",
+    "nominatedType": 1,
     "nominatedPaymentAmountOrPercentage": "$10.00",
-    "paymentType": "1"
+    "paymentType": 1
   }
 }
 ```
@@ -35,18 +35,18 @@ type: tab
 
 ```json
 {
-  "accountId": "0006000011000000103",
   "businessUnit": 600,
+  "accountId": "0006000011000000103",
   "directDebitDetails": {
+    "paymentRemittanceMethod": 0,
+    "paymentStartDate": "04/10/2021",
+    "paymentExpiryDate": "04/11/2022",
+    "routingBankID": "123456",
     "accountType": "D",
     "externalAccountId": "1000000057",
-    "nominatedPaymentAmountOrPercentage": "10",
-    "nominatedType": "1",
-    "paymentExpiryDate": "04/11/2022",
-    "paymentRemittanceMethod": "0",
-    "paymentStartDate": "04/10/2021",
-    "paymentType": "1",
-    "routingBankID": "123456"
+    "nominatedType": 1,
+    "nominatedPaymentAmountOrPercentage": "$10.00",
+    "paymentType": 1
   }
 }
 ```
@@ -111,10 +111,10 @@ Below table provides the list of application's error code and its description.
 | `V5BS0622EA` | DD account nbr required field |
 | `V5BS0622EB` | ACH account nbr not editable when debit active at logo |
 | `V5BS0622SC` | Payment ACH db number other than zero and spaces |
-| `V5BS0626EA` | DD nom ind mst b 1,2,3,9 and DD amt/pct greater than or equal to 0 for DD pmt to 2 or 7 |
+| `V5BS0626EA` | DD NOM IND mst b 1,2,3,8,9 and dd amt/pct greater than or equal to 0 for dd pmt to 2 or 7 |
 | `V5BS0626EB` | DD nom ind not editable when debit active at logo |
 | `V5BS0626SV` | Invalid nominated ACH amount pricing control table flag |
-| `V5BS0627EA` | DD nominated payment amount/percent must be equal to zero when DD nom ind is 0 or 3 |
+| `V5BS0627EA` | DD nominated payment amount/percent must be equal to zero when dd nom ind is 0 or 3 OR 8 |
 | `V5BS0627EB` | DD nominated payment amount/percent must be greater than zero when DD nom ind is 1 or 2 or 9 |
 | `V5BS0627EC` | DD nominated payment amount/percent must be less than 100% and not 0 when DD nom indicator is 2 or 9 |
 | `V5BS0627EE` | Nominated ACH pct/amt not editable when debit active at logo |
@@ -126,5 +126,7 @@ Below table provides the list of application's error code and its description.
 | `V5BS0624EF` | DD expre DT mst b 0 or > next process DT to reinstate direct debit |
 | `V5BS0624EG` | PMT REV CNTR mst be < X, PMT REV LMT on logo to reinstate dir dbt |
 | `V5BS0624EH` | ACH R/T nbr required |
+| `V5BS0626EC` | DD payment type should be set as 2, when DD nom ind is 8 |
+| `V5BS0626ED` | DD nom ind mst be 0,1,2,3,8 OR 9 |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

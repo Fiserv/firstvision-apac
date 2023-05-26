@@ -23,110 +23,190 @@ type: tab
 
 ```json
 {
-  "businessUnit": 600,
-  "productId": 1,
-  "productDescription": "VISA CREDIT CONSUMER",
-  "cardProductDisplay": "0",
-  "quarterlyAffiliateCardProduct": "V1",
-  "isLoanFeatureEnabled": "1",
-  "isPaymentHolidaysEnabled": "Y",
-  "isSameDayEmbossingEnabled": "1",
-  "isChipOrPinCardEnabled": "1",
-  "delinquencyAgeing": "D",
-  "processingControlLevel": "O",
-  "isCollectionsEnabled": "Y",
-  "automaticAccountNumberGeneration": "I",
-  "authAlerts": "0",
-  "isFalcon6Enabled": "0",
-  "isVipOverrideEnabled": "N",
-  "isSecureCodeEnabled": "0",
-  "isLoyaltyManagementEnabled": "1",
-  "isDebitCardProcessEnabled": "0",
-  "isTokenizationServiceEnabled": "1",
-  "isManualPinResetEnabled": "1",
-  "isCardActionTableEnabled": "0",
-  "defaultCardTechnology": "3",
-  "isScriptingEnabled": "0",
-  "isSweepOptionEnabled": "0",
-  "isCrossBorderAlertEnabled": "0",
-  "creditLimitBypass": "0",
-  "isLocalorInternationalUsageEnabled": "0",
-  "isNewCardDefaultEnabled": "0",
-  "enhancedProductsEligible": "0",
-  "isCardPresenttransactionEnabled": " ",
-  "newCardPlastics": "Y",
-  "embossingFilesKeyType": "B",
-  "keyTypeForPinMailerFiles": "B",
-  "pinMailerNameaddress": "0",
-  "cardMailerNameaddress": "0",
-  "isCardBureauFeedbackEnabled": "0",
-  "pinMailerForCardAction": [
-    {
-      "cardAction": "0",
-      "pinOptions": "0"
-    }
-  ],
-  "isDirectDebitCreditEnabled": "N",
-  "isOverlimitProcessingOptinIndicatorEnabled": "0",
-  "openToBuyCreditBalance": "1",
-  "includeDisputedAmounts": "0",
-  "residenceId": "SX1",
-  "issuanceId": "SX1",
-  "isWspTokenEnabled": "1",
-  "typeOfAccount": "X",
-  "markUpFeeEnabled": {
-    "isReimburseIssuerOrSchemaEnabled": "0",
-    "isIssuerEnabled": "0",
-    "isSchemeEnabled": "0",
-    "isUserDefinedEnabled": "0"
-  },
-  "cardActivationControls": {
-    "newCardActivation": "Y",
-    "additionalCardActivation": "Y",
-    "reissueCardActivation": "Y",
-    "replacementCardActivation": "Y"
-  },
-  "paymentProcessingControls": {
-    "applicationMethodForAccountReceivable": "H",
-    "applicationMethodForProfitLoss": "D",
-    "prepaymentsAllowed": "0",
-    "paymentApplicationLevel": "P"
-  },
-  "bnplAlerts": {
-    "isbookingAlertEnabled": 0,
-    "bookingAlertChannelIndicator": 0,
-    "isIplanActivationAlertEnabled": 0,
-    "iplanActivateAlertChannelIndicator": 0,
-    "isPaymentDueAlertEnabled": 0,
-    "paymentDueAlertChannelIndicator": 0,
-    "isMissPamyemtAlertEnabled": 0,
-    "missPaymentAlertChannelIndicator": 0,
-    "isSwitchAlertEnabled": 0,
-    "switchAlertChannelIndicator": 1,
-    "isSnoozeAlertEnabled": 0,
-    "snoozeAlertChannelIndicator": 0
-  },
-  "bnplDetails": {
-    "isBnplEnabled": 0,
-    "configurationTemplate": "BNPLTMPL10",
-    "isRecalculatePayDateEnabled": 1,
-    "repaymentIndicator": 0,
-    "repaymentDays": 1,
-    "paymentGraceDays": 1,
-    "missedPaymentCount": 2,
-    "missedPaymentBlockCode": " ",
-    "isSnoozeEnabled": 0,
-    "snoozeCount": 0,
-    "offerSwitchMethod": 0,
-    "offerSwitchCount": 0
-  },
-  "bnlplTierRangeOfTemplateId": [
-    {
-      "configurationTemplate": "TEMPLATE 1",
-      "tierMinimumAmount": "0000000001000",
-      "tierMaximumAmount": "0000000010000"
-    }
-  ]
+    "pinMailerForCardAction": [
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        },
+        {
+            "pinOptions": 0,
+            "cardAction": "0"
+        }
+    ],
+    "markUpFeeEnabled": {
+        "isReimburseIssuerOrSchemaEnabled": "0",
+        "isIssuerEnabled": "0",
+        "isSchemeEnabled": "1",
+        "isUserDefinedEnabled": "0"
+    },
+    "cardActivationControls": {
+        "reissueCardActivation": "N",
+        "replacementCardActivation": "N",
+        "newCardActivation": "N",
+        "additionalCardActivation": "N"
+    },
+    "paymentProcessingControls": {
+        "applicationMethodForAccountReceivable": "K",
+        "applicationMethodForProfitLoss": "K",
+        "prepaymentsAllowed": 0,
+        "paymentApplicationLevel": "P"
+    },
+    "bnplAlerts": {
+        "isbookingAlertEnabled": 1,
+        "bookingAlertChannelIndicator": 3,
+        "isIplanActivationAlertEnabled": 1,
+        "iplanActivateAlertChannelIndicator": 3,
+        "isPaymentDueAlertEnabled": 1,
+        "paymentDueAlertChannelIndicator": 1,
+        "isMissPamyemtAlertEnabled": 1,
+        "missPaymentAlertChannelIndicator": 3,
+        "isSwitchAlertEnabled": 1,
+        "switchAlertChannelIndicator": 3,
+        "isSnoozeAlertEnabled": 1,
+        "snoozeAlertChannelIndicator": 3
+    },
+    "bnplDetails": {
+        "isBnplEnabled": 1,
+        "configurationTemplate": "BNPLBUD44",
+        "isRecalculatePayDateEnabled": 0,
+        "repaymentIndicator": 1,
+        "repaymentDays": 1,
+        "paymentGraceDays": 1,
+        "missedPaymentCount": 3,
+        "missedPaymentBlockCode": "A",
+        "isSnoozeEnabled": 1,
+        "snoozeCount": 3,
+        "offerSwitchMethod": 1,
+        "offerSwitchCount": 3
+    },
+    "bnplTierRangeOfTemplateId": [
+        {
+            "configurationTemplate": "BNPL24",
+            "tierMinimumAmount": "$5.00",
+            "tierMaximumAmount": "$100.00"
+        },
+        {
+            "configurationTemplate": "BNPLBUD44",
+            "tierMinimumAmount": "$101.00",
+            "tierMaximumAmount": "$200.00"
+        },
+        {
+            "configurationTemplate": "BNPLBUN08",
+            "tierMinimumAmount": "$201.00",
+            "tierMaximumAmount": "$300.00"
+        },
+        {
+            "configurationTemplate": "BNPLBUN09",
+            "tierMinimumAmount": "$301.00",
+            "tierMaximumAmount": "$400.00"
+        },
+        {
+            "configurationTemplate": "BNPLBUD44",
+            "tierMinimumAmount": "$401.00",
+            "tierMaximumAmount": "$600.00"
+        }
+    ],
+    "typeOfAccount": "X",
+    "isLocalorInternationalUsageEnabled": 0,
+    "cardProductDisplay": 0,
+    "businessUnit": 700,
+    "productId": 2,
+    "isLoyaltyManagementEnabled": "0",
+    "isDirectDebitCreditEnabled": "Y",
+    "productDescription": "BNPL VISA CREDIT CARDS",
+    "quarterlyAffiliateCardProduct": "V1",
+    "isLoanFeatureEnabled": 0,
+    "isPaymentHolidaysEnabled": "N",
+    "isSameDayEmbossingEnabled": 0,
+    "isChipOrPinCardEnabled": 1,
+    "delinquencyAgeing": "S",
+    "processingControlLevel": "O",
+    "isCollectionsEnabled": "N",
+    "automaticAccountNumberGeneration": "I",
+    "isOverlimitProcessingOptionIndicatorEnabled": 0,
+    "openToBuyCreditBalance": 3,
+    "includeDisputedAmounts": 1,
+    "residenceId": "B01",
+    "issuanceId": "B01",
+    "isWspTokenEnabled": 1,
+    "authAlerts": 0,
+    "isFalcon6Enabled": "0",
+    "isVipOverrideEnabled": "Y",
+    "isSecureCodeEnabled": 0,
+    "isDebitCardProcessEnabled": 0,
+    "isTokenizationServiceEnabled": 1,
+    "isManualPinResetEnabled": 1,
+    "isCardActionTableEnabled": 0,
+    "defaultCardTechnology": 3,
+    "isScriptingEnabled": 1,
+    "isSweepOptionEnabled": 0,
+    "isCrossBorderAlertEnabled": 0,
+    "creditLimitBypass": 0,
+    "isNewCardDefaultEnabled": 0,
+    "enhancedProductsEligible": 0,
+    "isCardPresenttransactionEnabled": "X",
+    "newCardPlastics": "Y",
+    "embossingFilesKeyType": "B",
+    "keyTypeForPinMailerFiles": "B",
+    "pinMailerNameaddress": 0,
+    "cardMailerNameaddress": 0,
+    "isCardBureauFeedbackEnabled": 0
 }
 ```
 
