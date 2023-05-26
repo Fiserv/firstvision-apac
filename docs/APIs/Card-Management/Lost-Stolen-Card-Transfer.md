@@ -19,7 +19,7 @@ titles: Request, Response, Error
   "paymentInstrumentId": "0009544401000009195",
   "accountId": "0006000011000000178",
   "productId": 1,
-  "cardReplacementIndicator": "0",
+  "cardReplacementIndicator": 0,
   "blockCode": "L",
   "startDate": "00/00/0000",
   "transferToAccountId": " ",

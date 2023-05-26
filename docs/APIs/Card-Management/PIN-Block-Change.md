@@ -15,15 +15,13 @@ titles: Request, Response, Error
 
 ```json
 {
-  "requestedPinBlock": "B2AFACDD4874EC07",
-  "currentPinBlock": "0B84D9726EF0F480",
+  "requestedPinBlock": "0B84D9726EF0F480",
+  "currentPinBlock": "B2AFACDD4874EC07",
   "pinOffset": 0,
   "pinChannel": "A",
   "keyAssociation": " ",
-  "pinSetOrResetActionCode": "PNRS",
-  "pinSetOrResetMemo": "PIN reset memo",
-  "pinTryCounterResetActionCode": "PNRT",
-  "pinTryCounterResetMemo": "PIN try counter reset memo"
+  "pinChangeActionCode": "PNRS",
+  "pinChangeMemo": "Set PIN"
 }
 ```
 
@@ -88,6 +86,5 @@ Below table provides the list of application's error code and its description.
 |`V5CP4009SA`| Card is not activated, pin change not allowed |
 |`V5CP4010SA`| PIN suppression is on, pin change not allowed |
 |`V5CP4009EB`| Invalid PIN set/reset action code |
-|`V5CP4011EB`| Invalid PIN try counter reset action code |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

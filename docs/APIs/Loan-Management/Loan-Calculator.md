@@ -15,18 +15,17 @@ titles: Request, Response, Error
 
 ```json
 {
-  "principalAmount": "60000",
-  "insuranceAmount": "50000",
+  "principalAmount": "600.00",
+  "insuranceAmount": "500.00",
   "currencyCode": "036",
-  "userFeeAmount": "30000",
+  "userFeeAmount": "300.00",
   "interestRate": 1400,
   "term": 10,
-  "fixedPaymentAmount": "0",
-  "isPaymentScheduledEnabled": "1",
-  "interestMethod": "0",
-  "roundingIndicator": "0"
+  "fixedPaymentAmount": "0.00",
+  "isPaymentScheduledEnabled": 1,
+  "interestMethod": 0,
+  "roundingIndicator": 0
 }
-
 ```
 
 <!--

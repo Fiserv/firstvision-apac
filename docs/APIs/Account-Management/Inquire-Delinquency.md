@@ -34,7 +34,7 @@ type: tab
     "30daysDelinquentAmount": "$0.00",
     "60daysDelinquentAmount": "$0.00",
     "90daysDelinquentAmount": "$0.00",
-    "currentCycleDue": "0",
+    "currentCycleDue": 0,
     "currentDueAmount": "$0.00",
     "lastDelinquentDate": "00/00/0000",
     "pastDueAmount": "$0.00",

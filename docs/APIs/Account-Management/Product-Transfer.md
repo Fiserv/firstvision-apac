@@ -25,9 +25,9 @@ titles: Request, Response, Error
   "customerId": " ",
   "billingCycle": 0,
   "effectiveDate": "00/00/0000",
-  "transferReplcementIndicator": "0",
+  "transferReplcementIndicator": 0,
   "newCardTechnology": "1",
-  "continueWithReissue": "0",
+  "continueWithReissue": 0,
   "processType": " ",
   "sameDayProcessing": "0"
 }

@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 ```json
 {
-  "cardholderType": "1"
+  "cardholderType": 1
 }
 ```
 
@@ -26,7 +26,7 @@ type: tab
 ```json
 {
   "businessUnit": 100,
-  "cardholderType": "1",
+  "cardholderType": 1,
   "paymentInstrumentId": "0009846801010273613"
 }
 ```

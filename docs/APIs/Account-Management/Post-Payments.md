@@ -20,7 +20,7 @@ titles: Request, Response, Error
   "businessUnit": 600,
   "accountId": "0006000011000000160",
   "actionCode": "RLP3",
-  "transactionAmount": "1000.0",
+  "transactionAmount": "1000.00",
   "effectiveDate": "25/02/2022",
   "departmentCode": "",
   "skuNumber": 0,
