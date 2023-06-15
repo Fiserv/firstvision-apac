@@ -99,7 +99,8 @@ type: tab
       "maskedPaymentCardNumber": "000484680XXXXXX9405",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
-      "bnplIplanSequenceNumber": 1
+      "bnplIplanSequenceNumber": 1,
+      "merchantCountryCode": "AUS"
     }
   ],
   "correspondingCustomerId": " ",

@@ -35,11 +35,11 @@ type: tab
     "customerId": "0000000001000000065",
     "customerIdEffectiveDate": "14/01/2021"
   },
-  "blockCodeDetails": {
+  "blockCodeDetails": 
     "blockCode1": "A",
-    "blockCode2": " ",
+    "blockCode2": "X",
     "blockCode1Date": "10/01/2021",
-    "blockCode2Date": "00/00/0000"
+    "blockCode2Date": "10/02/2021"
   },
   "dateFieldsDetails": {
     "accountOpenDate": "10/06/2006",
