@@ -14,8 +14,7 @@ titles: Request, Response, Error
 -->
 
 ```json
-{
-}
+{}
 ```
 
 <!--
@@ -63,8 +62,6 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 | `sequenceNumber` | Query Parameter | *integer* | 5 | This is the iPlan sequence number when each time a new iPlan is created |
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Error Codes
 

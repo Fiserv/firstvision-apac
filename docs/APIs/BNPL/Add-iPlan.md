@@ -15,8 +15,8 @@ titles: Request, Response, Error
 
 ```json
 {
-  "businessUnit": 600,
-  "accountId": "0006000011000000103",
+  "businessUnit": 700,
+  "accountId": "0007000022102711404",
   "transactionAmount": "1000.00",
   "authorizationCode": "998271",
   "configurationTemplate": "TMPL10"
@@ -59,7 +59,7 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=POST&path=/v1/bnpl/addIplan).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/bnpl/addIplan).
 
 The below table identifies the required parameters in the request payload.
 

@@ -15,8 +15,8 @@ titles: Request, Response, Error
 
 ```json
 {
-  "businessUnit": 600,
-  "accountId": "0006000011000000103",
+  "businessUnit": 700,
+  "accountId": "0007000022102711404",
   "configurationTemplate": "BNPLTMPL10",
   "preferredDayOfWeek": 0,
   "bookingAlertChannelIndicator": 0,
