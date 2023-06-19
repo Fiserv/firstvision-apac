@@ -31,7 +31,7 @@ titles: Request, Response, Error
   "name2TypeIndicator": 0,
   "posServiceCode": 0,
   "cardholderFlag": "0",
-  "visaMiniCardVersion": "0",
+  "visaMiniIndicator": "0",
   "programId": 0,
   "mobileDeviceId": "12343",
   "mobileProvisionStatus": "0",

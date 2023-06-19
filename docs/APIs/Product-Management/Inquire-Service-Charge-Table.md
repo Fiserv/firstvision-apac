@@ -404,6 +404,25 @@ type: tab
       "transactionLimitFrequency": 0
     }
   ],
+  "bnplMissedPaymentFeeDetails": {
+    "missedPaymentFeeAmount1": "$100.00",
+    "missedPaymentFeeLimit1": 5,
+    "missedPaymentFeeAmount2": "$100.00",
+    "missedPaymentFeeLimit2": 5,
+    "missedPaymentFeeAmount3": "$100.00",
+    "missedPaymentFeeLimit3": 5,
+    "missedPaymentFeeAmount4": "$100.00",
+    "missedPaymentFeeLimit4": 5,
+    "missedPaymentFeeAmount5": "$100.00",
+    "missedPaymentFeeLimit5": 5
+  },
+  "bnplSnoozeFeeDetails": {
+    "snoozeFeeAmount1": "$55.00",
+    "snoozeFeeAmount2": "$0.00",
+    "snoozeFeeAmount3": "$0.00",
+    "snoozeFeeAmount4": "$0.00",
+    "snoozeFeeAmount5": "$0.00"
+  },
   "tableId": 3
 }
 ```
