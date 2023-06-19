@@ -82,7 +82,7 @@ type: tab
   "responseCode": "00",
   "temporaryCreditLimit": "$0.00",
   "totalDueAmount": "$0.00",
-  "transactionAmount": "2.00",
+  "authorizationAmount": "$2.00",
   "effectiveDate": "10/01/2022"
 }
 ```
