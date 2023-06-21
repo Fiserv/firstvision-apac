@@ -1,6 +1,6 @@
 # List Outstanding Authorizations
 
-This service provides details of the memo-posted authorizations on a given account.
+This API is used to fetch outstanding authorization details for a given account Id.
 
 ## Endpoint
 
@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 
@@ -30,23 +30,6 @@ type: tab
       "effectiveDate": "18/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
-      "maskedPaymentCardNumber": "000444001XXXXXX8266",
-      "planId": 10002,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "19/08/2021",
-      "referenceNumber": " ",
-      "transactionAmount": "$3,000.00",
-      "transactionCode": 0,
-      "transactionType": " ",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
-    },
-    {
-      "authorizationCode": " ",
-      "description": "MEMO POSTED DEBIT",
-      "effectiveDate": "18/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
       "maskedPaymentCardNumber": "000444001XXXXXX8221",
       "planId": 10002,
       "paymentInstrumentId": "0009543161012022346",
@@ -56,7 +39,9 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 1
     },
     {
       "authorizationCode": " ",
@@ -73,7 +58,9 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 2
     },
     {
       "authorizationCode": " ",
@@ -90,7 +77,9 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 3
     },
     {
       "authorizationCode": " ",
@@ -107,7 +96,9 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 4
     },
     {
       "authorizationCode": " ",
@@ -124,7 +115,9 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 5
     }
   ]
 }
@@ -141,7 +134,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/accounts/0006000022000000439/transactions/memoPost",
     "invalid-params": [
-      "V5T24002SB: NO ACCOUNT ON FILE"
+      "V5T24002SB: ACCOUNT NUMBER NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -160,7 +153,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 ### Error Codes
 
@@ -168,7 +161,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5T24002SB` | No account on File |
+| `V5T24002SB` | Account number not found |
 | `V5T24024EA` | Invalid txn suppresion indicatr valid values are N or Y |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

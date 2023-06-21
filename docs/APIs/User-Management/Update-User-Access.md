@@ -1,6 +1,6 @@
 # Update User Access
 
-This service is used to update security sign-on data like business unit include/exclude flags and user application access options.
+This API is used to update sign-on data like business unit include/exclude flags and user application access options for a given security sign-on details.
 
 ## Endpoint
 
@@ -382,8 +382,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `clientId` | Payload | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. | 
-| `name` | Payload | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. | 
+| `clientId` | Payload | *number* | 5 | Identification number, referred to as Client ID, assigned to your institution by the processor. |
+| `name` | Payload | *string* | 15 | Sign-on name that the person assigned this User Security Signon record will use to sign on to the system. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -394,21 +394,21 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5ED0010SF` | Update request - Record not found |
-| `VMSF4001EB` | Client is invalid | 
-| `VMSF4002SA` | Client name should not be spaces | 
-| `VMSF0112EA` | Org privilege group is invalid | 
-| `VMSF0112EB` | Org privilege group does not exist | 
-| `VMSF0112EC` | Privilege record is not active | 
-| `VMSF0112ED` | Org privilege type does not conform to this user type | 
-| `VMSF0108EC` | Oper id in use by another user -please enter another oper id | 
-| `VMSF0116EA` | Invalid org include/exclude selection | 
-| `VMSF0116EB` | Invalid include/exclude and org selection | 
-| `VMSF0302EB` | Invalid selection -use i-include e-exclude or d-delete | 
-| `VMSF0303EB` | Valid entry requires entry in incl/excl name and version fields  | 
-| `VMSF0303EC` | No service/version selection to include exclude or delete | 
-| `VMSF0304EA` | Service/version does not exist- please correct or remove it | 
-| `VMSF0304EB` | Service/version is universal & cannot be defined as an override | 
-| `VMSF0304EC` | Service/version entered is not allowed | 
+| `VMSF4001EB` | Client is invalid |
+| `VMSF4002SA` | Client name should not be spaces |
+| `VMSF0112EA` | Org privilege group is invalid |
+| `VMSF0112EB` | Org privilege group does not exist |
+| `VMSF0112EC` | Privilege record is not active |
+| `VMSF0112ED` | Org privilege type does not conform to this user type |
+| `VMSF0108EC` | Oper id in use by another user -please enter another oper id |
+| `VMSF0116EA` | Invalid org include/exclude selection |
+| `VMSF0116EB` | Invalid include/exclude and org selection |
+| `VMSF0302EB` | Invalid selection -use i-include e-exclude or d-delete |
+| `VMSF0303EB` | Valid entry requires entry in incl/excl name and version fields  |
+| `VMSF0303EC` | No service/version selection to include exclude or delete |
+| `VMSF0304EA` | Service/version does not exist- please correct or remove it |
+| `VMSF0304EB` | Service/version is universal & cannot be defined as an override |
+| `VMSF0304EC` | Service/version entered is not allowed |
 | `VMSF0304EE` | Valid entry requires entry in incl/excl name and version fields |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

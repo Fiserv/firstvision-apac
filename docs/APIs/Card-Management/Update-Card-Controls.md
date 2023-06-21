@@ -1,6 +1,6 @@
 # Update Card Controls
 
-This service updates the card controls for a given payment instrument Id like ECOM Active switch, ATM Flag, International ATM POS Flag, MOTO Flag and max Amount ATM/OTC/Retail etc.
+This API is used to update the card control restriction flags for a given payment instrument Id and provide details whether the ATM, POS, ECOM etc transitions are enabled or disabled.
 
 ## Endpoint
 
@@ -20,21 +20,21 @@ titles: Request, Response, Error
   "isPayWaveEnabled": "N",
   "isInternationalAtmPosEnabled": "Y",
   "isCashBackEnabled": "Y",
-  "isEcomEnabled": "0",
+  "isEcomEnabled": 0,
   "isMotoEnabled": "Y"
 }
 ```
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
   "businessUnit": 100,
   "isAtmEnabled": "Y",
   "isCashBackEnabled": "Y",
-  "isEcomEnabled": "0",
+  "isEcomEnabled": 0,
   "isInternationalAtmPosEnabled": "Y",
   "isMotoEnabled": "Y",
   "isPayWaveEnabled": "N",
@@ -45,7 +45,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -65,7 +65,6 @@ type: tab
 
 <!-- type: tab-end -->
 
-
 ### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/controls).
@@ -74,18 +73,18 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5ED0010SF` | Update request - record not found | 
-| `V5ED9555SV` | Invalid POS flag | 
+| `V5ED0010SF` | Update request - record not found |
+| `V5ED9555SV` | Invalid POS flag |
 | `V5ED9556SV` | Invalid ATM flag |  
 | `V5ED8118SV` | Invalid PAY wave flag |  
 | `V5ED8119SV` | Invalid int ATM POS flag |  

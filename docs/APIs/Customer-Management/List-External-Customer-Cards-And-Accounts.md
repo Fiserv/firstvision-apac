@@ -1,11 +1,10 @@
 # List External Customers' Cards And Accounts
 
-This service retrieves the account and cards details associated with an external contract ID.
+This API is used to fetch the list of accounts, list of cards and it's details associated with an external contract Id.
 
 ## Endpoint
 
 `GET /v1/customers/{externalContractId}/listExternalCustomersCardsAndAccounts`
-
 
 ## Payload Example
 
@@ -20,56 +19,48 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
-    "accountList": {
-        "blockCode2": "",
-        "shortName": "SRAVANTHI",
-        "residenceId": "B01",
-        "totalCardsCount": 3,
-        "businessUnit": 700,
-        "productId": 1,
-        "accountId": "0007000011925283501",
-        "status": "N",
-        "memoDebitAmount": "0.00",
-        "blockCode1": "",
-        "addressId": "12"
-    },
-    "cardList": [
-        {
-            "paymentInstrumentId": "0009543161000021084",
-            "blockCode1": " ",
-            "embossedName": "SRAVANTHI9916",
-            "addressId": "C9916",
-            "plasticId": " ",
-            "expiryDate": "28/06/2025"
-        },
-        {
-            "paymentInstrumentId": "0009543161000021126",
-            "blockCode1": " ",
-            "embossedName": "SRAVANTHI9916",
-            "addressId": "C9916",
-            "plasticId": " ",
-            "expiryDate": "28/04/2025"
-        },
-        {
-            "paymentInstrumentId": "0009543161000023601",
-            "blockCode1": " ",
-            "embossedName": "chsrabc9916",
-            "addressId": "C9916",
-            "plasticId": " ",
-            "expiryDate": "28/10/2025"
-        }
-    ],
-    "externalContractId": "99993499789916"
+  "externalContractId": "000012672379",
+  "totalAccountsCount": 2,
+  "totalCardsCount": 2,
+  "businessUnit": 600,
+  "accountList": [
+    {
+      "accountId": "0006000012000000256",
+      "productId": 1,
+      "status": "A",
+      "transferFromOrTransferToAccountId": "0006000012000000123",
+      "addressId": "RESIDENTIAL",
+      "blockCode1": "A",
+      "blockCode2": " ",
+      "shortName": "Dhruv",
+      "residenceId": "SX1",
+      "customerId": "0000020000065439605"
+    }
+  ],
+  "cardList": [
+    {
+      "paymentInstrumentId": "0009544410000000047",
+      "blockCode": " ",
+      "embossedName": "DAVID TEST 2",
+      "addressId": "RESIDENTIAL",
+      "plasticId": " ",
+      "accountId": "0006000012000000256",
+      "expiryDate": "16/08/2024",
+      "transferFromPaymentInstrumentId": "0009543161000134358",
+      "transferToPaymentInstrumentId": "0009543160010000062",
+      "maskedPaymentCardNumber": "000431683XXXXXX0959"
+    }
+  ]
 }
 ```
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

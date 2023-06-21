@@ -1,6 +1,8 @@
 # Product Transfer
 
-This service will validate input message and upgrades customer's account product. 
+This API is used to transfer the account and all the cards associated to it, to a new product given in input.
+
+Fields that are not provided in the request object will be initialized to their default values. All numeric fields are initialized to zero and alphanumeric fields initialized to spaces.
 
 ## Endpoint
 
@@ -22,7 +24,7 @@ titles: Request, Response, Error
   "transferToProductId": 2,
   "customerId": " ",
   "billingCycle": 0,
-  "effectiveDate": "0",
+  "effectiveDate": "00/00/0000",
   "transferReplcementIndicator": "0",
   "newCardTechnology": "1",
   "continueWithReissue": "0",
@@ -72,10 +74,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `transferToAccountId` | Payload | *string* | 19 | New transferred to account id of the cardholder billing account. |  
- 
+
 ### Error Codes
 
 Below table provides the list of application's error code and its description.
@@ -83,6 +84,7 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5XF4001SB` | No organization record on file |
+| `V5XF4002SA` | Account number not found |
 | `V5X24017SA` | Transfer/Copy to account number invalid |
 | `V5X24017SC` | Transfer/Copy to account must not be on file for this |
 | `V5X24018SA` | Transfer/Copy to logo invalid |

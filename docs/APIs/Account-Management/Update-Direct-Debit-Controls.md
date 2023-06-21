@@ -1,8 +1,6 @@
 # Update Direct Debit Controls
 
-The Direct Debit Update message enables the user to update the Direct Debit information on an account. The information that can be updated includes: bank account and routing data and various other associated fields. This service does not initiate the Direct Debit, it just provides a mechanism to update the Direct Debit related fields.
-
-*It is necessary to perform an inquiry using the Direct Debit/Credit inquiry message first, as this service requires all fields to be sent in the request, whether they have been changed or not. If a tag is sent in empty, it is presumed that the field is to be deleted.*
+This API is used to update direct debit details for given account Id. This API does not initiate the direct debit, it just provides a mechanism to update the direct debit processing fields.
 
 ## Endpoint
 
@@ -25,7 +23,7 @@ titles: Request, Response, Error
     "accountType": "D",
     "externalAccountId": "1000000057",
     "nominatedType": "1",
-    "nominatedPaymentAmountPercentage": "10",
+    "nominatedPaymentAmountOrPercentage": "$10.00",
     "paymentType": "1"
   }
 }
@@ -42,7 +40,7 @@ type: tab
   "directDebitDetails": {
     "accountType": "D",
     "externalAccountId": "1000000057",
-    "nominatedPaymentAmountPercentage": "10",
+    "nominatedPaymentAmountOrPercentage": "10",
     "nominatedType": "1",
     "paymentExpiryDate": "04/11/2022",
     "paymentRemittanceMethod": "0",
@@ -83,7 +81,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -128,6 +126,5 @@ Below table provides the list of application's error code and its description.
 | `V5BS0624EF` | DD expre DT mst b 0 or > next process DT to reinstate direct debit |
 | `V5BS0624EG` | PMT REV CNTR mst be < X, PMT REV LMT on logo to reinstate dir dbt |
 | `V5BS0624EH` | ACH R/T nbr required |
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -1,6 +1,6 @@
 # Inquire Card Controls
 
-This service fetches the card controls for a given card like maximum number of transaction count and amount of Retail/OTC/Single ATM authorization, as well as single otc Cash/Retail authorization are allowed on card.
+This API is used to fetch the card control restriction flags for a given payment instrument Id and provide details whether the ATM, POS, ECOM etc transitions are enabled or disabled.
 
 ## Endpoint
 
@@ -19,14 +19,14 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
   "businessUnit": 100,
   "isAtmEnabled": "Y",
   "isCashBackEnabled": "Y",
-  "isEcomEnabled": "0",
+  "isEcomEnabled": 0,
   "isInternationalAtmPosEnabled": "Y",
   "isMotoEnabled": "Y",
   "isPayWaveEnabled": "N",
@@ -37,7 +37,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -67,7 +67,7 @@ The below table identifies the required query parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

@@ -1,6 +1,6 @@
 # Inquire Delinquency
 
-This service provides delinquency details for a given account number like 30 to 210 day delinquent amount, last deliquent date, current cycle due etc.
+This API is used to fetch delinquency details for a given account Id like 30 to 210 day delinquent amount, last deliquent date, current cycle due etc.
 
 ## Endpoint
 
@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 
@@ -74,7 +74,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 ### Error Codes
 

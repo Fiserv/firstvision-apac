@@ -1,6 +1,6 @@
 # Update Temporary Credit Limit
 
-This service is used to update temporary credit limit to an account. This service can be called with an account number to update the *temporary credit limit* of the account. This service will require the account number, Temporary credit limit and its limit expiry date in the input message.
+This API is used to update temporary credit limit and its expiry date for a given account Id.
 
 ## Endpoint
 
@@ -15,12 +15,10 @@ titles: Request, Response, Error
 
 ```json
 {
-  "temporaryCreditLimit": "$1000.00",
+  "temporaryCreditLimit": "1000.00",
   "temporaryCreditLimitExpiryDate": "31/10/2022"
 }
 ```
-
-*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 <!--
 type: tab
@@ -66,7 +64,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Error Codes
 

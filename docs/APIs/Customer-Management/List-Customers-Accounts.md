@@ -1,6 +1,6 @@
 # List Customers' Accounts
 
-The service provides list of accounts associated with the customer. This API also retrive the other information like memo credit/debit balance, block codes and so on.
+This API is used to fetch list of accounts and its details associated with a customer Id along with customer demographic information.
 
 ## Endpoint
 
@@ -19,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -28,7 +28,7 @@ type: tab
     "customerId": "0006000011000000707",
     "givenName": "Andre",
     "externalId": "113902",
-    "gender": "0",
+    "gender": 0,
     "birthDate": "14/11/1940",
     "nameLine1": "Andre Reichel",
     "addressLine1": "10 4601 Denesik Overpass",
@@ -51,8 +51,8 @@ type: tab
       "memoDebitAmount": "$0.00",
       "mailingIndicator": " ",
       "ddaAccountId": "890005226",
-      "isSuppressTokenEnabled": "0",
-      "reissueControlMethod": "0",
+      "isSuppressTokenEnabled": 0,
+      "reissueControlMethod": 0,
       "totalTokenizedCardCount": 0,
       "blockCode1": "A",
       "blockCode2": "",
@@ -65,10 +65,9 @@ type: tab
 }
 ```
 
-
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

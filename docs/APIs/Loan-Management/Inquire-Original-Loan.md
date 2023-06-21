@@ -1,6 +1,6 @@
 # Inquire Original Loan
 
-This service fetchs existing loan credit plan segment records. It contains the original precomputed amounts and other original information received for a loan credit plan for a single credit plan on an account.
+This API is used to fetch existing loan plan records. It contains the original precomputed amounts and other original information received for a loan plan for a given account Id.
 
 ## Endpoint
 
@@ -16,7 +16,6 @@ titles: Request, Response, Error
 >Should be empty.
 >
 >***Account Id should be sent as path variable and Record number sent as Query Parameter.***
-
 
 <!--
 type: tab
@@ -137,7 +136,6 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
 | `recordNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment entity assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
-
 
 ### Error Codes
 

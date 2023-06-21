@@ -1,6 +1,6 @@
 # Update Statement Preference
 
-This API is used to update statement preference for a given account. Some inportant fields like statement reprint flag, statement flag and customer stament flag can be updated with this API.
+This API is used to update statement preferences for a given account Id.
 
 ## Endpoint
 
@@ -19,7 +19,7 @@ titles: Request, Response, Error
   "statementReprintAddressFlag": "C",
   "ownerCoOwnerStatementFlag": "0"
 }
-``` 
+```
 
 <!--
 type: tab

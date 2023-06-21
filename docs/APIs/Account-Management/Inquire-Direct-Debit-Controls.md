@@ -1,6 +1,6 @@
 # Inquire Direct Debit Controls
 
-This service is used to get detail for direct debit for given account. It shows current parameter setup enabled on current account.
+This API is used to fetch direct debit details for given account Id. It shows current parameter setup enabled for a given account Id used for direct debit processing.
 
 ## Endpoint
 
@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 
@@ -27,7 +27,7 @@ type: tab
   "accountType": "D",
   "businessUnit": 600,
   "externalAccountId": "",
-  "nominatedPaymentAmountPercentage": "10",
+  "nominatedPaymentAmountOrPercentage": "$10.00",
   "nominatedType": "1",
   "paymentExpiryDate": "04/12/2022",
   "paymentRemittanceMethod": "0",
@@ -63,12 +63,11 @@ type: tab
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/directDebitControls).
 
-
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 ### Error Codes
 

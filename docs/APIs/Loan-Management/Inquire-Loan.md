@@ -1,6 +1,6 @@
 # Inquire Loan
 
-This service provides Loan detail of customer like Loan disclosed and initial amount of loan, loan disbrusement details, loan topup redraw can restructure detail, fixed interest and skip payment details.
+This API is used to fetch Loan details like Loan disclosed and initial amount of loan, loan disbursement details, loan top-up redraw can restructure detail, fixed interest and skip payment details for a given account Id.
 
 ## Endpoint
 
@@ -17,7 +17,6 @@ titles: Request, Response, Error
 >
 >***Account Id should be sent as path variable and Record number sent as Query Parameter.***
 
-
 <!--
 type: tab
 -->
@@ -25,7 +24,7 @@ type: tab
 ```json
 
 {
-  "FixedIntrestDetails": {
+  "FixedInterestDetails": {
     "interestIndicator": 0,
     "interestRate": "0.00000%",
     "nextInterestEffectiveDate": "00/00/0000",
@@ -47,7 +46,7 @@ type: tab
     "insuranceIndicator": "3",
     "interestIndicator": "3",
     "userFee1Indicator": "3",
-    "userFee2FlagIndicator": "3",
+    "userFee2Indicator": "3",
     "userFee3Indicator": "3",
     "userFee4Indicator": "3",
     "userFee5Indicator": "3",
@@ -165,7 +164,6 @@ The below table identifies the required parameters in the request payload.
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
 | `recordNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment record assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
 
-
 ### Error Codes
 
 Below table provides the list of application's error code and its description.
@@ -174,7 +172,7 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5PS0004SF` | Get request - Record not Found |  
 | `V5PS4411SA` | Account not present in ambs file |  
-| `V5PS4411SB` | Amps - plan data record not found | 
-| `V5PS4410SB` | Org record not present | 
+| `V5PS4411SB` | Amps - plan data record not found |
+| `V5PS4410SB` | Org record not present |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

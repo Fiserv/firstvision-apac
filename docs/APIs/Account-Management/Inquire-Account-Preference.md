@@ -1,6 +1,6 @@
 # Inquire Account Preference
 
-The service provides the statement preference, various customer IDs, address ID, source code, suppress token indicator for a given account ID. 
+This API is used to fetch the details like statement preferences, various customer IDs, address ID, source code, suppress token indicator for a given account Id.
 
 ## Endpoint
 
@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
 >***Account id should be sent as path variable.***
 
@@ -84,6 +84,5 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5BS0004SF` | Get request - Record not found|
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -1,6 +1,6 @@
 # List Cards by Account
 
-The service is used for the purpose of the card look up where the account number is provided and service will send all cards associated with account.
+This API is used to fetch the list of cards associated for a given account Id.
 
 ## Endpoint
 
@@ -69,8 +69,12 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
 
-
 ### Error Codes
 
-*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
+Below table provides the list of application's error code and its description.
 
+| ErrorCode |  Description/Values |
+| --------  | ------------------ |
+| `V5AX4002SF` | Account number not found |
+
+*In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

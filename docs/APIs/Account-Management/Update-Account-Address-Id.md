@@ -1,6 +1,6 @@
 # Update Accounts' Address ID
 
-The service updates the address ID at account level upon successful validation of customer ID given in the request for a given Account ID.
+This API is used to update the address ID at account level for a given Account Id upon successful validation of customer ID, if given in the request.
 
 ## Endpoint
 
@@ -18,7 +18,6 @@ titles: Request, Response, Error
   "addressId": "HOME"
 }
 ```
-
 
 <!--
 type: tab
@@ -55,7 +54,7 @@ type: tab
 
 <!-- type: tab-end -->
 
-### Minimum	Requirements
+### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/accounts/{accountId}/addressId).
 
@@ -63,9 +62,9 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `customerId` | Query Variable | *string* | 19 | Unique identification number assigned to a customer. | 
-| `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Error Codes
 

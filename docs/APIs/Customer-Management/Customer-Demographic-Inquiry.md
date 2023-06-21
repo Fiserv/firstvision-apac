@@ -1,6 +1,6 @@
 # Inquire Customer
 
-This service will be used to enquire the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer.  The customer ID will be passed in the input request to retrieve the demographic information. 
+This API used to fetch the customer demographic details such as Name / Address / Phone Number / Email ID/ Date of Birth of the given customer Id.
 
 ## Endpoint
 
@@ -19,56 +19,66 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
+  "addressDetails": {
+    "addressLine1": "FLAT NO:404",
+    "addressLine2": "RAINBOW APTS",
+    "addressLine3": "CHITRAPURI",
+    "addressLine4": "DELHI",
+    "city": "DELHI",
+    "countryCode": "IND",
+    "county": "EMEA",
+    "houseNumber": "",
+    "postalCode": "110004",
+    "stateProvince": "DL"
+  },
+  "birthDate": "06/04/1986",
   "businessUnit": 200,
   "customerId": "0000020000065439605",
+  "emailAddress": "SAM@FISERV.COM",
+  "employerDetails": {
+    "addressLine1": "Y",
+    "addressLine2": "Y",
+    "jobTitle": "Y",
+    "nameOfEmployer": "Y",
+    "phoneExtension": "801",
+    "phoneFlag": 0,
+    "phoneNumber": "Y"
+  },
+  "externalId": "1234",
+  "faxNumber": "82364782",
+  "faxPhoneFlag": 0,
+  "homePhoneFlag": 0,
+  "homePhoneNumber": "9241800756",
+  "isReturnMailEnabled": "Y",
+  "languageIndicator": "AUS",
+  "mobileNumber": "112233",
+  "mobilePhoneFlag": 0,
   "namesDetails": {
     "birthName": "",
     "givenName": "ABC",
     "middleName": "",
     "nameLine1": "M S SWAMY",
     "nameLine2": "KK",
-    "nameLine3": " "
+    "nameLine3": ""
   },
-  "languageIndicator": "AUS",
-  "homePhoneNumber": "9241800756",
-  "faxNumber": "82364782",
-  "faxPhoneFlag": "0",
-  "mobileNumber": "112233",
-  "smsFlag": "0",
-  "mobilePhoneFlag": "0",
-  "emailAddress": "SAM@FISERV.COM",
-  "birthDate": "06/04/1986",
-  "isReturnMailEnabled": "Y",
-  "employerDetails": {
-    "nameOfEmployer": "Y",
-    "addressLine1": "Y",
-    "addressLine2": "Y",
-    "phoneNumber": "Y",
-    "phoneFlag": "Y",
-    "jobTitle": "Y"
-  },
-  "addressDetails": {
-    "addressLine3": "CHITRAPURI",
-    "addressLine4": "DELHI",
-    "addressLine1": "FLAT NO:404",
-    "addressLine2": "RAINBOW APTS",
-    "houseNumber": "",
-    "postalCode": "110004",
-    "city": "DELHI",
-    "stateProvince": "DL",
-    "countryCode": "IND"
-  },
-  "homePhoneFlag": "0"
+  "smsFlag": 0,
+  "typeOfExternalId": "1",
+  "vacationDetails": {
+    "countryCode": "AUS",
+    "endDate": "01/01/2023",
+    "phoneNumber": "8946274878",
+    "startDate": "01/01/2019"
+  }
 }
 ```
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [

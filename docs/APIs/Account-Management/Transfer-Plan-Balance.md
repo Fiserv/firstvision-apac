@@ -1,6 +1,6 @@
 # Transfer Plan Balance
 
-This service transfers the balance of a credit plan segment to a different credit plan segment within an account. With a plan transfer, you can transfer the entire balance of a credit plan segment.
+This API is used to transfer the balance of a plan to a different plan within an account. With plan transfer, you can transfer only the entire balance of a plan.
 
 ## Endpoint
 
@@ -69,9 +69,8 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `businessUnit` | Payload | *number* | 3 | Unique identification number associated with the organization. Valid values from 1-998. |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
-| `transferToAccountId` | Payload | *number* | 5 | Plan number associated with the credit plan segment from which to transfer funds. |  
+| `transferFromPlanId` | Payload | *number* | 5 | Plan number associated with the credit plan segment from which to transfer funds. |  
 | `transferFromRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account from which to transfer funds. |  
 | `transferToPlanId` | Payload | *number* | 5 | Plan number to which you want to transfer the funds. |  
 | `transferToRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account to which to transfer funds. |  
@@ -83,6 +82,7 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5XP4013EA` | No org record on file |
+| `V5XP4001EA` | Account number not found |
 | `V5X24017SA` | Transfer/Copy to account number invalid |
 | `V5X24017SC` | Transfer/Copy to account must not be on file for this |
 | `V5X24018SA` | Transfer/Copy to logo invalid |
