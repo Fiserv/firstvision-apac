@@ -1,6 +1,6 @@
 # List Plans
 
-This service is used to retrieve list of plans on account. Along with list of plans it shows the summary of plan level activities.
+This API is used to fetch list of plans and its details for a given account Id.
 
 ## Endpoint
 
@@ -91,7 +91,7 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5PS4002SF` | Invalid account | 
-| `V5PS4010SA` | Account not present in account file | 
+| `V5PS4002SF` | Invalid account |
+| `V5PS4010SA` | Account not present in account file |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

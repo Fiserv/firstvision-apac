@@ -1,0 +1,2131 @@
+openapi: 3.0.1
+info:
+  title: Vision10 API Documentation
+  description: V10 open API document.
+  version: 1.3.0
+servers:
+- url: https://stg34.visionplus.io/sandbox/
+tags:
+- name: Loan Management
+paths:
+  /v1/loans/calculator:
+    post:
+      tags:
+      - Loan Management
+      summary: Loan Calculator
+      description: This API is used to calculate the loan repayment options for prospective
+        borrowers based on the details given input request.
+      operationId: LoanCalculator
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanCalculatorV1ReqModel'
+        required: true
+      responses:
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanCalculatorV1ResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Loan Calculator
+      x-group-name: Loan Management
+  /v1/loans/{accountId}/scheduleDetails:
+    get:
+      tags:
+      - Loan Management
+      summary: Inquire Loan Schedule
+      description: This API is used to fetch loan schedule details for the current
+        loan data.
+      operationId: InquireLoanSchedule
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000509'
+      - name: recordNumber
+        in: query
+        description: Record number that identifies each Credit Plan Segment entity
+          assigned to the account. The values are 0–999. The value 0 indicates a “phantom”
+          plan used to disclose interest rates when no cash or retail plan exists
+          for an account.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '1'
+      responses:
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireLoanScheduleV1ResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Loan Schedule
+      x-group-name: Loan Management
+  /v1/loans/{accountId}/originalDetails:
+    get:
+      tags:
+      - Loan Management
+      summary: Inquire Original Loan
+      description: This API is used to fetch existing loan plan records. It contains
+        the original precomputed amounts and other original information received for
+        a loan plan for a given account Id.
+      operationId: InquireOriginalLoan
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000509'
+      - name: recordNumber
+        in: query
+        description: Record number that identifies each Credit Plan Segment entity
+          assigned to the account. The values are 000–999. The value 000 indicates
+          a “phantom” plan used to disclose interest rates when no cash or retail
+          plan exists for an account.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '1'
+      responses:
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireOriginalLoanV1ResponseModel'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Original Loan
+      x-group-name: Loan Management
+  /v1/loans/{accountId}/details:
+    get:
+      tags:
+      - Loan Management
+      summary: Inquire Loan
+      description: This API is used to fetch Loan details like Loan disclosed and
+        initial amount of loan, loan disbursement details, loan top-up redraw can
+        restructure detail, fixed interest and skip payment details for a given account
+        Id.
+      operationId: InquireLoan
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000509'
+      - name: recordNumber
+        in: query
+        description: Record number that identifies each Credit Plan Segment record
+          assigned to the account. The values are 0–999. The value 0 indicates a “phantom”
+          plan used to disclose interest rates when no cash or retail plan exists
+          for an account.
+        required: true
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '1'
+      responses:
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireLoanV1ResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Loan
+      x-group-name: Loan Management
+components:
+  schemas:
+    LoanCalculatorV1ReqModel:
+      required:
+      - currencyCode
+      - fixedPaymentAmount
+      - principalAmount
+      - term
+      type: object
+      properties:
+        principalAmount:
+          maxLength: 17
+          type: string
+          description: Principal balance of the loan in monetary units and subunits.
+          example: '60000'
+        insuranceAmount:
+          maxLength: 17
+          type: string
+          description: Insurance amount of the loan in monetary units and subunits.
+          example: '50000'
+        currencyCode:
+          maxLength: 3
+          type: string
+          description: ISO Standard Currency Code or ISO Country Code that identifies
+            the unit of currency for this loan.
+          example: '036'
+        userFeeAmount:
+          maxLength: 17
+          type: string
+          description: Amount of user-defined fees for the loan in monetary units
+            and subunits.
+          example: '30000'
+        interestRate:
+          maximum: 9999999
+          maxLength: 7
+          type: integer
+          description: 'Interest rate for the loan. The default is 0. Example 1: Enter
+            18.5% as 0185000, Example 2: Enter 6% as 0060000.'
+          example: '1400'
+        term:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: 'Term for the loan. This field is required if FIXED PAYMENT
+            AMOUNT is not supplied. '
+          example: '10'
+        fixedPaymentAmount:
+          maxLength: 17
+          type: string
+          description: Amount of the fixed payment. This field is required if LOAN
+            TERM is not supplied.
+          example: '0'
+        isPaymentScheduledEnabled:
+          maxLength: 1
+          type: string
+          description: Payment Schedule. <br/>The values are:<br/> &nbsp; '0' - Payment
+            schedule is not required <br/> &nbsp; '1' - Payment schedule is required
+          example: '1'
+          enum:
+          - '0'
+          - '1'
+        interestMethod:
+          maxLength: 1
+          type: string
+          description: Interest method for the loan. <br/>The values are:<br/> &nbsp;
+            '0' = Simple interest method (Default)<br/> &nbsp; '1' = Rule of 78ths
+            interest method
+          example: '0'
+          enum:
+          - '0'
+          - '1'
+        roundingIndicator:
+          maxLength: 1
+          type: string
+          description: Code that indicates the rounding method that CMS will use to
+            round or truncate the input or calculated amounts before storing them
+            in corresponding fields. <br/>The values are:<br/> &nbsp; '0' = Standard
+            rounding. If the number that follows the last decimal in the currency
+            is 1 to 4, CMS rounds down; if the number is 5 to 9, CMS rounds up (Default)<br/>
+            &nbsp; '1' = Always round up. If the number is 1 to 9, CMS rounds up<br/>
+            &nbsp; '2' = Truncate. CMS does not round<br/> &nbsp; '3' = Round, no
+            decimal. CMS rounds to the nearest whole monetary unit
+          example: '0'
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    LoanCalculatorV1ResponseModel:
+      type: object
+      properties:
+        loanCalculatorDetails:
+          type: object
+          properties:
+            principalAmount:
+              maxLength: 24
+              type: string
+              description: 'Principal balance of the loan in monetary units and subunits. '
+              example: $600.00
+            insuranceAmount:
+              maxLength: 24
+              type: string
+              description: 'Insurance amount of the loan in monetary units and subunits. '
+              example: $500.00
+            userFeeAmount:
+              maxLength: 24
+              type: string
+              description: Amount of user-defined fees for the loan in monetary units
+                and subunits.
+              example: $300.00
+            interestRate:
+              maxLength: 10
+              type: string
+              description: 'Interest rate for the loan. The default is 0. '
+              example: 00001.00%
+            term:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Number of month in Loan Term
+              example: '10'
+            fixedPaymentAmount:
+              maxLength: 24
+              type: string
+              description: 'Fixed payment amount to be made in each month of the loan
+                except the final month. '
+              example: $140.09
+            finalPaymentAmount:
+              maxLength: 24
+              type: string
+              description: Payment to be made in the final month of the loan.
+              example: $140.09
+            totalFinancedAmount:
+              maxLength: 24
+              type: string
+              description: Total amount financed in the loan (sum of principal amount,
+                insurance amounts, and user fees)
+              example: $1,400.00
+            totalInterestAmount:
+              maxLength: 24
+              type: string
+              description: Total interest amount of the loan in monetary units and
+                subunits.
+              example: $0.90
+            totalLoanAmount:
+              maxLength: 24
+              type: string
+              description: Sum of the total amount financed and the total interest
+                amount.
+              example: $10.00
+        loanScheduleAndMonthdetails:
+          type: object
+          properties:
+            loanMethod:
+              type: integer
+              description: Method used to calculate interest on the loan. <br/>The
+                values are:<br/> &nbsp; '0' = Simple interest method <br/> &nbsp;
+                '1' = Rule of 78ths interest method
+              example: '10'
+            term:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Number of months in the loan term. The values are 1–999.
+              example: '10'
+        monthlyLoanPaymentDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonthlyLoanPaymentDetails_LoanCalculatorV1ResponseModel'
+    MonthlyLoanPaymentDetails_LoanCalculatorV1ResponseModel:
+      type: object
+      properties:
+        currentTerm:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Payment number that identifies each payment in the loan schedule.
+            The values are 1–999.The value in this field system-generated; you cannot
+            change it.
+          example: '1'
+        finalAmount:
+          maxLength: 24
+          type: string
+          description: Portion of the payment (fixed payment amount or final payment
+            amount) applied to the total financed amount for the payment number.
+          example: $139.93
+        interestAmount:
+          maxLength: 24
+          type: string
+          description: Portion of the payment (fixed payment amount or final payment
+            amount) applied to the total interest amount for the payment number.
+          example: $0.16
+        endingBalance:
+          maxLength: 24
+          type: string
+          description: Balance on the loan at the end of the term for the payment
+            number.
+          example: $1,260.07
+    InquireLoanScheduleV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000509'
+        recordNumber:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Record number that identifies each Credit Plan Segment entity
+            assigned to the account. The values are 0–999. The value 0 indicates a
+            “phantom” plan used to disclose interest rates when no cash or retail
+            plan exists for an account.
+          example: '1'
+        planId:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: Plan number that identifies the Credit Plan Master entity associated
+            with the credit plan segment.
+          example: '1'
+        lastScheduledDate:
+          maxLength: 10
+          type: string
+          description: Date the loan was scheduled. The format is MM/DD/YYYY or DD/MM/YYYY
+            depending on the DATE FORMAT on System Control.
+          example: 01/01/2022
+        referenceNumber:
+          maxLength: 23
+          type: string
+          description: User-defined identification number for the loan plan segment
+            that you are adding.
+          example: VT012389849853543030347
+        loanScheduleDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoanScheduleDetails_InquireLoanScheduleV1ResponseModel'
+    LoanScheduleDetails_InquireLoanScheduleV1ResponseModel:
+      type: object
+      properties:
+        paymentAmount:
+          maxLength: 24
+          type: string
+          description: Total amount of this payment in monetary units and subunits.
+          example: $100.00
+        interestRate:
+          maxLength: 10
+          type: string
+          description: Interest rate associated with the loan. This field is for information
+            only and does not affect processing of the plan.
+          example: 0.00%
+        userFee5Amount:
+          maxLength: 24
+          type: string
+          description: Total user-defined fee5 amounts of this payment in monetary
+            units and subunits.
+          example: $100.00
+        userFee6Amount:
+          maxLength: 24
+          type: string
+          description: Total user-defined fee6 amounts of this payment in monetary
+            units and subunits.
+          example: $100.00
+        installmentConversionFeeAmount:
+          maxLength: 24
+          type: string
+          description: Total installement conversion fee amount of this payment in
+            monetary units and subunits.
+          example: $100.00
+        userFee3Amount:
+          maxLength: 24
+          type: string
+          description: .
+          example: $100.00
+        userFee4Amount:
+          maxLength: 24
+          type: string
+          description: Total user-defined fee4 amounts of this payment in monetary
+            units and subunits.
+          example: $100.00
+        userFee1Amount:
+          maxLength: 24
+          type: string
+          description: Total user-defined fee1 amounts of this payment in monetary
+            units and subunits.
+          example: $100.00
+        userFee2Amount:
+          maxLength: 24
+          type: string
+          description: Total user-defined fee2 amounts of this payment in monetary
+            units and subunits.
+          example: $100.00
+        insuranceAmount:
+          maxLength: 24
+          type: string
+          description: Total insurance premium amount of this payment in monetary
+            units and subunits.
+          example: $100.00
+        principalAmount:
+          maxLength: 24
+          type: string
+          description: Total principal amount of this payment in monetary units and
+            subunits.
+          example: $100.00
+        interestAmount:
+          maxLength: 24
+          type: string
+          description: Total interest amount of this payment in monetary units and
+            subunits.
+          example: $100.00
+    InquireOriginalLoanV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000509'
+        recordNumber:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Record number that identifies each Credit Plan Segment entity
+            assigned to the account. The values are 000–999. The value 000 indicates
+            a “phantom” plan used to disclose interest rates when no cash or retail
+            plan exists for an account.
+          example: '1'
+        amountDetails:
+          type: object
+          properties:
+            principalAmount:
+              maxLength: 24
+              type: string
+              description: Original disclosed principal amount for this loan.
+              example: $1,400.00
+            depositAmount:
+              maxLength: 24
+              type: string
+              description: Original disclosed deposit amount for this loan.
+              example: $0.00
+            interestAmount:
+              maxLength: 24
+              type: string
+              description: Original disclosed interest amount for this loan.
+              example: $110.00
+            insuranceAmount:
+              maxLength: 24
+              type: string
+              description: Original disclosed insurance amount for this loan.
+              example: $0.00
+            userFee1Amount:
+              maxLength: 24
+              type: string
+              description: Original disclosed user-defined fees 1 for this loan.
+              example: $0.00
+            userFee2Amount:
+              maxLength: 24
+              type: string
+              description: Original disclosed user-defined fees 2 for this loan.
+              example: $0.00
+            userFee3Amount:
+              maxLength: 24
+              type: string
+              description: Original disclosed user-defined fees 3 for this loan.
+              example: $0.00
+            userFee4Amount:
+              maxLength: 24
+              type: string
+              description: Original disclosed user-defined fees 4 for this loan.
+              example: $0.00
+            userFee5Amount:
+              maxLength: 24
+              type: string
+              description: Original disclosed user-defined fees 5 for this loan.
+              example: $0.00
+            userFee6Amount:
+              maxLength: 24
+              type: string
+              description: Original disclosed user-defined fees 6 for this loan.
+              example: $0.00
+            interestFlatAmount:
+              maxLength: 24
+              type: string
+              description: Amount of interest to be billed each cycle when the interest
+                CCI value (INTEREST CCI on Loan details->01-Loan Disclosed & Init
+                Amts) is 2 (precomputed periodically charged).
+              example: $0.00
+            firstPaymentAmount:
+              maxLength: 24
+              type: string
+              description: Original first payment amount for this loan.
+              example: $100.00
+            finalPaymentAmount:
+              maxLength: 24
+              type: string
+              description: Original final payment amount for this loan.
+              example: $100.00
+        planId:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: Plan number that identifies the Credit Plan Master entity associated
+            with the credit plan segment.
+          example: '1'
+        originalTerm:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Original number of months.
+          example: '12'
+        billingTerm:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: The number of months in which billing occurs.
+          example: '6'
+        productCode:
+          maxLength: 5
+          type: string
+          description: Original user-defined product code for this plan.
+          example: N1
+        annualPercentageRate:
+          maxLength: 10
+          type: string
+          description: Original interest rate of the loan. This field displays the
+            decimal as needed for the rate; the percentage NOD does not determine
+            the decimal position.
+          example: 0.00%
+        dispersalMethod:
+          maxLength: 1
+          type: string
+          description: Original user-defined dispersal method.
+          example: '0'
+        paymentDefermentDetails:
+          type: object
+          properties:
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: This field is the date on which the payment deferment period
+                ends. CMS begins requesting payments on the first statement generated
+                after this date, The format is MM/DD/YYYY or DD/MM/YYYY depending
+                on the DATE FORMAT on System Control.
+              example: 07/07/2022
+            paymentTermIndicator:
+              maxLength: 1
+              type: string
+              description: This field is a code that indicates whether the payment
+                deferment period is days, cycles, or months. <br/>The values are:<br/>&nbsp;
+                '0' - Not used<br/>&nbsp; '1' - Cycles<br/>&nbsp; '2' - Days<br/>&nbsp;
+                '3' - Months
+              example: '0'
+            paymentPeriod:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: This field is the original number of periods in the payment
+                deferment period. Purchases made during the payment deferment period
+                appear on billing statements, but CMS does not request payments until
+                the payment deferment period ends. The PAYMENT TERM INDICATOR field
+                indicates whether the payment deferment period is in cycles, days,
+                or months.
+              example: '6'
+        billingDefermentDetails:
+          type: object
+          properties:
+            billingStartDate:
+              maxLength: 10
+              type: string
+              description: This field is the date on which the billing deferment period
+                ends and billing begins, The format is MM/DD/YYYY or DD/MM/YYYY depending
+                on the DATE FORMAT on System Control.
+              example: 07/07/2022
+            billingTermIndicator:
+              maxLength: 1
+              type: string
+              description: This field is a code that indicates whether the billing
+                deferment period is days, cycles, or months. <br/>The values are:<br/>&nbsp;
+                '0' - Not used <br/>&nbsp; '1' - Cycles <br/>&nbsp; '2' - Days <br/>&nbsp;
+                '3' - Months
+              example: '0'
+            billingPeriod:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: This field is the original number of periods in the billing
+                deferment period. CMS does not bill the account for this credit plan
+                segment during the deferment period. The BILLING TERM INDICATOR field
+                indicates whether the billing deferment period is in cycles, days,
+                or months.
+              example: '6'
+        interestDefermentDetails:
+          type: object
+          properties:
+            interestStartDate:
+              maxLength: 10
+              type: string
+              description: This field is the date on which the interest deferment
+                period ends and interest assessment begins, The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 07/07/2022
+            interestTermIndicator:
+              maxLength: 1
+              type: string
+              description: This field is a code that indicates whether the interest
+                deferment period is days, cycles, or months. <br/>The values are:<br/>
+                &nbsp; '0' - Not used <br/> &nbsp; '1' - Cycles <br/> &nbsp; '2' -
+                Days <br/> &nbsp; '3' - Months
+              example: '0'
+            interestPeriod:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: The field is the original number of periods in the interest
+                deferment period. CMS does not assess interest during the deferment
+                period. The INTEREST TERM INDICATOR field indicates whether the interest
+                deferment period is in cycles, days, or months.
+              example: '6'
+        insuranceDefermentDetails:
+          type: object
+          properties:
+            insuranceStartDate:
+              maxLength: 10
+              type: string
+              description: The field is the date on which the insurance deferment
+                period ends and insurance premium assessment begins, The format is
+                MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 07/07/2022
+            insuranceTermIndicator:
+              maxLength: 1
+              type: string
+              description: This field is a code that indicates whether the insurance
+                deferment period is days cycles or months.<br/>The values are:<br/>&nbsp;
+                '0' - Not used <br/>&nbsp; '1' - Cycles <br/>&nbsp; '2' - Days <br/>&nbsp;
+                '3' - Months
+              example: '0'
+            insurancePeriod:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: This field is the original number of periods in the insurance
+                deferment period. CMS does not assess insurance premiums during the
+                deferment period. The INSURANCE TERM INDICATOR field indicates whether
+                the insurance deferment period is in cycles, days, or months.
+              example: '6'
+        initialRebateDetails:
+          type: object
+          properties:
+            initialRebatePeriod:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: This field is the original number of periods in the initial
+                rebate period. The REBATE PERIOD INDICATOR field indicates whether
+                the initial rebate period is in cycles, days, or months.
+              example: '3'
+            initialRebateExpiryDate:
+              maxLength: 10
+              type: string
+              description: This field is the date on which the initial rebate period
+                ends, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE
+                FORMAT on System Control.
+              example: 01/01/2023
+            initialInterestRebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if interest is rebated in the initial
+                rebate period. <br/>The values are:<br/>&nbsp; '0' - Use the normal
+                rebate rules, if applicable (Default) <br/>&nbsp; '1' - Rebate using
+                the initial rebate percent, if the settlement payment amount is paid
+                before the initial rebate expire date
+              example: '0'
+            initialInsuranceRebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if insurance is rebated in the initial
+                rebate period. <br/>The values are:<br/>&nbsp; '0' - Use the normal
+                rebate rules, if applicable (Default) <br/>&nbsp; '1' - Rebate using
+                the initial rebate percent, if the settlement payment amount is paid
+                before the initial rebate expire date
+              example: '0'
+            initialUserFee1RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 1 is rebated in
+                the initial rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            initialUserFee2RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 2 is rebated in
+                the initial rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            initialUserFee3RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 3 is rebated in
+                the initial rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            initialUserFee4RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 4 is rebated in
+                the initial rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            initialUserFee5RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 5 is rebated in
+                the initial rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            initialUserFee6RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 6 is rebated in
+                the initial rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+        secondRebateDetails:
+          type: object
+          properties:
+            secondRebatePeriod:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: This field is the original number of periods in the second
+                rebate period. The REBATE PERIOD INDICATOR field indicates whether
+                the second rebate period is in cycles, days, or months.
+              example: '3'
+            secondRebateExpiryDate:
+              maxLength: 10
+              type: string
+              description: This field is the date on which the second rebate period
+                ends, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE
+                FORMAT on System Control.
+              example: 01/01/2023
+            secondInterestRebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if interest is rebated in the second
+                rebate period. <br/>The values are:<br/>&nbsp; '0' - Use the normal
+                rebate rules, if applicable (Default) <br/>&nbsp; '1' - Rebate using
+                the initial rebate percent, if the settlement payment amount is paid
+                before the initial rebate expire date
+              example: '0'
+            secondInsuranceRebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if insurance is rebated in the second
+                rebate period. <br/>The values are:<br/>&nbsp; '0' - Use the normal
+                rebate rules, if applicable (Default) <br/>&nbsp; '1' - Rebate using
+                the initial rebate percent, if the settlement payment amount is paid
+                before the initial rebate expire date
+              example: '0'
+            secondUserFee1RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 1 is rebated in
+                the second rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            secondUserFee2RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 2 is rebated in
+                the second rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            secondUserFee3RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 3 is rebated in
+                the second rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            secondUserFee4RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 4 is rebated in
+                the second rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            secondUserFee5RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 5 is rebated in
+                the second rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+            secondUserFee6RebateIndicator:
+              maxLength: 1
+              type: string
+              description: Code that indicates if user-defined fee 6 is rebated in
+                the second rebate period. <br/>The values are:<br/>&nbsp; '0' - Use
+                the normal rebate rules, if applicable (Default) <br/>&nbsp; '1' -
+                Rebate using the initial rebate percent, if the settlement payment
+                amount is paid before the initial rebate expire date
+              example: '0'
+        rebatePeriodIndicator:
+          maxLength: 1
+          type: string
+          description: This field is a code that indicates whether the rebate period
+            is days, cycles, months, or a specific date. <br/>The values are:<br/>&nbsp;
+            '0' - Use the normal rebate and penalty rules, if applicable <br/>&nbsp;
+            '1' - Cycles <br/>&nbsp; '2' - Days <br/>&nbsp; '3' - Months <br/>&nbsp;
+            '4' - Specific date
+          example: '0'
+        dateDetails:
+          type: object
+          properties:
+            openDate:
+              maxLength: 10
+              type: string
+              description: Date on which the Credit Plan Segment record was opened,
+                or generated, for the account, The format is MM/DD/YYYY or DD/MM/YYYY
+                depending on the DATE FORMAT on System Control.
+              example: 01/01/2022
+            agreementDate:
+              maxLength: 10
+              type: string
+              description: Date of original loan agreement, The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 06/01/2022
+            firstPaymentDate:
+              maxLength: 10
+              type: string
+              description: Original first payment date for this loan, The format is
+                MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 07/07/2022
+            finalPaymentDate:
+              maxLength: 10
+              type: string
+              description: Original final payment date for this loan, The format is
+                MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 07/06/2023
+    InquireLoanV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000509'
+        recordNumber:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Record number that identifies each Credit Plan Segment record
+            assigned to the account. The values are 0–999. The value 0 indicates a
+            “phantom” plan used to disclose interest rates when no cash or retail
+            plan exists for an account.
+          example: '1'
+        loanDisclosedAndInitialAmountDetails:
+          type: object
+          properties:
+            planId:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Plan number that identifies the Credit Plan Master entity
+                associated with the credit plan segment.
+              example: '2'
+            loanAgreementDate:
+              maxLength: 10
+              type: string
+              description: Date the loan was initiated. This date must be submitted
+                from an external loan origination system or be entered on the Loan
+                Input locate service, The format is MM/DD/YYYY or DD/MM/YYYY depending
+                on the DATE FORMAT on System Control.
+              example: 17/08/2021
+            firstPaymentDate:
+              maxLength: 10
+              type: string
+              description: Date of the first payment. This date may be submitted from
+                an external loan origination system or entered on the Loan Input page
+                (Loan Input Data); otherwise, CMS calculates the date. When the first
+                payment date is not sent in at plan setup, CMS calculates the date.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 20/09/2021
+            finalPaymentDate:
+              maxLength: 10
+              type: string
+              description: Date of the final payment. This date may be submitted from
+                an external loan origination system or entered on the Loan Input Data;
+                otherwise, CMS calculates the date. The format is MM/DD/YYYY or DD/MM/YYYY
+                depending on the DATE FORMAT on System Control.
+              example: 00/00/0000
+            firstPaymentAmount:
+              maxLength: 24
+              type: string
+              description: Amount of first payment for this loan.
+              example: $500.00
+            currentFinalPaymentAmount:
+              maxLength: 24
+              type: string
+              description: Original final payment amount for this loan.
+              example: $500.00
+            fixedInterestAmount:
+              maxLength: 24
+              type: string
+              description: Amount of final payment for this loan.
+              example: $0.00
+            paymentDateChangeCount:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Number of times the payment date has been changed.
+              example: '0'
+            currentTerm:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Number that identifies the current term of the loan. This
+                number begins at zero for a new loan and increments by one each cycle.
+              example: '1'
+            remainingTerm:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Remaining number of months in the term for the loan. This
+                number begins equal to the original term for a new loan and decreases
+                by one each cycle.
+              example: '2'
+            billingTerm:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Number of months in the billing term for deferred payment
+                plans or zero for other plans.
+              example: '1'
+            depositAmount:
+              maxLength: 24
+              type: string
+              description: Deposit amount for this loan plan.
+              example: $0.00
+            dispersalMethod:
+              maxLength: 1
+              type: string
+              description: User-defined loan dispersal method. If used, this value
+                must besubmitted from an external loan origination system or be entered
+                on the Loan Input Data.
+              example: '0'
+            lifeToDateNetSalesAmount:
+              maxLength: 24
+              type: string
+              description: Net amount of life-to-date sales. This field is updated
+                when logic module 001, 002, 003, or 004 posts.
+              example: $1,400.00
+            initialTerm:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Current initial term of this plan in months. This value
+                must be submitted from an external loan origination system or be entered
+                on the Loan Input Data.
+              example: '3'
+            closeReason:
+              maxLength: 1
+              type: string
+              description: Loan Closing reason. <br/>The values are:<br/> &nbsp; '0'
+                = Not closed <br/> &nbsp; '1' = Close final pay off<br/> &nbsp; '2'
+                = Close due to delequency <br/> &nbsp; '3' = Not closed <br/> &nbsp;
+                '4' = Mannual closed Mistake
+              example: '0'
+            celEppUser:
+              maxLength: 3
+              type: string
+              description: Cel Epp user.
+              example: ' '
+            celEppManualClose:
+              maxLength: 1
+              type: string
+              description: Cel EPP Manual Close. <br/>The values are:<br/> &nbsp;
+                '0' = Not closed <br/> &nbsp; '3' = Mannual closed Request<br/> &nbsp;
+                '4' = Mannual closed Mistake <br/> &nbsp; '5' = Mannual closed by
+                customer and no fee charged
+              example: '0'
+            isCelEppCloseFeeEnabled:
+              maxLength: 1
+              type: string
+              description: Cel EPP Close Fee.
+              example: '0'
+        originalDisclosedAmountDetails:
+          type: object
+          properties:
+            loanAmount:
+              maxLength: 24
+              type: string
+              description: 'Amount at which the loan amount was disclosed on the loan.
+                These amounts are included in the loan setup service and are held
+                for informational purposes only. '
+              example: $1,500.00
+            principalAmount:
+              maxLength: 24
+              type: string
+              description: Amount at which the principal was disclosed on the loan.
+                This amount is included in the loan setup transaction (Loan Input
+                Data or user input) and is held for informational purposes only.
+              example: $1,400.00
+            interestAmount:
+              maxLength: 24
+              type: string
+              description: Amount of interest disclosed on the loan. This amount is
+                included in the loan setup transaction (Loan Input Locate- >01-Loan
+                input Data or user input) and is held for informational purposes only.
+              example: $100.00
+            insuranceAmount:
+              maxLength: 24
+              type: string
+              description: Amount of insurance disclosed on the loan. This amount
+                is included in the loan setup transaction (Loan Input Locate- >01-Loan
+                input Data or user input) and is held for informational purposes only.
+              example: $0.00
+            user1Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 1 was disclosed on
+                the loan. This amount is included in the loan setup transaction (Loan
+                Input Data or user input) and is held for informational purposes only.
+              example: $0.00
+            user2Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 2 was disclosed on
+                the loan. This amount is included in the loan setup transaction (Loan
+                Input Data or user input) and is held for informational purposes only.
+              example: $0.00
+            user3Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 3 was disclosed on
+                the loan. This amount is included in the loan setup transaction (Loan
+                Input Data or user input) and is held for informational purposes only.
+              example: $0.00
+            user4Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 4 was disclosed on
+                the loan. This amount is included in the loan setup transaction (Loan
+                Input Data or user input) and is held for informational purposes only.
+              example: $0.00
+            user5Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 5 was disclosed on
+                the loan. This amount is included in the loan setup transaction (Loan
+                Input Data or user input) and is held for informational purposes only.
+              example: $0.00
+            user6Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 6 was disclosed on
+                the loan. This amount is included in the loan setup transaction (Loan
+                Input Data or user input) and is held for informational purposes only.
+              example: $0.00
+        initializedAmountDetails:
+          type: object
+          properties:
+            loanAmount:
+              maxLength: 24
+              type: string
+              description: 'Amount at which the loan amount was established (initialized).
+                When the monetary sale transaction posts on a precomputed loan, the
+                INITIALIZED LOAN AMOUNT values of the loan will be the same as the
+                ORIGINAL DISCLOSED LOAN AMOUNT value. This amount will remain the
+                same as the original disclosed amount. '
+              example: $1,500.00
+            principalAmount:
+              maxLength: 24
+              type: string
+              description: 'Amount at which the principal amount was established (initialized).
+                When the monetary sale transaction posts on a precomputed loan, the
+                INITIALIZED PRINCIPAL AMOUNT value of the loan will be the same as
+                the ORIGINAL DISCLOSED PRINCIPAL AMOUNT value. '
+              example: $1,400.00
+            interestAmount:
+              maxLength: 24
+              type: string
+              description: Amount at which interest was established (initialized).
+                When the monetary sale transaction posts on a precomputed loan, the
+                initial interest amount is the same as the original disclosed interest.
+              example: $100.00
+            insuranceAmount:
+              maxLength: 24
+              type: string
+              description: Amount at which insurance was established (initialized).
+                When the monetary sale transaction posts on a precomputed loan, the
+                initial insurance amount is the same as the original disclosed insurance.
+              example: $0.00
+            user1Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 1 was established
+                (initialized). When the monetary sale transaction posts on a precomputed
+                loan, the initial user-defined fee amount is the same as the original
+                disclosed amounts.
+              example: $0.00
+            user2Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 2 was established
+                (initialized). When the monetary sale transaction posts on a precomputed
+                loan, the initial user-defined fee amount is the same as the original
+                disclosed amounts.
+              example: $0.00
+            user3Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 3 was established
+                (initialized). When the monetary sale transaction posts on a precomputed
+                loan, the initial user-defined fee amount is the same as the original
+                disclosed amounts.
+              example: $0.00
+            user4Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 4 was established
+                (initialized). When the monetary sale transaction posts on a precomputed
+                loan, the initial user-defined fee amount is the same as the original
+                disclosed amounts.
+              example: $0.00
+            user5Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 5 was established
+                (initialized). When the monetary sale transaction posts on a precomputed
+                loan, the initial user-defined fee amount is the same as the original
+                disclosed amounts.
+              example: $0.00
+            user6Amount:
+              maxLength: 24
+              type: string
+              description: Amount at which the user-defined fee 6 was established
+                (initialized). When the monetary sale transaction posts on a precomputed
+                loan, the initial user-defined fee amount is the same as the original
+                disclosed amounts.
+              example: $0.00
+        capIndicatorDetails:
+          type: object
+          properties:
+            isInterestCapIndicatorEnabled:
+              maxLength: 1
+              type: string
+              description: Code included in the loan setup transaction (Loan Input
+                Data or user input) that indicates whether the initial interest amount
+                (INITIALIZED INTEREST CMS 10.5 User Interface Guide Plan Details August
+                2021 30–89 AMOUNT) is the maximum amount allowed for this loan credit
+                plan. <br/>The values are:<br/>&nbsp; '0' = Amount is not capped at
+                the initial amount.<br/>&nbsp; '1' = Amount is capped at the initial
+                amount. The final amount charged and consequently, paid may never
+                exceed the initial interest amount
+              example: '0'
+            isInsuranceCapIndicatorEnabled:
+              maxLength: 1
+              type: string
+              description: Code included in the loan setup transaction (Loan Input
+                Data or user input) that indicates whether the initial insurance amount
+                (INITIALIZED INSURANCE AMOUNT) is the maximum amount allowed for this
+                loan credit plan. <br/>The values are:<br/>&nbsp; '0' = Amount is
+                not capped at the initial amount. <br/>&nbsp; '1' = Amount is capped
+                at the initial amount. The final amount charged and consequently paid
+                may never exceed the initial amount
+              example: '0'
+            isUserFee1CapIndicatorEnabled:
+              maxLength: 1
+              type: string
+              description: Code included in the loan setup transaction (Loan Input
+                Data or user input) that indicates whether the initial user-defined
+                fee amount (INITIALIZED USER FEE 1 AMOUNT) is the maximum amount allowed
+                for this loan credit plan. <br/>The values are:<br/>&nbsp; '0' = Amount
+                is not capped at the initial amount. <br/>&nbsp; '1' = Amount is capped
+                at the initial amount. The final amount charged and consequently paid
+                may never exceed the initial amount included in the loan setup transaction
+              example: '0'
+            isUserFee2CapIndicatorEnabled:
+              maxLength: 1
+              type: string
+              description: Code included in the loan setup transaction (Loan Input
+                Data or user input) that indicates whether the initial user-defined
+                fee amount (INITIALIZED USER FEE 1 AMOUNT) is the maximum amount allowed
+                for this loan credit plan. <br/>The values are:<br/>&nbsp; '0' = Amount
+                is not capped at the initial amount. <br/>&nbsp; '1' = Amount is capped
+                at the initial amount. The final amount charged and consequently paid
+                may never exceed the initial amount included in the loan setup transaction
+              example: '0'
+            isUserFee3CapIndicatorEnabled:
+              maxLength: 1
+              type: string
+              description: Code included in the loan setup transaction (Loan Input
+                Data or user input) that indicates whether the initial user-defined
+                fee amount (INITIALIZED USER FEE 1 AMOUNT) is the maximum amount allowed
+                for this loan credit plan. <br/>The values are:<br/>&nbsp; '0' = Amount
+                is not capped at the initial amount. <br/>&nbsp; '1' = Amount is capped
+                at the initial amount. The final amount charged and consequently paid
+                may never exceed the initial amount included in the loan setup transaction
+              example: '0'
+            isUserFee4CapIndicatorEnabled:
+              maxLength: 1
+              type: string
+              description: Code included in the loan setup transaction (Loan Input
+                Data or user input) that indicates whether the initial user-defined
+                fee amount (INITIALIZED USER FEE 1 AMOUNT) is the maximum amount allowed
+                for this loan credit plan. <br/>The values are:<br/>&nbsp; '0' = Amount
+                is not capped at the initial amount. <br/>&nbsp; '1' = Amount is capped
+                at the initial amount. The final amount charged and consequently paid
+                may never exceed the initial amount included in the loan setup transaction
+              example: '0'
+            isUserFee5CapIndicatorEnabled:
+              maxLength: 1
+              type: string
+              description: Code included in the loan setup transaction (Loan Input
+                Data or user input) that indicates whether the initial user-defined
+                fee amount (INITIALIZED USER FEE 1 AMOUNT) is the maximum amount allowed
+                for this loan credit plan. <br/>The values are:<br/>&nbsp; '0' = Amount
+                is not capped at the initial amount. <br/>&nbsp; '1' = Amount is capped
+                at the initial amount. The final amount charged and consequently paid
+                may never exceed the initial amount included in the loan setup transaction
+              example: '0'
+            isUserFee6CapIndicatorEnabled:
+              maxLength: 1
+              type: string
+              description: Code included in the loan setup transaction (Loan Input
+                Data or user input) that indicates whether the initial user-defined
+                fee amount (INITIALIZED USER FEE 1 AMOUNT) is the maximum amount allowed
+                for this loan credit plan. <br/>The values are:<br/>&nbsp; '0' = Amount
+                is not capped at the initial amount. <br/>&nbsp; '1' = Amount is capped
+                at the initial amount. The final amount charged and consequently paid
+                may never exceed the initial amount included in the loan setup transaction
+              example: '0'
+        componentCalculationIndicatorDetails:
+          type: object
+          properties:
+            interestIndicator:
+              maxLength: 1
+              type: string
+              description: Component calculation indicator included in the loan setup
+                transaction (ARLE02 or user input) that determines how interest is
+                loaded or processed for this loan credit plan. <br/>The values are:<br/>&nbsp;
+                '0' = System calculated. Calculate and bill interest each month(Default)<br/>&nbsp;
+                '1' = Precomputed lump sum<br/>&nbsp; '2' = Precomputed flat amount
+                periodically charged for interest only<br/>&nbsp; '3' = Billed from
+                loan schedule. The precomputed interest amount populates the ORIGINAL
+                DISCLOSED INTEREST AMOUNT and INITIALIZED INTEREST AMOUNT fields at
+                plan setup.
+              example: '3'
+            insuranceIndicator:
+              maxLength: 1
+              type: string
+              description: Component calculation indicator included in the loan setup
+                transaction (Loan Input Data or user input) that determines how insurance
+                is loaded or processed for this loan credit plan. <br/>The values
+                are:<br/>&nbsp; '0' = System calculated. CMS calculates and bills
+                insurance each month(Default)<br/>&nbsp; '1' = Precomputed lump sum<br/>&nbsp;
+                '3' = Billed from loan schedule
+              example: '3'
+            userFee1Indicator:
+              maxLength: 1
+              type: string
+              description: Component calculation indicator included in the loan setup
+                transaction (Loan Input Data or user input) that determines how each
+                user-defined fee is loaded or processed for the loan credit plan.
+                <br/>The values are:<br/>&nbsp; '0' = System calculated. Calculate
+                and bill each month(Default)<br/>&nbsp; '1' = Precomputed lump sum<br/>&nbsp;
+                '3' = Billed from the loan schedule
+              example: '3'
+            userFee2Indicator:
+              maxLength: 1
+              type: string
+              description: Component calculation indicator included in the loan setup
+                transaction (Loan Input Data or user input) that determines how each
+                user-defined fee is loaded or processed for the loan credit plan.
+                <br/>The values are:<br/>&nbsp; '0' = System calculated. Calculate
+                and bill each month(Default)<br/>&nbsp; '1' = Precomputed lump sum<br/>&nbsp;
+                '3' = Billed from the loan schedule
+              example: '3'
+            userFee3Indicator:
+              maxLength: 1
+              type: string
+              description: Component calculation indicator included in the loan setup
+                transaction (Loan Input Data or user input) that determines how each
+                user-defined fee is loaded or processed for the loan credit plan.
+                <br/>The values are:<br/>&nbsp; '0' = System calculated. Calculate
+                and bill each month(Default)<br/>&nbsp; '1' = Precomputed lump sum<br/>&nbsp;
+                '3' = Billed from the loan schedule
+              example: '3'
+            userFee4Indicator:
+              maxLength: 1
+              type: string
+              description: Component calculation indicator included in the loan setup
+                transaction (Loan Input Data or user input) that determines how each
+                user-defined fee is loaded or processed for the loan credit plan.
+                <br/>The values are:<br/>&nbsp; '0' = System calculated. Calculate
+                and bill each month(Default)<br/>&nbsp; '1' = Precomputed lump sum<br/>&nbsp;
+                '3' = Billed from the loan schedule
+              example: '3'
+            userFee5Indicator:
+              maxLength: 1
+              type: string
+              description: Component calculation indicator included in the loan setup
+                transaction (Loan Input Data or user input) that determines how each
+                user-defined fee is loaded or processed for the loan credit plan.
+                <br/>The values are:<br/>&nbsp; '0' = System calculated. Calculate
+                and bill each month(Default)<br/>&nbsp; '1' = Precomputed lump sum<br/>&nbsp;
+                '3' = Billed from the loan schedule
+              example: '3'
+            userFee6Indicator:
+              maxLength: 1
+              type: string
+              description: Component calculation indicator included in the loan setup
+                transaction (Loan Input Data or user input) that determines how each
+                user-defined fee is loaded or processed for the loan credit plan.
+                <br/>The values are:<br/>&nbsp; '0' = System calculated. Calculate
+                and bill each month(Default)<br/>&nbsp; '1' = Precomputed lump sum<br/>&nbsp;
+                '3' = Billed from the loan schedule
+              example: '3'
+        disbrusementCreditDetails:
+          type: object
+          properties:
+            bankId:
+              maxLength: 10
+              type: string
+              description: 'It displays the bank identification number to which the
+                loan disbursement credit transaction is sent. '
+              example: '0'
+            disbursementAccountId:
+              maxLength: 17
+              type: string
+              description: 'Unique identification number to which the loan disbursement
+                credit transaction is sent. The value displayed in this field is defined
+                in the ACCOUNT field on the Loan Input Data. '
+              example: ' '
+            accountIndicator:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: This field indicates if the account credited with the loan
+                disbursement is a checking (DDA) or savings account. The value displayed
+                in this field is defined in the ACCOUNT INDICATOR field on the Loan
+                Input Data.
+              example: '0'
+            disbursementDate:
+              maxLength: 10
+              type: string
+              description: Date on which the loan disbursement credit transaction
+                is generated. CMS updates this field on the date of the credit transaction
+                generation, The format is MM/DD/YYYY or DD/MM/YYYY depending on the
+                DATE FORMAT on System Control.
+              example: 00/00/0000
+        topUpRedrawCanRestructureDetails:
+          type: object
+          properties:
+            topUpExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date within the loan term through which loan top-up is
+                allowed for the plan segment. After this date, top-up is not allowed
+                for the loan, The format is MM/DD/YYYY or DD/MM/YYYY depending on
+                the DATE FORMAT on System Control.
+              example: 30/11/2000
+            redrawExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date within the loan term through which loan redraw is
+                allowed for the plan segment. After this date, redraw is not allowed
+                for the loan, The format is MM/DD/YYYY or DD/MM/YYYY depending on
+                the DATE FORMAT on System Control.
+              example: 00/00/0000
+            lastTopUpRequestDate:
+              maxLength: 10
+              type: string
+              description: Date of the last top-up request, The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 00/00/0000
+            lastRedrawRequestDate:
+              maxLength: 10
+              type: string
+              description: Date of the last loan redraw, The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 00/00/0000
+            lastTopUpAmount:
+              maxLength: 17
+              type: string
+              description: Amount of last top-up request, The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: $0.00
+            lastRedrawAmount:
+              maxLength: 24
+              type: string
+              description: Amount of the last loan redraw.
+              example: $0.00
+            lastRestructureDate:
+              maxLength: 10
+              type: string
+              description: Date on which the last loan restructure occurred, The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+                Control.
+              example: 00/00/0000
+            lastFixedPaymentMaintenanceDate:
+              maxLength: 10
+              type: string
+              description: Date on which the fixed payment amount was last modified,
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 00/00/0000
+            lastFixedPaymentAmount:
+              maxLength: 24
+              type: string
+              description: Fixed payment amount prior to restructure, or prior to
+                a fixed payment change without restructure.
+              example: $0.00
+            lastTermMaintenanceDate:
+              maxLength: 10
+              type: string
+              description: Date on which the loan term was last modified due to reschedule
+                or restructure, The format is MM/DD/YYYY or DD/MM/YYYY depending on
+                the DATE FORMAT on System Control.
+              example: 00/00/0000
+            lastTerm:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Initial loan term prior to reschedule or restructure.
+              example: '0'
+            restructureLetterId:
+              maxLength: 3
+              type: string
+              description: This field displays the identification of the restructure
+                notification letter generated for the customer, if applicable.
+              example: ' '
+            restructureReason:
+              maxLength: 1
+              type: string
+              description: This field displays the reason that the loan plan was restructured.
+                <br/>The values are:<br/>&nbsp; '0' = Restructure has not occurred
+                on the loan plan<br/>&nbsp; '1' = Restructure due to top-up or redraw<br/>&nbsp;
+                '2' = Restructure due to manual component changes<br/>&nbsp; '3' =
+                Restructure due to fixed payment changes<br/>&nbsp; '4' = Restructure
+                due to increase or decrease of principal<br/>&nbsp; '5' = Restructure
+                due to interest rate change
+              example: '0'
+            cancelExpiryDate:
+              maxLength: 1
+              type: string
+              description: Date through which the loan plan is eligible for cancellation.
+              example: 00/00/0000
+        FixedInterestDetails:
+          type: object
+          properties:
+            interestIndicator:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag that indicates whether the interest rate on the loan
+                credit plan is a fixed interest rate or whether the interest rate
+                is defined on an interest table attached to a processing control table
+                (PCT). <br/>The values are:<br/>&nbsp; '0' = Interest is calculated
+                using the rate defined on the interest table attached to the PCT (Default)
+                <br/>&nbsp; '1' = Interest is calculated using a fixed interest rate
+              example: '0'
+            interestRate:
+              maxLength: 10
+              type: string
+              description: Fixed interest rate that is currently in effect for the
+                loan plan.
+              example: 0.00000%
+            nextInterestRate:
+              maxLength: 10
+              type: string
+              description: Interest rate that will go into effect on the next interest
+                effective date (NEXT INTEREST EFFECTIVE DATE).
+              example: 0.00000%
+            nextInterestEffectiveDate:
+              maxLength: 7
+              type: string
+              description: Effective date for the next interest rate. This date must
+                be greater than the current processing date when NEXT INTEREST RATE
+                contains a value.
+              example: 00/00/0000
+        skipPaymentDetails:
+          type: object
+          properties:
+            skipPaymentIndicator:
+              maxLength: 1
+              type: string
+              description: Status of plan-level skip payment processing for the loan
+                plan segment. <br/>The values are:<br/>&nbsp; '0' = Plan-level skip
+                payment is not available (Default)<br/>&nbsp; '1' = Plan-level skip
+                payment is initiated<br/>&nbsp; '2' = Plan-level skip payment is processed
+                (this value is system-generated and cannot be input by the user)
+              example: '0'
+            lastSkipPaymentDate:
+              maxLength: 10
+              type: string
+              description: Date on which the last skip payment was accepted by the
+                customer for the loan plan, The format is MM/DD/YYYY or DD/MM/YYYY
+                depending on the DATE FORMAT on System Control.
+              example: 00/00/0000
+            lifeToDateSkipPaymentCount:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Counter that tracks the number of skip payments accepted
+                by the customer for the loan plan life-to-date. The values are 000–999.
+              example: '0'
+            yearToDateSkipPaymentCount:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Counter that tracks the number of skip payments accepted
+                by the customer for the loan plan year-to-date. The values are 000–999
+              example: '0'
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer

@@ -1,8 +1,6 @@
 # Update Billing Cycle
 
-This API is used to update the billing cycle for an account. Values between 1 to 31 are valid values.
-
-*If user select a nonprocessing day, the cycle’s statement is produced on the processing day that precedes the selected day. This day must be at least 25 calendar days from the **DATE LAST BILLING CYCLE** date. It must also be equal to or greater than the **CURRENT CYCLE** value.*
+This API is used to update the billing cycle for a given account Id.
 
 ## Endpoint
 
@@ -19,7 +17,7 @@ titles: Request, Response, Error
 {
    "billingCycle": 15
 }
-``` 
+```
 
 <!--
 type: tab
@@ -64,7 +62,8 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
-| `billingCycle` | payload | *number* | 02 | Cycle code that indicates the day of the month that CMS performs cycle processing for the account. The values are 1–31.|
+
+*In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
 ### Error Codes
 

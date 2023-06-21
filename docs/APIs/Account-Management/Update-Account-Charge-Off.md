@@ -1,8 +1,8 @@
 # Update Account Charge-Off
 
-This service is used to update account charge-off status. 
->
-*User cannot charge off an account with zero balance or credit balance. When performing a manual charge off, the value you enter in the RSN field must already exist in the REASON column on the Logo record. When the charge-off status of the account is 5 (automatically completed), the value in this field defaults from the Logo record.*
+This API is used to update account charge-off status.
+
+*User cannot charge off an account with zero balance or credit balance. When performing a manual charge off, the value you enter in the reason field must be defined at the REASON parameter at product level. When the charge-off status of the account is 5 (automatically completed), the value in this field defaults from product level.*
 
 ## Endpoint
 
@@ -67,7 +67,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *String* | 19 | Unique identification number for cardholder billing account. | 
+| `accountId` | Path Variable | *String* | 19 | Unique identification number for cardholder billing account. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
@@ -79,16 +79,16 @@ Below table provides the list of application's error code and its description.
 | --------  | ------------------ |
 | `V5BS0010SF` | Update request - Record not found |
 | `V5BS0109SA` | Invalid Internal Status |
-| `V5BS0109SB` | PROC Date must be greater than greatest EXP date For purged Acct | 
-| `V5BS0109SC` | Status cannot change to closed when insurance is Active | 
+| `V5BS0109SB` | PROC Date must be greater than greatest EXP date For purged Acct |
+| `V5BS0109SC` | Status cannot change to closed when insurance is Active |
 | `V5BS0110EB` | RSN code must be defined |
-| `V5BS0110EC` | Cannot Use Chgoff RSN defined In Logo Lvl For Chgoff Sta'2' | 
-| `V5BS0110SA` | Entered Auto C/O RSN code - CHG To manual Reason |   
-| `V5BS0110SD` | Cannot use Reason defined for auto chgoff accts |          
-| `V5BS0110SE` | This charge Off status is not allowed For Edit Or acct has dispute | 
-| `V5BS0110SF` | Cannot charge Off an account with A zero Or credit balance |        
-| `V5BS0110SG` | Cannot reset chargeoff On account when days Is > 0 |                
-| `V5BS0110SH` | Chgoff status update Is not allowed during add |                   
+| `V5BS0110EC` | Cannot Use Chgoff RSN defined In Logo Lvl For Chgoff Sta'2' |
+| `V5BS0110SA` | Entered Auto C/O RSN code - CHG To manual Reason |
+| `V5BS0110SD` | Cannot use Reason defined for auto chgoff accts |
+| `V5BS0110SE` | This charge Off status is not allowed For Edit Or acct has dispute |
+| `V5BS0110SF` | Cannot charge Off an account with A zero Or credit balance |
+| `V5BS0110SG` | Cannot reset chargeoff On account when days Is > 0 |
+| `V5BS0110SH` | Chgoff status update Is not allowed during add |
 | `V5BS0184SA` | Not A valid date |
 | `V5BS0125SA` | Cannot set A block code On A billing account |
 | `V5BS0125SB` | Block code 1 must be alphabetic |

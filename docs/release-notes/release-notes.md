@@ -1,11 +1,5 @@
----
-tags: [firstvision, release-notes]
----
-
 # Release Notes
 
-FirstVision is continually being improved with new features, security enhancements and upgrades. Below is a summary of the latest releases.
+Please click on respective release links to view details about the release.
 
-Coming soon...
-
----
+[2023 Release](./?path=docs/release-notes/Releases/2023/Release-Notes-2023.md)

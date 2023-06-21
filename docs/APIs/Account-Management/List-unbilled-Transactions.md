@@ -1,6 +1,6 @@
 # List Unbilled Transactions
 
-This service provides details of the unbilled transactions posted on a given account.
+This API is used to fetch unbilled transaction details for a given account Id.
 
 ## Endpoint
 
@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.  
 >
 >***Account id should be sent as path variable.***
 
@@ -40,7 +40,9 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 1
     },
     {
       "authorizationCode": "052206",
@@ -57,7 +59,9 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 2
     },
     {
       "authorizationCode": "052210",
@@ -74,7 +78,9 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 3
     },
     {
       "authorizationCode": "052213",
@@ -91,7 +97,9 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 4
     },
     {
       "authorizationCode": "052219",
@@ -108,7 +116,9 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 5
     },
     {
       "authorizationCode": "052220",
@@ -125,92 +135,9 @@ type: tab
       "transactionCode": 9000,
       "transactionType": "M",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
-    },
-    {
-      "authorizationCode": "052226",
-      "description": "Dom POS via VISA         SYDNEY       AU",
-      "effectiveDate": "17/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": "000404940XXXXXX4057",
-      "planId": 10001,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "17/08/2021",
-      "referenceNumber": "FV0914210164216L14299",
-      "transactionAmount": "$0.00",
-      "transactionCode": 9000,
-      "transactionType": "M",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
-    },
-    {
-      "authorizationCode": "052227",
-      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate": "17/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": "000404940XXXXXX4057",
-      "planId": 10001,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "17/08/2021",
-      "referenceNumber": "FV091421018113030013773",
-      "transactionAmount": "$0.00",
-      "transactionCode": 9000,
-      "transactionType": "M",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
-    },
-    {
-      "authorizationCode": "052205",
-      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate": "18/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": "000404940XXXXXX4057",
-      "planId": 10001,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "18/08/2021",
-      "referenceNumber": "FV090921017335430013773",
-      "transactionAmount": "$0.00",
-      "transactionCode": 9000,
-      "transactionType": "M",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
-    },
-    {
-      "authorizationCode": "052206",
-      "description": "HOT PIPIS PTY LTD        MOOLOOLABA   AU",
-      "effectiveDate": "18/08/2021",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": "000404940XXXXXX4057",
-      "planId": 10001,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "18/08/2021",
-      "referenceNumber": "FV090921019032730013773",
-      "transactionAmount": "$0.00",
-      "transactionCode": 9000,
-      "transactionType": "M",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
-    },
-    {
-      "authorizationCode": " ",
-      "description": " ",
-      "effectiveDate": "00/00/0000",
-      "merchantCategoryCode": 0,
-      "merchantCity": " ",
-      "maskedPaymentCardNumber": " ",
-      "planId": 0,
-      "paymentInstrumentId": "0009543161012022346",
-      "postingDate": "00/00/0000",
-      "referenceNumber": " ",
-      "transactionAmount": "$0.00",
-      "transactionCode": 0,
-      "transactionType": " ",
-      "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 6
     },
     {
       "authorizationCode": " ",
@@ -227,7 +154,9 @@ type: tab
       "transactionCode": 0,
       "transactionType": " ",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
-      "remainingAuthorizationAmount": "$0.00"
+      "remainingAuthorizationAmount": "$0.00",
+      "memoDebitOrCreditIndicator": "D",
+      "bnplIplanSequenceNumber": 7
     }
   ]
 }
@@ -272,7 +201,7 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5T24001EB` | No organization record on file |
-| `V5T24002SB` | No account on File |
+| `V5T24002SB` | Account number not found |
 | `V5T24024EA` | Invalid txn suppresion indicatr valid values are N or Y |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

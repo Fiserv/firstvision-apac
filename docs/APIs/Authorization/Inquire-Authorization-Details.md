@@ -1,8 +1,6 @@
 # Inquire Authorization Details
 
-This service is used to provide Authorization detail of transaction when internal reference number provided in input request. 
-This service called immediately after Auth Request service and it will provide authorization details of the transaction. 
-*Kindly use List Outstanding Authorization API to fetch detail of transaction when daily batch is completed or next day when transaction is not available in FAS log file.*
+This API is used to fetch Authorization details for a given payment instrument Id or payment card number, authorization code, effective date, and transaction amount, if given. This API fetches data for any authorization which is waiting for settlement.
 
 ## Endpoint
 
@@ -15,9 +13,9 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
->***Payment Instrument Or Card Id, effective date/authorization code should be sent as path variable and query parameter.***
+>***Payment Instrument Or Card Id and effective date, authorization code should be sent as path variable and query parameter.***
 
 <!--
 type: tab
@@ -30,7 +28,7 @@ type: tab
     "cardFeeDate": "00/00/0000",
     "chargeOffDate": "00/00/0000",
     "chargeOffReason": "",
-    "chargeOffStatus": "0",
+    "chargeOffStatus": 0,
     "creditClassification": "N1",
     "creditLimitOverlimitPercentage": "$1.00",
     "customerid": "0001000000000150191",
@@ -75,7 +73,7 @@ type: tab
     "memoDebitCount": 134
   },
   "merchantDetails": {
-    "merchantBusinessUnit": "100",
+    "merchantBusinessUnit": 100,
     "merchantCategoryCode": "05999",
     "merchantId": "999999998"
   },
@@ -84,7 +82,8 @@ type: tab
   "responseCode": "00",
   "temporaryCreditLimit": "$0.00",
   "totalDueAmount": "$0.00",
-  "transactionAmount": "2.00"
+  "transactionAmount": "2.00",
+  "effectiveDate": "10/01/2022"
 }
 ```
 
@@ -121,8 +120,8 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentOrCardId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-| `effectiveDate` | Query vari | *string* | 10 | Effective Date of the transaction. The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
-| `authorizationCode` | Payload | *string* | 6 | Authorization code associated with the transaction. |
+| `effectiveDate` | Query variable | *string* | 10 | Effective Date of the transaction. The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
+| `authorizationCode` | Query variable | *string* | 6 | Authorization code associated with the transaction. |
 
 ### Error Codes
 
@@ -130,9 +129,9 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V7RS4002EP` | Invalid card number |        
-| `V7RS4002ES` | Authorization record not found |   
-| `V7RS4003EQ` | Input effective date not matching with log record effective date |   
-| `V7RS4005ER` | Input auth amount not matching with log record auth amount |   
+| `V7RS4002EP` | Invalid card number |
+| `V7RS4002ES` | Authorization record not found |
+| `V7RS4003EQ` | Input effective date not matching with log record effective date |
+| `V7RS4005ER` | Input auth amount not matching with log record auth amount |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

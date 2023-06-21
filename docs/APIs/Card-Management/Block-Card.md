@@ -1,7 +1,8 @@
 # Block Unblock Card
 
-The Service will then determine the type of request, block or unblock a card. The block code passed on the input message will be subject to a priority check against the block code priority definition on the Block Code Matrix. No block code priority check will occur when an unblock request is processed. 
-The Service will update the block code field on the payment instrument id with the associated block code date using the next processing date from the account’s business unit.
+This API is used to block or unblock the given payment instrument Id.
+
+*While applying block code, system checks the block code priorities defined at the product to decide to either apply the new block code value or retain the existing block code value. No block code priority check will occur when an unblock request is processed through this API.*
 
 ## Endpoint
 
@@ -23,7 +24,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -37,7 +38,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -56,7 +57,6 @@ type: tab
 ```
 <!-- type: tab-end -->
 
-
 ### Minimum Requirements
 
 The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=put&path=/v1/cards/{paymentInstrumentId}/blockUnblock).
@@ -65,11 +65,11 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. | 
+| `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
 *In addition to the above mentioned minimum field, one of the request payload variable is required.*
 
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 

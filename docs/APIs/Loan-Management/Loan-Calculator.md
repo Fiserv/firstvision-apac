@@ -1,6 +1,6 @@
 # Loan Calculator
 
-This Loan Calculator Service is used to calculate the loan repayment options for prospective borrowers. This function requires that you enter either the loan term or fixed payment amount. You can also enter other loan components, such as the interest rate, insurance, and user fees. When you press submit, CMS calculates and displays the loan term, fixed payment, final payment, total financed amount, total interest amount, and total loan amount.
+This API is used to calculate the loan repayment options for prospective borrowers based on the details given input request.
 
 ## Endpoint
 
@@ -20,7 +20,7 @@ titles: Request, Response, Error
   "currencyCode": "036",
   "userFeeAmount": "30000",
   "interestRate": 1400,
-  "tenure": 10,
+  "term": 10,
   "fixedPaymentAmount": "0",
   "isPaymentScheduledEnabled": "1",
   "interestMethod": "0",
@@ -40,8 +40,8 @@ type: tab
     "finalPaymentAmount": "$140.09",
     "fixedPaymentAmount": "$140.09",
     "insuranceAmount": "$500.00",
-    "interestRate": "1400",
-    "tenure": 10,
+    "interestRate": "00014.00%",
+    "term": 10,
     "principalAmount": "$600.00",
     "totalFinancedAmount": "$1,400.00",
     "totalInterestAmount": "$0.90",
@@ -50,68 +50,68 @@ type: tab
   },
   "loanScheduleAndMonthdetails": {
     "loanMethod": 0,
-    "tenure": 10
+    "term": 10
   },
   "monthlyLoanPaymentDetails": [
     {
-      "currentTenure": 1,
+      "currentTerm": 1,
       "endingBalance": "$1,260.07",
       "finalAmount": "$139.93",
-      "intrestAmount": "$0.16"
+      "interestAmount": "$0.16"
     },
     {
-      "currentTenure": 2,
+      "currentTerm": 2,
       "endingBalance": "$1,120.13",
       "finalAmount": "$139.94",
-      "intrestAmount": "$0.15"
+      "interestAmount": "$0.15"
     },
     {
-      "currentTenure": 3,
+      "currentTerm": 3,
       "endingBalance": "$980.17",
       "finalAmount": "$139.96",
-      "intrestAmount": "$0.13"
+      "interestAmount": "$0.13"
     },
     {
-      "currentTenure": 4,
+      "currentTerm": 4,
       "endingBalance": "$840.19",
       "finalAmount": "$139.98",
-      "intrestAmount": "$0.11"
+      "interestAmount": "$0.11"
     },
     {
-      "currentTenure": 5,
+      "currentTerm": 5,
       "endingBalance": "$700.20",
       "finalAmount": "$139.99",
-      "intrestAmount": "$0.10"
+      "interestAmount": "$0.10"
     },
     {
-      "currentTenure": 6,
+      "currentTerm": 6,
       "endingBalance": "$560.19",
       "finalAmount": "$140.01",
-      "intrestAmount": "$0.08"
+      "interestAmount": "$0.08"
     },
     {
-      "currentTenure": 7,
+      "currentTerm": 7,
       "endingBalance": "$420.17",
       "finalAmount": "$140.02",
-      "intrestAmount": "$0.07"
+      "interestAmount": "$0.07"
     },
     {
-      "currentTenure": 8,
+      "currentTerm": 8,
       "endingBalance": "$280.13",
       "finalAmount": "$140.04",
-      "intrestAmount": "$0.05"
+      "interestAmount": "$0.05"
     },
     {
-      "currentTenure": 9,
+      "currentTerm": 9,
       "endingBalance": "$140.07",
       "finalAmount": "$140.06",
-      "intrestAmount": "$0.03"
+      "interestAmount": "$0.03"
     },
     {
-      "currentTenure": 10,
+      "currentTerm": 10,
       "endingBalance": "$0.00",
       "finalAmount": "$140.07",
-      "intrestAmount": "$0.02"
+      "interestAmount": "$0.02"
     }
   ]
 }
@@ -152,9 +152,7 @@ The below table identifies the required parameters in the request payload.
 | `principalAmount` | Payload  | *number* | 17 | Principal balance of the loan in monetary units and subunits.|
 | `currencyCode` | Payload  | *string* | 3 | ISO Standard Currency Code or ISO Country Code that identifies the unit of currency for this loan.|
 | `fixedPaymentAmount` | Payload  | *number* | 17 | Amount of the fixed payment. This field is required if LOAN TERM is not supplied.|
-| `tenure` | Payload  | *integer*| 3 | Term for the loan. This field is required if FIXED PAYMENT AMOUNT is not supplied.|
-
-
+| `term` | Payload  | *integer*| 3 | Term for the loan. This field is required if FIXED PAYMENT AMOUNT is not supplied.|
 
 ### Error Codes
 
@@ -175,6 +173,5 @@ Below table provides the list of application's error code and its description.
 | `V5LC4001SK` | Currency code is required when rounding ind is 3 |  
 | `V5LC4001SL` | Invalid currency code |  
 | `V5LC4001SM` | Can not process verify input values |  
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

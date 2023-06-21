@@ -1,6 +1,6 @@
-# Inquire Loan Schedule 
+# Inquire Loan Schedule
 
-This service fetches loan schedule details for the current loan data.
+This API is used to fetch loan schedule details for the current loan data.
 
 ## Endpoint
 
@@ -16,7 +16,6 @@ titles: Request, Response, Error
 >Should be empty.
 >
 >***Account Id should be sent as path variable and Record number sent as Query Parameter.***
-
 
 <!--
 type: tab
@@ -1749,7 +1748,6 @@ The below table identifies the required parameters in the request payload.
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
 | `recordNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment entity assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
 
-
 ### Error Codes
 
 Below table provides the list of application's error code and its description.
@@ -1762,6 +1760,5 @@ Below table provides the list of application's error code and its description.
 | `V5LS4002SA` | Account not found |  
 | `V5LS4002SB` | Account is in add pending |  
 | `V5LS4002SC` | Account is in purged |  
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

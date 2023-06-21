@@ -1,6 +1,6 @@
 # Inquire Statement Plan Details
 
-This service is used to fetch statement credit plan details for a given statement date of cardholder account.
+This API is used to fetch plan details and other generic details for a given account Id. Statement date to be provided in input, in order to fetch any specific statement period. If statement date is not given, latest statement details will be fetched.
 
 ## Endpoint
 
@@ -13,9 +13,9 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty. 
+>Should be empty.
 >
->***Account id and statement date should be sent as path and query parameter.***
+>***Account id should be sent as path variable.***
 
 <!--
 type: tab
@@ -71,7 +71,7 @@ type: tab
   "debitCount": 2,
   "creditCount": 0,
   "cycleDue": 0,
-  "table3": [
+  "planDetails": [
     {
       "planId": 70002,
       "beginningBalance": "$0.00",
@@ -81,11 +81,11 @@ type: tab
       "transferRollOutAmount": "$0.00",
       "interestAmount": "$0.00",
       "serviceFeeAmount": "$0.00",
-      "annualPercentageRate": 0,
+      "annualPercentageRate": "0.0000000%",
       "deferInterestAmount": "$0.00",
       "minimumPaymentAmount": "$0.00",
       "deferInsuranceAmount": "$0.00",
-      "currentBalance1": "$1,500.00"
+      "currentBalance": "$1,500.00"
     }
   ],
   "dateFieldsDetails": {
@@ -97,14 +97,11 @@ type: tab
     "dueDate": "18/09/2021",
     "currentDueAmount": "$0.00",
     "totalPastDueAmount": "$0.00",
-    "totalDueAmount": "$0.00",
-    "totalDueBalance": "$0.00"
+    "totalDueAmount": "$0.00"
   },
   "daysInCycle": 13,
-  "minimumPaymentAmount": 0,
-  "noOfQualifiedTxns": 0,
+  "qualifiedTransactionsCount": 0,
   "personalId": "",
-  "currencyConversionRate": 0,
   "billingIndicator": 0,
   "revolvingStatus": "",
   "businessUnit": 200
@@ -122,7 +119,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/accounts/0002000010000066750/statementPlanDetails",
     "invalid-params": [
-      "V5S34003SD: NO ACCOUNT ON FILE"
+      "V5S34003SD: ACCOUNT NUMBER NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -141,8 +138,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. | 
-| `statementDate` | Query Parameter | *date* | 10 | Period for which the user want to view the statement transaction details of an Account, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.| 
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 
 ### Error Codes
 
@@ -151,6 +147,6 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5S34003SA` | No statement history information found on file |
-| `V5S34003SD` | No Account on file |
+| `V5S34003SD` | Account number not found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -1,6 +1,6 @@
 # Inquire Card Preference
 
-This service fetches various preferences like cardholder type, issue/reissue delivery options, address, Dynamic CVV2 method and address Id etc for a given payment instrument Id.
+This API is used to fetch various details like cardholder type, issue/reissue delivery options, address, Dynamic CVV2 method and address Id etc for a given payment instrument Id.
 
 ## Endpoint
 
@@ -19,7 +19,7 @@ titles: Request, Response, Error
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 {
@@ -42,7 +42,7 @@ type: tab
 
 <!--
 type: tab
---> 
+-->
 
 ```json
 [
@@ -72,8 +72,7 @@ The below table identifies the required query parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 
-
-### Error Codes 
+### Error Codes
 
 Below table provides the list of application's error code and its description.
 
