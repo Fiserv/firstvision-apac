@@ -43,7 +43,7 @@ type: tab
       "transactionType": "D",
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
-      "merchantCountry": "AUS",
+      "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431"
     },
     {
@@ -64,7 +64,7 @@ type: tab
       "transactionType": "D",
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
-      "merchantCountry": "AUS",
+      "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431"
     },
     {
@@ -85,7 +85,7 @@ type: tab
       "transactionType": "C",
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
-      "merchantCountry": "AUS",
+      "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431"
     },
     {
@@ -106,7 +106,7 @@ type: tab
       "transactionType": "C",
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
-      "merchantCountry": "AUS",
+      "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431"
     },
     {
@@ -127,7 +127,7 @@ type: tab
       "transactionType": "D",
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
-      "merchantCountry": "AUS",
+      "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431"
     },
     {
@@ -148,7 +148,7 @@ type: tab
       "transactionType": "D",
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
-      "merchantCountry": "AUS",
+      "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431"
     },
     {
@@ -169,7 +169,7 @@ type: tab
       "transactionType": "D",
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
-      "merchantCountry": "AUS",
+      "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431"
     },
     {
@@ -190,7 +190,7 @@ type: tab
       "transactionType": "C",
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
-      "merchantCountry": "AUS",
+      "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431"
     }
   ]

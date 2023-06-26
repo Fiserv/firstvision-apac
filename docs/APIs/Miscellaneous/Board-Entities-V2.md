@@ -66,7 +66,7 @@ titles: Request, Response, Error
   "relationshipDetails": {
     "relationshipCreditLimit": "0.00",
     "relationshipBlockCode": " ",
-    "mailCode": "0",
+    "mailCode": 0,
     "reserveAmountpctFlag": 0,
     "availableReservePctAmount": "0.00",
     "isStatememtTypeEnabled": 0,
