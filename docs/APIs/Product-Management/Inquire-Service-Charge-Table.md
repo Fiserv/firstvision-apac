@@ -405,23 +405,23 @@ type: tab
     }
   ],
   "bnplMissedPaymentFeeDetails": {
-    "missedPaymentFeeAmount1": "$100.00",
-    "missedPaymentFeeLimit1": 5,
-    "missedPaymentFeeAmount2": "$100.00",
-    "missedPaymentFeeLimit2": 5,
-    "missedPaymentFeeAmount3": "$100.00",
-    "missedPaymentFeeLimit3": 5,
-    "missedPaymentFeeAmount4": "$100.00",
-    "missedPaymentFeeLimit4": 5,
-    "missedPaymentFeeAmount5": "$100.00",
-    "missedPaymentFeeLimit5": 5
+    "amount1": "$100.00",
+    "limit1": 5,
+    "amount2": "$100.00",
+    "limit2": 5,
+    "amount3": "$100.00",
+    "limit3": 5,
+    "amount4": "$100.00",
+    "limit4": 5,
+    "amount5": "$100.00",
+    "limit5": 5
   },
   "bnplSnoozeFeeDetails": {
-    "snoozeFeeAmount1": "$55.00",
-    "snoozeFeeAmount2": "$0.00",
-    "snoozeFeeAmount3": "$0.00",
-    "snoozeFeeAmount4": "$0.00",
-    "snoozeFeeAmount5": "$0.00"
+    "amount1": "$55.00",
+    "amount2": "$0.00",
+    "amount3": "$0.00",
+    "amount4": "$0.00",
+    "amount5": "$0.00"
   },
   "tableId": 3
 }

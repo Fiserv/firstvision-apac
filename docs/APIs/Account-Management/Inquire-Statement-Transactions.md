@@ -56,7 +56,6 @@ type: tab
     "cashCreditLimit": "$3,000.00",
     "creditLimit": "$150,000.00",
     "creditsAmount": "$0.00",
-    "currentBalance": "$0.00",
     "debitsAmount": "$1,500.00",
     "deferBillBalance": "$0.00",
     "endingBalance": "$1,500.00",
