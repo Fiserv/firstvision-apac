@@ -29,7 +29,7 @@ type: tab
 
 ```json
 {
-    "sequenceNumber": "2",
+    "sequenceNumber": 2,
     "accountId": "0007000022102711404",
     "businessUnit": 700
 }

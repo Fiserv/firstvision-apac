@@ -1,6 +1,6 @@
 # Update Snooze Count
 
-This API is used to update the snooze count for a given iPlan.
+This API is used to update the snooze count for a given account's iPlan.
 
 ## Endpoint
 

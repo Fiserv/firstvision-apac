@@ -1,6 +1,6 @@
 # Snooze iPlan
 
-This API is used to snooze the iPlan  for a given account.
+This API is used to snooze the iPlan for a given account Id.
 
 ## Endpoint
 
