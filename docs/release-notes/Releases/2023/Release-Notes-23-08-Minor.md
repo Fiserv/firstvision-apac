@@ -21,7 +21,7 @@
 - Inquire Authorization Details: Label name change from transactionAmount to authorizationAmount
 - Change PIN: Label name change from pinSetOrResetActionCode to pinChangeActionCode and pinSetOrResetMemo to pinChangeMemo
 - Inquire Account:  API changes are mention in below points.
-  - maxLength changed to 24 for cashCreditLimit, cashBalance, openToBuy, creditLimit, currentBalance, loanCreditLimit, loanAvailable, loanBalance and cashAvailable fields. 
+  - maxLength changed to 24 for cashCreditLimit, cashBalance, openToBuy, creditLimit, currentBalance, loanCreditLimit, loanAvailable, loanBalance and cashAvailable fields.
   - Example value updated from blank to 'X' in blockCode2.
   - Description updated for returnMailCount.
 - Inquire Card: Example value updated from blank to 'X' in blockCode.
@@ -31,20 +31,23 @@
 - Product Transfer: Description updated for billingCycle.
 - Inquire Authorization Details: Description updated for collectionReason.
 - Inquire Loan:  Description change for cancelExpiryDate and nextInterestEffectiveDate. Also, maxLength change for cancelExpiryDate.
+- Request Authorization: maxLength change for internalReferenceNumber
+- Reverse Authorization: maxLength change for internalReferenceNumber
+- List Transactions by Dare Range: Label change for merchantCountry to merchantCountryCode
 
 ### New APIs
 
 #### Add iPlan
 
-This API is used to create iPlan record for a given details in request.
+This API is used to create iPlan record for given details in account Id, instalment amount and other details.
 
 #### Snooze iPlan
 
-This API is used to snooze the iPlan for a given account ID.
+This API is used to snooze the iPlan for a given account Id.
 
 #### Update Payment Occurrence
 
-This API is used to update the payment occurrence 
+This API is used to update the payment occurrence for a given account's iPlan.
 
 #### Update Configuration Template
 
@@ -52,7 +55,7 @@ This API is used to update the configuration template for a given account's iPla
 
 #### Update Snooze Count
 
-This API is used to update the snooze count for a given iPlan.
+This API is used to update the snooze count for a given account's iPlan.
 
 #### Reset Snooze Count
 
@@ -60,7 +63,7 @@ This API is used to reset the snooze count for a given account's iPlan.
 
 #### Update BNPL Controls
 
-This API is used to update BNPL controls at account level for a given account id.
+This API is used to update BNPL controls at account level for a given account Id.
 
 #### Board Entities V2 (version 2)
 
@@ -73,7 +76,7 @@ This API is used to add Customer Name/Address record, Account Base Segment recor
 | 1 | Account Management | List Billed Transactions | <ul> <li>  Added below fields in response <ul> <li> merchantCountryCode   |
 | 2 | Account Management | List Unbilled Transactions | <ul> <li> Added below fields in response <ul> <li> merchantCountryCode   |
 | 3 | Account Management | List Outstanding Authorizations | <ul> <li> Added below fields in response <ul> <li> merchantCountryCode  |
-| 3 | Account Management | Inquire Statement Transaction Details | <ul> <li> Added below fields in response <ul> <li> merchantCountryCode  |
+| 3 | Account Management | Inquire Statement Transaction Details | <ul> <li> Removed currentBalance in response <li> Added below fields in response <ul> <li> merchantCountryCode |
 | 4 | Account Management | Inquire Direct Debit Controls | <ul> <li> New value '8'(Qual Grace Balance) introduced for field nominatedType in response |
 | 5 | Account Management | Update Direct Debit Controls | <ul> <li> New value '8'(Qual Grace Balance) introduced for field nominatedType in request and response |
 | 6 | Card Management | Change PIN | <ul> <li> Deleted below fields in response <ul> <li> pinTryCounterResetActionCode </li> <li> pinTryCounterResetMemo |
