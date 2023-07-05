@@ -15,9 +15,7 @@ titles: Request, Response, Error
 
 ```json
 {
-  "businessUnit": 700,
-  "accountId": "0007000022102711404",
-  "configurationTemplate": "BNPLTMPL10",
+  "configurationTemplate": "BNPL01TRAN",
   "preferredDayOfWeek": 0,
   "bookingAlertChannelIndicator": 0,
   "iplanActivationAlertChannelIndicator": 0,
