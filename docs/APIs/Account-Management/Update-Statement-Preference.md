@@ -17,7 +17,7 @@ titles: Request, Response, Error
 {
   "statementModeOrStatus": "O",
   "statementReprintAddressFlag": "C",
-  "ownerCoOwnerStatementFlag": "0"
+  "ownerCoOwnerStatementFlag": 0
 }
 ```
 
@@ -29,7 +29,7 @@ type: tab
 {
   "accountId": "0006000011000000145",
   "businessUnit": 600,
-  "ownerCoOwnerStatementFlag": "0",
+  "ownerCoOwnerStatementFlag": 0
   "statementModeOrStatus": "O",
   "statementReprintAddressFlag": "C"
 }

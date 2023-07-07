@@ -23,17 +23,17 @@ type: tab
 
 ```json
 {
-  "accountId": "0006000011000000137",
-  "accountType": "D",
   "businessUnit": 600,
-  "externalAccountId": "",
+  "accountId": "0006000011000000137",
+  "paymentRemittanceMethod": 0,
+  "paymentStartDate": "04/10/2021",
+  "paymentExpiryDate": "04/11/2021",
+  "routingBankID": "123456",
+  "accountType": "D",
+  "externalAccountId": "00000001000000057",
+  "nominatedType": 1,
   "nominatedPaymentAmountOrPercentage": "$10.00",
-  "nominatedType": "1",
-  "paymentExpiryDate": "04/12/2022",
-  "paymentRemittanceMethod": "0",
-  "paymentStartDate": "04/01/2022",
-  "paymentType": "0",
-  "routingBankID": "654321"
+  "paymentType": 1
 }
 ```
 

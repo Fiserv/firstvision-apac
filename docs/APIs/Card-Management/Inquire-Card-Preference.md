@@ -24,19 +24,19 @@ type: tab
 ```json
 {
   "addressFields": {
-    "addressLine1": "Shinzo abe",
-    "addressLine2": "Main Tokyo",
     "addressId": "",
+    "addressLine1": "Shinzo abe",
+    "addressLine2": "Main",
     "city": "JPN",
     "postalCode": "234226",
     "stateProvince": "Tok"
   },
   "businessUnit": 100,
-  "cardholderType": "1",
+  "cardholderType": 1,
   "isDynamicCVV2Enabled": "0",
-  "issueDeliveryOption": "1",
+  "issueDeliveryOption": 1,
   "paymentInstrumentId": "0009846801010273613",
-  "reissueDeliveryOption": "5"
+  "reissueDeliveryOption": 5
 }
 ```
 

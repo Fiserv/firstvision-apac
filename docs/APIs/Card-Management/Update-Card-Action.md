@@ -29,7 +29,7 @@ type: tab
   "paymentInstrumentId": "0009544410000000021",
   "cardAction": 1,
   "lastCardAction": 1,
-  "cardActionDate": " "
+  "cardActionDate": "12/04/2022"
 }
 ```
 
