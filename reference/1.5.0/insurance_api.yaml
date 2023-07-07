@@ -105,22 +105,22 @@ paths:
           type: integer
           example: '1'
       responses:
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InquireInsuranceV1ResponseModel'
-        '401':
-          description: " \nThe request was unauthorized"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -135,14 +135,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
           content:
@@ -151,16 +143,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
+        '400':
+          description: " \nThe request cannot be validated"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -275,7 +275,7 @@ paths:
           maxLength: 2
           type: integer
           example: '1'
-      - name: insuranceId
+      - name: insuranceProduct
         in: query
         description: Identification number of the product associated with the account.
         required: false
@@ -290,6 +290,44 @@ paths:
               $ref: '#/components/schemas/UpdateInsuranceV1ReqModel'
         required: true
       responses:
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateInsuranceV1ResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -306,30 +344,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
           content:
@@ -338,20 +352,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateInsuranceV1ResponseModel'
         '422':
           description: " \nThe request could not be processed"
           content:
@@ -431,6 +431,38 @@ paths:
               $ref: '#/components/schemas/AddInsuranceV1ReqModel'
         required: true
       responses:
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -447,30 +479,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
@@ -479,14 +487,6 @@ paths:
                 $ref: '#/components/schemas/AddInsuranceV1ResponseModel'
         '500':
           description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -593,12 +593,44 @@ paths:
           type: string
           example: ' '
       responses:
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListInsuranceV1ResponseModel'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -615,40 +647,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '500':
           description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
           content:
             application/json:
               schema:
@@ -714,7 +714,7 @@ components:
             reason
           example: ' '
         effectiveDate:
-          maxLength: 1
+          maxLength: 10
           type: string
           description: Effective date of the product. This date may be a future date.
             CMS assesses the first premium in the cycle that this date occurs. The
@@ -932,7 +932,6 @@ components:
             '1' - Do not charge a letter fee
           example: '1'
         premiumAmount:
-          maxLength: 24
           type: string
           description: This field is a fixed premium amount. This field is open for
             input. The RATE METHOD on the Insurance/Product table (Insurance Table->01-Insurance
@@ -980,8 +979,9 @@ components:
           - F
           - I
         productParty:
+          maximum: 9
           maxLength: 1
-          type: string
+          type: integer
           description: This field is a code that identifies the party whose date of
             birth is used. <br/>The values are:<br/>&nbsp; '0' - Owner (Default) <br/>&nbsp;
             '1' - Co-owner <br/>&nbsp; '2' - Product third party <br/>&nbsp; '3' -
@@ -1019,38 +1019,41 @@ components:
             reason
           example: ' '
         isThirdPartyStatementEnabled:
+          maximum: 9
           maxLength: 1
-          type: string
+          type: integer
           description: Code that determines if statements are sent to the product
             third party in addition to the account holder. <br/>The values are:<br/>&nbsp;
             '0' - Do not send statements to the product third party (Default) <br/>&nbsp;
             '1' - Send statements to the product third party
           example: '0'
           enum:
-          - '0'
-          - '1'
+          - 0
+          - 1
         isThirdPartyLetterFeeEnabled:
+          maximum: 9
           maxLength: 1
-          type: string
+          type: integer
           description: This field determines whether CMS charges a fee for the letter.
             <br/>The values are:<br/>&nbsp; '0' - Charge the LETTER FEE specified
             on the Letter Record service (Letter codes->Letter Detail Options) <br/>&nbsp;
             '1' - Do not charge a letter fee
           example: '1'
           enum:
-          - '0'
-          - '1'
+          - 0
+          - 1
         isThirdPartyLetterEnabled:
+          maximum: 9
           maxLength: 1
-          type: string
+          type: integer
           description: This field is a code that determines whether CMS sends letters
             to the product third party. <br/>The values are:<br/>&nbsp; '0' - Do not
             send letters to the product third party (Default) <br/>&nbsp; '1' - Send
             letters to the product third party
           example: '0'
           enum:
-          - '0'
-          - '1'
+          - 0
+          - 1
         businessUnit:
           maxLength: 3
           type: string
@@ -1058,7 +1061,7 @@ components:
             Valid values from 1-998.
           example: '600'
         effectiveDate:
-          maxLength: 1
+          maxLength: 10
           type: string
           description: Effective date of the product. This date may be a future date.
             CMS assesses the first premium in the cycle that this date occurs. The
@@ -1383,7 +1386,7 @@ components:
                 - Percentage <br/>&nbsp; '1' - Amount
               example: '1'
             premiumAmountOrPCT:
-              maxLength: 17
+              maxLength: 24
               type: string
               description: This field displays the, per value percentage or amount.
                 This value is based on the age of the product party and the age tiers
