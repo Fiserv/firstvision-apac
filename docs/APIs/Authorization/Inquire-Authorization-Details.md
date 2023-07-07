@@ -28,7 +28,7 @@ type: tab
     "cardFeeDate": "00/00/0000",
     "chargeOffDate": "00/00/0000",
     "chargeOffReason": "",
-    "chargeOffStatus": 0,
+    "chargeOffStatus": "0",
     "creditClassification": "N1",
     "creditLimitOverlimitPercentage": "$1.00",
     "customerid": "0001000000000150191",
@@ -82,7 +82,7 @@ type: tab
   "responseCode": "00",
   "temporaryCreditLimit": "$0.00",
   "totalDueAmount": "$0.00",
-  "transactionAmount": "2.00",
+  "authorizationAmount": "$2.00",
   "effectiveDate": "10/01/2022"
 }
 ```

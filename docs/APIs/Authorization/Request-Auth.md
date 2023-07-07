@@ -18,7 +18,7 @@ titles: Request, Response, Error
   "paymentInstrumentOrCardId": "0009846801010274074",
   "merchantBusinessUnit": 100,
   "merchantId": 999999998,
-  "authorizationAmount": 1,
+  "authorizationAmount": "1.00",
   "planId": 10001,
   "expiryDate": 1123,
   "CVV2": 123

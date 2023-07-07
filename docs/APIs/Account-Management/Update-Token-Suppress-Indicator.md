@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 ```json
 {
-  "isSupressTokenEnabled": "0"
+  "isSupressTokenEnabled": 0
 }
 ```
 
@@ -27,7 +27,7 @@ type: tab
 {
   "accountId": "0006000011000000137",
   "businessUnit": 600,
-  "isSupressTokenEnabled": "0"
+  "isSupressTokenEnabled": 0
 }
 ```
 
