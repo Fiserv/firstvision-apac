@@ -80,7 +80,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentId` | Path Variable | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
-| `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "1" for replacement of card or "0" to avoid initiation of card Replacement . |
+| `cardReplacementIndicator` | Payload | *number* | 1 |  Pass "0" for replace lost/stolen/fraud card (Default) or "1" for not to replace lost/stolen/fraud card. |
 | `blockCode` | Payload | *string* | 1 | Pass value as "L" to block the old card. |
 | `ProductId` | Payload | *number* | 3 | Unique identification number of the product associated with the organization. Valid values are 1-998. |
 
