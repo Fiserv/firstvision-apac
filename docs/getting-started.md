@@ -46,7 +46,7 @@ The Account relationship manager will share the credentials via the preferred se
 
 Using the API key recieved, make a [getToken API](./?path=/docs/APIs/Security/get-access-token.md) request to receive the Auth token for the defined scope.
 
-### 3. Constructing the API call
+### 4. Constructing the API call
 
 Use the bearer token for any subsequent API calls.  The bearer token must be passed in the authorization header.
 
