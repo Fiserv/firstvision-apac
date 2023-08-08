@@ -1,12 +1,12 @@
 # BNPL
 
-The BNPL group of APIs provides comprehensive function to add / list / enquire / update the installment plan details.
+The BNPL group of APIs provides comprehensive function to add, list, inquire, update the installment plan details.
 
 Please click on the below link to explore the specific API of interest
 
-- [Add iPlan](./?path=docs/APIs/BNPL/Inquire-BNPL-Controls.md)
+- [Add iPlan](./?path=docs/APIs/BNPL/Add-iPlan.md)
 - [Inquire BNPL Controls](./?path=docs/APIs/BNPL/Inquire-BNPL-Controls.md)
-- [Inquire BNPL Direct Debit Controls](./?path=docs/APIs/BNPL/Inquire-BNPL-Direct-Debit-Controls.md)
+- [Inquire Direct Debit Controls](./?path=docs/APIs/BNPL/Inquire-BNPL-Direct-Debit-Controls.md)
 - [Inquire iPlans Details](./?path=docs/APIs/BNPL/Inquire-iPlan-Details.md)
 - [Inquire Offer Code](./?path=docs/APIs/BNPL/Inquire-Offer-Code.md)
 - [List iPlans](./?path=docs/APIs/BNPL/List-iPlans.md)

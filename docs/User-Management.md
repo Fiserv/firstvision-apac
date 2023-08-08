@@ -1,6 +1,6 @@
 # User Management
 
-The User Management group of APIs provides comprehensive function to add / enquire / update the user signon details.
+The User Management group of APIs provides comprehensive function to add, inquire,  update the user signon details.
 
 Please click on the below link to explore the specific API of interest
 

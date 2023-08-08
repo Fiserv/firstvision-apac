@@ -1,6 +1,6 @@
 # Product Management
 
-The Product Management group of APIs provides comprehensive function to update / enquire different parameters defined at various level.
+The Product Management group of APIs provides comprehensive function to update  and inquire different parameters defined at product level.
 
 Please click on the below link to explore the specific API of interest
 

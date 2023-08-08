@@ -1,6 +1,6 @@
 # Authorization
 
-The Authorization group of APIs provides comprehensive function to perform authorization, reverse authorization and enquire authorizations. 
+The Authorization group of APIs provides comprehensive function to perform authorization, reverse authorization and inquire authorizations.
 
 Please click on the below link to explore the specific API of interest
 

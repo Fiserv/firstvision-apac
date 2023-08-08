@@ -1,6 +1,6 @@
 # Card Management #
 
-The Card Management group of APIs provides comprehensive function to update, inquire, Board etc. the cardholder payment instrument information.
+The Card Management group of APIs provides comprehensive function to board, update, inquire etc the details for a given payment instrument id.
 
 Please click on the below link to explore the specific API of interest
 

@@ -1,6 +1,6 @@
 # Loyalty Management
 
-The Loyalty Management group of APIs provides comprehensive function to list / enquire the loyalty based points for a given account. 
+The Loyalty Management group of APIs provides comprehensive function to list and inquire the loyalty based points for a given account. 
 
 Please click on the below link to explore the specific API of interest
 

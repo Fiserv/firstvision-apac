@@ -1,6 +1,6 @@
 # Loan Management
 
-The Loan Management group of APIs provides comprehensive function to calculate / enquire the loan details.
+The Loan Management group of APIs provides comprehensive function to calculate, inquire the loan details.
 
 Please click on the below link to explore the specific API of interest
 
