@@ -23,25 +23,25 @@ type: tab
 
 ```json
 {
-  "accountId": "0004440010000000017",
-  "addressId": "",
-  "alternateCustomerIdDetails": {
-    "customerId": "0000000001000000065",
-    "customerIdEffectiveDate": "14/01/2021",
-    "customerIdExpiryDate": "15/05/2022",
-    "customerIdFlag": "A"
-  },
   "businessUnit": 600,
-  "correspondenceCustomerId": "0000000001000000065",
-  "customerId": "0000000001000000032",
-  "isSupressTokenEnabled": 0,
-  "sourceCode": "",
+  "accountId": "0004440010000000017",
   "statementPreferenceDetails": {
-    "ownerCoOwnerStatementFlag": "0",
     "statementModeOrStatus": "O",
     "statementReprintAddressFlag": "C",
+    "ownerCoOwnerStatementFlag": 0,
     "statementDeliveryMode": "E"
-  }
+  },
+  "customerId": "0000000001000000032",
+  "correspondenceCustomerId": "0000000001000000065",
+  "alternateCustomerIdDetails": {
+    "customerIdFlag": "A",
+    "customerId": "0000000001000000065",
+    "customerIdExpiryDate": "15/04/2022",
+    "customerIdEffectiveDate": "14/01/2021"
+  },
+  "addressId": "HOME",
+  "sourceCode": " ",
+  "isSupressTokenEnabled": 0
 }
 ```
 

@@ -42,7 +42,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
-      "bnplIplanSequenceNumber": 1
+      "bnplIplanSequenceNumber": 1,
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052206",
@@ -61,7 +62,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
-      "bnplIplanSequenceNumber": 2
+      "bnplIplanSequenceNumber": 2,
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052210",
@@ -80,7 +82,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
-      "bnplIplanSequenceNumber": 3
+      "bnplIplanSequenceNumber": 3,
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052213",
@@ -99,7 +102,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
-      "bnplIplanSequenceNumber": 4
+      "bnplIplanSequenceNumber": 4,
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052219",
@@ -118,7 +122,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
-      "bnplIplanSequenceNumber": 5
+      "bnplIplanSequenceNumber": 5,
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052220",
@@ -137,7 +142,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
-      "bnplIplanSequenceNumber": 6
+      "bnplIplanSequenceNumber": 6,
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -156,7 +162,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
-      "bnplIplanSequenceNumber": 7
+      "bnplIplanSequenceNumber": 7,
+      "merchantCountryCode": "AUS"
     }
   ]
 }

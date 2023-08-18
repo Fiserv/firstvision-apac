@@ -15,9 +15,9 @@ titles: Request, Response, Error
 
 ```json
 {
-  "cardholderType": "1",
-  "reissueDeliveryOption": "5",
-  "issueDeliveryOption": "1",
+  "cardholderType": 1,
+  "reissueDeliveryOption": 5,
+  "issueDeliveryOption": 1,
   "isDynamicCVV2Enabled": "0",
   "addressFields": {
     "addressLine1": "Shinzo abe",
@@ -37,7 +37,7 @@ type: tab
 ```json
 {
   "addressFields": {
-    "addressId": "",
+    "addressId": " ",
     "addressLine1": "Shinzo abe",
     "addressLine2": "Main",
     "city": "JPN",
@@ -45,11 +45,11 @@ type: tab
     "stateProvince": "Tok"
   },
   "businessUnit": 100,
-  "cardholderType": "1",
-  "isDynamicCVV2Enabled": "",
-  "issueDeliveryOption": "1",
+  "cardholderType": 1,
+  "isDynamicCVV2Enabled": "0",
+  "issueDeliveryOption": 1,
   "paymentInstrumentId": "0009846801010273613",
-  "reissueDeliveryOption": "5"
+  "reissueDeliveryOption": 5
 }
 ```
 

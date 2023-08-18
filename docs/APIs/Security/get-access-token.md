@@ -64,7 +64,7 @@ The below table identifies the required query parameters in the request message.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `scope` | Payload | *string* | 50 | Limit the amount of access that is granted to an access token. |
+| `scope` | Payload | *string* | 50 | Limit the amount of access that is granted to an access token (accounts, auth, cards, customers, loans, loyalty, misc, products, users, bnpl, all). |
 | `grant_type` | Payload | *string* | 50 | It refers to the way an application gets an access token. |
 | `client_id` | Payload | *string* | 50 | An identifier associated with an application that assists with client. |
 | `client_secret` | Payload | *string* | 100 | a secret known only to your Vision10 API application and the authorization server. |

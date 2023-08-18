@@ -27,7 +27,7 @@ titles: Request, Response, Error
   "businessUnitPrivilegeId": "CLTUSER",
   "servicePrivilegeGroupId": "CLTUSER",
   "supervisorId": " ",
-  "sourceGroupType": "2",
+  "sourceGroupType": 2,
   "applicationCtryCurrencyCatCodes": {
     "userCode": " ",
     "fieldSecurityCode": " "

@@ -20,7 +20,7 @@ titles: Request, Response, Error
   "paymentInstrumentOrCardId": "0009846801010274074",
   "effectiveDate": "20/11/2022",
   "authorizationCode": "055271",
-  "authorizationAmount": "$100.00"
+  "authorizationAmount": "100.00"
 }
 
 ```
