@@ -18,8 +18,8 @@ titles: Request, Response, Error
 
 ```json
 {
-  "blockCode1": "X",
-  "blockCode2": " "
+  "blockCode1": "A",
+  "blockCode2": "X"
 }
 ```
 
@@ -29,12 +29,12 @@ type: tab
 
 ```json
 {
+  "businessUnit": 100,
   "accountId": "0001000010000510481",
-  "blockCode1": "X",
+  "blockCode1": "A",
+  "blockCode2": "X",
   "blockCode1Date": "19/08/2021",
-  "blockCode2": " ",
-  "blockCode2Date": "19/08/2021",
-  "businessUnit": 100
+  "blockCode2Date": "19/08/2021"
 }
 
 ```

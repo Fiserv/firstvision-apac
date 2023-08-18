@@ -14,19 +14,18 @@ titles: Request, Response, Error
 -->
 
 ```json
-
 {
   "cardControlFields": {
-    "maximumAuthorizationLimitFrequency": "1",
-    "maximumAtmCashAuthorizationsAmount": "$2000.00",
+    "maximumAuthorizationLimitFrequency": 1,
+    "maximumAtmCashAuthorizationsAmount": "2000.00",
     "maximumAtmCashAuthorizationsCount": 5,
-    "maximumSingleAtmTransactionAmount": "$100.00",
-    "maximumOtcCashAuthorizationsAmount": "$1500.00",
+    "maximumSingleAtmTransactionAmount": "100.00",
+    "maximumOtcCashAuthorizationsAmount": "1500.00",
     "maximumOtcAuthorizationsCount": 6,
-    "maximumSingleOtcCashAuthorizationAmount": "$200.00",
-    "maximumRetailAuthorizationsAmount": "$100000.00",
+    "maximumSingleOtcCashAuthorizationAmount": "200.00",
+    "maximumRetailAuthorizationsAmount": "100000.00",
     "maximumRetailAuthorizationsCount": 10,
-    "maximumSingleRetailAuthorizationAmount": "$10000.00"
+    "maximumSingleRetailAuthorizationAmount": "10000.00"
   },
   "cardControlFlags": {
     "isAtmEnabled": "Y",
@@ -38,9 +37,9 @@ titles: Request, Response, Error
     "isPayWaveEnabled": "N"
   },
   "yearToDateCountryRiskSpendLimits": {
-    "isCountryRiskSpendLimitEnabled": "1",
-    "highRiskCountryMaximumAuthAmount": "$10000.00",
-    "otherRiskCountryMaximumAuthAmount": "$15000.00"
+    "isCountryRiskSpendLimitEnabled": 1,
+    "highRiskCountryMaximumAuthAmount": "10000.00",
+    "otherRiskCountryMaximumAuthAmount": "15000.00"
   }
 }
 ```
@@ -52,32 +51,32 @@ type: tab
 ```json
 {
   "businessUnit": 600,
-  "productId": 1,
   "cardControlFields": {
-    "maximumAuthorizationLimitFrequency": "1",
-    "maximumAtmCashAuthorizationsAmount": "$2000.00",
+    "maximumAtmCashAuthorizationsAmount": "$2,000.00",
     "maximumAtmCashAuthorizationsCount": 5,
-    "maximumSingleAtmTransactionAmount": "$100.00",
-    "maximumOtcCashAuthorizationsAmount": "$1500.00",
+    "maximumAuthorizationLimitFrequency": 1,
     "maximumOtcAuthorizationsCount": 6,
-    "maximumSingleOtcCashAuthorizationAmount": "$200.00",
-    "maximumRetailAuthorizationsAmount": "$100000.00",
+    "maximumOtcCashAuthorizationsAmount": "$1,500.00",
+    "maximumRetailAuthorizationsAmount": "$100,000.00",
     "maximumRetailAuthorizationsCount": 10,
-    "maximumSingleRetailAuthorizationAmount": "$10000.00"
+    "maximumSingleAtmTransactionAmount": "$100.00",
+    "maximumSingleOtcCashAuthorizationAmount": "$200.00",
+    "maximumSingleRetailAuthorizationAmount": "$10,000.00"
   },
   "cardControlFlags": {
     "isAtmEnabled": "Y",
-    "isPosEnabled": "Y",
-    "isEcomEnabled": "1",
-    "isMotoEnabled": "N",
-    "isInternationalAtmPosEnabled": "N",
     "isCashBackEnabled": "Y",
-    "isPayWaveEnabled": "N"
+    "isEcomEnabled": "1",
+    "isInternationalAtmPosEnabled": "N",
+    "isMotoEnabled": "N",
+    "isPayWaveEnabled": "N",
+    "isPosEnabled": "Y"
   },
+  "productId": 1,
   "yearToDateCountryRiskSpendLimits": {
-    "isCountryRiskSpendLimitEnabled": "1",
-    "highRiskCountryMaximumAuthAmount": "$10000.00",
-    "otherRiskCountryMaximumAuthAmount": "$15000.00"
+    "highRiskCountryMaximumAuthAmount": "$10,000.00",
+    "isCountryRiskSpendLimitEnabled": 1,
+    "otherRiskCountryMaximumAuthAmount": "$15,000.00"
   }
 }
 ```

@@ -56,7 +56,6 @@ type: tab
     "cashCreditLimit": "$3,000.00",
     "creditLimit": "$150,000.00",
     "creditsAmount": "$0.00",
-    "currentBalance": "$0.00",
     "debitsAmount": "$1,500.00",
     "deferBillBalance": "$0.00",
     "endingBalance": "$1,500.00",
@@ -99,7 +98,8 @@ type: tab
       "maskedPaymentCardNumber": "000484680XXXXXX9405",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
-      "bnplIplanSequenceNumber": 1
+      "bnplIplanSequenceNumber": 1,
+      "merchantCountryCode": "AUS"
     }
   ],
   "correspondingCustomerId": " ",

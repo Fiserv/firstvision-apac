@@ -15,8 +15,8 @@ titles: Request, Response, Error
 
 ```json
 {
-  "issueDeliveryOption": "1",
-  "reissueDeliveryOption": "5"
+  "issueDeliveryOption": 1,
+  "reissueDeliveryOption": 5
 }
 ```
 
@@ -27,9 +27,9 @@ type: tab
 ```json
 {
   "businessUnit": 600,
-  "issueDeliveryOption": "1",
+  "issueDeliveryOption": 1,
   "paymentInstrumentId": "0009544410000000047",
-  "reissueDeliveryOption": "5"
+  "reissueDeliveryOption": 5
 }
 ```
 

@@ -22,6 +22,7 @@ type: tab
 -->
 
 ```json
+
 {
   "balanceTransferType": "N",
   "businessUnit": 600,
@@ -31,7 +32,7 @@ type: tab
     "isConsolidatedStatementEnabled": "Y"
   },
   "description": "RETAIL PLAN",
-  "graceBalanceQualification": "0",
+  "graceBalanceQualification": 0,
   "interestRateTableId": "2",
   "interestRateTableOverride": {
     "expiryDate": "00/00/0000",
@@ -43,13 +44,13 @@ type: tab
   "planType": "R",
   "promotionalPlanDetails": {
     "cancellationLetterId": "",
-    "cancellationPlanRollOverMethod": "0",
+    "cancellationPlanRollOverMethod": 0,
     "cancellationRollOverPlanId": 0,
-    "delinquencyLevelToCancel": "0",
+    "delinquencyLevelToCancel": 0,
     "expirationLetter": "",
-    "expirationPlanRollOverMethod": "0",
+    "expirationPlanRollOverMethod": 0,
     "expirationRollOverPlanId": 0,
-    "expirationRollover": "0",
+    "expirationRollover": 0,
     "latePaymentCancelRoll": "0"
   }
 }

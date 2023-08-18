@@ -22,7 +22,6 @@ type: tab
 -->
 
 ```json
-
 {
   "accountId": "0006000011000000509",
   "amountDetails": {
@@ -56,16 +55,16 @@ type: tab
   },
   "dispersalMethod": "0",
   "initialRebateDetails": {
-    "initialInsuranceRebateIndicator": "0",
-    "initialInterestRebateIndicator": "0",
+    "initialInsuranceRebateIndicator": 0,
+    "initialInterestRebateIndicator": 0,
     "initialRebateExpiryDate": "00/00/0000",
     "initialRebatePeriod": 0,
-    "initialUserFee1RebateIndicator": "0",
-    "initialUserFee2RebateIndicator": "0",
-    "initialUserFee3RebateIndicator": "0",
-    "initialUserFee4RebateIndicator": "0",
-    "initialUserFee5RebateIndicator": "0",
-    "initialUserFee6RebateIndicator": "0"
+    "initialUserFee1RebateIndicator": 0,
+    "initialUserFee2RebateIndicator": 0,
+    "initialUserFee3RebateIndicator": 0,
+    "initialUserFee4RebateIndicator": 0,
+    "initialUserFee5RebateIndicator": 0,
+    "initialUserFee6RebateIndicator": 0
   },
   "insuranceDefermentDetails": {
     "insurancePeriod": 0,
@@ -85,22 +84,21 @@ type: tab
   },
   "planId": 70003,
   "productCode": "",
-  "rebatePeriodIndicator": "0",
+  "rebatePeriodIndicator": 0,
   "recordNumber": 1,
   "secondRebateDetails": {
-    "secondInsuranceRebateIndicator": "0",
-    "secondInterestRebateIndicator": "0",
+    "secondInsuranceRebateIndicator": 0,
+    "secondInterestRebateIndicator": 0,
     "secondRebateExpiryDate": "00/00/0000",
     "secondRebatePeriod": 0,
-    "secondUserFee1RebateIndicator": "0",
-    "secondUserFee2RebateIndicator": "0",
-    "secondUserFee3RebateIndicator": "0",
-    "secondUserFee4RebateIndicator": "0",
-    "secondUserFee5RebateIndicator": "0",
-    "secondUserFee6RebateIndicator": "0"
+    "secondUserFee1RebateIndicator": 0,
+    "secondUserFee2RebateIndicator": 0,
+    "secondUserFee3RebateIndicator": 0,
+    "secondUserFee4RebateIndicator": 0,
+    "secondUserFee5RebateIndicator": 0,
+    "secondUserFee6RebateIndicator": 0
   }
 }
-
 ```
 
 <!--
