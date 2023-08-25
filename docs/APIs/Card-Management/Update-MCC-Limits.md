@@ -4,7 +4,7 @@ This API is used to update the MCC limits to control the card usage. These MCC l
 
 ## Endpoint
 
-`PUT /v1/cards/{paymentInstrumentId}/spendLimits`
+`PUT /v1/cards/{paymentInstrumentId}/mccLimits`
 
 ## Payload Example
 
