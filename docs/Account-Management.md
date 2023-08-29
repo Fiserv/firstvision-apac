@@ -10,6 +10,8 @@ Please click on the below link to explore the specific API of interest
 
 - [Board Account](./?path=docs/APIs/Account-Management/Board-Account.md)
 
+- [Directed Post Payments](./?path=docs/APIs/Account-Management/Directed-Post-Payments.md)
+
 - [Inquire Account](./?path=docs/APIs/Account-Management/Inquire-Account.md)
 
 - [Inquire Account Plan](./?path=docs/APIs/Account-Management/Inquire-Account-Plan.md)

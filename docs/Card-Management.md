@@ -36,6 +36,8 @@ Please click on the below link to explore the specific API of interest
 
 - [Inquire Dynamic CVV2](./?path=docs/APIs/Card-Management/Inquire-Dynamic-CVV2.md)
 
+- [Inquire MCC Limits](./?path=docs/APIs/Card-Management/Inquire-MCC-Limits.md)
+
 - [Inquire Spend Limits](./?path=docs/APIs/Card-Management/Inquire-Spend-Limits.md)
  
 - [List Visa Token](./?path=docs/APIs/Card-Management/List-Visa-Token.md) 
@@ -52,6 +54,8 @@ Please click on the below link to explore the specific API of interest
 - [Update Cards' Address ID](./?path=docs/APIs/Card-Management/Update-Card-Address-Id.md) 
  
 - [Update Issue Reissue Delivery Option](./?path=docs/APIs/Card-Management/Update-Issue-Reissue-Delivery-Option.md)
+
+- [Update MCC Limits](./?path=docs/APIs/Card-Management/Update-MCC-Limits.md)
 
 - [Update Spend Limits](./?path=docs/APIs/Card-Management/Update-Spend-Limits.md)
 
