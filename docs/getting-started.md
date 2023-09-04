@@ -4,17 +4,29 @@ The FirstVision-APAC APIs are built on the foundation of REST. The APIs accept s
 
 Our APIs are broadly grouped into following sub-catagories.  Please click to specific category of interest to get more details
 
-- [Customer Management](./?path=/docs/Customer-Management.md)
-
 - [Account Management](./?path=/docs/Account-Management.md)
+
+- [Authorization](./?path=/docs/Authorization.md)
+
+- [BNPL](./?path=/docs/Buy-Now-Pay-Later.md)
 
 - [Card Management](./?path=/docs/Card-Management.md)
 
+- [Customer Management](./?path=/docs/Customer-Management.md)
+
+- [Loan Management](./?path=/docs/Loan-Management.md)
+
+- [Loyalty Management](./?path=/docs/Loyalty-Management.md)
+
+- [Miscellaneous](./?path=/docs/Miscellaneous.md)
+
 - [Product Management](./?path=/docs/Product-Management.md)
+
+- [Security](./?path=/docs/Security.md)
 
 - [User Management](./?path=/docs/User-Management.md)
 
-- [Miscellaneous](./?path=/docs/Miscellaneous.md)
+
 
 ---
 
