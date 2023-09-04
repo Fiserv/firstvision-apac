@@ -18,7 +18,8 @@ titles: Request, Response, Error
 ```json
 {
   "notificationReceivedDate": "01/01/2018",
-  "chargeOffReason": "C"
+  "chargeOffReason": "C",
+  "chargeOffStatus": "3",
 }
 ```
 
@@ -32,7 +33,7 @@ type: tab
   "businessUnit": 600,
   "chargeOffDaysCount": 0,
   "chargeOffReason": "C",
-  "chargeOffStatus": "0",
+  "chargeOffStatus": "3",
   "notificationReceivedDate": "01/01/2018"
 }
 ```
