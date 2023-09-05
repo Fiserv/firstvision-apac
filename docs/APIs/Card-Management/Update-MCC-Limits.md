@@ -16,16 +16,16 @@ titles: Request, Response, Error
 ```json
 {
   "mccLimitControls": {
-    "mccLimitAmount01": "1.00",
-    "mccLimitAmount02": "2.00",
-    "mccLimitAmount03": "3.00",
-    "mccLimitAmount04": "4.00",
-    "mccLimitAmount05": "5.00",
-    "mccLimitAmount06": "6.00",
-    "mccLimitAmount07": "7.00",
-    "mccLimitAmount08": "8.00",
-    "mccLimitAmount09": "9.00",
-    "mccLimitAmount10": "10.00"
+    "amount01": "1.00",
+    "amount02": "2.00",
+    "amount03": "3.00",
+    "amount04": "4.00",
+    "amount05": "5.00",
+    "amount06": "6.00",
+    "amount07": "7.00",
+    "amount08": "8.00",
+    "amount09": "9.00",
+    "amount10": "10.00"
   }
 }
 ```
@@ -39,16 +39,16 @@ type: tab
   "businessUnit": 100,
   "paymentInstrumentId": "0009846801010434272",
   "mccLimitControls": {
-    "mccLimitAmount01": "$1.00",
-    "mccLimitAmount02": "$2.00",
-    "mccLimitAmount03": "$3.00",
-    "mccLimitAmount04": "$4.00",
-    "mccLimitAmount05": "$5.00",
-    "mccLimitAmount06": "$6.00",
-    "mccLimitAmount07": "$7.00",
-    "mccLimitAmount08": "$8.00",
-    "mccLimitAmount09": "$9.00",
-    "mccLimitAmount10": "$10.00"
+    "amount01": "$1.00",
+    "amount02": "$2.00",
+    "amount03": "$3.00",
+    "amount04": "$4.00",
+    "amount05": "$5.00",
+    "amount06": "$6.00",
+    "amount07": "$7.00",
+    "amount08": "$8.00",
+    "amount09": "$9.00",
+    "amount10": "$10.00"
   }
 }
 
