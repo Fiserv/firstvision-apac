@@ -30,7 +30,8 @@ type: tab
     "addressLine2": "NAB",
     "city": "CHENNAI",
     "postalCode": "",
-    "stateProvince": ""
+    "stateProvince": "",
+    "countryCode": "036"
   },
   "authorizationCriteriaTableId": "800",
   "blockCodeDetails": {
@@ -67,7 +68,7 @@ type: tab
   "emblemId": 0,
   "externalContractId": "",
   "firstIssueBranch": 0,
-  "fraudCardTransferCount": "",
+  "fraudTransferFromPaymentInstrumentId": "",
   "isDynamicCVV2Enabled": "",
   "isPinSuppressionEnabled": 0,
   "isSecureCodeEnabled": 0,

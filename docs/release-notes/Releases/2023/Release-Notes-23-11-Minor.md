@@ -4,7 +4,7 @@
 
 ### General Changes
 
-- NA
+- Added Idempotency key (idempotency-key) in the header for all POST APIs supported on FV platform for future usage. Currently, this key is being used/validated only in Board Entities API.
 
 #### Documentation Change in Swagger
 
@@ -35,10 +35,12 @@ This API is used to update the MCC limits to control the card usage. These MCC l
 | :---  | :------- |  :------ | :------- |
 | 1 | Account Management | Post Payments | <ul> <li>  Removed actionCode from request and defaulted the value in it <li> Removed 'representativeDetails’ group and fields under this group
 | 2 | Card Management | Board Card | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
-| 3 | Card Management | Inquire Card | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
-| 4 | Product Management | Inquire Product | <ul> <li>  Added new field physicalvirtualIndicator in response
-| 5 | Miscellaneous | Board Entities | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
-| 6 | Miscellaneous | Board Entities V2 | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
+| 3 | Card Management | Inquire Card | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request <li> Added countryCode under addressFields group in response |
+| 4 | Card Management | Inquire Card Preference | <ul> <li>  Added countryCode under addressFields group in response |
+| 5 | Card Management | Update Card Preference | <ul> <li>  Added countryCode under addressFields group in request and response |
+| 6 | Product Management | Inquire Product | <ul> <li>  Added new field physicalvirtualIndicator in response
+| 7 | Miscellaneous | Board Entities | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
+| 8 | Miscellaneous | Board Entities V2 | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
 
 ### Deleted APIs
 
