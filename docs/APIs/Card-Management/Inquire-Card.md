@@ -68,7 +68,7 @@ type: tab
   "emblemId": 0,
   "externalContractId": "",
   "firstIssueBranch": 0,
-  "fraudTransferFromPaymentInstrumentId": "",
+  "fraudTransferPaymentInstrumentId": "",
   "isDynamicCVV2Enabled": "",
   "isPinSuppressionEnabled": 0,
   "isSecureCodeEnabled": 0,
