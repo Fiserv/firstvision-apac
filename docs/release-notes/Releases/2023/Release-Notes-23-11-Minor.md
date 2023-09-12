@@ -4,7 +4,7 @@
 
 ### General Changes
 
-- Added Idempotency key (idempotency-key) in the header for all POST APIs supported on FV platform for future usage. Currently, this key is being used/validated only in Board Entities API.
+- Added Idempotency key (Idempotency-Key) in the header for all POST APIs supported on FV platform for future usage. Currently, this key is being used/validated only in Board Entities API.
 
 #### Documentation Change in Swagger
 
