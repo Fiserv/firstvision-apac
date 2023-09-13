@@ -29,7 +29,8 @@ type: tab
     "addressLine2": "Main",
     "city": "JPN",
     "postalCode": "234226",
-    "stateProvince": "Tok"
+    "stateProvince": "Tok",
+    "countryCode": "036"
   },
   "businessUnit": 100,
   "cardholderType": 1,

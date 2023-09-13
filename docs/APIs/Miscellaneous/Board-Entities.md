@@ -298,7 +298,7 @@ The below table identifies the required parameters in the request payload.
 | `customerId` | Payload | *string* | 19 | Unique identification number assigned to a customer. |
 | `isInsuranceProductEnabled` | Payload | *string* | 01 | This is the code that indicates whether to add an Insurance Product record. |
 | `givenName` | Payload | *string* | 40 | First name of the customer. |
-| `creditLimit` | Payload | *number* | 17 | Credit limit of this account. |
+| `creditLimit` | Payload | *string* | 17 | Credit limit of this account. |
 | `cardAction` | Payload | *string* | 1 | This field is the card issue action code that determines the action CMS performs during the next run. |
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
