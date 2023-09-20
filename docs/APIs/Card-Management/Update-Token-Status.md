@@ -16,7 +16,7 @@ titles: Request, Response, Error
 ```json
 {
   "schemeTokenNumber": "5077400005048482515",
-  "status": "1"
+  "status": "S"
 }
 ```
 
@@ -28,7 +28,7 @@ type: tab
 {
   "businessUnit": 100,
   "paymentInstrumentId": "0009846801010273613",
-  "status": "1"
+  "status": "S"
 }
 ```
 
