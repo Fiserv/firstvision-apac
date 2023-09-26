@@ -30,8 +30,7 @@ type: tab
     "addressLine2": "NAB",
     "city": "CHENNAI",
     "postalCode": "",
-    "stateProvince": "",
-    "countryCode": "036"
+    "stateProvince": ""
   },
   "authorizationCriteriaTableId": "800",
   "blockCodeDetails": {

@@ -25,8 +25,7 @@ titles: Request, Response, Error
     "city": "JPN",
     "stateProvince": "Tok",
     "postalCode": "234226",
-    "addressId": "Home",
-    "countryCode": "036"
+    "addressId": "Home"
   }
 }
 ```
@@ -43,8 +42,7 @@ type: tab
     "addressLine2": "Main",
     "city": "JPN",
     "postalCode": "234226",
-    "stateProvince": "Tok",
-    "countryCode": "036"
+    "stateProvince": "Tok"
   },
   "businessUnit": 100,
   "cardholderType": 1,

@@ -35,9 +35,7 @@ This API is used to update the MCC limits to control the card usage. These MCC l
 | :---  | :------- |  :------ | :------- |
 | 1 | Account Management | Post Payments | <ul> <li>  Removed actionCode from request and defaulted the value in it <li> Removed 'representativeDetails’ group and fields under this group
 | 2 | Card Management | Board Card | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
-| 3 | Card Management | Inquire Card | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request <li> Added countryCode under addressFields group in response |
-| 4 | Card Management | Inquire Card Preference | <ul> <li>  Added countryCode under addressFields group in response |
-| 5 | Card Management | Update Card Preference | <ul> <li>  Added countryCode under addressFields group in request and response |
+| 3 | Card Management | Inquire Card | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request |
 | 6 | Product Management | Inquire Product | <ul> <li>  Added new field physicalvirtualIndicator in response
 | 7 | Miscellaneous | Board Entities | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
 | 8 | Miscellaneous | Board Entities V2 | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
