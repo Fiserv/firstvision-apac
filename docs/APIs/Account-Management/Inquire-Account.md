@@ -132,6 +132,7 @@ type: tab
   "statementDeliveryMode": "E",
   "bnplDetails": {
     "ConfigurationTemplate": "TMPL1",
+    "lastIplanSequenceNumber": 0,
     "missedPaymentCount": 2,
     "snoozeCount": 0,
     "switchCount": 0
