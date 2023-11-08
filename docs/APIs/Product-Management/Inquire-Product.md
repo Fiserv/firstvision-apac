@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 >Should be empty.
 >
->***The Business Unit and Plan id should be sent as query parameters and path variable.***
+>***The Business Unit and product id should be sent as query parameters and path variable.***
 
 <!--
 type: tab
