@@ -204,7 +204,6 @@ Below table provides the list of application's error code and its description.
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
 | `V5BS0010SF` | Update request - Record not found |
-| `V5BS0121SA` | Valid entries are 01 Thru 31 |
 | `V5BS4001SG` | Org record not found |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
