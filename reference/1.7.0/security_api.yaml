@@ -8,129 +8,6 @@ servers:
 tags:
 - name: Security Management
 paths:
-  /v2/api/oauth/token:
-    post:
-      tags:
-      - Security Management
-      summary: Get Access Token V2
-      description: This service is used to get Access Token to authenticate other
-        Api
-      operationId: GetAccessToken V2
-      parameters:
-      - name: request
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/OAuthTokenRequestV2'
-      - name: x-client-correlation-id
-        in: header
-        description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-trace-id
-        in: header
-        description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - name: x-client-source-channel
-        in: header
-        description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-user-id
-        in: header
-        description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      responses:
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      security:
-      - Authorization: [
-          ]
-      x-proxy-name: Get Access Token V2
-      x-group-name: Security
   /v1/api/oauth/validateToken:
     post:
       tags:
@@ -188,6 +65,36 @@ paths:
               $ref: '#/components/schemas/ValidateTokenRequest'
         required: true
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ValidateTokenResponse'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -204,38 +111,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ValidateTokenResponse'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '503':
           description: " \nThe service was unavailable"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
           content:
             '*/*':
               schema:
@@ -304,6 +181,38 @@ paths:
               $ref: '#/components/schemas/OAuthTokenRequest'
         required: true
       responses:
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -320,46 +229,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '200':
           description: " \nSuccess"
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/TokenResponse'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '422':
-          description: " \nThe request could not be processed"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             '*/*':
               schema:
@@ -373,37 +250,30 @@ paths:
       x-group-name: Security
 components:
   schemas:
-    OAuthTokenRequestV2:
+    ValidateTokenRequest:
       required:
-      - client_assertion
-      - client_assertion_type
-      - grant_type
-      - scope
+      - client_id
+      - client_secret
+      - token
       type: object
       properties:
-        scope:
-          maxLength: 20
-          type: string
-          description: Limit the amount of access that is granted to an access token
-            (accounts, auth, bnpl, cards, customers, loans, loyalty, misc, products,
-            users, all)
-          example: all
-        grant_type:
-          maxLength: 20
-          type: string
-          description: It refers to the way an application gets an access token
-          example: client_credentials
-        client_assertion:
+        token:
           maxLength: 1200
           type: string
-          description: A JWT that contains information for client authentication.
-            It must be digitally signed using a private key.
-          example: eyJraWQiOiJBUFRfSldTX1BVQl9ERU1PX0tFWSIsImFsZyI6IlJTMjU2IiwidXNlIjoic2lnIiwidHlwIjoiand0In0.eyJhdWQiOiJGU1ZfUE9SVEFMIiwiZXhwIjoxOTk1MTM1MTczLCJqdGkiOiJhOWFvSEN3VU1MR3p5SXViQkVIeHNRIiwiaXNzIjoidmlzaW9uLWFwaS11c2VyIiwiaWF0IjoxNjk1MTM1MTc0LCJuYmYiOjE2OTUxMzUwNTQsInN1YiI6InZpc2lvbi1hcGktdXNlciJ9.cygaa_jbFHZi0fYkgzPLCRdN65XwScFBSr-ksF5Xbem1MlEjb_xPvxvyVmYLO-98f0gOL6AukK-1nXTNifnzPAs5SPq67ld9iXd3KSZmMfMlUVxwrk8jEFIBvw6wicQV3PJ6lv58u_QjsuEYD5VogcfIViIEn4fMNl4AmNubNnB9aJ2EYblBmXMDNjWhO14L-gTZ0Xnixp4-NPI8L2mEPd-WCbrtey8t3f1dtKOUXaT8gDYQhYPUGsyitf9R_pg40AgP0aMl_671S1eRla0i6ODnkFnGgTlRCg-xrf3JbKGVYXsr4ZfpyLUMUdhVXxZXY91M9hfT-YaG4fLybnm61Q
-        client_assertion_type:
+          description: JWT Authorization Token specific to the environment
+          example: eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+        client_id:
+          maxLength: 60
+          type: string
+          description: 'An identifier associated with an application that assists
+            with client  '
+          example: vision-api-user
+        client_secret:
           maxLength: 100
           type: string
-          description: A type of client_assertion
-          example: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+          description: a secret known only to your Vision10 API application and the
+            authorization server
+          example: abcdefghizklmnopponommnshfghzxxs
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -429,48 +299,6 @@ components:
           type: array
           items:
             type: string
-    TokenResponse:
-      type: object
-      properties:
-        access_token:
-          maxLength: 1200
-          type: string
-          description: Unique Bearer token neeed to be passed for all Vision10 API
-          example: ''
-        token_type:
-          maxLength: 7
-          type: string
-          description: Type of token to be authenticated
-          example: Bearer
-        expires_in:
-          maxLength: 9
-          type: integer
-          description: Time after which token will be expired
-          example: '0'
-    ValidateTokenRequest:
-      required:
-      - client_id
-      - client_secret
-      - token
-      type: object
-      properties:
-        token:
-          maxLength: 1200
-          type: string
-          description: JWT Authorization Token specific to the environment
-          example: eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
-        client_id:
-          maxLength: 60
-          type: string
-          description: 'An identifier associated with an application that assists
-            with client  '
-          example: vision-api-user
-        client_secret:
-          maxLength: 100
-          type: string
-          description: a secret known only to your Vision10 API application and the
-            authorization server
-          example: abcdefghizklmnopponommnshfghzxxs
     ValidateTokenResponse:
       type: object
       properties:
@@ -511,6 +339,24 @@ components:
           description: a secret known only to your Vision10 API application and the
             authorization server
           example: abcdefghizklmnopponommnshfghzxxs
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          maxLength: 1200
+          type: string
+          description: Unique Bearer token neeed to be passed for all Vision10 API
+          example: ''
+        token_type:
+          maxLength: 7
+          type: string
+          description: Type of token to be authenticated
+          example: Bearer
+        expires_in:
+          maxLength: 9
+          type: integer
+          description: Time after which token will be expired
+          example: '0'
   securitySchemes:
     Authorization:
       type: http
