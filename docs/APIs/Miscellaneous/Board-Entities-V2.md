@@ -147,7 +147,7 @@ titles: Request, Response, Error
       "savingsRoutingId": 0,
       "savingsAccountId": ""
     },
-    "externalContractId": "000012672379",
+    "externalContractId": "0000000000012672379",
     "addressId": "HOME",
     "sourceCode": " ",
     "statementDeliveryMode": "E",
@@ -230,7 +230,7 @@ titles: Request, Response, Error
     },
     "physicalVirtualIndicator": "P",
     "isDynamicCVV2Enabled": "0",
-    "externalContractId": "000012672379"
+    "externalContractId": "0000000000012672379"
   }
 }
 

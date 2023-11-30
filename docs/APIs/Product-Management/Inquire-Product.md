@@ -162,6 +162,11 @@ type: tab
             "tierMaximumAmount": "$600.00"
         }
     ],
+    "instalmentDetails": {
+        "rateOverideIndicator": 1,
+        "isInstalmentEnabled": 1,
+        "transactionConversionIndicator": 1
+    },
     "typeOfAccount": "X",
     "isLocalorInternationalUsageEnabled": 0,
     "cardProductDisplay": 0,
