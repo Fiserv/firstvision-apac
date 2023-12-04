@@ -44,7 +44,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -63,7 +64,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 2,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -82,7 +84,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 3,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     }
   ]
 }
