@@ -25,7 +25,7 @@ type: tab
 {
     "listPlans": [
         {
-            "planSequence": 1,
+            "planSequenceNumber": 1,
             "planId": 1,
             "eligibleBalanceForStatementInstalment": "$200.00"
         }
