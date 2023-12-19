@@ -1,4 +1,4 @@
-# Inquire Plan Master
+# Inquire Plan Controls
 
 This API is used to fetch loan plan details for a given plan Id.
   
