@@ -1,65 +1,124 @@
 # Release 23.04-Minor - Version 1.7.0
 
-## Date: 16/02/2024
+## Date: 26/02/2024
 
 ### General Changes
 
-#### Additional Header fields in APIs
+#### Idempotency changes in POST APIs
 
-In preparation of passing API tracking details, following additional headers are added in each API. These headers are optional and currently not fully functional from Vision side.  The full functionality will be rolled out in subsequent releases.
-x-client-correlation-id
-x-client-trace-id
-x-client-source-channel
-x-client-user-id
+When a client sends a POST request, it can include a Idempotency key in the request headers. The server can use this key to identify duplicate requests and ensure that the request is processed only once. On the server side, you can check the idempotency key and ensure that the request processing is idempotent.  And as the server receives a duplicate request, it can respond with the result of the original request instead of reprocessing it. Client can intercept this response and avoid repeating the same operation
 
 #### Documentation Change in Swagger
 
-- Description change for businessUnit from 001-998 to 1-998 and recordNumber from 000 to 0.as these fields are integer
-- Optimization and correct maxLength for amount and rate fields in all APIs
-- 422 error message is added in list of response code in API Explorer for all APIs
+- POST APIs: New http response code '409' added for all POST APIs
+- Inquire MCC Limits: maxLength has been changed from 11 to 18 for all amount fields in response
+- Update MCC Limits: maxLength has been changed from 11 to 18 for all amount fields in response
+- Inquire Loan: label change from celEppManualClose to manualCloseIndicator
+- Board Card: externalContractId length updated from 14 to 19 in request
+- Board Account: externalContractId length updated from 14 to 19 in request
+- Board Entities: externalContractId length updated from 14 to 19 in request
+- Board Entities V2: externalContractId length updated from 14 to 19 in request
+- Inquire Card: externalContractId length updated from 14 to 19 in response
+- Inquire Account: externalContractId length updated from 14 to 19 in response
+- List Customers Cards and Accounts: externalContractId length updated from 14 to 19 in response under accountDetails
+- List Customers Accounts: externalContractId length updated from 14 to 19 in response
+- List External Customers Cards and Accounts: externalContractId (path variable) length updated from 14 to 19 in response
+
 
 ### New APIs
 
-#### Reverse Authorization
+#### Inquire Plan Controls
 
-This API is used to reverse the authorization for a given payment instrument Id or payment card number, authorization code, effective date, and transaction amount, if given.
-Reverse is possible for any authorization which is waiting for settlement.
+This API is used to fetch loan plan details for a given plan Id.
 
-#### Inquire Loan
+#### Inquire Instalment Offers
 
-This API is used to fetch Loan details like Loan disclosed and initial amount of loan, loan disbursement details, loan top-up redraw can restructure detail, fixed interest and skip payment details for a given account Id.
+This API is used to fetch instalment offers for a given loan plan id, Loan Amount and account id.
 
-#### Inquire Loan Schedule
+#### Inquire Transaction Instalment Details
 
-This API is used to fetch loan schedule details for the current loan data.
+This API is used to fetch details of all transaction instalment loans against an account.
 
-#### Inquire Original Loan
+#### List Loans By Account
 
-This API is used to fetch existing loan plan records. It contains the original precomputed amounts and other original information received for a loan plan for a given account Id.
+This API is used to fetch list of loans associated with an account id given.
 
-#### Loan Calculator
+#### List Statement Eligible Plan Balance
 
-This API is used to calculate the loan repayment options for prospective borrowers based on the details given input request.
+This API is used to fetch all the plan segments eligible for SIP conversion. The Loan conversion Eligibility for the Plan will be checked and only qualifying plans and balances will be listed.
+
+#### List Transaction Instalments
+
+This API is used to fetch details of all transaction instalment loans against an account.
+
+#### Close Loan
+
+This API is used to close a specific loan manually for a given account Id.
+
+#### Cash Balance Conversion
+
+This API is used to validate if the Cash balance conversion is allowed for given account. This API will be created to cater to Conversion steps, depending on the Type of Request.
+
+#### Cash Balance Simulation
+
+This API is used to validate if the Cash balance simulation is allowed for given account. This API will be created to cater Simulation steps, depending on the Type of Request.
+
+#### Statement Balance Conversion
+
+This API is used to convert statement balance into Instalment. API first validates the given plans are eligible for statement balance conversion, if eligible then system converts into instalment for the requested term and also responds with loan scheduling details.
+
+#### Statement Balance Simulation
+
+This API is used to validate if given plans are eligible for statement balance conversion, if eligible then system responds with loan scheduling details.
+
+#### Transaction Instalment Simulation
+
+This API is used to validate if given transactions are eligible to convert into instalment. If transactions are eligible for conversion, then response will show the loan scheduling details.
+
+#### Transaction Instalment Conversion
+
+This API supports both single and multiple transaction conversion into instalments. API first validates if given transactions are eligible to convert into instalment. If transactions are eligible, then system converts given transactions into instalment.
+
+#### Balance Transfer
+
+This API is used to make an authorization request for payment instrument Id or payment card number when transaction for Balance Transfer.
+
+#### Bill Payments
+
+This API is used to make an authorization request for payment instrument Id or payment card number when transaction for Bill Payment.
+
+#### Validate CVV2 V2
+
+This API is used to validate the encrypted CVV2 for a given payment instrument Id.
 
 ### Updated APIs
 
 | S.No |  Category | API Name |  Change |
 | :---  | :------- |  :------ | :------- |
-| 1 | Account Management | List Outstanding Authorizations | <ul> <li> Added remainingAuthorizationAmount in response |
-| 2 | Account Management | List Unbilled Transactions | <ul> <li> Added remainingAuthorizationAmount in response |
-| 3 | Account Management | List Billed Transactions | <ul> <li> Removed pagination fields from response <li> Added pagination fields in response-header |
-| 4 | Account Management | Inquire Statement Transaction Details | <ul> <li> Added below fields in response <ul> <li> addOnAmount </li> <li> overLimitAmount </li>  </ul> <li> Removed billingCurrency from response </li> <li> Removed pagination fields from response </li> <li> Added pagination fields in response-header </li>|
-| 5 | Account Management | List Transactions by Date Range | <ul> <li> Added below fields in response <ul> <li> remainingAuthorizationAmount </li> <li> authorizationCode </li> </ul> <li> Description change for existing field transactionIndicator |
-| 6 | Account Management | Inquire Account | <ul> <li> Added productId in response </li> <li> Label name change for below field in response <ul> <li> cashDisputedAmout to cahsDisputedAmount |
-| 7 | Account Management | Board Account | <ul> <li> Removed billingCurrency from response |
-| 8 | Miscellaneous | Board Entities | <ul> <li> Removed billingCurrency from response |
-| 9 | Authorization | Request Authorization | <ul> <li> Added openToBuy in response |
-| 10 | Authorization | Inquire Authorization | <ul> <li> Restructured the request message for better user experience |
-| 11 | Customer Management | List Customers' Cards and Accounts | <ul> <li> Label name change for below fields in response <ul> <li>  numberOfTokens to tokenCount </li> <li> noOfTokenizedCards to totalTokenizedCardCount |
-| 12 | Customer Management | List Customers' Cards | <ul> <li> Label name change for below field in response <ul> <li> numberOfTokens to tokenCount |
-| 13 | Customer Management | List Customers' Accounts | <ul> <li> Label name change for below field in response <ul> <li> noOfTokenizedCards to totalTokenizedCardCount |
-| 14 | Account Management | List Plans | <ul> <li> Label name change for below field in response <ul> <li> principalBalance to principalAmount |
-| 15 | Miscellaneous | Inquire Business Unit | <ul> <li> Label name changes for below fields in response <ul> <li> dateNextProcess to nextProcessingDate </li> <li> dateLastMaintenance to  lastMaintenanceDate </li> <li> dateInterestAccruedThrough to interestAccruedThroughDate |
+| 1 | Account Management | Board Account | <ul> <li> externalContractId length updated to 19 in response |
+| 2 | Account Management | Inquire Account | <ul> <li> externalContractId length updated to 19 in response |
+| 3 | Card Management | Board Card | <ul> <li> externalContractId length updated to 19 in response |
+| 4 | Miscellaneous | Board Entities | <ul> <li> externalContractId length updated to 19 in response |
+| 5 | Miscellaneous | Board Entities V2 | <ul> <li> externalContractId length updated to 19 in response |
+| 6 | Card Management | Inquire Card | <ul> <li> externalContractId length updated to 19 in response </li> <li> pinDetails group added in response |
+| 7 | Customer Management | List Customers Accounts | <ul> <li> externalContractId length updated to 19 in response |
+| 8 | Customer Management | List Customers Cards | <ul> <li> externalContractId added under cardList in response |
+| 9 | Customer Management | List Customers Cards and Accounts | <ul> <li> externalContractId length updated to 19 in response </li> <li> externalContractId added under cardList in response |
+| 12 | Account Management | Monetary Action | <ul> <li> transactionDescription added in request |
+| 14 | Account Management | List Billed Transactions | <ul> <li> billerCode added in response |
+| 15 | Account Management | List Outstanding Authorizations | <ul> <li> billerCode added in response |
+| 16 | Account Management | List Unbilled Transactions | <ul> <li> billerCode added in response </li> <li> instalmentConversionInd added in response |
+| 17 | Account Management | Inquire Statement Transaction Details | <ul> <li> billerCode added in response |
+| 18 | Account Management | List Transaction by Date range | <ul> <li> billerCode added in response |
+| 19 | Product Management | Inquire Product | <ul> <li> instalmentDetails group added in response |
+| 20 | Miscellaneous | Inquire Business Unit | <ul> <li> instalmentDetails group added in response |
+| 21 | Card Management | Transfer Lost and Stolen | <ul> <li> pinStatus added in response |
+| 22 | Loan Management | Inquire Loan  | <ul> <li> label change from celEppManualClose to manualCloseIndicator </li> <li> prorateInterestAmout added under group loanDisclosedAndInitialAmountDetails |
+| 23 | Account Management | Inquire Account Plan | <ul> <li> eligibleBalanceForStatementInstalment added in response |
+| 24 | Card Management | Inquire MCC Limits | <ul> <li> maxLength for the amount fields changed from 11 to 18 in response |
+| 25 | Card Management | Update MCC Limits | <ul> <li> maxLength for the amount fields changed from 11 to 18 in response |
+| 26 | Account Management | Transfer Plan Balance | <ul> <li> API extended to support partial plan balance and reversal. |
+| 27 | Customer Management | List External Customers Cards and Accounts | <ul> <li> externalContractId length updated to 19 in request (path variable) and response |
 
 ### Deleted APIs
 
