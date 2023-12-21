@@ -53,7 +53,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/auth/balanceTransfer",
     "invalid-params": [
-      "V5CP4004SF : GET REQUEST - RECORD NOT FOUND"
+      "V5CP0004SF : GET REQUEST - RECORD NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -88,7 +88,7 @@ Below table provides the list of application's error code and its description.
 | `V7RQ4028EA` | Payment date is mandatory when tran-type is BP/BT |
 | `V7RQ4007EC` | Credit plan is mandatory when tran-type is BP/BT |
 | `V7RQ4029EA` | Biller code is mandatory when tran-type is BP/BT |
-| `V5CP4004SF` | Get Request - Record not found |
+| `V5CP0004SF` | Get Request - Record not found |
 | `V7RQ4004EB` | Invalid bankcard  not found in bin table |  
 | `V7RQ4004EC` | Account number is invalid |
 | `V7RQ4004EA` | Check digit issue |

@@ -23,6 +23,8 @@ When a client sends a POST request, it can include a Idempotency key in the requ
 - List Customers Cards and Accounts: externalContractId length updated from 14 to 19 in response under accountDetails
 - List Customers Accounts: externalContractId length updated from 14 to 19 in response
 - List External Customers Cards and Accounts: externalContractId (path variable) length updated from 14 to 19 in response
+- Request Authorization: internalReferenceNumber type has changed from integer to string
+- Reverse Authorization: internalReferenceNumber type has changed from integer to string
 
 
 ### New APIs
@@ -119,6 +121,9 @@ This API is used to validate the encrypted CVV2 for a given payment instrument I
 | 25 | Card Management | Update MCC Limits | <ul> <li> maxLength for the amount fields changed from 11 to 18 in response |
 | 26 | Account Management | Transfer Plan Balance | <ul> <li> API extended to support partial plan balance and reversal. |
 | 27 | Customer Management | List External Customers Cards and Accounts | <ul> <li> externalContractId length updated to 19 in request (path variable) and response |
+| 28 | Authorizations | Request Authorization | <ul> <li> internalReferenceNumber type has changed from integer to string in response |
+| 29 | Authorizations | Reverse Authorization | <ul> <li> internalReferenceNumber type has changed from integer to string in response |
+
 
 ### Deleted APIs
 
