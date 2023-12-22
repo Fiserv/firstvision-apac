@@ -34,7 +34,7 @@ type: tab
   "finalAction": "A",
   "reason": "APPROVED",
   "openToBuy": "$10000.00",
-  "internalReferenceNumber": 3239000,
+  "internalReferenceNumber": "3912181393194000",
   "maskedPaymentCardNumber": "000484680XXXXXX9405",
   "uniqueTransactionId": "APP17977700222011344330001112345678",
   "effectiveDate": "10/01/2022"
