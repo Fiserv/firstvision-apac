@@ -134,15 +134,11 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
-| `loanPlanId` | Payload  | *integer* | 5 | Identification number of the Credit Plan Master entity.|
-| `tenure` | Payload | *integer* | 3 | Field indicates the term used while converting transaction into instalment.|
-| `transactionAmount` | Payload | *string* | 17 | Amount of the transaction.|
-| `effectiveDate` | Payload | *string* | 10 | Effective date of the transaction, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.|
-| `referenceNumber` | Payload | *string* | 23 | Reference number assigned to the transaction.|
-| `authorizationCode` | Payload | *string* | 6 | Authorization code assigned to the transaction.|
+| `loanPlanId` | Payload  | *integer* | 05 | Identification number of the Credit Plan Master entity.|
+| `tenure` | Payload | *integer* | 03 | Field indicates the term used while converting transaction into instalment.|
 | `conversionAmount` | Payload | *string* | 17 | Amount requested for instalment conversion..|
 | `planId` | Payload | *integer* | 5 | Identification number of the Credit Plan Master entity. The values are 1–99998. You can establish as many as 99,998 Credit Plan Master entity for each organization.|
-| `referenceNumber` | Payload | *integer* | 3 | Sequence number to identify the entity uniquely.|
+| `planSequenceNumber` | Payload | *integer* | 3 | Sequence number to identify the entity uniquely.|
 
 ### Error Codes
 
