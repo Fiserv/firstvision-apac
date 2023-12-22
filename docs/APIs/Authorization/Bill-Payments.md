@@ -52,7 +52,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/auth/billPayments",
     "invalid-params": [
-      "V7RQ4004EB : INVALID BANKCARD NOT FOUND IN BIN TABLE"
+      "V7RQ4004EB : INVALID BANKCARD  NOT FOUND IN BIN TABLE"
     ],
     "source": "VPL",
     "status": 404,
