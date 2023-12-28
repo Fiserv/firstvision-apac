@@ -1,6 +1,6 @@
 # Validate CVV2 V2
 
-This API is used to validate the encrypted CVV2 for a given payment instrument Id.
+This API is used to validate the encrypted CVV2 for a given payment instrument Id along with expiry date, if provided.
 
 ## Endpoint
 
