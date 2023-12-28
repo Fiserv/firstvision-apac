@@ -1,6 +1,6 @@
 # Inquire Transaction Instalment Details
 
-This API is used to fetch details of all transaction instalment loans against an account.
+This API is used fetch all the loan details converted from transactions into instalments for a given account id.
 
 ## Endpoint
 

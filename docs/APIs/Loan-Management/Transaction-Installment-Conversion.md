@@ -10,6 +10,7 @@ This API supports both single and multiple transaction conversion into instalmen
 
 <!--
 type: tab
+titles: Request, Response, Error
 -->
 
 ```json

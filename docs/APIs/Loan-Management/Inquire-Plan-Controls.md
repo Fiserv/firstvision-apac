@@ -1,4 +1,4 @@
-# Inquire Plan Master
+# Inquire Plan Controls
 
 This API is used to fetch loan plan details for a given plan Id.
   
@@ -83,27 +83,27 @@ type: tab
         {
             "tenure": 6,
             "annualPercentageRate": "0.00000%",
-            "upfrontFeeAmountOrPercentage": "$100.00"
+            "conversionFeeAmountOrPercentage": "$100.00"
         },
         {
             "tenure": 12,
             "annualPercentageRate": "0.00000%",
-            "upfrontFeeAmountOrPercentage": "$1,200.00"
+            "conversionFeeAmountOrPercentage": "$1,200.00"
         },
         {
             "tenure": 18,
             "annualPercentageRate": "0.00000%",
-            "upfrontFeeAmountOrPercentage": "$1,400.00"
+            "conversionFeeAmountOrPercentage": "$1,400.00"
         },
         {
             "tenure": 0,
             "annualPercentageRate": "0.00000%",
-            "upfrontFeeAmountOrPercentage": "$0.00"
+            "conversionFeeAmountOrPercentage": "$0.00"
         },
         {
             "tenure": 0,
             "annualPercentageRate": "0.00000%",
-            "upfrontFeeAmountOrPercentage": "$0.00"
+            "conversionFeeAmountOrPercentage": "$0.00"
         }
     ],
     "instalmentCancellationControls": {
