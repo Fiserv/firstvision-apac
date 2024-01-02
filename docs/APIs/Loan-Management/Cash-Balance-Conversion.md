@@ -94,7 +94,7 @@ type: tab
     },
     "businessUnit": 700,
     "loanPlanId": 10,
-    "amount": "$100.00",
+    "cashLoanAmount": "$100.00",
     "accountId": "0007000011163060009",
     "authorizationCode": "12345",
     "tenure": 7,
