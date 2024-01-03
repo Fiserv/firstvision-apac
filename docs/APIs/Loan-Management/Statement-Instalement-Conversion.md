@@ -10,6 +10,7 @@ This API is used to convert statement balance into Instalment. API first validat
 
 <!--
 type: tab
+titles: Request, Response, Error
 -->
 
 ```json
