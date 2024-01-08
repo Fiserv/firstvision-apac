@@ -97,6 +97,7 @@ type: tab
     },
     "businessUnit": 700,
     "loanPlanId": 5,
+    "planSequenceNumber": 1,
     "accountId": "0007000011163060009",
     "tenure": 7,
     "annualPercentageRate": "10.00000%"
@@ -113,7 +114,7 @@ type: tab
     "errorCode": "442201",
     "instance": "/v1/loans/statementBalanceConversion",
     "invalid-params": [
-      "V5LT4004EA: CONVERSION NOT ALLOWED FOR EXPIRED CARD'S TRANSACTIONS"
+      "V5LF4005EA: APR CAN NOT BE OVERRIDDEN"
     ],
     "source": "VPL",
     "status": 422,
@@ -166,6 +167,7 @@ Below table provides the list of application's error code and its description.
 | `V5LS4011EA` | Number of plan should not be greater than 5 |  
 | `V5LS4003EC` | Invalid plan type for statement loan |  
 | `V5LS4008EC` | Plan and seq number mismatch |  
+| `V5LS4008ED` | Plan sequence number not found with plan segment file |  
 | `V5LF4001EA` | Business unit is not determined |  
 | `V5LF4001EB` | Business unit is not present in file |  
 | `V5LF4001EC` | EPP active indicator is inactive at business unit level |
@@ -185,5 +187,6 @@ Below table provides the list of application's error code and its description.
 | `V5LF4004EB` | Term is not present in EPP tier table in plan record |
 | `V5LF4006EA` | Loan amount is required |
 | `V5LF4005EB` | APR can not be overridden |
+| `V5LF4002EE` | Maximum plan number reached |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
