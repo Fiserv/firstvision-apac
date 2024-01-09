@@ -38,13 +38,14 @@ type: tab
             "manualCloseIndicator": 0,
             "prorataInterestAmount": "$0.00",
             "instalmentAmount": "$0.00",
-            "planSequence": 2,
+            "planSequenceNumber": 2,
             "planId": 5,
             "loanStatus": "A",
             "originalLoanAmount": "$100.00",
             "description": "EPP PLAN INTEREST BASED",
             "currentTerm": 0,
             "remainingTerm": 0,
+            "typeOfLoan": 0,
             "conversionFeeAmount": "$0.00"
         },
         {
@@ -61,13 +62,14 @@ type: tab
             "manualCloseIndicator": 0,
             "prorataInterestAmount": "$0.87",
             "instalmentAmount": "$0.00",
-            "planSequence": 4,
+            "planSequenceNumber": 4,
             "planId": 5,
             "loanStatus": "A",
             "originalLoanAmount": "$200.00",
             "description": "RETAIL PLAN",
             "currentTerm": 0,
             "remainingTerm": 0,
+            "typeOfLoan": 0,
             "conversionFeeAmount": "$0.00"
         }
     ],

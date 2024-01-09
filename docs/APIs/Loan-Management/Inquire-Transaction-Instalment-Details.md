@@ -1,6 +1,6 @@
 # Inquire Transaction Instalment Details
 
-This API is used fetch all the loan details converted from transactions into instalments for a given account id.
+This API is used to fetch all the loan details converted from transactions into instalments for a given account id.
 
 ## Endpoint
 
@@ -34,7 +34,7 @@ type: tab
             "transactionAmount": "$320.00",
             "referenceNumber": "ABCD001",
             "planId": 5,
-            "planSequence": 1
+            "planSequenceNumber": 1
         },
         {
             "description": "TEST2",
@@ -46,7 +46,7 @@ type: tab
             "transactionAmount": "$150.00",
             "referenceNumber": "ABCD002",
             "planId": 5,
-            "planSequence": 1
+            "planSequenceNumber": 1
         }
     ],
     "loanReferenceNumber": "202409300003",
@@ -68,7 +68,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/loans/0007000011000000608/transactionInstalmentDetails",
     "invalid-params": [
-      "V5LG4002EB: Account / card number is not found"
+      "V5LH4002EA: Account / card number is not found"
     ],
     "source": "VPL",
     "status": 404,
