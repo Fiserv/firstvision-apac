@@ -68,6 +68,7 @@ type: tab
             "originalLoanAmount": "$200.00",
             "description": "RETAIL PLAN",
             "currentTerm": 0,
+            "remainingTerm": 0,
             "typeOfLoan": 0,
             "conversionFeeAmount": "$0.00"
         }
