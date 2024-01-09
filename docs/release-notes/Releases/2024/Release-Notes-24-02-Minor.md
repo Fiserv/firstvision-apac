@@ -1,4 +1,4 @@
-# Release 23.04-Minor - Version 1.7.0
+# Release 24.02-Minor - Version 1.7.0
 
 ## Date: 26/02/2024
 

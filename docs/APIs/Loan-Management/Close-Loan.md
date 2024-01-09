@@ -65,6 +65,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
 | `recordNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment record assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
+| `manualCloseIndicator` | Payload | *string* | 1 | Field indicates the User wishes manually to cancel the Instalment Plan. Indicating the plan should be closed and will result in CMS generating transaction in the next batch run to credit the Instalment Plan and debit the rollover plan.|
 
 ### Error Codes
 

@@ -94,6 +94,7 @@ type: tab
     },
     "businessUnit": 700,
     "loanPlanId": 10,
+    "planSequenceNumber": 1,
     "cashLoanAmount": "$100.00",
     "accountId": "0007000011163060009",
     "authorizationCode": "12345",
@@ -175,5 +176,6 @@ Below table provides the list of application's error code and its description.
 | `V5LF4004EB` | Term is not present in EPP tier table in plan record |  
 | `V5LF4006EA` | Loan amount is required |  
 | `V5LF4005EB` | APR can not be overridden |  
+| `V5LF4002EE` | Maximum plan number reached |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

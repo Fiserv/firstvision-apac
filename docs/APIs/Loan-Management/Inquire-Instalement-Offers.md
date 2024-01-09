@@ -25,16 +25,16 @@ type: tab
 {
     "instalmentOffers": [
         {
-            "annualInterestRate": "0",
+            "annualInterestRate": "11.00000%",
             "conversionFeeAmount": "$1.00",
-            "nstalmentAmount": "$16.67",
+            "instalmentAmount": "$16.67",
             "totalRepaymentAmount": "$100.00",
             "totalInterestAmount": "$0.00",
             "tenure": 6,
             "prorataInterestAmount": "$0.00"
         },
         {
-            "annualInterestRate": "0",
+            "annualInterestRate": "11.00000%",
             "conversionFeeAmount": "$12.00",
             "instalmentAmount": "$8.33",
             "totalRepaymentAmount": "$100.00",
