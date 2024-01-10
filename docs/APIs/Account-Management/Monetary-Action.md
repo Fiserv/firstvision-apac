@@ -105,7 +105,7 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
 | `actionCode` | Payload | *string* | 4 | Action code placed on the account. |
-| `transactionAmount` | Payload | *number* | 17 | Transaction amount to be posted. |
+| `transactionAmount` | Payload | *string* | 17 | Transaction amount to be posted. |
 
 ### Error Codes
 

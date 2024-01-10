@@ -1,10 +1,10 @@
-# Post Payments
+# Directed Post Payments
 
-This API is used to add payments for a given account Id. This API updates the open-to-buy, memo credit in real time on customer's account and and generate an outstanding authorization record.
+This API is used to add payments on a specific plan Id and account Id given. This API updates the open-to-buy, memo credit in real time on customer's account and and generate an outstanding authorization record.
 
 ## Endpoint
 
-`POST /v1/accounts/postPayments`
+`POST /v1/accounts/directedPostPayments`
 
 ## Payload Example
 
@@ -35,7 +35,8 @@ titles: Request, Response, Error
   "letterDetails": {
     "letterCode": "",
     "letterBusinessUnit": 0
-  }
+  },
+  "planId": 10001
 }
 ```
 
@@ -65,7 +66,7 @@ type: tab
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "440401",
-    "instance": "/v1/accounts/postPayments",
+    "instance": "/v1/accounts/directedPostPayments",
     "invalid-params": [
       "V5BS0004SF: Get Request - Record not found"
     ],
@@ -80,13 +81,14 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/postPayments).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/accounts/directedPostPayments).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
+| `planId` | Payload | *number* | 5 | Credit plan number associated with the transaction. |
 | `transactionAmount` | Payload | *string* | 17 | Transaction amount to be posted. |
 
 ### Error Codes
@@ -109,7 +111,6 @@ Below table provides the list of application's error code and its description.
 | `V8MA4003SD` | AMMA - action code is  new |
 | `V8MA4003SE` | AMMA - action code is add pending |
 | `V8MA4004EA` | Invalid transaction type |
-| `V8MA4004SV` | AMMA - invalid action type |
 | `V8MA4061EA` | Account or card not found |
 | `V8MA4061ES` | Account or card number required |
 | `V8MA4005EC` | Invalid account status |
