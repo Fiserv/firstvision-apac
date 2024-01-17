@@ -45,6 +45,7 @@ type: tab
   "newPaymentInstrumentId": "0009544401000009208",
   "transferToAccountId": " ",
   "transferToCustomerId": " ",
+  "pinStatus": "N",
   "effectiveDate": "19/08/2021"
 }
 ```
