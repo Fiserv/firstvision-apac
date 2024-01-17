@@ -76,7 +76,7 @@ The below table identifies the required parameters in the request payload.
 | `paymentInstrumentOrCardId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 | `merchantBusinessUnit` | Payload | *string* | 3 | Field that identifies the business unit to which the store is assigned. The values for the business unit are 1–998. |
 | `merchantId` | Payload | *string* | 9 | Field that identifies the store identification number. |
-| `authorizationAmount` | Payload | *string* | 17 | Authorized sales amount in the currency accepted by the particular merchant. |
+| `authorizationAmount` | Payload | *string* | 13 | Authorized sales amount in the currency accepted by the particular merchant. |
 | `expiryDate` | Payload | *string* | 4 | Valid card expire date should be provided which is of 4 character with MMYY format. |
 | `CVV2` | Payload | *string* | 3 | Security code(CVV2/CVC2/CAV2/CVN2) assigned to the payment Instrument id. |
 
