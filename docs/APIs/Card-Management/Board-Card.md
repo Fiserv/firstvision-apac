@@ -146,5 +146,8 @@ Below table provides the list of application's error code and its description.
 | `V5AP4101SA` | Card number check digit is invalid |
 | `V5AP4105SA` | Card sequence already atmaximum for card number |
 | `V5AP4106SA` | Card sequence already atmaximum for chip card number |
+| `V5AK1512EC` | Invalid DCVV2 method for products supporting both physical and virtual cards |
+| `V5AK1512EB` | Invalid DCVV2 method for virtual card |
+| `V5AK1512EA` | Invalid DCVV2 method for physical card |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

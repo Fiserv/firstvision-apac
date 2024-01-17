@@ -73,7 +73,7 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentOrCardId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
-| `authorizationAmount` | Payload | *string* | 17 | Authorized sales amount in the currency accepted by the particular merchant. |
+| `authorizationAmount` | Payload | *string* | 13 | Authorized sales amount in the currency accepted by the particular merchant. |
 | `planId` | Payload | *integer* | 5 | Plan number that identifies the Credit Plan Master entity associated with the credit plan segment. |
 | `transactionDescription` | Payload | *string* | 40 | Transaction source to identify if the authorization is Balance Transfer request. |
 | `billerCode` | Payload | *string* | 10 | This field identify the Biller code to which this payment is done. |

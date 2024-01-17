@@ -95,6 +95,7 @@ type: tab
       "effectiveDate": "18/08/2021",
       "merchantCategoryCode": 50367,
       "merchantCity": "Delhi",
+      "merchantName": "WALLMART STORES",
       "maskedPaymentCardNumber": "000484680XXXXXX9405",
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
