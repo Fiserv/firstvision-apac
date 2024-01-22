@@ -100,5 +100,8 @@ Below table provides the list of application's error code and its description.
 | `V5ED0237SV` | Invalid  cardholder-type |
 | `V5ED0237EA` | User not allowed to change cardholder type from 1 to 0 |
 | `V5DC4004SV` | Valid values are Y and N for disable Dcvv2 method flag |
+| `V5ED1512EC` | Invalid DCVV2 method for products supporting both physical and virtual cards |
+| `V5ED1512EB` | Invalid DCVV2 method for virtual card |
+| `V5ED1512EA` | Invalid DCVV2 method for physical card |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
