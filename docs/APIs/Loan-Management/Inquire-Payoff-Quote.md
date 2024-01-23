@@ -68,8 +68,6 @@ The below table identifies the required parameters in the request payload.
 | `loanPlanId` | Query Parameter  | *integer* | 05 | Identification number of the Credit Plan Master entity.|
 | `planSequenceNumber` | Query Parameter | *integer* | 03 | Sequence number to identify the entity uniquely.|
 
-
-
 ### Error Codes
 
 Below table provides the list of application's error code and its description.
@@ -91,6 +89,5 @@ Below table provides the list of application's error code and its description.
 | `V5LQ4003EC` | Credit plan not found |
 | `V5LQ4004EE` | Loan is not active |
 | `V5LQ4004EF` | Loan is closed/cancelled |
-
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
