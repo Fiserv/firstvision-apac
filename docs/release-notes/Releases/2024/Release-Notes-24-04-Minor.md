@@ -17,6 +17,8 @@
 - List Outstanding Transactions: merchantName added in response and existing merchantCity length updated to 13 from 15 in response
 - Inquire Statement Transaction Details: merchantName added in response and existing merchantCity length updated to 13 from 15 in response
 - List Transactions by Date Range: merchantName added in response and existing merchantCity length updated to 13 from 15 in response
+- Statement Balance Simulation - maxLength has been changed from 5 to 30 for planIdDescription in response
+- Statement Balance Conversion - maxLength has been changed from 5 to 30 for planIdDescription in response
 
 ### New APIs
 
