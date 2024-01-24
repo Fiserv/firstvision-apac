@@ -20,7 +20,7 @@ titles: Request, Response, Error
   "startDate": "01/06/2020",
   "endDate": "30/06/2021",
   "isTransactionSuppressionEnabled": "N",
-  "typeOfTransaction": "P",
+  "transactionIndicator": "P",
   "additionalCardDetails": {
     "paymentInstrumentId1": "0002000010000066752",
     "paymentInstrumentId2": "0002000010000066751",
