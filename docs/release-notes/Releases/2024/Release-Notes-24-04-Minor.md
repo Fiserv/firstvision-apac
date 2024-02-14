@@ -47,6 +47,7 @@ This API is used to fetch the list of various transactions like authorizations, 
 | 12 | Account Management | List Unbilled Transactions | <ul> <li> merchantName added in response </li> <li> Existing field merchantCity length updated to 13 from 15 in response |
 | 13 | Account Management | Inquire Statement Transaction Details | <ul> <li> merchantName added in response </li> <li> Existing field merchantCity length updated to 13 from 15 in response |
 | 14 | Account Management | List Transactions by Date Range | <ul> <li> merchantName added in response </li> <li> Existing field merchantCity length updated to 13 from 15 in response |
+| 15 | Loan Management | Inquire Loan | <ul> <li> referenceNumber, typeOfLoan, originalTerm added in response |
 
 ### Deleted APIs
 
