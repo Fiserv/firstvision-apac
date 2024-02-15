@@ -45,7 +45,7 @@ type: tab
             "description": "EPP PLAN INTEREST BASED",
             "currentTerm": 0,
             "remainingTerm": 0,
-            "typeOfLoan": 0,
+            "typeOfLoan": "0",
             "conversionFeeAmount": "$0.00"
         },
         {
@@ -69,7 +69,7 @@ type: tab
             "description": "RETAIL PLAN",
             "currentTerm": 0,
             "remainingTerm": 0,
-            "typeOfLoan": 0,
+            "typeOfLoan": "0",
             "conversionFeeAmount": "$0.00"
         }
     ],

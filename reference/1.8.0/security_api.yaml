@@ -65,12 +65,6 @@ paths:
               $ref: '#/components/schemas/ValidateTokenRequest'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ValidateTokenResponse'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -95,16 +89,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             '*/*':
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             '*/*':
               schema:
@@ -119,6 +113,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ValidateTokenResponse'
       security:
       - Authorization: [
           ]
@@ -181,12 +181,6 @@ paths:
               $ref: '#/components/schemas/OAuthTokenRequest'
         required: true
       responses:
-        '200':
-          description: " \nSuccess"
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
         '422':
           description: " \nThe request could not be processed"
           content:
@@ -195,6 +189,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
         '400':
           description: " \nThe request cannot be validated"
           content:
@@ -219,16 +219,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '503':
+          description: " \nThe service was unavailable"
           content:
             '*/*':
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
+        '401':
+          description: " \nThe request was unauthorized"
           content:
             '*/*':
               schema:
@@ -274,14 +274,6 @@ components:
           description: a secret known only to your Vision10 API application and the
             authorization server
           example: abcdefghizklmnopponommnshfghzxxs
-    ValidateTokenResponse:
-      type: object
-      properties:
-        valid:
-          maxLength: 5
-          type: boolean
-          description: Tells whether token is valid or invalid
-          example: 'false'
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -307,6 +299,14 @@ components:
           type: array
           items:
             type: string
+    ValidateTokenResponse:
+      type: object
+      properties:
+        valid:
+          maxLength: 5
+          type: boolean
+          description: Tells whether token is valid or invalid
+          example: 'false'
     OAuthTokenRequest:
       required:
       - client_id
