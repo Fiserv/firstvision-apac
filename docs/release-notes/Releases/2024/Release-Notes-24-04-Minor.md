@@ -48,6 +48,7 @@ This API is used to fetch the list of various transactions like authorizations, 
 | 13 | Account Management | Inquire Statement Transaction Details | <ul> <li> merchantName added in response </li> <li> Existing field merchantCity length updated to 13 from 15 in response |
 | 14 | Account Management | List Transactions by Date Range | <ul> <li> merchantName added in response </li> <li> Existing field merchantCity length updated to 13 from 15 in response |
 | 15 | Loan Management | Inquire Loan | <ul> <li> referenceNumber, typeOfLoan, originalTerm added in response |
+| 16 | Loan Management | List Loans by Account | <ul> <li> type changed from integer to string for typeOfLoan field in response |
 
 ### Deleted APIs
 
