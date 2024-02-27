@@ -87,7 +87,7 @@ type: tab
         "loanCloseDate": "00/00/0000",
         "conversionFeeAmount": "$0.00",
         "prorataInterestAmount": "$35.61",
-        "typeOfLoan": 0,
+        "typeOfLoan": "1",
         "remainingTerm": 6,
         "initialTerm": 6,
         "finalPaymentDate": "11/08/2025",
