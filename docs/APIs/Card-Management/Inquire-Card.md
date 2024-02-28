@@ -38,12 +38,6 @@ type: tab
     "blockDate": "19/08/2021",
     "blockSecurityId": "NAB"
   },
-    "pinDetails": {
-        "invalidPinTryCount": 0,
-        "lastPinSetDate": "00/00/0000",
-        "lastPinSetTime": "0",
-        "status": "N"
-    },
   "businessUnit": 600,
   "cardAction": 1,
   "cardDelayDaysCount": 0,
@@ -71,7 +65,7 @@ type: tab
   },
   "digitalId": "",
   "emblemId": 0,
-  "externalContractId": "0000000000012672379",
+  "externalContractId": "",
   "firstIssueBranch": 0,
   "fraudTransferPaymentInstrumentId": "",
   "isDynamicCVV2Enabled": "",

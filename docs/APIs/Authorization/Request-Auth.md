@@ -35,7 +35,7 @@ type: tab
   "authorizationCode": "055271",
   "finalAction": "A",
   "reason": "APPROVED",
-  "internalReferenceNumber": "3912181393194000",
+  "internalReferenceNumber": 3239000,
   "maskedPaymentCardNumber": "000484680XXXXXX9405",
   "uniqueTransactionId": "APP17977700222011344330001112345678",
   "openToBuy": "$10000.00",

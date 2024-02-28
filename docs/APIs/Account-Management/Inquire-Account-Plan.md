@@ -101,8 +101,7 @@ type: tab
   "planStatus": 1,
   "previousPlanStatus": 0,
   "planStatusChangeDate": "00/00/0000",
-  "planTotalDueAmount": "$0.00",
-  "eligibleBalanceForStatementInstalment": "$10.00"
+  "planTotalDueAmount": "$0.00"
 }
 ```
 
