@@ -71,6 +71,7 @@ type: tab
       "plasticId": " ",
       "plasticSuppressStatus": "N",
       "productDescription": "VISA CREDIT CONSUMER",
+      "externalContractId": "0000000000012672379",
       "savingsAccountId": " ",
       "status": "0",
       "tokenCount": 0,

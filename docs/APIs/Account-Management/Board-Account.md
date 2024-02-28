@@ -57,7 +57,7 @@ titles: Request, Response, Error
   },
   "residenceId": "600",
   "issuanceId": " ",
-  "externalContractId": "000012672379",
+  "externalContractId": "0000000000012672379",
   "addressId": "HOME",
   "sourceCode": " ",
   "statementDeliveryMode": "E",
