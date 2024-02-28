@@ -71,7 +71,7 @@ type: tab
   },
   "loanDisclosedAndInitialAmountDetails": {
     "billingTerm": 1,
-    "manualCloseIndicator": "0",
+    "celEppManualClose": "0",
     "celEppUser": "",
     "closeReason": "0",
     "currentFinalPaymentAmount": "$500.00",
@@ -88,8 +88,7 @@ type: tab
     "loanAgreementDate": "17/08/2021",
     "paymentDateChangeCount": 0,
     "planId": 70003,
-    "remainingTerm": 2,
-    "prorataInterestAmount": "$10000.00"
+    "remainingTerm": 2
   },
   "originalDisclosedAmountDetails": {
     "insuranceAmount": "$0.00",

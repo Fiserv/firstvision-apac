@@ -43,9 +43,7 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1,
-      "merchantCountryCode": "AUS",
-      "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052206",
@@ -65,9 +63,7 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 2,
-      "merchantCountryCode": "AUS",
-      "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052210",
@@ -87,9 +83,7 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 3,
-      "merchantCountryCode": "AUS",
-      "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052213",
@@ -109,9 +103,7 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 4,
-      "merchantCountryCode": "AUS",
-      "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052219",
@@ -131,9 +123,7 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 5,
-      "merchantCountryCode": "AUS",
-      "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": "052220",
@@ -153,9 +143,7 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 6,
-      "merchantCountryCode": "AUS",
-      "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "merchantCountryCode": "AUS"
     },
     {
       "authorizationCode": " ",
@@ -175,9 +163,7 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 7,
-      "merchantCountryCode": "AUS",
-      "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "merchantCountryCode": "AUS"
     }
   ]
 }

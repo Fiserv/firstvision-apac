@@ -35,7 +35,7 @@ type: tab
     "customerId": "0000000001000000065",
     "customerIdEffectiveDate": "14/01/2021"
   },
-  "blockCodeDetails": {
+  "blockCodeDetails": 
     "blockCode1": "A",
     "blockCode2": "X",
     "blockCode1Date": "10/01/2021",
@@ -121,7 +121,7 @@ type: tab
   "residenceId": "SX1",
   "issuanceId": "SX1",
   "primaryAccountFlag": "P",
-  "externalContractId": "0000000000012672379",
+  "externalContractId": "000012672379",
   "addressId": "HOME",
   "sourceCode": " ",
   "pctOverrideDetails": {

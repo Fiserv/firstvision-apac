@@ -99,8 +99,7 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1,
-      "merchantCountryCode": "AUS",
-      "billerCode": " "
+      "merchantCountryCode": "AUS"
     }
   ],
   "correspondingCustomerId": " ",
@@ -162,6 +161,5 @@ Below table provides the list of application's error code and its description.
 | `V5S34003SD` | Account number not found |
 | `V5S34003SA/V5S34003SB/V5S34003EB/V5S34003EF/V5S34003EG` | No statement history information found on file |
 | `V5S34222EA` | Invalid txn suppresion indicatr valid values are N or Y |
-| `V5S34001EA` | Invalid org |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

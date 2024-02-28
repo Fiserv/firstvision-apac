@@ -36,7 +36,6 @@ titles: Request, Response, Error
   "referenceNumber": "0",
   "actionCodePriority": 0,
   "insuranceCode": " ",
-  "transactionDescription": "Fee Adjustment",
   "actionNotes": {
     "note1": " ",
     "note2": " ",

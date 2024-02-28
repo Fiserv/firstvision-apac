@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Vision10 API Documentation
   description: V10 open API document.
-  version: 1.7.0
+  version: 1.6.0
 servers:
 - url: https://stg34.visionplus.io/sandbox/
 tags:
@@ -17,8 +17,7 @@ paths:
       description: This API is used to reverse the authorization for a given payment
         instrument Id or payment card number, authorization code, effective date,
         and transaction amount, if given. Reverse is possible for any authorization
-        which is waiting for settlement. Same API can be used for same day reversal
-        of balance transfer or bill payments.
+        which is waiting for settlement.
       operationId: ReverseAuthorization
       parameters:
       - name: Authorization
@@ -38,7 +37,7 @@ paths:
         schema:
           maxLength: 50
           type: string
-          example: 1234567895e72403cb9c18deb25e06f8a
+          example: 123456789-5e72-403c-b9c1-8deb25e06f8a
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -87,6 +86,54 @@ paths:
               $ref: '#/components/schemas/ReverseAuthorizationV1ReqModel'
         required: true
       responses:
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '422':
           description: " \nThe request could not be processed"
           content:
@@ -103,68 +150,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '409':
-          description: " \nThe request conflicts with another request "
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '201':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReverseAuthorizationV1ResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
       security:
       - Authorization: [
           ]
@@ -196,7 +187,7 @@ paths:
         schema:
           maxLength: 50
           type: string
-          example: 1234567895e72403cb9c18deb25e06f8a
+          example: 123456789-5e72-403c-b9c1-8deb25e06f8a
       - name: x-client-correlation-id
         in: header
         description: Client specified identifier to correlate the request with the
@@ -245,54 +236,14 @@ paths:
               $ref: '#/components/schemas/RequestAuthorizationV1ReqModel'
         required: true
       responses:
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '201':
           description: " \nSuccess"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RequestAuthorizationV1ResponseModel'
-        '409':
-          description: " \nThe request conflicts with another request "
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -307,6 +258,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -315,8 +290,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -327,322 +310,6 @@ paths:
       - Authorization: [
           ]
       x-proxy-name: Request Authorization
-      x-group-name: Authorization
-  /v1/auth/billPayments:
-    post:
-      tags:
-      - Authorization
-      summary: Bill Payments
-      description: This API is used to make an authorization request for payment instrument
-        Id or payment card number when transaction for Bill Payment.
-      operationId: BillPayments
-      parameters:
-      - name: Authorization
-        in: header
-        description: Token is used in token-based authentication to allow an application
-          to access an API.
-        required: true
-        schema:
-          maxLength: 1200
-          type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
-      - name: Idempotency-Key
-        in: header
-        description: Client specified identifier to recognize subsequent retries of
-          the same request.
-        required: false
-        schema:
-          maxLength: 50
-          type: string
-          example: 1234567895e72403cb9c18deb25e06f8a
-      - name: x-client-correlation-id
-        in: header
-        description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-trace-id
-        in: header
-        description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - name: x-client-source-channel
-        in: header
-        description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-user-id
-        in: header
-        description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BillPaymentV1ReqModel'
-        required: true
-      responses:
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '409':
-          description: " \nThe request conflicts with another request "
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BillPaymentV1ResponseModel'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      security:
-      - Authorization: [
-          ]
-      x-proxy-name: Bill Payments
-      x-group-name: Authorization
-  /v1/auth/balanceTransfer:
-    post:
-      tags:
-      - Authorization
-      summary: Balance Transfer
-      description: This API is used to make an authorization request for payment instrument
-        Id or payment card number when transaction for Balance Transfer.
-      operationId: BalanceTransfer
-      parameters:
-      - name: Authorization
-        in: header
-        description: Token is used in token-based authentication to allow an application
-          to access an API.
-        required: true
-        schema:
-          maxLength: 1200
-          type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
-      - name: Idempotency-Key
-        in: header
-        description: Client specified identifier to recognize subsequent retries of
-          the same request.
-        required: false
-        schema:
-          maxLength: 50
-          type: string
-          example: 1234567895e72403cb9c18deb25e06f8a
-      - name: x-client-correlation-id
-        in: header
-        description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-trace-id
-        in: header
-        description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - name: x-client-source-channel
-        in: header
-        description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - name: x-client-user-id
-        in: header
-        description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BalanceTransferV1ReqModel'
-        required: true
-      responses:
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '409':
-          description: " \nThe request conflicts with another request "
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '201':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BalanceTransferV1ResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '503':
-          description: " \nThe service was unavailable"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '404':
-          description: " \nThe request resource does not exist"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-      security:
-      - Authorization: [
-          ]
-      x-proxy-name: Balance Transfer
       x-group-name: Authorization
   /v1/auth/{paymentInstrumentOrCardId}/details:
     get:
@@ -751,46 +418,8 @@ paths:
           type: string
           example: '100.00'
       responses:
-        '422':
-          description: " \nThe request could not be processed"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '500':
-          description: " \nAn unexpected internal server error occurred"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '400':
-          description: " \nThe request cannot be validated"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '200':
-          description: " \nSuccess"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireAuthorizationDetailV1ResponseModel'
-        '403':
-          description: " \nThe request resource is forbidden for user"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '401':
-          description: " \nThe request was unauthorized"
+        '504':
+          description: " \nThe request timed out while waiting for a response"
           content:
             application/json:
               schema:
@@ -805,6 +434,36 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAuthorizationDetailV1ResponseModel'
         '404':
           description: " \nThe request resource does not exist"
           content:
@@ -813,8 +472,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ResponseErrorMessageInfo'
-        '504':
-          description: " \nThe request timed out while waiting for a response"
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
           content:
             application/json:
               schema:
@@ -939,8 +606,9 @@ components:
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 10/01/2022
         internalReferenceNumber:
+          maximum: 1000000000000000000
           maxLength: 18
-          type: string
+          type: integer
           description: This field indicate the internal reference number used to identify
             authorization details from log file.
           example: '3239000'
@@ -954,6 +622,13 @@ components:
       - planId
       type: object
       properties:
+        paymentInstrumentOrCardId:
+          maxLength: 19
+          type: string
+          description: Unique alternate identification number associated with Payment
+            Card Number or Unique identification number that appears on the front
+            of the card (PAN).
+          example: '0009846801010274074'
         merchantBusinessUnit:
           maximum: 999
           maxLength: 3
@@ -967,13 +642,6 @@ components:
           type: integer
           description: Field that identifies the store identification number.
           example: '999999998'
-        paymentInstrumentOrCardId:
-          maxLength: 19
-          type: string
-          description: Unique alternate identification number associated with Payment
-            Card Number or Unique identification number that appears on the front
-            of the card (PAN).
-          example: '0009846801010274074'
         authorizationAmount:
           maxLength: 13
           type: string
@@ -1004,17 +672,17 @@ components:
     RequestAuthorizationV1ResponseModel:
       type: object
       properties:
+        authorizationCode:
+          maxLength: 6
+          type: string
+          description: Authorization code associated with the transaction.
+          example: '055271'
         responseCode:
           maxLength: 2
           type: string
           description: Code that indicates the numeric ISO response code for this
             request.
           example: '00'
-        authorizationCode:
-          maxLength: 6
-          type: string
-          description: Authorization code associated with the transaction.
-          example: '055271'
         finalAction:
           maxLength: 1
           type: string
@@ -1026,231 +694,36 @@ components:
           description: FAS approval or decline code and description for this authorization
             request.
           example: APPROVED
-        openToBuy:
-          maxLength: 24
-          type: string
-          description: Current open-to-buy amount of the account.
-          example: $10000.00
-        internalReferenceNumber:
-          maxLength: 18
-          type: string
-          description: This field indicate the internal reference number used to identify
-            authorization details from log file.
-          example: '3239000'
-        maskedPaymentCardNumber:
-          maxLength: 19
-          type: string
-          description: Unique identification number that appears on the front of the
-            card (PAN) in masked format.
-          example: 000484680XXXXXX9405
         uniqueTransactionId:
           maxLength: 35
           type: string
           description: This field indicates unique transaction identification for
             the associated transaction.
           example: APP17977700222011344330001112345678
-        effectiveDate:
-          maxLength: 10
-          type: string
-          description: Effective date of the transaction. The format is MM/DD/YYYY
-            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
-          example: 10/01/2022
-    BillPaymentV1ReqModel:
-      required:
-      - authorizationAmount
-      - billerCode
-      - paymentInstrumentOrCardId
-      - transactionDescription
-      type: object
-      properties:
-        paymentInstrumentOrCardId:
-          maxLength: 19
-          type: string
-          description: Unique alternate identification number associated with Payment
-            Card Number or Unique identification number that appears on the front
-            of the card (PAN).
-          example: '0009846801010274074'
-        authorizationAmount:
-          maxLength: 13
-          type: string
-          description: Authorized sales amount in the currency accepted by the particular
-            merchant.
-          example: '1.00'
-        transactionDescription:
-          maxLength: 40
-          type: string
-          description: Transaction source to identify if the authorization is for
-            BPAY OUT request.
-          example: Bill payment transaction
-        paymentDate:
-          maxLength: 10
-          type: string
-          description: This field identify Date of the transaction will be received
-            for BPAY OUT request.The format is MM/DD/YYYY or DD/MM/YYYY depending
-            on the DATE FORMAT on System Control.
-          example: 20/10/2023
-        billerCode:
-          maxLength: 10
-          type: string
-          description: This field identify the Biller code to which this payment is
-            done.
-          example: '123'
-    BillPaymentV1ResponseModel:
-      type: object
-      properties:
-        responseCode:
-          maxLength: 2
-          type: string
-          description: Code that indicates the numeric ISO response code for this
-            request.
-          example: '00'
-        authorizationCode:
-          maxLength: 6
-          type: string
-          description: Authorization code associated with the transaction.
-          example: '055271'
-        finalAction:
-          maxLength: 1
-          type: string
-          description: Code that indicates the action the system returned.
-          example: A
-        reason:
-          maxLength: 20
-          type: string
-          description: FAS approval or decline code and description for this authorization
-            request.
-          example: APPROVED
-        openToBuy:
-          maxLength: 24
-          type: string
-          description: Current open-to-buy amount of the account.
-          example: $10000.00
-        internalReferenceNumber:
-          maxLength: 18
-          type: string
-          description: This field indicate the internal reference number used to identify
-            authorization details from log file.
-          example: '3239000'
         maskedPaymentCardNumber:
           maxLength: 19
           type: string
           description: Unique identification number that appears on the front of the
             card (PAN) in masked format.
           example: 000484680XXXXXX9405
-        uniqueTransactionId:
-          maxLength: 35
+        openToBuy:
+          maxLength: 24
           type: string
-          description: This field indicates unique transaction identification for
-            the associated transaction.
-          example: APP17977700222011344330001112345678
+          description: Current open-to-buy amount of the account.
+          example: $10000.00
         effectiveDate:
           maxLength: 10
           type: string
           description: Effective date of the transaction. The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 10/01/2022
-    BalanceTransferV1ReqModel:
-      required:
-      - authorizationAmount
-      - billerCode
-      - paymentInstrumentOrCardId
-      - planId
-      - transactionDescription
-      type: object
-      properties:
-        paymentInstrumentOrCardId:
-          maxLength: 19
-          type: string
-          description: Unique alternate identification number associated with Payment
-            Card Number or Unique identification number that appears on the front
-            of the card (PAN).
-          example: '0009846801010274074'
-        authorizationAmount:
-          maxLength: 13
-          type: string
-          description: Authorized sales amount in the currency accepted by the particular
-            merchant.
-          example: '1.00'
-        planId:
-          maximum: 99999
-          maxLength: 5
+        internalReferenceNumber:
+          maximum: 1000000000000000000
+          maxLength: 18
           type: integer
-          description: Plan number that identifies the Credit Plan Master entity associated
-            with the credit plan segment.
-          example: '10001'
-        transactionDescription:
-          maxLength: 40
-          type: string
-          description: Transaction source to identify if the authorization is Balance
-            Transfer request.
-          example: BT transaction
-        paymentDate:
-          maxLength: 10
-          type: string
-          description: This field identify Date of the transaction will be received
-            Balance Transfer request.The format is MM/DD/YYYY or DD/MM/YYYY depending
-            on the DATE FORMAT on System Control.
-          example: 20/10/2023
-        billerCode:
-          maxLength: 10
-          type: string
-          description: This field identify the Biller code to which this payment is
-            done.
-          example: '123'
-    BalanceTransferV1ResponseModel:
-      type: object
-      properties:
-        responseCode:
-          maxLength: 2
-          type: string
-          description: Code that indicates the numeric ISO response code for this
-            request.
-          example: '00'
-        authorizationCode:
-          maxLength: 6
-          type: string
-          description: Authorization code associated with the transaction.
-          example: '055271'
-        finalAction:
-          maxLength: 1
-          type: string
-          description: Code that indicates the action the system returned.
-          example: A
-        reason:
-          maxLength: 20
-          type: string
-          description: FAS approval or decline code and description for this authorization
-            request.
-          example: APPROVED
-        openToBuy:
-          maxLength: 24
-          type: string
-          description: Current open-to-buy amount of the account.
-          example: $10000.00
-        internalReferenceNumber:
-          maxLength: 18
-          type: string
           description: This field indicate the internal reference number used to identify
             authorization details from log file.
           example: '3239000'
-        maskedPaymentCardNumber:
-          maxLength: 19
-          type: string
-          description: Unique identification number that appears on the front of the
-            card (PAN) in masked format.
-          example: 000484680XXXXXX9405
-        uniqueTransactionId:
-          maxLength: 35
-          type: string
-          description: This field indicates unique transaction identification for
-            the associated transaction.
-          example: APP17977700222011344330001112345678
-        effectiveDate:
-          maxLength: 10
-          type: string
-          description: Effective date of the transaction. The format is MM/DD/YYYY
-            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
-          example: 10/01/2022
     InquireAuthorizationDetailV1ResponseModel:
       type: object
       properties:

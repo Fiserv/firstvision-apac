@@ -1,6 +1,6 @@
 # Transfer Plan Balance
 
-This API is used to transfer the balance of a plan to a different plan within an account. This can be used for partial/full balance transfer and reversals.
+This API is used to transfer the balance of a plan to a different plan within an account. With plan transfer, you can transfer only the entire balance of a plan.
 
 ## Endpoint
 
@@ -14,32 +14,14 @@ titles: Request, Response, Error
 -->
 
 ```json
+
 {
-  "businessUnit": 700,
-  "accountId": "0007000011161782000",
-  "transferType": "T",
-  "transferFromPlanId": 5,
-  "transferFromRecordNumber": 3,
-  "transferToPlanId": 1,
-  "transferToRecordNumber": 1,
-  "amountFields": {
-    "principalAmount": "0.00",
-    "interestFeeAmount": "0.00",
-    "insuranceFeeAmount": "0.00",
-    "nsfFeeAmount": "0.00",
-    "serviceFeeAmount": "0.00",
-    "lateFeeAmount": "0.00",
-    "membershipFeeAmount": "0.00",
-    "overlimitFeeAmount": "0.00",
-    "recoveryFeeAmount": "0.00",
-    "collectionFeeAmount": "0.00",
-    "userFee1Amount": "0.00",
-    "userFee2Amount": "0.00",
-    "userFee3Amount": "0.00",
-    "userFee4Amount": "0.00",
-    "userFee5Amount": "0.00",
-    "userFee6Amount": "0.00"
-  }
+  "businessUnit": 200,
+  "accountId": "0002000010000066752",
+  "transferFromPlanId": 10002,
+  "transferFromRecordNumber": 1,
+  "transferToPlanId": 10001,
+  "transferToRecordNumber": 0
 }
 ```
 
@@ -50,30 +32,10 @@ type: tab
 ```json
 
 {
-  "businessUnit": 700,
-  "accountId": "0007000011161782000",
-  "transferFromPlanId": 5,
-  "transferFromRecordNumber": 3,
-  "transferToPlanId": 1,
-  "transferToRecordNumber": 1,
-  "amountFields": {
-    "principalAmount": "$0.00",
-    "interestFeeAmount": "$0.00",
-    "insuranceFeeAmount": "$0.00",
-    "nsfFeeAmount": "$0.00",
-    "serviceFeeAmount": "$0.00",
-    "lateFeeAmount": "$0.00",
-    "membershipFeeAmount": "$0.00",
-    "overlimitFeeAmount": "$0.00",
-    "recoveryFeeAmount": "$0.00",
-    "collectionFeeAmount": "$0.00",
-    "userFee1Amount": "$0.00",
-    "userFee2Amount": "$0.00",
-    "userFee3Amount": "$0.00",
-    "userFee4Amount": "$0.00",
-    "userFee5Amount": "$0.00",
-    "userFee6Amount": "$0.00"
-  }
+  "businessUnit": 200,
+  "accountId": "0002000010000066752",
+  "transferToPlanId": 10001,
+  "transferToRecordNumber": 0
 }
 ```
 
