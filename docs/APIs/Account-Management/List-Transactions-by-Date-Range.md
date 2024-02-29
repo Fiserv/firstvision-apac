@@ -44,7 +44,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": "021447",
@@ -65,7 +66,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -86,7 +88,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": "022709",
@@ -107,7 +110,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -128,7 +132,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": "023754",
@@ -149,7 +154,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": "023911",
@@ -170,7 +176,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -191,7 +198,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     }
   ]
 }

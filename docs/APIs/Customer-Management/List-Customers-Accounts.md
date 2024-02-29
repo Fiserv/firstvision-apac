@@ -58,7 +58,7 @@ type: tab
       "blockCode2": "",
       "blockCode1Date": "19/08/2021",
       "blockCode2Date": "00/00/0000",
-      "externalContractId": "000012672379",
+      "externalContractId": "0000000000012672379",
       "addressId": "HOME"
     }
   ]

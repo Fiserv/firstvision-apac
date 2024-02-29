@@ -23,7 +23,7 @@ type: tab
 
 ```json
 {
-  "externalContractId": "000012672379",
+  "externalContractId": "0000000000012672379",
   "totalAccountsCount": 2,
   "totalCardsCount": 2,
   "businessUnit": 600,
@@ -88,7 +88,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `externalContractId` | Path Variable | *string* | 14 | Unique identification number assigned to a customer from external system.|
+| `externalContractId` | Path Variable | *string* | 19 | Unique identification number assigned to a customer from external system.|
 
 ### Error Codes
 

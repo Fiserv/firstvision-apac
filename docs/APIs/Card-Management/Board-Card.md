@@ -55,7 +55,7 @@ titles: Request, Response, Error
   },
   "physicalVirtualIndicator": "P",
   "isDynamicCVV2Enabled": "0",
-  "externalContractId": "000012672379"
+  "externalContractId": "0000000000012672379"
 }
 ```
 
