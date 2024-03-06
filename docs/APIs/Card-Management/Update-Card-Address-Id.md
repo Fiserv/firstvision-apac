@@ -78,7 +78,6 @@ Below table provides the list of application's error code and its description.
 | `V5AU4002SF` | AMBS record purged |
 | `V5AU4002SG` | AMED record not found |
 | `V5AU9910SA` | Address-ID should not be spaces |
-| `V5AU9910SB` | Addr-ID should not have spacial chars, only - is allowed |
 | `V5AU0102SA` | Invalid customer number |
 | `V5AU4001SF` | Org not found |
 

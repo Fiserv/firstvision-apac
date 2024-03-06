@@ -226,7 +226,7 @@ titles: Request, Response, Error
       "city": "",
       "stateprovince": "",
       "postalCode": "",
-      "addressId": " "
+      "addressId": "OFFICE"
     },
     "physicalVirtualIndicator": "P",
     "isDynamicCVV2Enabled": "0",
@@ -301,6 +301,7 @@ The below table identifies the required parameters in the request payload.
 | `creditLimit` | Payload | *string* | 17 | Credit limit of this account. |
 | `cardAction` | Payload | *number* | 1 | This field is the card issue action code that determines the action CMS performs during the next run. |
 | `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
+| `addressId` | Payload | *string* | 15 | Address identifier to determine the type of address. Ex: Home, Office, etc. |
 
 ### Error Codes
 
@@ -338,11 +339,8 @@ Below table provides the list of application's error code and its description.
 | `V5S84152EE` | Generated relationship number is less than beginning range |
 | `V5S84162SB` | DDA/savings routing information is required |
 | `V5S89909SA` | CCID should not be spaces or zeroes |
-| `V5S89910SA` | Address id should not be spaces or zeroes |
 | `V5S89516SB` | ACCT CCID should contain only alphanumeric |
-| `V5S89517SB` | ACCT addrid should contain only alphanumeric chars and '-' |
 | `V5S89519SA` | Card CCID should contain only alphanumeric |
-| `V5S89518SB` | Card addrid should contain only alphanumeric chars and '-' |
 | `V5S84004SK` | CGID/customer number should be numeric |
 | `V5NA0419ED` | Email cont ind not active |
 | `V5NA0333EE/V5NA0419EE` | SMS ind not active |
@@ -657,5 +655,10 @@ Below table provides the list of application's error code and its description.
 | `V5RM4002SI` | Dup number on account file |
 | `V5RM0106EC` | AMRM - credit limit cannot be zeroes |
 | `V5S80821SV` | Invalid Statement Delivery Mode |
+| `V5AK1512EC` | Invalid DCVV2 method for products supporting both physical and virtual cards |
+| `V5AK1512EB` | Invalid DCVV2 method for virtual card |
+| `V5AK1512EA` | Invalid DCVV2 method for physical card |
+| `V5S89517SA` | Acct addr-id should not have spaces |
+| `V5S89518SA` | Card addr-id should not have spaces |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
