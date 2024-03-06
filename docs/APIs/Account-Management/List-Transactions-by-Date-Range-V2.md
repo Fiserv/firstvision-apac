@@ -1,10 +1,10 @@
-# List Transactions by Date Range
+# List Transactions by Date Range V2
 
 This API is used to fetch the list of various transactions like authorizations, memos, outstanding authorizations, unbilled and billed transactions for a given date range and account Id.
 
 ## Endpoint
 
-`GET /v1/accounts/{accountId}/listTransactions`
+`POST /v2/accounts/listTransactions`
 
 ## Payload Example
 
@@ -13,9 +13,24 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty.
->
->***Account id, start/end date should be sent as path variable and query parameter.***
+```json
+{
+  "businessUnit": 200,
+  "accountId": "0002000010000066752",
+  "startDate": "01/06/2020",
+  "endDate": "30/06/2021",
+  "isTransactionSuppressionEnabled": "N",
+  "transactionIndicator": "P",
+  "additionalCardDetails": {
+    "paymentInstrumentId1": "0002000010000066752",
+    "paymentInstrumentId2": "0002000010000066751",
+    "paymentInstrumentId3": "0002000010000066753",
+    "paymentInstrumentId4": "0002000010000066754",
+    "paymentInstrumentId5": "0002000010000066755"
+  },
+  "continuationToken": " "
+}
+```
 
 <!--
 type: tab
@@ -31,7 +46,7 @@ type: tab
       "effectiveDate": "20210513",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
-      "merchantName": "COLES STORES",
+      "merchantName": "COLES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -54,7 +69,7 @@ type: tab
       "effectiveDate": "20210513",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
-      "merchantName": "COLES STORES",
+      "merchantName": "COLES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -77,7 +92,7 @@ type: tab
       "effectiveDate": "20210513",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
-      "merchantName": " ",
+      "merchantName": "COLES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0002000010000066752",
       "planId": 10002,
@@ -100,7 +115,7 @@ type: tab
       "effectiveDate": "20210518",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
-      "merchantName": "COLES STORES",
+      "merchantName": "COLES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -146,7 +161,7 @@ type: tab
       "effectiveDate": "20210519",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
-      "merchantName": "COLES STORES",
+      "merchantName": " ",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -169,7 +184,7 @@ type: tab
       "effectiveDate": "20210520",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
-      "merchantName": "COLES STORES",
+      "merchantName": " ",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -223,7 +238,7 @@ type: tab
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "440401",
-    "instance": "/v1/accounts/0006000011000000131/listTransactions",
+    "instance": "/v2/accounts/listTransactions",
     "invalid-params": [
       "V5TD4004EB: ACCOUNT NUMBER NOT FOUND/ADD PENDING/CLOSED/PURGED"
     ],
@@ -238,15 +253,15 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=get&path=/v1/accounts/{accountId}/listTransactions).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v2/accounts/listTransactions).
 
 The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. |
-| `startDate` | Query Parameter | *date* | 10 | Start date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
-| `endDate` | Query Parameter | *date* | 10 | End date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
+| `startDate` | Payload | *date* | 10 | Start date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
+| `endDate` | Payload | *date* | 10 | End date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
 
 ### Error Codes
 
@@ -268,5 +283,7 @@ Below table provides the list of application's error code and its description.
 | `V5TD4007EB` | Transaction detail end date/date to format is invalid |
 | `V5TD4007EC` | Transaction detail end date/date to is not numeric/zeroes/9999999 |
 | `V5TD4003SD` | Organization number not found on file |
+| `V5TD4016EB` | Card number is not associated with provided account number |
+| `V5TD4016EA` | Embosser record not on card file |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

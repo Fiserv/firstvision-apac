@@ -24,6 +24,7 @@ type: tab
 ```json
 {
     "instalmentConversionFeeControls": {
+        "billingIndicator": 0,
         "feeIndicator": "2",
         "amountOrPercentage": "120000",
         "planIndicator": "0"
