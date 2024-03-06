@@ -25,7 +25,7 @@ type: tab
 {
   "businessUnit": 200,
   "accountId": "0002000010000400044",
-  "recordNumber": 1,
+  "planSequenceNumber": 1,
   "beginningBalance": "$0.00",
   "disputedAmount": "$0.00",
   "billedNotPaidDetails": {
