@@ -44,7 +44,7 @@ type: tab
       "planId": 10002,
       "principalAmount": "$20.00",
       "rateType": "F",
-      "recordCount": 1,
+      "planSequenceNumber": 1,
       "recoveryFeeBilledNotPaidAmount": "$0.00",
       "serviceFeeBilledNotPaidAmount": "$0.00",
       "status": "1"
