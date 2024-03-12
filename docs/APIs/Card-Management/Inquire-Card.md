@@ -42,6 +42,8 @@ type: tab
         "invalidPinTryCount": 0,
         "lastPinSetDate": "00/00/0000",
         "lastPinSetTime": "0",
+        "invalidPinDate": "01/02/2020",
+        "invalidPinTime": "124111",
         "status": "N"
     },
   "businessUnit": 600,
