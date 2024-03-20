@@ -46,7 +46,9 @@ type: tab
       "bnplIplanSequenceNumber": 1,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "instalmentConversionIndicator": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "052206",
@@ -69,7 +71,9 @@ type: tab
       "bnplIplanSequenceNumber": 2,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "instalmentConversionIndicator": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "052210",
@@ -92,7 +96,9 @@ type: tab
       "bnplIplanSequenceNumber": 3,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "instalmentConversionIndicator": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "052213",
@@ -115,7 +121,9 @@ type: tab
       "bnplIplanSequenceNumber": 4,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "instalmentConversionIndicator": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "052219",
@@ -138,7 +146,9 @@ type: tab
       "bnplIplanSequenceNumber": 5,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "instalmentConversionIndicator": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "052220",
@@ -161,7 +171,9 @@ type: tab
       "bnplIplanSequenceNumber": 6,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "instalmentConversionIndicator": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": " ",
@@ -184,7 +196,9 @@ type: tab
       "bnplIplanSequenceNumber": 7,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "instalmentConversionIndicator": " "
+      "instalmentConversionIndicator": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     }
   ]
 }
