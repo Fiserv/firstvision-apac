@@ -46,7 +46,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "021447",
@@ -69,7 +71,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": " ",
@@ -92,7 +96,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "022709",
@@ -115,7 +121,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": " ",
@@ -138,7 +146,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "023754",
@@ -161,7 +171,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "023911",
@@ -184,7 +196,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": " ",
@@ -207,7 +221,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     }
   ]
 }

@@ -3267,6 +3267,10 @@ paths:
           - N
           - Y
       - description: Unique identification number for cardholder billing account.
+          <br/> **This API also supports passing the paymentInstrumentId in the accountId
+          path variable. When paymentInstrumentId is provided, system identifies the
+          associated accountId. The subsequent processing remain the same as when
+          the accountId is passed.
         in: path
         name: accountId
         required: true
@@ -9122,6 +9126,11 @@ components:
           description: Unique identification number associated with the organization.
             Valid values from 1-998.
           example: '600'
+        customerName:
+          maxLength: 32
+          type: string
+          description: Account holders name used for direct debit process.
+          example: Alex Rey
         externalAccountId:
           maxLength: 17
           type: string
@@ -9146,6 +9155,14 @@ components:
             - Qual Grace Balance <br/> &nbsp; '9' - Percentage of account (cycle-ending
             minus overlimit amount) balance
           example: '1'
+        paymentChangeDate:
+          maxLength: 10
+          type: string
+          description: Date on which CMS changes the direct debit payment option in
+            the DD PAYMENT TYPE field from minimum to customer nominated or from customer
+            nominated to minimum. The format is MM/DD/YYYY or DD/MM/YYYY depending
+            on the DATE FORMAT on System Control.
+          example: 04/10/2021
         paymentExpiryDate:
           maxLength: 10
           type: string
@@ -9187,8 +9204,15 @@ components:
             This value is system generated. <br/> &nbsp; '6' - Direct debit processing
             is active for debit card transactions only. This value is system generated.  <br/>
             &nbsp; '7' - Direct debit processing is active. A customer nominated payment
-            is in effect.
+            is in effect. <br/> &nbsp; '9' - Direct debit manual cancellation.
           example: '1'
+        requestDays:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Number of days prior to the payment due date or the day of
+            the month to request direct debit payments for the account.
+          example: '4'
         routingBankID:
           maxLength: 10
           type: string
@@ -9196,6 +9220,18 @@ components:
             (ACH format) or a ten-digit bank ID (non-ACH format) to identify the financial
             institution to receive direct debit transactions for account payments.
           example: '123456'
+        suspenseEndDate:
+          maxLength: 10
+          type: string
+          description: Date from which DD process will be resumed. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 01/12/2026
+        suspenseStartDate:
+          maxLength: 10
+          type: string
+          description: Date from which DD process will be suspended. The format is
+            MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 01/02/2024
     InquirePaymentHistoryV1ResponseModel:
       type: object
       properties:
@@ -10484,6 +10520,10 @@ components:
           maxLength: 19
           type: string
           description: Unique identification number for cardholder billing account.
+            <br/> **This API also supports passing the paymentInstrumentId in the
+            accountId path variable. When paymentInstrumentId is provided, system
+            identifies the associated accountId. The subsequent processing remain
+            the same as when the accountId is passed.
           example: '0002000010000066752'
         additionalCardDetails:
           type: object
@@ -11671,6 +11711,18 @@ components:
           type: string
           description: EPP Conversion Indicator.
           example: ' '
+        foreignOriginalAmount:
+          maxLength: 24
+          type: string
+          description: The original amount of foreign transaction. Default value for
+            this field will be zeroes.
+          example: $100.00
+        foreignOriginalCurrencyCode:
+          maxLength: 3
+          type: string
+          description: The local currency code of foreign transaction. Default value
+            for this field will be zeroes.
+          example: '840'
         maskedPaymentCardNumber:
           maxLength: 19
           type: string
@@ -11811,6 +11863,18 @@ components:
           description: Effective date of the transaction, The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 26/03/2021
+        foreignOriginalAmount:
+          maxLength: 24
+          type: string
+          description: The original amount of foreign transaction. Default value for
+            this field will be zeroes.
+          example: $100.00
+        foreignOriginalCurrencyCode:
+          maxLength: 3
+          type: string
+          description: The local currency code of foreign transaction. Default value
+            for this field will be zeroes.
+          example: '840'
         maskedPaymentCardNumber:
           maxLength: 19
           type: string
@@ -11925,6 +11989,18 @@ components:
           description: Effective date of the transaction. The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 04/09/2021
+        foreignOriginalAmount:
+          maxLength: 24
+          type: string
+          description: The original amount of foreign transaction. Default value for
+            this field will be zeroes.
+          example: $100.00
+        foreignOriginalCurrencyCode:
+          maxLength: 3
+          type: string
+          description: The local currency code of foreign transaction. Default value
+            for this field will be zeroes.
+          example: '840'
         maskedPaymentCardNumber:
           maxLength: 19
           type: string
@@ -12039,6 +12115,18 @@ components:
           description: Effective date of the transaction, The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 18/08/2021
+        foreignOriginalAmount:
+          maxLength: 24
+          type: string
+          description: The original amount of foreign transaction. Default value for
+            this field will be zeroes.
+          example: $100.00
+        foreignOriginalCurrencyCode:
+          maxLength: 3
+          type: string
+          description: The local currency code of foreign transaction. Default value
+            for this field will be zeroes.
+          example: '840'
         maskedPaymentCardNumber:
           maxLength: 19
           type: string
@@ -12165,6 +12253,18 @@ components:
           description: Effective date of the transaction, The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 18/08/2021
+        foreignOriginalAmount:
+          maxLength: 24
+          type: string
+          description: The original amount of foreign transaction. Default value for
+            this field will be zeroes.
+          example: $100.00
+        foreignOriginalCurrencyCode:
+          maxLength: 3
+          type: string
+          description: The local currency code of foreign transaction. Default value
+            for this field will be zeroes.
+          example: '840'
         maskedPaymentCardNumber:
           maxLength: 19
           type: string
@@ -12299,6 +12399,18 @@ components:
           description: Effective date of the transaction. The format is MM/DD/YYYY
             or DD/MM/YYYY depending on the DATE FORMAT on the System Control.
           example: 17/08/2021
+        foreignOriginalAmount:
+          maxLength: 24
+          type: string
+          description: The original amount of foreign transaction. Default value for
+            this field will be zeroes.
+          example: $100.00
+        foreignOriginalCurrencyCode:
+          maxLength: 3
+          type: string
+          description: The local currency code of foreign transaction. Default value
+            for this field will be zeroes.
+          example: '840'
         instalmentConversionIndicator:
           maxLength: 1
           type: string
