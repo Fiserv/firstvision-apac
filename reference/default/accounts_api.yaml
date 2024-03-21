@@ -6761,6 +6761,136 @@ components:
       - productId
       type: object
       properties:
+        accountDirectDebitDetails:
+          type: object
+          properties:
+            accountType:
+              maxLength: 1
+              type: string
+              description: This field is a code that indicates the type of account
+                to which the direct debit is sent. <br/>The values are:<br/>&nbsp;
+                'D' - Demand deposit account (checking) <br/>&nbsp; 'S' - Savings
+                account.
+              example: D
+              enum:
+              - D
+              - S
+            customerName:
+              maxLength: 32
+              type: string
+              description: Account holders name used for direct debit process.
+              example: Alex Rey
+            externalAccountId:
+              maxLength: 17
+              type: string
+              description: Demand deposit account (DDA) number associated with direct
+                debit processing.
+              example: '00000001000000057'
+            nominatedPaymentAmountOrPercentage:
+              maxLength: 17
+              type: string
+              description: This field is the amount/percentage of direct debit. This
+                field either have amount or percentage depends on the value in DD
+                Nominated Type
+              example: $10.00
+            nominatedType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Code that indicates the type of customer-nominated payment.
+                The values are:<br/>&nbsp; '0' - Not used <br/> &nbsp; '1' - Fixed
+                payment amount <br/> &nbsp; '2' - Percentage of account (cycle-ending)
+                balance <br/> &nbsp; '3' - Full account (cycle-ending) balance <br/>
+                &nbsp; '8' - Qual Grace Balance <br/> &nbsp; '9' - Percentage of account
+                (cycle-ending minus overlimit amount) balance
+              example: '1'
+              enum:
+              - 0
+              - 1
+              - 2
+              - 3
+              - 8
+              - 9
+            paymentChangeDate:
+              maxLength: 10
+              type: string
+              description: Date on which CMS changes the direct debit payment option
+                in the DD PAYMENT TYPE field from minimum to customer nominated or
+                from customer nominated to minimum. The format is MM/DD/YYYY or DD/MM/YYYY
+                depending on the DATE FORMAT on System Control.
+              example: 04/10/2021
+            paymentExpiryDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing expires for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 04/11/2021
+            paymentRemittanceMethod:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Code that indicates the payment remittance method for the
+                account. <br/>The values are:<br/>&nbsp; '0' - Not used (Default)<br/>&nbsp;
+                '2' - Direct debit
+              example: '0'
+              enum:
+              - 0
+              - 2
+            paymentStartDate:
+              maxLength: 10
+              type: string
+              description: Date on which direct debit processing starts for the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 04/10/2021
+            paymentType:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: This field indicates whether direct debit processing is
+                active for this account and the payment option in effect. <br/>The
+                values are:<br/> &nbsp; '0' - Does not participate in direct debit
+                processing. A minimum payment is in effect.(Default) <br/> &nbsp;
+                '1' - Direct debit processing is active. A minimum payment is in effect.
+                This option includes past due amounts for the projected DD. . <br/>
+                &nbsp; '2' - Direct debit processing is active. A customer nominated
+                payment is in effect. This option includes past due amounts for the
+                projected DD. <br/> &nbsp; '3' - Direct debit processing has expired.
+                This value is system-generated. <br/> &nbsp; '4' - Direct debit processing
+                has been canceled due to delinquency. This value is system-generated.
+                <br/> &nbsp; '5' - Direct debit processing has been canceled for the
+                account because it reached the DD PAYMENT REVERSAL LIMIT. This value
+                is system generated. <br/> &nbsp; '6' - Direct debit processing is
+                active for debit card transactions only. This value is system generated.  <br/>
+                &nbsp; '7' - Direct debit processing is active. A customer nominated
+                payment is in effect. <br/> &nbsp; '9' - Direct debit manual cancellation.
+              example: '1'
+              enum:
+              - 0
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+              - 6
+              - 7
+              - 9
+            requestDays:
+              maximum: 99
+              maxLength: 2
+              type: integer
+              description: Number of days prior to the payment due date or the day
+                of the month to request direct debit payments for the account.
+              example: '4'
+            routingBankID:
+              maxLength: 10
+              type: string
+              description: Dual-use field that accepts a nine-digit routing/transit
+                number (ACH format) or a ten-digit bank ID (non-ACH format) to identify
+                the financial institution to receive direct debit transactions for
+                account payments.
+              example: '123456'
         addressId:
           maxLength: 15
           type: string
@@ -13393,6 +13523,11 @@ components:
               enum:
               - D
               - S
+            customerName:
+              maxLength: 32
+              type: string
+              description: Account holders name used for direct debit process.
+              example: Alex Rey
             externalAccountId:
               maxLength: 17
               type: string
@@ -13400,7 +13535,7 @@ components:
                 debit processing.
               example: '1000000057'
             nominatedPaymentAmountOrPercentage:
-              maxLength: 24
+              maxLength: 17
               type: string
               description: This field is the amount/percentage of direct debit. This
                 field either have amount or percentage depends on the value in DD
@@ -13427,6 +13562,14 @@ components:
               - 3
               - 8
               - 9
+            paymentChangeDate:
+              maxLength: 10
+              type: string
+              description: Date on which CMS changes the direct debit payment option
+                in the DD PAYMENT TYPE field from minimum to customer nominated or
+                from customer nominated to minimum. The format is MM/DD/YYYY or DD/MM/YYYY
+                depending on the DATE FORMAT on System Control.
+              example: 04/10/2021
             paymentExpiryDate:
               maxLength: 10
               type: string
@@ -13452,37 +13595,6 @@ components:
                 The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
                 on System Control.
               example: 04/10/2021
-            paymentType:
-              maximum: 9
-              maxLength: 1
-              type: integer
-              description: This field indicates whether direct debit processing is
-                active for this account and the payment option in effect. <br/>The
-                values are:<br/> &nbsp; '0' - Does not participate in direct debit
-                processing. A minimum payment is in effect.(Default) <br/> &nbsp;
-                '1' - Direct debit processing is active. A minimum payment is in effect.
-                This option includes past due amounts for the projected DD. . <br/>
-                &nbsp; '2' - Direct debit processing is active. A customer nominated
-                payment is in effect. This option includes past due amounts for the
-                projected DD. <br/> &nbsp; '3' - Direct debit processing has expired.
-                This value is system-generated. <br/> &nbsp; '4' - Direct debit processing
-                has been canceled due to delinquency. This value is system-generated.
-                <br/> &nbsp; '5' - Direct debit processing has been canceled for the
-                account because it reached the DD PAYMENT REVERSAL LIMIT. This value
-                is system generated. <br/> &nbsp; '6' - Direct debit processing is
-                active for debit card transactions only. This value is system generated.  <br/>
-                &nbsp; '7' - Direct debit processing is active. A customer nominated
-                payment is in effect
-              example: '1'
-              enum:
-              - 0
-              - 1
-              - 2
-              - 3
-              - 4
-              - 5
-              - 6
-              - 7
             routingBankID:
               maxLength: 10
               type: string
@@ -13491,6 +13603,20 @@ components:
                 the financial institution to receive direct debit transactions for
                 account payments.
               example: '123456'
+            suspenseEndDate:
+              maxLength: 10
+              type: string
+              description: Date from which DD process will be resumed. The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+                Control.
+              example: 01/12/2026
+            suspenseStartDate:
+              maxLength: 10
+              type: string
+              description: Date from which DD process will be suspended. The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+                Control.
+              example: 01/02/2024
     UpdateDirectDebitControlV1ResponseModel:
       type: object
       properties:
@@ -13517,6 +13643,11 @@ components:
                 'D' - Demand deposit account (checking) <br/> &nbsp; 'S' - Savings
                 account
               example: D
+            customerName:
+              maxLength: 32
+              type: string
+              description: Account holders name used for direct debit process.
+              example: Alex Rey
             externalAccountId:
               maxLength: 17
               type: string
@@ -13544,6 +13675,14 @@ components:
                 &nbsp; '9' - Percentage of account (cycle-ending minus overlimit amount)
                 balance
               example: '1'
+            paymentChangeDate:
+              maxLength: 10
+              type: string
+              description: Date on which CMS changes the direct debit payment option
+                in the DD PAYMENT TYPE field from minimum to customer nominated or
+                from customer nominated to minimum. The format is MM/DD/YYYY or DD/MM/YYYY
+                depending on the DATE FORMAT on System Control.
+              example: 04/10/2021
             paymentExpiryDate:
               maxLength: 10
               type: string
@@ -13586,7 +13725,7 @@ components:
                 is system generated. <br/> &nbsp; '6' - Direct debit processing is
                 active for debit card transactions only. This value is system generated.  <br/>
                 &nbsp; '7' - Direct debit processing is active. A customer nominated
-                payment is in effect
+                payment is in effect. <br/> &nbsp; '9' - Direct debit manual cancellation.
               example: '1'
             routingBankID:
               maxLength: 10
@@ -13596,6 +13735,26 @@ components:
                 the financial institution to receive direct debit transactions for
                 account payments.
               example: '123456'
+            suspenseEndDate:
+              maxLength: 10
+              type: string
+              description: Date from which DD process will be resumed. The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+                Control.
+              example: 01/12/2026
+            suspenseStartDate:
+              maxLength: 10
+              type: string
+              description: Date from which DD process will be suspended. The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+                Control.
+              example: 01/02/2024
+        informationalMessage:
+          type: object
+          description: This field contains the informational message upon succesful
+            response.
+          example: 'V5BSXXXXX: DD cntls updated.'
+          maxLength: 60
     UpdatePricingControlV1ReqModel:
       type: object
       properties:

@@ -10,7 +10,7 @@ Please click on the below link to explore the specific API of interest
 
 - [Board Account](./?path=docs/APIs/Account-Management/Board-Account.md)
 
-- [Directed Post Payments](./?path=docs/APIs/Account-Management/Directed-Post-Payments.md)
+- [Directed Post Payment](./?path=docs/APIs/Account-Management/Directed-Post-Payments.md)
 
 - [Inquire Account](./?path=docs/APIs/Account-Management/Inquire-Account.md)
 
@@ -42,9 +42,9 @@ Please click on the below link to explore the specific API of interest
 
 - [List Plans](./?path=docs/APIs/Account-Management/List-Plans.md)
 
-- [List Transactions by Date Range](./?path=docs/APIs/Account-Management/List-Transactions-by-Date-Range.md)
+- [List Transactions by Date Range](./?path=docs/APIs/Account-Management/List-Transactions-by-Date-Range.md) 
 
-- [List Transactions by Date Range V2](./?path=docs/APIs/Account-Management/List-Transactions-by-Date-Range-V2.md)
+- [List Transactions by Date Range V2](./?path=docs/APIs/Account-Management/List-Transactions-by-Date-Range-V2.md) 
 
 - [List Unbilled Transactions](./?path=docs/APIs/Account-Management/List-unbilled-Transactions.md)
 
