@@ -19,7 +19,8 @@ titles: Request, Response, Error
   "authorizationAmount": "1.00",
   "transactionDescription": "Bill Payments",
   "paymentDate": "20/10/2023",
-  "billerCode": "123"
+  "billerCode": "123",
+  "settlementDate": "10/01/2022"
 }
 ```
 
@@ -37,7 +38,8 @@ type: tab
   "internalReferenceNumber": "3912181393194000",
   "maskedPaymentCardNumber": "000484680XXXXXX9405",
   "uniqueTransactionId": "APP17977700222011344330001112345678",
-  "effectiveDate": "10/01/2022"
+  "effectiveDate": "10/01/2022",
+  "settlementDate": "10/01/2022"
 }
 ```
 
