@@ -112,6 +112,20 @@ titles: Request, Response, Error
     }
   },
   "accountDetails": {
+    "accountDirectDebitDetails": {
+      "accountType": "D",
+      "customerName": "Alex Rey",
+      "externalAccountId": "00000001000000057",
+      "nominatedPaymentAmountOrPercentage": "$10.00",
+      "nominatedType": 1,
+      "paymentChangeDate": "04/10/2021",
+      "paymentExpiryDate": "04/11/2021",
+      "paymentRemittanceMethod": 2,
+      "paymentStartDate": "04/10/2021",
+      "paymentType": 1,
+      "requestDays": 4,
+      "routingBankID": "123456"
+    },
     "corporateId": "",
     "primaryAccountFlag": " ",
     "shortName": "",

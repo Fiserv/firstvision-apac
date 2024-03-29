@@ -34,17 +34,19 @@
 - Inquire Loan Schedule: Label installmentConversionFeeAmount changed to instalmentConversionFeeAmount in response and Label name changed from recordNumber to planSequenceNumber in response
 - Close Loan: Label name changed from recordNumber to planSequenceNumber in response
 - Inquire Plan Controls - Field typeOfLoan type changed to string and description for valid value '0' added for typeOfLoan in response
-- Board Entities: directDebitDetails group under accountDetails added in request
-- Board Entities V2: directDebitDetails group under accountDetails added in request
-- Board Account: directDebitDetails group added in request
-- Inquire Direct Debit Controls: paymentChangeDatexxxx, paymentRequestedDaysxxxx added in response
-- Update Direct Debit Controls: paymentChangeDatexxxx, paymentRequestedDaysxxxx added in request and response
+- Board Entities: accountDirectDebitDetails group with DD related fields added under accountDetails in request
+- Board Entities V2: accountDirectDebitDetails group with DD related fields added under accountDetails in request
+- Board Account: accountDirectDebitDetails group with DD related fields added under accountDetails in request
+- Inquire Direct Debit Controls: paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate and customerName added in response. Value '9' added in paymentType description in response.
+- Update Direct Debit Controls: paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate and customerName added in request/response. informationalMessage added in response. maxLength updated from 24 to 17 for nominatedPaymentAmountOrPercentage in request. Value '9' added in paymentType enum and it's description in response/request.
 - List Billed Transactions: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Unbilled Transactions: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Outstanding Transactions: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - Inquire Statement Transaction Details: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Transactions by Date Range: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Transactions by Date Range V2: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
+- Bill Payments: settlementDate added in request/response.
+- Balance Transfer: settlementDate added in request/response.
 
 ### New APIs
 
@@ -76,18 +78,19 @@ This API is used for push provisioning of Master Card. Card push provisioning re
 | 14 | Loan Management | Inquire Loan Schedule | <ul> <li> Label installmentConversionFeeAmount changed to instalmentConversionFeeAmount in response </li> <li> Label name changed from recordNumber to planSequenceNumber in response |
 | 15 | Loan Management | Close Loan | <ul> <li> Label name changed from recordNumber to planSequenceNumber in response |
 | 16 | Loan Management | Inquire Plan Controls | <ul> <li> Field typeOfLoan type changed to string </li> <li> New value '0' added in description for typeOfLoan in response |
-| 17 | Miscellaneous | Board Entities | <ul> <li> directDebitDetails group under accountDetails added in request |
-| 18 | Miscellaneous | Board Entities V2 | <ul> <li> directDebitDetails group under accountDetails added in request |
-| 19 | Account Management | Board Account | <ul> <li> directDebitDetails group added in request |
-| 20 | Account Management | Inquire Direct Debit Controls | <ul> <li> paymentChangeDatexxxx, paymentRequestedDaysxxxx added in response |
-| 21 | Account Management | Update Direct Debit Controls | <ul> <li> paymentChangeDatexxxx, paymentRequestedDaysxxxx added in request and response|
+| 17 | Miscellaneous | Board Entities | <ul> <li> accountDirectDebitDetails group with DD related fields added under accountDetails in request |
+| 18 | Miscellaneous | Board Entities V2 | <ul> <li> accountDirectDebitDetails group with DD related fields added under accountDetails in request |
+| 19 | Account Management | Board Account | <ul> <li> accountDirectDebitDetails group with DD related fields added under accountDetails in request |
+| 20 | Account Management | Inquire Direct Debit Controls | <ul> <li> paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate and customerName added in response </li> <li> Value '9' added in paymentType description in response |
+| 21 | Account Management | Update Direct Debit Controls | <ul> <li> paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate and customerName added in request/response. </li> <li> informationalMessage added in response. </li> <li> maxLength updated from 24 to 17 for nominatedPaymentAmountOrPercentage in request. </li> <li> Value '9' added in paymentType enum and it's description in response/request |
 | 22 | Account Management | List Billed Transactions | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 23 | Account Management | List Outstanding Authorizations | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 24 | Account Management | List Unbilled Transactions || <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 25 | Account Management | Inquire Statement Transaction Details | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 26 | Account Management | List Transactions by Date Range | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 27 | Account Management | List Transactions by Date Range V2 | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
-
+| 28 | Authorizations | Bill Payments | <ul> <li> settlementDate added in request/response |
+| 29 | Authorizations | Balance Transfer | <ul> <li> settlementDate added in request/response |
 
 ### Deleted APIs
 
