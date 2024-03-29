@@ -41,6 +41,20 @@ titles: Request, Response, Error
   "isWaiveAnnualMembershipFeeEnabled": 0,
   "isSupressTokenEnabled": 0,
   "coreBankingIndicator": " ",
+  "accountDirectDebitDetails": {
+    "accountType": "D",
+    "customerName": "Alex Kiran",
+    "externalAccountId": "000010000111058",
+    "nominatedPaymentAmountOrPercentage": "13.00",
+    "nominatedType": 1,
+    "paymentChangeDate": "05/10/2025",
+    "paymentExpiryDate": "31/12/2025",
+    "paymentRemittanceMethod": 2,
+    "paymentStartDate": "04/10/2025",
+    "paymentType": 1,
+    "requestDays": 5,
+    "routingBankID": "7734567"
+  },
   "pctOverrideDetails": {
     "pctOverride": " ",
     "pctOverrideStartDate": "00/00/0000",

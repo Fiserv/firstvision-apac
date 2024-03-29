@@ -1,6 +1,6 @@
 # List Transactions by Date Range V2
 
-This API is used to fetch the list of various transactions like authorizations, memos, outstanding authorizations, unbilled and billed transactions for a given date range and account Id.
+This API is used to fetch the list of various transactions like authorizations, memos, outstanding authorizations, unbilled and billed transactions for a given date range and account Id/paymentInstrumentId.
 
 ## Endpoint
 
@@ -275,7 +275,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId in request. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 | `startDate` | Payload | *date* | 10 | Start date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
 | `endDate` | Payload | *date* | 10 | End date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
 
