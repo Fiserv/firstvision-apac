@@ -1,6 +1,6 @@
 # List Transaction Instalments
 
-This API is used to fetch details of all transaction instalment loans against an account.
+This API is used to fetch details of all transaction instalment loans against an accountId/paymentInstrumentId.
 
 ## Endpoint
 
@@ -66,7 +66,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId path variable. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 
 ### Error Codes
 

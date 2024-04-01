@@ -169,8 +169,8 @@ paths:
   /v1/loans/cashBalanceConversion:
     post:
       description: This API is used to validate if the Cash balance conversion is
-        allowed for given account. This API will be created to cater to Conversion
-        steps, depending on the Type of Request.
+        allowed for given accountId/paymentInstrumentId. This API will be created
+        to cater to Conversion steps, depending on the Type of Request.
       operationId: CashBalanceConversion
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -328,8 +328,8 @@ paths:
   /v1/loans/cashBalanceSimulation:
     post:
       description: This API is used to validate if the Cash balance simulation is
-        allowed for given account. This API will be created to cater Simulation steps,
-        depending on the Type of Request.
+        allowed for given accountId/paymentInstrumentId. This API will be created
+        to cater Simulation steps, depending on the Type of Request.
       operationId: CashBalanceSimulation
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -486,10 +486,11 @@ paths:
       x-proxy-name: Cash Balance Simulation
   /v1/loans/statementBalanceConversion:
     post:
-      description: This API is used to convert statement balance into Instalment.
-        API first validates the given plans are eligible for statement balance conversion,
-        if eligible then system converts into instalment for the requested term and
-        also responds with loan scheduling details.
+      description: This API is used to convert statement balance into Instalments
+        for a given accountId/paymentInstrumentId. API first validates the given plans
+        are eligible for statement balance conversion, if eligible then system converts
+        into instalment for the requested term and also responds with loan scheduling
+        details.
       operationId: StatementBalanceConversion
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -646,9 +647,9 @@ paths:
       x-proxy-name: Statement Balance Conversion
   /v1/loans/statementBalanceSimulation:
     post:
-      description: This API is used to validate if given plans are eligible for statement
-        balance conversion, if eligible then system responds with loan scheduling
-        details.
+      description: This API is used to validate if given plans for an accountId/paymentInstrumentId
+        are eligible for statement balance conversion, if eligible then system responds
+        with loan scheduling details.
       operationId: StatementBalanceSimulation
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -806,9 +807,9 @@ paths:
   /v1/loans/transactionConversion:
     post:
       description: This API supports both single and multiple transaction conversion
-        into instalments. API first validates if given transactions are eligible to
-        convert into instalment. If transactions are eligible, then system converts
-        given transactions into instalment.
+        into instalments for a given accountId/paymentInstrumentId. API first validates
+        if given transactions are eligible to convert into instalment. If transactions
+        are eligible, then system converts given transactions into instalment.
       operationId: TransactionConversion
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -965,9 +966,9 @@ paths:
       x-proxy-name: Transaction Instalment Conversion
   /v1/loans/transactionSimulation:
     post:
-      description: This API is used to validate if given transactions are eligible
-        to convert into instalment. If transactions are eligible for conversion, then
-        response will show the loan scheduling details.
+      description: This API is used to validate if given transactions for an accountId/paymentInstrumentId
+        are eligible to convert into instalment. If transactions are eligible for
+        conversion, then response will show the loan scheduling details.
       operationId: TransactionInstalmentSimulation
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -1463,7 +1464,7 @@ paths:
   /v1/loans/{accountId}/instalmentOffers:
     get:
       description: This API is used to fetch instalment offers for a given loan plan
-        id, Loan Amount and account id.
+        id, Loan Amount and accountId/paymentInstrumentId.
       operationId: InquireInstalmentOffers
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -1540,6 +1541,10 @@ paths:
           type: integer
           example: '10009'
       - description: Unique identification number for cardholder billing account.
+          <br/> **This API also supports passing the paymentInstrumentId in the accountId
+          path variable. When paymentInstrumentId is provided, system identifies the
+          associated accountId. The subsequent processing remain the same as when
+          the accountId is passed.
         in: path
         name: accountId
         required: true
@@ -1628,8 +1633,8 @@ paths:
       x-proxy-name: Inquire Instalment Offers
   /v1/loans/{accountId}/listLoans:
     get:
-      description: This API is used to fetch list of loans associated with an account
-        id given.
+      description: This API is used to fetch list of loans associated with an accountId/paymentInstrumentId
+        given.
       operationId: ListLoansByAccount
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -1693,6 +1698,10 @@ paths:
           type: integer
           example: '600'
       - description: Unique identification number for cardholder billing account.
+          <br/> **This API also supports passing the paymentInstrumentId in the accountId
+          path variable. When paymentInstrumentId is provided, system identifies the
+          associated accountId. The subsequent processing remain the same as when
+          the accountId is passed.
         in: path
         name: accountId
         required: true
@@ -1793,8 +1802,9 @@ paths:
   /v1/loans/{accountId}/listStatementEligiblePlanBalance:
     get:
       description: This API is used to fetch all the plan segments eligible for SIP
-        conversion. The Loan conversion Eligibility for the Plan will be checked and
-        only qualifying plans and balances will be listed.
+        conversion for a given accountId/paymentInstrumentId. The Loan conversion
+        Eligibility for the Plan will be checked and only qualifying plans and balances
+        will be listed.
       operationId: ListStatementEligiblePlanBalance
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -1858,6 +1868,10 @@ paths:
           type: integer
           example: '200'
       - description: Unique identification number for cardholder billing account.
+          <br/> **This API also supports passing the paymentInstrumentId in the accountId
+          path variable. When paymentInstrumentId is provided, system identifies the
+          associated accountId. The subsequent processing remain the same as when
+          the accountId is passed.
         in: path
         name: accountId
         required: true
@@ -1958,7 +1972,7 @@ paths:
   /v1/loans/{accountId}/listTransactionInstalments:
     get:
       description: This API is used to fetch details of all transaction instalment
-        loans against an account.
+        loans against an accountId/paymentInstrumentId.
       operationId: ListTransactionInstalments
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -2022,6 +2036,10 @@ paths:
           type: integer
           example: '200'
       - description: Unique identification number for cardholder billing account.
+          <br/> **This API also supports passing the paymentInstrumentId in the accountId
+          path variable. When paymentInstrumentId is provided, system identifies the
+          associated accountId. The subsequent processing remain the same as when
+          the accountId is passed.
         in: path
         name: accountId
         required: true
@@ -2300,7 +2318,7 @@ paths:
     get:
       description: This API is used to fetch Instalment plan balance and pro rata
         interest that would be charged in case the customer wants to close a Loan
-        plan on a given date.
+        plan on a given date for a given accountId/paymentInstrumentId.
       operationId: InquirePayoffQuote
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -2364,6 +2382,10 @@ paths:
           type: integer
           example: '600'
       - description: Unique identification number for cardholder billing account.
+          <br/> **This API also supports passing the paymentInstrumentId in the accountId
+          path variable. When paymentInstrumentId is provided, system identifies the
+          associated accountId. The subsequent processing remain the same as when
+          the accountId is passed.
         in: path
         name: accountId
         required: true
@@ -2647,7 +2669,7 @@ paths:
   /v1/loans/{accountId}/transactionInstalmentDetails:
     get:
       description: This API is used to fetch all the loan details converted from transactions
-        into instalments for a given account id.
+        into instalments for a given accountId/paymentInstrumentId.
       operationId: InquireTransactionInstalmentDetails
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -2711,6 +2733,10 @@ paths:
           type: integer
           example: '600'
       - description: Unique identification number for cardholder billing account.
+          <br/> **This API also supports passing the paymentInstrumentId in the accountId
+          path variable. When paymentInstrumentId is provided, system identifies the
+          associated accountId. The subsequent processing remain the same as when
+          the accountId is passed.
         in: path
         name: accountId
         required: true
@@ -2975,6 +3001,10 @@ components:
           maxLength: 19
           type: string
           description: Unique identification number for cardholder billing account.
+            <br/> **This API also supports passing the paymentInstrumentId in the
+            accountId in request. When paymentInstrumentId is provided, system identifies
+            the associated accountId. The subsequent processing remain the same as
+            when the accountId is passed.
           example: '0002000010000403266'
         annualPercentageRate:
           maxLength: 8
@@ -3133,6 +3163,10 @@ components:
           maxLength: 19
           type: string
           description: Unique identification number for cardholder billing account.
+            <br/> **This API also supports passing the paymentInstrumentId in the
+            accountId in request. When paymentInstrumentId is provided, system identifies
+            the associated accountId. The subsequent processing remain the same as
+            when the accountId is passed.
           example: '0002000010000403266'
         annualPercentageRate:
           maxLength: 8
@@ -6363,6 +6397,10 @@ components:
           maxLength: 19
           type: string
           description: Unique identification number for cardholder billing account.
+            <br/> **This API also supports passing the paymentInstrumentId in the
+            accountId in request. When paymentInstrumentId is provided, system identifies
+            the associated accountId. The subsequent processing remain the same as
+            when the accountId is passed.
           example: '0006000011000000509'
         annualPercentageRate:
           maxLength: 8
@@ -6613,6 +6651,10 @@ components:
           maxLength: 19
           type: string
           description: Unique identification number for cardholder billing account.
+            <br/> **This API also supports passing the paymentInstrumentId in the
+            accountId in request. When paymentInstrumentId is provided, system identifies
+            the associated accountId. The subsequent processing remain the same as
+            when the accountId is passed.
           example: '0006000011000000509'
         annualPercentageRate:
           maxLength: 8
@@ -6863,6 +6905,10 @@ components:
           maxLength: 19
           type: string
           description: Unique identification number for cardholder billing account.
+            <br/> **This API also supports passing the paymentInstrumentId in the
+            accountId in request. When paymentInstrumentId is provided, system identifies
+            the associated accountId. The subsequent processing remain the same as
+            when the accountId is passed.
           example: '0006000011000000509'
         annualPercentageRate:
           maxLength: 8
@@ -8024,6 +8070,10 @@ components:
           maxLength: 19
           type: string
           description: Unique identification number for cardholder billing account.
+            <br/> **This API also supports passing the paymentInstrumentId in the
+            accountId in request. When paymentInstrumentId is provided, system identifies
+            the associated accountId. The subsequent processing remain the same as
+            when the accountId is passed.
           example: '0006000011000000509'
         annualPercentageRate:
           maxLength: 8
