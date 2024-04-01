@@ -32,7 +32,7 @@ titles: Request, Response, Error
   "pinTransferActionCode": "PNTR",
   "pinTransferMemo": "PIN transfer memo",
   "issueDeliveryOption": 1,
-  "isSuppressPinEnabled": "0"
+  "isPinSuppressionEnabled": 0
 }
 
 ```

@@ -16,7 +16,7 @@ titles: Request, Response, Error
 ```json
 {
   "directDebitDetails": {
-    "paymentRemittanceMethod": 0,
+    "paymentRemittanceMethod": 2,
     "paymentStartDate": "04/10/2021",
     "paymentExpiryDate": "04/11/2022",
     "routingBankID": "123456",
@@ -24,7 +24,12 @@ titles: Request, Response, Error
     "externalAccountId": "1000000057",
     "nominatedType": 1,
     "nominatedPaymentAmountOrPercentage": "$10.00",
-    "paymentType": 1
+    "paymentType": 1,
+    "paymentChangeDate": "04/10/2025",
+    "customerName": "Alex Rey",
+    "suspenseStartDate": "00/00/0000",
+    "suspenseEndDate": "31/12/2999",
+    "requestDays": 3
   }
 }
 ```
@@ -38,7 +43,7 @@ type: tab
   "businessUnit": 600,
   "accountId": "0006000011000000103",
   "directDebitDetails": {
-    "paymentRemittanceMethod": 0,
+    "paymentRemittanceMethod": 2,
     "paymentStartDate": "04/10/2021",
     "paymentExpiryDate": "04/11/2022",
     "routingBankID": "123456",
@@ -46,8 +51,14 @@ type: tab
     "externalAccountId": "1000000057",
     "nominatedType": 1,
     "nominatedPaymentAmountOrPercentage": "$10.00",
-    "paymentType": 1
-  }
+    "paymentType": 1,
+    "paymentChangeDate": "04/10/2025",
+    "customerName": "Alex Rey",
+    "suspenseStartDate": "00/00/0000",
+    "suspenseEndDate": "31/12/2999",
+    "requestDays": 3
+  },
+  "informationalMessage": "Direct debit changes will reflect from next cycle."
 }
 ```
 
