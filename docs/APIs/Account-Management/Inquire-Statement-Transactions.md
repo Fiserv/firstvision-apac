@@ -101,7 +101,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1,
       "merchantCountryCode": "AUS",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     }
   ],
   "correspondingCustomerId": " ",
