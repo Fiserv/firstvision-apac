@@ -3,6 +3,7 @@
 ## Date: 13/06/2024
 
 ### General Changes
+- Restricting auto sign-on IDs from LUI access.
 
 #### Documentation Change in Swagger
 
@@ -85,7 +86,7 @@ This API is used for push provisioning of Master Card. Card push provisioning re
 | 21 | Account Management | Update Direct Debit Controls | <ul> <li> paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate and customerName added in request/response. </li> <li> informationalMessage added in response. </li> <li> maxLength updated from 24 to 17 for nominatedPaymentAmountOrPercentage in request. </li> <li> Value '9' added in paymentType enum and it's description in response/request |
 | 22 | Account Management | List Billed Transactions | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 23 | Account Management | List Outstanding Authorizations | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
-| 24 | Account Management | List Unbilled Transactions || <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
+| 24 | Account Management | List Unbilled Transactions | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 25 | Account Management | Inquire Statement Transaction Details | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 26 | Account Management | List Transactions by Date Range | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 27 | Account Management | List Transactions by Date Range V2 | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |

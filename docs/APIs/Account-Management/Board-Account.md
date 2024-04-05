@@ -359,5 +359,52 @@ Below table provides the list of application's error code and its description.
 | `V5DB4001SF` | Account not found amax |
 | `V5DB4001SH` | AMED record not found |
 | `V5DB4001SJ` | ZAMDX rec not found |
+| `V5BS0628EA` | Pay remit method valid values are 0 through 2 |
+| `V5BS0628EB` | When cms logo is set to Y, allowed values are 0, 1 or 2 |
+| `V5BS0628EC` | Pay remit method not editable when debit active at cms logo level |
+| `V5BS0628SV` | Invalid pay remittance method |
+| `V5BS0616EA` | DD start date must be equal or greater than today's date |
+| `V5BS0616EB` | DD start date must be less than DD expire date |
+| `V5BS0616EC` | DD pymt start date not editable when debit active at logo |
+| `V5BS0616SD` | ACH start date is not zero |
+| `V5BS0614EA` | Expiry date must be equal or greater than next processing date or zeros |
+| `V5BS0614EB` | ACH pmt exp not editable when debit active at logo |
+| `V5BS0614SB` | Date ACH payment expire is not zero |
+| `V5BS0612EA` | ACH routing nbr not editable when debit active at logo |
+| `V5BS0612EK` | DD routing bank id 1st byte should be equalto zero and the last 9 bytes must be> zeros
+| `V5BS0612SA` | Payment ACH rt number is not zero |
+| `V5BS0621EA` | ACH acct type not editable when debit active at logo |
+| `V5BS0621SV` | Invalid payment ACH debit type |
+| `V5BS0622EA` | DD account nbr required field |
+| `V5BS0622EB` | ACH account nbr not editable when debit active at logo |
+| `V5BS0622SC` | Payment ACH db number other than zero and spaces |
+| `V5BS0626EA` | DD NOM IND mst b 1,2,3,8,9 and dd amt/pct greater than or equal to 0 for dd pmt to 2 or 7 |
+| `V5BS0626EB` | DD nom ind not editable when debit active at logo |
+| `V5BS0626SV` | Invalid nominated ACH amount pricing control table flag |
+| `V5BS0627EA` | DD nominated payment amount/percent must be equal to zero when dd nom ind is 0 or 3 OR 8 |
+| `V5BS0627EB` | DD nominated payment amount/percent must be greater than zero when DD nom ind is 1 or 2 or 9 |
+| `V5BS0627EC` | DD nominated payment amount/percent must be less than 100% and not 0 when DD nom indicator is 2 or 9 |
+| `V5BS0627EE` | Nominated ACH pct/amt not editable when debit active at logo |
+| `V5BS0627SG` | ACH pct amount is not zero |
+| `V5BS0624SV` | AMBS - Invalid payment ACH flag |
+| `V5BS0624EA` | Valid entries are 0, 1, 2 & 7 |
+| `V5BS0624EB` | Logo doesn't allow DD/DC processing |
+| `V5BS0624EC` | DD/DC processing not allowed for this account |
+| `V5BS0624EF` | DD expre DT mst b 0 or > next process DT to reinstate direct debit |
+| `V5BS0624EG` | PMT REV CNTR mst be < X, PMT REV LMT on logo to reinstate dir dbt |
+| `V5BS0624EH` | ACH R/T nbr required |
+| `V5BS0626EC` | DD payment type should be set as 2, when DD nom ind is 8 |
+| `V5BS0626ED` | DD nom ind mst be 0,1,2,3,8 OR 9 |
+| `V5BS9417ED` | DD nom acct name not editable when debit active at logo |
+| `V5BS9417EE` | Acct name/suspense dates not editable when debit active at logo |
+| `V5BS9417EA` | DD nom acct name not editable when dd payment is inactive  |
+| `V5BS0631EA` | 017Must be equal or greater than cms file date |
+| `V5BS0631EB` | 048Change dt mst b >= start dt and < expire dt, unless a dt is 0 |
+| `V5BS0631EC` | 048Change dt mst b >= start dt and < expire dt, unless a dt is 0 |
+| `V5BS0631ED` | DD pmt change date not editable when debit active at logo |
+| `V5BS0615EA` | 040Must be zero when logo dd payment flag is S or D |
+| `V5BS0615EB` | 041Must be 1 through 31 when logo dd payment flag is P or R |
+| `V5BS0615EC` | 024Request day should be between 00 and 31 |
+| `V5BS0615ED` | Request lead day not editable when debit active at logo |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
