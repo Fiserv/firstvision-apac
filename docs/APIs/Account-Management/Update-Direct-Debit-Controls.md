@@ -139,5 +139,25 @@ Below table provides the list of application's error code and its description.
 | `V5BS0624EH` | ACH R/T nbr required |
 | `V5BS0626EC` | DD payment type should be set as 2, when DD nom ind is 8 |
 | `V5BS0626ED` | DD nom ind mst be 0,1,2,3,8 OR 9 |
+| `V5BS9417ED` | DD nom acct name not editable when debit active at logo |
+| `V5BS9418ED` | DD suspense dates not editable when debit active at logo |
+| `V5BS9417EE` | Acct name/suspense dates not editable when debit active at logo |
+| `V5BS9417EA` | DD nom acct name not editable when dd payment is inactive  |
+| `V5BS9418EA` | Suspense start date is less than date next process |
+| `V5BS9419EA` | Suspense end date is less than start date |
+| `V5BS9418EB` | Suspense start/end date must be zero when dd is not active |
+| `V5BS4001IA` | Direct debit changes will reflect from next cycle |
+| `V5BS0631EA` | 017Must be equal or greater than cms file date |
+| `V5BS0631EB` | 048Change dt mst b >= start dt and < expire dt, unless a dt is 0 |
+| `V5BS0631EC` | 048Change dt mst b >= start dt and < expire dt, unless a dt is 0 |
+| `V5BS0631ED` | DD pmt change date not editable when debit active at logo |
+| `V5BS0615EA` | 040Must be zero when logo dd payment flag is S or D |
+| `V5BS0615EB` | 041Must be 1 through 31 when logo dd payment flag is P or R |
+| `V5BS0615EC` | 024Request day should be between 00 and 31 |
+| `V5BS0615ED` | Request lead day not editable when debit active at logo |
+
+
+
+
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

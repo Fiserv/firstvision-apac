@@ -105,5 +105,6 @@ Below table provides the list of application's error code and its description.
 | `V5DC4001SB` | Org security failed |
 | `V5DC4002SB` | Acct is purged/fraud/closed/cgoff or add pending/NOTFND |
 | `V5DC4002SD` | Acct warning code is 1/2/3/4/8 |
+| `V5RQ4030SB` | Settlement date should be greater than auth date |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
