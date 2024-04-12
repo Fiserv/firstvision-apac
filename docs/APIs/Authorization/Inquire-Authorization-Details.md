@@ -27,7 +27,7 @@ type: tab
     "accountOpenDate": "01/05/2021",
     "cardFeeDate": "00/00/0000",
     "chargeOffDate": "00/00/0000",
-    "chargeOffReason": "",
+    "chargeOffReason": " ",
     "chargeOffStatus": "0",
     "creditClassification": "N1",
     "creditLimitOverlimitPercentage": "$1.00",
@@ -47,9 +47,9 @@ type: tab
   "authorizationCode": "055358",
   "availableCredit": "$8,946.36",
   "blockAndWarningCodeDetails": {
-    "blockCode1": "",
+    "blockCode1": " ",
     "blockCode1Date": "00/00/0000",
-    "blockCode2": "",
+    "blockCode2": " ",
     "blockCode2Date": "00/00/0000",
     "warningCode": "0000000"
   },

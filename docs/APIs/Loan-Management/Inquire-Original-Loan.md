@@ -83,7 +83,7 @@ type: tab
     "paymentTermIndicator": "0"
   },
   "planId": 70003,
-  "productCode": "",
+  "productCode": " ",
   "rebatePeriodIndicator": 0,
   "planSequenceNumber": 1,
   "secondRebateDetails": {

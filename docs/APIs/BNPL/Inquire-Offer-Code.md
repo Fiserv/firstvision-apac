@@ -37,7 +37,7 @@ type: tab
         "amountOrPercentage": "0",
         "minimumAmount": "$0.00",
         "maximumAmount": "$0.00",
-        "type": ""
+        "type": " "
     },
     "snoozeDetails": {
         "type": 0,
