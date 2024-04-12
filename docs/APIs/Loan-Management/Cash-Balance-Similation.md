@@ -88,7 +88,7 @@ type: tab
         "conversionFeeAmount": "$10.00",
         "prorataInterestAmount": "$0.00",
         "instalmentAmount": "$16.67",
-        "loanReferenceNumber": "",
+        "loanReferenceNumber": " ",
         "totalPrincipalAmount": "$100.00",
         "planIdDescription": "CIP EPP PLAN FEE BASED"
     },
