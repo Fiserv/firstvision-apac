@@ -54,7 +54,7 @@ type: tab
   "disbrusementCreditDetails": {
     "accountIndicator": 0,
     "bankId": "0",
-    "disbursementAccountId": "",
+    "disbursementAccountId": " ",
     "disbursementDate": "00/00/0000"
   },
   "initializedAmountDetails": {
@@ -127,7 +127,7 @@ type: tab
     "lastTopUpAmount": "$0.00",
     "lastTopUpRequestDate": "00/00/0000",
     "redrawExpiryDate": "00/00/0000",
-    "restructureLetterId": "",
+    "restructureLetterId": " ",
     "restructureReason": 0,
     "topUpExpiryDate": "30/11/2000"
   }

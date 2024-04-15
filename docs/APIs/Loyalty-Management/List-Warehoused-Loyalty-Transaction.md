@@ -26,7 +26,7 @@ type: tab
   "accountId": "0000000000000000001",
   "businessUnit": 600,
   "schemeId": "10101",
-  "schemeName": "",
+  "schemeName": " ",
   "transactionList": [
     {
       "effectiveDate": "15/08/2025",
