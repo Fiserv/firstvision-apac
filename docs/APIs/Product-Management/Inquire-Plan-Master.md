@@ -43,11 +43,11 @@ type: tab
   "planId": 10002,
   "planType": "R",
   "promotionalPlanDetails": {
-    "cancellationLetterId": "",
+    "cancellationLetterId": " ",
     "cancellationPlanRollOverMethod": 0,
     "cancellationRollOverPlanId": 0,
     "delinquencyLevelToCancel": 0,
-    "expirationLetter": "",
+    "expirationLetter": " ",
     "expirationPlanRollOverMethod": 0,
     "expirationRollOverPlanId": 0,
     "expirationRollover": 0,

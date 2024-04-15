@@ -55,10 +55,6 @@
 
 This API is used for push provisioning of Master Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a Apple Pay wallet.
 
-#### GooglePay - SamsungPay MDES Push Provisioning
-
-This API is used for push provisioning of Master Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a GooglePay or SamsungPay wallet.
-
 ### Updated APIs
 
 | S.No |  Category | API Name |  Change |

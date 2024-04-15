@@ -5191,7 +5191,7 @@ components:
               type: string
               description: List of parameters used to generate a signature. Order
                 is dataValidUntilTimestamp|encryptedPaymentCardNumber|expiryDate.
-              example: dataValidUntilTimestamp|encryptedPaymentCardNumber|expiryDate
+              example: dataValidUntilTimestamp|accountNumber|accountExpiry
             keyAlias:
               maxLength: 10
               type: string
@@ -5211,33 +5211,15 @@ components:
               type: string
               description: Algorithm used for signature generation.
               example: RSA-SHA256
-            tavVersion:
+            version:
               maxLength: 1
               type: string
               description: This field identify vesrion of TAV.
               example: '4'
-        dataInincludedFieldsInOrder:
-          maxLength: 51
-          type: string
-          description: Data included in list of parameters used to generate a signature.
-            Order is dataValidUntilTimestamp|encryptedPaymentCardNumber|expiryDate.
-          example: '2023-03-3T16: 10:59Z|217E8A00536C7A101B055563FBF49C9A|04/24'
         encryptedData:
           type: object
           properties:
-            encryptedDataVersion:
-              maxLength: 32
-              type: string
-              description: The version number to be used for building encrypted payload.
-                This should be '1' as per ApplePay specifications.
-              example: '1'
-            encryptedPaymentCardNumber:
-              maxLength: 32
-              type: string
-              description: Unique identification number that appears on the front
-                of the card (PAN) in encrypted format.
-              example: 217E8A00536C7A101B055563FBF49C9A
-            expiryDate:
+            expiration:
               maxLength: 5
               type: string
               description: Date on which the card expires, format is MM/YY.
@@ -5260,12 +5242,24 @@ components:
                 by Apple.This signature will be included in the push provisioning
                 payload.
               example: 4061d9d63ed
+            primaryAccountNumber:
+              maxLength: 32
+              type: string
+              description: Unique identification number that appears on the front
+                of the card (PAN) in encrypted format.
+              example: 217E8A00536C7A101B055563FBF49C9A
             productType:
               maxLength: 512
               type: string
               description: The type of card product to be digitized. This is expected
                 to be provided by Apple to Issuer.
               example: DEFAULT_MASTERCARD
+            version:
+              maxLength: 32
+              type: string
+              description: The version number to be used for building encrypted payload.
+                This should be '1' as per ApplePay specifications.
+              example: '1'
     ApplePayPushProvisioningV1ReqModel:
       required:
       - nonce

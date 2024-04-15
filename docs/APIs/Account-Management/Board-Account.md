@@ -406,5 +406,7 @@ Below table provides the list of application's error code and its description.
 | `V5BS0615EB` | 041Must be 1 through 31 when logo dd payment flag is P or R |
 | `V5BS0615EC` | 024Request day should be between 00 and 31 |
 | `V5BS0615ED` | Request lead day not editable when debit active at logo |
+| `V5BS0626EG` | DD set/update not allowed for this account |
+| `V5BS0626EH` | DD is auto-cancelled, update not allowed on this account |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
