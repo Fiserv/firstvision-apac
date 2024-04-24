@@ -196,6 +196,7 @@ type: tab
     "isSecureCodeEnabled": 0,
     "isDebitCardProcessEnabled": 0,
     "isTokenizationServiceEnabled": 1,
+    "isDynamicCVV2Enabled": "0",
     "isManualPinResetEnabled": 1,
     "isCardActionTableEnabled": 0,
     "defaultCardTechnology": 3,

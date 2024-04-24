@@ -195,5 +195,4 @@ Below table provides the list of application's error code and its description.
 | `V5LF4005EB` | APR can not be overridden |
 | `V5LF4002EE` | Maximum plan number reached |
 
-
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
