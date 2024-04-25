@@ -33,6 +33,7 @@ type: tab
       "effectiveDate": "16/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": "WALLMART STORES",
       "maskedPaymentCardNumber": "000444001XXXXXX0137",
       "planId": 10002,
       "paymentInstrumentId": "0009543161000023783",
@@ -44,7 +45,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -52,6 +54,7 @@ type: tab
       "effectiveDate": "16/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": "WALLMART STORES",
       "maskedPaymentCardNumber": "000444001XXXXXX0137",
       "planId": 10002,
       "paymentInstrumentId": "0009543161000023783",
@@ -63,7 +66,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 2,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -71,6 +75,7 @@ type: tab
       "effectiveDate": "18/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": " ",
       "maskedPaymentCardNumber": "000444001XXXXXX0137",
       "planId": 10002,
       "paymentInstrumentId": "0009543161000023783",
@@ -82,7 +87,8 @@ type: tab
       "uniqueTransactionId": "APP17977700222011344330001112345678",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 3,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     }
   ]
 }

@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 >Should be empty.
 >
->***The Business Unit and Plan id should be sent as query parameters and path variable.***
+>***The Business Unit and product id should be sent as query parameters and path variable.***
 
 <!--
 type: tab
@@ -162,6 +162,11 @@ type: tab
             "tierMaximumAmount": "$600.00"
         }
     ],
+    "instalmentDetails": {
+        "rateOverideIndicator": 1,
+        "isInstalmentEnabled": 1,
+        "transactionConversionIndicator": 1
+    },
     "typeOfAccount": "X",
     "isLocalorInternationalUsageEnabled": 0,
     "cardProductDisplay": 0,
@@ -191,6 +196,7 @@ type: tab
     "isSecureCodeEnabled": 0,
     "isDebitCardProcessEnabled": 0,
     "isTokenizationServiceEnabled": 1,
+    "isDynamicCVV2Enabled": "0",
     "isManualPinResetEnabled": 1,
     "isCardActionTableEnabled": 0,
     "defaultCardTechnology": 3,

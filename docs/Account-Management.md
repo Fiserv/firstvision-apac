@@ -30,6 +30,8 @@ Please click on the below link to explore the specific API of interest
 
 - [Inquire Statement Transaction Details](./?path=docs/APIs/Account-Management/Inquire-Statement-Transactions.md)
 
+- [Inquire User Fields](./?path=docs/APIs/Account-Management/Inquire-User-Fields.md)
+
 - [List Billed Transactions](./?path=docs/APIs/Account-Management/List-billed-Transactions.md)
 
 - [List Cards By Account](./?path=docs/APIs/Account-Management/List-Cards-by-Account.md)
@@ -40,7 +42,9 @@ Please click on the below link to explore the specific API of interest
 
 - [List Plans](./?path=docs/APIs/Account-Management/List-Plans.md)
 
-- [List Transactions by Date Range](./?path=docs/APIs/Account-Management/List-Transactions-by-Date-Range.md) 
+- [List Transactions by Date Range](./?path=docs/APIs/Account-Management/List-Transactions-by-Date-Range.md)
+
+- [List Transactions by Date Range V2](./?path=docs/APIs/Account-Management/List-Transactions-by-Date-Range-V2.md)
 
 - [List Unbilled Transactions](./?path=docs/APIs/Account-Management/List-unbilled-Transactions.md)
 
@@ -73,5 +77,7 @@ Please click on the below link to explore the specific API of interest
 - [Update Temporary Credit Limit](./?path=docs/APIs/Account-Management/Update-Temporary-Credit-Limit.md)
 
 - [Update Token Suppression Indicator](./?path=docs/APIs/Account-Management/Update-Token-Suppress-Indicator.md)
+
+- [Update User Fields](./?path=docs/APIs/Account-Management/Update-User-Fields.md)
 
 - [Update Waive Fee](./?path=docs/APIs/Account-Management/Update-Waive-Fee.md)

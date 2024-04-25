@@ -148,7 +148,7 @@ titles: Request, Response, Error
       "savingsRoutingId": 0,
       "savingsAccountId": ""
     },
-    "externalContractId": "000012672379",
+    "externalContractId": "0000000000012672379",
     "addressId": "HOME",
     "sourceCode": " ",
     "statementDeliveryMode": "E",
@@ -231,7 +231,7 @@ titles: Request, Response, Error
     },
     "physicalVirtualIndicator": "P",
     "isDynamicCVV2Enabled": "0",
-    "externalContractId": "000012672379"
+    "externalContractId": "0000000000012672379"
   }
 }
 ```
@@ -657,5 +657,8 @@ Below table provides the list of application's error code and its description.
 | `V5RM4002SI` | Dup number on account file |
 | `V5RM0106EC` | AMRM - credit limit cannot be zeroes |
 | `V5S80821SV` | Invalid Statement Delivery Mode |
+| `V5AK1512EC` | Invalid DCVV2 method for products supporting both physical and virtual cards |
+| `V5AK1512EB` | Invalid DCVV2 method for virtual card |
+| `V5AK1512EA` | Invalid DCVV2 method for physical card |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

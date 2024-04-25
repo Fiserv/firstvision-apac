@@ -1,0 +1,1471 @@
+openapi: 3.0.1
+info:
+  title: Vision10 API Documentation
+  description: V10 open API document.
+  version: 1.7.0
+servers:
+- url: https://stg34.visionplus.io/sandbox/
+tags:
+- name: Insurance
+paths:
+  /v1/insurance/{accountId}/details:
+    get:
+      tags:
+      - Insurance
+      summary: Inquire Insurance Details
+      description: This API is used to fetch insurance details for a given account
+        Id and insurance product.
+      operationId: InquireInsurance
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productId
+        in: query
+        description: Unique identification number of the product associated with the
+          organization. Valid values are 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '1'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000012000000085'
+      - name: recordNumber
+        in: query
+        description: Record number associated with insurance product.
+        required: true
+        schema:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          example: '1'
+      responses:
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireInsuranceV1ResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Inquire Insurance
+      x-group-name: Insurance
+    put:
+      tags:
+      - Insurance
+      summary: Update Insurance Details
+      description: This API is used to update insurance details for a given account
+        Id and insurance product.
+      operationId: UpdateInsurance
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - name: productId
+        in: query
+        description: Unique identification number of the product associated with the
+          organization. Valid values are 1-998.
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '1'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000012000000085'
+      - name: recordNumber
+        in: query
+        description: Record number associated with insurance product.
+        required: true
+        schema:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          example: '1'
+      - name: insuranceProduct
+        in: query
+        description: Identification number of the product associated with the account.
+        required: false
+        schema:
+          maxLength: 2
+          type: string
+          example: I1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInsuranceV1ReqModel'
+        required: true
+      responses:
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateInsuranceV1ResponseModel'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Update Insurance
+      x-group-name: Insurance
+  /v1/insurance/addInsurance:
+    post:
+      tags:
+      - Insurance
+      summary: Add Insurance
+      description: This API is used to create insurance product for a given account
+        Id along with other details in request.
+      operationId: AddInsurance
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: Idempotency-Key
+        in: header
+        description: Client specified identifier to recognize subsequent retries of
+          the same request.
+        required: false
+        schema:
+          maxLength: 50
+          type: string
+          example: 123456789-5e72-403c-b9c1-8deb25e06f8a
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddInsuranceV1ReqModel'
+        required: true
+      responses:
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddInsuranceV1ResponseModel'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Add Insurance
+      x-group-name: Insurance
+  /v1/insurance/{accountId}/listInsurance:
+    get:
+      tags:
+      - Insurance
+      summary: List Insurance Details
+      description: This API is used to fetch the list of insurance products associated
+        for a given account Id.
+      operationId: ListInsurance
+      parameters:
+      - name: Authorization
+        in: header
+        description: Token is used in token-based authentication to allow an application
+          to access an API.
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: businessUnit
+        in: query
+        description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        required: false
+        schema:
+          maxLength: 3
+          type: string
+          example: '600'
+      - name: accountId
+        in: path
+        description: Unique identification number for cardholder billing account.
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000012000000085'
+      - name: continuationToken
+        in: query
+        description: Field which is used to get next set of cards. This field will
+          be passed as spaces for the first set of cards. For next set of cards, continuationToken
+          received in previous response must be provided.
+        required: false
+        schema:
+          maxLength: 160
+          type: string
+          example: ' '
+      responses:
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListInsuranceV1ResponseModel'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '403':
+          description: " \nThe request resource is forbidden for user"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: List Insurance
+      x-group-name: Insurance
+components:
+  schemas:
+    UpdateInsuranceV1ReqModel:
+      type: object
+      properties:
+        residenceId:
+          maxLength: 3
+          type: string
+          description: Code that identifies the product enrollment ID of the account
+            holder, which determines the Processing Control Table and the Insurance/Product
+            table for an account.
+          example: SX1
+        status:
+          maxLength: 1
+          type: string
+          description: Status of the product. <br/>The values are:<br/>&nbsp; 'F'
+            - Product is in force <br/>&nbsp; 'C' - Product is canceled. CMS assesses
+            no premiums <br/>&nbsp; 'I' - Product is inactive due to a user-defined
+            condition
+          example: F
+        cancelReason:
+          maxLength: 1
+          type: string
+          description: Code that indicates the reason for canceling a product. <br/>The
+            values are:<br/>&nbsp; ' ' - Not canceled. (Default) <br/>&nbsp; 'A' -
+            Canceled the month after the product party reached the policy expiration
+            age <br/>&nbsp; 'B' - Canceled because the block code assigned to the
+            account cancels insurance and non-insurance products <br/>&nbsp; 'C' -
+            Canceled because the account is charged off <br/>&nbsp; 'D' - Canceled
+            due to delinquency.  <br/>&nbsp; 'F' - Canceled because a fiche number
+            is required but is not assigned to the account and the number of cancellation
+            days has been reached <br/>&nbsp; 'G' - Canceled because the product party
+            date of birth was updated and the product party no longer meets the enrollment
+            age requirement <br/>&nbsp; 'I' - Canceled because the product party date
+            of birth was updated and the product party no longer meets the enrollment
+            age requirement <br/>&nbsp; 'J' - Canceled because CMS cannot find the
+            Insurance/Product table for the product <br/>&nbsp; 'M' - Canceled because
+            the block code assigned to the account cancels insurance/products <br/>&nbsp;
+            'P' - Manually canceled because the credit line or account was closed
+            <br/>&nbsp; 'R' - Manually canceled at the request of the product party
+            or customer <br/>&nbsp; 'T' - Canceled because the maximum amount at risk
+            exceeded the maximum coverage <br/>&nbsp; 'U' - Manually canceled at the
+            request of the underwriter <br/>&nbsp; 'X' - Manually canceled for a miscellaneous
+            reason
+          example: ' '
+        effectiveDate:
+          maxLength: 10
+          type: string
+          description: Effective date of the product. This date may be a future date.
+            CMS assesses the first premium in the cycle that this date occurs. The
+            format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+            Control.
+          example: 10/07/2023
+        isThirdPartyStatementEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Code that determines if statements are sent to the product
+            third party in addition to the account holder. <br/>The values are:<br/>&nbsp;
+            '0' - Do not send statements to the product third party (Default) <br/>&nbsp;
+            '1' - Send statements to the product third party
+          example: '0'
+        customerId:
+          maxLength: 19
+          type: string
+          description: Unique identification number assigned to a customer.
+          example: '0006000012000000256'
+        isThirdPartyLetterFeeEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field determines whether CMS charges a fee for the letter.
+            <br/>The values are:<br/>&nbsp; '0' - Charge the LETTER FEE specified
+            on the Letter Record service (Letter codes->Letter Detail Options) <br/>&nbsp;
+            '1' - Do not charge a letter fee
+          example: '1'
+        premiumAmount:
+          maxLength: 17
+          type: string
+          description: This field is a fixed premium amount. This field is open for
+            input. The RATE METHOD on the Insurance/Product table (Insurance Table->01-Insurance
+            Product Details) must be 07 (flat rate defined on the account) to enter
+            a fixed premium amount in this field. For other methods, this field must
+            be blank. This field is a fixed premium amount assigned at the account
+            level.
+          example: '100.00'
+        ficheNumber:
+          maxLength: 9
+          type: string
+          description: This field is the identification number of the microfiche where
+            documents for this product are located.
+          example: '12345'
+        sourceCode:
+          maxLength: 2
+          type: string
+          description: This field is a source code. CMS accepts any source code entered
+            in this field.
+          example: V1
+        isThirdPartyLetterEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field is a code that determines whether CMS sends letters
+            to the product third party. <br/>The values are:<br/>&nbsp; '0' - Do not
+            send letters to the product third party (Default) <br/>&nbsp; '1' - Send
+            letters to the product third party
+          example: '0'
+        productParty:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field is a code that identifies the party whose date of
+            birth is used. <br/>The values are:<br/>&nbsp; '0' - Owner (Default) <br/>&nbsp;
+            '1' - Co-owner <br/>&nbsp; '2' - Product third party <br/>&nbsp; '3' -
+            Owner and co-owner
+          example: '2'
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    UpdateInsuranceV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        productId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number of the product associated with
+            the organization. Valid values are 1-998.
+          example: '1'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000012000000085'
+        recordNumber:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Record number to identify the insurance product.
+          example: '1'
+        insuranceId:
+          maxLength: 2
+          type: string
+          description: Identification number of the product associated with the account.
+          example: I1
+        status:
+          maxLength: 1
+          type: string
+          description: Status of the product. <br/>The values are:<br/>&nbsp; 'F'
+            - Product is in force <br/>&nbsp; 'C' - Product is canceled. CMS assesses
+            no premiums <br/>&nbsp; 'S' - Product is suspended due to delinquency
+            <br/>&nbsp; 'I' - Product is inactive due to a user-defined condition
+          example: F
+        residenceId:
+          maxLength: 3
+          type: string
+          description: Code that identifies the product enrollment ID of the account
+            holder, which determines the Processing Control Table and the Insurance/Product
+            table for an account.
+          example: SX1
+        effectiveDate:
+          maxLength: 10
+          type: string
+          description: Effective date of the product. This date may be a future date.
+            CMS assesses the first premium in the cycle that this date occurs. The
+            format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+            Control.
+          example: 10/07/2023
+        cancelReason:
+          maxLength: 1
+          type: string
+          description: Code that indicates the reason for canceling a product. <br/>The
+            values are:<br/>&nbsp; ' ' - Not canceled. (Default) <br/>&nbsp; 'A' -
+            Canceled the month after the product party reached the policy expiration
+            age <br/>&nbsp; 'B' - Canceled because the block code assigned to the
+            account cancels insurance and non-insurance products <br/>&nbsp; 'C' -
+            Canceled because the account is charged off <br/>&nbsp; 'D' - Canceled
+            due to delinquency.  <br/>&nbsp; 'F' - Canceled because a fiche number
+            is required but is not assigned to the account and the number of cancellation
+            days has been reached <br/>&nbsp; 'G' - Canceled because the product party
+            date of birth was updated and the product party no longer meets the enrollment
+            age requirement <br/>&nbsp; 'I' - Canceled because the product party date
+            of birth was updated and the product party no longer meets the enrollment
+            age requirement <br/>&nbsp; 'J' - Canceled because CMS cannot find the
+            Insurance/Product table for the product <br/>&nbsp; 'M' - Canceled because
+            the block code assigned to the account cancels insurance/products <br/>&nbsp;
+            'P' - Manually canceled because the credit line or account was closed
+            <br/>&nbsp; 'R' - Manually canceled at the request of the product party
+            or customer <br/>&nbsp; 'T' - Canceled because the maximum amount at risk
+            exceeded the maximum coverage <br/>&nbsp; 'U' - Manually canceled at the
+            request of the underwriter <br/>&nbsp; 'X' - Manually canceled for a miscellaneous
+            reason
+          example: ' '
+        customerId:
+          maxLength: 19
+          type: string
+          description: Unique identification number assigned to a customer.
+          example: '0006000012000000256'
+        isThirdPartyStatementEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Code that determines if statements are sent to the product
+            third party in addition to the account holder. <br/>The values are:<br/>&nbsp;
+            '0' - Do not send statements to the product third party (Default) <br/>&nbsp;
+            '1' - Send statements to the product third party
+          example: '0'
+        productPaty:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field is a code that identifies the party whose date of
+            birth is used. <br/>The values are:<br/>&nbsp; '0' - Owner (Default) <br/>&nbsp;
+            '1' - Co-owner <br/>&nbsp; '2' - Product third party <br/>&nbsp; '3' -
+            Owner and co-owner
+          example: '2'
+        isThirdPartyLetterEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field is a code that determines whether CMS sends letters
+            to the product third party. <br/>The values are:<br/>&nbsp; '0' - Do not
+            send letters to the product third party (Default) <br/>&nbsp; '1' - Send
+            letters to the product third party
+          example: '0'
+        isThirdPartyLetterFeeEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field determines whether CMS charges a fee for the letter.
+            <br/>The values are:<br/>&nbsp; '0' - Charge the LETTER FEE specified
+            on the Letter Record service (Letter codes->Letter Detail Options) <br/>&nbsp;
+            '1' - Do not charge a letter fee
+          example: '1'
+        premiumAmount:
+          type: string
+          description: This field is a fixed premium amount. This field is open for
+            input. The RATE METHOD on the Insurance/Product table (Insurance Table->01-Insurance
+            Product Details) must be 07 (flat rate defined on the account) to enter
+            a fixed premium amount in this field. For other methods, this field must
+            be blank. This field is a fixed premium amount assigned at the account
+            level.
+          example: $100.00
+        ficheNumber:
+          maxLength: 9
+          type: string
+          description: This field is the identification number of the microfiche where
+            documents for this product are located.
+          example: '12345'
+        sourceCode:
+          maxLength: 2
+          type: string
+          description: This field is a source code. CMS accepts any source code entered
+            in this field.
+          example: V1
+    AddInsuranceV1ReqModel:
+      required:
+      - accountId
+      - insuranceId
+      type: object
+      properties:
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000103'
+        insuranceId:
+          maxLength: 2
+          type: string
+          description: Identification number of the product associated with the account.
+          example: I1
+        status:
+          maxLength: 1
+          type: string
+          description: Status of the product. <br/>The values are:<br/>&nbsp; 'F'
+            - Product is in force <br/>&nbsp; 'I' - Product is inactive due to a user-defined
+            condition
+          example: F
+          enum:
+          - F
+          - I
+        productParty:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field is a code that identifies the party whose date of
+            birth is used. <br/>The values are:<br/>&nbsp; '0' - Owner (Default) <br/>&nbsp;
+            '1' - Co-owner <br/>&nbsp; '2' - Product third party <br/>&nbsp; '3' -
+            Owner and co-owner
+          example: '2'
+        ficheNumber:
+          maxLength: 9
+          type: string
+          description: This field is the identification number of the microfiche where
+            documents for this product are located.
+          example: '12345'
+        cancelReason:
+          maxLength: 1
+          type: string
+          description: Code that indicates the reason for canceling a product. <br/>The
+            values are:<br/>&nbsp; ' ' - Not canceled. (Default) <br/>&nbsp; 'A' -
+            Canceled the month after the product party reached the policy expiration
+            age <br/>&nbsp; 'B' - Canceled because the block code assigned to the
+            account cancels insurance and non-insurance products <br/>&nbsp; 'C' -
+            Canceled because the account is charged off <br/>&nbsp; 'D' - Canceled
+            due to delinquency.  <br/>&nbsp; 'F' - Canceled because a fiche number
+            is required but is not assigned to the account and the number of cancellation
+            days has been reached <br/>&nbsp; 'G' - Canceled because the product party
+            date of birth was updated and the product party no longer meets the enrollment
+            age requirement <br/>&nbsp; 'I' - Canceled because the product party date
+            of birth was updated and the product party no longer meets the enrollment
+            age requirement <br/>&nbsp; 'J' - Canceled because CMS cannot find the
+            Insurance/Product table for the product <br/>&nbsp; 'M' - Canceled because
+            the block code assigned to the account cancels insurance/products <br/>&nbsp;
+            'P' - Manually canceled because the credit line or account was closed
+            <br/>&nbsp; 'R' - Manually canceled at the request of the product party
+            or customer <br/>&nbsp; 'T' - Canceled because the maximum amount at risk
+            exceeded the maximum coverage <br/>&nbsp; 'U' - Manually canceled at the
+            request of the underwriter <br/>&nbsp; 'X' - Manually canceled for a miscellaneous
+            reason
+          example: ' '
+        isThirdPartyStatementEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Code that determines if statements are sent to the product
+            third party in addition to the account holder. <br/>The values are:<br/>&nbsp;
+            '0' - Do not send statements to the product third party (Default) <br/>&nbsp;
+            '1' - Send statements to the product third party
+          example: '0'
+          enum:
+          - 0
+          - 1
+        isThirdPartyLetterFeeEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field determines whether CMS charges a fee for the letter.
+            <br/>The values are:<br/>&nbsp; '0' - Charge the LETTER FEE specified
+            on the Letter Record service (Letter codes->Letter Detail Options) <br/>&nbsp;
+            '1' - Do not charge a letter fee
+          example: '1'
+          enum:
+          - 0
+          - 1
+        isThirdPartyLetterEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field is a code that determines whether CMS sends letters
+            to the product third party. <br/>The values are:<br/>&nbsp; '0' - Do not
+            send letters to the product third party (Default) <br/>&nbsp; '1' - Send
+            letters to the product third party
+          example: '0'
+          enum:
+          - 0
+          - 1
+        businessUnit:
+          maxLength: 3
+          type: string
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        effectiveDate:
+          maxLength: 10
+          type: string
+          description: Effective date of the product. This date may be a future date.
+            CMS assesses the first premium in the cycle that this date occurs. The
+            format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+            Control.
+          example: 10/07/2023
+        residenceId:
+          maxLength: 3
+          type: string
+          description: Code that identifies the product enrollment ID of the account
+            holder, which determines the Processing Control Table and the Insurance/Product
+            table for an account.
+          example: SX1
+        customerId:
+          maxLength: 19
+          type: string
+          description: Unique identification number assigned to a customer.
+          example: '0006000012000000256'
+        premiumAmount:
+          maximum: 999999999
+          maxLength: 9
+          type: integer
+          description: This field is a fixed premium amount. This field is open for
+            input. The RATE METHOD on the Insurance/Product table (Insurance Table->01-Insurance
+            Product Details) must be 07 (flat rate defined on the account) to enter
+            a fixed premium amount in this field. For other methods, this field must
+            be blank. This field is a fixed premium amount assigned at the account
+            level.
+          example: '0'
+        sourceCode:
+          maxLength: 2
+          type: string
+          description: This field is a source code. CMS accepts any source code entered
+            in this field.
+          example: V1
+    AddInsuranceV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000012000000085'
+        insuranceId:
+          maxLength: 2
+          type: string
+          description: Identification number of the product associated with the account.
+          example: I1
+        status:
+          maxLength: 1
+          type: string
+          description: Status of the product. <br/>The values are:<br/>&nbsp; 'F'
+            - Product is in force <br/>&nbsp; 'I' - Product is inactive due to a user-defined
+            condition
+          example: F
+    ListInsuranceV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000012000000085'
+        listOfInsuranceProducts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListOfInsuranceProducts_ListInsuranceV1ResponseModel'
+    ListOfInsuranceProducts_ListInsuranceV1ResponseModel:
+      type: object
+      properties:
+        recordNumber:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Record number to identify the insurance product.
+          example: '1'
+        insuranceId:
+          maxLength: 2
+          type: string
+          description: Identification number of the product associated with the account.
+          example: I1
+        Type:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Code that indicates whether a product is an insurance product
+            or non-insurance (additional account) product. <br/>The values are:<br/>&nbsp;
+            '0' - Insurance product (Default) <br/>&nbsp; '1' - Non-insurance or additional
+            account product
+          example: '1'
+        description:
+          maxLength: 40
+          type: string
+          description: Description of the insurance product as defined on the Insurance
+            table.
+          example: DEFAULT INSURANCE TABLE
+        status:
+          maxLength: 1
+          type: string
+          description: Status of the product. <br/>The values are:<br/>&nbsp; 'F'
+            - Product is in force <br/>&nbsp; 'C' - Product is canceled. CMS assesses
+            no premiums <br/>&nbsp; 'S' - Product is suspended due to delinquency
+            <br/>&nbsp; 'I' - Product is inactive due to a user-defined condition
+          example: F
+    InquireInsuranceV1ResponseModel:
+      type: object
+      properties:
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000012000000085'
+        recordNumber:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Record number to identify the insurance product.
+          example: '1'
+        insuranceId:
+          maxLength: 2
+          type: string
+          description: Identification number of the product associated with the account.
+          example: I1
+        description:
+          maxLength: 40
+          type: string
+          description: Description of the insurance product as defined on the Insurance
+            table.
+          example: DEFAULT INSURANCE TABLE
+        status:
+          maxLength: 1
+          type: string
+          description: Status of the product. <br/>The values are:<br/>&nbsp; 'F'
+            - Product is in force <br/>&nbsp; 'C' - Product is canceled. CMS assesses
+            no premiums <br/>&nbsp; 'S' - Product is suspended due to delinquency
+            <br/>&nbsp; 'I' - Product is inactive due to a user-defined condition
+          example: F
+        cancelReason:
+          maxLength: 1
+          type: string
+          description: Code that indicates the reason for canceling a product. <br/>The
+            values are:<br/>&nbsp; ' ' - Not canceled. (Default) <br/>&nbsp; 'A' -
+            Canceled the month after the product party reached the policy expiration
+            age <br/>&nbsp; 'B' - Canceled because the block code assigned to the
+            account cancels insurance and non-insurance products <br/>&nbsp; 'C' -
+            Canceled because the account is charged off <br/>&nbsp; 'D' - Canceled
+            due to delinquency.  <br/>&nbsp; 'F' - Canceled because a fiche number
+            is required but is not assigned to the account and the number of cancellation
+            days has been reached <br/>&nbsp; 'G' - Canceled because the product party
+            date of birth was updated and the product party no longer meets the enrollment
+            age requirement <br/>&nbsp; 'I' - Canceled because the product party date
+            of birth was updated and the product party no longer meets the enrollment
+            age requirement <br/>&nbsp; 'J' - Canceled because CMS cannot find the
+            Insurance/Product table for the product <br/>&nbsp; 'M' - Canceled because
+            the block code assigned to the account cancels insurance/products <br/>&nbsp;
+            'P' - Manually canceled because the credit line or account was closed
+            <br/>&nbsp; 'R' - Manually canceled at the request of the product party
+            or customer <br/>&nbsp; 'T' - Canceled because the maximum amount at risk
+            exceeded the maximum coverage <br/>&nbsp; 'U' - Manually canceled at the
+            request of the underwriter <br/>&nbsp; 'X' - Manually canceled for a miscellaneous
+            reason
+          example: ' '
+        residenceId:
+          maxLength: 3
+          type: string
+          description: Code that identifies the product enrollment ID of the account
+            holder, which determines the Processing Control Table and the Insurance/Product
+            table for an account.
+          example: SX1
+        customerId:
+          maxLength: 19
+          type: string
+          description: Unique identification number assigned to a customer.
+          example: '0006000012000000256'
+        isThirdPartyStatementEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Code that determines if statements are sent to the product
+            third party in addition to the account holder. <br/>The values are:<br/>&nbsp;
+            '0' - Do not send statements to the product third party (Default) <br/>&nbsp;
+            '1' - Send statements to the product third party
+          example: '0'
+        isThirdPartyLetterEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field is a code that determines whether CMS sends letters
+            to the product third party. <br/>The values are:<br/>&nbsp; '0' - Do not
+            send letters to the product third party (Default) <br/>&nbsp; '1' - Send
+            letters to the product third party
+          example: '0'
+        isThirdPartyLetterFeeEnabled:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field determines whether CMS charges a fee for the letter.
+            <br/>The values are:<br/>&nbsp; '0' - Charge the LETTER FEE specified
+            on the Letter Record service (Letter codes->Letter Detail Options) <br/>&nbsp;
+            '1' - Do not charge a letter fee
+          example: '1'
+        productParty:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: This field is a code that identifies the party whose date of
+            birth is used. <br/>The values are:<br/>&nbsp; '0' - Owner (Default) <br/>&nbsp;
+            '1' - Co-owner <br/>&nbsp; '2' - Product third party <br/>&nbsp; '3' -
+            Owner and co-owner
+          example: '2'
+        ficheNumber:
+          maxLength: 9
+          type: string
+          description: This field is the identification number of the microfiche where
+            documents for this product are located.
+          example: '12345'
+        sourceCode:
+          maxLength: 2
+          type: string
+          description: This field is a source code. CMS accepts any source code entered
+            in this field.
+          example: V1
+        dateFieldDetails:
+          type: object
+          properties:
+            effectiveDate:
+              maxLength: 10
+              type: string
+              description: Effective date of the product. This date may be a future
+                date. CMS assesses the first premium in the cycle that this date occurs.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 10/07/2023
+            statusChangeDate:
+              maxLength: 10
+              type: string
+              description: This field displays the date when the STATUS field was
+                last changed. The format is MM/DD/YYYY or DD/MM/YYYY depending on
+                the DATE FORMAT on System Control.
+              example: 30/06/2023
+            cancelDate:
+              maxLength: 10
+              type: string
+              description: This field displays the date on which this product was
+                canceled, either manually or automatically. The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 00/00/0000
+            reinstatementDate:
+              maxLength: 10
+              type: string
+              description: This field displays the date on which this product was
+                canceled, either manually or automatically. The format is MM/DD/YYYY
+                or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+              example: 00/00/0000
+            birthDate:
+              maxLength: 10
+              type: string
+              description: This field is the date of birth of the product party. The
+                format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on
+                System Control.
+              example: 00/00/0000
+            ficheWarnDate:
+              maxLength: 10
+              type: string
+              description: This field is the fiche number warning date. The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+                Control.
+              example: 00/00/0000
+            ficheCancelDate:
+              maxLength: 10
+              type: string
+              description: The field is the fiche number cancellation date. The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+                Control.
+              example: 00/00/0000
+            lastBilledDate:
+              maxLength: 10
+              type: string
+              description: Date on which CMS last billed a premium to the account.
+                The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT
+                on System Control.
+              example: 00/00/0000
+        premiumDetails:
+          type: object
+          properties:
+            premiumAmount:
+              maxLength: 24
+              type: string
+              description: This field is a fixed premium amount. This field is open
+                for input. The RATE METHOD on the Insurance/Product table (Insurance
+                Table->01-Insurance Product Details) must be 07 (flat rate defined
+                on the account) to enter a fixed premium amount in this field. For
+                other methods, this field must be blank. This field is a fixed premium
+                amount assigned at the account level.
+              example: $100.00
+            rateType:
+              maxLength: 2
+              type: string
+              description: This field is a code that indicates whether premium Amount
+                Or Percentage field is a percentage or an amount. <br/>The values
+                are:<br/>&nbsp; '0' - Percentage <br/>&nbsp; '1' - Amount
+              example: '1'
+            premiumAmountOrPercentage:
+              maxLength: 24
+              type: string
+              description: This field displays the, per value percentage or amount.
+                This value is based on the age of the product party and the age tiers
+                defined in the Insurance/Product table (PREMIUM BY AGE METHOD on Insurance
+                Table->03-Insurance Premium Table).
+              example: $0.00
+            productPremiumAmount:
+              maxLength: 24
+              type: string
+              description: This field is a fixed premium amount established in the
+                Insurance/Product table (FIXED PREMIUM AMOUNT on Insurance Table->01-Insurance
+                Product Details), if applicable.
+              example: $0.00
+        amountDetails:
+          type: object
+          properties:
+            lastBilledAmount:
+              maxLength: 24
+              type: string
+              description: Amount of the premium that CMS billed to the account on
+                the DATE LAST BILLED.
+              example: $0.00
+            monthToDateBilledAmount:
+              maxLength: 24
+              type: string
+              description: Amount of month-to-date premiums billed to the account.
+              example: $0.00
+            cycleToDateBilledAmount:
+              maxLength: 24
+              type: string
+              description: Amount of cycle-to-date premiums billed to the account.
+              example: $0.00
+            yearToDateBilledAmount:
+              maxLength: 24
+              type: string
+              description: Amount of year-to-date premiums billed to the account.
+              example: $0.00
+            lifeToDateBilledAmount:
+              maxLength: 24
+              type: string
+              description: Amount of life-to-date premiums billed to the account.
+              example: $0.00
+            suspendedAmount:
+              maxLength: 24
+              type: string
+              description: Current suspended premium amount for the account.
+              example: $0.00
+        productStatusIndicator:
+          maxLength: 1
+          type: string
+          description: Code that indicates if the product is active for this account.
+            <br/>The values are:<br/>&nbsp; '0' - Product is not active (Default)
+            <br/>&nbsp; '1' - Product is active but CMS has not generated a statement
+            for the account since the product became active <br/>&nbsp; '2' - Product
+            is active and a statement for the account has been produced since the
+            product became active
+          example: '0'
+        sourceCodeDescription:
+          maxLength: 20
+          type: string
+          description: It is a source code description.
+          example: ABCD
+        productId:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number of the product associated with
+            the organization. Valid values are 1-998.
+          example: '1'
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer

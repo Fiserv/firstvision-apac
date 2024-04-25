@@ -30,6 +30,7 @@ type: tab
       "effectiveDate": "18/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": " ",
       "maskedPaymentCardNumber": "000444001XXXXXX8221",
       "planId": 10002,
       "paymentInstrumentId": "0009543161012022346",
@@ -42,7 +43,8 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -50,6 +52,7 @@ type: tab
       "effectiveDate": "18/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": " ",
       "maskedPaymentCardNumber": "000444001XXXXXX8211",
       "planId": 10002,
       "paymentInstrumentId": "0009543161012022346",
@@ -62,7 +65,8 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 2,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -70,6 +74,7 @@ type: tab
       "effectiveDate": "18/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": " ",
       "maskedPaymentCardNumber": "000444001XXXXXX8243",
       "planId": 10002,
       "paymentInstrumentId": "0009543161012022346",
@@ -82,7 +87,8 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 3,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -90,6 +96,7 @@ type: tab
       "effectiveDate": "18/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": " ",
       "maskedPaymentCardNumber": "000444001XXXXXX8296",
       "planId": 10002,
       "paymentInstrumentId": "0009543161012022346",
@@ -102,7 +109,8 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 4,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -110,6 +118,7 @@ type: tab
       "effectiveDate": "18/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": " ",
       "maskedPaymentCardNumber": "000444001XXXXXX8211",
       "planId": 10002,
       "paymentInstrumentId": "0009543161012022346",
@@ -122,7 +131,8 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 5,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " "
     }
   ]
 }

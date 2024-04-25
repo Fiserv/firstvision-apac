@@ -1,0 +1,363 @@
+openapi: 3.0.1
+info:
+  title: Vision10 API Documentation
+  description: V10 open API document.
+  version: 1.7.0
+servers:
+- url: https://stg34.visionplus.io/sandbox/
+tags:
+- name: Security Management
+paths:
+  /v1/api/oauth/validateToken:
+    post:
+      tags:
+      - Security Management
+      summary: Validate Oauth Token
+      description: This service is used to validate if the given oauth token is valid/
+        invalid
+      operationId: validateOauthToken
+      parameters:
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateTokenRequest'
+        required: true
+      responses:
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ValidateTokenResponse'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Check Token Validation
+      x-group-name: Security
+  /v1/api/oauth/token:
+    post:
+      tags:
+      - Security Management
+      summary: Get Access Token
+      description: This service is used to get Access Token to authenticate other
+        Api
+      operationId: GetAccessToken
+      parameters:
+      - name: x-client-correlation-id
+        in: header
+        description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-trace-id
+        in: header
+        description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - name: x-client-source-channel
+        in: header
+        description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - name: x-client-user-id
+        in: header
+        description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRequest'
+        required: true
+      responses:
+        '422':
+          description: " \nThe request could not be processed"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '500':
+          description: " \nAn unexpected internal server error occurred"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '400':
+          description: " \nThe request cannot be validated"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '200':
+          description: " \nSuccess"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: " \nThe request was unauthorized"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '503':
+          description: " \nThe service was unavailable"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '404':
+          description: " \nThe request resource does not exist"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+        '504':
+          description: " \nThe request timed out while waiting for a response"
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+      security:
+      - Authorization: [
+          ]
+      x-proxy-name: Get Access Token
+      x-group-name: Security
+components:
+  schemas:
+    ValidateTokenRequest:
+      required:
+      - client_id
+      - client_secret
+      - token
+      type: object
+      properties:
+        token:
+          maxLength: 1200
+          type: string
+          description: JWT Authorization Token specific to the environment
+          example: eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+        client_id:
+          maxLength: 60
+          type: string
+          description: 'An identifier associated with an application that assists
+            with client  '
+          example: vision-api-user
+        client_secret:
+          maxLength: 100
+          type: string
+          description: a secret known only to your Vision10 API application and the
+            authorization server
+          example: abcdefghizklmnopponommnshfghzxxs
+    ResponseErrorMessageInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        instance:
+          type: string
+          example: ''
+        source:
+          type: string
+          example: ''
+        status:
+          type: integer
+          example: '0'
+        invalid-params:
+          type: array
+          items:
+            type: string
+    ValidateTokenResponse:
+      type: object
+      properties:
+        valid:
+          maxLength: 5
+          type: boolean
+          description: Tells whether token is valid or invalid
+          example: 'false'
+    OAuthTokenRequest:
+      required:
+      - client_id
+      - client_secret
+      - grant_type
+      - scope
+      type: object
+      properties:
+        grant_type:
+          maxLength: 20
+          type: string
+          description: It refers to the way an application gets an access token
+          example: client_credentials
+        scope:
+          maxLength: 100
+          type: string
+          description: Limit the amount of access that is granted to an access token
+            (accounts, auth, bnpl, cards, customers, loans, loyalty, misc, products,
+            users, all)
+          example: all
+        client_id:
+          maxLength: 60
+          type: string
+          description: 'An identifier associated with an application that assists
+            with client  '
+          example: vision-api-user
+        client_secret:
+          maxLength: 100
+          type: string
+          description: a secret known only to your Vision10 API application and the
+            authorization server
+          example: abcdefghizklmnopponommnshfghzxxs
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          maxLength: 1200
+          type: string
+          description: Unique Bearer token neeed to be passed for all Vision10 API
+          example: ''
+        token_type:
+          maxLength: 7
+          type: string
+          description: Type of token to be authenticated
+          example: Bearer
+        expires_in:
+          maxLength: 9
+          type: integer
+          description: Time after which token will be expired
+          example: '0'
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer

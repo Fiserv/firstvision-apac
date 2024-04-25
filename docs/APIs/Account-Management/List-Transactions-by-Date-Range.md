@@ -31,6 +31,7 @@ type: tab
       "effectiveDate": "20210513",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
+      "merchantName": "COLES STORES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -44,7 +45,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": "021447",
@@ -52,6 +54,7 @@ type: tab
       "effectiveDate": "20210513",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
+      "merchantName": "COLES STORES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -65,7 +68,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -73,6 +77,7 @@ type: tab
       "effectiveDate": "20210513",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
+      "merchantName": " ",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0002000010000066752",
       "planId": 10002,
@@ -86,7 +91,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": "022709",
@@ -94,6 +100,7 @@ type: tab
       "effectiveDate": "20210518",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
+      "merchantName": "COLES STORES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -107,7 +114,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -115,6 +123,7 @@ type: tab
       "effectiveDate": "20210518",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
+      "merchantName": " ",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0002000010000066752",
       "planId": 10002,
@@ -128,7 +137,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": "023754",
@@ -136,6 +146,7 @@ type: tab
       "effectiveDate": "20210519",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
+      "merchantName": "COLES STORES",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -149,7 +160,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": "023911",
@@ -157,6 +169,7 @@ type: tab
       "effectiveDate": "20210520",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
+      "merchantName": "COLES STORES",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0009543491000008124",
       "planId": 10002,
@@ -170,7 +183,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     },
     {
       "authorizationCode": " ",
@@ -178,6 +192,7 @@ type: tab
       "effectiveDate": "20210525",
       "maskedPaymentCardNumber": "",
       "merchantCity": "",
+      "merchantName": " ",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0002000010000066752",
       "planId": 10002,
@@ -191,7 +206,8 @@ type: tab
       "uniqueTransactionId": "",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
-      "upiMerchantId": "102345679321431"
+      "upiMerchantId": "102345679321431",
+      "billerCode": " "
     }
   ]
 }

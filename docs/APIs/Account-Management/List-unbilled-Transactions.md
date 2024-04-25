@@ -31,6 +31,7 @@ type: tab
       "effectiveDate": "17/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": "COLES STORES",
       "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
       "paymentInstrumentId": "0009543161012022346",
@@ -43,7 +44,9 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " ",
+      "instalmentConversionIndicator": " "
     },
     {
       "authorizationCode": "052206",
@@ -51,6 +54,7 @@ type: tab
       "effectiveDate": "17/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": "COLES STORES",
       "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
       "paymentInstrumentId": "0009543161012022346",
@@ -63,7 +67,9 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 2,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " ",
+      "instalmentConversionIndicator": " "
     },
     {
       "authorizationCode": "052210",
@@ -71,6 +77,7 @@ type: tab
       "effectiveDate": "17/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": "COLES STORES",
       "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
       "paymentInstrumentId": "0009543161012022346",
@@ -83,7 +90,9 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 3,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " ",
+      "instalmentConversionIndicator": " "
     },
     {
       "authorizationCode": "052213",
@@ -91,6 +100,7 @@ type: tab
       "effectiveDate": "17/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": "COLES STORES",
       "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
       "paymentInstrumentId": "0009543161012022346",
@@ -103,7 +113,9 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 4,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " ",
+      "instalmentConversionIndicator": " "
     },
     {
       "authorizationCode": "052219",
@@ -111,6 +123,7 @@ type: tab
       "effectiveDate": "17/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": "COLES STORES",
       "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
       "paymentInstrumentId": "0009543161012022346",
@@ -123,7 +136,9 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 5,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " ",
+      "instalmentConversionIndicator": " "
     },
     {
       "authorizationCode": "052220",
@@ -131,6 +146,7 @@ type: tab
       "effectiveDate": "17/08/2021",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": "COLES STORES",
       "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 10001,
       "paymentInstrumentId": "0009543161012022346",
@@ -143,7 +159,9 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 6,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " ",
+      "instalmentConversionIndicator": " "
     },
     {
       "authorizationCode": " ",
@@ -151,6 +169,7 @@ type: tab
       "effectiveDate": "00/00/0000",
       "merchantCategoryCode": 0,
       "merchantCity": " ",
+      "merchantName": " ",
       "maskedPaymentCardNumber": "000404940XXXXXX4057",
       "planId": 0,
       "paymentInstrumentId": "0009543161012022346",
@@ -163,7 +182,9 @@ type: tab
       "remainingAuthorizationAmount": "$0.00",
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 7,
-      "merchantCountryCode": "AUS"
+      "merchantCountryCode": "AUS",
+      "billerCode": " ",
+      "instalmentConversionIndicator": " "
     }
   ]
 }
