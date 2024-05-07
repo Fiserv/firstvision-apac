@@ -19,7 +19,8 @@ titles: Request, Response, Error
   "authorizationAmount": "1.00",
   "transactionDescription": "Bill Payments",
   "paymentDate": "20/10/2023",
-  "billerCode": "123"
+  "billerCode": "123",
+  "settlementDate": "10/01/2022"
 }
 ```
 
@@ -37,7 +38,8 @@ type: tab
   "internalReferenceNumber": "3912181393194000",
   "maskedPaymentCardNumber": "000484680XXXXXX9405",
   "uniqueTransactionId": "APP17977700222011344330001112345678",
-  "effectiveDate": "10/01/2022"
+  "effectiveDate": "10/01/2022",
+  "settlementDate": "10/01/2022"
 }
 ```
 
@@ -100,5 +102,6 @@ Below table provides the list of application's error code and its description.
 | `V5DC4001SB` | Org security failed |
 | `V5DC4002SB` | Acct is purged/fraud/closed/cgoff or add pending/NOTFND |
 | `V5DC4002SD` | Acct warning code is 1/2/3/4/8 |
+| `V5RQ4030SB` | Settlement date should be greater than auth date |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
