@@ -211,5 +211,7 @@ Below table provides the list of application's error code and its description.
 | `V8MA4087EA` | Fee table not found on pct real time fee process failure |
 | `V8MA4088EA` | Unknown error occurred in realtime fee process failure |
 | `V8MA4089EA` | Amt over lmt and referral rep not avail, must manually refer actn |
+| `V8MA4001EH` | Input message details do not match the idempotency key |
+| `V8MA4001EI` | Global parameter business level record not present on file |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

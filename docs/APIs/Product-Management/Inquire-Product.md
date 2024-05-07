@@ -207,7 +207,7 @@ type: tab
     "isNewCardDefaultEnabled": 0,
     "enhancedProductsEligible": 0,
     "isCardPresenttransactionEnabled": "X",
-    "physicalVirtualIndicator": "",
+    "physicalVirtualIndicator": " ",
     "newCardPlastics": "Y",
     "embossingFilesKeyType": "B",
     "keyTypeForPinMailerFiles": "B",
