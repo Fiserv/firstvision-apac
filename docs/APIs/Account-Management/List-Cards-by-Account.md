@@ -26,10 +26,10 @@ type: tab
   "listOfCards": [
     {
       "accountId": "0006000022000000076",
-      "blockCode": "",
+      "blockCode": " ",
       "businessUnit": 600,
       "cardHolderType": 1,
-      "nameOnCard": "",
+      "nameOnCard": " ",
       "paymentInstrumentId": "0004440020051355558",
       "status": "1"
     }

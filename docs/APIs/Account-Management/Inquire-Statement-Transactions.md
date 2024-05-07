@@ -28,14 +28,14 @@ type: tab
   "residenceId": "600",
   "customerId": "0002000000050256486",
   "accountStatus": "A",
-  "statementModeOrStatus": "",
+  "statementModeOrStatus": " ",
   "lifeToDateCount": 1,
-  "alternateCustomerId": "",
+  "alternateCustomerId": " ",
   "creditClass": "N1",
-  "blockCode1": "",
-  "blockCode2": "",
+  "blockCode1": " ",
+  "blockCode2": " ",
   "relationshipId": " ",
-  "employeeCode": "",
+  "employeeCode": " ",
   "dueDetails": {
     "paymentDueDate": "18/09/2021",
     "currentDueAmount": "$0.00",
@@ -101,7 +101,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1,
       "merchantCountryCode": "AUS",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     }
   ],
   "correspondingCustomerId": " ",
@@ -115,9 +117,9 @@ type: tab
   },
   "daysInCycle": 13,
   "qualifiedTransactionsCount": 0,
-  "personalId": "",
+  "personalId": " ",
   "billingIndicator": 0,
-  "revolvingStatus": "",
+  "revolvingStatus": " ",
   "businessUnit": 200
 }
 ```

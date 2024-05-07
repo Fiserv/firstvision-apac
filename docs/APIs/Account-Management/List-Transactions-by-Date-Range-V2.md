@@ -1,6 +1,6 @@
 # List Transactions by Date Range V2
 
-This API is used to fetch the list of various transactions like authorizations, memos, outstanding authorizations, unbilled and billed transactions for a given date range and account Id.
+This API is used to fetch the list of various transactions like authorizations, memos, outstanding authorizations, unbilled and billed transactions for a given date range and account Id/paymentInstrumentId.
 
 ## Endpoint
 
@@ -44,8 +44,8 @@ type: tab
       "authorizationCode": "021447",
       "description": "Australia Bank         Melbaourne    AU",
       "effectiveDate": "20210513",
-      "maskedPaymentCardNumber": "",
-      "merchantCity": "",
+      "maskedPaymentCardNumber": " ",
+      "merchantCity": " ",
       "merchantName": "COLES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0009543491000008124",
@@ -57,18 +57,20 @@ type: tab
       "transactionCode": 4000,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": "",
+      "uniqueTransactionId": " ",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "021447",
       "description": "Australia Bank         Melbaourne    AU",
       "effectiveDate": "20210513",
-      "maskedPaymentCardNumber": "",
-      "merchantCity": "",
+      "maskedPaymentCardNumber": " ",
+      "merchantCity": " ",
       "merchantName": "COLES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0009543491000008124",
@@ -80,18 +82,20 @@ type: tab
       "transactionCode": 4579,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": "",
+      "uniqueTransactionId": " ",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20210513",
-      "maskedPaymentCardNumber": "",
-      "merchantCity": "",
+      "maskedPaymentCardNumber": " ",
+      "merchantCity": " ",
       "merchantName": "COLES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0002000010000066752",
@@ -103,18 +107,20 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": "",
+      "uniqueTransactionId": " ",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "022709",
       "description": "Wall Mart LLC AUS      Sydney        AU",
       "effectiveDate": "20210518",
-      "maskedPaymentCardNumber": "",
-      "merchantCity": "",
+      "maskedPaymentCardNumber": " ",
+      "merchantCity": " ",
       "merchantName": "COLES",
       "merchantCategoryCode": 32303,
       "paymentInstrumentId": "0009543491000008124",
@@ -126,18 +132,20 @@ type: tab
       "transactionCode": 4567,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": "",
+      "uniqueTransactionId": " ",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": " ",
       "description": "DEBIT CARD OFFSET DEBIT",
       "effectiveDate": "20210518",
-      "maskedPaymentCardNumber": "",
-      "merchantCity": "",
+      "maskedPaymentCardNumber": " ",
+      "merchantCity": " ",
       "merchantName": " ",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0002000010000066752",
@@ -149,18 +157,20 @@ type: tab
       "transactionCode": 7015,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": "",
+      "uniqueTransactionId": " ",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "023754",
       "description": "Wall Mart LLC          Sydney        AU",
       "effectiveDate": "20210519",
-      "maskedPaymentCardNumber": "",
-      "merchantCity": "",
+      "maskedPaymentCardNumber": " ",
+      "merchantCity": " ",
       "merchantName": " ",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0009543491000008124",
@@ -172,18 +182,20 @@ type: tab
       "transactionCode": 4000,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": "",
+      "uniqueTransactionId": " ",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": "023911",
       "description": "CHIP EFTPOS              PHEASANTS NESAU",
       "effectiveDate": "20210520",
-      "maskedPaymentCardNumber": "",
-      "merchantCity": "",
+      "maskedPaymentCardNumber": " ",
+      "merchantCity": " ",
       "merchantName": " ",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0009543491000008124",
@@ -195,18 +207,20 @@ type: tab
       "transactionCode": 6800,
       "transactionIndicator": "S",
       "transactionType": "D",
-      "uniqueTransactionId": "",
+      "uniqueTransactionId": " ",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": " ",
       "description": "DEBIT CARD OFFSET CREDIT",
       "effectiveDate": "20210525",
-      "maskedPaymentCardNumber": "",
-      "merchantCity": "",
+      "maskedPaymentCardNumber": " ",
+      "merchantCity": " ",
       "merchantName": " ",
       "merchantCategoryCode": 0,
       "paymentInstrumentId": "0002000010000066752",
@@ -218,11 +232,13 @@ type: tab
       "transactionCode": 7016,
       "transactionIndicator": "S",
       "transactionType": "C",
-      "uniqueTransactionId": "",
+      "uniqueTransactionId": " ",
       "memoDebitOrCreditIndicator": "D",
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalCurrencyCode": "000"
     }
   ]
 }
@@ -259,7 +275,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId in request. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 | `startDate` | Payload | *date* | 10 | Start date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
 | `endDate` | Payload | *date* | 10 | End date for the transaction selection criteria, The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System Control. |
 
