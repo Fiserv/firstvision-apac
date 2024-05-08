@@ -62,7 +62,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -87,7 +87,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -112,7 +112,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -137,7 +137,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -162,7 +162,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -187,7 +187,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -212,7 +212,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -237,7 +237,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     }
   ]

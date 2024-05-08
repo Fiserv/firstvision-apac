@@ -47,7 +47,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -72,7 +72,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -97,7 +97,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -122,7 +122,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -147,7 +147,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -172,7 +172,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -197,7 +197,7 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     }
   ]
