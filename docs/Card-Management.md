@@ -6,6 +6,8 @@ Please click on the below link to explore the specific API of interest
 
 - [Activate Card](./?path=docs/APIs/Card-Management/Activate-Card.md)
 
+- [ApplePay MDES Push Provisioning](./?path=docs/APIs/Card-Management/ApplePay-Push-Provisioning-MDES.md) 
+
 - [ApplePay Push Provisioning](./?path=docs/APIs/Card-Management/ApplePay-Push-Provisioning.md) 
 
 - [Block Unblock Card](./?path=docs/APIs/Card-Management/Block-Card.md)
@@ -23,6 +25,8 @@ Please click on the below link to explore the specific API of interest
 - [Generate Dynamic CVV2](./?path=docs/APIs/Card-Management/Generate-Dynamic-CVV2.md)
 
 - [Generate Dynamic CVV2 V2 ](./?path=docs/APIs/Card-Management/Generate-Dynamic-CVV2-V2.md)
+
+- [GooglePay - SamsungPay MDES Push Provisioning](./?path=docs/APIs/Card-Management/GooglePay-SamsungPay-Push-Provisioning-MDES.md)
 
 - [GooglePay - SamsungPay VTS Push Provisioning](./?path=docs/APIs/Card-Management/GooglePay-SamsungPay-Push-Provisioning.md)
 
