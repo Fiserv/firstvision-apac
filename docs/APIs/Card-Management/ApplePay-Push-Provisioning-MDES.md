@@ -55,7 +55,19 @@ type: tab
 -->
 
 ```json
-
+[
+    {
+        "errorCode": "440401",
+        "detail": "Please refer to invalid-params for error details",
+        "title": "Not found",
+        "instance": "/v1/cards/applePayPushProvisioningforMDES",
+        "source": "VPL",
+        "status": 404,
+        "invalid-params": [
+            "V5P24001SB: TOKEN PAN NOT FOUND IN EMOBSSER FILE"
+        ]
+    }
+]
 ```
 
 <!-- type: tab-end -->
