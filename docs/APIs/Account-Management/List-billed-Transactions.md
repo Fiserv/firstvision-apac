@@ -47,7 +47,7 @@ type: tab
       "bnplIplanSequenceNumber": 1,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "foreignOriginalAmount": "$104.00",
+      "foreignOriginalAmount": "104.00",
       "foreignOriginalCurrencyCode": "840"
     },
     {
@@ -70,7 +70,7 @@ type: tab
       "bnplIplanSequenceNumber": 2,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     },
     {
@@ -93,7 +93,7 @@ type: tab
       "bnplIplanSequenceNumber": 3,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     }
   ]
