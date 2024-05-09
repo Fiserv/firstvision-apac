@@ -102,7 +102,7 @@ type: tab
       "bnplIplanSequenceNumber": 1,
       "merchantCountryCode": "AUS",
       "billerCode": " ",
-      "foreignOriginalAmount": "$0.00",
+      "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000"
     }
   ],
