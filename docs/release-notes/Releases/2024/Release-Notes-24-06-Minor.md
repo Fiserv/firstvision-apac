@@ -3,6 +3,7 @@
 ## Date: 13/06/2024
 
 ### General Changes
+
 - Restricting auto sign-on IDs from LUI access.
 
 #### Documentation Change in Swagger
@@ -58,7 +59,7 @@ This API is used for push provisioning of Master Card. Card push provisioning re
 
 #### GooglePay - SamsungPay MDES Push Provisioning
 
-This API is used for push provisioning of MC Card. API validates the incoming card details from client and calls MDES for push multiple accounts. MDES responds with push account recipts which will be further sent to client by 
+This API is used for push provisioning of Master Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a GooglePay or SamsungPay wallet.
 
 ### Updated APIs
 
