@@ -31,7 +31,7 @@ type: tab
 ```json
 {
   "activationData": {
-    "dataValidUntilTimestamp": "2023-03-3T16: 10:59Z",
+    "dataValidUntilTimestamp": "2019-07-04T12:09:56.123-07:00",
     "includedFieldsInOrder": "dataValidUntilTimestamp|accountNumber|accountExpiry",
     "keyAlias": "U+002D",
     "signature": "SDleZd6dUnRsceEIquTU2VSFmm7dyldLIgj5DsZl0TT/1wDfr+m6EhKFuXjc0SoX20dkK/UF0bHJ4l3kqdTIWWSTqqAH86HJQ2bWVAN/bIWXVtnvrEHjaLF0XQ+yxiCibg6BjNsh+cjBVNmGPrMP4rlIvJui2LuXyyJYeQVMzP1DrBtEXUNGTYUI6VDrO4EZrJYN7vOleI0P1DsTFd3I3s/E9ei6XwJ6gRJJLva9qtkjgFRCETfYkxOLLGM41u5cfoGeBEUITnKE0fJyz+KKq4EZSVW/41Dfiu+CfcAM71PeBkeD7na6H5pDyNEmZuUqU836DjfbdBtPStYaletO+A==",
@@ -55,7 +55,19 @@ type: tab
 -->
 
 ```json
-
+[
+    {
+        "errorCode": "440401",
+        "detail": "Please refer to invalid-params for error details",
+        "title": "Not found",
+        "instance": "/v1/cards/applePayPushProvisioningforMDES",
+        "source": "VPL",
+        "status": 404,
+        "invalid-params": [
+            "V5P24001SB: TOKEN PAN NOT FOUND IN EMOBSSER FILE"
+        ]
+    }
+]
 ```
 
 <!-- type: tab-end -->

@@ -1,6 +1,6 @@
 # GooglePay - SamsungPay MDES Push Provisioning
 
-This API is used for push provisioning of MC Card. API validates the incoming card details from client and calls MDES for push multiple accounts. MDES responds with push account recipts which will be further sent to client by FV. 
+This API is used for push provisioning of Master Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a GooglePay or SamsungPay wallet. 
 
 ## Endpoint
 
@@ -14,7 +14,20 @@ titles: Request, Response, Error
 -->
 
 ```json
-XXXXXXX
+{
+  "callBackURL": "http://www.tokenIssuer1.com/pushtoken",
+  "encryptedPayloadExpiryMinutes": "30",
+  "isAccountHolderDataSupplyEnabled": false,
+  "isCompleteIssuerAppActivationEnabled": true,
+  "isCompleteWebsiteActivationEnabled": true,
+  "isIssuerInitiatedDigitizationDataEnabled": false,
+  "locale": "en_US",
+  "paymentInstrumentId": "0009544410000000047",
+  "pushAccountId": "CA-132d72d4fcb2f4136a0532d3093ff1ab",
+  "pushAccountReceiptsValidityPeriod": 15,
+  "requestId": "123456",
+  "tokenRequestorId": "50123456789"
+}
 ```
 
 <!--
@@ -22,7 +35,24 @@ type: tab
 -->
 
 ```json
-XXXXXXXXXXXXX
+{
+  "responseId": "123456",
+  "pushAccountReceipts": [
+    {
+      "pushAccountId": "CA-132d72d4fcb2f4136a0532d3093ff1ab",
+      "pushAccountReceipt": "MCC-C307F0AE-298E-48EB-AA43-A7C40B32DDDE",
+      "issuerInitiatedDigitizationData": "eyJmdW5kaW5nQWNjb3VudEluZm8iOnsicHVzaEFjY291bnRSZWNlaXB0IjoiTUNDLVNUTC00OTZCNjNBOC02OTQzLTRFM0YtOEYzNi1DMjU0M0Q4OTg1ODQifX0="
+    }
+  ],
+  "availablePushMethods": [
+    {
+      "type": "WEB",
+      "uri": "http://www.tokenrequestor1.com/pushtoken"
+    }
+  ],
+  "signature": "ew0KImFsZyI6ICJSUzI1NiIsDQoNCiJraWQiOiAiYXNkZmctcXdlcnR5LXp4Y3ZiIg0KfQ.ew0KDQrCoCJwdXNoQWNjb3VudFJlY2VpcHQiOiAiTUNDLVNUTC0xMzQzMTNCRi01NTg1LTRFNzEtQUIyNC1FQ0RCQzI4RjIzRjEiLA0KImlzc3VlckNhbGxCYWNrIjogImh0dHBzOi8vaXNzdWVyY2FsbGJhY2sudXJsIiwNCiJjYWxsYmFja1JlcXVpcmVkIjogdHJ1ZSwNCiJjb21wbGV0ZVdlYnNpdGVBY3RpdmF0aW9uIjogdHJ1ZSwNCiJhY2NvdW50SG9sZGVyRGF0YVN1cHBsaWVkIjogdHJ1ZSwNCiJsb2NhbGUiOiAiZW5fVVMiDQoNCn0.dBjftJeZ4CVP-",
+  "tokenRequestorSignatureSupport": true,
+}
 ```
 
 <!--
@@ -31,17 +61,17 @@ type: tab
 
 ```json
 [
-  {
-    "detail": "Please refer to invalid-params for error details",
-    "errorCode": "442201",
-    "instance": "/v1/cards/googlePaySamsungPayPushProvisioning",
-    "invalid-params": [
-      "V5SG4001SA: INVALID ORG"
-    ],
-    "source": "VPL",
-    "status": 422,
-    "title": "Unprocessable Entity"
-  }
+    {
+        "errorCode": "440401",
+        "detail": "Please refer to invalid-params for error details",
+        "title": "Not found",
+        "instance": "/v1/cards/googlePaySamsungPayMDESPushProvisioning",
+        "source": "VPL",
+        "status": 404,
+        "invalid-params": [
+            "V5G14003SB: TOKEN PAN NOT FOUND IN EMBOSSER FILE"
+        ]
+    }
 ]
 ```
 
@@ -68,6 +98,12 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5xxxxx` | Record not found |
+| `V5G14003SA` | Token pan should be 19 digits numeric value |
+| `V5G14003SB` | Token pan not found in embosser file |
+| `V5G14003SC` | Product not found |
+| `V5G14003SD` | Business unit not found |
+| `V5G14004SA` | Token requestor id should be 11 digit numeric value |
+| `V5G14005SA` | Business unit not found |
+| `V5G14005SA` | Encryptedpayloadexpirymins should be 2 digit numeric value |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

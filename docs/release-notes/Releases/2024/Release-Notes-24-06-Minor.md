@@ -3,6 +3,7 @@
 ## Date: 13/06/2024
 
 ### General Changes
+
 - Restricting auto sign-on IDs from LUI access.
 
 #### Documentation Change in Swagger
@@ -48,12 +49,17 @@
 - List Transactions by Date Range V2: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - Bill Payments: settlementDate added in request/response.
 - Balance Transfer: settlementDate added in request/response.
+- Inquire Payoff Quote: loanPlanId was made as optional under query parameters
 
 ### New APIs
 
 #### ApplePay MDES Push Provisioning
 
 This API is used for push provisioning of Master Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a Apple Pay wallet.
+
+#### GooglePay - SamsungPay MDES Push Provisioning
+
+This API is used for push provisioning of Master Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a GooglePay or SamsungPay wallet.
 
 ### Updated APIs
 
@@ -88,6 +94,7 @@ This API is used for push provisioning of Master Card. Card push provisioning re
 | 27 | Account Management | List Transactions by Date Range V2 | <ul> <li> foreignOriginalAmount and foreignOriginalCurrencyCode added in response |
 | 28 | Authorizations | Bill Payments | <ul> <li> settlementDate added in request/response |
 | 29 | Authorizations | Balance Transfer | <ul> <li> settlementDate added in request/response |
+| 30 | Loan Management | Inquire Payoff Quote | <ul> <li> loanPlanId was made as optional under query parameters |
 
 ### Deleted APIs
 
