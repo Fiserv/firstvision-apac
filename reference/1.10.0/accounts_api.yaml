@@ -2237,6 +2237,160 @@ paths:
       - Account Management
       x-group-name: Account Management
       x-proxy-name: Update Customers' Profile
+  /v1/accounts/{accountId}/deliquencyDetails:
+    get:
+      description: This API is used to fetch delinquency details for a given account
+        Id like 30 to 210 day delinquent amount, last deliquent date, current cycle
+        due etc.
+      operationId: InquireDelinquency
+      parameters:
+      - description: Token is used in token-based authentication to allow an application
+          to access an API.
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        in: header
+        name: x-client-correlation-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        in: header
+        name: x-client-trace-id
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        in: header
+        name: x-client-source-channel
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        in: header
+        name: x-client-user-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        in: query
+        name: businessUnit
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - description: Unique identification number for cardholder billing account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0006000011000000509'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireDelinquencyV1ResponseModel'
+          description: " \nSuccess"
+        '400':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request cannot be validated"
+        '401':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request was unauthorized"
+        '403':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource is forbidden for user"
+        '404':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource does not exist"
+        '422':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request could not be processed"
+        '500':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nAn unexpected internal server error occurred"
+        '503':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe service was unavailable"
+        '504':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request timed out while waiting for a response"
+      security:
+      - Authorization: [
+          ]
+      summary: Inquire Delinquency
+      tags:
+      - Account Management
+      x-group-name: Account Management
+      x-proxy-name: Inquire Delinquency
   /v1/accounts/{accountId}/details:
     get:
       description: The service provides account details for a given account identification.
@@ -2702,161 +2856,6 @@ paths:
       - Account Management
       x-group-name: Account Management
       x-proxy-name: Update Direct Debit Controls
-  /v1/accounts/{accountId}/inquireDelinquency:
-    get:
-      description: This service is used to reage the account, reaging an account is
-        normally done to cause an account to appear less delinquent by reducing the
-        delinquency level. You also can reage an account to make the account appear
-        more delinquent by increasing the delinquency level.
-      operationId: inquireDelinquency
-      parameters:
-      - description: Token is used in token-based authentication to allow an application
-          to access an API.
-        in: header
-        name: Authorization
-        required: true
-        schema:
-          maxLength: 1200
-          type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
-      - description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        in: header
-        name: x-client-correlation-id
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        in: header
-        name: x-client-trace-id
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        in: header
-        name: x-client-source-channel
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
-        in: header
-        name: x-client-user-id
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Unique identification number associated with the organization.
-          Valid values from 001-998.
-        in: query
-        name: businessUnit
-        required: false
-        schema:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          example: '100'
-      - description: Unique identification number for cardholder billing account.
-        in: path
-        name: accountId
-        required: true
-        schema:
-          maxLength: 19
-          type: string
-          example: '0001000010000028800'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireDelinquencyV1ResponseModel'
-          description: " \nSuccess"
-        '400':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request cannot be validated"
-        '401':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request was unauthorized"
-        '403':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request resource is forbidden for user"
-        '404':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request resource does not exist"
-        '422':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request could not be processed"
-        '500':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nAn unexpected internal server error occurred"
-        '503':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe service was unavailable"
-        '504':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request timed out while waiting for a response"
-      security:
-      - Authorization: [
-          ]
-      summary: Inquire Delinquency
-      tags:
-      - Account Management
-      x-group-name: Account Management
-      x-proxy-name: Inquire Delinquency
   /v1/accounts/{accountId}/inquirePlan:
     get:
       description: This API is used to fetch the plan details for a given account
@@ -3023,6 +3022,317 @@ paths:
       - Account Management
       x-group-name: Account Management
       x-proxy-name: Inquire Account Plan
+  /v1/accounts/{accountId}/limits:
+    get:
+      description: This API provides daily maximum cash deposit authorization amount
+        and count allowed for a given accountId.
+      operationId: InquireAccountLimits
+      parameters:
+      - description: Token is used in token-based authentication to allow an application
+          to access an API.
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        in: header
+        name: x-client-correlation-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        in: header
+        name: x-client-trace-id
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        in: header
+        name: x-client-source-channel
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        in: header
+        name: x-client-user-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        in: query
+        name: businessUnit
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - description: Unique identification number for cardholder billing account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0004440010000000017'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAccountLimitV1ResponseModel'
+          description: " \nSuccess"
+        '400':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request cannot be validated"
+        '401':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request was unauthorized"
+        '403':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource is forbidden for user"
+        '404':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource does not exist"
+        '422':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request could not be processed"
+        '500':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nAn unexpected internal server error occurred"
+        '503':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe service was unavailable"
+        '504':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request timed out while waiting for a response"
+      security:
+      - Authorization: [
+          ]
+      summary: Inquire Account Limits
+      tags:
+      - Account Management
+      x-group-name: Account Management
+      x-proxy-name: Inquire Account Limits
+    put:
+      description: This API allows user to set daily maximum cash deposit authorization
+        amount and count for a given accountId.
+      operationId: UpdateAccountLimits
+      parameters:
+      - description: Token is used in token-based authentication to allow an application
+          to access an API.
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        in: header
+        name: x-client-correlation-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        in: header
+        name: x-client-trace-id
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        in: header
+        name: x-client-source-channel
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        in: header
+        name: x-client-user-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        in: query
+        name: businessUnit
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - description: Unique identification number for cardholder billing account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0004440010000000017'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAccountLimitV1ReqModel'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAccountLimitV1ResponseModel'
+          description: " \nSuccess"
+        '400':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request cannot be validated"
+        '401':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request was unauthorized"
+        '403':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource is forbidden for user"
+        '404':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource does not exist"
+        '422':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request could not be processed"
+        '500':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nAn unexpected internal server error occurred"
+        '503':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe service was unavailable"
+        '504':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request timed out while waiting for a response"
+      security:
+      - Authorization: [
+          ]
+      summary: Update Account Limits
+      tags:
+      - Account Management
+      x-group-name: Account Management
+      x-proxy-name: Update Account Limits
   /v1/accounts/{accountId}/listCardsByAccount:
     get:
       description: This API is used to fetch the list of cards associated for a given
@@ -4339,470 +4649,6 @@ paths:
       - Account Management
       x-group-name: Account Management
       x-proxy-name: Update Pricing Control
-  /v1/accounts/{accountId}/spendLimits:
-    get:
-      description: The service provide details of maximum Cash deposit Authorizations
-        amount and count allowed for the Account during the day.
-      operationId: InquireSpendLimits
-      parameters:
-      - description: Token is used in token-based authentication to allow an application
-          to access an API.
-        in: header
-        name: Authorization
-        required: true
-        schema:
-          maxLength: 1200
-          type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
-      - description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        in: header
-        name: x-client-correlation-id
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        in: header
-        name: x-client-trace-id
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        in: header
-        name: x-client-source-channel
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
-        in: header
-        name: x-client-user-id
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Unique identification number associated with the organization.
-          Valid values from 1-998.
-        in: query
-        name: businessUnit
-        required: false
-        schema:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          example: '600'
-      - description: Unique identification number for cardholder billing account.
-        in: path
-        name: accountId
-        required: true
-        schema:
-          maxLength: 19
-          type: string
-          example: '0004440010000000017'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireSpendLimitV1ResponseModel'
-          description: " \nSuccess"
-        '400':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request cannot be validated"
-        '401':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request was unauthorized"
-        '403':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request resource is forbidden for user"
-        '404':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request resource does not exist"
-        '422':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request could not be processed"
-        '500':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nAn unexpected internal server error occurred"
-        '503':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe service was unavailable"
-        '504':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request timed out while waiting for a response"
-      security:
-      - Authorization: [
-          ]
-      summary: Inquire Spend Limits
-      tags:
-      - Account Management
-      x-group-name: Account Management
-      x-proxy-name: Inquire Spend Limits
-    put:
-      description: The service to update maximum Cash deposit Authorizations amount
-        and count allowed for the Account during the day.
-      operationId: UpdateSpendLimits
-      parameters:
-      - description: Token is used in token-based authentication to allow an application
-          to access an API.
-        in: header
-        name: Authorization
-        required: true
-        schema:
-          maxLength: 1200
-          type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
-      - description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        in: header
-        name: x-client-correlation-id
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        in: header
-        name: x-client-trace-id
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        in: header
-        name: x-client-source-channel
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
-        in: header
-        name: x-client-user-id
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Unique identification number associated with the organization.
-          Valid values from 1-998.
-        in: query
-        name: businessUnit
-        required: false
-        schema:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          example: '600'
-      - description: Unique identification number for cardholder billing account.
-        in: path
-        name: accountId
-        required: true
-        schema:
-          maxLength: 19
-          type: string
-          example: '0004440010000000017'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateSpendLimitV1ReqModel'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateSpendLimitV1ResponseModel'
-          description: " \nSuccess"
-        '400':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request cannot be validated"
-        '401':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request was unauthorized"
-        '403':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request resource is forbidden for user"
-        '404':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request resource does not exist"
-        '422':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request could not be processed"
-        '500':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nAn unexpected internal server error occurred"
-        '503':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe service was unavailable"
-        '504':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request timed out while waiting for a response"
-      security:
-      - Authorization: [
-          ]
-      summary: Update Spend Limits
-      tags:
-      - Account Management
-      x-group-name: Account Management
-      x-proxy-name: Update Spend Limits
-  /v1/accounts/{accountId}/spendStatistics:
-    get:
-      description: This API is used to Inquire the Cash deposite accumulated Authorizations
-        amount and count for the Account during the day.
-      operationId: InquireSpendStatistics
-      parameters:
-      - description: Token is used in token-based authentication to allow an application
-          to access an API.
-        in: header
-        name: Authorization
-        required: true
-        schema:
-          maxLength: 1200
-          type: string
-          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
-      - description: Client specified identifier to correlate the request with the
-          response of the API within their application. Any value passed in the request
-          message will be return back as-is in the API response message.
-        in: header
-        name: x-client-correlation-id
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Client specified trace-id to track the request within their application.
-          Any value passed in the request message will be return back as-is in the
-          API response message.
-        in: header
-        name: x-client-trace-id
-        required: false
-        schema:
-          maxLength: 256
-          type: string
-          example: ABC123
-      - description: Client specified identifier of the channel that initiated the
-          API request. Any value passed in the request message will be return back
-          as-is in the API response message.
-        in: header
-        name: x-client-source-channel
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Client specified identifier of their user** that initiated the
-          API request.  Any value passed in the request message will be return back
-          as-is in the API response message.<BR><BR><i>**The value passed in this
-          field will not be used for any Identity and access management</i>
-        in: header
-        name: x-client-user-id
-        required: false
-        schema:
-          maxLength: 40
-          type: string
-          example: ABC123
-      - description: Unique identification number associated with the organization.
-          Valid values from 1-998.
-        in: query
-        name: businessUnit
-        required: false
-        schema:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          example: '600'
-      - description: Unique identification number for cardholder billing account.
-        in: path
-        name: accountId
-        required: true
-        schema:
-          maxLength: 19
-          type: string
-          example: '0004440010000000017'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InquireSpendStatisticV1ResponseModel'
-          description: " \nSuccess"
-        '400':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request cannot be validated"
-        '401':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request was unauthorized"
-        '403':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request resource is forbidden for user"
-        '404':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request resource does not exist"
-        '422':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request could not be processed"
-        '500':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nAn unexpected internal server error occurred"
-        '503':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe service was unavailable"
-        '504':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
-          description: " \nThe request timed out while waiting for a response"
-      security:
-      - Authorization: [
-          ]
-      summary: Inquire Spend Statistics
-      tags:
-      - Account Management
-      x-group-name: Account Management
-      x-proxy-name: Inquire Spend Statistics
   /v1/accounts/{accountId}/statementPlanDetails:
     get:
       description: This API is used to fetch plan details and other generic details
@@ -5329,6 +5175,159 @@ paths:
       - Account Management
       x-group-name: Account Management
       x-proxy-name: Inquire Statement Transaction Details
+  /v1/accounts/{accountId}/statistics:
+    get:
+      description: This API provides daily accumulated cash deposite authorization
+        amount and count for the given accountId.
+      operationId: InquireAccountStatistics
+      parameters:
+      - description: Token is used in token-based authentication to allow an application
+          to access an API.
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        in: header
+        name: x-client-correlation-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        in: header
+        name: x-client-trace-id
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        in: header
+        name: x-client-source-channel
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        in: header
+        name: x-client-user-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        in: query
+        name: businessUnit
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '600'
+      - description: Unique identification number for cardholder billing account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0004440010000000017'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAccountStatisticV1ResponseModel'
+          description: " \nSuccess"
+        '400':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request cannot be validated"
+        '401':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request was unauthorized"
+        '403':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource is forbidden for user"
+        '404':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource does not exist"
+        '422':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request could not be processed"
+        '500':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nAn unexpected internal server error occurred"
+        '503':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe service was unavailable"
+        '504':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request timed out while waiting for a response"
+      security:
+      - Authorization: [
+          ]
+      summary: Inquire Account Statistics
+      tags:
+      - Account Management
+      x-group-name: Account Management
+      x-proxy-name: Inquire Account Statistics
   /v1/accounts/{accountId}/tempCreditLimit:
     put:
       description: This API is used to update temporary credit limit and its expiry
@@ -8140,6 +8139,37 @@ components:
           description: Unique Alternate Identification number associated with Payment
             Card Number.
           example: '0006000011000000160'
+    InquireAccountLimitV1ResponseModel:
+      type: object
+      properties:
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0004440010000000017'
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        cashDepositLimits:
+          type: object
+          properties:
+            maximumAuthorizationAmount:
+              maxLength: 24
+              type: string
+              description: Maximum Cash Deposit authorizations amount allowed for
+                this account today.
+              example: $10000.00
+            maximumAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Maximum number of cash deposit authorizations allowed for
+                account today.
+              example: '3'
     InquireAccountPlanV1ResponseModel:
       type: object
       properties:
@@ -8840,6 +8870,39 @@ components:
                 with previous billing address during the next CMS daily run and assess
                 the fee defined in the Service Charge/Fee table (FEE TABLE)
               example: C
+    InquireAccountStatisticV1ResponseModel:
+      type: object
+      properties:
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0004440010000000017'
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        cashDepositStatistics:
+          type: object
+          properties:
+            accumulatedAuthorizationAmount:
+              maxLength: 24
+              type: string
+              description: Total amount of Cash deposit Authorizations for account
+                today. Accumulator will be updated and validated for all the cards
+                linked to account.
+              example: $10000.00
+            accumulatedAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Total Number of Cash deposit Authorizations for account
+                today. Accumulator will be updated and validated for all the cards
+                linked to account.
+              example: '1'
     InquireAccountV1ResponseModel:
       type: object
       properties:
@@ -9597,7 +9660,19 @@ components:
     InquireDelinquencyV1ResponseModel:
       type: object
       properties:
-        accountDues:
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0006000011000000509'
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        delinquencyDetails:
           type: object
           properties:
             120daysDelinquentAmount:
@@ -9629,52 +9704,68 @@ components:
               type: string
               description: This field indicates the amount delinquent for the account
                 that has been delinquent 30 to 59 days.
-              example: $0.00
+              example: $260.00
             60daysDelinquentAmount:
               maxLength: 24
               type: string
               description: This field indicates the amount delinquent for the account
                 that has been delinquent 60 to 89 days.
-              example: $0.00
+              example: $120.00
             90daysDelinquentAmount:
               maxLength: 24
               type: string
               description: This field indicates the amount delinquent and the number
                 of times the account has been delinquent for 90 to 119 days.
               example: $0.00
+            currentCycleDue:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Code that identifies the level of contractual delinquency.
+                The contractual delinquency (also called the cycle due code), indicates
+                the number of cycles for which payments are due. <br/>The values are:<br/>
+                &nbsp; '0' - No amount is due; account is current <br/> &nbsp; '1'
+                - Current amount due; not past due <br/> &nbsp; '2' - Amount past
+                due 1–29 days (or X days) <br/> &nbsp; '3' - Amount past due 30–59
+                days <br/> &nbsp; '4' - Amount past due 60–89 days <br/> &nbsp; '5'
+                - Amount past due 90–119 days <br/> &nbsp; '6' - Amount past due 120–149
+                days <br/> &nbsp; '7' - Amount past due 150–179 days <br/> &nbsp;
+                '8' - Amount past due 180–209 days <br/> &nbsp; '9' - Amount past
+                due 210 or more days
+              example: '6'
             currentDueAmount:
               maxLength: 24
               type: string
               description: Total current due amount for the account.
-              example: $0.00
+              example: $50.00
+            lastDelinquentDate:
+              maxLength: 10
+              type: string
+              description: Date on which the account was last delinquent. The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+                Control.
+              example: 14/12/2021
             pastDueAmount:
               maxLength: 24
               type: string
               description: This field indicates the amount delinquent for the account
                 that has been delinquent for 1 to 29 days (also called “X” days).
-              example: $0.00
-        accountId:
-          maxLength: 19
-          type: string
-          description: Unique identification number for cardholder billing account.
-          example: '0007000010000066752'
-        businessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number associated with the organization.
-            Valid values from 001-998.
-          example: '700'
-        cycleDue:
-          maxLength: 1
-          type: string
-          description: Cycle due code at which to reset delinquency and automatically
-            reage the account. This code indicates the number of billing cycles for
-            which a payment is due. This code also indicates the level of contractual
-            delinquency for the account. <br/>The values are:<br/> &nbsp; 'X' - Do
-            not use automatic reaging (Default) <br/> &nbsp; '0' to '8' - Cycle due
-            code at which to reset the delinquency and reage the account automatically
-          example: '1'
+              example: $120.00
+            paymentDaysDelinquentCount:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Number of days the account remained delinquent for the
+                previous delinquency occurrence.
+              example: '66'
+            previousCycleDue:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Number of cycles due as of the previous cycle. This field
+                is necessary to determine whether delinquency has worsened since the
+                previous cycle or has actually improved or remained the same.
+              example: '5'
     InquireDirectDebitControlV1ResponseModel:
       type: object
       properties:
@@ -9822,64 +9913,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PaymentHistory_InquirePaymentHistoryV1ResponseModel'
-    InquireSpendLimitV1ResponseModel:
-      type: object
-      properties:
-        accountId:
-          maxLength: 19
-          type: string
-          description: Unique identification number for cardholder billing account.
-          example: '0004440010000000017'
-        businessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number associated with the organization.
-            Valid values from 1-998.
-          example: '600'
-        cashDepositMaximumAuthorizationAmount:
-          maxLength: 24
-          type: string
-          description: Maximum Cash Deposit authorizations amount allowed for this
-            account today.
-          example: $10000.00
-        cashDepositMaximumAuthorizationCount:
-          maximum: 999999999
-          maxLength: 9
-          type: integer
-          description: Maximum number of cash deposit authorizations allowed for account
-            today.
-          example: '3'
-    InquireSpendStatisticV1ResponseModel:
-      type: object
-      properties:
-        accountId:
-          maxLength: 19
-          type: string
-          description: Unique identification number for cardholder billing account.
-          example: '0004440010000000017'
-        businessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number associated with the organization.
-            Valid values from 1-998.
-          example: '600'
-        cashDepositAccumulatedAuthorizationAmount:
-          maxLength: 24
-          type: string
-          description: Total amount of Cash deposit Authorizations for account today.
-            Accumulator will be updated and validated for all the cards linked to
-            account.
-          example: $10000.00
-        cashDepositAccumulatedAuthorizationCount:
-          maximum: 999999999
-          maxLength: 9
-          type: integer
-          description: Total Number of Cash deposit Authorizations for account today.
-            Accumulator will be updated and validated for all the cards linked to
-            account.
-          example: '1'
     InquireStatementPlanDetailV1ResponseModel:
       type: object
       properties:
@@ -13575,6 +13608,56 @@ components:
             on which a fraudulent loan was discovered. The format is MM/DD/YYYY or
             DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 01/01/2018
+    UpdateAccountLimitV1ReqModel:
+      type: object
+      properties:
+        cashDepositLimits:
+          type: object
+          properties:
+            maximumAuthorizationAmount:
+              maxLength: 17
+              type: string
+              description: Maximum Cash Deposit authorizations amount allowed for
+                this account today.
+              example: '10000.00'
+            maximumAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Maximum number of cash deposit authorizations allowed for
+                account today.
+              example: '3'
+    UpdateAccountLimitV1ResponseModel:
+      type: object
+      properties:
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0004440010000000017'
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '600'
+        cashDepositLimits:
+          type: object
+          properties:
+            maximumAuthorizationAmount:
+              maxLength: 24
+              type: string
+              description: Maximum Cash Deposit authorizations amount allowed for
+                this account today.
+              example: $10000.00
+            maximumAuthorizationCount:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: Maximum number of cash deposit authorizations allowed for
+                account today.
+              example: '3'
     UpdateAccountPreferenceV1ReqModel:
       type: object
       properties:
@@ -14424,50 +14507,6 @@ components:
           description: This flag identifies the state, province or country in which
             the  account holder resides.
           example: SX1
-    UpdateSpendLimitV1ReqModel:
-      type: object
-      properties:
-        cashDepositMaximumAuthorizationAmount:
-          maxLength: 17
-          type: string
-          description: Maximum Cash Deposit authorizations amount allowed for this
-            account today.
-          example: '10000.00'
-        cashDepositMaximumAuthorizationCount:
-          maximum: 999999999
-          maxLength: 9
-          type: integer
-          description: Maximum number of cash deposit authorizations allowed for account
-            today.
-          example: '3'
-    UpdateSpendLimitV1ResponseModel:
-      type: object
-      properties:
-        accountId:
-          maxLength: 19
-          type: string
-          description: Unique identification number for cardholder billing account.
-          example: '0004440010000000017'
-        businessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number associated with the organization.
-            Valid values from 1-998.
-          example: '600'
-        cashDepositMaximumAuthorizationAmount:
-          maxLength: 24
-          type: string
-          description: Maximum Cash Deposit authorizations amount allowed for this
-            account today.
-          example: $10000.00
-        cashDepositMaximumAuthorizationCount:
-          maximum: 999999999
-          maxLength: 9
-          type: integer
-          description: Maximum number of cash deposit authorizations allowed for account
-            today.
-          example: '3'
     UpdateStatementPreferenceV1ReqModel:
       type: object
       properties:

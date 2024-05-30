@@ -79,5 +79,7 @@ Below table provides the list of application's error code and its description.
 | `V5BS0103SE` | Credit limit does not conform to currency NOD |  
 | `V5BS0103SF` | Credit limit required |
 | `V5BS0010SF` | Update Request - Record not found |
+| `V5BS0103SG` | Cannot be less than logo credit limit |
+| `V5BS0103SC` | Cannot be greater than logo credit limit |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

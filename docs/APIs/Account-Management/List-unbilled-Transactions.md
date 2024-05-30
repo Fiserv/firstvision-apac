@@ -48,7 +48,8 @@ type: tab
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000001"
     },
     {
       "authorizationCode": "052206",
@@ -73,7 +74,8 @@ type: tab
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000002"
     },
     {
       "authorizationCode": "052210",
@@ -98,7 +100,8 @@ type: tab
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000003"
     },
     {
       "authorizationCode": "052213",
@@ -123,7 +126,8 @@ type: tab
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000004"
     },
     {
       "authorizationCode": "052219",
@@ -148,7 +152,8 @@ type: tab
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000006"
     },
     {
       "authorizationCode": "052220",
@@ -173,7 +178,8 @@ type: tab
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000007"
     },
     {
       "authorizationCode": " ",
@@ -198,7 +204,8 @@ type: tab
       "billerCode": " ",
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000008"
     }
   ]
 }

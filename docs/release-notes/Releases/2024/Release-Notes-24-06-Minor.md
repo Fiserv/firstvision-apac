@@ -43,7 +43,7 @@
 - Update Direct Debit Controls: paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate and customerName added in request/response. informationalMessage added in response. maxLength updated from 24 to 17 for nominatedPaymentAmountOrPercentage in request. Value '9' added in paymentType enum and it's description in response/request.
 - List Billed Transactions: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Unbilled Transactions: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
-- List Outstanding Transactions: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
+- List Outstanding Authorizations: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - Inquire Statement Transaction Details: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Transactions by Date Range: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Transactions by Date Range V2: foreignOriginalAmount and foreignOriginalCurrencyCode added in response

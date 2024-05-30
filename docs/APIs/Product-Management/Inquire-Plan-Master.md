@@ -41,6 +41,8 @@ type: tab
   "multipleSales": "Y",
   "paymentType": "T",
   "planId": 10002,
+  "balanceTransferFeeType" : " ",
+  "balanceTransferFeeAmountOrPercentage" : "0",
   "planType": "R",
   "promotionalPlanDetails": {
     "cancellationLetterId": " ",
