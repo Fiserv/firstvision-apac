@@ -103,7 +103,8 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000001"
     }
   ],
   "correspondingCustomerId": " ",
