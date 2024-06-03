@@ -14,9 +14,13 @@ Please click on the below link to explore the specific API of interest
 
 - [Inquire Account](./?path=docs/APIs/Account-Management/Inquire-Account.md)
 
+- [Inquire Account Limits](./?path=docs/APIs/Account-Management/Inquire-Account-Limits.md)
+
 - [Inquire Account Plan](./?path=docs/APIs/Account-Management/Inquire-Account-Plan.md)
 
 - [Inquire Account Preference](./?path=docs/APIs/Account-Management/Inquire-Account-Preference.md)
+
+- [Inquire Account Statistics](./?path=docs/APIs/Account-Management/Inquire-Account-Statistics.md)
 
 - [Inquire Behavioural History](./?path=docs/APIs/Account-Management/Inquire-Behavioural-History.md)
 
@@ -57,6 +61,8 @@ Please click on the below link to explore the specific API of interest
 - [Transfer Plan Balance](./?path=docs/APIs/Account-Management/Transfer-Plan-Balance.md)
  
 - [Update Account Charge-Off](./?path=docs/APIs/Account-Management/Update-Account-Charge-Off.md)
+
+- [Update Account Limits](./?path=docs/APIs/Account-Management/Update-Account-Limits.md)
 
 - [Update Account Preference](./?path=docs/APIs/Account-Management/Update-Account-Preference.md)
 

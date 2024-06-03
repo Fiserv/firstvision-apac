@@ -1,6 +1,6 @@
 # GooglePay - SamsungPay MDES Push Provisioning
 
-This API is used for push provisioning of Master Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a GooglePay or SamsungPay wallet. 
+This API is used for push provisioning of MC Card. API validates the incoming card details from client and calls MDES for push multiple accounts. MDES responds with push account recipts which will be further sent to client by FV.
 
 ## Endpoint
 
