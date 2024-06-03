@@ -63,7 +63,8 @@ type: tab
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000001"
     },
     {
       "authorizationCode": "021447",
@@ -88,7 +89,8 @@ type: tab
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000011"
     },
     {
       "authorizationCode": " ",
@@ -113,7 +115,8 @@ type: tab
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000002"
     },
     {
       "authorizationCode": "022709",
@@ -138,7 +141,8 @@ type: tab
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000003"
     },
     {
       "authorizationCode": " ",
@@ -163,7 +167,8 @@ type: tab
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000004"
     },
     {
       "authorizationCode": "023754",
@@ -188,7 +193,8 @@ type: tab
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000015"
     },
     {
       "authorizationCode": "023911",
@@ -213,7 +219,8 @@ type: tab
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000005"
     },
     {
       "authorizationCode": " ",
@@ -238,7 +245,8 @@ type: tab
       "upiMerchantId": "102345679321431",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000006"
     }
   ]
 }

@@ -85,6 +85,7 @@ type: tab
     "incomeAmount": "$5000.00",
     "pastDueAmount": "$0.00",
     "lastPurchaseAmount": "$100.00",
+    "balanceTransferOutstandingAmount" : "$0.00",
     "lastCashAdvancedAmount": "$0.00"
   },
   "userAccountId": " ",
