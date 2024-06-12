@@ -24,22 +24,36 @@ type: tab
 ```json
 
 {
-  "accountId": "0006000011000000509",
-  "businessUnit": 600,
-  "delinquencyDetails": {
-    "120daysDelinquentAmount": "$0.00",
-    "150daysDelinquentAmount": "$0.00",
-    "180daysDelinquentAmount": "$0.00",
-    "210daysDelinquentAmount": "$0.00",
-    "30daysDelinquentAmount": "$0.00",
-    "60daysDelinquentAmount": "$0.00",
-    "90daysDelinquentAmount": "$0.00",
-    "currentCycleDue": 0,
-    "currentDueAmount": "$0.00",
-    "lastDelinquentDate": "00/00/0000",
-    "pastDueAmount": "$0.00",
-    "paymentDaysDelinquentCount": 0,
-    "previousCycleDue": 0
+  "accountDetails": {
+    "currentBalance": "$0.00",
+    "cycleDue": "1",
+    "dueDetails": {
+      "120daysDelinquentAmount": "$0.00",
+      "150daysDelinquentAmount": "$0.00",
+      "180daysDelinquentAmount": "$0.00",
+      "210daysDelinquentAmount": "$0.00",
+      "30daysDelinquentAmount": "$0.00",
+      "60daysDelinquentAmount": "$0.00",
+      "90daysDelinquentAmount": "$0.00",
+      "currentDueAmount": "$10.00",
+      "pastDueAmount": "$0.00"
+    },
+    "openToBuy": "$10000.00",
+    "totalDueAmount": "$0.00"
+  },
+  "accountId": "0007000010000066752",
+  "businessUnit": 700,
+  "differenceInTotalAmount": "$0.00",
+  "planDetails": {
+    "currentBalance": "$23.00",
+    "planId": 10002,
+    "totalDueAmount": "$0.00"
+  },
+  "planTotalDueAmount": "$20.00",
+  "reageDetails": {
+    "limit": 1,
+    "period": 0,
+    "reagedCount": 0
   }
 }
 ```
@@ -55,7 +69,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/accounts/0006000011000000590/deliquencyDetails",
     "invalid-params": [
-      "V5BS0004SF: Get Request - Record not found"
+      "V5DJ4047SB: Invalid Account Number"
     ],
     "source": "VPL",
     "status": 404,
@@ -82,6 +96,13 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0004SF` | Get request - Record not found |
+| `V5DJ5001SA` | Invalid Organization Entry |
+| `V5DJ4047SB` | Invalid Account Number |
+| `V5DJ5002SA` | Account Number Required |
+| `V5DJ5003SA` | No Organisation Rec on file or Add Pending |
+| `V5DJ5004SA` | No Account on file or Add Pending |
+| `V5DJ5005SA` | Delinquency Adj not allowed for this Account |
+| `V5DJ5006SA` | No Plan Segment(s) on file |
+
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
