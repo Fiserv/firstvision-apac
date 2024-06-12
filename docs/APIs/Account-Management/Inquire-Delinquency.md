@@ -1,6 +1,6 @@
 # Inquire Delinquency
 
-This API is used to fetch delinquency details for a given account Id like 30 to 210 day delinquent amount, last deliquent date, current cycle due etc.
+This API is used to fetch delinquency details for a given account Id like 30 to 210 day delinquent amount, Plan level due amounts with current cycle due etc.
 
 ## Endpoint
 
@@ -22,35 +22,36 @@ type: tab
 -->
 
 ```json
-
 {
   "accountDetails": {
     "currentBalance": "$0.00",
     "cycleDue": "1",
-    "dueDetails": {
-      "120daysDelinquentAmount": "$0.00",
-      "150daysDelinquentAmount": "$0.00",
-      "180daysDelinquentAmount": "$0.00",
-      "210daysDelinquentAmount": "$0.00",
-      "30daysDelinquentAmount": "$0.00",
-      "60daysDelinquentAmount": "$0.00",
-      "90daysDelinquentAmount": "$0.00",
-      "currentDueAmount": "$10.00",
-      "pastDueAmount": "$0.00"
-    },
     "openToBuy": "$10000.00",
     "totalDueAmount": "$0.00"
+  },
+  "accountDueDetails": {
+    "120daysDelinquentAmount": "$0.00",
+    "150daysDelinquentAmount": "$0.00",
+    "180daysDelinquentAmount": "$0.00",
+    "210daysDelinquentAmount": "$0.00",
+    "30daysDelinquentAmount": "$0.00",
+    "60daysDelinquentAmount": "$0.00",
+    "90daysDelinquentAmount": "$0.00",
+    "currentDueAmount": "$10.00",
+    "pastDueAmount": "$0.00"
   },
   "accountId": "0007000010000066752",
   "businessUnit": 700,
   "differenceInTotalAmount": "$0.00",
-  "planDetails": {
-    "currentBalance": "$23.00",
-    "planId": 10002,
-    "totalDueAmount": "$0.00"
-  },
+  "planDetails": [
+    {
+      "currentBalance": "$23.00",
+      "planId": 10002,
+      "totalDueAmount": "$0.00"
+    }
+  ],
   "planTotalDueAmount": "$20.00",
-  "reageDetails": {
+  "reageControls": {
     "limit": 1,
     "period": 0,
     "reagedCount": 0

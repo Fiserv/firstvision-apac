@@ -1,6 +1,6 @@
 # Update Delinquency
 
-This service is used to reage the account, reaging an account is normally done to cause an account to appear less delinquent by reducing the delinquency level. You also can reage an account to make the account appear more delinquent by increasing the delinquency level.
+This service is used to reage the account, reaging an account is normally done to cause an account to appear less delinquent by reducing the delinquency level. 
 
 ## Endpoint
 
@@ -170,7 +170,7 @@ type: tab
     "totalDue08Amount": "$0.00",
     "totalDue09Amount": "$0.00",
     "totalDue10Amount": "$0.00",
-    "totalDue11Amount": "$20.00",
+    "totalDue11Amount": "$0.00",
     "totalDue12Amount": "$0.00",
     "totalDue13Amount": "$0.00",
     "totalDue14Amount": "$0.00",
@@ -180,7 +180,7 @@ type: tab
     "totalDue18Amount": "$0.00",
     "totalDue19Amount": "$0.00",
     "totalDue20Amount": "$0.00",
-    "totalDue21Amount": "$20.00",
+    "totalDue21Amount": "$0.00",
     "totalDue22Amount": "$0.00",
     "totalDue23Amount": "$0.00",
     "totalDue24Amount": "$0.00",
@@ -190,7 +190,7 @@ type: tab
     "totalDue28Amount": "$0.00",
     "totalDue29Amount": "$0.00",
     "totalDue30Amount": "$0.00",
-    "totalDue31Amount": "$20.00",
+    "totalDue31Amount": "$0.00",
     "totalDue32Amount": "$0.00",
     "totalDue33Amount": "$0.00",
     "totalDue34Amount": "$0.00",
@@ -200,7 +200,7 @@ type: tab
     "totalDue38Amount": "$0.00",
     "totalDue39Amount": "$0.00",
     "totalDue40Amount": "$0.00",
-    "totalDue41Amount": "$20.00",
+    "totalDue41Amount": "$0.00",
     "totalDue42Amount": "$0.00",
     "totalDue43Amount": "$0.00",
     "totalDue44Amount": "$0.00",
@@ -210,7 +210,7 @@ type: tab
     "totalDue48Amount": "$0.00",
     "totalDue49Amount": "$0.00",
     "totalDue50Amount": "$0.00",
-    "totalDue51Amount": "$20.00",
+    "totalDue51Amount": "$0.00",
     "totalDue52Amount": "$0.00",
     "totalDue53Amount": "$0.00",
     "totalDue54Amount": "$0.00",
@@ -220,7 +220,7 @@ type: tab
     "totalDue58Amount": "$0.00",
     "totalDue59Amount": "$0.00",
     "totalDue60Amount": "$0.00",
-    "totalDue61Amount": "$20.00",
+    "totalDue61Amount": "$0.00",
     "totalDue62Amount": "$0.00",
     "totalDue63Amount": "$0.00",
     "totalDue64Amount": "$0.00",
@@ -230,7 +230,7 @@ type: tab
     "totalDue68Amount": "$0.00",
     "totalDue69Amount": "$0.00",
     "totalDue70Amount": "$0.00",
-    "totalDue71Amount": "$20.00",
+    "totalDue71Amount": "$0.00",
     "totalDue72Amount": "$0.00",
     "totalDue73Amount": "$0.00",
     "totalDue74Amount": "$0.00",
@@ -240,7 +240,7 @@ type: tab
     "totalDue78Amount": "$0.00",
     "totalDue79Amount": "$0.00",
     "totalDue80Amount": "$0.00",
-    "totalDue81Amount": "$20.00",
+    "totalDue81Amount": "$0.00",
     "totalDue82Amount": "$0.00",
     "totalDue83Amount": "$0.00",
     "totalDue84Amount": "$0.00",
@@ -250,7 +250,7 @@ type: tab
     "totalDue88Amount": "$0.00",
     "totalDue89Amount": "$0.00",
     "totalDue90Amount": "$0.00",
-    "totalDue91Amount": "$20.00",
+    "totalDue91Amount": "$0.00",
     "totalDue92Amount": "$0.00",
     "totalDue93Amount": "$0.00",
     "totalDue94Amount": "$0.00",
