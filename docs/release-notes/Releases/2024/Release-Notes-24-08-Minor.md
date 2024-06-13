@@ -16,7 +16,7 @@
 - Inquire Statement Transaction Details: New field acquirerReferenceNumber added in response
 - List Transactions by Date Range: New field acquirerReferenceNumber added in response
 - List Transactions by Date Range V2: New field acquirerReferenceNumber added in response
-- Inquire Delinquency - Existing fields deleted and planDues were added
+- Inquire Delinquency - Existing fields deleted (previousCycleDue, lastDelinquentDate and paymentDaysDelinquentCount) and restructured the API response (delinquencyDetails renamed to accountDueDetails, accountDetails and reageControls groups were added, and new fields planTotalDueAmount and differenceInTotalAmount added) 
 
 ### New APIs
 
@@ -34,7 +34,7 @@ This API provides daily accumulated cash deposite authorization amount and count
 
 #### Update Delinquency
 
-This service is used to reage the account, reaging an account is normally done to cause an account to appear less delinquent by reducing the delinquency level. 
+This service is used to reage the account, reaging an account is normally done to cause an account to appear less delinquent by reducing the delinquency level. Also, user can adjust the account level due buckets or plan level dues if there is any discrepancy.
 
 ### Updated APIs -
 
@@ -48,7 +48,7 @@ This service is used to reage the account, reaging an account is normally done t
 | 6 | Account Management | List Transactions by Date Range | <ul> <li> New field acquirerReferenceNumber added in response |
 | 7 | Account Management | List Transactions by Date Range V2 | <ul> <li> New field acquirerReferenceNumber added in response |
 | 8 | Product Management | Inquire Plan Master | <ul> <li> New fields balanceTransferFeeType and balanceTransferFeeAmountOrPercentage added in response |
-| 9 | Account Management | Inquire Delinquency | <ul> <li> previousCycleDue, lastDelinquentDate and paymentDaysDelinquentCount are deleted from response. </li> <li> Restructured the API response |
+| 9 | Account Management | Inquire Delinquency | <ul> <li> previousCycleDue, lastDelinquentDate and paymentDaysDelinquentCount are deleted from response. </li> <li> Restructured the API response (delinquencyDetails renamed to accountDueDetails, accountDetails and reageControls groups were added, and new fields planTotalDueAmount and differenceInTotalAmount added) |
 
 ### Deleted APIs
 

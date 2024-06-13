@@ -1,6 +1,6 @@
 # Update Delinquency
 
-This service is used to reage the account, reaging an account is normally done to cause an account to appear less delinquent by reducing the delinquency level. 
+This service is used to reage the account, reaging an account is normally done to cause an account to appear less delinquent by reducing the delinquency level. Also, user can adjust the account level due buckets or plan level dues if there is any discrepancy.
 
 ## Endpoint
 
