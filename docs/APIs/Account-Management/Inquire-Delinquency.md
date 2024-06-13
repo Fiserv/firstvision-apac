@@ -1,6 +1,6 @@
 # Inquire Delinquency
 
-This API is used to fetch delinquency details for a given account Id like 30 to 210 day delinquent amount, Plan level due amounts with current cycle due etc.
+This API is used to fetch account, plan level dues and balances along with reage controls. 
 
 ## Endpoint
 
@@ -104,6 +104,7 @@ Below table provides the list of application's error code and its description.
 | `V5DJ5004SA` | No Account on file or Add Pending |
 | `V5DJ5005SA` | Delinquency Adj not allowed for this Account |
 | `V5DJ5006SA` | No Plan Segment(s) on file |
+| `V5DJ0022SF` | Not Allowed. System in After hours Update mode |
 
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
