@@ -19,9 +19,9 @@ titles: Request, Response, Error
   "accountId": "0007000011161782000",
   "transferType": "T",
   "transferFromPlanId": 5,
-  "transferFromRecordNumber": 3,
+  "transferFromPlanSequenceNumber": 3,
   "transferToPlanId": 1,
-  "transferToRecordNumber": 1,
+  "transferToPlanSequenceNumber": 1,
   "amountFields": {
     "principalAmount": "0.00",
     "interestFeeAmount": "0.00",
@@ -53,9 +53,9 @@ type: tab
   "businessUnit": 700,
   "accountId": "0007000011161782000",
   "transferFromPlanId": 5,
-  "transferFromRecordNumber": 3,
+  "transferFromPlanSequenceNumber": 3,
   "transferToPlanId": 1,
-  "transferToRecordNumber": 1,
+  "transferToPlanSequenceNumber": 1,
   "amountFields": {
     "principalAmount": "$0.00",
     "interestFeeAmount": "$0.00",
@@ -109,9 +109,9 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
 | `transferFromPlanId` | Payload | *number* | 5 | Plan number associated with the credit plan segment from which to transfer funds. |  
-| `transferFromRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account from which to transfer funds. |  
+| `transferFromPlanSequenceNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account from which to transfer funds. |  
 | `transferToPlanId` | Payload | *number* | 5 | Plan number to which you want to transfer the funds. |  
-| `transferToRecordNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account to which to transfer funds. |  
+| `transferToPlanSequenceNumber` | Payload | *number* | 3 | Record number that identifies the credit plan segment on the account to which to transfer funds. |  
 
 ### Error Codes
 

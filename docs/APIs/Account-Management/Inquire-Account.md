@@ -124,6 +124,7 @@ type: tab
   "externalContractId": "0000000000012672379",
   "addressId": "HOME",
   "sourceCode": " ",
+  "excludeFromVAUOrABUIndicator": 0,
   "pctOverrideDetails": {
     "pctExpiryDate": "31/12/2025",
     "pctStartDate": "29/01/2022",

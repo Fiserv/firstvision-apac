@@ -46,7 +46,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 1,
       "merchantCountryCode": "AUS",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "104.00",
+      "foreignOriginalCurrencyCode": "840"
     },
     {
       "authorizationCode": " ",
@@ -67,7 +69,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 2,
       "merchantCountryCode": "AUS",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "0",
+      "foreignOriginalCurrencyCode": "000"
     },
     {
       "authorizationCode": " ",
@@ -88,7 +92,9 @@ type: tab
       "memoDebitOrCreditIndicator": "D",
       "bnplIplanSequenceNumber": 3,
       "merchantCountryCode": "AUS",
-      "billerCode": " "
+      "billerCode": " ",
+      "foreignOriginalAmount": "0",
+      "foreignOriginalCurrencyCode": "000"
     }
   ]
 }
