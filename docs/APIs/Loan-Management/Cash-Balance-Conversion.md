@@ -1,6 +1,6 @@
 # Cash Balance Conversion
 
-This API is used to validate if the Cash balance conversion is allowed for given account. This API will be created to cater to Conversion steps, depending on the Type of Request.
+This API is used to validate if the Cash balance conversion is allowed for given accountId/paymentInstrumentId. This API will be created to cater to Conversion steps, depending on the Type of Request.
 
 ## Endpoint
 
@@ -133,7 +133,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Payload  | *string* | 19 | Unique identification number for cardholder billing account.|
+| `accountId` | Payload  | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId in request. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 | `loanPlanId` | Payload  | *integer* | 5 | Identification number of the Credit Plan Master entity. The values are 1–99998. You can establish as many as 99,998 Credit Plan Master entity for each organization.|
 | `tenure` | Payload  | *integer* | 3 | Field indicates the term used while converting transaction into instalment.|
 | `cashLoanAmount` | Payload  | *string* | 17 | Cash amount of the transaction.|

@@ -41,7 +41,8 @@ type: tab
   },
   "addressId": "HOME",
   "sourceCode": " ",
-  "isSupressTokenEnabled": 0
+  "isSupressTokenEnabled": 0,
+  "excludeFromVAUOrABUIndicator": 0
 }
 ```
 

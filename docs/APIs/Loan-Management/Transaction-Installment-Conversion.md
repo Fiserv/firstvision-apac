@@ -1,6 +1,6 @@
 # Transaction Instalment Conversion
 
-This API supports both single and multiple transaction conversion into instalments. API first validates if given transactions are eligible to convert into instalment. If transactions are eligible, then system converts given transactions into instalment.
+This API supports both single and multiple transaction conversion into instalments for a given accountId/paymentInstrumentId. API first validates if given transactions are eligible to convert into instalment. If transactions are eligible, then system converts given transactions into instalment.
 
 ## Endpoint
 
@@ -142,7 +142,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId in request. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 | `loanPlanId` | Payload  | *integer* | 05 | Identification number of the Credit Plan Master entity.|
 | `tenure` | Payload | *integer* | 03 | Field indicates the term used while converting transaction into instalment.|
 | `transactionAmount` | Payload | *string* | 17 | Amount of the transaction.|

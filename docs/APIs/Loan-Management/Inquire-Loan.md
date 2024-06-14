@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 >Should be empty.
 >
->***Account Id should be sent as path variable and Record number sent as Query Parameter.***
+>***Account Id should be sent as path variable and plan sequence number sent as Query Parameter.***
 
 <!--
 type: tab
@@ -54,7 +54,7 @@ type: tab
   "disbrusementCreditDetails": {
     "accountIndicator": 0,
     "bankId": "0",
-    "disbursementAccountId": "",
+    "disbursementAccountId": " ",
     "disbursementDate": "00/00/0000"
   },
   "initializedAmountDetails": {
@@ -108,7 +108,7 @@ type: tab
     "user5Amount": "$0.00",
     "user6Amount": "$0.00"
   },
-  "recordNumber": 1,
+  "planSequenceNumber": 1,
   "skipPaymentDetails": {
     "lastSkipPaymentDate": "00/00/0000",
     "lifeToDateSkipPaymentCount": 0,
@@ -127,7 +127,7 @@ type: tab
     "lastTopUpAmount": "$0.00",
     "lastTopUpRequestDate": "00/00/0000",
     "redrawExpiryDate": "00/00/0000",
-    "restructureLetterId": "",
+    "restructureLetterId": " ",
     "restructureReason": 0,
     "topUpExpiryDate": "30/11/2000"
   }
@@ -166,7 +166,7 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
-| `recordNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment record assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
+| `planSequenceNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment record assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
 
 ### Error Codes
 

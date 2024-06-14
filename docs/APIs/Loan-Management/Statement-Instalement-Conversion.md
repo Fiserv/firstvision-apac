@@ -1,6 +1,6 @@
 # Statement Balance Conversion
 
-This API is used to convert statement balance into Instalment. API first validates the given plans are eligible for statement balance conversion, if eligible then system converts into instalment for the requested term and also responds with loan scheduling details.
+This API is used to convert statement balance into Instalments for a given accountId/paymentInstrumentId. API first validates the given plans are eligible for statement balance conversion, if eligible then system converts into instalment for the requested term and also responds with loan scheduling details.
 
 ## Endpoint
 
@@ -135,7 +135,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId in request. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 | `loanPlanId` | Payload  | *integer* | 05 | Identification number of the Credit Plan Master entity.|
 | `tenure` | Payload | *integer* | 03 | Field indicates the term used while converting transaction into instalment.|
 | `conversionAmount` | Payload | *string* | 17 | Amount requested for instalment conversion..|

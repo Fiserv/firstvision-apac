@@ -30,7 +30,9 @@ titles: Request, Response, Error
   "cardTransferActionCode": "CRTR",
   "cardTransferMemo": "Card transfer memo",
   "pinTransferActionCode": "PNTR",
-  "pinTransferMemo": "PIN transfer memo"
+  "pinTransferMemo": "PIN transfer memo",
+  "issueDeliveryOption": 1,
+  "isPinSuppressionEnabled": 0
 }
 
 ```

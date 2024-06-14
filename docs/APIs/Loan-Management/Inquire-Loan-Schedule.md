@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 >Should be empty.
 >
->***Account Id should be sent as path variable and Record number sent as Query Parameter.***
+>***Account Id should be sent as path variable and plan sequence number sent as Query Parameter.***
 
 <!--
 type: tab
@@ -28,7 +28,7 @@ type: tab
   "lastScheduledDate": "00/00/0000",
   "loanScheduleDetails": [
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.46",
       "interestRate": "0.35000%",
@@ -42,7 +42,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.27",
       "interestRate": "0.35000%",
@@ -56,7 +56,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.14",
       "interestRate": "0.35000%",
@@ -70,7 +70,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -84,7 +84,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -98,7 +98,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -112,7 +112,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -126,7 +126,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -140,7 +140,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -154,7 +154,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -168,7 +168,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -182,7 +182,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -196,7 +196,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -210,7 +210,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -224,7 +224,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -238,7 +238,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -252,7 +252,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -266,7 +266,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -280,7 +280,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -294,7 +294,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -308,7 +308,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -322,7 +322,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -336,7 +336,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -350,7 +350,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -364,7 +364,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -378,7 +378,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -392,7 +392,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -406,7 +406,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -420,7 +420,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -434,7 +434,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -448,7 +448,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -462,7 +462,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -476,7 +476,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -490,7 +490,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -504,7 +504,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -518,7 +518,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -532,7 +532,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -546,7 +546,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -560,7 +560,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -574,7 +574,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -588,7 +588,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -602,7 +602,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -616,7 +616,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -630,7 +630,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -644,7 +644,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -658,7 +658,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -672,7 +672,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -686,7 +686,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -700,7 +700,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -714,7 +714,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -728,7 +728,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -742,7 +742,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -756,7 +756,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -770,7 +770,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -784,7 +784,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -798,7 +798,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -812,7 +812,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -826,7 +826,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -840,7 +840,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -854,7 +854,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -868,7 +868,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -882,7 +882,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -896,7 +896,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -910,7 +910,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -924,7 +924,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -938,7 +938,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -952,7 +952,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -966,7 +966,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -980,7 +980,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -994,7 +994,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1008,7 +1008,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1022,7 +1022,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1036,7 +1036,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1050,7 +1050,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1064,7 +1064,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1078,7 +1078,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1092,7 +1092,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1106,7 +1106,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1120,7 +1120,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1134,7 +1134,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1148,7 +1148,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1162,7 +1162,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1176,7 +1176,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1190,7 +1190,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1204,7 +1204,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1218,7 +1218,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1232,7 +1232,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1246,7 +1246,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1260,7 +1260,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1274,7 +1274,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1288,7 +1288,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1302,7 +1302,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1316,7 +1316,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1330,7 +1330,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1344,7 +1344,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1358,7 +1358,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1372,7 +1372,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1386,7 +1386,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1400,7 +1400,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1414,7 +1414,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1428,7 +1428,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1442,7 +1442,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1456,7 +1456,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1470,7 +1470,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1484,7 +1484,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1498,7 +1498,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1512,7 +1512,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1526,7 +1526,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1540,7 +1540,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1554,7 +1554,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1568,7 +1568,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1582,7 +1582,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1596,7 +1596,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1610,7 +1610,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1624,7 +1624,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1638,7 +1638,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1652,7 +1652,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1666,7 +1666,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1680,7 +1680,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1694,7 +1694,7 @@ type: tab
       "userFee6Amount": "$0.00"
     },
     {
-      "installmentConversionFeeAmount": "0",
+      "instalmentConversionFeeAmount": "0",
       "insuranceAmount": "$0.00",
       "interestAmount": "$0.00",
       "interestRate": "0.00000%",
@@ -1709,7 +1709,7 @@ type: tab
     }
   ],
   "planId": 70003,
-  "recordNumber": 1,
+  "planSequenceNumber": 1,
   "referenceNumber": "0006000011000000509"
 }
 
@@ -1746,7 +1746,7 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
-| `recordNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment entity assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
+| `planSequenceNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment entity assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
 
 ### Error Codes
 

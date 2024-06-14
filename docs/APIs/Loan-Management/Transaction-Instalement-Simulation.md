@@ -1,6 +1,6 @@
 # Transaction Instalment Simulation
 
-This API is used to validate if given transactions are eligible to convert into instalment. If transactions are eligible for conversion, then response will show the loan scheduling details.
+This API is used to validate if given transactions for an accountId/paymentInstrumentId are eligible to convert into instalment. If transactions are eligible for conversion, then response will show the loan scheduling details.
 
 ## Endpoint
 
@@ -141,7 +141,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account.|
+| `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId in request. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 | `loanPlanId` | Payload  | *integer* | 5 | Identification number of the Credit Plan Master entity.|
 | `tenure` | Payload | *integer* | 3 | Field indicates the term used while converting transaction into instalment.|
 | `transactionAmount` | Payload | *string* | 17 | Amount of the transaction.|

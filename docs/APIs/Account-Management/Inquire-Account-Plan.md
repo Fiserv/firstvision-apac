@@ -25,7 +25,7 @@ type: tab
 {
   "businessUnit": 200,
   "accountId": "0002000010000400044",
-  "recordNumber": 1,
+  "planSequenceNumber": 1,
   "beginningBalance": "$0.00",
   "disputedAmount": "$0.00",
   "billedNotPaidDetails": {
@@ -63,18 +63,18 @@ type: tab
     "userFee3assessmentDate": "00/00/0000"
   },
   "generalDetails": {
-    "planDescription": "",
-    "referenceNumber": "",
+    "planDescription": " ",
+    "referenceNumber": " ",
     "multipleSales": "Y",
     "consolidatedPayment": "N",
     "consolidatedStatement": "Y",
     "limitIndicator": 0,
-    "rateType": ""
+    "rateType": " "
   },
   "interestTableOverrideDetails": {
     "tableId": 0,
     "expiryDate": "00/00/0000",
-    "status": ""
+    "status": " "
   },
   "miscellenousDetails": {
     "rateTableOccurrenceIndicator": 2,
@@ -82,7 +82,7 @@ type: tab
     "balanceTransferMonthsRemaining": 0,
     "disclosureDays": 0,
     "userdefinedProductCode": "10002",
-    "userdefinedPromotionalProductId": "",
+    "userdefinedPromotionalProductId": " ",
     "lastPurchaseBalanceAmount": "$1.00",
     "lifeToDateReturnAmount": "$0.00",
     "lifeToDateRequestedPaymentAmount": "$0.00",

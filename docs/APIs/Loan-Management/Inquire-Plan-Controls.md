@@ -70,7 +70,7 @@ type: tab
         "isLoanPlanTransferEnabled": 0,
         "isAdditionalInstalmentEnabled": 0,
         "rateOverrideIndicator": 1,
-        "typeOfLoan": 1,
+        "typeOfLoan": "1",
         "type": "1",
         "blockCodesAllowedForBooking": "000000000000000000000000000",
         "recalculationIndicator": "0",

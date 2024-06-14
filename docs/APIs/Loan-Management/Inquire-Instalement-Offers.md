@@ -1,6 +1,6 @@
 # Inquire Instalment Offers
 
-This API is used to fetch instalment offers for a given loan plan id, Loan Amount and account id.
+This API is used to fetch instalment offers for a given loan plan id, Loan Amount and accountId/paymentInstrumentId.
 
 ## Endpoint
 
@@ -79,7 +79,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId path variable. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 | `loanAmount` | Query Parameter | *string* | 17 | This field indicates amount which has to be converted to a Loan.|
 | `loanPlanId` | Query Parameter | *number* | 5 | Identification number of the Credit Plan Master entity and Plan Number to which loan is to be converted.|
 

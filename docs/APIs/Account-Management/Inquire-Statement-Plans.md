@@ -28,14 +28,14 @@ type: tab
   "residenceId": "600",
   "customerId": "0002000000050256486",
   "accountStatus": "A",
-  "statementModeOrStatus": "",
+  "statementModeOrStatus": " ",
   "lifeToDateCount": 1,
-  "alternateCustomerId": "",
+  "alternateCustomerId": " ",
   "creditClass": "N1",
-  "blockCode1": "",
-  "blockCode2": "",
+  "blockCode1": " ",
+  "blockCode2": " ",
   "relationshipId": " ",
-  "employeeCode": "",
+  "employeeCode": " ",
   "ytdAccumulatorDetails": {
     "interestAmount": "$0.00",
     "lateFeeAmount": "$0.00",
@@ -101,9 +101,9 @@ type: tab
   },
   "daysInCycle": 13,
   "qualifiedTransactionsCount": 0,
-  "personalId": "",
+  "personalId": " ",
   "billingIndicator": 0,
-  "revolvingStatus": "",
+  "revolvingStatus": " ",
   "businessUnit": 200
 }
 ```

@@ -31,7 +31,7 @@ type: tab
     "city": "DELHI",
     "countryCode": "IND",
     "county": "EMEA",
-    "houseNumber": "",
+    "houseNumber": " ",
     "postalCode": "110004",
     "stateProvince": "DL"
   },
@@ -58,12 +58,12 @@ type: tab
   "mobileNumber": "112233",
   "mobilePhoneFlag": 0,
   "namesDetails": {
-    "birthName": "",
+    "birthName": " ",
     "givenName": "ABC",
-    "middleName": "",
+    "middleName": " ",
     "nameLine1": "M S SWAMY",
     "nameLine2": "KK",
-    "nameLine3": ""
+    "nameLine3": " "
   },
   "smsFlag": 0,
   "typeOfExternalId": "1",

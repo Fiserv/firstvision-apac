@@ -15,7 +15,7 @@ titles: Request, Response, Error
 
 >Should be empty.
 >
->***Account Id should be sent as path variable and Record number sent as Query Parameter.***
+>***Account Id should be sent as path variable and plan sequence number sent as Query Parameter.***
 
 <!--
 type: tab
@@ -83,9 +83,9 @@ type: tab
     "paymentTermIndicator": "0"
   },
   "planId": 70003,
-  "productCode": "",
+  "productCode": " ",
   "rebatePeriodIndicator": 0,
-  "recordNumber": 1,
+  "planSequenceNumber": 1,
   "secondRebateDetails": {
     "secondInsuranceRebateIndicator": 0,
     "secondInterestRebateIndicator": 0,
@@ -133,7 +133,7 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
-| `recordNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment entity assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
+| `planSequenceNumber` | Query Parameter | *integer*| 3 | Record number that identifies each Credit Plan Segment entity assigned to the account. The values are 0–999. The value 0 indicates a “phantom” plan used to disclose interest rates when no cash or retail plan exists for an account.|
 
 ### Error Codes
 

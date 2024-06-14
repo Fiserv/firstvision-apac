@@ -25,7 +25,7 @@ type: tab
 {
   "businessUnit": 600,
   "accountId": "0006000011000000137",
-  "paymentRemittanceMethod": 0,
+  "paymentRemittanceMethod": 2,
   "paymentStartDate": "04/10/2021",
   "paymentExpiryDate": "04/11/2021",
   "routingBankID": "123456",
@@ -33,7 +33,12 @@ type: tab
   "externalAccountId": "00000001000000057",
   "nominatedType": 1,
   "nominatedPaymentAmountOrPercentage": "$10.00",
-  "paymentType": 1
+  "paymentType": 1,
+  "paymentChangeDate": "04/10/2025",
+  "customerName": "Alex Rey",
+  "suspenseStartDate": "00/00/0000",
+  "suspenseEndDate": "31/12/2999",
+  "requestDays": 3
 }
 ```
 

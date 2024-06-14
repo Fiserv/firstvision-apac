@@ -1,6 +1,6 @@
 # Inquire Transaction Instalment Details
 
-This API is used to fetch all the loan details converted from transactions into instalments for a given account id.
+This API is used to fetch all the loan details converted from transactions into instalments for a given accountId/paymentInstrumentId.
 
 ## Endpoint
 
@@ -87,7 +87,7 @@ The below table identifies the required parameters in the request payload.
 
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
-| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account.|
+| `accountId` | Path Variable | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId path variable. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 | `loanReferenceNumber` | Query Parameter | *string* | 23 | User-defined identification number for the loan plan.|
 
 ### Error Codes
