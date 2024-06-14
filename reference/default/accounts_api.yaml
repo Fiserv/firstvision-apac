@@ -2237,12 +2237,13 @@ paths:
       - Account Management
       x-group-name: Account Management
       x-proxy-name: Update Customers' Profile
-  /v1/accounts/{accountId}/deliquencyDetails:
-    get:
-      description: This API is used to fetch delinquency details for a given account
-        Id like 30 to 210 day delinquent amount, last deliquent date, current cycle
-        due etc.
-      operationId: InquireDelinquency
+  /v1/accounts/{accountId}/delinquency:
+    put:
+      description: This service is used to reage the account, reaging an account is
+        normally done to cause an account to appear less delinquent by reducing the
+        delinquency level. Also, user can adjust the account level due buckets or
+        plan level dues if there is any discrepancy.
+      operationId: UpdateDelinquency
       parameters:
       - description: Token is used in token-based authentication to allow an application
           to access an API.
@@ -2311,7 +2312,166 @@ paths:
         schema:
           maxLength: 19
           type: string
-          example: '0006000011000000509'
+          example: '0001000010000028800'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDelinquencyV1ReqModel'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateDelinquencyV1ResponseModel'
+          description: " \nSuccess"
+        '400':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request cannot be validated"
+        '401':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request was unauthorized"
+        '403':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource is forbidden for user"
+        '404':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource does not exist"
+        '422':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request could not be processed"
+        '500':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nAn unexpected internal server error occurred"
+        '503':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe service was unavailable"
+        '504':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request timed out while waiting for a response"
+      security:
+      - Authorization: [
+          ]
+      summary: Update Delinquency
+      tags:
+      - Account Management
+      x-group-name: Account Management
+      x-proxy-name: Update Delinquency
+  /v1/accounts/{accountId}/deliquencyDetails:
+    get:
+      description: This API is used to fetch account, plan level dues and balances
+        along with reage controls.
+      operationId: inquireDelinquency
+      parameters:
+      - description: Token is used in token-based authentication to allow an application
+          to access an API.
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        in: header
+        name: x-client-correlation-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        in: header
+        name: x-client-trace-id
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        in: header
+        name: x-client-source-channel
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        in: header
+        name: x-client-user-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Unique identification number associated with the organization.
+          Valid values from 001-998.
+        in: query
+        name: businessUnit
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '100'
+      - description: Unique identification number for cardholder billing account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0001000010000028800'
       responses:
         '200':
           content:
@@ -9660,19 +9820,40 @@ components:
     InquireDelinquencyV1ResponseModel:
       type: object
       properties:
-        accountId:
-          maxLength: 19
-          type: string
-          description: Unique identification number for cardholder billing account.
-          example: '0006000011000000509'
-        businessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number associated with the organization.
-            Valid values from 1-998.
-          example: '600'
-        delinquencyDetails:
+        accountDetails:
+          type: object
+          properties:
+            currentBalance:
+              maxLength: 17
+              type: string
+              description: Current balance of the account.
+              example: $0.00
+            cycleDue:
+              maxLength: 1
+              type: string
+              description: Code that identifies the level of contractual delinquency.
+                The contractual delinquency (also called the cycle due code), indicates
+                the number of cycles for which payments are due. <br/>The values are:<br/>
+                &nbsp; '0' - No amount is due; account is current <br/> &nbsp; '1'
+                - Current amount due; not past due <br/> &nbsp; '2' - Amount past
+                due 1–29 days (or X days) <br/> &nbsp; '3' - Amount past due 30–59
+                days <br/> &nbsp; '4' - Amount past due 60–89 days <br/> &nbsp; '5'
+                - Amount past due 90–119 days <br/> &nbsp; '6' - Amount past due 120–149
+                days <br/> &nbsp; '7' - Amount past due 150–179 days <br/> &nbsp;
+                '8' - Amount past due 180–209 days <br/> &nbsp; '9' - Amount past
+                due 210 or more days
+              example: '1'
+            openToBuy:
+              maxLength: 17
+              type: string
+              description: Current open-to-buy amount of the account.
+              example: $10000.00
+            totalDueAmount:
+              maxLength: 24
+              type: string
+              description: Total amount due base for the account.
+              example: $0.00
+        accountDueDetails:
           type: object
           properties:
             120daysDelinquentAmount:
@@ -9704,68 +9885,111 @@ components:
               type: string
               description: This field indicates the amount delinquent for the account
                 that has been delinquent 30 to 59 days.
-              example: $260.00
+              example: $0.00
             60daysDelinquentAmount:
               maxLength: 24
               type: string
               description: This field indicates the amount delinquent for the account
                 that has been delinquent 60 to 89 days.
-              example: $120.00
+              example: $0.00
             90daysDelinquentAmount:
               maxLength: 24
               type: string
               description: This field indicates the amount delinquent and the number
                 of times the account has been delinquent for 90 to 119 days.
               example: $0.00
-            currentCycleDue:
-              maximum: 9
-              maxLength: 1
-              type: integer
-              description: Code that identifies the level of contractual delinquency.
-                The contractual delinquency (also called the cycle due code), indicates
-                the number of cycles for which payments are due. <br/>The values are:<br/>
-                &nbsp; '0' - No amount is due; account is current <br/> &nbsp; '1'
-                - Current amount due; not past due <br/> &nbsp; '2' - Amount past
-                due 1–29 days (or X days) <br/> &nbsp; '3' - Amount past due 30–59
-                days <br/> &nbsp; '4' - Amount past due 60–89 days <br/> &nbsp; '5'
-                - Amount past due 90–119 days <br/> &nbsp; '6' - Amount past due 120–149
-                days <br/> &nbsp; '7' - Amount past due 150–179 days <br/> &nbsp;
-                '8' - Amount past due 180–209 days <br/> &nbsp; '9' - Amount past
-                due 210 or more days
-              example: '6'
             currentDueAmount:
               maxLength: 24
               type: string
               description: Total current due amount for the account.
-              example: $50.00
-            lastDelinquentDate:
-              maxLength: 10
-              type: string
-              description: Date on which the account was last delinquent. The format
-                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
-                Control.
-              example: 14/12/2021
+              example: $10.00
             pastDueAmount:
               maxLength: 24
               type: string
               description: This field indicates the amount delinquent for the account
                 that has been delinquent for 1 to 29 days (also called “X” days).
-              example: $120.00
-            paymentDaysDelinquentCount:
-              maximum: 999
-              maxLength: 3
-              type: integer
-              description: Number of days the account remained delinquent for the
-                previous delinquency occurrence.
-              example: '66'
-            previousCycleDue:
+              example: $0.00
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0007000010000066752'
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 001-998.
+          example: '700'
+        differenceInTotalAmount:
+          maxLength: 24
+          type: string
+          description: Difference between the total amount due on the account and
+            the total amount due on the credit plan segments. If this field indicates
+            a difference, you must make an adjustment until the difference is zero.
+            If the difference is a positive amount, the total amount due on the account
+            is greater than the total amount due on the credit plan segments. If the
+            difference is a negative amount, the total amount due on the account is
+            less than the total amount due on the credit plan segments.
+          example: $0.00
+        planDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanDetails_InquireDelinquencyV1ResponseModel'
+        planTotalDueAmount:
+          maxLength: 24
+          type: string
+          description: Sum of the total amount due for all credit plan segments on
+            the account. This field is the sum of the amounts in TOTAL DUE for all
+            credit plan segments on the account. The sum of the total amount due of
+            all the credit plan segments (TOTAL AMT DUE PLAN) cannot exceed the current
+            balance of the account (CURRENT ACCOUNT BALANCE) unless the account is
+            a layaway. For layaway accounts, the total amount due of all credit plan
+            segments can exceed the account balance. The sum of the total amount due
+            of all credit plan segments (TOTAL AMT DUE PLANS) must equal the sum of
+            the current amount due and past due amounts of the account (TOTAL AMT
+            DUE BASE). The total due amount of each plan (TOTAL DUE) must be less
+            than or equal to the balance of each plan (CURRENT BALANCE). If the total
+            due amount is highlighted on a single plan (multiple plans on one account),
+            the total due has exceeded the plan balance and must be adjusted to be
+            equal to or less than the plan balance.
+          example: $20.00
+        reageControls:
+          type: object
+          properties:
+            limit:
               maximum: 9
               maxLength: 1
               type: integer
-              description: Number of cycles due as of the previous cycle. This field
-                is necessary to determine whether delinquency has worsened since the
-                previous cycle or has actually improved or remained the same.
-              example: '5'
+              description: Number of times that the account can be reaged within a
+                specified period. The specified period during which the account can
+                be reaged is defined in REAGE PERIOD. <br/>The values are:<br/> &nbsp;
+                '0' - No restriction. This value indicates no limit on the number
+                of time the account can be reaged by time period <br/> &nbsp; '1-9'
+                - Number of times the account can be reaged with the specified time
+                period
+              example: '1'
+            period:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Period in months during which the account can be reaged
+                a limited number of times. The limited number of times that the account
+                can be reaged during this period is defined in REAGE PERIOD LIMIT.
+                <br/>The values are:<br/> &nbsp; '0' - No time period. This value
+                indicates no limit on the number of times the account can be reaged
+                by time period. (Default) <br/> &nbsp; '1-9' - Number of months that
+                define the period during which the account can be reaged a limited
+                number of times
+              example: '0'
+            reagedCount:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Number of times the account has been reaged, either automatically
+                or manually, within the specified time period. The time period is
+                defined by REAGE PERIOD.
+              example: '0'
     InquireDirectDebitControlV1ResponseModel:
       type: object
       properties:
@@ -11736,6 +11960,27 @@ components:
             <br/>The values are:<br/> &nbsp; '0' - Not reversed <br/> &nbsp; '1' -
             Reversed
           example: '0'
+    PlanDetails_InquireDelinquencyV1ResponseModel:
+      type: object
+      properties:
+        currentBalance:
+          maxLength: 17
+          type: string
+          description: The total CURRENT BALANCE for all credit plan segments must
+            equal the current account balance.
+          example: $23.00
+        planId:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: This filed is used to identify the plan number associated with
+            the account.
+          example: '10002'
+        totalDueAmount:
+          maxLength: 24
+          type: string
+          description: Total due of the plan.
+          example: $0.00
     PlanDetails_InquireStatementPlanDetailV1ResponseModel:
       type: object
       properties:
@@ -14130,6 +14375,1173 @@ components:
           type: string
           description: Unique identification number assigned to a customer.
           example: '0000000001000000032'
+    UpdateDelinquencyV1ReqModel:
+      type: object
+      properties:
+        accountDueDetails:
+          type: object
+          properties:
+            120daysDelinquentAmount:
+              maxLength: 17
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 120 to 149 days.
+              example: '0.00'
+            150daysDelinquentAmount:
+              maxLength: 17
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 150 to 179 days.
+              example: '0.00'
+            180daysDelinquentAmount:
+              maxLength: 17
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 180 to 209 days.
+              example: '0.00'
+            210daysDelinquentAmount:
+              maxLength: 17
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 210 or more days.
+              example: '0.00'
+            30daysDelinquentAmount:
+              maxLength: 17
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent 30 to 59 days.
+              example: '0.00'
+            60daysDelinquentAmount:
+              maxLength: 17
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent 60 to 89 days.
+              example: '0.00'
+            90daysDelinquentAmount:
+              maxLength: 17
+              type: string
+              description: This field indicates the amount delinquent and the number
+                of times the account has been delinquent for 90 to 119 days.
+              example: '0.00'
+            currentDueAmount:
+              maxLength: 17
+              type: string
+              description: Total current due amount for the account.
+              example: '0.00'
+            pastDueAmount:
+              maxLength: 17
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 1 to 29 days (also called “X” days).
+              example: '0.00'
+        cycleDue:
+          maxLength: 1
+          type: string
+          description: Cycle due code at which to reset delinquency and automatically
+            reage the account. This code indicates the number of billing cycles for
+            which a payment is due. This code also indicates the level of contractual
+            delinquency for the account. <br/>The values are:<br/> &nbsp; 'X' - Do
+            not use automatic reaging (Default) <br/> &nbsp; '0' - No amount is due;
+            account is current <br/> &nbsp; '1' - Current amount due; not past due
+            <br/> &nbsp; '2' - Amount past due 1–29 days (or X days) <br/> &nbsp;
+            '3' - Amount past due 30–59 days <br/> &nbsp; '4' - Amount past due 60–89
+            days <br/> &nbsp; '5' - Amount past due 90–119 days <br/> &nbsp; '6' -
+            Amount past due 120–149 days <br/> &nbsp; '7' - Amount past due 150–179
+            days <br/> &nbsp; '8' - Amount past due 180–209 days
+          example: '1'
+          enum:
+          - X
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+        planDueDetails:
+          type: object
+          properties:
+            totalDue01Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '20.00'
+            totalDue02Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue03Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue04Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue05Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue06Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue07Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue08Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue09Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue10Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue11Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue12Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue13Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue14Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue15Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue16Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue17Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue18Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue19Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue20Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue21Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue22Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue23Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue24Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue25Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue26Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue27Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue28Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue29Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue30Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue31Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue32Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue33Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue34Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue35Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue36Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue37Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue38Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue39Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue40Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue41Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue42Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue43Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue44Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue45Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue46Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue47Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue48Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue49Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue50Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue51Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue52Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue53Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue54Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue55Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue56Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue57Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue58Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue59Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue60Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue61Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue62Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue63Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue64Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue65Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue66Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue67Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue68Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue69Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue70Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue71Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue72Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue73Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue74Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue75Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue76Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue77Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue78Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue79Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue80Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue81Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue82Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue83Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue84Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue85Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue86Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue87Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue88Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue89Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue90Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue91Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue92Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue93Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue94Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue95Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue96Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue97Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue98Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+            totalDue99Amount:
+              maxLength: 17
+              type: string
+              description: Total due of the plan.
+              example: '0.00'
+    UpdateDelinquencyV1ResponseModel:
+      type: object
+      properties:
+        accountDueDetails:
+          type: object
+          properties:
+            120daysDelinquentAmount:
+              maxLength: 24
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 120 to 149 days.
+              example: $0.00
+            150daysDelinquentAmount:
+              maxLength: 24
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 150 to 179 days.
+              example: $0.00
+            180daysDelinquentAmount:
+              maxLength: 24
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 180 to 209 days.
+              example: $0.00
+            210daysDelinquentAmount:
+              maxLength: 24
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 210 or more days.
+              example: $0.00
+            30daysDelinquentAmount:
+              maxLength: 24
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent 30 to 59 days.
+              example: $0.00
+            60daysDelinquentAmount:
+              maxLength: 24
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent 60 to 89 days.
+              example: $0.00
+            90daysDelinquentAmount:
+              maxLength: 24
+              type: string
+              description: This field indicates the amount delinquent and the number
+                of times the account has been delinquent for 90 to 119 days.
+              example: $0.00
+            currentDueAmount:
+              maxLength: 24
+              type: string
+              description: Total current due amount for the account.
+              example: $0.00
+            pastDueAmount:
+              maxLength: 24
+              type: string
+              description: This field indicates the amount delinquent for the account
+                that has been delinquent for 1 to 29 days (also called “X” days).
+              example: $0.00
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0002000010000066752'
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '200'
+        cycleDue:
+          maxLength: 1
+          type: string
+          description: Cycle due code at which to reset delinquency and automatically
+            reage the account. This code indicates the number of billing cycles for
+            which a payment is due. This code also indicates the level of contractual
+            delinquency for the account. <br/>The values are:<br/> &nbsp; 'X' - Do
+            not use automatic reaging (Default) <br/> &nbsp; '0' - No amount is due;
+            account is current <br/> &nbsp; '1' - Current amount due; not past due
+            <br/> &nbsp; '2' - Amount past due 1–29 days (or X days) <br/> &nbsp;
+            '3' - Amount past due 30–59 days <br/> &nbsp; '4' - Amount past due 60–89
+            days <br/> &nbsp; '5' - Amount past due 90–119 days <br/> &nbsp; '6' -
+            Amount past due 120–149 days <br/> &nbsp; '7' - Amount past due 150–179
+            days <br/> &nbsp; '8' - Amount past due 180–209 days
+          example: '1'
+        planDueDetails:
+          type: object
+          properties:
+            totalDue01Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue02Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue03Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue04Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue05Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue06Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue07Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue08Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue09Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue10Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue11Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue12Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue13Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue14Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue15Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue16Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue17Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue18Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue19Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue20Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue21Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue22Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue23Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue24Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue25Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue26Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue27Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue28Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue29Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue30Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue31Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue32Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue33Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue34Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue35Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue36Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue37Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue38Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue39Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue40Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue41Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue42Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue43Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue44Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue45Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue46Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue47Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue48Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue49Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue50Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue51Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue52Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue53Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue54Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue55Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue56Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue57Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue58Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue59Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue60Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue61Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue62Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue63Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue64Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue65Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue66Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue67Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue68Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue69Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue70Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue71Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue72Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue73Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue74Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue75Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue76Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue77Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue78Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue79Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue80Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue81Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue82Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue83Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue84Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue85Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue86Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue87Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue88Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue89Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue90Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue91Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $20.00
+            totalDue92Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue93Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue94Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue95Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue96Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue97Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue98Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
+            totalDue99Amount:
+              maxLength: 24
+              type: string
+              description: Total due of the plan.
+              example: $0.00
     UpdateDirectDebitControlV1ReqModel:
       type: object
       properties:

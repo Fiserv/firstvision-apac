@@ -74,6 +74,8 @@ Please click on the below link to explore the specific API of interest
 
 - [Update Customers' Profile](./?path=docs/APIs/Account-Management/Update-Customers-Profile.md)
 
+- [Update Delinquency](./?path=docs/APIs/Account-Management/Update-Delinquency.md)
+
 - [Update Direct Debit Controls](./?path=docs/APIs/Account-Management/Update-Direct-Debit-Controls.md)
 
 - [Update Pricing Control](./?path=docs/APIs/Account-Management/Update-Pricing-Control.md)

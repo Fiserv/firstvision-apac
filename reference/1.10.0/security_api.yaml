@@ -246,6 +246,143 @@ paths:
       - Security Management
       x-group-name: Security
       x-proxy-name: Check Token Validation
+  /v2/api/oauth/token:
+    post:
+      description: This service is used to get Access Token to authenticate other
+        Api
+      operationId: GetAccessTokenV2
+      parameters:
+      - description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        in: header
+        name: x-client-correlation-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        in: header
+        name: x-client-trace-id
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        in: header
+        name: x-client-source-channel
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        in: header
+        name: x-client-user-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Appcontext defines the intended application of the token.
+        example: firstvision
+        in: query
+        name: appContext
+        required: true
+        schema:
+          maxLength: 20
+          type: string
+          description: Appcontext defines the intended application of the token.
+          example: firstvision
+          enum:
+          - firstvision
+          - aplus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRequestV2'
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenResponseV2'
+          description: " \nSuccess"
+        '400':
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request cannot be validated"
+        '401':
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request was unauthorized"
+        '404':
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource does not exist"
+        '422':
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request could not be processed"
+        '500':
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nAn unexpected internal server error occurred"
+        '503':
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe service was unavailable"
+        '504':
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request timed out while waiting for a response"
+      security:
+      - Authorization: [
+          ]
+      summary: Get Access Token V2
+      tags:
+      - Security Management
+      x-group-name: Security
+      x-proxy-name: Get Access Token V2
 components:
   schemas:
     OAuthTokenRequest:
@@ -280,6 +417,40 @@ components:
             (accounts, auth, bnpl, cards, customers, loans, loyalty, misc, products,
             users, all)
           example: all
+    OAuthTokenRequestV2:
+      required:
+      - client_id
+      - client_secret
+      - grant_type
+      - scope
+      type: object
+      properties:
+        client_id:
+          maxLength: 60
+          type: string
+          description: 'An identifier associated with an application that assists
+            with client  '
+          example: user_1
+        client_secret:
+          maxLength: 100
+          type: string
+          description: a secret known only to your Vision10 API application and the
+            authorization server
+          example: abcdefghizklmnopponommnshfghzxxs
+        grant_type:
+          maxLength: 20
+          type: string
+          description: It refers to the way an application gets an access token
+          example: client_credentials
+        scope:
+          maxLength: 100
+          type: string
+          description: Limit the amount of access that is granted to an access token
+            (firstvision.accounts, firstvision.auth, firstvision.bnpl, firstvision.cards,
+            firstvision.customers, firstvision.loans, firstvision.loyalty, firstvision.misc,
+            firstvision.products, firstvision.users, firstvision.all, aplus.users,
+            aplus.all)
+          example: firstvision.all
     ResponseErrorMessageInfo:
       type: object
       properties:
@@ -318,6 +489,33 @@ components:
           type: integer
           description: Time after which token will be expired
           example: '0'
+        token_type:
+          maxLength: 7
+          type: string
+          description: Type of token to be authenticated
+          example: Bearer
+    TokenResponseV2:
+      type: object
+      properties:
+        access_token:
+          maxLength: 1200
+          type: string
+          description: Unique Bearer token neeed to be passed for all Vision10 API
+          example: ''
+        expires_in:
+          maxLength: 9
+          type: integer
+          description: Time after which token will be expired
+          example: '3000'
+        scope:
+          maxLength: 30
+          type: string
+          description: Limit the amount of access that is granted to an access token
+            (firstvision.accounts, firstvision.auth, firstvision.bnpl, firstvision.cards,
+            firstvision.customers, firstvision.loans, firstvision.loyalty, firstvision.misc,
+            firstvision.products, firstvision.users, firstvision.all, aplus.users,
+            aplus.all)
+          example: firstvision.all
         token_type:
           maxLength: 7
           type: string
