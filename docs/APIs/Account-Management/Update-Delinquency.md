@@ -13,14 +13,6 @@ type: tab
 titles: Request, Response, Error
 -->
 
->Should be empty.
->
->***Account id should be sent as path variable.***
-
-<!--
-type: tab
--->
-
 ```json
 {
   "accountDueDetails": {
@@ -284,6 +276,7 @@ type: tab
 ```
 
 <!-- type: tab-end -->
+
 
 ### Minimum Requirements
 
