@@ -31,56 +31,56 @@ type: tab
   "servicePrivilegeGroupId": "CLTUSER",
   "signonExpiryDate": "31/12/2023",
   "status": "1",
-  "supervisorId": "",
+  "supervisorId": " ",
   "userServicePrivilege01": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   },
   "userServicePrivilege02": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   },
   "userServicePrivilege03": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   },
   "userServicePrivilege04": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   },
   "userServicePrivilege05": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   },
   "userServicePrivilege06": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   },
   "userServicePrivilege07": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   },
   "userServicePrivilege08": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   },
   "userServicePrivilege09": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   },
   "userServicePrivilege10": {
-    "serviceInclusionExclusionFlag": "",
-    "serviceName": "",
-    "serviceVersion": ""
+    "serviceInclusionExclusionFlag": " ",
+    "serviceName": " ",
+    "serviceVersion": " "
   }
 }
 ```

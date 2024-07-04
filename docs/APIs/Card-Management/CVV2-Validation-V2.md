@@ -78,5 +78,6 @@ Below table provides the list of application's error code and its description.
 |`V5VC4002EA` | Card number not found |
 |`V5VC4005AE` | Invalid ECVV2 |
 |`V5VC4005EB` | ZEK ECVV2 decryption failed |
+|`V5VC4004AE` | Invalid expiry date |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
