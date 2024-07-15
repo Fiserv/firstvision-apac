@@ -48,7 +48,8 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "foreignOriginalAmount": "104.00",
-      "foreignOriginalCurrencyCode": "840"
+      "foreignOriginalCurrencyCode": "840",
+      "acquirerReferenceNumber": "74126780192471000000001"
     },
     {
       "authorizationCode": " ",
@@ -71,7 +72,8 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000002"
     },
     {
       "authorizationCode": " ",
@@ -94,7 +96,8 @@ type: tab
       "merchantCountryCode": "AUS",
       "billerCode": " ",
       "foreignOriginalAmount": "0",
-      "foreignOriginalCurrencyCode": "000"
+      "foreignOriginalCurrencyCode": "000",
+      "acquirerReferenceNumber": "74126780192471000000003"
     }
   ]
 }
