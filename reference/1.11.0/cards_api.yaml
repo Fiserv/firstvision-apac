@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: V10 open API document.
   title: Vision10 API Documentation
-  version: 1.10.0
+  version: 1.11.0
 servers:
 - url: https://stg34.visionplus.io/sandbox/
 paths:
@@ -1565,6 +1565,7 @@ paths:
         name: Authorization
         required: true
         schema:
+          maxLength: 1200
           type: string
           example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
       - description: Client specified identifier to correlate the request with the
@@ -4728,6 +4729,161 @@ paths:
       - Card Management
       x-group-name: Card Management
       x-proxy-name: Inquire Card Spend Statistics
+  /v1/cards/{paymentInstrumentId}/tokenList:
+    get:
+      description: This API is used to fetch scheme token details like scheme token
+        number, card wallet account id and token requestor/reference id associated
+        with given payment instrument Id.
+      operationId: ListTokens
+      parameters:
+      - description: Token is used in token-based authentication to allow an application
+          to access an API.
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        in: header
+        name: x-client-correlation-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        in: header
+        name: x-client-trace-id
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        in: header
+        name: x-client-source-channel
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        in: header
+        name: x-client-user-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        in: query
+        name: businessUnit
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '200'
+      - description: Unique alternate identification number associated with Payment
+          Card Number.
+        in: path
+        name: paymentInstrumentId
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0009545880002462305'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTokenV1ResponseModel'
+          description: " \nSuccess"
+        '400':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request cannot be validated"
+        '401':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request was unauthorized"
+        '403':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource is forbidden for user"
+        '404':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource does not exist"
+        '422':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request could not be processed"
+        '500':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nAn unexpected internal server error occurred"
+        '503':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe service was unavailable"
+        '504':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request timed out while waiting for a response"
+      security:
+      - Authorization: [
+          ]
+      summary: List Tokens
+      tags:
+      - Card Management
+      x-group-name: Card Management
+      x-proxy-name: List Tokens
   /v1/cards/{paymentInstrumentId}/tokenStatus:
     put:
       description: This API is used to update the token status for a given payment
@@ -5209,6 +5365,8 @@ paths:
 components:
   schemas:
     ActivateCardV1ReqModel:
+      required:
+      - currentCardNeedActivation
       type: object
       properties:
         currentCardNeedActivation:
@@ -5219,9 +5377,6 @@ components:
             - No card activation is required or card activation has already occurred<br/>&nbsp;
             'Y' - Card activation needs to occur
           example: N
-          enum:
-          - Y
-          - N
         deactivateOldCard:
           maxLength: 1
           type: string
@@ -6588,6 +6743,13 @@ components:
             in effect<br/>&nbsp; ''1'' - Dynamic CVV2 enabled <br/>&nbsp; ''2'' -
             Dynamic CVV2 with CVV2 fallback'
           example: '0'
+        isVAUAndABUEnabled:
+          maxLength: 1
+          type: string
+          description: 'Customer preference for sending the customer card details
+            to Visa VAU or Mastercard ABU. <br/>The values are: <br/>&nbsp; ''0''
+            - Opt-in for VAU ABU Update <br/>&nbsp; ''1'' - Opt-Out for VAU ABU Update'
+          example: '0'
         issueDeliveryOption:
           maximum: 999
           maxLength: 3
@@ -6617,6 +6779,12 @@ components:
             '7' - Express Post <br/>&nbsp; '8' - User-1 <br/>&nbsp; '9' - User-2 <br/>&nbsp;
             '10–999' - User defined
           example: '5'
+        updateVAUAndABUDate:
+          maxLength: 10
+          type: string
+          description: Opt-in/Opt-out preference update date, The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 10/10/2023
     InquireCardSpendStatisticV1ResponseModel:
       type: object
       properties:
@@ -7081,6 +7249,13 @@ components:
             values are:<br/>&nbsp; '0' - Secure Code is not active for this account
             (Default)<br/>&nbsp; '1' - Secure Code is active for this account
           example: '0'
+        isVAUAndABUEnabled:
+          maxLength: 1
+          type: string
+          description: 'Customer preference for sending the customer card details
+            to Visa VAU or Mastercard ABU. <br/>The values are: <br/>&nbsp; ''0''
+            - Opt-in for VAU ABU Update <br/>&nbsp; ''1'' - Opt-Out for VAU ABU Update'
+          example: '0'
         lastCardActivation:
           maxLength: 1
           type: string
@@ -7290,6 +7465,12 @@ components:
           description: 'Transfer to payment instrument Id associated with Payment
             card number. '
           example: '0009543160010000062'
+        updateVAUAndABUDate:
+          maxLength: 10
+          type: string
+          description: Opt-in/Opt-out preference update date, The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 10/10/2023
         userDefinedFields:
           type: object
           properties:
@@ -7569,6 +7750,13 @@ components:
                 allowed for this Embosser entity for the frequency defined in the
                 FREQ field.
               example: $2000.00
+    ListTokenV1ResponseModel:
+      type: object
+      properties:
+        tokenList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenList_ListTokenV1ResponseModel'
     ListVisaTokenV1ResponseModel:
       type: object
       properties:
@@ -7601,6 +7789,36 @@ components:
         title:
           type: string
           example: ''
+    TokenList_ListTokenV1ResponseModel:
+      type: object
+      properties:
+        cardWalletAccountId:
+          maxLength: 32
+          type: string
+          description: identifier of the card holder Wallet
+          example: ' '
+        schemeTokenNumber:
+          maxLength: 19
+          type: string
+          description: Token number assigned by the financial schemes.
+          example: '5077400005048482515'
+        status:
+          maxLength: 1
+          type: string
+          description: 'This field indicate the status of token <br/>The values are:
+            <br/>&nbsp; ''0'' - Active<br/>&nbsp; ''1'' - Suspended<br/>&nbsp; ''2''
+            - Deactivated<br/>&nbsp; ''3'' - Inactive'
+          example: '0'
+        tokenReferenceId:
+          maxLength: 32
+          type: string
+          description: Reference identification code associated with the token.
+          example: f16ae3173df94aa08c6fea051304c4e2
+        tokenRequestorId:
+          maxLength: 11
+          type: string
+          description: Identification number of the token requestor.
+          example: '06100000005'
     TokenList_ListVisaTokenV1ResponseModel:
       type: object
       properties:
@@ -8165,6 +8383,16 @@ components:
           - '0'
           - '1'
           - '2'
+        isVAUAndABUEnabled:
+          maxLength: 1
+          type: string
+          description: 'Customer preference for sending the customer card details
+            to Visa VAU or Mastercard ABU. <br/>The values are: <br/>&nbsp; ''0''
+            - Opt-in for VAU ABU Update <br/>&nbsp; ''1'' - Opt-Out for VAU ABU Update'
+          example: '0'
+          enum:
+          - '0'
+          - '1'
         issueDeliveryOption:
           maximum: 999
           maxLength: 3
@@ -8251,6 +8479,13 @@ components:
             in effect<br/>&nbsp; ''1'' - Dynamic CVV2 enabled <br/>&nbsp; ''2'' -
             Dynamic CVV2 with CVV2 fallback'
           example: '0'
+        isVAUAndABUEnabled:
+          maxLength: 1
+          type: string
+          description: 'Customer preference for sending the customer card details
+            to Visa VAU or Mastercard ABU. <br/>The values are: <br/>&nbsp; ''0''
+            - Opt-in for VAU ABU Update <br/>&nbsp; ''1'' - Opt-Out for VAU ABU Update'
+          example: '0'
         issueDeliveryOption:
           maximum: 999
           maxLength: 3
@@ -8280,6 +8515,12 @@ components:
             '7' - Express Post <br/>&nbsp; '8' - User-1 <br/>&nbsp; '9' - User-2 <br/>&nbsp;
             '10–999' - User defined
           example: '5'
+        updateVAUAndABUDate:
+          maxLength: 10
+          type: string
+          description: Opt-in/Opt-out preference update date, The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 10/10/2023
     UpdateCardTypeV1ReqModel:
       type: object
       properties:

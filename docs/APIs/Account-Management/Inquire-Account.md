@@ -41,6 +41,11 @@ type: tab
     "blockCode1Date": "10/01/2021",
     "blockCode2Date": "10/02/2021"
   },
+  "defaultPlanDetails" : {
+    "retailPlanId" : 10000,
+    "promoPlanId" : 0,
+    "cashPlanId" : 20000
+  },
   "dateFieldsDetails": {
     "accountOpenDate": "10/06/2006",
     "accountClosedDate": "00/00/0000",
@@ -126,6 +131,7 @@ type: tab
   "addressId": "HOME",
   "sourceCode": " ",
   "excludeFromVAUOrABUIndicator": 0,
+  "cycleDue": "2",
   "pctOverrideDetails": {
     "pctExpiryDate": "31/12/2025",
     "pctStartDate": "29/01/2022",
