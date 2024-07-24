@@ -104,6 +104,8 @@ type: tab
   "status": "0",
   "transferFromPaymentInstrumentId": " ",
   "transferToPaymentInstrumentId": " ",
+  "updateVAUAndABUDate": "01/10/2025",
+  "isVAUAndABUEnabled": "0",
   "userDefinedFields": {
     "field1": " ",
     "field2": " ",

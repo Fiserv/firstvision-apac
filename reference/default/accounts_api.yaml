@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   description: V10 open API document.
   title: Vision10 API Documentation
-  version: 1.10.0
+  version: 1.11.0
 servers:
 - url: https://stg34.visionplus.io/sandbox/
 paths:
@@ -2553,7 +2553,7 @@ paths:
       x-proxy-name: Inquire Delinquency
   /v1/accounts/{accountId}/details:
     get:
-      description: The service provides account details for a given account identification.
+      description: The API provides account details for a given account identification.
       operationId: InquireAccount
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -3016,6 +3016,160 @@ paths:
       - Account Management
       x-group-name: Account Management
       x-proxy-name: Update Direct Debit Controls
+  /v1/accounts/{accountId}/feesAndControls:
+    get:
+      description: The API provides various fees and fee controls along with other
+        miscellaneous details defined from account level, product level and fee control
+        table for a specific account id.
+      operationId: InquireAccountFeesAndControls
+      parameters:
+      - description: Token is used in token-based authentication to allow an application
+          to access an API.
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        in: header
+        name: x-client-correlation-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        in: header
+        name: x-client-trace-id
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        in: header
+        name: x-client-source-channel
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        in: header
+        name: x-client-user-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Unique identification number associated with the organization.
+          Valid values from 1-998.
+        in: query
+        name: businessUnit
+        required: false
+        schema:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          example: '200'
+      - description: Unique identification number for cardholder billing account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          maxLength: 19
+          type: string
+          example: '0002000010000403266'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InquireAccountFeesAndControlV1ResponseModel'
+          description: " \nSuccess"
+        '400':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request cannot be validated"
+        '401':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request was unauthorized"
+        '403':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource is forbidden for user"
+        '404':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource does not exist"
+        '422':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request could not be processed"
+        '500':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nAn unexpected internal server error occurred"
+        '503':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe service was unavailable"
+        '504':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request timed out while waiting for a response"
+      security:
+      - Authorization: [
+          ]
+      summary: Inquire Account Fees and Controls
+      tags:
+      - Account Management
+      x-group-name: Account Management
+      x-proxy-name: Inquire Account Fees and Controls
   /v1/accounts/{accountId}/inquirePlan:
     get:
       description: This API is used to fetch the plan details for a given account
@@ -4252,7 +4406,7 @@ paths:
           Valid values from 1-998.
         in: query
         name: businessUnit
-        required: false
+        required: true
         schema:
           maximum: 999
           maxLength: 3
@@ -7258,6 +7412,60 @@ components:
             cycle. You can customize these field names in the Organization entity
             (USER FEE 6 on Business Units 19-User Defined Fields).
           example: $0.00
+    BlockCodeControlsAtProduct_InquireAccountFeesAndControlV1ResponseModel:
+      type: object
+      properties:
+        blockCode:
+          maxLength: 1
+          type: string
+          description: This field identifies the block code assigned to this account.
+            Block codes control specific processing options at the account level.
+            Valid block codes are the letters A to Z and blank (or space).
+          example: A
+        isWaiveLateChargeEnabled:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether system waives late charges for
+            accounts assigned this block code. <br/>The values are:<br/>&nbsp; 'N'
+            - Do not waive late charges (Default) <br/>&nbsp; 'Y' - Waive late charges
+          example: N
+        isWaiveNSFChequeFeeEnabled:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether system waives NSF check charges
+            for accounts assigned this block code. <br/>The values are:<br/>&nbsp;
+            'N' - Do not waive NSF check charges (Default) <br/>&nbsp; 'Y' - Waive
+            NSF check charges
+          example: N
+        isWaiveOverlimitFeeEnabled:
+          maxLength: 1
+          type: string
+          description: Code that indicates whether system waives overlimit fees for
+            accounts assigned this block code. <br/>The values are:<br/>&nbsp; 'N'
+            - Do not waive overlimit fees (Default) <br/>&nbsp; 'Y' - Waive overlimit
+            fees
+          example: N
+        waiveFinanceChargeIndicator:
+          maxLength: 1
+          type: string
+          description: Code that indicates how system calculates the finance charge
+            for accounts assigned this block code. <br/>The values are:<br/>&nbsp;
+            'N' - Normal finance charge (Default) <br/>&nbsp; 'D' - Defer finance
+            charge <br/>&nbsp; 'W' - Waive finance charge
+          example: N
+        waiveMembershipFeeIndicator:
+          maximum: 9
+          maxLength: 1
+          type: integer
+          description: Code that indicates whether system waives account-level membership
+            fees and supplemental card membership fees for accounts assigned this
+            block code. <br/>The values are:<br/>&nbsp; '0' - Do not waive membership
+            fees (Default) <br/>&nbsp; '1' - Waive membership fee for both account
+            and supplemental cards <br/>&nbsp; '2' - Waive membership fee for account
+            but do not waive membership fee for supplemental cards <br/>&nbsp; '3'
+            - Waive membership fee for supplemental cards but do not waive membership
+            fee gfor account
+          example: '0'
     BlockUnblockAccountV1ReqModel:
       type: object
       properties:
@@ -8102,6 +8310,42 @@ components:
           description: Unique identification number of the product associated with
             the organization. Valid values are 1-998.
           example: '1'
+    CashAdvanceFeeControlsAtFeeTable_InquireAccountFeesAndControlV1ResponseModel:
+      type: object
+      properties:
+        action:
+          maxLength: 1
+          type: string
+          description: Code that indicates how CMS calculates cash advance fees. <br/>The
+            values are:<br/>&nbsp; 'B' - Both the fixed amount and the percentage
+            <br/>&nbsp; 'F' - Fixed amount (Default) <br/>&nbsp; 'G' - Greater of
+            the fixed amount or the percentage <br/>&nbsp; 'L' - Lesser of the fixed
+            amount or the percentage <br/>&nbsp; 'C' - Lesser of the fixed amount
+            or the percentage <br/>&nbsp; 'P' - Percentage of the cash advance transaction
+            <br/>&nbsp; '8' - Greater than threshold <br/>&nbsp; '9' - Fixed Compunding
+          example: F
+        amount:
+          maxLength: 16
+          type: string
+          description: Fixed amount, in monetary units and subunits, to assess as
+            a cash advance fee. This amount must be within the range specified by
+            the cash minimum and cash maximum fields.
+          example: $0.00
+        rate:
+          maxLength: 10
+          type: string
+          description: Percentage of the cash advance transaction to assess as a cash
+            advance fee. This percentage must be greater than zero if cash action
+            is not F.
+          example: 0.00000%
+        transactionCode:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: Monetary transaction code that an incoming cash advance transaction
+            must have in order to trigger CMS to generate a cash advance fee. You
+            must enter a value in this field to generate a cash advance fee.
+          example: '1004'
     CreditLimitUpdateV1ReqModel:
       type: object
       properties:
@@ -8299,6 +8543,937 @@ components:
           description: Unique Alternate Identification number associated with Payment
             Card Number.
           example: '0006000011000000160'
+    InquireAccountFeesAndControlV1ResponseModel:
+      type: object
+      properties:
+        accountId:
+          maxLength: 19
+          type: string
+          description: Unique identification number for cardholder billing account.
+          example: '0002000010000403266'
+        blockCodeControlsAtProduct:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockCodeControlsAtProduct_InquireAccountFeesAndControlV1ResponseModel'
+        businessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Unique identification number associated with the organization.
+            Valid values from 1-998.
+          example: '200'
+        cashAdvanceFeeControlsAtFeeTable:
+          type: array
+          items:
+            $ref: '#/components/schemas/CashAdvanceFeeControlsAtFeeTable_InquireAccountFeesAndControlV1ResponseModel'
+        cashAdvanceFeeWaiversAtAccount:
+          type: object
+          properties:
+            isWaiveFee1Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Code that indicates whether to waive cash advance fees
+                1 for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not
+                waive cash advance fees in accounts receivable (A/R) but waive in
+                profit/loss (P/L) (Default) <br/>&nbsp; ''1'' - Waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''2'' - Do not waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''3'' - Waive cash advance fees in
+                A/R but do not waive in P/L'
+              example: '1'
+            isWaiveFee2Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Code that indicates whether to waive cash advance fees
+                2 for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not
+                waive cash advance fees in accounts receivable (A/R) but waive in
+                profit/loss (P/L) (Default) <br/>&nbsp; ''1'' - Waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''2'' - Do not waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''3'' - Waive cash advance fees in
+                A/R but do not waive in P/L'
+              example: '1'
+            isWaiveFee3Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Code that indicates whether to waive cash advance fees
+                3 for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not
+                waive cash advance fees in accounts receivable (A/R) but waive in
+                profit/loss (P/L) (Default) <br/>&nbsp; ''1'' - Waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''2'' - Do not waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''3'' - Waive cash advance fees in
+                A/R but do not waive in P/L'
+              example: '1'
+            isWaiveFee4Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Code that indicates whether to waive cash advance fees
+                4 for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not
+                waive cash advance fees in accounts receivable (A/R) but waive in
+                profit/loss (P/L) (Default) <br/>&nbsp; ''1'' - Waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''2'' - Do not waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''3'' - Waive cash advance fees in
+                A/R but do not waive in P/L'
+              example: '1'
+            isWaiveFee5Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Code that indicates whether to waive cash advance fees
+                5 for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not
+                waive cash advance fees in accounts receivable (A/R) but waive in
+                profit/loss (P/L) (Default) <br/>&nbsp; ''1'' - Waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''2'' - Do not waive cash advance
+                fees in A/R and P/L <br/>&nbsp; ''3'' - Waive cash advance fees in
+                A/R but do not waive in P/L'
+              example: '1'
+        lateFeeControlsAtFeeTable:
+          type: object
+          properties:
+            action:
+              maxLength: 1
+              type: string
+              description: Code that indicates how CMS calculates late fees. <br/>The
+                values are:<br/>&nbsp; 'B' - Both the fixed amount and the percentage
+                <br/>&nbsp; 'F' - Fixed amount (Default)  <br/>&nbsp; 'G' - Greater
+                of the fixed amount or the percentage <br/>&nbsp; 'L' - Lesser of
+                the fixed amount or the percentage <br/>&nbsp; 'Z' - Tiered of the
+                fixed amount or the percentage <br/>&nbsp; 'P' - Percentage
+              example: F
+            cycleDue:
+              maxLength: 1
+              type: string
+              description: Code that identifies the level of contractual delinquency.
+                The contractual delinquency (also called the cycle due code), indicates
+                the number of cycles for which payments are due. <br/>The values are:<br/>
+                &nbsp; '0' - No amount is due; account is current <br/> &nbsp; '1'
+                - Current amount due; not past due <br/> &nbsp; '2' - Amount past
+                due 1–29 days (or X days) <br/> &nbsp; '3' - Amount past due 30–59
+                days <br/> &nbsp; '4' - Amount past due 60–89 days <br/> &nbsp; '5'
+                - Amount past due 90–119 days <br/> &nbsp; '6' - Amount past due 120–149
+                days <br/> &nbsp; '7' - Amount past due 150–179 days <br/> &nbsp;
+                '8' - Amount past due 180–209 days <br/> &nbsp; '9' - Amount past
+                due 210 or more days
+              example: '1'
+            cycleDueAmount1:
+              maxLength: 16
+              type: string
+              description: This field indicates the late fee amount, in monetary units
+                and subunits of the late payment assessed as a late fee.  CMS assesses
+                a late fee based on the contractual delinquency level (START AT CYCLE
+                DUE (CD) on Fee table->02-Late Fees) and the corresponding level indicated
+                by CYCLE DUE 1-9 AND CYCLE DUE 1-9 PERCENT.
+              example: $0.00
+            cycleDueAmount2:
+              maxLength: 16
+              type: string
+              description: This field indicates the late fee amount, in monetary units
+                and subunits of the late payment assessed as a late fee.  CMS assesses
+                a late fee based on the contractual delinquency level (START AT CYCLE
+                DUE (CD) on Fee table->02-Late Fees) and the corresponding level indicated
+                by CYCLE DUE 1-9 AND CYCLE DUE 1-9 PERCENT.
+              example: $0.00
+            cycleDueAmount3:
+              maxLength: 16
+              type: string
+              description: This field indicates the late fee amount, in monetary units
+                and subunits of the late payment assessed as a late fee.  CMS assesses
+                a late fee based on the contractual delinquency level (START AT CYCLE
+                DUE (CD) on Fee table->02-Late Fees) and the corresponding level indicated
+                by CYCLE DUE 1-9 AND CYCLE DUE 1-9 PERCENT.
+              example: $0.00
+            cycleDueAmount4:
+              maxLength: 16
+              type: string
+              description: This field indicates the late fee amount, in monetary units
+                and subunits of the late payment assessed as a late fee.  CMS assesses
+                a late fee based on the contractual delinquency level (START AT CYCLE
+                DUE (CD) on Fee table->02-Late Fees) and the corresponding level indicated
+                by CYCLE DUE 1-9 AND CYCLE DUE 1-9 PERCENT.
+              example: $0.00
+            cycleDueAmount5:
+              maxLength: 16
+              type: string
+              description: This field indicates the late fee amount, in monetary units
+                and subunits of the late payment assessed as a late fee.  CMS assesses
+                a late fee based on the contractual delinquency level (START AT CYCLE
+                DUE (CD) on Fee table->02-Late Fees) and the corresponding level indicated
+                by CYCLE DUE 1-9 AND CYCLE DUE 1-9 PERCENT.
+              example: $0.00
+            cycleDueAmount6:
+              maxLength: 16
+              type: string
+              description: This field indicates the late fee amount, in monetary units
+                and subunits of the late payment assessed as a late fee.  CMS assesses
+                a late fee based on the contractual delinquency level (START AT CYCLE
+                DUE (CD) on Fee table->02-Late Fees) and the corresponding level indicated
+                by CYCLE DUE 1-9 AND CYCLE DUE 1-9 PERCENT.
+              example: $0.00
+            cycleDueAmount7:
+              maxLength: 16
+              type: string
+              description: This field indicates the late fee amount, in monetary units
+                and subunits of the late payment assessed as a late fee.  CMS assesses
+                a late fee based on the contractual delinquency level (START AT CYCLE
+                DUE (CD) on Fee table->02-Late Fees) and the corresponding level indicated
+                by CYCLE DUE 1-9 AND CYCLE DUE 1-9 PERCENT.
+              example: $0.00
+            cycleDueAmount8:
+              maxLength: 16
+              type: string
+              description: This field indicates the late fee amount, in monetary units
+                and subunits of the late payment assessed as a late fee.  CMS assesses
+                a late fee based on the contractual delinquency level (START AT CYCLE
+                DUE (CD) on Fee table->02-Late Fees) and the corresponding level indicated
+                by CYCLE DUE 1-9 AND CYCLE DUE 1-9 PERCENT.
+              example: $0.00
+            cycleDueAmount9:
+              maxLength: 16
+              type: string
+              description: This field indicates the late fee amount, in monetary units
+                and subunits of the late payment assessed as a late fee.  CMS assesses
+                a late fee based on the contractual delinquency level (START AT CYCLE
+                DUE (CD) on Fee table->02-Late Fees) and the corresponding level indicated
+                by CYCLE DUE 1-9 AND CYCLE DUE 1-9 PERCENT.
+              example: $0.00
+            cycleDueRate1:
+              maxLength: 10
+              type: string
+              description: This field is the percentage of the late payment to assess
+                as a late fee. Percentages for levels equal to or greater than START
+                AT CYCLE DUE (CD) on Fee table->02-Late Fees must be greater than
+                zero when LATE CHARGE ACTION is not F.
+              example: 99.99999%
+            cycleDueRate2:
+              maxLength: 10
+              type: string
+              description: This field is the percentage of the late payment to assess
+                as a late fee. Percentages for levels equal to or greater than START
+                AT CYCLE DUE (CD) on Fee table->02-Late Fees must be greater than
+                zero when LATE CHARGE ACTION is not F.
+              example: 99.99999%
+            cycleDueRate3:
+              maxLength: 10
+              type: string
+              description: This field is the percentage of the late payment to assess
+                as a late fee. Percentages for levels equal to or greater than START
+                AT CYCLE DUE (CD) on Fee table->02-Late Fees must be greater than
+                zero when LATE CHARGE ACTION is not F.
+              example: 99.99999%
+            cycleDueRate4:
+              maxLength: 10
+              type: string
+              description: This field is the percentage of the late payment to assess
+                as a late fee. Percentages for levels equal to or greater than START
+                AT CYCLE DUE (CD) on Fee table->02-Late Fees must be greater than
+                zero when LATE CHARGE ACTION is not F.
+              example: 99.99999%
+            cycleDueRate5:
+              maxLength: 10
+              type: string
+              description: This field is the percentage of the late payment to assess
+                as a late fee. Percentages for levels equal to or greater than START
+                AT CYCLE DUE (CD) on Fee table->02-Late Fees must be greater than
+                zero when LATE CHARGE ACTION is not F.
+              example: 99.99999%
+            cycleDueRate6:
+              maxLength: 10
+              type: string
+              description: This field is the percentage of the late payment to assess
+                as a late fee. Percentages for levels equal to or greater than START
+                AT CYCLE DUE (CD) on Fee table->02-Late Fees must be greater than
+                zero when LATE CHARGE ACTION is not F.
+              example: 99.99999%
+            cycleDueRate7:
+              maxLength: 10
+              type: string
+              description: This field is the percentage of the late payment to assess
+                as a late fee. Percentages for levels equal to or greater than START
+                AT CYCLE DUE (CD) on Fee table->02-Late Fees must be greater than
+                zero when LATE CHARGE ACTION is not F.
+              example: 99.99999%
+            cycleDueRate8:
+              maxLength: 10
+              type: string
+              description: This field is the percentage of the late payment to assess
+                as a late fee. Percentages for levels equal to or greater than START
+                AT CYCLE DUE (CD) on Fee table->02-Late Fees must be greater than
+                zero when LATE CHARGE ACTION is not F.
+              example: 99.99999%
+            cycleDueRate9:
+              maxLength: 10
+              type: string
+              description: This field is the percentage of the late payment to assess
+                as a late fee. Percentages for levels equal to or greater than START
+                AT CYCLE DUE (CD) on Fee table->02-Late Fees must be greater than
+                zero when LATE CHARGE ACTION is not F.
+              example: 99.99999%
+            startAtCycleDue:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Contractual delinquency level, also called cycle due code,
+                of the account at which CMS starts assessing a late fee. The values
+                are 1–9. The default is one. '
+              example: '1'
+        membershipFeeControlsAtFeeTable:
+          type: object
+          properties:
+            expenditureActualAmountOrNumber:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: XXXXXX
+              example: '0'
+            expenditureThresholdAmountOrNumber:
+              maximum: 999999999
+              maxLength: 9
+              type: integer
+              description: This field defines the threshold number or amount in whole
+                monetary units.
+              example: '0'
+            expenditureThresholdIndicator:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Code that defines the expenditure criteria used to determine
+                the threshold. <br/>The values are:<br/>&nbsp; '0' - Do not Waive
+                or Refund (Default) <br/>&nbsp; '1' - Waive/Refnd If Retail Txn Amt
+                > Threshold <br/>&nbsp; '2' - Waive/Refnd If Retail Txn Nbr > Threshold
+                <br/>&nbsp; '3' - Waive/Refnd If Cash Txn Amt > Threshold <br/>&nbsp;
+                '4' - Waive/Refnd If Cash Txn Nbr > Threshold <br/>&nbsp; '5' - Waive/Refnd
+                If Cash + Retail Txn Amt > Threshold <br/>&nbsp; '6' - Waive/Refnd
+                If Cash + Retail Txn Nbr > Threshold
+              example: '0'
+            initialMembershipFeeAction:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Code that indicates how CMS assesses a renewal membership
+                fee. <br/>The values are:<br/>&nbsp; '0' - Charge the fixed fee amount
+                (Default) <br/>&nbsp; '1' - Charge the fee as a percentage of the
+                credit limit <br/>&nbsp; '2' - Charge the fixed fee amount and the
+                percentage of credit limit
+              example: '0'
+            initialMembershipFeeAmount:
+              maxLength: 16
+              type: string
+              description: This Field indicates Fixed amount, in monetary units and
+                subunits, assessed for an initial membership fee. This amount must
+                be greater than zero if MEMBERSHIP INIT ACTION is not equal to 1.
+                The amount must also be within the range specified by the MINIMUM
+                AMOUNT and MAXIMUM AMOUNT fields.
+              example: $0.00
+            initialMembershipFeeRate:
+              maxLength: 10
+              type: string
+              description: This Field indicates Percentage of the credit limit to
+                assess as the initial membership fee. This percentage must be greater
+                than zero if MEMBERSHIP INIT ACTION is not equal to 0.
+              example: 99.99999%
+            membershipFeeFrequency:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Code that indicates the frequency for membership fee assessment.
+                <br/>The values are: <br/>&nbsp; ''0'' - Annual (Default) <br/>&nbsp;
+                ''1'' - Semi Annual <br/>&nbsp; ''2'' - Quarterly <br/>&nbsp; ''3''
+                - Monthly'
+              example: '0'
+            refundMembershipFeeIndicator:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Code that indicates whether CMS refunds membership fees
+                based on the account activity. <br/>The values are:<br/>&nbsp; ''0''
+                - Do not refund membership fees (Default)  <br/>&nbsp; ''1'' - Refund
+                membership fee based on revenue threshold  <br/>&nbsp; ''2'' - Refund
+                membership fee based on expenditure threshold <br/>&nbsp; ''3'' -
+                Refund membership fee based on either revenue threshold or expenditure
+                threshold (Whichever threshold is satisfied first)  <br/>&nbsp; ''4''
+                - Refund membership fee based on satisfying both thresholds (revenue
+                and expenditure) '
+              example: '0'
+            renewalMembershipFeeAction:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Code that indicates how CMS assesses a renewal membership
+                fee. <br/>The values are:<br/>&nbsp; '0' - Charge the fixed fee amount
+                (Default) <br/>&nbsp; '1' - Charge the fee as a percentage of the
+                credit limit  <br/>&nbsp; '2' - Charge the fixed fee amount and the
+                percentage of credit limit.
+              example: '0'
+            renewalMembershipFeeAmount:
+              maxLength: 16
+              type: string
+              description: Fixed amount, in monetary units and subunits, assessed
+                for a renewal membership fee. This amount must be greater than zero
+                if MEMBERSHIP RENEW ACTION is not equal to 1. The amount must also
+                be within the range specified by the MINIMUM AMOUNT and MAXIMUM AMOUNT
+                fields.
+              example: $0.00
+            renewalMembershipFeeRate:
+              maxLength: 10
+              type: string
+              description: 'This Field indicates Percentage of the credit limit to
+                assess a renewal membership fee. This percentage must be greater than
+                zero if MEMBERSHIP RENEW ACTION is not equal to 0. '
+              example: 99.99999%
+            supplementaryMembershipFeeAmount:
+              maxLength: 16
+              type: string
+              description: Fixed amount, in monetary units and subunits, assessed
+                for a membership fee for supplemental cards. This amount must be greater
+                than zero if membership supp method is not equal to 1. The amount
+                must also be within the range specified by the MINIMUM AMOUNT and
+                MAXIMUM AMOUNT fields.
+              example: $0.00
+            supplementaryMembershipFeeRate:
+              maxLength: 10
+              type: string
+              description: 'This Field indicates Percentage of the credit limit to
+                assess a membership fee for supplemental cards. This percentage must
+                be greater than zero if MEMBERSHIP SUPP METHOD is not equal to 0. '
+              example: 99.99999%
+            supplementarymembershipFeeMethod:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Code that indicates Code that indicates how CMS assesses
+                a membership fee for supplemental cards. <br/>The values are:<br/>&nbsp;
+                ''0'' - Charge the fixed fee amount (Default)  <br/>&nbsp; ''1'' -
+                Charge the fee as a percentage of the credit limit  <br/>&nbsp; ''2''
+                - Charge the fixed fee amount and the percentage of credit limit.  '
+              example: '0'
+            waiveMembershipFeeIndicator:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Code that indicates whether CMS waives membership fees
+                based on account activity. <br/>The values are:<br/>&nbsp; ''0'' -
+                Do not waive membership fees (Default) <br/>&nbsp; ''1'' - Waive membership
+                fee based on revenue threshold  <br/>&nbsp; ''2'' - Waive membership
+                fee based on expenditure threshold <br/>&nbsp; ''3'' - Waive membership
+                fee based on either revenue threshold or expenditure threshold (whichever
+                threshold that is satisfied first)  <br/>&nbsp; ''4'' - Waive membership
+                fee based on meeting both thresholds (revenue and expenditure). '
+              example: '0'
+        miscDetails:
+          type: object
+          properties:
+            cashPlanId:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Value of Default Cash Plan applicable for the account.
+                The default values for this field are set on the Account Processing
+                table assigned to the account.You can change these plan numbers at
+                the account level.
+              example: '10002'
+            defaultCashInterestRate:
+              maxLength: 10
+              type: string
+              description: XXXXXX
+              example: 0.00000%
+            defaultPromoInterestRate:
+              maxLength: 10
+              type: string
+              description: XXXXXX
+              example: 0.00000%
+            defaultRetailInterestRate:
+              maxLength: 10
+              type: string
+              description: XXXXXX
+              example: 0.00000%
+            issuanceId:
+              maxLength: 3
+              type: string
+              description: This is the flag which identifies the state, province or
+                country in which the account was issued.
+              example: SX1
+            promoPlanId:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Value of Default Promo Plan applicable for the account.
+                The default values for this field are set on the Account Processing
+                table assigned to the account.You can change these plan numbers at
+                the account level.
+              example: '10020'
+            retailPlanId:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Value of Default Retail Plan applicable for the account.
+                The default values for this field are set on the Account Processing
+                table assigned to the account.You can change these plan numbers at
+                the account level.
+              example: '10001'
+        miscWaiversAtAccount:
+          type: object
+          properties:
+            isWaiveAddOnMembershipFeeEnabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive all supplemental
+                card membership fees. <br/>The values are: <br/>&nbsp; ''0'' - Do
+                not waive supplemental card membership fees (Default) <br/>&nbsp;
+                ''1'' - Waive supplemental card membership fees <br/>&nbsp; ''2''
+                - Waive until next fee date'
+              example: '0'
+            isWaiveAnnualMembershipFeeEnabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: Flag that indicates whether to waive the annual membership
+                fee for the account. <br/>The values are:<br/>&nbsp; '0' - Do not
+                waive membership fee (Default) <br/>&nbsp; '1' - Waive both the initial
+                and renewal membership fees <br/>&nbsp; '2' - Waive only the initial
+                membership fee <br/>&nbsp; '3' - Waive only the renewal membership
+                fee <br/>&nbsp; '4' - Waive until next fee date
+              example: '0'
+            isWaiveInterestFeeEnabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive interest for the
+                account. <br/>The values are: <br/>&nbsp; ''0'' - Assess interest
+                (Default) <br/>&nbsp; ''1'' - Waive all interest <br/>&nbsp; ''2''
+                - Waive Interest for Current Cycle'
+              example: '1'
+            isWaiveLateChargeEnabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive late charges for
+                the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                late charges (Default) <br/>&nbsp; ''1'' - Waive late charges'
+              example: '1'
+            isWaiveNsf1-5FeeEnabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive nonsufficient funds
+                (NSF) fees for returned checks. <br/>The values are: <br/>&nbsp; ''0''
+                - Do not waive NSF fees if in accounts <br/>&nbsp; receivable (A/R)
+                and waive if in profit/loss (P/L) (Default) <br/>&nbsp; ''1'' - Waive
+                NSF fees in A/R and P/L <br/>&nbsp; ''2'' - Do not waive NSF fees
+                in A/R and P/L <br/>&nbsp; ''3'' - Waive NSF fees in A/R but do not
+                waive in P/L'
+              example: '3'
+            isWaiveOverlimitFeeEnabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive the overlimit fee
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                the overlimit fee (Default) <br/>&nbsp; ''1'' - Waive the overlimit
+                fee'
+              example: '0'
+        nonSufficientFeeControlsAtFeeTable:
+          type: array
+          items:
+            $ref: '#/components/schemas/NonSufficientFeeControlsAtFeeTable_InquireAccountFeesAndControlV1ResponseModel'
+        overlimitFeeControlsAtFeeTable:
+          type: object
+          properties:
+            action:
+              maxLength: 1
+              type: string
+              description: 'Code that indicates how CMS calculates overlimit fees.
+                <br/>The values are:<br/>&nbsp; ''B'' - Both the fixed amount and
+                the percentage <br/>&nbsp; ''F'' - Fixed amount (Default)  <br/>&nbsp;
+                ''G'' - Greater of the fixed amount or the percentage <br/>&nbsp;
+                ''L'' - Lesser of the fixed amount or the percentage <br/>&nbsp; ''P''
+                - Percentage '
+              example: F
+            amount:
+              maxLength: 16
+              type: string
+              description: Amount in monetary units and subunits to assess as an overlimit
+                fee. This amount must be greater than zero when OVERLIMIT ACTION is
+                not P.
+              example: $0.00
+            rate:
+              maxLength: 10
+              type: string
+              description: Percentage of the balance, in excess of the credit limit,
+                to assess as an overlimit fee. The percentage must be greater than
+                zero when OVERLIMIT ACTION is not F.
+              example: 0.00000%
+            thresholdRate:
+              maxLength: 10
+              type: string
+              description: Percentage of the credit limit at which to assess an overlimit
+                fee. The percentage NOD does not apply to this field; the values are
+                000–999. The default is zeroes.
+              example: 1.00%
+        serviceFeeControlsAtFeeTable:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceFeeControlsAtFeeTable_InquireAccountFeesAndControlV1ResponseModel'
+        serviceFeeWaiversAtAccount:
+          type: object
+          properties:
+            isWaiveFee01Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 1
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee02Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 2
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee03Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 3
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee04Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 4
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee05Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 5
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee06Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 6
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee07Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 7
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee08Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 8
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee09Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 9
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee10Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 10
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee11Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 11
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee12Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 12
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee13Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 13
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee14Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 14
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee15Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 15
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee16Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 16
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee17Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 17
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee18Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 18
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee19Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 19
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee20Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 20
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee21Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 21
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee22Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 22
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee23Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 23
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee24Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 24
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+            isWaiveFee25Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive service charge 25
+                for the account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive
+                service charges if in accounts receivable (A/R) and waive in profit/loss
+                (P/L) (Default) <br/>&nbsp; ''1'' - Waive service charges in A/R and
+                P/L <br/>&nbsp; ''2'' - Do not waive service charges in A/R and P/L
+                <br/>&nbsp; ''3'' - Waive service charges in A/R but do not waive
+                in P/L'
+              example: '1'
+        userFeeControlsAtFeeTable:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserFeeControlsAtFeeTable_InquireAccountFeesAndControlV1ResponseModel'
+        userFeeWaiversAtAccount:
+          type: object
+          properties:
+            isWaiveFee1Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive user fees 1 for the
+                account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive user
+                fees (Default) <br/>&nbsp; ''1'' - Waive user fees'
+              example: '1'
+            isWaiveFee2Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive user fees 2 for the
+                account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive user
+                fees (Default) <br/>&nbsp; ''1'' - Waive user fees'
+              example: '1'
+            isWaiveFee3Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive user fees 3 for the
+                account.<br/>The values are: <br/>&nbsp; ''0'' - Do not waive user
+                fees (Default) <br/>&nbsp; ''1'' - Waive user fees'
+              example: '1'
+            isWaiveFee4Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive user fees 4 for the
+                account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive user
+                fees (Default) <br/>&nbsp; ''1'' - Waive user fees'
+              example: '1'
+            isWaiveFee5Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive user fees 5 for the
+                account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive user
+                fees (Default) <br/>&nbsp; ''1'' - Waive user fees'
+              example: '0'
+            isWaiveFee6Enabled:
+              maximum: 9
+              maxLength: 1
+              type: integer
+              description: 'Flag that indicates whether to waive user fees 6 for the
+                account. <br/>The values are: <br/>&nbsp; ''0'' - Do not waive user
+                fees (Default) <br/>&nbsp; ''1'' - Waive user fees'
+              example: '0'
     InquireAccountLimitV1ResponseModel:
       type: object
       properties:
@@ -9434,6 +10609,20 @@ components:
           type: string
           description: Unique identification number assigned to a customer.
           example: '0002000002000007799'
+        cycleDue:
+          maxLength: 1
+          type: string
+          description: Code that identifies the level of contractual delinquency.
+            The contractual delinquency (also called the cycle due code), indicates
+            the number of cycles for which payments are due. <br/>The values are:<br/>
+            &nbsp; '0' - No amount is due; account is current <br/> &nbsp; '1' - Current
+            amount due; not past due <br/> &nbsp; '2' - Amount past due 1–29 days
+            (or X days) <br/> &nbsp; '3' - Amount past due 30–59 days <br/> &nbsp;
+            '4' - Amount past due 60–89 days <br/> &nbsp; '5' - Amount past due 90–119
+            days <br/> &nbsp; '6' - Amount past due 120–149 days <br/> &nbsp; '7'
+            - Amount past due 150–179 days <br/> &nbsp; '8' - Amount past due 180–209
+            days <br/> &nbsp; '9' - Amount past due 210 or more days
+          example: '1'
         dateFieldsDetails:
           type: object
           properties:
@@ -9567,6 +10756,36 @@ components:
               description: Date when the next payment is due. The format is MM/DD/YYYY
                 or DD/MM/YYYY depending on the DATE FORMAT on System Control.
               example: 06/06/2022
+        defaultPlanDetails:
+          type: object
+          properties:
+            cashPlanId:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Value of Default Cash Plan applicable for the account.
+                The default values for this field are set on the Account Processing
+                table assigned to the account.You can change these plan numbers at
+                the account level.
+              example: '10002'
+            promoPlanId:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Value of Default Promo Plan applicable for the account.
+                The default values for this field are set on the Account Processing
+                table assigned to the account.You can change these plan numbers at
+                the account level.
+              example: '10010'
+            retailPlanId:
+              maximum: 99999
+              maxLength: 5
+              type: integer
+              description: Value of Default Retail Plan applicable for the account.
+                The default values for this field are set on the Account Processing
+                table assigned to the account.You can change these plan numbers at
+                the account level.
+              example: '10001'
         deferMembershipFeeDate:
           maxLength: 10
           type: string
@@ -11860,6 +13079,41 @@ components:
           description: Unique Alternate Identification number associated with Payment
             Card Number.
           example: '0006000011000000160'
+    NonSufficientFeeControlsAtFeeTable_InquireAccountFeesAndControlV1ResponseModel:
+      type: object
+      properties:
+        action:
+          maxLength: 1
+          type: string
+          description: Code that indicates how CMS calculates NSF fees. <br/>The values
+            are:<br/>&nbsp; 'B' - Both the fixed amount and the percentage <br/>&nbsp;
+            'F' - Fixed amount (Default) <br/>&nbsp; 'G' - Greater of the fixed amount
+            or the percentage <br/>&nbsp; 'L' - Lesser of the fixed amount or the
+            percentage <br/>&nbsp; 'P' - Percentage of the cash advance transaction
+          example: F
+        amount:
+          maxLength: 16
+          type: string
+          description: Fixed amount of the NSF fee in monetary units and subunits.
+            This amount must be within the range specified by the SINGLE FEE MINIMUM
+            and SINGLE FEE MAXIMUM fields.
+          example: $0.00
+        rate:
+          maxLength: 10
+          type: string
+          description: Percentage of the amount of the returned item to assess as
+            an NSF fee. This percentage must be greater than zero when RETURNED CHK
+            ACTION is not F.
+          example: 0.00000%
+        transactionCode:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: 'Monetary transaction code for processing a specific payment
+            reversal such as direct debit reversal or standing order reversal. This
+            code causes CMS to generate a nonsufficient funds (NSF) fee associated
+            with it. '
+          example: '1004'
     PaymentHistory_InquirePaymentHistoryV1ResponseModel:
       type: object
       properties:
@@ -12096,6 +13350,13 @@ components:
           description: Unique identification number associated with the organization.
             Valid values from 1-998.
           example: '600'
+        calculatedInterestRate:
+          maxLength: 10
+          type: string
+          description: Calculated interest rate based on the Base Interest Rate with
+            the interest table variance, base segment variance, and adjusted interest
+            rate applied
+          example: 0.00000%
         collectionFeeBilledNotPaidAmount:
           maxLength: 24
           type: string
@@ -12131,6 +13392,12 @@ components:
           description: This field displays the current outstanding interest balance
             for the Credit Plan Segment entity.
           example: $0.00
+        lastInterestRate:
+          maxLength: 10
+          type: string
+          description: Last intrest rate used to calculate interest for this Credit
+            Plan Segment entity.
+          example: 0.00000%
         lateFeeBilledNotPaidAmount:
           maxLength: 24
           type: string
@@ -12168,6 +13435,17 @@ components:
           type: integer
           description: This field identifies the record number.
           example: '1'
+        planType:
+          maxLength: 1
+          type: string
+          description: Code that identifies the type of credit plan defined by the
+            Credit Plan Master entity. <br/>The values are:<br/>&nbsp; 'A' - Access
+            checks (cash plan) <br/>&nbsp; 'B' - Balance transfers (retail plan) <br/>&nbsp;
+            'C' - Cash plan <br/>&nbsp; 'D' - Deferment plan <br/>&nbsp; 'K' - Access
+            checks (retail plan) <br/>&nbsp; 'L' - Closed-end installment loan (loan
+            plan) <br/>&nbsp; 'R' - Retail plan (Default) <br/>&nbsp; 'T' - Balance
+            transfers (cash plan) <br/>&nbsp; 'Y' - Prepaid (retail plan)
+          example: R
         principalAmount:
           maxLength: 24
           type: string
@@ -12563,6 +13841,50 @@ components:
         title:
           type: string
           example: ''
+    ServiceFeeControlsAtFeeTable_InquireAccountFeesAndControlV1ResponseModel:
+      type: object
+      properties:
+        initiatingTransactionCode:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: Monetary transaction code that will trigger CMS to generate
+            the service charge. The service charge posts to each plan that has activity
+            identified by this transaction code.
+          example: '1301'
+        method:
+          maxLength: 1
+          type: string
+          description: Code that indicates how CMS calculates the service charge (Amount
+            or Percentage). <br/>The values are:<br/>&nbsp; '1' - Amount (Default)
+            <br/>&nbsp; '2' - Percentage
+          example: '1'
+        tier1FeeAmountOrPercentage:
+          maxLength: 24
+          type: string
+          description: Fixed amount in monetary units and subunits or percentage of
+            the transaction amount to assess for the service charge up to the number
+            of transactions in the TRANSACTION LIMIT field, inclusive. If METHOD is
+            1, enter a fixed amount. If METHOD is 2, enter a percentage. For a percentage,
+            the first two positions must be zero.
+          example: $100.00
+        tier2FeeAmountOrPercentage:
+          maxLength: 24
+          type: string
+          description: Fixed amount in monetary units and subunits or percentage of
+            the transaction amount to assess for the service charge for transactions
+            in excess of the number in the TRANSACTION LIMIT field. If METHOD is 1,
+            enter a fixed amount. If METHOD is 2, enter a percentage. For a percentage,
+            the first two positions must be zero.
+          example: $500.00
+        transactionLimit:
+          maximum: 99
+          maxLength: 2
+          type: integer
+          description: Number of transactions to assess the service fee defined by
+            FEE AMOUNT per day or cycle based on the TRANSACTION LIMIT FREQUENCY value.
+            The values are 0–99.
+          example: '3'
     TransactionDetails_InquireStatementTransactionV1ResponseModel:
       type: object
       properties:
@@ -18106,6 +19428,44 @@ components:
             <br/>The values are: <br/>&nbsp; ''0'' - Do not waive tax (Default) <br/>&nbsp;
             ''1'' - Waive tax'
           example: '1'
+    UserFeeControlsAtFeeTable_InquireAccountFeesAndControlV1ResponseModel:
+      type: object
+      properties:
+        action:
+          maxLength: 1
+          type: string
+          description: Code that indicates how CMS calculates the user-defined fee.
+            <br/>The values are:<br/>&nbsp; ' ' - No Action <br/>&nbsp; 'B' - Both
+            the fixed amount and the percentage <br/>&nbsp; 'F' - Fixed amount (Default)
+            <br/>&nbsp; 'G' - Greater of the fixed amount or the percentage <br/>&nbsp;
+            'L' - Lesser of the fixed amount or the percentage <br/>&nbsp; 'P' - Percentage
+            of the cash advance transaction
+          example: F
+        amount:
+          maxLength: 16
+          type: string
+          description: 'Fixed amount in monetary units and subunits of the user-defined
+            fee. This amount must be within the range specified by the minimum fee
+            amount and maximum fee amount amounts. this field must be greater than
+            zero if user fee action is f (fixed amount), b (both fixed amount and
+            percentage), g (greater of fixed amount or percentage), or l (lesser of
+            fixed amount or percentage). this field must be blank if user fee action
+            is p (percentage). '
+          example: $0.00
+        description:
+          maxLength: 40
+          type: string
+          description: Description of the user-defined fee.
+          example: Description
+        rate:
+          maxLength: 10
+          type: string
+          description: Percentage used to calculate the user-defined fee. This field
+            must be greater than zero if USER FEE ACTION is P (percentage), B (both
+            fixed amount and percentage), G (greater of fixed amount or percentage),
+            or L (lesser of fixed amount or percentage). This field must be blank
+            if USER FEE ACTION is F (fixed amount).
+          example: 0.00000%
   securitySchemes:
     Authorization:
       scheme: bearer
