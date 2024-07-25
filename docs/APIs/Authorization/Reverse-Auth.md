@@ -89,5 +89,6 @@ Below table provides the list of application's error code and its description.
 | `V7RS4005ER` | Input auth amount not matching with log record auth amount |
 | `V7RS4002EK` | Authorization record is already reversed |
 | `V7RS4002EL` | Authorization record is already reversed |
+| `V7RS4002EM` | Reversal received after EOD but orig received before EOD |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -80,6 +80,7 @@ The below table identifies the required parameters in the request payload.
 | `authorizationAmount` | Payload | *string* | 13 | Authorized sales amount in the currency accepted by the particular merchant. |
 | `transactionType` | Payload | *string* | 2 | Field to identify the type of transaction. |
 | `channelId` | Payload | *string* | 4 | Field indicate the partner details and transaction source. |
+| `referenceNumber` | Payload | *string* | 23 | Reference number assigned to the transaction to identify the transaction uniquely. |
 
 ### Error Codes
 
@@ -87,10 +88,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-| `V7RQ4027EA` | Transaction description is mandatory when tran-type is BP/BT |
-| `V7RQ4028EA` | Payment date is mandatory when tran-type is BP/BT |
-| `V7RQ4007EC` | Credit plan is mandatory when tran-type is BP/BT |
-| `V7RQ4029EA` | Biller code is mandatory when tran-type is BP/BT |
 | `V7RQ4004EB` | Invalid bankcard  not found in bin table |  
 | `V7RQ4004EC` | Account number is invalid |
 | `V7RQ4004EA` | Check digit issue |
@@ -106,5 +103,10 @@ Below table provides the list of application's error code and its description.
 | `V5DC4002SB` | Acct is purged/fraud/closed/cgoff or add pending/NOTFND |
 | `V5DC4002SD` | Acct warning code is 1/2/3/4/8 |
 | `V5RQ4030SB` | Settlement date should be greater than auth date |
+| `V7RQ4026SV` | Valid values for tran type are spaces, BT, BP, TC, PA, DP, CP |
+| `V7RQ4031EA` | Channel id is mandatory when tran-type is TC/PA/DP/CP |
+| `V7RQ4031EB` | Channel id should not be for BP/BT. |
+| `V7RQ4033EA` | Branch nbr is mandatory for txn done at branch |
+| `V7RQ4032EA` | Reference nbr is mandatory when tran-type is TC/PA/DP/CP |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

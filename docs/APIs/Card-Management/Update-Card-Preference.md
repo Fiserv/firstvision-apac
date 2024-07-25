@@ -19,7 +19,6 @@ titles: Request, Response, Error
   "reissueDeliveryOption": 5,
   "issueDeliveryOption": 1,
   "isDynamicCVV2Enabled": "0",
-  "updateVAUAndABUDate": "01/10/2025",
   "isVAUAndABUEnabled": "0",
   "addressFields": {
     "addressLine1": "Shinzo abe",
