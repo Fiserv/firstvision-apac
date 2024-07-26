@@ -80,6 +80,7 @@ The below table identifies the required parameters in the request payload.
 | `transactionDescription` | Payload | *string* | 40 | Transaction source to identify if the authorization is Balance Transfer request. |
 | `billerCode` | Payload | *string* | 10 | This field identify the Biller code to which this payment is done. |
 
+
 ### Error Codes
 
 Below table provides the list of application's error code and its description.
@@ -106,5 +107,7 @@ Below table provides the list of application's error code and its description.
 | `V5DC4002SB` | Acct is purged/fraud/closed/cgoff or add pending/NOTFND |
 | `V5DC4002SD` | Acct warning code is 1/2/3/4/8 |
 | `V5RQ4030SB` | Settlement date should be greater than auth date |
+| `V7RQ4026SV` | Valid values for tran type are spaces, BT, BP, TC, PA, DP, CP |
+| `V7RQ4031EB` | Channel id should not be for BP/BT |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

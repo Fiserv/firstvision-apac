@@ -349,14 +349,14 @@ type: tab
     "isWaiveOverlimitFeeEnabled" : "Y",
     "isWaiveNSFChequeFeeEnabled" : "N",
     "waiveMembershipFeeIndicator" : 0,
-    "waiveFinanceChargeIndicator" : "N",
+    "isWaiveFinanceChargeEnabled" : "0",
     "blockCode" : "F",
     "isWaiveLateChargeEnabled" : "N"
   }, {
     "isWaiveOverlimitFeeEnabled" : "Y",
     "isWaiveNSFChequeFeeEnabled" : "N",
     "waiveMembershipFeeIndicator" : 0,
-    "waiveFinanceChargeIndicator" : "N",
+    "isWaiveFinanceChargeEnabled" : "0",
     "blockCode" : "O",
     "isWaiveLateChargeEnabled" : "N"
   } ],
