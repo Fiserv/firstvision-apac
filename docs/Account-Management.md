@@ -14,6 +14,8 @@ Please click on the below link to explore the specific API of interest
 
 - [Inquire Account](./?path=docs/APIs/Account-Management/Inquire-Account.md)
 
+- [Inquire Account Fees and Controls](./?path=docs/APIs/Account-Management/Inquire-Account-Fees-and-Cntrols.md)
+
 - [Inquire Account Limits](./?path=docs/APIs/Account-Management/Inquire-Account-Limits.md)
 
 - [Inquire Account Plan](./?path=docs/APIs/Account-Management/Inquire-Account-Plan.md)
