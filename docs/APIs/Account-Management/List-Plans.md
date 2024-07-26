@@ -47,7 +47,10 @@ type: tab
       "planSequenceNumber": 1,
       "recoveryFeeBilledNotPaidAmount": "$0.00",
       "serviceFeeBilledNotPaidAmount": "$0.00",
-      "status": "1"
+      "status": "1",
+      "calculatedInterestRate": "0.00000%",
+      "lastInterestRate": "0.00000%",
+      "planType": "R"
     }
   ]
 }

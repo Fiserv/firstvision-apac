@@ -45,7 +45,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/cards/0009846801010273611/activate",
     "invalid-params": [
-      "V5ED0010SF: Update Request - Record not found"
+      "V5CA4002EA: CARD NUMBER NOT FOUND/ACTIVE"
     ],
     "source": "VPL",
     "status": 404,
@@ -73,13 +73,12 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-| `V5ED0010SF` | Update request - Record not found |  
-| `V5ED0011SF` | Update request - Record add pending |
-| `V5ED4002ED` | Card number must be provided |
-| `V5ED4001SA` | Org not found in the system |
-| `V5ED4001SB` | Organization is in Add pending status |
-| `V5ED4001SC` | Business unit is in purge status |
-| `V5ED0309SV` | Invalid current card activation |
-| `V5ED0310SV` | Invalid last card activation |
+| `V5CA4001SA` | Org not determined |  
+| `V5CA4002EA` | Card number not found/active |
+| `V5CA4002EB` | Account number not found/active |
+| `V5CA4002EC` | Logo record not found/active |
+| `V5CA4002ED` | AMEC record not found/active |
+| `V5CA0407EG` | AMED record not found/active |
+| `V5CA4001EB` | Org record not found/active |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

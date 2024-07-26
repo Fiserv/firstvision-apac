@@ -6,7 +6,7 @@ Please click on the below link to explore the specific API of interest
 
 - [Activate Card](./?path=docs/APIs/Card-Management/Activate-Card.md)
 
-- [ApplePay MDES Push Provisioning](./?path=docs/APIs/Card-Management/ApplePay-Push-Provisioning-MDES.md)
+- [ApplePay MDES Push Provisioning](./?path=docs/APIs/Card-Management/ApplePay-Push-Provisioning-MDES.md) 
 
 - [ApplePay Push Provisioning](./?path=docs/APIs/Card-Management/ApplePay-Push-Provisioning.md) 
 
@@ -44,7 +44,7 @@ Please click on the below link to explore the specific API of interest
 
 - [Inquire Spend Limits](./?path=docs/APIs/Card-Management/Inquire-Spend-Limits.md)
  
-- [List Visa Token](./?path=docs/APIs/Card-Management/List-Visa-Token.md) 
+- [List Tokens](./?path=docs/APIs/Card-Management/List-Tokens.md) 
 
 - [Transfer Lost Stolen Card](./?path=docs/APIs/Card-Management/Lost-Stolen-Card-Transfer.md)
 
