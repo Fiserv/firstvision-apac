@@ -420,6 +420,11 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description/Values |
 | --------  | ------------------ |
-| `V5BS0004SF` | Get request - Record not found |
+| `V5IF4001SA` | Org not determined |
+| `V5IF4002EA` | Account number not found |
+| `V5IF4001EB` | Org record not found/active |
+| `V5IF4003EA` | Default credit plan not found/active |
+| `V5IF4003EB` | Default interest table not found/active |
+| `V5IF4003EC` | Default fee table not found/active |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*
