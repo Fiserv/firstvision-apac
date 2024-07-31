@@ -1,4 +1,4 @@
-# Cash Advance
+# Cash Deposit
 
 This API is used to perform cash deposit transactions for a given payment instrument id or payment card number. 
 
@@ -16,7 +16,6 @@ titles: Request, Response, Error
 ```json
 {
   "authorizationAmount": "100.00",
-  "effectiveDate": "10/01/2022",
   "merchantBusinessUnit": 100,
   "paymentInstrumentOrCardId": "0009846801010274074",
   "planId": 10001,
@@ -105,7 +104,6 @@ Below table provides the list of application's error code and its description.
 | `V5RQ4030SB` | Settlement date should be greater than auth date |
 | `V7RQ4026SV` | Valid values for tran type are spaces, BT, BP, TC, PA, DP, CP |
 | `V7RQ4031EA` | Channel id is mandatory when tran-type is TC/PA/DP/CP |
-| `V7RQ4031EB` | Channel id should not be for BP/BT. |
 | `V7RQ4033EA` | Branch nbr is mandatory for txn done at branch |
 | `V7RQ4032EA` | Reference nbr is mandatory when tran-type is TC/PA/DP/CP |
 
