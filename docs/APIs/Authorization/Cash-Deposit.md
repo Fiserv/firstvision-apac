@@ -15,14 +15,14 @@ titles: Request, Response, Error
 
 ```json
 {
-  "authorizationAmount": "100.00",
+  "authorizationAmount": "120.00",
   "merchantBusinessUnit": 100,
   "paymentInstrumentOrCardId": "0009846801010274074",
-  "planId": 10001,
   "referenceNumber": "12345667888888888454765",
-  "channelId": "BQBR",
+  "channelId": "BQIB",
   "transactionDescription": "Cash Deposit",
-  "transactionType": "DP"
+  "transactionType": "CP",
+  "branchNumber": 234654
 }
 ```
 
