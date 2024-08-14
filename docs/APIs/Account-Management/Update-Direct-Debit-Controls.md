@@ -115,7 +115,7 @@ Below table provides the list of application's error code and its description.
 | `V5BS0614EB` | ACH pmt exp not editable when debit active at logo |
 | `V5BS0614SB` | Date ACH payment expire is not zero |
 | `V5BS0612EA` | ACH routing nbr not editable when debit active at logo |
-| `V5BS0612EK` | DD routing bank id 1st byte should be equalto zero and the last 9 bytes must be> zeros
+| `V5BS0612EK` | DD routing bank id 1st byte should be equalto zero and the last 9 bytes must be> zeros |
 | `V5BS0612SA` | Payment ACH rt number is not zero |
 | `V5BS0621EA` | ACH acct type not editable when debit active at logo |
 | `V5BS0621SV` | Invalid payment ACH debit type |
