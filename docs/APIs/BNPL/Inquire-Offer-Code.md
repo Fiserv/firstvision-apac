@@ -109,7 +109,7 @@ Below table provides the list of application's error code and its description.
 | `V5QT0409EA` | Days should be 00 when first pmt def is 0 |
 | `V5QT0410EA` | Int bill should be 0 when days is 0 |
 | `V5QT0412EA` | Invalid value: valid values are 0 to 100% |
-| `V5QT0413EA` | Invalid value: booking fee min cannot be greater than max value
+| `V5QT0413EA` | Invalid value: booking fee min cannot be greater than max value |
 | `V5QT0414EA` | Invalid value: booking fee max cannot be less than min value |
 | `V5QT0415EA` | BNPL functionality is not active on org level |
 | `V5QT0416EA` | BNPL snooze type is required to setup BNPL snooze days |
