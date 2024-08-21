@@ -18,10 +18,15 @@ This API is used to generate encrypted dynamic CVV2 and provide other additional
 
 ### Updated APIs
 
-| S.No |  Category | API Name |  Change |
-| :---  | :------- |  :------ | :------- |
-| 1 | Account Management | Update Account Charge-Off | <ul> <li>  Added below field in request <ul> <li> chargeOffStatus <li> Changed below fields type from mandatory to optional in input request <ul> <li> chargeOffReason  </li> <li> notificationReceivedDate
-| 2 | Authorization | Request Authorization | <ul> <li>  Removed default values passed for address/zipcode in request. These are hidden fields, hence no change in request message
+| S.No |  Category            | API Name                  | Change                                                                                     |
+|------|----------------------|---------------------------|--------------------------------------------------------------------------------------------|
+| 1    | Account Management   | Update Account Charge-Off | • Added below field in request                                                              |
+|      |                      |                           |   • chargeOffStatus                                                                        |
+|      |                      |                           | • Changed below fields type from mandatory to optional in input request                     |
+|      |                      |                           |   • chargeOffReason                                                                        |
+|      |                      |                           |   • notificationReceivedDate                                                               |
+| 2    | Authorization        | Request Authorization     | • Removed default values passed for address/zipcode in request. These are hidden fields,    |
+|      |                      |                           |   hence no change in request message                                                       |
 
 ### Deleted APIs
 
