@@ -1,4 +1,4 @@
-# Markdown header
+## Markdown Header
 
 # Release 23.04-Minor - Version 1.2.0
 
@@ -22,31 +22,51 @@ NA
 
 ### Updated APIs
 
-| S.No |  Category | API Name |  Change |
-| :---  | :------- |  :------ | :------- |
-| 1 | Account Management | Inquire statement transaction | <ul> <li> Changed Statement Date mandatory to optional in input request |
-| 2 | Account Management | Inquire statement plan details | <ul> <li> Changed Statement Date mandatory to optional in input request |
-| 3 | Account Management | List Billed Transactions | <ul> <li> Added memoDebitOrCreditIndicator in response |
-| 4 | Account Management | List Unbiiled Transactions | <ul> <li> Added memoDebitOrCreditIndicator in response |
-| 5 | Account Management | Inquire Statement Transactions | <ul> <li> Added memoDebitOrCreditIndicator in response |
-| 6 | Account Management | List Outstanding Auths | <ul> <li> Added memoDebitOrCreditIndicator in response |
-| 7 | Account Management | List Transactions by Date Range | <ul> <li> Added memoDebitOrCreditIndicator in response |
-| 8 | Account Management | Update Direct Debit Controls | <ul> <li> Label name and length changes for below fields in request and response <ul> <li> nominatedAmount to nominatedPaymentAmountOrPercentage </ul> <li> Enum value '1' of paymentRemittanceMethod deleted|
-| 9 | Account Management | Inquire Direct Debit Controls | <ul> <li> Label name and length changes for below fields in response <ul> <li> nominatedAmount to nominatedPaymentAmountOrPercentage </li> </ul> <li> Enum value '1' of paymentRemittanceMethod deleted|
-| 10 | Account Management | Inquire Account | <ul> <li> Added creditLimitChangeDate in response|
-| 11 | Authorization | Request Authorization | <ul> <li> Added EffectiveDate in response |
-| 12 | Authorization | Reverse Authorization | <ul> <li> Added EffectiveDate in response |
-| 13 | Authorization | Inquire Authorization | <ul> <li> Added EffectiveDate in response |
-| 14 | Card Management | ApplePay Push Provisioning | <ul> <li> Changed businessUnit mandatory to optional in input request |
-| 15 | Card Management | GooglePay - SamsungPay VTS Push Provisioning | <ul> <li> Changed businessUnit mandatory to optional in input request |
-| 16 | Card Management | Inquire Dynamic CVV2 | <ul> <li> Changed businessUnit mandatory to optional in input request |
-| 17 | Card Management | Generate Dynamic CVV2 | <ul> <li> Changed businessUnit mandatory to optional in input request |
-| 18 | Card Management | Change Pin| <ul> <li> Added below fields in request <ul> <li> pinSetOrResetActionCode </li> <li> pinSetOrResetMemo </li> <li> pinTryCounterResetActionCode </li> <li> pinTryCounterResetMemo|
-| 19 | Customer Management | List Customers' Cards and Accounts | <ul> <li> Restructured the responseBody as per backend changes <li>  New accountList Group added in service <li> New accountId field added in existing cardList group  |
-| 20 | Customer Management | Inquire Customer | <ul> <li> Added below fields in response <ul> <li> county <li> externalId <li> typeOfExternalId </li> <li> phoneExtension </li> <li> vacationDetails added as a group |
-| 21 | Customer Management | Update Customer | <ul> <li> Added below fields in request and response <ul> <li> county <li> externalId <li> typeOfExternalId </li> <li> phoneExtension </li> <li> vacationDetails added as a group |
-| 22 | Miscellaneous | Board Entities | <ul> <li> Changed owningBranchNumber mandatory to optional in input request |
-| 23 | All API's | NA | <ul> <li> Error message status changed for all functional API's from 422 to 404 for invalid path when record is not available in First Vision |
+| S.No | Category             | API Name                               | Change                                                                                                        |
+|------|----------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| 1    | Account Management   | Inquire statement transaction          | • Changed Statement Date mandatory to optional in input request                                               |
+| 2    | Account Management   | Inquire statement plan details         | • Changed Statement Date mandatory to optional in input request                                               |
+| 3    | Account Management   | List Billed Transactions               | • Added memoDebitOrCreditIndicator in response                                                                |
+| 4    | Account Management   | List Unbiiled Transactions             | • Added memoDebitOrCreditIndicator in response                                                                |
+| 5    | Account Management   | Inquire Statement Transactions         | • Added memoDebitOrCreditIndicator in response                                                                |
+| 6    | Account Management   | List Outstanding Auths                 | • Added memoDebitOrCreditIndicator in response                                                                |
+| 7    | Account Management   | List Transactions by Date Range        | • Added memoDebitOrCreditIndicator in response                                                                |
+| 8    | Account Management   | Update Direct Debit Controls           | • Label name and length changes for below fields in request and response                                      |
+|      |                      |                                        |   • nominatedAmount to nominatedPaymentAmountOrPercentage                                                     |
+|      |                      |                                        |   • Enum value '1' of paymentRemittanceMethod deleted                                                         |
+| 9    | Account Management   | Inquire Direct Debit Controls          | • Label name and length changes for below fields in response                                                  |
+|      |                      |                                        |   • nominatedAmount to nominatedPaymentAmountOrPercentage                                                     |
+|      |                      |                                        |   • Enum value '1' of paymentRemittanceMethod deleted                                                         |
+| 10   | Account Management   | Inquire Account                        | • Added creditLimitChangeDate in response                                                                     |
+| 11   | Authorization        | Request Authorization                  | • Added EffectiveDate in response                                                                             |
+| 12   | Authorization        | Reverse Authorization                  | • Added EffectiveDate in response                                                                             |
+| 13   | Authorization        | Inquire Authorization                  | • Added EffectiveDate in response                                                                             |
+| 14   | Card Management      | ApplePay Push Provisioning             | • Changed businessUnit mandatory to optional in input request                                                 |
+| 15   | Card Management      | GooglePay - SamsungPay VTS Push Provisioning | • Changed businessUnit mandatory to optional in input request                                             |
+| 16   | Card Management      | Inquire Dynamic CVV2                   | • Changed businessUnit mandatory to optional in input request                                                 |
+| 17   | Card Management      | Generate Dynamic CVV2                  | • Changed businessUnit mandatory to optional in input request                                                 |
+| 18   | Card Management      | Change Pin                             | • Added below fields in request                                                                               |
+|      |                      |                                        |   • pinSetOrResetActionCode                                                                                   |
+|      |                      |                                        |   • pinSetOrResetMemo                                                                                         |
+|      |                      |                                        |   • pinTryCounterResetActionCode                                                                              |
+|      |                      |                                        |   • pinTryCounterResetMemo                                                                                    |
+| 19   | Customer Management  | List Customers' Cards and Accounts     | • Restructured the responseBody as per backend changes                                                        |
+|      |                      |                                        |   • New accountList Group added in service                                                                    |
+|      |                      |                                        |   • New accountId field added in existing cardList group                                                      |
+| 20   | Customer Management  | Inquire Customer                       | • Added below fields in response                                                                              |
+|      |                      |                                        |   • county                                                                                                    |
+|      |                      |                                        |   • externalId                                                                                                |
+|      |                      |                                        |   • typeOfExternalId                                                                                          |
+|      |                      |                                        |   • phoneExtension                                                                                            |
+|      |                      |                                        |   • vacationDetails added as a group                                                                          |
+| 21   | Customer Management  | Update Customer                        | • Added below fields in request and response                                                                  |
+|      |                      |                                        |   • county                                                                                                    |
+|      |                      |                                        |   • externalId                                                                                                |
+|      |                      |                                        |   • typeOfExternalId                                                                                          |
+|      |                      |                                        |   • phoneExtension                                                                                            |
+|      |                      |                                        |   • vacationDetails added as a group                                                                          |
+| 22   | Miscellaneous        | Board Entities                         | • Changed owningBranchNumber mandatory to optional in input request                                           |
+| 23   | All API's            | NA                                     | • Error message status changed for all functional API's from 422 to 404 for invalid path when record is not available in First Vision |
 
 ### Deleted APIs
 

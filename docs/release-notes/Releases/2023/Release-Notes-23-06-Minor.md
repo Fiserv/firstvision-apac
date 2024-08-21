@@ -52,24 +52,39 @@ This API is used to fetch the list of offer codes associated for a given busines
 
 ### Updated APIs
 
-| S.No |  Category | API Name |  Change |
-| :---  | :------- |  :------ | :------- |
-| 1 | Account Management | List Transactions by Date Range | <ul> <li> Added below fields in response <ul> <li> merchantCountry <li> upiMerchantId   |
-| 2 | Account Management | Inquire Statement Transaction details | <ul> <li> Added bnplIplanSequenceNumber in response <li> Deleted below fields in response <ul> <li> totalDueBalance </li> <li> minimumPaymentAmount </li> <li> currencyConversionRate |
-| 3 | Account Management | Inquire Statement Plan Details | <ul> <li> Deleted below fields in response <ul> <li> totalDueBalance </li> <li> minimumPaymentAmount (outside plan table) </li> <li> currencyConversionRate |
-| 4 | Account Management | List Billed Transactions | <ul> <li> Added bnplIplanSequenceNumber in response |
-| 5 | Account Management | List Outstanding Authorizations | <ul> <li> Added bnplIplanSequenceNumber in response |
-| 6 | Account Management | List Unbilled Transactions | <ul> <li> Added bnplIplanSequenceNumber in response |
-| 7 | Account Management | Inquire Account | <ul> <li> Added new bnplDetails group in response for BNPL functionality <li> currencyCode in response has been updated to make the type as string and to get the value "036"instead of "36" |
-| 8 | Account Management | Board Account | <ul> <li> Added new bnplDetails group in request for BNPL functionality |
-| 9 | Account Management | Monetary Action | <ul> <li> Type changed from string to integer in requestBody for businessUnit |
-| 10 | Account Management | Post Payments | <ul> <li> Type changed from string to integer in requestBody for businessUnit |
-| 11 | Account Management | Add Memo Line | <ul> <li> Type changed from string to integer in requestBody for businessUnit |
-| 12 | Card Management | Inquire Card| <ul> <li> Added below fields in response <ul> <li> transferToPaymentInstrumentId </li> <li> transferFromPaymentInstrumentId |
-| 13 | Customer Management | List External Customers' Cards and Accounts | <ul> <li> Added below fields in response <ul> <li> transferToPaymentInstrumentId </li> <li> transferFromPaymentInstrumentId </li> <li> maskedPaymentCardNumber |
-| 14 | Product Management | Inquire Product | <ul> <li> Added new bnplAlerts, bnplDetails, bnplTierRangeOfTemplateId groups in response|
-| 15 | Miscellaneous | Board Entities | <ul> <li> Added new bnplDetails group in request for BNPL functionality |
-| 16 | Miscellaneous | Inquire Business Unit | <ul> <li> Added new field isBnplEnabled in response|
+| S.No | Category             | API Name                               | Change                                                                                                        |
+|------|----------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| 1    | Account Management   | List Transactions by Date Range        | • Added below fields in response                                                                              |
+|      |                      |                                        |   • merchantCountry                                                                                           |
+|      |                      |                                        |   • upiMerchantId                                                                                             |
+| 2    | Account Management   | Inquire Statement Transaction details  | • Added bnplIplanSequenceNumber in response                                                                   |
+|      |                      |                                        | • Deleted below fields in response                                                                            |
+|      |                      |                                        |   • totalDueBalance                                                                                           |
+|      |                      |                                        |   • minimumPaymentAmount                                                                                      |
+|      |                      |                                        |   • currencyConversionRate                                                                                    |
+| 3    | Account Management   | Inquire Statement Plan Details         | • Deleted below fields in response                                                                            |
+|      |                      |                                        |   • totalDueBalance                                                                                           |
+|      |                      |                                        |   • minimumPaymentAmount (outside plan table)                                                                 |
+|      |                      |                                        |   • currencyConversionRate                                                                                    |
+| 4    | Account Management   | List Billed Transactions               | • Added bnplIplanSequenceNumber in response                                                                   |
+| 5    | Account Management   | List Outstanding Authorizations        | • Added bnplIplanSequenceNumber in response                                                                   |
+| 6    | Account Management   | List Unbilled Transactions             | • Added bnplIplanSequenceNumber in response                                                                   |
+| 7    | Account Management   | Inquire Account                        | • Added new bnplDetails group in response for BNPL functionality                                              |
+|      |                      |                                        | • currencyCode in response has been updated to make the type as string and to get the value "036" instead of "36"   |
+| 8    | Account Management   | Board Account                          | • Added new bnplDetails group in request for BNPL functionality                                               |
+| 9    | Account Management   | Monetary Action                        | • Type changed from string to integer in requestBody for businessUnit                                         |
+| 10   | Account Management   | Post Payments                          | • Type changed from string to integer in requestBody for businessUnit                                         |
+| 11   | Account Management   | Add Memo Line                          | • Type changed from string to integer in requestBody for businessUnit                                         |
+| 12   | Card Management      | Inquire Card                           | • Added below fields in response                                                                              |
+|      |                      |                                        |   • transferToPaymentInstrumentId                                                                             |
+|      |                      |                                        |   • transferFromPaymentInstrumentId                                                                           |
+| 13   | Customer Management  | List External Customers' Cards and Accounts | • Added below fields in response                                                                          |
+|      |                      |                                        |   • transferToPaymentInstrumentId                                                                             |
+|      |                      |                                        |   • transferFromPaymentInstrumentId                                                                           |
+|      |                      |                                        |   • maskedPaymentCardNumber                                                                                   |
+| 14   | Product Management   | Inquire Product                        | • Added new bnplAlerts, bnplDetails, bnplTierRangeOfTemplateId groups in response                             |
+| 15   | Miscellaneous        | Board Entities                         | • Added new bnplDetails group in request for BNPL functionality                                               |
+| 16   | Miscellaneous        | Inquire Business Unit                  | • Added new field isBnplEnabled in response                                                                   |
 
 ### Deleted APIs
 

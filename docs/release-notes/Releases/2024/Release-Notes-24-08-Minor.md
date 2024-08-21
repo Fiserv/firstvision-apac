@@ -38,17 +38,19 @@ This service is used to reage the account, reaging an account is normally done t
 
 ### Updated APIs -
 
-| S.No |  Category | API Name |  Change |
-| :---  | :------- |  :------ | :------- |
-| 1 | Account Management | Inquire Account | <ul> <li> New field balanceTransferOutstandingAmount added in response |
-| 2 | Account Management | List Billed Transactions | <ul> <li> New field acquirerReferenceNumber added in response |
-| 3 | Account Management | List Outstanding Authorizations | <ul> <li> New field acquirerReferenceNumber added in response |
-| 4 | Account Management | List Unbilled Transactions | <ul> <li> New field acquirerReferenceNumber added in response |
-| 5 | Account Management | Inquire Statement Transaction Details | <ul> <li> New field acquirerReferenceNumber added in response |
-| 6 | Account Management | List Transactions by Date Range | <ul> <li> New field acquirerReferenceNumber added in response |
-| 7 | Account Management | List Transactions by Date Range V2 | <ul> <li> New field acquirerReferenceNumber added in response |
-| 8 | Product Management | Inquire Plan Master | <ul> <li> New fields balanceTransferFeeType and balanceTransferFeeAmountOrPercentage added in response |
-| 9 | Account Management | Inquire Delinquency | <ul> <li> previousCycleDue, lastDelinquentDate and paymentDaysDelinquentCount are deleted from response. </li> <li> Restructured the API response (delinquencyDetails renamed to accountDueDetails, accountDetails and reageControls groups were added, and new fields planTotalDueAmount and differenceInTotalAmount added) |
+| S.No | Category            | API Name                               | Change                                                                                              |
+|------|---------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------|
+| 1    | Account Management  | Inquire Account                        | • New field balanceTransferOutstandingAmount added in response                                      |
+| 2    | Account Management  | List Billed Transactions                | • New field acquirerReferenceNumber added in response                                               |
+| 3    | Account Management  | List Outstanding Authorizations         | • New field acquirerReferenceNumber added in response                                               |
+| 4    | Account Management  | List Unbilled Transactions              | • New field acquirerReferenceNumber added in response                                               |
+| 5    | Account Management  | Inquire Statement Transaction Details   | • New field acquirerReferenceNumber added in response                                               |
+| 6    | Account Management  | List Transactions by Date Range         | • New field acquirerReferenceNumber added in response                                               |
+| 7    | Account Management  | List Transactions by Date Range V2      | • New field acquirerReferenceNumber added in response                                               |
+| 8    | Product Management  | Inquire Plan Master                     | • New fields balanceTransferFeeType and balanceTransferFeeAmountOrPercentage added in response       |
+| 9    | Account Management  | Inquire Delinquency                     | • previousCycleDue, lastDelinquentDate and paymentDaysDelinquentCount are deleted from response      |
+|      |                     |                                        | • Restructured the API response (delinquencyDetails renamed to accountDueDetails, accountDetails     |
+|      |                     |                                        |   and reageControls groups were added, and new fields planTotalDueAmount and differenceInTotalAmount added) |
 
 ### Deleted APIs
 

@@ -31,14 +31,15 @@ This API is used to update the MCC limits to control the card usage. These MCC l
 
 ### Updated APIs
 
-| S.No |  Category | API Name |  Change |
-| :---  | :------- |  :------ | :------- |
-| 1 | Account Management | Post Payments | <ul> <li>  Removed actionCode from request and defaulted the value in it <li> Removed 'representativeDetails’ group and fields under this group
-| 2 | Card Management | Board Card | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
-| 3 | Card Management | Inquire Card | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request |
-| 6 | Product Management | Inquire Product | <ul> <li>  Added new field physicalvirtualIndicator in response
-| 7 | Miscellaneous | Board Entities | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
-| 8 | Miscellaneous | Board Entities V2 | <ul> <li>  Added new valid value 'B' under existing field physicalvirtualIndicator in request
+| S.No | Category            | API Name                  | Change                                                                            |
+|------|---------------------|---------------------------|-----------------------------------------------------------------------------------|
+| 1    | Account Management  | Post Payments             | • Removed actionCode from request and defaulted the value in it                   |
+|      |                     |                           | • Removed 'representativeDetails’ group and fields under this group               |
+| 2    | Card Management     | Board Card                | • Added new valid value 'B' under existing field physicalvirtualIndicator in request|
+| 3    | Card Management     | Inquire Card              | • Added new valid value 'B' under existing field physicalvirtualIndicator in request|
+| 6    | Product Management  | Inquire Product           | • Added new field physicalvirtualIndicator in response                            |
+| 7    | Miscellaneous       | Board Entities            | • Added new valid value 'B' under existing field physicalvirtualIndicator in request|
+| 8    | Miscellaneous       | Board Entities V2         | • Added new valid value 'B' under existing field physicalvirtualIndicator in request|
 
 ### Deleted APIs
 

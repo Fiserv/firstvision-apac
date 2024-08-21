@@ -43,23 +43,29 @@ This API is used to calculate the loan repayment options for prospective borrowe
 
 ### Updated APIs
 
-| S.No |  Category | API Name |  Change |
-| :---  | :------- |  :------ | :------- |
-| 1 | Account Management | List Outstanding Authorizations | - Added remainingAuthorizationAmount in response |
-| 2 | Account Management | List Unbilled Transactions | - Added remainingAuthorizationAmount in response |
-| 3 | Account Management | List Billed Transactions | - Removed pagination fields from response <li> Added pagination fields in response-header |
-| 4  | Account Management | Inquire Statement Transaction Details | - Added the below fields in response:<br>  &nbsp; &nbsp;• addOnAmount<br>  &nbsp; &nbsp;• overLimitAmount<br><br>  • Removed billingCurrency from response<br><br>  • Removed pagination fields from response<br><br>  • Added pagination fields to response header |
-| 5  | Account Management | List Transactions by Date Range | - Added below fields in response:<br>&nbsp;&nbsp;&nbsp;&nbsp;- remainingAuthorizationAmount<br>&nbsp;&nbsp;&nbsp;&nbsp;- authorizationCode<br>- Description change for existing field transactionIndicator |
-| 6  | Account Management | Inquire Account | - Added productId in response<br>- Label name change for below field in response:<br>&nbsp;&nbsp;&nbsp;&nbsp;- cashDisputedAmout to cashDisputedAmount |
-| 7  | Account Management | Board Account | - Removed billingCurrency from response |
-| 8  | Miscellaneous | Board Entities | - Removed billingCurrency from response |
-| 9  | Authorization | Request Authorization | - Added openToBuy in response |
-| 10 | Authorization | Inquire Authorization | - Restructured the request message for better user experience |
-| 11 | Customer Management | List Customers' Cards and Accounts | - Label name change for below fields in response:<br>&nbsp;&nbsp;&nbsp;&nbsp;- numberOfTokens to tokenCount<br>&nbsp;&nbsp;&nbsp;&nbsp;- noOfTokenizedCards to totalTokenizedCardCount |
-| 12 | Customer Management | List Customers' Cards | - Label name change for below field in response:<br>&nbsp;&nbsp;&nbsp;&nbsp;- numberOfTokens to tokenCount |
-| 13 | Customer Management | List Customers' Accounts | - Label name change for below field in response:<br>&nbsp;&nbsp;&nbsp;&nbsp;- noOfTokenizedCards to totalTokenizedCardCount |
-| 14 | Account Management | List Plans | - Label name change for below field in response:<br>&nbsp;&nbsp;&nbsp;&nbsp;- principalBalance to principalAmount |
-| 15 | Miscellaneous | Inquire Business Unit | - Label name changes for below fields in response:<br>&nbsp;&nbsp;&nbsp;&nbsp;- dateNextProcess to nextProcessingDate<br>&nbsp;&nbsp;&nbsp;&nbsp;- dateLastMaintenance to lastMaintenanceDate<br>&nbsp;&nbsp;&nbsp;&nbsp;- dateInterestAccruedThrough to interestAccruedThroughDate |
+| S.No | Category             | API Name                               | Change                                                                                                        |
+|------|----------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| 1    | Account Management   | List Outstanding Authorizations        | • Added remainingAuthorizationAmount in response                                                              |
+| 2    | Account Management   | List Unbilled Transactions             | • Added remainingAuthorizationAmount in response                                                              |
+| 3    | Account Management   | List Billed Transactions               | • Removed pagination fields from response                                                                     |
+|      |                      |                                        | • Added pagination fields in response header                                                                  |
+| 4    | Account Management   | Inquire Statement Transaction Details  | • Added the below fields in response: addOnAmount, overLimitAmount                                             |
+|      |                      |                                        | • Removed billingCurrency from response                                                                       |
+|      |                      |                                        | • Removed pagination fields from response                                                                     |
+|      |                      |                                        | • Added pagination fields to response header                                                                  |
+| 5    | Account Management   | List Transactions by Date Range        | • Added below fields in response: remainingAuthorizationAmount, authorizationCode                             |
+|      |                      |                                        | • Description change for existing field transactionIndicator                                                  |
+| 6    | Account Management   | Inquire Account                        | • Added productId in response                                                                                 |
+|      |                      |                                        | • Label name change for below field in response: cashDisputedAmout to cashDisputedAmount                      |
+| 7    | Account Management   | Board Account                          | • Removed billingCurrency from response                                                                       |
+| 8    | Miscellaneous        | Board Entities                         | • Removed billingCurrency from response                                                                       |
+| 9    | Authorization        | Request Authorization                  | • Added openToBuy in response                                                                                 |
+| 10   | Authorization        | Inquire Authorization                  | • Restructured the request message for better user experience                                                 |
+| 11   | Customer Management  | List Customers' Cards and Accounts     | • Label name change for below fields in response: numberOfTokens to tokenCount, noOfTokenizedCards to totalTokenizedCardCount |
+| 12   | Customer Management  | List Customers' Cards                  | • Label name change for below field in response: numberOfTokens to tokenCount                                  |
+| 13   | Customer Management  | List Customers' Accounts               | • Label name change for below field in response: noOfTokenizedCards to totalTokenizedCardCount                 |
+| 14   | Account Management   | List Plans                             | • Label name change for below field in response: principalBalance to principalAmount                          |
+| 15   | Miscellaneous        | Inquire Business Unit                  | • Label name changes for below fields in response: dateNextProcess to nextProcessingDate, dateLastMaintenance to lastMaintenanceDate, dateInterestAccruedThrough to interestAccruedThroughDate |
 
 ### Deleted APIs
 
