@@ -70,6 +70,7 @@ This API is used for push provisioning of MC Card. API validates the incoming ca
 | 3    | Account Management  | Update Account Preference              | • New field excludeFromVAUOrABUIndicator added in request and response                              |
 | 4    | Account Management  | Inquire Account Plan                   | • Label name changed from recordNumber to planSequenceNumber in response                            |
 | 5    | Account Management  | Transfer Plan Balance                  | • Label name changed from transferFromRecordNumber to transferFromPlanSequenceNumber and transferToRecordNumber to transferToPlanSequenceNumber in request and response                    |
+| 5a    | Account Management  | Transfer Plan Balance                  | <p> Label name changed from transferFromRecordNumber to transferFromPlanSequenceNumber and <br> transferToRecordNumber to transferToPlanSequenceNumber in request and response  </p> |
 | 6    | Account Management  | List Plans                             | • Label name changed from recordCount to planSequenceNumber in response                             |
 | 7    | Card Management     | Transfer Lost Stolen Card              | • New field issueDeliveryOption and isSuppressPinEnabled added in request                           |
 | 8    | Card Management     | Update Issue Reissue Delivery Option   | • Valid values with Description changed for issueDeliveryOption and reissueDeliveryOption in request and response |
@@ -88,10 +89,7 @@ This API is used for push provisioning of MC Card. API validates the incoming ca
 | 19   | Account Management  | Board Account                          | • accountDirectDebitDetails group with DD related fields added under accountDetails in request      |
 | 20   | Account Management  | Inquire Direct Debit Controls          | • paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate and customerName added in response |
 |      |                     |                                        | • Value '9' added in paymentType description in response                                            |
-| 21 | Account Management | Update Direct Debit Controls              | • paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate, and customerName added in request/response |
-                                                                      | • informationalMessage added in response                                                              |
-																	  |	• maxLength updated from 24 to 17 for nominatedPaymentAmountOrPercentage in request                  |
-																	  |	• Value '9' added in paymentType enum and its description in response/request | 
+| 21 | Account Management | Update Direct Debit Controls              | • paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate, and customerName added in request/response<br>  • informationalMessage added in response<br>  • maxLength updated from 24 to 17 for nominatedPaymentAmountOrPercentage in request<br>  • Value '9' added in paymentType enum and its description in response/request |
 | 22   | Account Management  | List Billed Transactions                | • foreignOriginalAmount and foreignOriginalCurrencyCode added in response                           |
 | 23   | Account Management  | List Outstanding Authorizations         | • foreignOriginalAmount and foreignOriginalCurrencyCode added in response                           |
 | 24   | Account Management  | List Unbilled Transactions              | • foreignOriginalAmount and foreignOriginalCurrencyCode added in response                           |
