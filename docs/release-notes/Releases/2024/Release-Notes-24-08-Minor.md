@@ -48,7 +48,7 @@ This service is used to reage the account, reaging an account is normally done t
 | 6    | Account Management  | List Transactions by Date Range         | • New field acquirerReferenceNumber added in response                                               |
 | 7    | Account Management  | List Transactions by Date Range V2      | • New field acquirerReferenceNumber added in response                                               |
 | 8    | Product Management  | Inquire Plan Master                     | • New fields balanceTransferFeeType and balanceTransferFeeAmountOrPercentage added in response       |
-| 9 | Account Management | Inquire Delinquency | • previousCycleDue, lastDelinquentDate and paymentDaysDelinquentCount are deleted from response.  &#10;&nbsp;&nbsp;&nbsp;• Restructured the API response (delinquencyDetails renamed to accountDueDetails, accountDetails and reageControls groups were added, and new fields planTotalDueAmount and differenceInTotalAmount added)' |
+| 9 | Account Management | Inquire Delinquency | • previousCycleDue, lastDelinquentDate and paymentDaysDelinquentCount are deleted from response.  &#10;&nbsp;&nbsp;&nbsp;&lt;br&gt;• Restructured the API response (delinquencyDetails renamed to accountDueDetails, accountDetails and reageControls groups were added, and new fields planTotalDueAmount and differenceInTotalAmount added)' |
 
 
 ### Deleted APIs
