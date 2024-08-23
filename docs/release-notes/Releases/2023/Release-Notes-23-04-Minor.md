@@ -31,12 +31,8 @@ NA
 | 5    | Account Management   | Inquire Statement Transactions         | • Added memoDebitOrCreditIndicator in response                                                                |
 | 6    | Account Management   | List Outstanding Auths                 | • Added memoDebitOrCreditIndicator in response                                                                |
 | 7    | Account Management   | List Transactions by Date Range        | • Added memoDebitOrCreditIndicator in response                                                                |
-| 8    | Account Management   | Update Direct Debit Controls           | • Label name and length changes for below fields in request and response                                      |
-|      |                      |                                        |   • nominatedAmount to nominatedPaymentAmountOrPercentage                                                     |
-|      |                      |                                        |   • Enum value '1' of paymentRemittanceMethod deleted                                                         |
-| 9    | Account Management   | Inquire Direct Debit Controls          | • Label name and length changes for below fields in response                                                  |
-|      |                      |                                        |   • nominatedAmount to nominatedPaymentAmountOrPercentage                                                     |
-|      |                      |                                        |   • Enum value '1' of paymentRemittanceMethod deleted                                                         |
+| 8    | Account Management   | Update Direct Debit Controls           | • Label name and length changes for below fields in request and response • nominatedAmount to nominatedPaymentAmountOrPercentage  • Enum value '1' of paymentRemittanceMethod deleted                                                         |
+| 9    | Account Management   | Inquire Direct Debit Controls          | • Label name and length changes for below fields in response  • nominatedAmount to nominatedPaymentAmountOrPercentage  • Enum value '1' of paymentRemittanceMethod deleted                                                         |
 | 10   | Account Management   | Inquire Account                        | • Added creditLimitChangeDate in response                                                                     |
 | 11   | Authorization        | Request Authorization                  | • Added EffectiveDate in response                                                                             |
 | 12   | Authorization        | Reverse Authorization                  | • Added EffectiveDate in response                                                                             |
@@ -45,26 +41,10 @@ NA
 | 15   | Card Management      | GooglePay - SamsungPay VTS Push Provisioning | • Changed businessUnit mandatory to optional in input request                                             |
 | 16   | Card Management      | Inquire Dynamic CVV2                   | • Changed businessUnit mandatory to optional in input request                                                 |
 | 17   | Card Management      | Generate Dynamic CVV2                  | • Changed businessUnit mandatory to optional in input request                                                 |
-| 18   | Card Management      | Change Pin                             | • Added below fields in request                                                                               |
-|      |                      |                                        |   • pinSetOrResetActionCode                                                                                   |
-|      |                      |                                        |   • pinSetOrResetMemo                                                                                         |
-|      |                      |                                        |   • pinTryCounterResetActionCode                                                                              |
-|      |                      |                                        |   • pinTryCounterResetMemo                                                                                    |
-| 19   | Customer Management  | List Customers' Cards and Accounts     | • Restructured the responseBody as per backend changes                                                        |
-|      |                      |                                        |   • New accountList Group added in service                                                                    |
-|      |                      |                                        |   • New accountId field added in existing cardList group                                                      |
-| 20   | Customer Management  | Inquire Customer                       | • Added below fields in response                                                                              |
-|      |                      |                                        |   • county                                                                                                    |
-|      |                      |                                        |   • externalId                                                                                                |
-|      |                      |                                        |   • typeOfExternalId                                                                                          |
-|      |                      |                                        |   • phoneExtension                                                                                            |
-|      |                      |                                        |   • vacationDetails added as a group                                                                          |
-| 21   | Customer Management  | Update Customer                        | • Added below fields in request and response                                                                  |
-|      |                      |                                        |   • county                                                                                                    |
-|      |                      |                                        |   • externalId                                                                                                |
-|      |                      |                                        |   • typeOfExternalId                                                                                          |
-|      |                      |                                        |   • phoneExtension                                                                                            |
-|      |                      |                                        |   • vacationDetails added as a group                                                                          |
+| 18   | Card Management      | Change Pin                             | • Added below fields in request  • pinSetOrResetActionCode  • pinSetOrResetMemo  • pinTryCounterResetActionCode  • pinTryCounterResetMemo                                                                                    |
+| 19   | Customer Management  | List Customers' Cards and Accounts     | • Restructured the responseBody as per backend changes • New accountList Group added in service • New accountId field added in existing cardList group                                                      |
+| 20   | Customer Management  | Inquire Customer                       | • Added below fields in response  • county  • externalId   • typeOfExternalId  • phoneExtension  • vacationDetails added as a group                                                                          |
+| 21   | Customer Management  | Update Customer                        | • Added below fields in request and response  • county  • externalId  • typeOfExternalId  • phoneExtension  • vacationDetails added as a group                                                                          |
 | 22   | Miscellaneous        | Board Entities                         | • Changed owningBranchNumber mandatory to optional in input request                                           |
 | 23   | All API's            | NA                                     | • Error message status changed for all functional API's from 422 to 404 for invalid path when record is not available in First Vision |
 
