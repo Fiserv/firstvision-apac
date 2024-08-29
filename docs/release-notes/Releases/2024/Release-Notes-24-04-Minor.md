@@ -42,16 +42,11 @@ This API is used to fetch the list of various transactions like authorizations, 
 | 6    | Card Management      | Update Card Preference                 | • New value ‘2’ added in isDynamicCVV2enabled field in request and response                                   |
 | 7    | Product Management   | Inquire Product                        | • isDynamicCVV2enabled added in response                                                                      |
 | 8    | Loan Management      | Inquire Plan Controls                  | • billingIndicator added in response                                                                          |
-| 10   | Account Management   | List Billed Transactions               | • merchantName added in response                                                                              |
-|      |                      |                                        | • Existing field merchantCity length updated to 13 from 15 in response                                        |
-| 11   | Account Management   | List Outstanding Authorizations        | • merchantName added in response                                                                              |
-|      |                      |                                        | • Existing field merchantCity length updated to 13 from 15 in response                                        |
-| 12   | Account Management   | List Unbilled Transactions             | • merchantName added in response                                                                              |
-|      |                      |                                        | • Existing field merchantCity length updated to 13 from 15 in response                                        |
-| 13   | Account Management   | Inquire Statement Transaction Details  | • merchantName added in response                                                                              |
-|      |                      |                                        | • Existing field merchantCity length updated to 13 from 15 in response                                        |
-| 14   | Account Management   | List Transactions by Date Range        | • merchantName added in response                                                                              |
-|      |                      |                                        | • Existing field merchantCity length updated to 13 from 15 in response                                        |
+| 10   | Account Management   | List Billed Transactions               | • merchantName added in response  • Existing field merchantCity length updated to 13 from 15 in response                                        |
+| 11   | Account Management   | List Outstanding Authorizations        | • merchantName added in response  • Existing field merchantCity length updated to 13 from 15 in response                                        |
+| 12   | Account Management   | List Unbilled Transactions             | • merchantName added in response  • Existing field merchantCity length updated to 13 from 15 in response                                        |
+| 13   | Account Management   | Inquire Statement Transaction Details  | • merchantName added in response  • Existing field merchantCity length updated to 13 from 15 in response                                        |
+| 14   | Account Management   | List Transactions by Date Range        | • merchantName added in response  • Existing field merchantCity length updated to 13 from 15 in response                                        |
 | 15   | Loan Management      | Inquire Loan                           | • referenceNumber, typeOfLoan, originalTerm added in response                                                 |
 | 16   | Loan Management      | List Loans by Account                  | • type changed from integer to string for typeOfLoan field in response                                        |
 

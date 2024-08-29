@@ -35,16 +35,12 @@ This API provides daily accumulated cash deposite authorization amount and count
 |------|---------------------|-------------------------|----------------------------------------------------------------------------------------------------|
 | 1    | Account Management  | Inquire Account         | • New field cycleDue and defaultPlanDetails group added in response                                |
 | 2    | Account Management  | List Plans              | • New field calculatedInterestRate, lastInterestRate and planType added in response                |
-| 3    | Account Management  | Update Waive Fees       | • New enum value 2 added in isWaiveInterestFeeEnabled and isWaiveAddOnMembershipFeeEnabled         |
-|      |                     |                         | • New enum value 4 added in isWaiveAnnualMembershipFeeEnabled                                      |
+| 3    | Account Management  | Update Waive Fees       | • New enum value 2 added in isWaiveInterestFeeEnabled and isWaiveAddOnMembershipFeeEnabled  • New enum value 4 added in isWaiveAnnualMembershipFeeEnabled                                      |
 | 4    | Card Management     | Inquire Card            | • New field isVAUAndABUEnabled and updateVAUAndABUDate added in response                           |
 | 5    | Card Management     | Inquire Card Preference | • New field isVAUAndABUEnabled and updateVAUAndABUDate added in response                           |
-| 6    | Card Management     | Update Card Preference  | • New field isVAUAndABUEnabled added in request                                                    |
-|      |                     |                         | • isVAUAndABUEnabled and updateVAUAndABUDate added in response                                     |
+| 6    | Card Management     | Update Card Preference  | • New field isVAUAndABUEnabled added in request   • isVAUAndABUEnabled and updateVAUAndABUDate added in response                                     |
 | 7    | Card Management     | Activate Card           | • Changes to update new crypto keys on back of card activation                                     |
-| 8    | Card Management     | List Tokens             | • API name has been changed to List Tokens                                                         |
-|      |                     |                         | • label vtsTokenNumber is changed to schemeTokenNumber                                             |
-|      |                     |                         | • endPoint is updated from /listVisaToken to /listTokens                                           |
+| 8    | Card Management     | List Tokens             | • API name has been changed to List Tokens  • label vtsTokenNumber is changed to schemeTokenNumber  • endPoint is updated from /listVisaToken to /listTokens                                           |
 
 ### Deleted APIs
 

@@ -102,24 +102,20 @@ This API is used to validate the encrypted CVV2 for a given payment instrument I
 | 3    | Card Management     | Board Card                             | • externalContractId length updated to 19 in response                                               |
 | 4    | Miscellaneous       | Board Entities                         | • externalContractId length updated to 19 in response                                               |
 | 5    | Miscellaneous       | Board Entities V2                      | • externalContractId length updated to 19 in response                                               |
-| 6    | Card Management     | Inquire Card                           | • externalContractId length updated to 19 in response                                               |
-|      |                     |                                        | • pinDetails group added in response                                                                |
+| 6    | Card Management     | Inquire Card                           | • externalContractId length updated to 19 in response  • pinDetails group added in response                                                                |
 | 7    | Customer Management | List Customers Accounts                | • externalContractId length updated to 19 in response                                               |
 | 8    | Customer Management | List Customers Cards                   | • externalContractId added under cardList in response                                               |
-| 9    | Customer Management | List Customers Cards and Accounts      | • externalContractId length updated to 19 in response                                               |
-|      |                     |                                        | • externalContractId added under cardList in response                                               |
+| 9    | Customer Management | List Customers Cards and Accounts      | • externalContractId length updated to 19 in response  • externalContractId added under cardList in response                                               |
 | 12   | Account Management  | Monetary Action                        | • transactionDescription added in request                                                           |
 | 14   | Account Management  | List Billed Transactions                | • billerCode added in response                                                                      |
 | 15   | Account Management  | List Outstanding Authorizations         | • billerCode added in response                                                                      |
-| 16   | Account Management  | List Unbilled Transactions              | • billerCode added in response                                                                      |
-|      |                     |                                        | • instalmentConversionInd added in response                                                         |
+| 16   | Account Management  | List Unbilled Transactions              | • billerCode added in response  • instalmentConversionInd added in response                                                         |
 | 17   | Account Management  | Inquire Statement Transaction Details   | • billerCode added in response                                                                      |
 | 18   | Account Management  | List Transaction by Date range          | • billerCode added in response                                                                      |
 | 19   | Product Management  | Inquire Product                        | • instalmentDetails group added in response                                                         |
 | 20   | Miscellaneous       | Inquire Business Unit                  | • instalmentDetails group added in response                                                         |
 | 21   | Card Management     | Transfer Lost and Stolen               | • pinStatus added in response                                                                       |
-| 22   | Loan Management     | Inquire Loan                           | • label change from celEppManualClose to manualCloseIndicator                                       |
-|      |                     |                                        | • prorateInterestAmout added under group loanDisclosedAndInitialAmountDetails                         |
+| 22   | Loan Management     | Inquire Loan                           | • label change from celEppManualClose to manualCloseIndicator  • prorateInterestAmout added under group loanDisclosedAndInitialAmountDetails                         |
 | 23   | Account Management  | Inquire Account Plan                   | • eligibleBalanceForStatementInstalment added in response                                           |
 | 24   | Card Management     | Inquire MCC Limits                     | • maxLength for the amount fields changed from 11 to 18 in response                                 |
 | 25   | Card Management     | Update MCC Limits                      | • maxLength for the amount fields changed from 11 to 18 in response                                 |
