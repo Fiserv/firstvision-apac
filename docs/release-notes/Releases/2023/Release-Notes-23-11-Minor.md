@@ -33,8 +33,7 @@ This API is used to update the MCC limits to control the card usage. These MCC l
 
 | S.No | Category            | API Name                  | Change                                                                            |
 |------|---------------------|---------------------------|-----------------------------------------------------------------------------------|
-| 1    | Account Management  | Post Payments             | • Removed actionCode from request and defaulted the value in it                   |
-|      |                     |                           | • Removed 'representativeDetails’ group and fields under this group               |
+| 1    | Account Management  | Post Payments             | • Removed actionCode from request and defaulted the value in it  • Removed 'representativeDetails’ group and fields under this group               |
 | 2    | Card Management     | Board Card                | • Added new valid value 'B' under existing field physicalvirtualIndicator in request|
 | 3    | Card Management     | Inquire Card              | • Added new valid value 'B' under existing field physicalvirtualIndicator in request|
 | 6    | Product Management  | Inquire Product           | • Added new field physicalvirtualIndicator in response                            |

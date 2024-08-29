@@ -47,16 +47,10 @@ This API is used to calculate the loan repayment options for prospective borrowe
 |------|----------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------|
 | 1    | Account Management   | List Outstanding Authorizations        | • Added remainingAuthorizationAmount in response                                                              |
 | 2    | Account Management   | List Unbilled Transactions             | • Added remainingAuthorizationAmount in response                                                              |
-| 3    | Account Management   | List Billed Transactions               | • Removed pagination fields from response                                                                     |
-|      |                      |                                        | • Added pagination fields in response header                                                                  |
-| 4    | Account Management   | Inquire Statement Transaction Details  | • Added the below fields in response: addOnAmount, overLimitAmount                                             |
-|      |                      |                                        | • Removed billingCurrency from response                                                                       |
-|      |                      |                                        | • Removed pagination fields from response                                                                     |
-|      |                      |                                        | • Added pagination fields to response header                                                                  |
-| 5    | Account Management   | List Transactions by Date Range        | • Added below fields in response: remainingAuthorizationAmount, authorizationCode                             |
-|      |                      |                                        | • Description change for existing field transactionIndicator                                                  |
-| 6    | Account Management   | Inquire Account                        | • Added productId in response                                                                                 |
-|      |                      |                                        | • Label name change for below field in response: cashDisputedAmout to cashDisputedAmount                      |
+| 3    | Account Management   | List Billed Transactions               | • Removed pagination fields from response  • Added pagination fields in response header                                                                  |
+| 4    | Account Management   | Inquire Statement Transaction Details  | • Added the below fields in response: addOnAmount, overLimitAmount  • Removed billingCurrency from response  • Removed pagination fields from response  • Added pagination fields to response header                                                                  |
+| 5    | Account Management   | List Transactions by Date Range        | • Added below fields in response: remainingAuthorizationAmount, authorizationCode • Description change for existing field transactionIndicator                                                  |
+| 6    | Account Management   | Inquire Account                        | • Added productId in response  • Label name change for below field in response: cashDisputedAmout to cashDisputedAmount                      |
 | 7    | Account Management   | Board Account                          | • Removed billingCurrency from response                                                                       |
 | 8    | Miscellaneous        | Board Entities                         | • Removed billingCurrency from response                                                                       |
 | 9    | Authorization        | Request Authorization                  | • Added openToBuy in response                                                                                 |
