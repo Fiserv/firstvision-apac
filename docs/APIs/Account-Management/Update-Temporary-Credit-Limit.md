@@ -91,5 +91,7 @@ Below table provides the list of application's error code and its description.
 | `V5BS0602EF` | Temp credit limit exp not editable when debit active at logo |
 | `V5BS0602EG` | Temp expires today.update the temp expiry date |
 | `V5BS0602EH` | Credit limit and expiry date cannot be zeroed out |
+| `V5BS0601SD` | Temp credit limit cannot be less than logo credit limit |
+| `V5BS0601SC` | Cannot be greater than logo credit limit |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

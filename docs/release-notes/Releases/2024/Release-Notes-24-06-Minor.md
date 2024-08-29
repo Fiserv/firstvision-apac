@@ -43,7 +43,7 @@
 - Update Direct Debit Controls: paymentChangeDate, requestDays, suspenseStartDate, suspenseEndDate and customerName added in request/response. informationalMessage added in response. maxLength updated from 24 to 17 for nominatedPaymentAmountOrPercentage in request. Value '9' added in paymentType enum and it's description in response/request.
 - List Billed Transactions: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Unbilled Transactions: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
-- List Outstanding Transactions: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
+- List Outstanding Authorizations: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - Inquire Statement Transaction Details: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Transactions by Date Range: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
 - List Transactions by Date Range V2: foreignOriginalAmount and foreignOriginalCurrencyCode added in response
@@ -59,7 +59,7 @@ This API is used for push provisioning of Master Card. Card push provisioning re
 
 #### GooglePay - SamsungPay MDES Push Provisioning
 
-This API is used for push provisioning of Master Card. Card push provisioning refers to the creation of a secure digital copy of a preexisting card (either physical or virtual). The copy is then added to a GooglePay or SamsungPay wallet.
+This API is used for push provisioning of MC Card. API validates the incoming card details from client and calls MDES for push multiple accounts. MDES responds with push account recipts which will be further sent to client by FV.
 
 ### Updated APIs
 

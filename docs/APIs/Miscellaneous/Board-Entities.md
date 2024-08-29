@@ -723,5 +723,7 @@ Below table provides the list of application's error code and its description.
 | `V5BS0615ED` | Request lead day not editable when debit active at logo |
 | `V5BS0626EG` | DD set/update not allowed for this account |
 | `V5BS0626EH` | DD is auto-cancelled, update not allowed on this account |
+| `V5A34008SC` | Credit limit assigned is less than logo min credit limit |
+| `V5A34008SB` | Credit limit can not exceed logo credit limit |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

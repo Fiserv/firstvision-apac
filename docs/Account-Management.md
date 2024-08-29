@@ -14,9 +14,13 @@ Please click on the below link to explore the specific API of interest
 
 - [Inquire Account](./?path=docs/APIs/Account-Management/Inquire-Account.md)
 
+- [Inquire Account Limits](./?path=docs/APIs/Account-Management/Inquire-Account-Limits.md)
+
 - [Inquire Account Plan](./?path=docs/APIs/Account-Management/Inquire-Account-Plan.md)
 
 - [Inquire Account Preference](./?path=docs/APIs/Account-Management/Inquire-Account-Preference.md)
+
+- [Inquire Account Statistics](./?path=docs/APIs/Account-Management/Inquire-Account-Statistics.md)
 
 - [Inquire Behavioural History](./?path=docs/APIs/Account-Management/Inquire-Behavioural-History.md)
 
@@ -58,6 +62,8 @@ Please click on the below link to explore the specific API of interest
  
 - [Update Account Charge-Off](./?path=docs/APIs/Account-Management/Update-Account-Charge-Off.md)
 
+- [Update Account Limits](./?path=docs/APIs/Account-Management/Update-Account-Limits.md)
+
 - [Update Account Preference](./?path=docs/APIs/Account-Management/Update-Account-Preference.md)
 
 - [Update Accounts' Address ID](./?path=docs/APIs/Account-Management/Update-Account-Address-Id.md)
@@ -67,6 +73,8 @@ Please click on the below link to explore the specific API of interest
 - [Update Credit Limit](./?path=docs/APIs/Account-Management/Update-Credit-Limit.md)
 
 - [Update Customers' Profile](./?path=docs/APIs/Account-Management/Update-Customers-Profile.md)
+
+- [Update Delinquency](./?path=docs/APIs/Account-Management/Update-Delinquency.md)
 
 - [Update Direct Debit Controls](./?path=docs/APIs/Account-Management/Update-Direct-Debit-Controls.md)
 
