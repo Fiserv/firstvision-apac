@@ -69,7 +69,7 @@ type: tab
     "supplementaryMembershipFeeAmount" : "$20.00",
     "supplementaryMembershipFeeRate" : "0.00000%",
     "membershipFeeFrequency" : 0,
-    "expenditureThresholdAmountOrNumber" : 3000,
+    "expenditureThresholdAmountOrNumber" : "$30.00",
     "expenditureActualAmountOrNumber" : 0,
     "initialMembershipFeeAction" : 0,
     "initialMembershipFeeAmount" : "$20.00",
