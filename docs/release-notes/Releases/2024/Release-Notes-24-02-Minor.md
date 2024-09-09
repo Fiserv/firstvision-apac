@@ -95,35 +95,34 @@ This API is used to validate the encrypted CVV2 for a given payment instrument I
 
 ### Updated APIs
 
-| S.No |  Category | API Name |  Change |
-| :---  | :------- |  :------ | :------- |
-| 1 | Account Management | Board Account | <ul> <li> externalContractId length updated to 19 in response |
-| 2 | Account Management | Inquire Account | <ul> <li> externalContractId length updated to 19 in response |
-| 3 | Card Management | Board Card | <ul> <li> externalContractId length updated to 19 in response |
-| 4 | Miscellaneous | Board Entities | <ul> <li> externalContractId length updated to 19 in response |
-| 5 | Miscellaneous | Board Entities V2 | <ul> <li> externalContractId length updated to 19 in response |
-| 6 | Card Management | Inquire Card | <ul> <li> externalContractId length updated to 19 in response </li> <li> pinDetails group added in response |
-| 7 | Customer Management | List Customers Accounts | <ul> <li> externalContractId length updated to 19 in response |
-| 8 | Customer Management | List Customers Cards | <ul> <li> externalContractId added under cardList in response |
-| 9 | Customer Management | List Customers Cards and Accounts | <ul> <li> externalContractId length updated to 19 in response </li> <li> externalContractId added under cardList in response |
-| 12 | Account Management | Monetary Action | <ul> <li> transactionDescription added in request |
-| 14 | Account Management | List Billed Transactions | <ul> <li> billerCode added in response |
-| 15 | Account Management | List Outstanding Authorizations | <ul> <li> billerCode added in response |
-| 16 | Account Management | List Unbilled Transactions | <ul> <li> billerCode added in response </li> <li> instalmentConversionInd added in response |
-| 17 | Account Management | Inquire Statement Transaction Details | <ul> <li> billerCode added in response |
-| 18 | Account Management | List Transaction by Date range | <ul> <li> billerCode added in response |
-| 19 | Product Management | Inquire Product | <ul> <li> instalmentDetails group added in response |
-| 20 | Miscellaneous | Inquire Business Unit | <ul> <li> instalmentDetails group added in response |
-| 21 | Card Management | Transfer Lost and Stolen | <ul> <li> pinStatus added in response |
-| 22 | Loan Management | Inquire Loan  | <ul> <li> label change from celEppManualClose to manualCloseIndicator </li> <li> prorateInterestAmout added under group loanDisclosedAndInitialAmountDetails |
-| 23 | Account Management | Inquire Account Plan | <ul> <li> eligibleBalanceForStatementInstalment added in response |
-| 24 | Card Management | Inquire MCC Limits | <ul> <li> maxLength for the amount fields changed from 11 to 18 in response |
-| 25 | Card Management | Update MCC Limits | <ul> <li> maxLength for the amount fields changed from 11 to 18 in response |
-| 26 | Account Management | Transfer Plan Balance | <ul> <li> API extended to support partial plan balance and reversal. |
-| 27 | Customer Management | List External Customers Cards and Accounts | <ul> <li> externalContractId length updated to 19 in request (path variable) and response |
-| 28 | Authorizations | Request Authorization | <ul> <li> internalReferenceNumber type has changed from integer to string in response |
-| 29 | Authorizations | Reverse Authorization | <ul> <li> internalReferenceNumber type has changed from integer to string in response |
-
+| S.No | Category            | API Name                               | Change                                                                                              |
+|------|---------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------|
+| 1    | Account Management  | Board Account                          | • externalContractId length updated to 19 in response                                               |
+| 2    | Account Management  | Inquire Account                        | • externalContractId length updated to 19 in response                                               |
+| 3    | Card Management     | Board Card                             | • externalContractId length updated to 19 in response                                               |
+| 4    | Miscellaneous       | Board Entities                         | • externalContractId length updated to 19 in response                                               |
+| 5    | Miscellaneous       | Board Entities V2                      | • externalContractId length updated to 19 in response                                               |
+| 6    | Card Management     | Inquire Card                           | • externalContractId length updated to 19 in response  • pinDetails group added in response                                                                |
+| 7    | Customer Management | List Customers Accounts                | • externalContractId length updated to 19 in response                                               |
+| 8    | Customer Management | List Customers Cards                   | • externalContractId added under cardList in response                                               |
+| 9    | Customer Management | List Customers Cards and Accounts      | • externalContractId length updated to 19 in response  • externalContractId added under cardList in response                                               |
+| 12   | Account Management  | Monetary Action                        | • transactionDescription added in request                                                           |
+| 14   | Account Management  | List Billed Transactions                | • billerCode added in response                                                                      |
+| 15   | Account Management  | List Outstanding Authorizations         | • billerCode added in response                                                                      |
+| 16   | Account Management  | List Unbilled Transactions              | • billerCode added in response  • instalmentConversionInd added in response                                                         |
+| 17   | Account Management  | Inquire Statement Transaction Details   | • billerCode added in response                                                                      |
+| 18   | Account Management  | List Transaction by Date range          | • billerCode added in response                                                                      |
+| 19   | Product Management  | Inquire Product                        | • instalmentDetails group added in response                                                         |
+| 20   | Miscellaneous       | Inquire Business Unit                  | • instalmentDetails group added in response                                                         |
+| 21   | Card Management     | Transfer Lost and Stolen               | • pinStatus added in response                                                                       |
+| 22   | Loan Management     | Inquire Loan                           | • label change from celEppManualClose to manualCloseIndicator  • prorateInterestAmout added under group loanDisclosedAndInitialAmountDetails                         |
+| 23   | Account Management  | Inquire Account Plan                   | • eligibleBalanceForStatementInstalment added in response                                           |
+| 24   | Card Management     | Inquire MCC Limits                     | • maxLength for the amount fields changed from 11 to 18 in response                                 |
+| 25   | Card Management     | Update MCC Limits                      | • maxLength for the amount fields changed from 11 to 18 in response                                 |
+| 26   | Account Management  | Transfer Plan Balance                  | • API extended to support partial plan balance and reversal                                         |
+| 27   | Customer Management | List External Customers Cards and Accounts | • externalContractId length updated to 19 in request (path variable) and response                    |
+| 28   | Authorizations      | Request Authorization                  | • internalReferenceNumber type has changed from integer to string in response                        |
+| 29   | Authorizations      | Reverse Authorization                  | • internalReferenceNumber type has changed from integer to string in response                        |
 
 ### Deleted APIs
 

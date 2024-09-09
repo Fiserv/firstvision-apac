@@ -12,7 +12,7 @@
 
 ## Example Request
 >
-><strong>Curl</strong>
+>**Curl**
 >
 >```javascript
 >curl -X GET "https://cat.api.firstdata.com/reporting/v1/chargeback/details/metaData" -H "accept: application/json"

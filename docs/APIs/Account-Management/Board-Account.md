@@ -313,21 +313,21 @@ Below table provides the list of application's error code and its description.
 | `V5BS0630EE` | DC request day must be > 0 when DC request indicator is 4  |
 | `V5BS0631EA` | 017Must be equal or greater than cms file date |
 | `V5BS0631EB` | 048Change dt mst b >= start dt and < expire dt, unless a dt is 0 |
-| `V5BS0631EC` | 048Change dt mst b >= start dt and < expire dt, unless a dt is 0
+| `V5BS0631EC` | 048Change dt mst b >= start dt and < expire dt, unless a dt is 0 |
 | `V5BS0640EB` | 035 1St byte should = zero and  last 9 bytes must be > zeros |
 | `V5BS0642SD` | Request day not allowed when daily frequency is 1, 2 or 3 |
 | `V5BS0642SE` | DD payment must be 2 when daily frequency is 1, 2 or 3 |
 | `V5BS0642SF` | Pymt change date must be zero when daily frequency is 1, 2 or 3 |  
 | `V5BS0642SG` | DD payment must be zero when changing daily frequency to zero |
 | `V5BS0713SA` | 001Required field for add function |
-| `V5BS0714SA` | 001Required field for add function
-| `V5BS0715SA` | 001Required field for add function
+| `V5BS0714SA` | 001Required field for add function |
+| `V5BS0715SA` | 001Required field for add function |
 | `V5BS0914SA` | 1St byte should be space or 0 and last 9 bytes must be numeric |
 | `V5BS0914SB` | Ibs DDA/savings routing information is not numeric |
-| `V5BS0916SA` | 1St byte should be space or 0 and last 9 bytes must be numeric
+| `V5BS0916SA` | 1St byte should be space or 0 and last 9 bytes must be numeric |
 | `V5BS0916SB` | Ibs DDA/savings routing information is required |
-| `V5BS0916SC` | Ibs DDA/savings routing information is required
-| `V5BS0916SD` | Ibs DDA/savings routing information is required
+| `V5BS0916SC` | Ibs DDA/savings routing information is required |
+| `V5BS0916SD` | Ibs DDA/savings routing information is required |
 | `V5BS0925SB` | Account balance cannot be greater than 0 |
 | `V5BS301EA`  | 1) Residence id not on usury table - error code A |
 | `V5BS301EB`  | 2) Zero $$$$ in usury table for sor - error code B |
@@ -371,7 +371,7 @@ Below table provides the list of application's error code and its description.
 | `V5BS0614EB` | ACH pmt exp not editable when debit active at logo |
 | `V5BS0614SB` | Date ACH payment expire is not zero |
 | `V5BS0612EA` | ACH routing nbr not editable when debit active at logo |
-| `V5BS0612EK` | DD routing bank id 1st byte should be equalto zero and the last 9 bytes must be> zeros
+| `V5BS0612EK` | DD routing bank id 1st byte should be equalto zero and the last 9 bytes must be> zeros |
 | `V5BS0612SA` | Payment ACH rt number is not zero |
 | `V5BS0621EA` | ACH acct type not editable when debit active at logo |
 | `V5BS0621SV` | Invalid payment ACH debit type |
