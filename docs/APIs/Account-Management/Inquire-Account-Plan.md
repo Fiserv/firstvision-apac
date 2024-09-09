@@ -102,7 +102,8 @@ type: tab
   "previousPlanStatus": 0,
   "planStatusChangeDate": "00/00/0000",
   "planTotalDueAmount": "$0.00",
-  "eligibleBalanceForStatementInstalment": "$10.00"
+  "eligibleBalanceForStatementInstalment": "$10.00",
+  "cycleToDateEligiblePurchaseAmountForTransactionInstalment": "$1200.00"
 }
 ```
 

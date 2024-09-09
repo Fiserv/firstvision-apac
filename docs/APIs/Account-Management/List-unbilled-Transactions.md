@@ -49,7 +49,9 @@ type: tab
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000001"
+      "acquirerReferenceNumber": "74126780192471000000001",
+			"transactionIdentifier": "699999261226140",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": "052206",
@@ -75,7 +77,9 @@ type: tab
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000002"
+      "acquirerReferenceNumber": "74126780192471000000002",
+			"transactionIdentifier": "699999261226141",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": "052210",
@@ -101,7 +105,9 @@ type: tab
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000003"
+      "acquirerReferenceNumber": "74126780192471000000003",
+			"transactionIdentifier": "699999261226142",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": "052213",
@@ -127,7 +133,9 @@ type: tab
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000004"
+      "acquirerReferenceNumber": "74126780192471000000004",
+			"transactionIdentifier": "699999261226143",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": "052219",
@@ -153,7 +161,9 @@ type: tab
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000006"
+      "acquirerReferenceNumber": "74126780192471000000006",
+			"transactionIdentifier": "699999261226144",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": "052220",
@@ -179,7 +189,9 @@ type: tab
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000007"
+      "acquirerReferenceNumber": "74126780192471000000007",
+			"transactionIdentifier": "699999261226145",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": " ",
@@ -205,7 +217,9 @@ type: tab
       "instalmentConversionIndicator": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000008"
+      "acquirerReferenceNumber": "74126780192471000000008",
+			"transactionIdentifier": "699999261226146",
+			"multiClearSequenceIndicator": "0"
     }
   ]
 }

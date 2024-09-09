@@ -15,16 +15,12 @@ titles: Request, Response, Error
 
 ```json
 {
-  "businessUnit": 700,
-  "accountId": "0007000011163060009",
-  "loanPlanId": 5,
-  "annualPercentageRate": "0.0000",
-  "tenure": 6,
-  "planDetails1": {
-    "planId": 1,
-    "planSequenceNumber": 1,
-    "conversionAmount": "100.00"
-  }
+  "accountId": "0006000011000000509",
+  "annualPercentageRate": "0.00000",
+  "businessUnit": 600,
+  "loanPlanId": 10012,
+  "statementInstalmentRequestedAmount": "100.00",
+  "tenure": 12
 }
 ```
 
@@ -34,73 +30,41 @@ type: tab
 
 ```json
 {
-    "loanScheduleDetails": [
-        {
-            "tenure": 0,
-            "totalBalance": "$100.00",
-            "principalAmount": "$0.00",
-            "interestAmount": "$0.10",
-            "conversionFeeAmount": "$0.00"
-        },
-        {
-            "tenure": 1,
-            "totalBalance": "$100.00",
-            "principalAmount": "$16.32",
-            "interestAmount": "$0.83",
-            "conversionFeeAmount": "$0.00"
-        },
-        {
-            "tenure": 2,
-            "totalBalance": "$83.68",
-            "principalAmount": "$16.46",
-            "interestAmount": "$0.69",
-            "conversionFeeAmount": "$0.00"
-        },
-        {
-            "tenure": 3,
-            "totalBalance": "$67.23",
-            "principalAmount": "$16.59",
-            "interestAmount": "$0.56",
-            "conversionFeeAmount": "$0.00"
-        },
-        {
-            "tenure": 4,
-            "totalBalance": "$50.64",
-            "principalAmount": "$16.73",
-            "interestAmount": "$0.42",
-            "conversionFeeAmount": "$0.00"
-        },
-        {
-            "tenure": 5,
-            "totalBalance": "$33.91",
-            "principalAmount": "$16.87",
-            "interestAmount": "$0.28",
-            "conversionFeeAmount": "$0.00"
-        },
-        {
-            "tenure": 6,
-            "totalBalance": "$17.04",
-            "principalAmount": "$17.03",
-            "interestAmount": "$0.16",
-            "conversionFeeAmount": "$0.00"
-        }
-    ],
-    "instalmentDetails": {
-        "planIdDescription": "EPP PLAN INTEREST BASED",
-        "totalRepaymentAmount": "$102.94",
-        "totalInterestAmount": "$2.94",
-        "conversionFeeAmount": "$0.00",
-        "prorataInterestAmount": "$0.10",
-        "instalmentAmount": "$17.15",
-        "loanReferenceNumber": "",
-        "totalPrincipalAmount": "$100.00"
-    },
-    "businessUnit": 700,
-    "loanPlanId": 5,
-    "planSequenceNumber": 1,
-    "accountId": "0007000011163060009",
-    "tenure": 7,
-    "annualPercentageRate": "10.00000%"
+  "accountId": "0006000011000000509",
+  "annualPercentageRate": "0.00000%",
+  "businessUnit": 600,
+  "instalmentDetails": {
+    "conversionFeeAmount": "$2.00",
+    "instalmentAmount": "$130.00",
+    "loanReferenceNumber": "LN1238457389475",
+    "planIdDescription": "RETAIL PLAN",
+    "prorataInterestAmount": "$12.00",
+    "totalInterestAmount": "$10.00",
+    "totalPrincipalAmount": "$120.00",
+    "totalRepaymentAmount": "$100.00"
+  },
+  "loanPlanId": 10012,
+  "loanScheduleDetails": [
+    {
+      "conversionFeeAmount": "$5.00",
+      "interestAmount": "$12.00",
+      "principalAmount": "$1,500.00",
+      "tenure": 12,
+      "totalBalance": "$1,200.00"
+    }
+  ],
+  "planDetails": [
+    {
+      "conversionAmount": "$100.00",
+      "planId": 1,
+      "planSequenceNumber": 1
+    }
+  ],
+  "planSequenceNumber": 1,
+  "qualificationGraceBalance": "$100.00",
+  "statementInstalmentConvertedAmount": "$100.00",
+  "statementInstalmentRequestedAmount": "$100.00",
+  "tenure": 12
 }
 ```
 
@@ -115,7 +79,7 @@ type: tab
     "errorCode": "442201",
     "instance": "/v1/loans/statementBalanceSimulation",
     "invalid-params": [
-      "V5LF4005EA: APR CAN NOT BE OVERRIDDEN"
+      "V5LS4010EA: CONVERSION AMOUNT SHOULD BE GREATER THAN ZERO"
     ],
     "source": "VPL",
     "status": 422,
@@ -137,9 +101,7 @@ The below table identifies the required parameters in the request payload.
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. This API also supports passing the paymentInstrumentId in the accountId in request. When paymentInstrumentId is provided, system identifies the associated accountId. The subsequent processing remain the same as when the accountId is passed.|
 | `loanPlanId` | Payload  | *integer* | 05 | Identification number of the Credit Plan Master entity.|
 | `tenure` | Payload | *integer* | 03 | Field indicates the term used while converting transaction into instalment.|
-| `conversionAmount` | Payload | *string* | 17 | Amount requested for instalment conversion..|
-| `planId` | Payload | *integer* | 5 | Identification number of the Credit Plan Master entity. The values are 1–99998. You can establish as many as 99,998 Credit Plan Master entity for each organization.|
-| `planSequenceNumber` | Payload | *integer* | 3 | Sequence number to identify the entity uniquely.|
+| `statementInstalmentRequestedAmount` | Payload | *string* | 17 | Amount requested for instalment conversion.|
 
 ### Error Codes
 
