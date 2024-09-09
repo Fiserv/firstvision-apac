@@ -49,7 +49,9 @@ type: tab
       "billerCode": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000001"
+      "acquirerReferenceNumber": "74126780192471000000001",
+			"transactionIdentifier": "699999261226140",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": "021447",
@@ -75,7 +77,9 @@ type: tab
       "billerCode": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000002"
+      "acquirerReferenceNumber": "74126780192471000000002",
+			"transactionIdentifier": "699999261226141",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": " ",
@@ -101,7 +105,9 @@ type: tab
       "billerCode": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000003"
+      "acquirerReferenceNumber": "74126780192471000000003",
+			"transactionIdentifier": "699999261226142",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": "022709",
@@ -127,7 +133,9 @@ type: tab
       "billerCode": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000004"
+      "acquirerReferenceNumber": "74126780192471000000004",
+			"transactionIdentifier": "699999261226143",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": " ",
@@ -153,7 +161,9 @@ type: tab
       "billerCode": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000005"
+      "acquirerReferenceNumber": "74126780192471000000005",
+			"transactionIdentifier": "699999261226144",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": "023754",
@@ -179,7 +189,9 @@ type: tab
       "billerCode": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000006"
+      "acquirerReferenceNumber": "74126780192471000000006",
+			"transactionIdentifier": "699999261226145",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": "023911",
@@ -205,7 +217,9 @@ type: tab
       "billerCode": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000007"
+      "acquirerReferenceNumber": "74126780192471000000007",
+			"transactionIdentifier": "699999261226146",
+			"multiClearSequenceIndicator": "0"
     },
     {
       "authorizationCode": " ",
@@ -231,7 +245,9 @@ type: tab
       "billerCode": " ",
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
-      "acquirerReferenceNumber": "74126780192471000000008"
+      "acquirerReferenceNumber": "74126780192471000000008",
+			"transactionIdentifier": "699999261226147",
+			"multiClearSequenceIndicator": "0"
     }
   ]
 }
