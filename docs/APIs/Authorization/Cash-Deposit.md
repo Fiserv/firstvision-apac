@@ -1,10 +1,10 @@
-# Balance Transfer
+# Cash Deposit
 
-This API is used to make an authorization request for payment instrument Id or payment card number when transaction for Balance Transfer.
+This API is used to perform cash deposit transactions for a given payment instrument id or payment card number. 
 
 ## Endpoint
 
-`POST /v1/auth/balanceTransfer`
+`POST /v1/auth/cashDeposit`
 
 ## Payload Example
 
@@ -15,13 +15,14 @@ titles: Request, Response, Error
 
 ```json
 {
+  "authorizationAmount": "120.00",
+  "merchantBusinessUnit": 100,
   "paymentInstrumentOrCardId": "0009846801010274074",
-  "authorizationAmount": "1.00",
-  "planId": 10001,
-  "transactionDescription": "BT transaction",
-  "paymentDate": "20/10/2023",
-  "billerCode": "123",
-  "settlementDate": "10/01/2022"
+  "referenceNumber": "12345667888888888454765",
+  "channelId": "BQIB",
+  "transactionDescription": "Cash Deposit",
+  "transactionType": "CP",
+  "branchNumber": 234654
 }
 ```
 
@@ -31,16 +32,16 @@ type: tab
 
 ```json
 {
-  "responseCode": "00",
   "authorizationCode": "055271",
-  "finalAction": "A",
-  "reason": "APPROVED",
-  "openToBuy": "$10000.00",
-  "internalReferenceNumber": "3912181393194000",
-  "maskedPaymentCardNumber": "000484680XXXXXX9405",
-  "uniqueTransactionId": "APP17977700222011344330001112345678",
+  "cashAvailable": "$1000.00",
   "effectiveDate": "10/01/2022",
-  "settlementDate": "10/01/2022"
+  "finalAction": "A",
+  "maskedPaymentCardNumber": "000484680XXXXXX9405",
+  "openToBuy": "$10000.00",
+  "reason": "APPROVED",
+  "referenceNumber": "12345667888888888454765",
+  "responseCode": "00",
+  "uniqueTransactionId": "APP17977700222011344330001112345678"
 }
 ```
 
@@ -53,9 +54,9 @@ type: tab
   {
     "detail": "Please refer to invalid-params for error details",
     "errorCode": "440401",
-    "instance": "/v1/auth/balanceTransfer",
+    "instance": "/v1/auth/cashDeposit",
     "invalid-params": [
-      "V5CP0004SF : GET REQUEST - RECORD NOT FOUND"
+      "V7RQ4004EB : INVALID BANKCARD  NOT FOUND IN BIN TABLE"
     ],
     "source": "VPL",
     "status": 404,
@@ -68,7 +69,7 @@ type: tab
 
 ### Minimum Requirements
 
-The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/auth/balanceTransfer).
+The below table contains the mandatory fields required for a successful request. The full request schemas are available in our [API Explorer](../api/?type=post&path=/v1/auth/cashDeposit).
 
 The below table identifies the required parameters in the request payload.
 
@@ -76,10 +77,9 @@ The below table identifies the required parameters in the request payload.
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `paymentInstrumentOrCardId` | Payload | *string* | 19 | Unique alternate identification number associated with Payment Card Number. |
 | `authorizationAmount` | Payload | *string* | 13 | Authorized sales amount in the currency accepted by the particular merchant. |
-| `planId` | Payload | *integer* | 5 | Plan number that identifies the Credit Plan Master entity associated with the credit plan segment. |
-| `transactionDescription` | Payload | *string* | 40 | Transaction source to identify if the authorization is Balance Transfer request. |
-| `billerCode` | Payload | *string* | 10 | This field identify the Biller code to which this payment is done. |
-
+| `transactionType` | Payload | *string* | 2 | Field to identify the type of transaction. |
+| `channelId` | Payload | *string* | 4 | Field indicate the partner details and transaction source. |
+| `referenceNumber` | Payload | *string* | 23 | Reference number assigned to the transaction to identify the transaction uniquely. |
 
 ### Error Codes
 
@@ -87,11 +87,6 @@ Below table provides the list of application's error code and its description.
 
 | ErrorCode |  Description |
 | --------  | ------------------ |
-| `V7RQ4027EA` | Transaction description is mandatory when tran-type is BP/BT |
-| `V7RQ4028EA` | Payment date is mandatory when tran-type is BP/BT |
-| `V7RQ4007EC` | Credit plan is mandatory when tran-type is BP/BT |
-| `V7RQ4029EA` | Biller code is mandatory when tran-type is BP/BT |
-| `V5CP0004SF` | Get Request - Record not found |
 | `V7RQ4004EB` | Invalid bankcard  not found in bin table |  
 | `V7RQ4004EC` | Account number is invalid |
 | `V7RQ4004EA` | Check digit issue |
@@ -108,6 +103,8 @@ Below table provides the list of application's error code and its description.
 | `V5DC4002SD` | Acct warning code is 1/2/3/4/8 |
 | `V5RQ4030SB` | Settlement date should be greater than auth date |
 | `V7RQ4026SV` | Valid values for tran type are spaces, BT, BP, TC, PA, DP, CP |
-| `V7RQ4031EB` | Channel id should not be for BP/BT |
+| `V7RQ4031EA` | Channel id is mandatory when tran-type is TC/PA/DP/CP |
+| `V7RQ4033EA` | Branch nbr is mandatory for txn done at branch |
+| `V7RQ4032EA` | Reference nbr is mandatory when tran-type is TC/PA/DP/CP |
 
 *In addition to the above mentioned error codes, please refer this link for common error codes [Common Error Codes](?path=docs/Common_Error_Code.md).*

@@ -36,7 +36,9 @@ type: tab
   "isDynamicCVV2Enabled": "0",
   "issueDeliveryOption": 1,
   "paymentInstrumentId": "0009846801010273613",
-  "reissueDeliveryOption": 5
+  "reissueDeliveryOption": 5,
+  "updateVAUAndABUDate": "01/10/2025",
+  "isVAUAndABUEnabled": "0"
 }
 ```
 

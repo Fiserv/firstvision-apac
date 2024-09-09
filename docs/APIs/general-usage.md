@@ -20,8 +20,8 @@ Date fields must conform to the format specified as part of that fields descript
 
 1. [field] is required
 2. [field] should be numeric
-3. Length of [field] should not exceed <n> byte(s)
-4. [field] should be numeric and should 4. not exceed <n> byte(s)
+3. Length of [field] should not exceed \<n\> byte(s)
+4. [field] should be numeric and should not exceed \<n\> byte(s)
 5. [field] should be numeric and in the format - MMYY
 6. [field] should be numeric and in the format - YYMM
 7. Invalid date in [field]. Expected BasicISO Date - YYYYMMDD format
