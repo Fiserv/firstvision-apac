@@ -12,7 +12,7 @@
 - Inquire Account Plan: New field cycleToDateEligiblePurchaseAmountForTransactionInstalment added in response.
 - Inquire Plan Controls: New values 4 added to typeofLoan existing field, new fields isWaiveProrataEnabled under loanCancellationControls and transactionInstalmentConversionEligibilityIndicator under instalmentControls added in response.
 - Inquire Loan: New values 4 added to typeofLoan, value 7 added to closeReason existing field, new field activationDate under loanDisclosedAndInitialAmountDetails added in response.
-- List Loans by Account - ew values 4 added to typeofLoan, value 7 added to closeReason existing field in response
+- List Loans by Account - New values 4 added to typeofLoan, value 7 added to closeReason existing field in response
 - List Billed Transactions: New fields transactionIdentifier and multiClearSequenceIndicator added in response.
 - List Unbilled Transactions: New fields transactionIdentifier and multiClearSequenceIndicator added in response.
 - List Outstanding Authorizations: New fields transactionIdentifier and multiClearSequenceIndicator added in response.
@@ -45,20 +45,20 @@ This API is used to fetch calculated payoff amount details for a given accountId
 
 | S.No |  Category | API Name |  Change |
 | :---  | :------- |  :------ | :------- |
-| 1 | Account Management | Inquire Account | <ul> <li> New field creditLimitLastDecreasedDate, creditLimitLastIncreasedDate,maximumEligibleBalanceForTransactionInstalment, eligibleBalanceForStatementInstalment and updatedQualificationGraceBalance added in response |
-| 2 | Account Management | List Billed Transactions | <ul> <li> New fields transactionIdentifier and multiClearSequenceIndicator added in response |
-| 3 | Account Management | List Outstanding Authorizations | <ul> <li> New fields transactionIdentifier and multiClearSequenceIndicator added in response |
-| 4 | Account Management | List Unbilled Transactions | <ul> <li> New fields transactionIdentifier and multiClearSequenceIndicator added in response |
-| 5 | Account Management | Inquire Statement Transaction Details | <ul> <li> New fields transactionIdentifier and multiClearSequenceIndicator added in response |
-| 6 | Account Management | List Transactions by Date Range | <ul> <li> New fields transactionIdentifier and multiClearSequenceIndicator added in response |
-| 7 | Account Management | List Transactions by Date Range V2 | <ul> <li> New fields transactionIdentifier and multiClearSequenceIndicator added in response |
-| 8 | Account Management | Inquire Account plan | <ul> <li> New field cycleToDateEligiblePurchaseAmountForTransactionInstalment added in response |
-| 9 | Loans Management | Inquire Plan Controls | <ul> <li> New field isWaiveProrataEnabled added in response. </li> <li> New values 4 added to typeofLoan existing field |
-| 10 | Loans Management | Inquire Loan | <ul> <li> New field activationDate added in response. </li> <li> New values 4 added to typeofLoan and 7 to closeReason |
-| 11| Loans Management | List Loans by Account | <ul> <li> New field activationDate added in response. </li> <li> New values 4 added to typeofLoan and 7 to closeReason |
-| 12  Loans Management | Statement Balance Simulation | <ul> <li> planDetails1-5 deleted from request. </li> <li> statementInstalmentRequestedAmount added in request. </li> <li> statementInstalmentRequestedAmount, statementInstalmentConvertedAmount, qualificationGraceBalance added in response. |
-| 13 | Loans Management | Statement Balance Conversion | <ul> <li> planDetails1-5 deleted from request. </li> <li> statementInstalmentRequestedAmount added in request. </li> <li> statementInstalmentRequestedAmount, statementInstalmentConvertedAmount, qualificationGraceBalance added in response. |
-| 14 | Loan Management | List Statment Eligible Plan Balance | <ul> <li> New fields accountEligibleBalanceForStatementInstalment and todayConvertedStatementInstalmentBalance added in response |
+| 1 | Account Management | Inquire Account | •  New field creditLimitLastDecreasedDate, creditLimitLastIncreasedDate,maximumEligibleBalanceForTransactionInstalment, eligibleBalanceForStatementInstalment and updatedQualificationGraceBalance added in response |
+| 2 | Account Management | List Billed Transactions | • New fields transactionIdentifier and multiClearSequenceIndicator added in response |
+| 3 | Account Management | List Outstanding Authorizations | • New fields transactionIdentifier and multiClearSequenceIndicator added in response |
+| 4 | Account Management | List Unbilled Transactions | • New fields transactionIdentifier and multiClearSequenceIndicator added in response |
+| 5 | Account Management | Inquire Statement Transaction Details | • New fields transactionIdentifier and multiClearSequenceIndicator added in response |
+| 6 | Account Management | List Transactions by Date Range | • New fields transactionIdentifier and multiClearSequenceIndicator added in response |
+| 7 | Account Management | List Transactions by Date Range V2 | • New fields transactionIdentifier and multiClearSequenceIndicator added in response |
+| 8 | Account Management | Inquire Account plan | • New field cycleToDateEligiblePurchaseAmountForTransactionInstalment added in response |
+| 9 | Loans Management | Inquire Plan Controls | • New field isWaiveProrataEnabled added in response •  New values 4 added to typeofLoan existing field |
+| 10 | Loans Management | Inquire Loan | • New field activationDate added in response •  New values 4 added to typeofLoan and 7 to closeReason |
+| 11| Loans Management | List Loans by Account | • New field activationDate added in response •  New values 4 added to typeofLoan and 7 to closeReason |
+| 12 | Loans Management | Statement Balance Simulation | • planDetails1-5 deleted from request •  statementInstalmentRequestedAmount added in request •  statementInstalmentRequestedAmount, statementInstalmentConvertedAmount, qualificationGraceBalance added in response. |
+| 13 | Loans Management | Statement Balance Conversion | • planDetails1-5 deleted from request •  statementInstalmentRequestedAmount added in request •  statementInstalmentRequestedAmount, statementInstalmentConvertedAmount, qualificationGraceBalance added in response. |
+| 14 | Loan Management | List Statment Eligible Plan Balance | • New fields accountEligibleBalanceForStatementInstalment and todayConvertedStatementInstalmentBalance added in response |
 
 ### Deleted APIs
 
