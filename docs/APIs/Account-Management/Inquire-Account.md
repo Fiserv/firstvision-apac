@@ -64,10 +64,15 @@ type: tab
     "lastPurchaseDate": "10/05/2022",
     "graceDayExpireDate": "00/00/0000",
     "lastCashAdvancedDate": "00/00/0000",
+		"creditLimitLastDecreasedDate": "00/00/0000",
+		"creditLimitLastIncreasedDate": "00/00/0000",
     "creditLimitChangeDate": "19/08/2021"
   },
   "amountDetails": {
     "creditLimit": "$10000.00",
+		"maximumEligibleBalanceForTransactionInstalment": "$0.00",
+		"eligibleBalanceForStatementInstalment": "$0.00",
+		"updatedQualificationGraceBalance": "$0.00",
     "openToBuy": "$10000.00",
     "currentBalance": "$0.00",
     "currentDueAmount": "$120.00",
@@ -81,6 +86,8 @@ type: tab
     "firstPurchaseAmount": "$0.00",
     "lastPaymentAmount": "$0.00",
     "cycleToDatePaymentAmount": "$2000.00",
+    "eligibleBalanceForStatementInstalment": "$100.00",
+    "maximumEligibleBalanceForTransactionInstalment": "$100.00",
     "loanCreditLimit": "$0.00",
     "loanBalance": "$0.00",
     "loanAvailable": "$0.00",
@@ -91,7 +98,8 @@ type: tab
     "pastDueAmount": "$0.00",
     "lastPurchaseAmount": "$100.00",
     "balanceTransferOutstandingAmount" : "$0.00",
-    "lastCashAdvancedAmount": "$0.00"
+    "lastCashAdvancedAmount": "$0.00",
+    "updatedQualificationGraceBalance": "$100.00"
   },
   "userAccountId": " ",
   "status": "A",

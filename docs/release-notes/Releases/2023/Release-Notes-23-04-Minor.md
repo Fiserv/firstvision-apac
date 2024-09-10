@@ -1,5 +1,4 @@
 ## Markdown Header
-
 # Release 23.04-Minor - Version 1.2.0
 
 ## Date: 14/04/2023

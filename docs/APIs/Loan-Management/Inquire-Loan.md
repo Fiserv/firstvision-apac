@@ -72,6 +72,7 @@ type: tab
   "loanDisclosedAndInitialAmountDetails": {
         "planId": 30101,
         "loanAgreementDate": "16/02/2025",
+        "activationDate": "00/00/0000",
         "firstPaymentDate": "11/03/2025",
         "firstPaymentAmount": "$181.54",
         "paymentDateChangeCount": 0,
