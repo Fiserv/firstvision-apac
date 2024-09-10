@@ -44,6 +44,7 @@ type: tab
         "isReverseNonSufficientFundsEnabled": 0,
         "isReversMembershipFeeEnabled": 0,
         "isReverseServiceFeeEnabled": 0,
+        "isWaiveProrataEnabled": "0",
         "isReverseUserFee1Enabled": 0
     },
     "cciControls": {
@@ -74,6 +75,7 @@ type: tab
         "type": "1",
         "blockCodesAllowedForBooking": "000000000000000000000000000",
         "recalculationIndicator": "0",
+        "transactionInstalmentConversionEligibilityIndicator": "N",
         "minimumAmount": "$10.00",
         "maximumAmount": "$15,000.00",
         "postingPlanId": 0,

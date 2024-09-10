@@ -32,6 +32,8 @@ type: tab
     ],
     "accountId": "0007000011169967009",
     "totalPlanCount": 1,
+    "accountEligibleBalanceForStatementInstalment": "$10,006.00",
+    "todayConvertedStatementInstalmentBalance": "$10,00.00",
     "businessUnit": 0
 }
 ```
