@@ -638,6 +638,164 @@ paths:
       - Authorization
       x-group-name: Authorization
       x-proxy-name: Cash Deposit
+  /v1/auth/payAll:
+    post:
+      description: This API is used to make an authorization request for payment instrument
+        Id or payment card number when transaction for Bill Payment.
+      operationId: payAll
+      parameters:
+      - description: Token is used in token-based authentication to allow an application
+          to access an API.
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          maxLength: 1200
+          type: string
+          example: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6ImFsbCIsImNsaWVudF9pZCI6InZpc2lvbi1hcGktdXNlciIsImZpcnN0VmlzaW9uSWQiOiIwMDAwMEFVTkFCIiwiZXhwIjoxNzUwMzkyMDAwfQ.O6ZW0FnlWN09GqPeTEgWTQ9Gq6LPyt7BWTx65z7a0DKJQWBZ-pz29NX9xcuk-1ZdoLbKd_jPpwLNYGfS4KsuOLz1tQj1-teV2JO10DHxxthlG1-IGUIMyI5MivzNFlvLEG6TipqdQd3WdNl2juqlHKpDY86N0Z_Fg3n9igw4pFDzdGpHle5_4vGnl9PkYBA_WoWtgic05_63s5j6kmWbPkrV22NsHtOjJIh0sN1Q7sArecVnJCI7mwGVC5xasLGTO-Nn3hx6r8Y2mBv1Fv39LO_rUYcaK1RXS_xkoJV_3NdopGgfq4hp9F0naCKWxUxW1oaCaGCqk3p6xhkyDsJgaQ
+      - description: Client specified identifier to recognize subsequent retries of
+          the same request.
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 50
+          type: string
+          example: 1234567895e72403cb9c18deb25e06f8a
+      - description: Client specified identifier to correlate the request with the
+          response of the API within their application. Any value passed in the request
+          message will be return back as-is in the API response message.
+        in: header
+        name: x-client-correlation-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified trace-id to track the request within their application.
+          Any value passed in the request message will be return back as-is in the
+          API response message.
+        in: header
+        name: x-client-trace-id
+        required: false
+        schema:
+          maxLength: 256
+          type: string
+          example: ABC123
+      - description: Client specified identifier of the channel that initiated the
+          API request. Any value passed in the request message will be return back
+          as-is in the API response message.
+        in: header
+        name: x-client-source-channel
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      - description: Client specified identifier of their user** that initiated the
+          API request.  Any value passed in the request message will be return back
+          as-is in the API response message.<BR><BR><i>**The value passed in this
+          field will not be used for any Identity and access management</i>
+        in: header
+        name: x-client-user-id
+        required: false
+        schema:
+          maxLength: 40
+          type: string
+          example: ABC123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayAllV1ReqModel'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayAllV1ResponseModel'
+          description: " \nSuccess"
+        '400':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request cannot be validated"
+        '401':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request was unauthorized"
+        '403':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource is forbidden for user"
+        '404':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request resource does not exist"
+        '409':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request conflicts with another request "
+        '422':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request could not be processed"
+        '500':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nAn unexpected internal server error occurred"
+        '503':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe service was unavailable"
+        '504':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseErrorMessageInfo'
+          description: " \nThe request timed out while waiting for a response"
+      security:
+      - Authorization: [
+          ]
+      summary: Pay All API
+      tags:
+      - Authorization
+      x-group-name: Authorization
+      x-proxy-name: Pay All
   /v1/auth/request:
     post:
       description: This API is used to make an authorization request for payment instrument
@@ -802,7 +960,8 @@ paths:
         instrument Id or payment card number, authorization code, effective date,
         and transaction amount, if given. Reverse is possible for any authorization
         which is waiting for settlement. Same API can be used for same day reversal
-        of balance transfer or bill payments.
+        of balance transfer, bill payments, cash deposits, cash advance and pay all
+        transations.
       operationId: ReverseAuthorization
       parameters:
       - description: Token is used in token-based authentication to allow an application
@@ -1993,6 +2152,143 @@ components:
           type: string
           description: Total amount due for the account.
           example: $0.00
+        uniqueTransactionId:
+          maxLength: 35
+          type: string
+          description: This field indicates unique transaction identification for
+            the associated transaction.
+          example: APP17977700222011344330001112345678
+    PayAllV1ReqModel:
+      required:
+      - authorizationAmount
+      - merchantCategoryCode
+      - paymentInstrumentOrCardId
+      - transactionDescription
+      - transactionType
+      type: object
+      properties:
+        authorizationAmount:
+          maxLength: 13
+          type: string
+          description: Authorized sales amount in the currency accepted by the particular
+            merchant.
+          example: '1.00'
+        channelId:
+          maxLength: 4
+          type: string
+          description: Field indicate the Partner details and transaction source.
+          example: PALL
+          enum:
+          - ' '
+          - BQIB
+          - BQBR
+          - BQMA
+          - VMIB
+          - VMMA
+        merchantBusinessUnit:
+          maximum: 999
+          maxLength: 3
+          type: integer
+          description: Field that identifies the business unit to which the store
+            is assigned. The values for the business unit are 1–998.
+          example: '100'
+        merchantCategoryCode:
+          maximum: 9999
+          maxLength: 4
+          type: integer
+          description: Merchant category code
+          example: '0'
+        paymentInstrumentOrCardId:
+          maxLength: 19
+          type: string
+          description: Unique alternate identification number associated with Payment
+            Card Number or Unique identification number that appears on the front
+            of the card (PAN).
+          example: '0009846801010274074'
+        planId:
+          maximum: 99999
+          maxLength: 5
+          type: integer
+          description: Plan number that identifies the Credit Plan Master entity associated
+            with the credit plan segment.
+          example: '10001'
+        settlementDate:
+          maxLength: 10
+          type: string
+          description: Settlement date of authorization which is received in input
+            for BP/BT. The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE
+            FORMAT on System Control.
+          example: 10/01/2022
+        transactionDescription:
+          maxLength: 40
+          type: string
+          description: Transaction source to identify if the authorization is for
+            BPAY OUT request.
+          example: Bill payment transaction
+        transactionType:
+          maxLength: 2
+          type: string
+          description: Field to identify the type of transaction. <br/>The values
+            are:<br/>&nbsp; 'NB' - NAB  <br/>&nbsp; 'OF' - Other Financial Institution
+          example: NB
+          enum:
+          - NB
+          - OF
+        uniqueTransactionId:
+          maxLength: 35
+          type: string
+          description: This field indicates unique transaction identification for
+            the associated transaction.
+          example: APP17977700222011344330001112345678
+    PayAllV1ResponseModel:
+      type: object
+      properties:
+        authorizationCode:
+          maxLength: 6
+          type: string
+          description: Authorization code associated with the transaction.
+          example: '055271'
+        effectiveDate:
+          maxLength: 10
+          type: string
+          description: Effective date of the transaction. The format is MM/DD/YYYY
+            or DD/MM/YYYY depending on the DATE FORMAT on System Control.
+          example: 10/01/2022
+        finalAction:
+          maxLength: 1
+          type: string
+          description: Code that indicates the action the system returned.
+          example: A
+        maskedPaymentCardNumber:
+          maxLength: 19
+          type: string
+          description: Unique identification number that appears on the front of the
+            card (PAN) in masked format.
+          example: 000484680XXXXXX9405
+        openToBuy:
+          maxLength: 24
+          type: string
+          description: Current open-to-buy amount of the account.
+          example: $10000.00
+        reason:
+          maxLength: 20
+          type: string
+          description: FAS approval or decline code and description for this authorization
+            request.
+          example: APPROVED
+        responseCode:
+          maxLength: 2
+          type: string
+          description: Code that indicates the numeric ISO response code for this
+            request.
+          example: '00'
+        settlementDate:
+          maxLength: 10
+          type: string
+          description: Settlement date of authorization which is received in input
+            for BP/BT. The format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE
+            FORMAT on System Control.
+          example: 10/01/2022
         uniqueTransactionId:
           maxLength: 35
           type: string
