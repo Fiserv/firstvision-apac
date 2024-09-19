@@ -103,7 +103,7 @@ Below table provides the list of application's error code and its description.
 | `V5DC4002SB` | Acct is purged/fraud/closed/cgoff or add pending/NOTFND |
 | `V5DC4002SD` | Acct warning code is 1/2/3/4/8 |
 | `V5RQ4030SB` | Settlement date should be greater than auth date |
-| `V7RQ4026SV` | Valid values for tran type are spaces, BT, BP, TC, PA, DP, CP |
+| `V7RQ4026SV` | Valid values for tran type are spaces, BT, BP, TC, PA, DP, CP, NA & OF |
 | `V7RQ4031EA` | Channel id is mandatory when tran-type is TC/PA/DP/CP |
 | `V7RQ4032EA` | Reference nbr is mandatory when tran-type is TC/PA/DP/CP |
 

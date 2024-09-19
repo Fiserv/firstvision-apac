@@ -51,7 +51,8 @@ type: tab
       "foreignOriginalCurrencyCode": "840",
       "acquirerReferenceNumber": "74126780192471000000001",
 			"transactionIdentifier": "699999261226140",
-			"multiClearSequenceIndicator": "0"
+			"multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": " ",
@@ -77,7 +78,8 @@ type: tab
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000002",
 			"transactionIdentifier": "699999261226141",
-			"multiClearSequenceIndicator": "0"
+			"multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": " ",
@@ -103,7 +105,8 @@ type: tab
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000003",
 			"transactionIdentifier": "699999261226143",
-			"multiClearSequenceIndicator": "0"
+			"multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     }
   ]
 }
