@@ -18,6 +18,8 @@ Please click on the below link to explore the specific API of interest
 
 - [Inquire Account Limits](./?path=docs/APIs/Account-Management/Inquire-Account-Limits.md)
 
+- [Inquire Account Payoff Quote](./?path=docs/APIs/Account-Management/Inquire-Account-Payoff-Quote.md)
+
 - [Inquire Account Plan](./?path=docs/APIs/Account-Management/Inquire-Account-Plan.md)
 
 - [Inquire Account Preference](./?path=docs/APIs/Account-Management/Inquire-Account-Preference.md)
@@ -60,7 +62,7 @@ Please click on the below link to explore the specific API of interest
 
 - [Product Transfer](./?path=docs/APIs/Account-Management/Product-Transfer.md)
 
-- [Reversal Product Transfer](./?path=docs/APIs/Account-Management/Reversal-Product-Transfer.md)
+- [Reverse Product Transfer](./?path=docs/APIs/Account-Management/Reverse-Product-Transfer.md)
 
 - [Transfer Plan Balance](./?path=docs/APIs/Account-Management/Transfer-Plan-Balance.md)
  
