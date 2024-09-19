@@ -60,6 +60,8 @@ Please click on the below link to explore the specific API of interest
 
 - [Product Transfer](./?path=docs/APIs/Account-Management/Product-Transfer.md)
 
+- [Reversal Product Transfer](./?path=docs/APIs/Account-Management/Reversal-Product-Transfer.md)
+
 - [Transfer Plan Balance](./?path=docs/APIs/Account-Management/Transfer-Plan-Balance.md)
  
 - [Update Account Charge-Off](./?path=docs/APIs/Account-Management/Update-Account-Charge-Off.md)

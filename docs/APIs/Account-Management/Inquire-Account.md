@@ -99,7 +99,9 @@ type: tab
     "lastPurchaseAmount": "$100.00",
     "balanceTransferOutstandingAmount" : "$0.00",
     "lastCashAdvancedAmount": "$0.00",
-    "updatedQualificationGraceBalance": "$100.00"
+    "updatedQualificationGraceBalance": "$100.00",
+		"membershipFeeRefundAmount": "$0.00",
+		"cardFeeRebateAmount": "$0.00"
   },
   "userAccountId": " ",
   "status": "A",
@@ -145,6 +147,12 @@ type: tab
     "pctStartDate": "29/01/2022",
     "pctOverride": "HCS"
   },
+  	"transferDetails": {
+		"businessUnit": 700,
+		"productId": 1,
+		"accountId": "0007000011000327009",
+		"effectiveDate": "00/00/0000"
+	},
   "statementDeliveryMode": "E",
   "bnplDetails": {
     "ConfigurationTemplate": "TMPL1",

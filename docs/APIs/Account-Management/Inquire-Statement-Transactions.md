@@ -106,7 +106,8 @@ type: tab
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000001",
 			"transactionIdentifier": "699999261226140",
-			"multiClearSequenceIndicator": "0"
+			"multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     }
   ],
   "correspondingCustomerId": " ",

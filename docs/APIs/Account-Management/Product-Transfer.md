@@ -17,19 +17,18 @@ titles: Request, Response, Error
 
 ```json
 {
-  "accountId": "0004440010000000033",
-  "businessUnit": 0,
-  "transferAuthDays": 0,
-  "transferToAccountId": "/",
-  "transferToProductId": 2,
-  "customerId": " ",
+  "accountId": "0007000011058359003",
   "billingCycle": 0,
-  "effectiveDate": "00/00/0000",
-  "transferReplcementIndicator": 0,
-  "newCardTechnology": "1",
+  "businessUnit": 700,
   "continueWithReissue": 0,
+  "customerId": " ",
+  "effectiveDate": "10/12/2025",
+  "newCardTechnology": "1",
   "processType": " ",
-  "sameDayProcessing": "0"
+  "sameDayProcessing": "0",
+  "transferAuthDays": 0,
+  "transferReplcementIndicator": 0,
+  "transferToProductId": 2
 }
 ```
 
@@ -39,8 +38,8 @@ type: tab
 
 ```json
 {
-  "businessUnit": 600,
-  "accountId": "0006000022000000621"
+  "businessUnit": 700,
+  "accountId": "0007000011011355103"
 }
 ```
 
@@ -55,7 +54,7 @@ type: tab
     "errorCode": "440401",
     "instance": "/v1/accounts/productTransfer",
     "invalid-params": [
-      "V5XF4001SB: NO ORGANIZATION RECORD ON FILE"
+      "V5XF4002SA: ACCOUNT NUMBER NOT FOUND"
     ],
     "source": "VPL",
     "status": 404,
@@ -75,7 +74,7 @@ The below table identifies the required parameters in the request payload.
 | Variable | Passed as | Type | Length | Description/Values |
 | -------- | :-------: | :--: | :------------: | ------------------ |
 | `accountId` | Payload | *string* | 19 | Unique identification number for cardholder billing account. |
-| `transferToAccountId` | Payload | *string* | 19 | New transferred to account id of the cardholder billing account. |  
+| `transferToProductId` | Payload | *number* | 03 | Transfer to product identification associated with the new account to be created. |  
 
 ### Error Codes
 

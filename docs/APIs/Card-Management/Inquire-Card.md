@@ -81,6 +81,7 @@ type: tab
   "isSecureCodeEnabled": 0,
   "lastCardActivation": "N",
   "maskedPaymentCardNumber": " ",
+  "fraudTransferAccountId": " ",
   "mobileDeviceID": " ",
   "mobileProvisionStatus": 0,
   "nameFields": {
