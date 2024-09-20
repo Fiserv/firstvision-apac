@@ -1,6 +1,6 @@
 # Unsettled Transaction Instalment Conversion
 
-This API supports both single and multiple transaction conversion into instalments for a given accountId/paymentInstrumentId. API first validates if given transactions are eligible to convert into instalment. If transactions are eligible, then system converts given transactions into instalment.
+This API supports conversion unsettled transactions into instalments for a given accountId/paymentInstrumentId and other details. API first validates if given transactions are eligible to convert into instalment. If transactions are eligible, then system converts given transactions into instalment.
 
 ## Endpoint
 
