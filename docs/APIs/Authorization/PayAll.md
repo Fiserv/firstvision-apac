@@ -52,17 +52,17 @@ type: tab
 
 ```json
 [
-  {
-    "detail": "Please refer to invalid-params for error details",
-    "errorCode": "440402",
-    "instance": "/v1/auth/payAll",
-    "invalid-params": [
-      "V7RQ4004EC : ACCOUNT NUMBER IS INVALID"
-    ],
-    "source": "VPL",
-    "status": 404,
-    "title": "Not found"
-  }
+	{
+		"errorCode": "440401",
+		"detail": "Please refer to invalid-params for error details",
+		"title": "Not found",
+		"instance": "/v1/auth/payAll",
+		"source": "VPL",
+		"status": 404,
+		"invalid-params": [
+			"V7RQ4004EB: INVALID BANKCARD  NOT FOUND IN BIN TABLE"
+		]
+	}
 ]
 ```
 
@@ -80,7 +80,7 @@ The below table identifies the required parameters in the request payload.
 | `authorizationAmount` | Payload | *string* | 13 | Authorized sales amount in the currency accepted by the particular merchant. |
 | `transactionType` | Payload | *string* | 2 | Field to identify the type of transaction. |
 | `transactionDescription` | Payload | *string* | 40 | Transaction source to identify if the authorization is for BPAY OUT request. |
-| `merchantCategoryCode` | Payload | *number* | 4 | Merchant category code. |
+| `merchantCategoryCode` | Payload | *number* | 4 | Field indicates the category code assigned to merchant. |
 
 ### Error Codes
 

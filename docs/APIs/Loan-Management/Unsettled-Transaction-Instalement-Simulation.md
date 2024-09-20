@@ -57,7 +57,7 @@ type: tab
   ],
   "tenure": 12,
   "planSequenceNumber": 1,
-  "unsettledTransactionAmount": "1000.00"
+  "unsettledTransactionAmount": "$1000.00"
 }
 ```
 
