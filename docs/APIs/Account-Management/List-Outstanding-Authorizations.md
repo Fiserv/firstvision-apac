@@ -48,8 +48,8 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226140",
-			"multiClearingSequenceIndicator": "0",
+      "transactionIdentifier": "699999261226140",
+      "multiClearingSequenceIndicator": "0",
       "recurringTransactionIndicator": " "
     },
     {
@@ -76,8 +76,8 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226141",
-			"multiClearingSequenceIndicator": "0",
+      "transactionIdentifier": "699999261226141",
+      "multiClearingSequenceIndicator": "0",
       "recurringTransactionIndicator": " "
     },
     {
@@ -104,8 +104,8 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226142",
-			"multiClearingSequenceIndicator": "0",
+      "transactionIdentifier": "699999261226142",
+      "multiClearingSequenceIndicator": "0",
       "recurringTransactionIndicator": " "
     },
     {
@@ -132,8 +132,8 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226143",
-			"multiClearingSequenceIndicator": "0",
+      "transactionIdentifier": "699999261226143",
+      "multiClearingSequenceIndicator": "0",
       "recurringTransactionIndicator": " "
     },
     {
@@ -160,8 +160,8 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226144",
-			"multiClearingSequenceIndicator": "0",
+      "transactionIdentifier": "699999261226144",
+      "multiClearingSequenceIndicator": "0",
       "recurringTransactionIndicator": " "
     }
   ]
