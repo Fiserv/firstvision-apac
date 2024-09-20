@@ -1,4 +1,5 @@
-## Chargeback Transaction Details
+# Chargeback Transaction Details
+
 ```java
     /**
      * Provides a list of chargeback transactions.
@@ -9,11 +10,14 @@
      */
 ```
 
-##### Example Request
-><strong>Curl</strong>
+## Example Request
+>
+>**Curl**
+>
 >```javascript
 >curl -X POST "https://cat.api.firstdata.com/reporting/v1/chargeback/details/byDate" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"date\": 20210217, \"fields\": [ \"cb_backendMID\", \"cb_authNetwork\", \"cb_receivedDate\", \"cb_statusDate\", \"cb_transactionDate\", \"cb_status\", \"cb_category\", \"cb_workType\", \"cb_winLoss\", \"cb_Reason\", \"cb_reasonCode\", \"cb_currency\", \"cb_chargebackAmount\", \"cb_dueDate\", \"cb_transactionType\", \"cb_dispositionDate\", \"cb_Disposition\", \"cb_ECIndicator\", \"cb_transactionAmount\", \"cb_accountNumber\", \"cb_first6\", \"cb_last4\", \"cb_invoiceNumber\", \"cb_terminalId\", \"cb_disputeID\", \"cb_referenceNumber\", \"cb_authCode\", \"cb_trackingNumber\", \"cb_svcCd\", \"cb_merchantCategory\", \"cb_orderNumber\", \"cb_responseReceived\", \"cb_respondedDate\", \"cb_externalMid\", \"cb_paymentMethod\", \"cb_sendMode\", \"cb_recurring\", \"cb_mobileWallet\", \"cb_tokenResponseInd\", \"cb_adjDate\", \"cb_captureMethod\" ], \"filters\": [ { \"field\": \"o_chargebackDateType\", \"values\": [ \"1\" ] } ]}"
 >```
+>
 ```json
 {
   "date": 20210217,
@@ -71,7 +75,8 @@
 }
 ```
 
-##### Example Response
+### Example Response
+
 ```json
 {
   "response": [
@@ -152,4 +157,3 @@
   ]
 }
 ```
-
