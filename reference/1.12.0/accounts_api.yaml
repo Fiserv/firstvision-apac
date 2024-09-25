@@ -10682,6 +10682,11 @@ components:
               description: Field indicates the total outstanding balance transfer
                 amount on the account as of previous day.
               example: $5120.00
+            cardFeeRebateAmount:
+              maxLength: 24
+              type: string
+              description: Total amount of care fee rebate made on the account.
+              example: $25.00
             cashAvailable:
               maxLength: 24
               type: string
@@ -10791,6 +10796,11 @@ components:
               description: Field will hold maximum TIP eligible amount based on balances
                 and activities on account as of previous day.
               example: $100.00
+            membershipFeeRefundAmount:
+              maxLength: 24
+              type: string
+              description: Total amount of membsership fee refunds made on the account.
+              example: $105.00
             memoCreditAmount:
               maxLength: 24
               type: string
@@ -11422,6 +11432,36 @@ components:
             'X' - Charge-off/conversion <br/>&nbsp; 'Z' - Charge-off <br/>&nbsp; '8'
             - Closed <br/>&nbsp; '9' - To be purged after reload
           example: A
+        transferDetails:
+          type: object
+          properties:
+            accountId:
+              maxLength: 19
+              type: string
+              description: Unique identification number for cardholder transferred
+                billing account.
+              example: '0002000010000403266'
+            businessUnit:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Unique identification number associated with the organization
+                for transferred account. Valid values from 1-998.
+              example: '200'
+            effectiveDate:
+              maxLength: 10
+              type: string
+              description: Date on the which the account is transferred, The format
+                is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on System
+                Control.
+              example: 10/10/2022
+            productId:
+              maximum: 999
+              maxLength: 3
+              type: integer
+              description: Unique identification number of the product associated
+                with the organization. Valid values are 1-998.
+              example: '0'
         userAccountId:
           maxLength: 19
           type: string
@@ -14074,7 +14114,7 @@ components:
     ProductTransferV1ReqModel:
       required:
       - accountId
-      - transferToAccountId
+      - transferToProductId
       type: object
       properties:
         accountId:
@@ -14195,20 +14235,12 @@ components:
           enum:
           - 0
           - 1
-        transferToAccountId:
-          maxLength: 19
-          type: string
-          description: Unique identification number for cardholder billing account.
-            Transfer To account id must be numeric and greater than zeroes, Must exist
-            as a valid Account number and Account should not be in ADD PENDING status
-            or CLOSED or TO BE PURGED status.
-          example: /
         transferToProductId:
           maximum: 999
           maxLength: 3
           type: integer
-          description: Transfer To product identification associated with the account
-            id entered.
+          description: Transfer to product identification associated with the new
+            account to be created.
           example: '2'
     ProductTransferV1ResponseModel:
       type: object
@@ -14271,64 +14303,8 @@ components:
           description: Unique identification number associated with the organization.
             Valid values from 1-998.
           example: '0'
-        effectiveDate:
-          maxLength: 10
-          type: string
-          description: Effective date of the transfer. The format is MM/DD/YYYY or
-            DD/MM/YYYY depending on the date format established on the System record.
-          example: 00/00/0000
-        processType:
-          maxLength: 1
-          type: string
-          description: 'Code that indicates whether CMS processes card reissue for
-            the “transfer to” account during the nightly batch processing cycle or
-            in the same-day embossing processing cycle. The values are:<br/>&nbsp;
-            '' '' - No same-day plastic request in process(Default) <br/>&nbsp; ''0''
-            - Process the card action during the nightly batch processing. CMS displays
-            this value when: <br/>&nbsp; Card action is processed during the nightly
-            batch processing cycle<br/>&nbsp; Same-day plastic request is processed
-            and completed<br/>&nbsp; Same-day plastic request is processed and failed<br/>&nbsp;
-            Same-day plastic request is processed and removed<br/>&nbsp; ''1'' - Process
-            the card action as a same-day plastic request'
-          example: ' '
-          enum:
-          - ' '
-          - '0'
-          - '1'
-        sameDayProcessing:
-          maxLength: 1
-          type: string
-          description: Flag that indicates whether the old card on the transfer from
-            account has a pending SDP processing request. <br/>The values are:<br/>&nbsp;
-            '1' - Old card has a pending SDP request <br/>&nbsp; '0' - The old cards
-            do not have a pending SDP request or SDP processing has not been requested
-          example: '0'
-          enum:
-          - '0'
-          - '1'
-        transferAuthDays:
-          maximum: 99
-          maxLength: 2
-          type: integer
-          description: Number of days that CMS allows authorizations on the new(“transfer
-            from”) account after a product transfer.
-          example: '0'
     ReverseProductTransferV1ResponseModel:
       type: object
-      properties:
-        accountId:
-          maxLength: 19
-          type: string
-          description: Unique identification number for cardholder billing account.
-            Old account identification after service passed.
-          example: '0006000022000000621'
-        businessUnit:
-          maximum: 999
-          maxLength: 3
-          type: integer
-          description: Unique identification number associated with the organization.
-            Valid values from 1-998.
-          example: '600'
     ServiceFeeControlsAtFeeTable_InquireAccountFeesAndControlV1ResponseModel:
       type: object
       properties:
@@ -14494,7 +14470,7 @@ components:
           type: integer
           description: Identification number of the store where the transaction originated.
           example: '0'
-        multiClearSequenceIndicator:
+        multiClearingSequenceIndicator:
           maxLength: 1
           type: string
           description: This field will be populated when more than one clearing settlement
@@ -14524,6 +14500,13 @@ components:
           maxLength: 1
           type: string
           description: Frequent shopper program number for which the transaction qualified.
+          example: ' '
+        recurringTransactionIndicator:
+          maxLength: 1
+          type: string
+          description: Field indicates whether the transaction is a recurring transaction
+            or not .<br/>The values are:<br/>&nbsp; 'R' - Recurring transaction <br/>&nbsp;
+            ' ' - Not recurring transaction
           example: ' '
         referenceNumber:
           maxLength: 23
@@ -14654,7 +14637,7 @@ components:
           type: string
           description: This field indicates merchant name.
           example: Amazon
-        multiClearSequenceIndicator:
+        multiClearingSequenceIndicator:
           maxLength: 1
           type: string
           description: This field will be populated when more than one clearing settlement
@@ -14680,6 +14663,13 @@ components:
           description: Posting date of the transaction, The format is MM/DD/YYYY or
             DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 26/03/2021
+        recurringTransactionIndicator:
+          maxLength: 1
+          type: string
+          description: Field indicates whether the transaction is a recurring transaction
+            or not .<br/>The values are:<br/>&nbsp; 'R' - Recurring transaction <br/>&nbsp;
+            ' ' - Not recurring transaction
+          example: ' '
         referenceNumber:
           maxLength: 23
           type: string
@@ -14801,7 +14791,7 @@ components:
           type: string
           description: This field indicates merchant name.
           example: Amazon
-        multiClearSequenceIndicator:
+        multiClearingSequenceIndicator:
           maxLength: 1
           type: string
           description: This field will be populated when more than one clearing settlement
@@ -14829,6 +14819,13 @@ components:
             transaction). The format is MM/DD/YYYY or DD/MM/YYYY depending on the
             DATE FORMAT on System Control.
           example: 16/08/2021
+        recurringTransactionIndicator:
+          maxLength: 1
+          type: string
+          description: Field indicates whether the transaction is a recurring transaction
+            or not .<br/>The values are:<br/>&nbsp; 'R' - Recurring transaction <br/>&nbsp;
+            ' ' - Not recurring transaction
+          example: ' '
         referenceNumber:
           maxLength: 23
           type: string
@@ -14948,7 +14945,7 @@ components:
           type: string
           description: This field indicates merchant name.
           example: Amazon
-        multiClearSequenceIndicator:
+        multiClearingSequenceIndicator:
           maxLength: 1
           type: string
           description: This field will be populated when more than one clearing settlement
@@ -14974,6 +14971,13 @@ components:
           description: Posting date of the transaction, The format is MM/DD/YYYY or
             DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 18/08/2021
+        recurringTransactionIndicator:
+          maxLength: 1
+          type: string
+          description: Field indicates whether the transaction is a recurring transaction
+            or not .<br/>The values are:<br/>&nbsp; 'R' - Recurring transaction <br/>&nbsp;
+            ' ' - Not recurring transaction
+          example: ' '
         referenceNumber:
           maxLength: 23
           type: string
@@ -15107,7 +15111,7 @@ components:
           type: string
           description: This field indicates merchant name.
           example: Amazon
-        multiClearSequenceIndicator:
+        multiClearingSequenceIndicator:
           maxLength: 1
           type: string
           description: This field will be populated when more than one clearing settlement
@@ -15133,6 +15137,13 @@ components:
           description: Posting date of the transaction, The format is MM/DD/YYYY or
             DD/MM/YYYY depending on the DATE FORMAT on System Control.
           example: 18/08/2021
+        recurringTransactionIndicator:
+          maxLength: 1
+          type: string
+          description: Field indicates whether the transaction is a recurring transaction
+            or not .<br/>The values are:<br/>&nbsp; 'R' - Recurring transaction <br/>&nbsp;
+            ' ' - Not recurring transaction
+          example: ' '
         referenceNumber:
           maxLength: 23
           type: string
@@ -15281,7 +15292,7 @@ components:
           type: string
           description: This field indicates merchant name.
           example: Amazon
-        multiClearSequenceIndicator:
+        multiClearingSequenceIndicator:
           maxLength: 1
           type: string
           description: This field will be populated when more than one clearing settlement
@@ -15309,6 +15320,13 @@ components:
             format is MM/DD/YYYY or DD/MM/YYYY depending on the DATE FORMAT on the
             System Control.
           example: 17/08/2021
+        recurringTransactionIndicator:
+          maxLength: 1
+          type: string
+          description: Field indicates whether the transaction is a recurring transaction
+            or not .<br/>The values are:<br/>&nbsp; 'R' - Recurring transaction <br/>&nbsp;
+            ' ' - Not recurring transaction
+          example: ' '
         referenceNumber:
           maxLength: 23
           type: string
