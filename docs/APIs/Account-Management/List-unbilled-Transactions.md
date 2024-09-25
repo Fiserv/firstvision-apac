@@ -50,8 +50,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000001",
-			"transactionIdentifier": "699999261226140",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226140",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": "052206",
@@ -78,8 +79,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000002",
-			"transactionIdentifier": "699999261226141",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226141",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": "052210",
@@ -106,8 +108,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000003",
-			"transactionIdentifier": "699999261226142",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226142",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": "052213",
@@ -134,8 +137,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000004",
-			"transactionIdentifier": "699999261226143",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226143",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": "052219",
@@ -162,8 +166,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000006",
-			"transactionIdentifier": "699999261226144",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226144",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": "052220",
@@ -190,8 +195,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000007",
-			"transactionIdentifier": "699999261226145",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226145",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": " ",
@@ -218,8 +224,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": "74126780192471000000008",
-			"transactionIdentifier": "699999261226146",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226146",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     }
   ]
 }

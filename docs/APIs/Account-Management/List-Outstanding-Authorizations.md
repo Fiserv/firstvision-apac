@@ -48,8 +48,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226140",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226140",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": " ",
@@ -75,8 +76,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226141",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226141",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": " ",
@@ -102,8 +104,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226142",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226142",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": " ",
@@ -129,8 +132,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226143",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226143",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     },
     {
       "authorizationCode": " ",
@@ -156,8 +160,9 @@ type: tab
       "foreignOriginalAmount": "0",
       "foreignOriginalCurrencyCode": "000",
       "acquirerReferenceNumber": " ",
-			"transactionIdentifier": "699999261226144",
-			"multiClearSequenceIndicator": "0"
+      "transactionIdentifier": "699999261226144",
+      "multiClearingSequenceIndicator": "0",
+      "recurringTransactionIndicator": " "
     }
   ]
 }
