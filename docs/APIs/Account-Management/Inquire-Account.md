@@ -86,8 +86,6 @@ type: tab
     "firstPurchaseAmount": "$0.00",
     "lastPaymentAmount": "$0.00",
     "cycleToDatePaymentAmount": "$2000.00",
-    "eligibleBalanceForStatementInstalment": "$100.00",
-    "maximumEligibleBalanceForTransactionInstalment": "$100.00",
     "loanCreditLimit": "$0.00",
     "loanBalance": "$0.00",
     "loanAvailable": "$0.00",
@@ -99,7 +97,6 @@ type: tab
     "lastPurchaseAmount": "$100.00",
     "balanceTransferOutstandingAmount" : "$0.00",
     "lastCashAdvancedAmount": "$0.00",
-    "updatedQualificationGraceBalance": "$100.00",
     "membershipFeeRefundAmount": "$0.00",
     "cardFeeRebateAmount": "$0.00"
   },
